@@ -246,103 +246,104 @@
 	                             <span> 인사 </span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
-	                          	<span class="menu-arrow"></span></a> 		
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
-	                          			<li><a href="#">인사정보등록</a></li>
-										<li><a href="#">인사정보현황</a></li>
-										<li><a href="#">인사고과/상벌현황</a></li>
-										<li><a href="#">책정임금 현황</a></li>
-										<li><a href="#">근속년수현황</a></li>
+	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
+										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
+										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
+										<li><a href="HR_EmployeeSalary">책정임금 현황</a></li>
+										<li><a href="HR_Yearsofservice">근속년수현황</a></li>
 	                          		</ul>
 	                          	</li>
 	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사발령
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">인사발령등록</a></li>
-										<li><a href="#">인사발령공고</a></li>
-										<li><a href="#">인사발령리포트</a></li>
+	                          			<li><a href="HR_Greeting">인사발령등록</a></li>
+										<li><a href="HR_appointment_notice">인사발령공고</a></li>
+										<li><a href="HR_appointment_report">인사발령리포트</a></li>
 	                          		</ul>	
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사/급여관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">근태경과입력</a></li>
-					                	<li><a href="#">상용직급여 입력 및 계산</a></li>
-					                	<li><a href="#">급여대장</a></li>
-					                	<li><a href="#">급여명세</a></li>
-					                	<li><a href="#">급/상여 이체현황</a></li>
-					                	<li><a href="#">월별 급/상여지급현황</a></li>
-					                	<li><a href="#">사원별 급/상여지급현황</a></li>
-					                	<li><a href="#">급/상여 집계현황</a></li>
-					                	<li><a href="#">항목별 급/상여 지급현황</a></li>
-					                	<li><a href="#">급여통계현황</a></li>
-					                	<li><a href="#">급/상여 증감현황</a></li>
-					                	<li><a href="#">연갑금여현황</a></li>
-					                	<li><a href="#">수당별 연간급여현황</a></li>
+	                          			<li><a href="HR_work_record">근태경과입력</a></li>
+					                	<li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
+					                	<li><a href="coming_soon">!급여대장</a></li>
+					                	<li><a href="coming_soon">!급여명세</a></li>
+					                	<li><a href="coming_soon">!급/상여 이체현황</a></li>
+					                	<li><a href="coming_soon">!월별 급/상여지급현황</a></li>
+					                	<li><a href="coming_soon">!사원별 급/상여지급현황</a></li>
+					                	<li><a href="coming_soon">!급/상여 집계현황</a></li>
+					                	<li><a href="coming_soon">!항목별 급/상여 지급현황</a></li>
+					                	<li><a href="coming_soon">!급여통계현황</a></li>
+					                	<li><a href="coming_soon">!급/상여 증감현황</a></li>
+					                	<li><a href="coming_soon">!연갑금여현황</a></li>
+					                	<li><a href="coming_soon">!수당별 연간급여현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">사회보험관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">!사회보험관리<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">사회보험취득관리</a></li>
-										<li><a href="#">사회보험상실관리</a></li>
-										<li><a href="#">자격취득신고서</a></li>
-										<li><a href="#">자격상실신고서</a></li>
-										<li><a href="#">고용보험이직확인서</a></li>
+	                          			<li><a href="coming_soon">!사회보험취득관리</a></li>
+										<li><a href="coming_soon">!사회보험상실관리</a></li>
+										<li><a href="coming_soon">!자격취득신고서</a></li>
+										<li><a href="coming_soon">!자격상실신고서</a></li>
+										<li><a href="coming_soon">!고용보험이직확인서</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">연말정산관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">!연말정산관리
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">연말정산자료입력</a></li>
-										<li><a href="#">연말정산현황</a></li>
-										<li><a href="#">근로소득원천징수부</a></li>
-										<li><a href="#">근로소득원청징수영수증</a></li>
+	                          			<li><a href="coming_soon">!연말정산자료입력</a></li>
+										<li><a href="coming_soon">!연말정산현황</a></li>
+										<li><a href="coming_soon">!근로소득원천징수부</a></li>
+										<li><a href="coming_soon">!근로소득원청징수영수증</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">퇴직정산관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">!퇴직정산관리
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">퇴직기준선정</a></li>
-										<li><a href="#">퇴직금산정</a></li>
-										<li><a href="#">퇴직소득원청징수영수증</a></li>
-										<li><a href="#">퇴직금추계액</a></li>
+	                          			<li><a href="coming_soon">!퇴직기준선정</a></li>
+										<li><a href="coming_soon">!퇴직금산정</a></li>
+										<li><a href="coming_soon">!퇴직소득원청징수영수증</a></li>
+										<li><a href="coming_soon">!퇴직금추계액</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">세무관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">!세무관리
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">원천징수이행상황신고서</a></li>
-										<li><a href="#">지방소득세특별징수명세/납부서</a></li>
+	                          			<li><a href="coming_soon">!원천징수이행상황신고서</a></li>
+										<li><a href="coming_soon">!지방소득세특별징수명세/납부서</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">!전표관리
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">계정과목설정</a></li>
-										<li><a href="#">소득자별계정유형설정</a></li>
-										<li><a href="#">전표집계 및 생성</a></li>
+	                          			<li><a href="coming_soon">!계정과목설정</a></li>
+										<li><a href="coming_soon">!소득자별계정유형설정</a></li>
+										<li><a href="coming_soon">!전표집계 및 생성</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">일용직관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">!일용직관리
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">일용직사원등록</a></li>
-										<li><a href="#">일용직급여지급일자등록</a></li>
-										<li><a href="#">일용직급여입력 및 계산</a></li>
+	                          			<li><a href="coming_soon">!일용직사원등록</a></li>
+										<li><a href="coming_soon">!일용직급여지급일자등록</a></li>
+										<li><a href="coming_soon">!일용직급여입력 및 계산</a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>
 	                          
+	                          
+	                          <!-- ★ 내가 해야 하는 영업 ★ -->
 	                        <li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-car-back"></i>
@@ -350,42 +351,42 @@
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">판매계획 관리</a></li>
-										<li><a href="#">견적 관리</a></li>
-										<li><a href="#">거래 명세서 발행</a></li>
-										<li><a href="#">세금 계산서 발행</a></li>
+	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
+										<li><a href="ST_estimate">견적 관리</a></li>
+										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
+										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업현황
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">판매계획 현황</a></li>
-										<li><a href="#">판매계획 대비 출고 현황</a></li>
-										<li><a href="#">견적 현황</a></li>
-										<li><a href="#">견적 대비 생산 현황</a></li>
-										<li><a href="#">출고 지연 현황</a></li>
-										<li><a href="#">출고 관리</a></li>
-										<li><a href="#">반품 관리</a></li>
-										<li><a href="#">세금계산서 발행 대장</a></li>
-										<li><a href="#">수금 현황</a></li>																									
-										<li><a href="#">받을 어음 현황</a></li>
-										<li><a href="#">미수 채권 집계</a></li>
-										<li><a href="#">미수 채권 상세 현황</a></li>	
+	                          			<li><a href="ST_sale_plan_state">판매계획 현황</a></li>
+										<li><a href="ST_contrast_pp">판매계획 대비 출고 현황</a></li>
+										<li><a href="ST_tables-responsive">견적 현황</a></li>
+										<li><a href="ST_contrast_pPro">견적 대비 생산 현황</a></li>
+										<li><a href="ST_delay_state">출고 지연 현황</a></li>
+										<li><a href="ST_release">출고 관리</a></li>
+										<li><a href="ST_refund">반품 관리</a></li>
+										<li><a href="ST_tex_invoice_list">세금계산서 발행 대장</a></li>
+										<li><a href="coming_soon">!수금 현황</a></li>																									
+										<li><a href="coming_soon">!받을 어음 현황</a></li>
+										<li><a href="coming_soon">!미수 채권 집계</a></li>
+										<li><a href="coming_soon">!미수 채권 상세 현황</a></li>	
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업분석
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          				<li><a href="#">출고 지연 집계</a></li>
-						                    <li><a href="#">출고 실적 집계표(월별)</a></li>
-						                    <li><a href="#">매출 현황</a></li>
-						                    <li><a href="#">매출 집계표</a></li>
-						                    <li><a href="#">매출 순위표</a></li>
-											<li><a href="#">추정 매출원가</a></li>
+	                          				<li><a href="coming_soon">!출고 지연 집계</a></li>
+						                    <li><a href="coming_soon">!출고 실적 집계표(월별)</a></li>
+						                    <li><a href="coming_soon">!매출 현황</a></li>
+						                    <li><a href="coming_soon">!매출 집계표</a></li>
+						                    <li><a href="coming_soon">!매출 순위표</a></li>
+											<li><a href="coming_soon">!추정 매출원가</a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>
@@ -398,38 +399,37 @@
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표/장부
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">전표입력</a></li>
-					                    <li><a href="#">전표관리</a></li>
-					                    <li><a href="#">전표승인해제</a></li>
-					                    <li><a href="#">분개장</a></li>
-					                    <li><a href="#">거래처원장</a></li>
-					                    <li><a href="#">주요계정증감현황</a></li>
-					                    <li><a href="#">계정별 변동추이 분석</a></li>
+	                          			<li><a href="insertChit">전표입력</a></li> 
+					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
+					                    <li><a href="journal">분개장</a></li>
+					                    <li><a href="ledger">거래처원장</a></li>
+					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
+					                    <li><a href="coming_soon">!계정별 변동추이 분석</a></li>
                           			</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/제무재표
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          				<li><a href="#">결산자료입력</a></li>
-						                    <li><a href="#">재무상태표</a></li>
-						                    <li><a href="#">손익계산서</a></li>
-						                    <li><a href="#">원가보고서</a></li>
+	                          				<li><a href="insertTotal">결산자료입력</a></li>
+						                    <li><a href="FT_BS">재무상태표</a></li>
+						                    <li><a href="FT_IS">손익계산서</a></li>
+						                    <li><a href="FT_p_cost">원가보고서</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">자금
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          				<li><a href="#">자금현황</a></li>
-                    						<li><a href="#">주요예적금 현황</a></li>
+	                          				<li><a href="FT_funds_state">자금현황</a></li>
+                    						<li><a href="FT_sa_state">주요예적금 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">일자별자금계획입력</a></li>
 					                    <li><a href="#">예산신청입력</a></li>
@@ -439,7 +439,7 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">고정자산
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">고정자산관리</a></li>
                     					<li><a href="#">감가상각누계액 현황</a></li>
@@ -447,7 +447,7 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">부가가치세
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">부가세금서</a></li>
                     					<li><a href="#">세금계산서 합계표</a></li>
@@ -455,7 +455,7 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">금융관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">계좌번호 관리</a></li>
                     					<li><a href="#">카드번호 관리</a></li>
@@ -472,7 +472,7 @@
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">전산 설비 등록</a></li>
 					                    <li><a href="#">전산 설비 관리</a></li>
@@ -480,24 +480,24 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">수리 일지 등록</a></li>
                     					<li><a href="#">수리 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">예산 현황</a></li>
                     					<li><a href="#">추가 예산 신청</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">A/S 요청 현황</a></li>
                     					<li><a href="#">A/S 요청 관리 </a></li>
@@ -512,8 +512,8 @@
 	                             <span> 제조 </span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산관리</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">생산계획등록</a></li>
 					                    <li><a href="#">생산계획관리</a></li>
@@ -523,16 +523,16 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">재공관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">재공관리</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">기초재공등록</a></li>
                     					<li><a href="#">재공품 입고/출고 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산/재공 현황
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산/재공 현황</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">작업지시 현황</a></li>
 					                    <li><a href="#">계획대비 생산 현황</a></li>
@@ -544,8 +544,8 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">자재관리
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">자재관리</a>
+	                          		<span class="menu-arrow"></span>
 	                          		<ul>
 	                          			<li><a href="#">자재등록</a></li>
 					                    <li><a href="#">자재관리</a></li>
