@@ -132,11 +132,11 @@ public class ERPController {
 		return "charts-morris";
 	}
 	
-	@RequestMapping("charts-qooqle")
-	public String chartsqooqle(Locale locale, Model model) {
-		logger.info("log => charts-qooqle");
+	@RequestMapping("charts-google")
+	public String chartsgoogle(Locale locale, Model model) {
+		logger.info("log => charts-google");
 		
-		return "charts-qooqle";
+		return "charts-google";
 	}
 	
 	@RequestMapping("charts-sparkline")
