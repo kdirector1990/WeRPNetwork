@@ -5,9 +5,6 @@
     <head>
         <%@ include file="setting.jsp" %>
 
-        <!-- ION Slider -->
-        <link href="/erp/resources/assets/libs/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet" type="text/css"/>
-
     </head>
 
     <body>

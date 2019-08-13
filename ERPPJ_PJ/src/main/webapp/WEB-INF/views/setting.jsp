@@ -18,3 +18,6 @@
 <link href="/erp/resources/assets/css/app.min.css" rel="stylesheet" type="text/css" />
 <!-- Plugins css -->
 <link href="/erp/resources/assets/libs/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+
+<!-- ION Slider -->
+<link href="/erp/resources/assets/libs/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet" type="text/css"/>
