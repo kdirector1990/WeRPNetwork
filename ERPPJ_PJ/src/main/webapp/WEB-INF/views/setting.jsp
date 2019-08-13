@@ -16,3 +16,5 @@
 <link href="/erp/resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/erp/resources/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 <link href="/erp/resources/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+<!-- Plugins css -->
+<link href="/erp/resources/assets/libs/nestable2/jquery.nestable.min.css" rel="stylesheet" />

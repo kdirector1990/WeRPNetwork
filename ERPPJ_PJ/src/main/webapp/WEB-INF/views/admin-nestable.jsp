@@ -4,8 +4,6 @@
 <html lang="en">
     <head>
         <%@ include file="setting.jsp" %>
-        <!-- Plugins css -->
-        <link href="/erp/resources/assets/libs/nestable2/jquery.nestable.min.css" rel="stylesheet" />
     </head>
 
     <body>
