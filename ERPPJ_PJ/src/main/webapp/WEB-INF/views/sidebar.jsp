@@ -490,33 +490,33 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비관리
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">전산 설비 등록</a></li>
-					                    <li><a href="#">전산 설비 관리</a></li>
-					                    <li><a href="#">전산 설비 목록</a></li>
+	                          			<li><a href="CT_equip_add">전산 설비 등록</a></li>
+					                    <li><a href="CT_equip_manage">전산 설비 관리</a></li>
+					                    <li><a href="CT_equip_list">전산 설비 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">수리 일지 등록</a></li>
-                    					<li><a href="#">수리 현황</a></li>
+	                          			<li><a href="CT_repair_list_add">수리 일지 등록</a></li>
+                    					<li><a href="CT_reqair_list">수리 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">예산 현황</a></li>
-                    					<li><a href="#">추가 예산 신청</a></li>
+	                          			<li><a href="CT_budget">예산 현황</a></li>
+                    					<li><a href="CT_budget_apply">추가 예산 신청</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">A/S 요청 현황</a></li>
-                    					<li><a href="#">A/S 요청 관리 </a></li>
+	                          			<li><a href="CT_as_list">A/S 요청 현황</a></li>
+                    					<li><a href="CT_as_manage">A/S 요청 관리 </a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>
