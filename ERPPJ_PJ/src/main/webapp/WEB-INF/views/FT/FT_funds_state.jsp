@@ -199,17 +199,7 @@
         </div>
         <!-- /Right-bar -->
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
-
-        <!-- Vendor js -->
-        <script src="/erp/resources/assets/js/vendor.min.js"></script>
-
-        <!-- Bootstrap select plugin -->
-        <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-        <!-- App js -->
-        <script src="/erp/resources/assets/js/app.min.js"></script>
+        <%@ include file="../setting2.jsp" %>
         
     </body>
 </html>

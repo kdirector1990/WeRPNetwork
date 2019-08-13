@@ -20,6 +20,9 @@
         <script    src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
         <script    src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
+		<!-- Bootstrap select plugin -->
+        <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+        
         <!-- Init js -->
         <script    src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
 
