@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!-- Topbar Start -->
             <div class="navbar-custom">
                 <ul class="list-unstyled topnav-menu float-right mb-0">
@@ -230,7 +229,7 @@
                            
                            	<li> 
 	                          <a href="javascript: void(0);">
-	                             <i class="mdi mdi-file-document"></i><span> 경영지원 </span>
+	                             <i class="mdi mdi-file-document"></i><span> 경영지원 </span><span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="#">기획서 조회</a></li>
@@ -243,11 +242,16 @@
                            	<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-account"></i> 
-	                             <span> 인사 </span>
+	                             <span> 인사 </span><span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보<span class="menu-arrow"></span></a>
+	                          		
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
@@ -257,8 +261,7 @@
 	                          		</ul>
 	                          	</li>
 	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사발령
-	                          		<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사발령<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="HR_Greeting">인사발령등록</a></li>
 										<li><a href="HR_appointment_notice">인사발령공고</a></li>
@@ -266,8 +269,12 @@
 	                          		</ul>	
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사/급여관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사/급여관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="HR_work_record">근태경과입력</a></li>
 					                	<li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
@@ -285,7 +292,11 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">!사회보험관리<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">사회보험관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="coming_soon">!사회보험취득관리</a></li>
 										<li><a href="coming_soon">!사회보험상실관리</a></li>
@@ -295,8 +306,12 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">!연말정산관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">연말정산관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="coming_soon">!연말정산자료입력</a></li>
 										<li><a href="coming_soon">!연말정산현황</a></li>
@@ -305,8 +320,12 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">!퇴직정산관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">퇴직정산관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="coming_soon">!퇴직기준선정</a></li>
 										<li><a href="coming_soon">!퇴직금산정</a></li>
@@ -315,16 +334,24 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">!세무관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">세무관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="coming_soon">!원천징수이행상황신고서</a></li>
 										<li><a href="coming_soon">!지방소득세특별징수명세/납부서</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">!전표관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="coming_soon">!계정과목설정</a></li>
 										<li><a href="coming_soon">!소득자별계정유형설정</a></li>
@@ -332,8 +359,12 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">!일용직관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">일용직관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="coming_soon">!일용직사원등록</a></li>
 										<li><a href="coming_soon">!일용직급여지급일자등록</a></li>
@@ -347,11 +378,15 @@
 	                        <li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-car-back"></i>
-	                             <span> 영업 </span>
+	                             <span> 영업 </span><span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
 										<li><a href="ST_estimate">견적 관리</a></li>
@@ -360,8 +395,12 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업현황
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업현황<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan_state">판매계획 현황</a></li>
 										<li><a href="ST_contrast_pp">판매계획 대비 출고 현황</a></li>
@@ -378,8 +417,7 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업분석
-	                          	<span class="menu-arrow"></span></a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업분석<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          				<li><a href="coming_soon">!출고 지연 집계</a></li>
 						                    <li><a href="coming_soon">!출고 실적 집계표(월별)</a></li>
@@ -395,11 +433,15 @@
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-coin"></i>
-	                             <span> 재무 </span>
+	                             <span> 재무 </span><span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표/장부
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표/장부<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="insertChit">전표입력</a></li> 
 					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
@@ -410,8 +452,12 @@
                           			</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/제무재표
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/제무재표<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          				<li><a href="insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
@@ -420,16 +466,24 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">자금
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">자금<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          				<li><a href="FT_funds_state">자금현황</a></li>
                     						<li><a href="FT_sa_state">주요예적금 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">일자별자금계획입력</a></li>
 					                    <li><a href="#">예산신청입력</a></li>
@@ -438,24 +492,36 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">고정자산
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">고정자산<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">고정자산관리</a></li>
                     					<li><a href="#">감가상각누계액 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">부가가치세
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">부가가치세<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">부가세금서</a></li>
                     					<li><a href="#">세금계산서 합계표</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">금융관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">금융관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">계좌번호 관리</a></li>
                     					<li><a href="#">카드번호 관리</a></li>
@@ -468,39 +534,55 @@
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-server"></i>
-	                             <span> 전산팀 </span>
+	                             <span> 전산팀 </span><span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비관리
 	                          	<span class="menu-arrow"></span></a>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
-	                          			<li><a href="#">전산 설비 등록</a></li>
-					                    <li><a href="#">전산 설비 관리</a></li>
-					                    <li><a href="#">전산 설비 목록</a></li>
+	                          			<li><a href="CT_equip_add">전산 설비 등록</a></li>
+					                    <li><a href="CT_equip_manage">전산 설비 관리</a></li>
+					                    <li><a href="CT_equip_list">전산 설비 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
-	                          			<li><a href="#">수리 일지 등록</a></li>
-                    					<li><a href="#">수리 현황</a></li>
+	                          			<li><a href="CT_repair_list_add">수리 일지 등록</a></li>
+                    					<li><a href="CT_reqair_list">수리 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
-	                          			<li><a href="#">예산 현황</a></li>
-                    					<li><a href="#">추가 예산 신청</a></li>
+	                          			<li><a href="CT_budget">예산 현황</a></li>
+                    					<li><a href="CT_budget_apply">추가 예산 신청</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
-	                          			<li><a href="#">A/S 요청 현황</a></li>
-                    					<li><a href="#">A/S 요청 관리 </a></li>
+	                          			<li><a href="CT_as_list">A/S 요청 현황</a></li>
+                    					<li><a href="CT_as_manage">A/S 요청 관리 </a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>
@@ -509,11 +591,15 @@
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-factory"></i>
-	                             <span> 제조 </span>
+	                             <span> 제조 </span><span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산관리</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">생산계획등록</a></li>
 					                    <li><a href="#">생산계획관리</a></li>
@@ -523,16 +609,24 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">재공관리</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">재공관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">기초재공등록</a></li>
                     					<li><a href="#">재공품 입고/출고 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산/재공 현황</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산/재공 현황<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">작업지시 현황</a></li>
 					                    <li><a href="#">계획대비 생산 현황</a></li>
@@ -544,8 +638,12 @@
 	                          		</ul>
 	                          	</li>
 	                          	
+<<<<<<< HEAD
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">자재관리</a>
 	                          		<span class="menu-arrow"></span>
+=======
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">자재관리<span class="menu-arrow"></span></a>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		<ul>
 	                          			<li><a href="#">자재등록</a></li>
 					                    <li><a href="#">자재관리</a></li>
@@ -557,96 +655,7 @@
 	                          </ul>
 							</li>
 							
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-briefcase"></i>
-                                    <span> UI Kit </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="ui-typography">Typography</a></li>
-                                    <li><a href="ui-cards">Cards</a></li>
-                                    <li><a href="ui-buttons">Buttons</a></li>
-                                    <li><a href="ui-modals">Modals</a></li>
-                                    <li><a href="ui-checkbox-radio">Checkboxs-Radios</a></li>
-                                    <li><a href="ui-tabs">Tabs</a></li>
-                                    <li><a href="ui-progressbars">Progress Bars</a></li>
-                                    <li><a href="ui-notifications">Notification</a></li>
-                                    <li><a href="ui-carousel">Carousel</a>
-                                    <li><a href="ui-video">Embed Video</a>
-                                    <li><a href="ui-tooltips-popovers">Tooltips & Popovers</a></li>
-                                    <li><a href="ui-images">Images</a></li>
-                                    <li><a href="ui-bootstrap">Bootstrap UI</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-box"></i>
-                                    <span> Icons </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="icons-colored">Colored Icons</a></li>
-                                    <li><a href="icons-materialdesign">Material Design</a></li>
-                                    <li><a href="icons-dripicons">Dripicons</a></li>
-                                    <li><a href="icons-fontawesome">Font awesome</a></li>
-                                    <li><a href="icons-feather">Feather Icons</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-pie-chart"></i>
-                                    <span> Graphs </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="charts-flot">Flot Chart</a></li>
-                                    <li><a href="charts-morris">Morris Chart</a></li>
-                                    <li><a href="charts-google">Google Chart</a></li>
-                                    <li><a href="charts-chartist">Chartist Charts</a></li>
-                                    <li><a href="charts-chartjs">Chartjs Chart</a></li>
-                                    <li><a href="charts-c3">C3 Chart</a></li>
-                                    <li><a href="charts-sparkline">Sparkline Chart</a></li>
-                                    <li><a href="charts-knob">Jquery Knob</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-disc"></i>
-                                    <span class="badge badge-primary badge-pill float-right">9</span>
-                                    <span> Forms </span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="form-elements">Form Elements</a></li>
-                                    <li><a href="form-advanced">Form Advanced</a></li>
-                                    <li><a href="form-validation">Form Validation</a></li>
-                                    <li><a href="form-pickers">Form Pickers</a></li>
-                                    <li><a href="form-wizard">Form Wizard</a></li>
-                                    <li><a href="form-mask">Form Masks</a></li>
-                                    <li><a href="form-summernote">Summernote</a></li>
-                                    <li><a href="form-quilljs">Quilljs Editor</a></li>
-                                    <li><a href="form-uploads">File Upload</a></li>
-                                </ul>
-                            </li>
-                
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-grid"></i>
-                                    <span> Tables </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="tables-basic">Basic Tables</a></li>
-                                    <li><a href="tables-layouts">Tables Layouts</a></li>
-                                    <li><a href="tables-datatable">Data Tables</a></li>
-                                    <li><a href="tables-responsive">Responsive Table</a></li>
-                                    <li><a href="tables-tablesaw">Tablesaw Table</a></li>
-                                    <li><a href="tables-editable">Editable Table</a></li>
-                                </ul>
-                            </li>
+                          
 
                             <li class="menu-title mt-2">More</li>
 
@@ -667,7 +676,7 @@
                             </li>
 
                             <li>
-                                <a href="calender">
+                                <a href="calendar">
                                     <i class="fe-calendar"></i>
                                     <span> Calendar </span>
                                 </a>
