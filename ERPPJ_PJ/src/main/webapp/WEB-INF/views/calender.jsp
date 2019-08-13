@@ -4,7 +4,6 @@
     <head>
         <%@ include file="setting.jsp" %>
         <!-- Plugin css -->
-        <link href="/erp/resources/assets/libs/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
