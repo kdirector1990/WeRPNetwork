@@ -793,4 +793,85 @@ public class ERPController {
 		
 		return "ui-video";
 	}
+	
+	/* ==========================================================
+	 * 전산팀
+	 */
+	
+	//전산 설비 등록
+	@RequestMapping("CT_equip_add")
+	public String CT_equip_add(Locale locale, Model model) {
+		logger.info("log => CT_equip_add");
+		
+		return "CT/CT_equip_add";
+	}
+	
+	//전산 설비 관리
+	@RequestMapping("CT_equip_manage")
+	public String CT_equip_manage(Locale locale, Model model) {
+		logger.info("log => CT_equip_manage");
+		
+		return "CT/CT_equip_manage";
+	}
+	
+	//전산 설비 목록
+	@RequestMapping("CT_equip_list")
+	public String CT_equip_list(Locale locale, Model model) {
+		logger.info("log => CT_equip_list");
+		
+		return "CT/CT_equip_list";
+	}
+	
+	//수리 일지 등록
+	@RequestMapping("CT_repair_list_add")
+	public String CT_repair_list_add(Locale locale, Model model) {
+		logger.info("log => CT_repair_list_add");
+		
+		return "CT/CT_repair_list_add";
+	}
+	
+	//수리 현황
+	@RequestMapping("CT_reqair_list")
+	public String CT_reqair_list(Locale locale, Model model) {
+		logger.info("log => CT_reqair_list");
+		
+		return "CT/CT_reqair_list";
+	}
+	
+	//예산 현황
+	@RequestMapping("CT_budget")
+	public String CT_budget(Locale locale, Model model) {
+		logger.info("log => CT_budget");
+		
+		return "CT/CT_budget";
+	}
+	
+	//추가 예산 신청
+	@RequestMapping("CT_budget_apply")
+	public String CT_budget_apply(Locale locale, Model model) {
+		logger.info("log => CT_budget_apply");
+		
+		return "CT/CT_budget_apply";
+	}
+	
+	//A/S 요청 현황
+	@RequestMapping("CT_as_list")
+	public String CT_as_list(Locale locale, Model model) {
+		logger.info("log => CT_as_list");
+		
+		return "CT/CT_as_list";
+	}
+	
+	//A/S 요청 관리
+	@RequestMapping("CT_as_manage")
+	public String CT_as_manage(Locale locale, Model model) {
+		logger.info("log => CT_as_manage");
+		
+		return "CT/CT_as_manage";
+	}
+	
+	/*
+	 * 전산팀
+	 * ======================================================================
+	 */
 }
