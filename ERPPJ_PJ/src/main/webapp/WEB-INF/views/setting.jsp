@@ -21,3 +21,5 @@
 
 <!-- ION Slider -->
 <link href="/erp/resources/assets/libs/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet" type="text/css"/>
+<!-- Sweet Alert-->
+<link href="/erp/resources/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
