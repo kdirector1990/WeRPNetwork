@@ -14,11 +14,9 @@
 <link href="/erp/resources/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/erp/resources/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 <link href="/erp/resources/assets/css/app.min.css" rel="stylesheet" type="text/css" />
-<<<<<<< HEAD
 <!-- Plugins css -->
 <link href="/erp/resources/assets/libs/nestable2/jquery.nestable.min.css" rel="stylesheet" />
 <link href="/erp/resources/assets/libs/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-=======
 <link href="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
 <link href="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css" />
 <link href="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
@@ -26,6 +24,5 @@
 <link href="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css" href="/erp/resources/assets/libs/c3/c3.min.css">
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 
 
