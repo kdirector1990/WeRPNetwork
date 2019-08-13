@@ -11,7 +11,7 @@
         <div id="wrapper">
 
             
-            <%@ include file="../sidebar.jsp" %>
+            <%@ include file="../sidebar.jsp" %> 
 
             <!-- ============================================================== -->
             <!-- Start Page Content here -->
