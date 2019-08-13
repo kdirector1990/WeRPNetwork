@@ -588,7 +588,7 @@ public class ERPController {
 	
 	
 	
-	
+	// 회계전표입력
 	@RequestMapping("journal")
 	public String journal(Locale locale, Model model) {
 		logger.info("log => journal");
