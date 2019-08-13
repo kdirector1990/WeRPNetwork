@@ -10,7 +10,7 @@
 
         <!-- Begin page -->
         <div id="wrapper">
-
+ 
             
             <%@ include file="sidebar.jsp" %>
 
