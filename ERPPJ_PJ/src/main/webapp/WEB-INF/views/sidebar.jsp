@@ -230,7 +230,9 @@
                            
                            	<li> 
 	                          <a href="javascript: void(0);">
-	                             <i class="mdi mdi-file-document"></i><span> 경영지원 </span>
+	                             <i class="mdi mdi-file-document"></i>
+	                             <span> 경영지원 </span>
+	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="#">기획서 조회</a></li>
@@ -244,10 +246,12 @@
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-account"></i> 
 	                             <span> 인사 </span>
+	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보</a>
-	                          		<span class="menu-arrow"></span>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
@@ -348,10 +352,13 @@
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-car-back"></i>
 	                             <span> 영업 </span>
+	                             <span class="menu-arrow"></span>
+	                             </a>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업관리
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
 										<li><a href="ST_estimate">견적 관리</a></li>
@@ -361,7 +368,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업현황
-	                          	<span class="menu-arrow"></span></a>
+			                          	<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan_state">판매계획 현황</a></li>
 										<li><a href="ST_contrast_pp">판매계획 대비 출고 현황</a></li>
@@ -379,7 +387,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">영업분석
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          				<li><a href="coming_soon">!출고 지연 집계</a></li>
 						                    <li><a href="coming_soon">!출고 실적 집계표(월별)</a></li>
@@ -396,6 +405,7 @@
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-coin"></i>
 	                             <span> 재무 </span>
+	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표/장부
@@ -411,7 +421,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/제무재표
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          				<li><a href="insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
@@ -421,7 +432,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">자금
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          				<li><a href="FT_funds_state">자금현황</a></li>
                     						<li><a href="FT_sa_state">주요예적금 현황</a></li>
@@ -429,7 +441,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">일자별자금계획입력</a></li>
 					                    <li><a href="#">예산신청입력</a></li>
@@ -439,7 +452,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">고정자산
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">고정자산관리</a></li>
                     					<li><a href="#">감가상각누계액 현황</a></li>
@@ -447,7 +461,8 @@
 	                          	</li>
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">부가가치세
-	                          	<span class="menu-arrow"></span></a>
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">부가세금서</a></li>
                     					<li><a href="#">세금계산서 합계표</a></li>
@@ -469,6 +484,7 @@
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-server"></i>
 	                             <span> 전산팀 </span>
+	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비관리
@@ -480,24 +496,24 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비</a>
-	                          		<span class="menu-arrow"></span>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">설비 유지비
+	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">수리 일지 등록</a></li>
                     					<li><a href="#">수리 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리</a>
-	                          		<span class="menu-arrow"></span>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리
+	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">예산 현황</a></li>
                     					<li><a href="#">추가 예산 신청</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리</a>
-	                          		<span class="menu-arrow"></span>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
+	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="#">A/S 요청 현황</a></li>
                     					<li><a href="#">A/S 요청 관리 </a></li>
@@ -510,10 +526,12 @@
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-factory"></i>
 	                             <span> 제조 </span>
+	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산관리</a>
-	                          		<span class="menu-arrow"></span>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산관리
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">생산계획등록</a></li>
 					                    <li><a href="#">생산계획관리</a></li>
@@ -523,16 +541,18 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">재공관리</a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">재공관리
 	                          		<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">기초재공등록</a></li>
                     					<li><a href="#">재공품 입고/출고 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산/재공 현황</a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">생산/재공 현황
 	                          		<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">작업지시 현황</a></li>
 					                    <li><a href="#">계획대비 생산 현황</a></li>
@@ -544,8 +564,9 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">자재관리</a>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">자재관리
 	                          		<span class="menu-arrow"></span>
+	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">자재등록</a></li>
 					                    <li><a href="#">자재관리</a></li>
@@ -557,7 +578,9 @@
 	                          </ul>
 							</li>
 							
-                            <li>
+                            <li class="menu-title mt-2">More</li>
+
+							<li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-briefcase"></i>
                                     <span> UI Kit </span>
@@ -648,7 +671,6 @@
                                 </ul>
                             </li>
 
-                            <li class="menu-title mt-2">More</li>
 
                             <li>
                                 <a href="javascript: void(0);">
