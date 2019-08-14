@@ -62,7 +62,6 @@
                
                <!-- 페이지 내용 입력 공간 종료 -->
                
-                <%@ include file="footer.jsp" %>
                 
                 </div>
 
@@ -75,7 +74,6 @@
         </div>
         <!-- END wrapper -->
 
-        <%@ include file="rightbar.jsp" %>
         <%@ include file="setting2.jsp" %>
     </body>
 </html>

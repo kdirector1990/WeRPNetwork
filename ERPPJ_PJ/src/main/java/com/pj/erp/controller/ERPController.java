@@ -524,7 +524,7 @@ public class ERPController {
 	public String HR_InputHR(Locale locale, Model model) {
 		logger.info("log => HR_InputHR");
 		
-		return "HR/HR_InputHR_ex";
+		return "HR/HR_InputHR";
 	}
 	
 	@RequestMapping("joinPro")
