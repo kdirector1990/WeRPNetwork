@@ -411,10 +411,10 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">전표/장부
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="insertChit">전표입력</a></li> 
+	                          			<li><a href="FT_insertChit">전표입력</a></li> 
 					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
-					                    <li><a href="journal">분개장</a></li>
-					                    <li><a href="ledger">거래처원장</a></li>
+					                    <li><a href="FT_journal">분개장</a></li>
+					                    <li><a href="FT_ledger">거래처원장</a></li>
 					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
 					                    <li><a href="coming_soon">!계정별 변동추이 분석</a></li>
                           			</ul>
@@ -424,7 +424,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          				<li><a href="insertTotal">결산자료입력</a></li>
+	                          				<li><a href="FT_insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
 						                    <li><a href="FT_IS">손익계산서</a></li>
 						                    <li><a href="FT_p_cost">원가보고서</a></li>

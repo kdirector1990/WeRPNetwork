@@ -425,7 +425,7 @@ public class ERPController {
 		return "tables-basic";
 	}
 	
-	// 거래 명세서 발행
+	// 嫄곕옒 紐낆꽭�꽌 諛쒗뻾
 	@RequestMapping("ST_tables-datatable")
 	public String tablesdatatable(Locale locale, Model model) {
 		logger.info("log => ST_tables-datatable");
@@ -433,7 +433,7 @@ public class ERPController {
 		return "ST/tables-datatable";
 	}
 	
-	// 세금 명세서 발행
+	// �꽭湲� 紐낆꽭�꽌 諛쒗뻾
 	@RequestMapping("ST_tax-statements")
 	public String taxstatements(Locale locale, Model model) {
 		logger.info("log => ST_tax-statements");
@@ -441,7 +441,7 @@ public class ERPController {
 		return "ST/tax-statements";
 	}
 	
-	// 견적 관리
+	// 寃ъ쟻 愿�由�
 	@RequestMapping("ST_estimate")
 	public String estimate(Locale locale, Model model) {
 		logger.info("log => estimate");
@@ -449,7 +449,7 @@ public class ERPController {
 		return "ST/estimate";
 	}
 	
-	// 출고 관리
+	// 異쒓퀬 愿�由�
 	@RequestMapping("ST_release")
 	public String release(Locale locale, Model model) {
 		logger.info("log => release");
@@ -457,7 +457,7 @@ public class ERPController {
 		return "ST/release";
 	}
 	
-	// 반품 관리
+	// 諛섑뭹 愿�由�
 	@RequestMapping("ST_refund")
 	public String refund(Locale locale, Model model) {
 		logger.info("log => refund");
@@ -588,30 +588,30 @@ public class ERPController {
 	
 	
 	
-	// 회계전표입력
-	@RequestMapping("journal")
+	// �쉶怨꾩쟾�몴�엯�젰
+	@RequestMapping("FT_journal")
 	public String journal(Locale locale, Model model) {
-		logger.info("log => journal");
+		logger.info("log => FT_journal");
 		
-		return "FT/journal";
+		return "FT/FT_journal";
 	}
-	@RequestMapping("ledger")
+	@RequestMapping("FT_ledger")
 	public String ledger(Locale locale, Model model) {
-		logger.info("log => ledger");
+		logger.info("log => FT_ledger");
 		
-		return "FT/ledger";
+		return "FT/FT_ledger";
 	}
-	@RequestMapping("insertChit")
+	@RequestMapping("FT_insertChit")
 	public String insertChit(Locale locale, Model model) {
-		logger.info("log => insertChit");
+		logger.info("log => FT_insertChit");
 		
-		return "FT/insertChit";
+		return "FT/FT_insertChit";
 	}
-	@RequestMapping("insertTotal")
+	@RequestMapping("FT_insertTotal")
 	public String insertTotal(Locale locale, Model model) {
-		logger.info("log => insertTotal");
+		logger.info("log => FT_insertTotal");
 		
-		return "FT/insertTotal";
+		return "FT/FT_insertTotal";
 	}
 	@RequestMapping("FT_Chit_Manager")
 	public String FT_Chit_Manager(Locale locale, Model model) {
@@ -689,7 +689,7 @@ public class ERPController {
 		return "tables-layouts";
 	}
 	
-	// 견적 현황
+	// 寃ъ쟻 �쁽�솴
 	@RequestMapping("ST_tables-responsive")
 	public String tablesresponsive(Locale locale, Model model) {
 		logger.info("log => tables-responsive");
@@ -795,10 +795,10 @@ public class ERPController {
 	}
 	
 	/* ==========================================================
-	 * 전산팀
+	 * �쟾�궛��
 	 */
 	
-	//전산 설비 등록
+	//�쟾�궛 �꽕鍮� �벑濡�
 	@RequestMapping("CT_equip_add")
 	public String CT_equip_add(Locale locale, Model model) {
 		logger.info("log => CT_equip_add");
@@ -806,7 +806,7 @@ public class ERPController {
 		return "CT/CT_equip_add";
 	}
 	
-	//전산 설비 관리
+	//�쟾�궛 �꽕鍮� 愿�由�
 	@RequestMapping("CT_equip_manage")
 	public String CT_equip_manage(Locale locale, Model model) {
 		logger.info("log => CT_equip_manage");
@@ -814,7 +814,7 @@ public class ERPController {
 		return "CT/CT_equip_manage";
 	}
 	
-	//전산 설비 목록
+	//�쟾�궛 �꽕鍮� 紐⑸줉
 	@RequestMapping("CT_equip_list")
 	public String CT_equip_list(Locale locale, Model model) {
 		logger.info("log => CT_equip_list");
@@ -822,7 +822,7 @@ public class ERPController {
 		return "CT/CT_equip_list";
 	}
 	
-	//수리 일지 등록
+	//�닔由� �씪吏� �벑濡�
 	@RequestMapping("CT_repair_list_add")
 	public String CT_repair_list_add(Locale locale, Model model) {
 		logger.info("log => CT_repair_list_add");
@@ -830,7 +830,7 @@ public class ERPController {
 		return "CT/CT_repair_list_add";
 	}
 	
-	//수리 현황
+	//�닔由� �쁽�솴
 	@RequestMapping("CT_reqair_list")
 	public String CT_reqair_list(Locale locale, Model model) {
 		logger.info("log => CT_reqair_list");
@@ -838,7 +838,7 @@ public class ERPController {
 		return "CT/CT_reqair_list";
 	}
 	
-	//예산 현황
+	//�삁�궛 �쁽�솴
 	@RequestMapping("CT_budget")
 	public String CT_budget(Locale locale, Model model) {
 		logger.info("log => CT_budget");
@@ -846,7 +846,7 @@ public class ERPController {
 		return "CT/CT_budget";
 	}
 	
-	//추가 예산 신청
+	//異붽� �삁�궛 �떊泥�
 	@RequestMapping("CT_budget_apply")
 	public String CT_budget_apply(Locale locale, Model model) {
 		logger.info("log => CT_budget_apply");
@@ -854,7 +854,7 @@ public class ERPController {
 		return "CT/CT_budget_apply";
 	}
 	
-	//A/S 요청 현황
+	//A/S �슂泥� �쁽�솴
 	@RequestMapping("CT_as_list")
 	public String CT_as_list(Locale locale, Model model) {
 		logger.info("log => CT_as_list");
@@ -862,7 +862,7 @@ public class ERPController {
 		return "CT/CT_as_list";
 	}
 	
-	//A/S 요청 관리
+	//A/S �슂泥� 愿�由�
 	@RequestMapping("CT_as_manage")
 	public String CT_as_manage(Locale locale, Model model) {
 		logger.info("log => CT_as_manage");
