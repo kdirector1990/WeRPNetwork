@@ -45,48 +45,43 @@
 				</div>
 			</div>
 
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="card-body table-responsive">
-								<table>
-									<tr>
-										<th>사업장</th>
-										<td><input class="input" type="text" name="office"
-											placeholder="200" maxlength="20" placeholder="" autofocus
-											required> <input class="input" type="text"
-											name="office2" placeholder="인사1급 회사본사"></td>
-									</tr>
-
-								</table>
-
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead>
-										<tr>
-											<th>NO</th>
-											<th>사원코드</th>
-											<th>사원명</th>
-											<th>부서</th>
-											<th>직책</th>
-											<th>입사일</th>
-											<th>직종</th>
-											<th>급여형태</th>
-											<th>계약시작월</th>
-											<th>연봉</th>
-											<th>월급</th>
-											<th>일급</th>
-											<th>시급</th>
-										</tr>
-									</thead>
-								</table>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-body table-responsive">
+							<div align="right">
+								<br>
 							</div>
+							<table id="datatable"
+								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+								<tr>
+									<td>사업장</td>
+									<td><input type="text" class="" value="1000" readonly>&nbsp;<a
+										href="#"><i class="dripicons-zoom-in"></i></a></td>
+								</tr>
+
+								<tr>
+									<td>계약시작월</td>
+									<td><select class="" name="" onchange="">
+											<option></option>
+									</select></td>
+
+									<td>발령일자</td>
+									<td><input type="text" class="">&nbsp;<a href="#"><i
+											class="dripicons-calendar"></i></a></td>
+
+									<td>제목</td>
+									<td><input type="text" class=""></td>
+
+								</tr>
+							</table>
+
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 
 			<!-- Footer Start -->
 			<footer class="footer">
