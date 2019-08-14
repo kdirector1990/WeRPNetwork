@@ -869,4 +869,12 @@ public class ERPController {
 		
 		return "CT/CT_as_manage";
 	}
+	
+	//로그인 페이지
+	@RequestMapping("login")
+	public String login(Locale locale, Model model) {
+		logger.info("log => login");
+		
+		return "login";
+	}
 }

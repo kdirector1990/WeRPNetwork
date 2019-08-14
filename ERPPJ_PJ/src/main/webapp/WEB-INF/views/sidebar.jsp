@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="setting.jsp" %>
 
 <!-- Topbar Start -->
             <div class="navbar-custom">
@@ -121,10 +122,10 @@
 
                         </div>
                     </li>
-
-                    <li class="dropdown notification-list">
+						 <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src="/erp/resources/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                        <i class="dripicons-user" alt="user-image" class="rounded-circle"></i>
+                        <!-- <img src="/erp/resources/assets/images/users/login.png" alt="user-image" class="rounded-circle"> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
@@ -133,18 +134,38 @@
                             </div>
 
                             <!-- item-->
+                            <a href="login" class="dropdown-item notify-item">
+                                <i class="fe-log-in"></i>
+                                <span>LogIn</span>
+                            </a>
+
+                        </div>
+                    </li>
+					
+					
+                    <!-- <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="/erp/resources/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            item
+                            <div class="dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+
+                            item
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <i class="fe-user"></i>
                                 <span>Profile</span>
                             </a>
 
-                            <!-- item-->
+                            item
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <i class="fe-settings"></i>
                                 <span>Settings</span>
                             </a>
 
-                            <!-- item-->
+                            item
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <i class="fe-lock"></i>
                                 <span>Lock Screen</span>
@@ -152,21 +173,21 @@
 
                             <div class="dropdown-divider"></div>
 
-                            <!-- item-->
+                            item
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
                                 <i class="fe-log-out"></i>
                                 <span>Logout</span>
                             </a>
 
                         </div>
-                    </li>
-
+                    </li> -->
+					
                     <li class="dropdown notification-list">
                         <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
                             <i class="fe-settings noti-icon"></i>
                         </a>
                     </li>
-
+					
 
                 </ul>
 
