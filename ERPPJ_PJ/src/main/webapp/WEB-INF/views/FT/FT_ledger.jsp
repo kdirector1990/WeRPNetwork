@@ -50,13 +50,13 @@
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
                                                     <span class="d-none d-sm-block">잔액</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">        
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                                                     <span class="d-none d-sm-block">원장</span>
                                                 </a>
@@ -586,8 +586,8 @@
 				                                        </div>
 				                                    </div>
 				                                </div>
-				                            </div>
-                                            </div>
+				                              </div>
+                                            </div><!-- 총괄내용 끝 -->
                                         </div>
                                     
                                     <!--  -->

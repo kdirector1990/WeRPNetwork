@@ -76,75 +76,77 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-body table-responsive">
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label" for="simpleinput">성명(영문)</label>
-															<div class="col-md-10">
-																<input type="text" id="engName" class="form-control"
-																	value="Some text value...">
-															</div>
-														</div>
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label"
-																for="example-email">성명(한자)</label>
-															<div class="col-md-10">
-																<input type="text" id="chineseName" name="chineseName"
-																	class="form-control" placeholder="text name...">
-															</div>
-														</div>
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label"
-																for="example-palaceholder">주민등록번호</label>
-															<div class="col-md-10">
-																<input type="text" class="form-control"
-																	id="example-palaceholder" placeholder="placeholder">
-															</div>
-														</div>
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label"
-																for="example-password">성별</label>
-															<div class="col-md-10">
-																<select class="input" name="nation" onchange="">
-																	<option value="">1.남성</option>
-																	<option value="">2.여성</option>
-																</select>
-															</div>
-														</div>
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label" for="simpleinput">생년월일</label>
-															<div class="col-md-10">
-																<input type="text" id="simpleinput" class="form-control"
-																	value="Some text value...">
-															</div>
-														</div>
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label" for="simpleinput">전화번호</label>
-															<div class="col-md-10">
-																<input type="text" id="simpleinput" class="form-control"
-																	value="Some text value...">
-															</div>
-														</div>
-														<div class="form-group row">
-															<label class="col-md-2 col-form-label" for="simpleinput">비상전화(HP)</label>
-															<div class="col-md-10">
-																<input type="text" id="simpleinput" class="form-control"
-																	value="Some text value...">
-															</div>
-														</div>
-														<br> <br>
-														<h4 class="header-title">거주정보</h4>
-														<br> <br>
+														<form class="form-horizontal">
 
-														<div class="alert alert-warning d-none fade show">
-															<h4 class="text-warning mt-0">Oh snap!</h4>
-															<p class="mb-0">This form seems to be invalid :(</p>
-														</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label" for="simpleinput">성명(영문)</label>
+																<div class="col-md-10">
+																	<input type="text" id="engName" class="form-control"
+																		value="Some text value...">
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label"
+																	for="example-email">성명(한자)</label>
+																<div class="col-md-10">
+																	<input type="text" id="chineseName" name="chineseName"
+																		class="form-control" placeholder="text name...">
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label"
+																	for="example-palaceholder">주민등록번호</label>
+																<div class="col-md-10">
+																	<input type="text" class="form-control"
+																		id="example-palaceholder" placeholder="placeholder">
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label"
+																	for="example-password">성별</label>
+																<div class="col-md-10">
+																	<select class="input" name="nation" onchange="">
+																		<option value="">1.남성</option>
+																		<option value="">2.여성</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label" for="simpleinput">생년월일</label>
+																<div class="col-md-10">
+																	<input type="text" id="simpleinput"
+																		class="form-control" value="Some text value...">
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label" for="simpleinput">전화번호</label>
+																<div class="col-md-10">
+																	<input type="text" id="simpleinput"
+																		class="form-control" value="Some text value...">
+																</div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label" for="simpleinput">비상전화(HP)</label>
+																<div class="col-md-10">
+																	<input type="text" id="simpleinput"
+																		class="form-control" value="Some text value...">
+																</div>
+															</div>
+															<br> <br>
+															<h4 class="header-title">거주정보</h4>
+															<br> <br>
 
-														<div class="alert alert-info d-none fade show">
-															<h4 class="alert-info mt-0">Yay!</h4>
-															<p class="mb-0">Everything seems to be ok :)</p>
-														</div>
+															<div class="alert alert-warning d-none fade show">
+																<h4 class="text-warning mt-0">Oh snap!</h4>
+																<p class="mb-0">This form seems to be invalid :(</p>
+															</div>
 
-														<form id="demo-form" data-parsley-validate="">
+															<div class="alert alert-info d-none fade show">
+																<h4 class="alert-info mt-0">Yay!</h4>
+																<p class="mb-0">Everything seems to be ok :)</p>
+															</div>
+
+
 															<div class="form-group">
 																<label for="fullname">주민등록주소</label> <input type="text"
 																	class="form-control" name="fullname" id="fullname"
@@ -195,6 +197,7 @@
 																<input type="submit" class="btn btn-success"
 																	value="validate">
 															</div>
+														</form>
 													</div>
 												</div>
 											</div>
@@ -238,7 +241,7 @@
 																		<label class="col-md-2 col-form-label"
 																			for="simpleinput">수습적용</label>
 																		<div class="col-md-10">
-																			<select class="">&nbsp;
+																			<select class="">
 																				<a href="#"><i class="dripicons-zoom-in"></i></a>
 																				<option value="">1. 부</option>
 																				<option value="">2. 여</option>
@@ -249,7 +252,7 @@
 																		<label class="col-md-2 col-form-label"
 																			for="simpleinput">근속기간포함</label>
 																		<div class="col-md-10">
-																			<select class="">&nbsp;
+																			<select class="">
 																				<a href="#"><i class="dripicons-zoom-in"></i></a>
 																				<option value="">1. 안함</option>
 																				<option value="">2. 함</option>

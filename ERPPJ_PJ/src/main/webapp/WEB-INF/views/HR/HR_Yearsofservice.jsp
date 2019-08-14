@@ -37,7 +37,7 @@
 										<li class="breadcrumb-item active">Dashboard</li>
 									</ol>
 								</div>
-								<h4 class="page-title">Welcome John !</h4>
+								<h4 class="page-title">근속년수현황 </h4>
 							</div>
 						</div>
 					</div>
@@ -53,44 +53,43 @@
 								<table>
 									<tr>
 										<th>사업장</th>
-										<td><input class="input" type="text" name="office"
-											maxlength="20" placeholder="" autofocus
-											required> <input class="input" type="text"
-											name="office2" placeholder="인사1급 회사본사"></td>&nbsp;&nbsp;
+										<td><input class="input" type="text" name=""
+											 value="1000" readonly>&nbsp;<a
+										href="#"><i class="dripicons-zoom-in"></i></a> <input class="input" type="text"
+											name="" value="인사1급 회사본사">&nbsp;&nbsp;&nbsp;&nbsp;</td>
 										<th><select class="input" name="department" onchange="">
 												<option value="">0.부서</option>
 												<option value="">1.직종</option>
 												<option value="">2.직책</option>
 										</select></th>
-										<td><select class="input" name="department2" onchange="">
+										<td><select class="input" name="department2" disabled>
 												<option value="">1100 총무부</option>
-										</select></td>&nbsp;&nbsp;
+										</select>&nbsp;<a
+										href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 										<th>퇴사자</th>
-										<td><input class="input" type="text" name="leave"
-											 maxlength="20"> <select class="input" name="department" onchange="">
+										<td><select class="input" name="department" onchange="">
 												<option value="">0. 제외</option>
 												<option value="">1. 포함</option>												
-										</select></td>&nbsp;&nbsp;
+										</select></td>
 									</tr>
 
 									<tr>
 										<th>기준일</th>
-										<td><input class="input" type="text" name="nowdate"
-											 maxlength="20"> <input
-											class="input" type="text" name="nowdate" placeholder="2019/08/12"></td>&nbsp;&nbsp;
+										<td><input class="input" type="text" name="" value="2019/08/14">&nbsp;<a
+										href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;</td>
 										<th>년수기준</th>
 										<td><select class="input" name="year" onchange="">
 												<option value="">1. 미만일수 버림</option>
 												<option value="">2. 미만일수 올림</option>
 												<option value="">3. 미만일수 표시</option>
-										</select></td>&nbsp;&nbsp;
+										</select>&nbsp;&nbsp;</td>
 										<th>경력포함</th>
 										<td><select class="input" name="career" onchange="">
 												<option value="">0. 제외</option>
 												<option value="">1. 포함(근속기간'여'만)</option>
 												<option value="">2. 포함(모든 경력사항)</option>
 												<option value="">3. 포함(병역 복무기간)</option>
-										</select></td>&nbsp;&nbsp;
+										</select>&nbsp;&nbsp;</td>
 									</tr>
 
 								</table>

@@ -37,7 +37,7 @@
 										<li class="breadcrumb-item active">Dashboard</li>
 									</ol>
 								</div>
-								<h4 class="page-title">Welcome John !</h4>
+								<h4 class="page-title">인사고과/상벌현황</h4>
 							</div>
 						</div>
 					</div>
@@ -53,28 +53,35 @@
 								<table>
 									<tr>
 										<th>고과명</th>
-										<td><input class="input" type="text" name="punishiment"
-											placeholder="200" maxlength="20"> <input class="input" type="text"
-											name="office2"></td>&nbsp;&nbsp;
+										<td><select class="" name="" onchange="">
+												<option></option>																							
+											</select> &nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;&nbsp;</td>
+										
 										<th>사업장</th>
-										<td><input class="input" type="text" name="punishiment"
-											placeholder="200" maxlength="20"> <input class="input" type="text"
-											name="office2"></td>&nbsp;&nbsp;
+										<td><select class="" name="" onchange="">
+												<option></option>																						
+											</select> &nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;&nbsp;</td>
 									</tr>
 									
 									<tr>
 										<th>사원카드</th>
-										<td><input class="input" type="text" name="office"
-											placeholder="200" maxlength="20"> <input class="input" type="text"
-											name="office2"></td>&nbsp;&nbsp;
+										<td><select class="" name="" onchange="">
+												<option></option>																						
+											</select> &nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;&nbsp;</td>
+										
 										<th>퇴사자</th>
-										<td><select class="input"
-											name="Leave" onchange="">
-											<option value="">0.제외</option>
-											<option value="">1.포함</option>
-										</select></td>&nbsp;&nbsp;
-									</tr>
-
+										<td><select class="" name="" onchange="">
+												<option></option>
+												<option value="">0. 제외</option>
+												<option value="">1. 포함</option>																						
+											</select> &nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;&nbsp;</td>
+										
+										<th>고과일자</th>
+										<td><input type="text" class="" value="____/__/__">&nbsp;
+											~ &nbsp;
+											<input type="text" class="" value="____/__/__">
+										<a href="#"><i class="dripicons-calendar"></i></a>&nbsp;</td>
+									</tr>									
 								</table>
 
 								<table id="datatable"
