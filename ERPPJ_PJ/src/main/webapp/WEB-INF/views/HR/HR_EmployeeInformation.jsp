@@ -50,37 +50,35 @@
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body table-responsive">
-								<div class="form-group mb-0">
-									<label>기간</label>
-									<div>
-										<div class="input-daterange input-group"
-											data-provide="datepicker">
-											<input type="text" class="form-control" name="start" />
-											<div class="input-group-append">
-												<span class="input-group-text bg-primary text-white b-0">to</span>
-											</div>
-											<input type="text" class="form-control" name="end" />
-											<br>
-										</div>
-									</div>
-								</div>
-								
-
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead>
-										<tr>
-											<th>NO</th>
-											<th>교육명</th>
-											<th>사원코드</th>
-											<th>사원명</th>
-											<th>시작일</th>
-											<th>종료일</th>
-											<th>평가</th>
-										</tr>
-									</thead>
-								</table>
+								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+								<tr>
+									<th>조회조건</th>
+									<td><select class="" name="" disabled>
+											<option></option>
+											<option value="">1. 사업장</option>											
+										</select>&nbsp;
+										~ &nbsp;
+										<select class="" name="" disabled>
+											<option></option>											
+										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>						
+									</td>
+									
+									<th>재직구분</th>
+									<td><select class="" name="" disabled>
+											<option></option>																						
+										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+									</td>
+									
+									<th>직급</th>
+									<td><select class="" name="" disabled>
+											<option></option>																						
+										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+									</td>
+								</tr>								
+							</table>					
+
+								
 							</div>
 						</div>
 					</div>

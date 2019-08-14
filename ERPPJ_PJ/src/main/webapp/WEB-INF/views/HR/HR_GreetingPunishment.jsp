@@ -37,7 +37,7 @@
 										<li class="breadcrumb-item active">Dashboard</li>
 									</ol>
 								</div>
-								<h4 class="page-title">Welcome John !</h4>
+								<h4 class="page-title">인사고과/상벌현황</h4>
 							</div>
 						</div>
 					</div>
