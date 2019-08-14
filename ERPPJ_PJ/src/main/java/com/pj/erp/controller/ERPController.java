@@ -795,10 +795,10 @@ public class ERPController {
 	}
 	
 	/* ==========================================================
-	 * �쟾�궛��
+	 * 전산팀
 	 */
 	
-	//�쟾�궛 �꽕鍮� �벑濡�
+	//전산 설비 등록
 	@RequestMapping("CT_equip_add")
 	public String CT_equip_add(Locale locale, Model model) {
 		logger.info("log => CT_equip_add");
@@ -806,7 +806,7 @@ public class ERPController {
 		return "CT/CT_equip_add";
 	}
 	
-	//�쟾�궛 �꽕鍮� 愿�由�
+	//전산 설비 관리
 	@RequestMapping("CT_equip_manage")
 	public String CT_equip_manage(Locale locale, Model model) {
 		logger.info("log => CT_equip_manage");
@@ -814,7 +814,7 @@ public class ERPController {
 		return "CT/CT_equip_manage";
 	}
 	
-	//�쟾�궛 �꽕鍮� 紐⑸줉
+	//전산 설비 목록
 	@RequestMapping("CT_equip_list")
 	public String CT_equip_list(Locale locale, Model model) {
 		logger.info("log => CT_equip_list");
@@ -822,7 +822,7 @@ public class ERPController {
 		return "CT/CT_equip_list";
 	}
 	
-	//�닔由� �씪吏� �벑濡�
+	//수리 일자 등록
 	@RequestMapping("CT_repair_list_add")
 	public String CT_repair_list_add(Locale locale, Model model) {
 		logger.info("log => CT_repair_list_add");
@@ -830,7 +830,7 @@ public class ERPController {
 		return "CT/CT_repair_list_add";
 	}
 	
-	//�닔由� �쁽�솴
+	//수리 현황
 	@RequestMapping("CT_reqair_list")
 	public String CT_reqair_list(Locale locale, Model model) {
 		logger.info("log => CT_reqair_list");
@@ -838,7 +838,7 @@ public class ERPController {
 		return "CT/CT_reqair_list";
 	}
 	
-	//�삁�궛 �쁽�솴
+	//예산 현황
 	@RequestMapping("CT_budget")
 	public String CT_budget(Locale locale, Model model) {
 		logger.info("log => CT_budget");
@@ -846,7 +846,7 @@ public class ERPController {
 		return "CT/CT_budget";
 	}
 	
-	//異붽� �삁�궛 �떊泥�
+	//추가 예산 신청
 	@RequestMapping("CT_budget_apply")
 	public String CT_budget_apply(Locale locale, Model model) {
 		logger.info("log => CT_budget_apply");
@@ -854,7 +854,7 @@ public class ERPController {
 		return "CT/CT_budget_apply";
 	}
 	
-	//A/S �슂泥� �쁽�솴
+	//AS 요청 현황
 	@RequestMapping("CT_as_list")
 	public String CT_as_list(Locale locale, Model model) {
 		logger.info("log => CT_as_list");
@@ -862,7 +862,7 @@ public class ERPController {
 		return "CT/CT_as_list";
 	}
 	
-	//A/S �슂泥� 愿�由�
+	//AS 요청 관리
 	@RequestMapping("CT_as_manage")
 	public String CT_as_manage(Locale locale, Model model) {
 		logger.info("log => CT_as_manage");
