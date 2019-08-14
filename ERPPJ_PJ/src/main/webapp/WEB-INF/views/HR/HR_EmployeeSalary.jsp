@@ -57,23 +57,94 @@
 								<tr>
 									<td>사업장</td>
 									<td><input type="text" class="" value="1000" readonly>&nbsp;<a
-										href="#"><i class="dripicons-zoom-in"></i></a></td>
+										href="#"><i class="dripicons-zoom-in"></i></a>
+									<input type="text" class="" value="인사1급 회사본사">	
+									</td>
+									
+									<td>부서</td>
+									<td><input type="text" class="" value="1100" readonly>&nbsp;<a
+										href="#"><i class="dripicons-zoom-in"></i></a>
+									<input type="text" class="" value="총무부">	
+									</td>
 								</tr>
 
 								<tr>
 									<td>계약시작월</td>
-									<td><select class="" name="" onchange="">
+									<td><input type="text" class="" value="">
+										년&nbsp;
+										<select class="" name="" onchange="">
 											<option></option>
-									</select></td>
+											<option value="">1월</option>
+											<option value="">2월</option>
+											<option value="">3월</option>
+											<option value="">4월</option>
+											<option value="">5월</option>
+											<option value="">6월</option>
+											<option value="">7월</option>
+											<option value="">8월</option>
+											<option value="">9월</option>
+											<option value="">10월</option>
+											<option value="">11월</option>
+											<option value="">12월</option>
+										</select>
+										&nbsp;월 &nbsp; ~ &nbsp;
+										
+										<input type="text" class="" value="">
+										년&nbsp;
+										<select class="" name="" onchange="">
+											<option></option>
+											<option value="">1월</option>
+											<option value="">2월</option>
+											<option value="">3월</option>
+											<option value="">4월</option>
+											<option value="">5월</option>
+											<option value="">6월</option>
+											<option value="">7월</option>
+											<option value="">8월</option>
+											<option value="">9월</option>
+											<option value="">10월</option>
+											<option value="">11월</option>
+											<option value="">12월</option>
+										</select>
+										&nbsp;월 
+									</td>
+										
 
-									<td>발령일자</td>
-									<td><input type="text" class="">&nbsp;<a href="#"><i
-											class="dripicons-calendar"></i></a></td>
-
-									<td>제목</td>
-									<td><input type="text" class=""></td>
-
+									<td>퇴사자</td>
+									<td>
+										<select class="" name="" onchange="">
+											<option></option>
+											<option value="">0. 제외</option>
+											<option value="">1. 포함</option>											
+										</select>
+										<br><br>
+									</td>
 								</tr>
+							</table>
+							
+							<table id="datatable"
+								class="table table-striped table-bordered dt-responsive nowrap"
+								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+								<br>
+								<br>
+								<thead>
+									<tr>
+										<th>NO</th>
+										<th>사원코드</th>
+										<th>사원명</th>
+										<th>부서</th>
+										<th>직책</th>
+										<th>입사일</th>
+										<th>직종</th>
+										<th>급여형태</th>
+										<th>계약시작월</th>
+										<th>연봉</th>
+										<th>월급</th>
+										<th>일급</th>
+										<th>시급</th>
+									</tr>
+								</thead>
+
 							</table>
 
 						</div>
