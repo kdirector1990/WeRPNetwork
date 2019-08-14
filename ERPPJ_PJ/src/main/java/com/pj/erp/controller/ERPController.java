@@ -4,18 +4,30 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.pj.erp.service.ERPService;
+
 @Controller
 public class ERPController {
 	
+	@Autowired
+	ERPService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.POST})
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -512,7 +524,14 @@ public class ERPController {
 	public String HR_InputHR(Locale locale, Model model) {
 		logger.info("log => HR_InputHR");
 		
-		return "HR/HR_InputHR";
+		return "HR/HR_InputHR_ex";
+	}
+	
+	@RequestMapping("joinPro")
+	public String joinPro(HttpServletRequest req, Model model) {
+		logger.info("url == > joinPro");
+		service.inputHRPro(req, model);
+		return "index";
 	}
 	
 	@RequestMapping("HR_EmployeeInformation")
@@ -876,5 +895,17 @@ public class ERPController {
 		logger.info("log => login");
 		
 		return "login";
+	}
+	
+	//로그아웃
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		logger.info("url == > logout");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if(auth != null) {
+			new SecurityContextLogoutHandler().logout(req, res, auth);
+		}
+		
+		return "redirect:/index";
 	}
 }

@@ -50,13 +50,13 @@
 							<div class="card">
 								<div class="card-body">
 									<ul class="nav nav-tabs" role="tablist">
-										<li class="nav-item"><a class="nav-link"
+										<li class="nav-item"><a class="nav-link active"
 											id="employee-tab" data-toggle="tab" href="#employee"
 											role="tab" aria-controls="employee" aria-selected="false">
-												<span class="d-block d-sm-none"><i
-													class="fa fa-employee"></i></span> <span class="d-none d-sm-block">인적정보</span>
+												<span class="d-block d-sm-none"><i class="fa fa-employee"></i></span> 
+												<span class="d-none d-sm-block">인적정보</span>
 										</a></li>
-										<li class="nav-item"><a class="nav-link active"
+										<li class="nav-item"><a class="nav-link"
 											id="presidency-tab" data-toggle="tab" href="#presidency"
 											role="tab" aria-controls="presidency" aria-selected="true">
 												<span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
@@ -71,7 +71,7 @@
 									</ul>
 									<div class="tab-content">
 										<!-- 잔액 -->
-										<div class="tab-pane" id="employee" role="tabpanel"
+										<div class="tab-pane show active" id="employee" role="tabpanel"
 											aria-labelledby="employee-tab">
 											<div class="col-sm-12">
 												<div class="card">
@@ -201,7 +201,7 @@
 										</div>
 
 										<!-- 재직정보 -->
-										<div class="tab-pane show active" id="presidency"
+										<div class="tab-pane" id="presidency"
 											role="tabpanel" aria-labelledby="presidency-tab">
 											<div class="col-sm-12">
 												<div class="card">

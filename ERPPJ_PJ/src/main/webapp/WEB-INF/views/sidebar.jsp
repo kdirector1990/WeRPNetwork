@@ -138,6 +138,11 @@
                                 <i class="fe-log-in"></i>
                                 <span>LogIn</span>
                             </a>
+                            <!-- item-->
+                            <a href="logout" class="dropdown-item notify-item">
+                                <i class="fe-log-out"></i>
+                                <span>Logout</span>
+                            </a>
 
                         </div>
                     </li>
@@ -294,7 +299,7 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사/급여관리
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="HR_work_record">근태경과입력</a></li>
+	                          			<li><a href="HR_work_record">근태결과입력</a></li>
 					                	<li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
 					                	<li><a href="coming_soon">!급여대장</a></li>
 					                	<li><a href="coming_soon">!급여명세</a></li>
