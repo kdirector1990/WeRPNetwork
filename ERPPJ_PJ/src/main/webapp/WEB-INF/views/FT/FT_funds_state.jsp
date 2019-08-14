@@ -41,63 +41,31 @@
                         <!-- end page title --> 
 
                         <div class="row">
+                        <!-- 여기 -->
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div align="right">
-	    									<button type="button" class="btn btn-primary waves-effect waves-light">계정등록</button>
-    									<hr>
+	    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">계정등록</button>
     									</div>
-	    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-	                                            <tr>
-		                                            <td>회계단위</td>
-	                                                <td>
-	                                                	<select class="form-control select2">
-				                                            <option>선택</option>
-				                                                <option value="">전체</option>
-				                                                <option value="">본사</option>
-				                                        </select>
-			                                        </td>
-			                                        
-			                                        <td>
-	                                                	&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-	                                                </td>
-	                                                
-	                                                <td>기간</td>
-	                                                <td>
-	                                                <input type="text" class="form-control">&nbsp;~&nbsp;<input type="text" class="form-control">
-	                                                </td>
-	                                                
-	                                                <td>단위</td>
-	                                                <td>
-	                                                	<select class="form-control select2">
-				                                            <option>선택</option>
-				                                                <option value="">0.   원</option>
-				                                                <option value="">1.  천원</option>
-				                                                <option value="">2. 백만원</option>
-				                                        </select>
-	                                                </td>
-                                                </tr>
-	                                        </table>
-	                                        <hr>
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#first" role="tab" aria-controls="home" aria-selected="false">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#first" role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
-                                                    <span class="d-none d-sm-block">관리용</span>
+                                                    <span class="d-none d-sm-block">총괄거래현황</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#second" role="tab" aria-controls="profile" aria-selected="true">        
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#second" role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-                                                    <span class="d-none d-sm-block">제출용</span>
+                                                    <span class="d-none d-sm-block">어음현황</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" id="message-tab" data-toggle="tab" href="#third" role="tab" aria-controls="message" aria-selected="false">
                                                     <span class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
-                                                    <span class="d-none d-sm-block">세목별</span>
+                                                    <span class="d-none d-sm-block">자금집행실적</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -108,19 +76,65 @@
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
 				                                        <div class="table-responsive">
+				                                        <table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+				                                            <tr>
+					                                            <td>회계단위</td>
+				                                                <td>
+				                                                	<select class="form-control select2">
+							                                            <option>선택</option>
+							                                                <option value="">본사</option>
+							                                        </select>
+						                                        </td>
+						                                        
+						                                        <td>
+				                                                	&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+				                                                </td>
+				                                                
+				                                                <td>기간</td>
+				                                                <td>
+				                                                <input type="text" class="form-control">&nbsp;~&nbsp;<input type="text" class="form-control">
+				                                                </td>
+				                                                
+				                                                <td>계정구분</td>
+				                                                <td>
+				                                                	<select class="form-control select2">
+							                                            <option>선택</option>
+							                                                <option value="">0.계정별</option>
+							                                                <option value="">1.세목별</option>
+							                                        </select>
+				                                                </td>
+			                                                </tr>
+			                                                <tr>
+			                                                	<td>자금계정</td>
+				                                                <td>
+				                                                	<select class="form-control select2">
+							                                            <option></option>
+							                                                <option value=""></option>
+							                                        </select>
+						                                        </td>
+						                                        
+						                                        <td>
+				                                                	&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+				                                                </td>
+				                                                <td><input type="checkbox"></td>
+				                                                <td>&nbsp; <p>현금 계정 거래처별 분할조회</p></td>
+			                                                </tr>
+				                                        </table>
+				                                        
 				                                            <table class="table mb-0">
 				                                                <thead class="thead-light">
 				                                                    <tr>
-						                                                <th rowspan="2">과목</th>
-						                                                <th>제 16 (당)기</th>
-						                                                <th>제 15 (전)기</th>
+						                                                <th>NO</th>
+						                                                <th>구분</th>
+						                                                <th>계좌번호</th>
+						                                                <th>거래처</th>
+						                                                <th>전일말잔액</th>
+						                                                <th>차월한도</th>
+						                                                <th>전일말가용</th>
+						                                                <th>금일입금</th>
+						                                                <th>금일출금</th>
+						                                                <th>당일말자금</th>
 						                                            </tr>
-						                                            
-						                                            <tr>
-						                                            	<th>금액</th>
-						                                            	<th>금액</th>
-						                                            </tr>
-						                                            
 				                                                </thead>
 				                                                <tbody>
 				                                                    <tr>
@@ -200,6 +214,7 @@
                                       </div>
                                   </div>
                                </div>
+                               <!-- 여기끝 -->
                         </div>
                     </div> <!-- end container-fluid -->
 
