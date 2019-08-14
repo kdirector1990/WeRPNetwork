@@ -24,5 +24,10 @@
 <link href="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css" href="/erp/resources/assets/libs/c3/c3.min.css">
+<!-- taglib 추가 -->
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>    
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>     
 
 
