@@ -897,15 +897,16 @@ public class ERPController {
 		return "login";
 	}
 	
-	//로그아웃
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest req, HttpServletResponse res) throws Exception{
-		logger.info("url == > logout");
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth != null) {
-			new SecurityContextLogoutHandler().logout(req, res, auth);
-		}
-		
-		return "redirect:/index";
-	}
+	/*
+	 * //로그아웃
+	 * 
+	 * @RequestMapping(value = "logout", method = RequestMethod.GET) public String
+	 * logout(HttpServletRequest req, HttpServletResponse res) throws Exception{
+	 * logger.info("url == > logout"); Authentication auth =
+	 * SecurityContextHolder.getContext().getAuthentication(); if(auth != null) {
+	 * req.getSession().removeAttribute("memId"); req.getSession().invalidate(); new
+	 * SecurityContextLogoutHandler().logout(req, res, auth); }
+	 * 
+	 * return "redirect:/index"; }
+	 */
 }

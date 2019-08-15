@@ -20,11 +20,6 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		UserVO vo = (UserVO)authentication.getPrincipal();
 		
-		String msg = authentication.getName() + "님 환영합니다.";
-		request.setAttribute("msg", msg);
-		String memId = authentication.getName();
-		request.getSession().setAttribute("memId", memId);
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 		dispatcher.forward(request, response);
 		

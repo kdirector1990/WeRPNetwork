@@ -132,18 +132,23 @@
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0">Welcome !</h6>
                             </div>
-
                             <!-- item-->
+                            <sec:authorize access="isAnonymous()">
                             <a href="login" class="dropdown-item notify-item">
                                 <i class="fe-log-in"></i>
                                 <span>LogIn</span>
                             </a>
+                            </sec:authorize>
                             <!-- item-->
-                            <a href="logout" class="dropdown-item notify-item">
-                                <i class="fe-log-out"></i>
-                                <span>Logout</span>
+                            <sec:authorize access="isAuthenticated()">
+                            <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                <form id="logout-form" action="logout" method="POST">
+   									<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+   									<i class="fe-log-out"></i>
+                                	<span>Logout</span>
+								</form>
                             </a>
-
+                            </sec:authorize>
                         </div>
                     </li>
 					
