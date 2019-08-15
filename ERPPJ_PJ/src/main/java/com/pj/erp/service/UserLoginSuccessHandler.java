@@ -19,6 +19,8 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 			Authentication authentication) throws IOException, ServletException {
 		
 		UserVO vo = (UserVO)authentication.getPrincipal();
+		String name = vo.getE_name();
+		request.getSession().setAttribute("name", name);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 		dispatcher.forward(request, response);

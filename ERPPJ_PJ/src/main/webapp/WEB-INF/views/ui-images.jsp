@@ -54,7 +54,7 @@
     
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <img src="assets/images/small/img-1.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/small/img-1.jpg" alt="image"
                                                                 class="img-fluid rounded" width="200"/>
                                                         <p class="mb-0">
                                                             <code>.rounded</code>
@@ -62,7 +62,7 @@
                                                     </div>
     
                                                     <div class="col-sm-4 text-center">
-                                                        <img src="assets/images/users/avatar-6.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/users/avatar-6.jpg" alt="image"
                                                                 class="img-fluid rounded-circle" width="120"/>
                                                         <p class="mb-0">
                                                             <code>.rounded-circle</code>
@@ -70,7 +70,7 @@
                                                     </div>
     
                                                     <div class="col-sm-4">
-                                                        <img src="assets/images/small/img-3.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/small/img-3.jpg" alt="image"
                                                                 class="img-fluid img-thumbnail" width="200"/>
                                                         <p class="mb-0">
                                                             <code>.img-thumbnail</code>
@@ -88,12 +88,12 @@
     
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <img src="assets/images/users/avatar-2.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/users/avatar-2.jpg" alt="image"
                                                                 class="img-fluid avatar-xs rounded"/>
                                                         <p class="mb-0">
                                                             <code>.avatar-xs</code>
                                                         </p>
-                                                        <img src="assets/images/users/avatar-5.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/users/avatar-5.jpg" alt="image"
                                                                 class="img-fluid avatar-sm rounded mt-2"/>
                                                         <p class="mb-0">
                                                             <code>.avatar-sm</code>
@@ -101,7 +101,7 @@
                                                     </div>
     
                                                     <div class="col-sm-3">
-                                                        <img src="assets/images/users/avatar-4.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/users/avatar-4.jpg" alt="image"
                                                                 class="img-fluid avatar-md rounded"/>
                                                         <p class="mb-0">
                                                             <code>.avatar-md</code>
@@ -109,7 +109,7 @@
                                                     </div>
     
                                                     <div class="col-sm-3">
-                                                        <img src="assets/images/users/avatar-3.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/users/avatar-3.jpg" alt="image"
                                                                 class="img-fluid avatar-lg rounded"/>
                                                         <p class="mb-0">
                                                             <code>.avatar-lg</code>
@@ -117,7 +117,7 @@
                                                     </div>
     
                                                     <div class="col-sm-3">
-                                                        <img src="assets/images/users/avatar-7.jpg" alt="image"
+                                                        <img src="/erp/resources/assets/images/users/avatar-7.jpg" alt="image"
                                                                 class="img-fluid avatar-xl rounded"/>
                                                         <p class="mb-0">
                                                             <code>.avatar-xl</code>
@@ -145,7 +145,7 @@
                                             (images, video, audio) to the left or right of a content block.</p>
     
                                         <div class="media mb-3">
-                                            <img class="d-flex mr-3 rounded-circle" src="assets/images/users/avatar-10.jpg" alt="Generic placeholder image" height="64">
+                                            <img class="d-flex mr-3 rounded-circle" src="/erp/resources/assets/images/users/avatar-10.jpg" alt="Generic placeholder image" height="64">
                                             <div class="media-body">
                                                 <h5 class="mt-0">Media heading</h5>
                                                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
@@ -153,14 +153,14 @@
                                         </div>
     
                                         <div class="media mb-3">
-                                            <img class="d-flex mr-3 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="64">
+                                            <img class="d-flex mr-3 rounded-circle" src="/erp/resources/assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="64">
                                             <div class="media-body">
                                                 <h5 class="mt-0">Media heading</h5>
                                                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
     
                                                 <div class="media mt-3">
                                                     <a class="d-flex pr-3" href="#">
-                                                        <img src="assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height="64" class="rounded-circle">
+                                                        <img src="/erp/resources/assets/images/users/avatar-3.jpg" alt="Generic placeholder image" height="64" class="rounded-circle">
                                                     </a>
                                                     <div class="media-body">
                                                         <h5 class="mt-0">Media heading</h5>
@@ -176,7 +176,7 @@
                                                 <h5 class="mt-0 mb-1">Media object</h5>
                                                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                                             </div>
-                                            <img class="d-flex ml-3 rounded-circle" src="assets/images/users/avatar-4.jpg" alt="Generic placeholder image" height="64">
+                                            <img class="d-flex ml-3 rounded-circle" src="/erp/resources/assets/images/users/avatar-4.jpg" alt="Generic placeholder image" height="64">
                                         </div>
                                     </div>
 
@@ -195,7 +195,7 @@
                                             middle, or bottom. The default is top aligned.</p>
     
                                         <div class="media mb-3">
-                                            <img class="d-flex align-self-start rounded-circle mr-3" src="assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height="64">
+                                            <img class="d-flex align-self-start rounded-circle mr-3" src="/erp/resources/assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height="64">
                                             <div class="media-body">
                                                 <h5 class="mt-0">Top-aligned media</h5>
                                                 <p class="mb-1">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
@@ -204,7 +204,7 @@
                                         </div>
     
                                         <div class="media mb-3">
-                                            <img class="d-flex align-self-center rounded-circle mr-3" src="assets/images/users/avatar-6.jpg" alt="Generic placeholder image" height="64">
+                                            <img class="d-flex align-self-center rounded-circle mr-3" src="/erp/resources/assets/images/users/avatar-6.jpg" alt="Generic placeholder image" height="64">
                                             <div class="media-body">
                                                 <h5 class="mt-0">Center-aligned media</h5>
                                                 <p class="mb-1">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
@@ -213,7 +213,7 @@
                                         </div>
     
                                         <div class="media">
-                                            <img class="d-flex align-self-end rounded-circle mr-3" src="assets/images/users/avatar-7.jpg" alt="Generic placeholder image" height="64">
+                                            <img class="d-flex align-self-end rounded-circle mr-3" src="/erp/resources/assets/images/users/avatar-7.jpg" alt="Generic placeholder image" height="64">
                                             <div class="media-body">
                                                 <h5 class="mt-0">Bottom-aligned media</h5>
                                                 <p class="mb-1">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
@@ -238,7 +238,7 @@
                                                 <li class="media">
                                                     <div class="media-left pr-2">
                                                         <a href="#"> <img class="media-object rounded-circle" alt="64x64"
-                                                                            src="assets/images/users/avatar-1.jpg"
+                                                                            src="/erp/resources/assets/images/users/avatar-1.jpg"
                                                                             style="width: 64px; height: 64px;"> </a>
                                                     </div>
                                                     <div class="media-body">
@@ -251,7 +251,7 @@
                                                             <div class="media-left pr-2">
                                                                 <a href="#"> <img class="media-object rounded-circle"
                                                                                     alt="64x64"
-                                                                                    src="assets/images/users/avatar-2.jpg"
+                                                                                    src="/erp/resources/assets/images/users/avatar-2.jpg"
                                                                                     style="width: 64px; height: 64px;"> </a>
                                                             </div>
                                                             <div class="media-body">
@@ -264,7 +264,7 @@
                                                                     <div class="media-left pr-2">
                                                                         <a href="#"> <img class="media-object rounded-circle"
                                                                                             alt="64x64"
-                                                                                            src="assets/images/users/avatar-3.jpg"
+                                                                                            src="/erp/resources/assets/images/users/avatar-3.jpg"
                                                                                             style="width: 64px; height: 64px;">
                                                                         </a>
                                                                     </div>
@@ -283,7 +283,7 @@
                                                             <div class="media-left pr-2">
                                                                 <a href="#"> <img class="media-object rounded-circle"
                                                                                     alt="64x64"
-                                                                                    src="assets/images/users/avatar-4.jpg"
+                                                                                    src="/erp/resources/assets/images/users/avatar-4.jpg"
                                                                                     style="width: 64px; height: 64px;"> </a>
                                                             </div>
                                                             <div class="media-body">
@@ -403,33 +403,33 @@
                 <div class="p-3">
                     <div class="inbox-widget">
                         <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
+                            <div class="inbox-item-img"><img src="/erp/resources/assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
                             <p class="inbox-item-text">Hey! there I'm available...</p>
                             <p class="inbox-item-date">13:40 PM</p>
                         </div>
                         <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
+                            <div class="inbox-item-img"><img src="/erp/resources/assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
                             <p class="inbox-item-text">I've finished it! See you so...</p>
                             <p class="inbox-item-date">13:34 PM</p>
                         </div>
                         <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
+                            <div class="inbox-item-img"><img src="/erp/resources/assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
                             <p class="inbox-item-text">This theme is awesome!</p>
                             <p class="inbox-item-date">13:17 PM</p>
                         </div>
 
                         <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
+                            <div class="inbox-item-img"><img src="/erp/resources/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
                             <p class="inbox-item-text">Nice to meet you</p>
                             <p class="inbox-item-date">12:20 PM</p>
 
                         </div>
                         <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
+                            <div class="inbox-item-img"><img src="/erp/resources/assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
                             <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
                             <p class="inbox-item-text">Hey! there I'm available...</p>
                             <p class="inbox-item-date">10:15 AM</p>

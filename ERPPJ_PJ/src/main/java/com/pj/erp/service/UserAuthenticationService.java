@@ -34,14 +34,14 @@ public class UserAuthenticationService implements UserDetailsService{
 				Map<String, Object> user = sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.loginCheck", username);
 				Map<String, Object> auth = sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.authCheck", username);
 				if(user == null) throw new UsernameNotFoundException(username);
-				
+				String e_name = user.get("E_NAME").toString();
 				List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
 				authority.add(new SimpleGrantedAuthority(auth.get("AUTHORITY").toString()));
 				return new UserVO(user.get("USERNAME").toString(),
 						user.get("PASSWORD").toString(),
 						(Integer)Integer.valueOf(user.get("ENABLED").toString()) == 1,
 						true, true, true,
-						authority);
+						authority, e_name );
 	}
 
 }

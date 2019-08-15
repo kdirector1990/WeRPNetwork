@@ -14,7 +14,7 @@
 	</insert>
 	
 	<select id="loginCheck" resultType = "java.util.Map" parameterType = "String">
-		SELECT username, password, enabled
+		SELECT username, password, enabled, e_name
 		FROM users
 		WHERE username = #{username}	
 	</select>

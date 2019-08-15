@@ -7,21 +7,21 @@ import org.springframework.security.core.userdetails.User;
 
 public class UserVO extends User{
 	
-	private String username;
+	private String e_name;
 
 	public UserVO(String username, String password, boolean enabled, boolean accountNonExpired,
 			boolean credentialsNonExpired, boolean accountNonLocked,
-			Collection<? extends GrantedAuthority> authorities) {
+			Collection<? extends GrantedAuthority> authorities, String e_name) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-		
+		this.e_name = e_name;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getE_name() {
+		return e_name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
 	}
 	
 	

@@ -712,7 +712,7 @@
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="admin-grid">Grid</a></li>
                                     <li><a href="admin-sweet-alert">Sweet Alert</a></li>
-                                    <li><a href="admin-widgets">Widgets</a></li>
+                                    <li><a href="admin-widqets">Widgets</a></li>
                                     <li><a href="admin-nestable">Nestable List</a></li>
                                     <li><a href="admin-rangeslider">Range Slider</a></li>
                                     <li><a href="admin-ratings">Ratings</a></li>
