@@ -18,23 +18,23 @@
 		<!-- Bootstrap select pluings -->
 		<link href="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
 		
-		<link href="assets/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
-        <link href="assets/libs/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+		<link href="/erp/resources/assets/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+        <link href="/erp/resources/assets/libs/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
 		
-		<link href="assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-        <link href="assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-        <link href="assets/libs/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+		<link href="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+        <link href="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <link href="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 		
 		
 		<!-- Chartist Chart CSS -->
 		<link rel="stylesheet" href="/erp/resources/assets/libs/chartist/chartist.min.css">
 		
 		<!-- Custom box css -->
-		<link href="assets/libs/custombox/custombox.min.css" rel="stylesheet">
+		<link href="/erp/resources/assets/libs/custombox/custombox.min.css" rel="stylesheet">
 		        
 		<!-- c3 plugin css -->
 		<link rel="stylesheet" type="text/css" href="/erp/resources/assets/libs/c3/c3.min.css">
@@ -43,32 +43,32 @@
 		<link href="/erp/resources/assets/libs/ion-rangeslider/ion.rangeSlider.css" rel="stylesheet" type="text/css"/>
 		
 		<!-- Jquery Toast css -->
-        <link href="assets/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/jquery-toast/jquery.toast.min.css" rel="stylesheet" type="text/css" />
 		
 		<!-- Responsive Table css -->
-        <link href="assets/libs/rwd-table/rwd-table.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/rwd-table/rwd-table.min.css" rel="stylesheet" type="text/css" />
         
         
 		<!-- Sweet Alert-->
 		<link href="/erp/resources/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 		
 		<!-- Summernote css -->
-        <link href="assets/libs/summernote/summernote-bs4.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/summernote/summernote-bs4.css" rel="stylesheet" type="text/css" />
 		
 		<!-- Table datatable css -->
-        <link href="assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 		
 		<!-- Tablesaw css -->
-        <link href="assets/libs/tablesaw/tablesaw.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/tablesaw/tablesaw.css" rel="stylesheet" type="text/css" />
         
         <!-- Tooltipster css -->
-        <link rel="stylesheet" href="assets/libs/tooltipster/tooltipster.bundle.min.css">
+        <link rel="stylesheet" href="/erp/resources/assets/libs/tooltipster/tooltipster.bundle.min.css">
 		
 		<!-- Plugins css -->
 		<link href="/erp/resources/assets/libs/nestable2/jquery.nestable.min.css" rel="stylesheet" />
@@ -78,11 +78,11 @@
 		<link href="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 		<link href="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.css" rel="stylesheet" type="text/css" />
 		<link href="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-		<link href="assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
-        <link href="assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
-		<link href="assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
-		<link href="assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+		<link href="/erp/resources/assets/libs/quill/quill.core.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/quill/quill.bubble.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/quill/quill.snow.css" rel="stylesheet" type="text/css" />
+		<link href="/erp/resources/assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
+		<link href="/erp/resources/assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 		
 		
 
