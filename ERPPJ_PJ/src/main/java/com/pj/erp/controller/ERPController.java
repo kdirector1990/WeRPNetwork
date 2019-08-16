@@ -849,6 +849,14 @@ public class ERPController {
 		return "CT/CT_repair_list_add";
 	}
 	
+	//외부업체 수리 등록
+	@RequestMapping("CT_ComInsertForm")
+	public String CT_insertForm(Locale locale, Model model) {
+		logger.info("log => CT_CominsertForm");
+		
+		return "CT/CT_ComInsertFrom";
+	}
+	
 	//수리 현황
 	@RequestMapping("CT_reqair_list")
 	public String CT_reqair_list(Locale locale, Model model) {
