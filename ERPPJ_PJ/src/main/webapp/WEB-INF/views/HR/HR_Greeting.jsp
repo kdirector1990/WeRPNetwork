@@ -105,10 +105,11 @@
 					<div class="card">
 						<div class="card-body">
 							<h4 class="header-title">발령등록</h4>
+							<br><br>
 
 							<div class="row">
 								<div class="col-xl-6">
-									<form class="form-horizontal">
+									<form action="HR_inputGreeting"class="form-horizontal" method="post">
 										<div class="form-group row">
 											<label class="col-md-2 col-form-label" for="simpleinput">발령구분</label>
 											<div class="col-md-10">
@@ -145,6 +146,11 @@
 												<input type="text" id="simpleinput" class="form-control"
 													value="Some text value...">
 											</div>
+										</div>
+										
+										<div class="form-group mb-0">
+											<input type="submit" class="btn btn-success"
+												value="사원추가">
 										</div>
 									</form>
 								</div>
