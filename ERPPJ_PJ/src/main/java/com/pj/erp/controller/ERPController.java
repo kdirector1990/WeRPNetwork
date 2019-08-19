@@ -40,12 +40,7 @@ public class ERPController {
 		
 		return "index";
 	}
-	@RequestMapping("ST_index")
-	public String index(Locale locale, Model model) {
-		logger.info("log => index");
-		
-		return "index";
-	}
+	
 	@RequestMapping("index")
 	public String index2(Locale locale, Model model) {
 		logger.info("log => index2");
