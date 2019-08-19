@@ -3,23 +3,12 @@
 <html lang="en">
 <head>
 <style type="text/css">
-	.layer{
+	#result{
 		display: none;
 	}
-</style>  
-<script src="/erp/resources/assets/js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript">
-	jQuery('#selectBurrow').change(function(){
-		var state = jQuery('#selectBurrow option:selected').val();
-		if(state == 'Y'){
-			jQuery('.layer').show();
-		}else{
-			jQuery('.layer').hide();
-		}
-	});
-</script> 
+</style> 
 <%@ include file="../setting.jsp" %> 
-
+ 
 </head>
 	<body>
      	 <!-- Begin page -->
@@ -60,15 +49,15 @@
                                                 <th>장비대여 여부</th>
                                             </tr>
                                             </thead>
-    
+    										
     
                                             <tbody>
                                            <form action="" method="post">
                                             <tr>
-                                                <td><input type="text" name="" size="20" autofocus></td>
-                                                <td><input type="text" name="" size="10"></td>
-                                                <td><input type="text" name="" size="20"></td>
-                                                <td><input type="number" name="" size="10"></td>
+                                                <td><input type="text" name="" size="20" autofocus placeholder="장비구분"></td>
+                                                <td><input type="text" name="" size="10" placeholder="장비명"></td>
+                                                <td><input type="text" name="" size="20" placeholder="제작사"></td>
+                                                <td><input type="number" name="" size="10" placeholder="가격"></td>
                                                 <td><input type="date" name="" size="10"></td>
                                                 <td><input type="date" name="" size="10"></td>
                                                 <td><select id="selectBurrow" name="" required>
@@ -77,22 +66,11 @@
                                                 	<option value="N">N
                                                 </select></td>
                                             </tr>
-                                            </form>
-                                            
-                                            <tr>
-                                                <td>제조기계</td>
-                                                <td>ERP</td>
-                                                <td>(주)둥글레</td>
-                                                <td>3,000,000</td>
-                                                <td>--</td>
-                                                <td>00/13일</td>
-                                                <td>Y</td>
-                                            </tr>
                                             
                                             </tbody>
                                         </table>
 			
-										<div class="layer">                                        
+										<div id="result">                                        
                                         <div class="page-title-box">
                                     		<h4 class="page-title">대여장비</h4>
                                 		</div>
@@ -112,13 +90,14 @@
     
                                             <tbody>
                                             <tr>
-                                            	<td>ERP</td>
-                                                <td>(주)동서식품</td>
-                                                <td>1,200,000</td>
-                                                <td>3</td>
-                                                <td>19/08/16</td>
-                                                <td>00/16일</td>
+                                            	<td><input type="text" name="" size="10" placeholder="대여장비명"></td>
+                                                <td><input type="text" name="" size="20" placeholder="대여업체"></td>
+                                                <td><input type="number" name="" size="10" placeholder="대여비용"></td>
+                                                <td><input type="number" name="" size="10" placeholder="수량"></td>
+                                                <td><input type="date" name="" size="10"></td>
+                                                <td><input type="date" name="" size="10"></td>
                                             </tr>
+                                            </form>
                                             
                                             </tbody>
                                         </table>
@@ -145,4 +124,18 @@
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
     </body>
+    
+<script type="text/javascript">
+$(function(){
+	$('#selectBurrow').change(function(){
+		var state = $('#selectBurrow option:selected').val();
+		if(state == 'Y'){
+			$('#result').show();
+		}else{
+			$('#result').hide();
+		}
+	});
+});
+	
+</script>
 </html>

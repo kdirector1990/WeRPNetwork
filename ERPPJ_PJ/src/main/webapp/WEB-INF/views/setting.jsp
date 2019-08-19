@@ -84,8 +84,6 @@
 		<link href="/erp/resources/assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
 		<link href="/erp/resources/assets/libs/jquery-vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 		
-		<!-- jQuery js -->
-		<script src="/erp/resources/assets/js/jquery-3.4.1.min.js"></script>
 
 <!-- taglib 추가 -->
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
