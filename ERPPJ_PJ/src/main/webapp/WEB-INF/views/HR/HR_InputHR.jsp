@@ -53,8 +53,8 @@
 										<li class="nav-item"><a class="nav-link active"
 											id="employee-tab" data-toggle="tab" href="#employee"
 											role="tab" aria-controls="employee" aria-selected="false">
-												<span class="d-block d-sm-none"><i class="fa fa-employee"></i></span> 
-												<span class="d-none d-sm-block">인적정보</span>
+												<span class="d-block d-sm-none"><i
+													class="fa fa-employee"></i></span> <span class="d-none d-sm-block">인적정보</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link"
 											id="presidency-tab" data-toggle="tab" href="#presidency"
@@ -69,149 +69,136 @@
 												<span class="d-none d-sm-block">급여정보</span>
 										</a></li>
 									</ul>
+
 									<div class="tab-content">
-										<!-- 잔액 -->
-										<div class="tab-pane show active" id="employee" role="tabpanel"
-											aria-labelledby="employee-tab">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body table-responsive">
-														<form class="form-horizontal">
+										<!-- 인적정보 -->
+										<div class="tab-pane show active" id="employee"
+											role="tabpanel" aria-labelledby="employee-tab">
+											<form action="HR_inputProHR1" class="form-horizontal"
+												method="post">
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body table-responsive">
 
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">성명(영문)</label>
 																<div class="col-md-10">
-																	<input type="text" id="engName" class="form-control"
-																		value="Some text value...">
+																	<input type="text" class="form-control" name="engName">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label"
 																	for="example-email">성명(한자)</label>
 																<div class="col-md-10">
-																	<input type="text" id="chineseName" name="chineseName"
-																		class="form-control" placeholder="text name...">
+																	<input type="text" class="form-control" name="chineseName"
+																		placeholder="text name...">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label"
 																	for="example-palaceholder">주민등록번호</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control"
-																		id="example-palaceholder" placeholder="placeholder">
+																	<input type="text" class="form-control" name="jumin"
+																		placeholder="jumin">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label"
 																	for="example-password">성별</label>
 																<div class="col-md-10">
-																	<select class="input" name="nation" onchange="">
-																		<option value="">1.남성</option>
-																		<option value="">2.여성</option>
+																	<select class="input" name="gender" onchange="">
+																		<option value="남성">1.남성</option>
+																		<option value="여성">2.여성</option>
 																	</select>
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">생년월일</label>
 																<div class="col-md-10">
-																	<input type="text" id="simpleinput"
-																		class="form-control" value="Some text value...">
+																	<input type="text" class="form-control" name="birth">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">전화번호</label>
 																<div class="col-md-10">
-																	<input type="text" id="simpleinput"
-																		class="form-control" value="Some text value...">
+																	<input type="text" class="form-control" name="phoneNum">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">비상전화(HP)</label>
 																<div class="col-md-10">
-																	<input type="text" id="simpleinput"
-																		class="form-control" value="Some text value...">
+																	<input type="text" class="form-control" name="handPhone">
 																</div>
 															</div>
 															<br> <br>
 															<h4 class="header-title">거주정보</h4>
 															<br> <br>
 
-															<div class="alert alert-warning d-none fade show">
-																<h4 class="text-warning mt-0">Oh snap!</h4>
-																<p class="mb-0">This form seems to be invalid :(</p>
-															</div>
-
-															<div class="alert alert-info d-none fade show">
-																<h4 class="alert-info mt-0">Yay!</h4>
-																<p class="mb-0">Everything seems to be ok :)</p>
-															</div>
-
-
 															<div class="form-group">
 																<label for="fullname">주민등록주소</label> <input type="text"
-																	class="form-control" name="fullname" id="fullname"
-																	required="">
+																	class="form-control" name="juminAddress" required="">
 															</div>
 
 															<div class="form-group">
 																<label for="fullname">상세주소</label> <input type="text"
-																	class="form-control" name="address" id="address"
-																	required="">
+																	class="form-control" name="address" required="">
 															</div>
 
 															<div class="form-group">
 																<label for="fullname">영문주소</label> <input type="text"
-																	class="form-control" name="address2" id="address2"
-																	required="">
+																	class="form-control" name="endAddress" required="">
 															</div>
 
 															<div class="form-group">
 																<label for="email">E-MAIL</label> <input type="email"
-																	id="email" class="form-control" name="email"
-																	data-parsley-trigger="change" required="">
+																	class="form-control" name="email" data-parsley-trigger="change"
+																	required="">
 															</div>
 
 															<div class="form-group">
 																<label for="fullname">출입카드No.</label> <input type="text"
-																	class="form-control" name="inNo" id="inNo" required="">
+																	class="form-control" name="inNo" required="">
 															</div>
 
 															<div class="form-group">
+
 																<label for="fullname">세대주여부 </label> <select
-																	class="input" name="nation" onchange="">
+																	class="input" name="household" onchange="">
 																	<option value="">1.부</option>
 																	<option value="">2.여</option>
 																</select>
 															</div>
 
 															<div class="form-group">
-																<label for="heard">장애인 구분</label> <select class="">
+																<label for="heard">장애인 구분</label> <select class="input"
+																	name="disClass">
 																	<option value="press">0.비해당</option>
 																	<option value="net">1.장애인복지법</option>
 																	<option value="mouth">2.국가유공자등</option>
 																	<option value="other">3.중증환자</option>
 																</select>
-															</div>
+															</div>														
 
-															<div class="form-group mb-0">
-																<input type="submit" class="btn btn-success"
-																	value="validate">
-															</div>
-														</form>
+														</div>
 													</div>
 												</div>
-											</div>
+												<div class="form-group mb-0">
+													<input type="submit" class="btn btn-success" value="등록">
+												</div>
+											</form>
 										</div>
 
 										<!-- 재직정보 -->
-										<div class="tab-pane" id="presidency"
-											role="tabpanel" aria-labelledby="presidency-tab">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body">
-														<div class="row">
-															<div class="col-xl-6">
-																<form class="form-horizontal">
+										<div class="tab-pane" id="presidency" role="tabpanel"
+											aria-labelledby="presidency-tab">
+											<form action="HR_inputProHR2" class="form-horizontal"
+												method="post">
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body">
+															<div class="row">
+																<div class="col-xl-6">
+																	<!-- <form class="form-horizontal"> -->
 																	<div class="form-group row">
 																		<label class="col-md-2 col-form-label"
 																			for="simpleinput">입사일</label>
@@ -224,7 +211,7 @@
 																		<label class="col-md-2 col-form-label"
 																			for="simpleinput">퇴직일</label>
 																		<div class="col-md-10">
-																			<input type="text" class="">&nbsp;<a href="#"><i
+																			<input type="text" class="" data-provide="datepicker">&nbsp;<a href="#"><i
 																				class="dripicons-calendar"></i></a>
 																		</div>
 																	</div>
@@ -270,11 +257,11 @@
 																				class="dripicons-calendar"></i></a>
 																		</div>
 																	</div>
-																</form>
-															</div>
+																	<!-- </form> -->
+																</div>
 
-															<div class="col-xl-6">
-																<form class="form-horizontal">
+																<div class="col-xl-6">
+																	<!-- <form class="form-horizontal"> -->
 
 																	<div class="form-group row">
 																		<label class="col-md-2 col-form-label"
@@ -315,225 +302,261 @@
 																		</div>
 																	</div>
 
-																</form>
+																</div>
+																<!-- end col -->
 															</div>
-															<!-- end col -->
-														</div>
-														<!-- end row -->
+															<!-- end row -->
 
+														</div>
 													</div>
 												</div>
-											</div>
+												<div class="form-group mb-0">
+													<input type="submit" class="btn btn-success" value="등록">
+												</div>
+											</form>
 										</div>
 
-										<!-- 총괄잔액 -->
+										<!-- 급여정보 -->
 										<div class="tab-pane" id="message" role="tabpanel"
 											aria-labelledby="message-tab">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body table-responsive">
-														<div align="right">
-															<button type="button"
-																class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-															<button type="button"
-																class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-															<br>
-														</div>
-														<table id="datatable"
-															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-															<tr>
-																<td>회계단위</td>
-																<td><select class="form-control select2">
-																		<option>전체선택</option>
-																		<option value="">본점</option>
-																</select></td>
-																<td>계정과목조회구분</td>
-																<td><input type="radio">범위 <input
-																	type="radio">개별</td>
+											<form action="HR_inputProHR3" class="form-horizontal"
+												method="post">
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body table-responsive">
+															<div align="left">
+																<h4>입사정보</h4>
+																<br>
+															</div>
+															<table id="datatable"
+																style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+																<tr>
+																	<td>호봉</td>
+																	<td><input type="text" class="" value="2호봉">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a> <input
+																		type="text" class="" value="2,160,000" readonly></td>
+																</tr>
 
-																<td>출력기준</td>
-																<td><select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">1. 발생기준</option>
-																		<option value="">2. 잔액기준</option>
-																</select></td>
-															</tr>
+																<tr>
+																	<td>계정유형</td>
+																	<td><input type="text" class="" value="200">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a> <input
+																		type="text" class="" value="사원계정" readonly></td>
+																</tr>
 
-															<tr>
 
-																<td>계정과목</td>
-																<td><select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">계정별</option>
-																		<option value="">세목별</option>
-																</select></td>
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a> <input
-																	type="text" class="" readonly></td>
+																<tr>
+																	<td>국외소득유무</td>
+																	<td><select class="">
+																			<option></option>
+																			<option value="">1. 비해당</option>
+																			<option value="">2. 해당</option>
+																	</select></td>
 
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a> <input
-																	type="text" class="" readonly></td>
+																	<td>외국인단일세율</td>
+																	<td><select class="">
+																			<option></option>
+																			<option value="">1. 여</option>
+																			<option value="">2. 부</option>
+																	</select></td>
+																</tr>
 
-																<td>기표기간</td>
-																<td>../../.. ~ ../../..</td>
-															</tr>
+																<tr>
+																	<td>생산직총급여</td>
+																	<td><select class="">
+																			<option value="">0. 과세(2천5백만원 초과)</option>
+																			<option value="">1. 비과세(2천5백만원 이하)</option>
+																	</select></td>
 
-															<tr>
-																<td>거래처</td>
-																<td><select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">거래처</option>
-																		<option value="">거래처분류</option>
-																</select></td>
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a></td>
+																	<td>파견근로자여부</td>
+																	<td><select class="">
+																			<option value="">0. 여</option>
+																			<option value="">1. 부</option>
+																	</select></td>
+																</tr>
 
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a></td>
+																<tr>
+																	<td>학자금상환여부</td>
+																	<td><select class="">
+																			<option></option>
+																			<option value="">0. 여</option>
+																			<option value="">1. 부</option>
+																	</select></td>
 
-																<td><< <select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">-</option>
-																		<option value="">-</option>
-																</select> >>
-																</td>
-															</tr>
-														</table>
+																	<td>학자금상환통지액</td>
+																	<td><input type="text" class=""></td>
+																</tr>
 
-														<div class="table-responsive">
-															<table class="table mb-0">
-																<thead class="thead-light">
-																	<tr>
-																		<th>코드</th>
-																		<th>계정과목</th>
-																		<th>전기(월)이월</th>
-																		<th>증가</th>
-																		<th>감소</th>
-																		<th>잔액</th>
-																		<th>거래처분류코드</th>
-																		<th>거래처분류명</th>
-																		<th>대표자성명</th>
-																	</tr>
+																<tr>
+																	<td>감면유형</td>
+																	<td><input type="text" class="" value="T10">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a> <input
+																		type="text" class="" value="중소기업취업감면(1" readonly>
+																		<input type="text" class="" value="____/__">&nbsp;
+																		~ &nbsp; <input type="text" class="" value="____/__">&nbsp;<a
+																		href="#"><i class="dripicons-calendar"></i></a></td>
+																</tr>
 
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>10000</td>
-																		<td>외상금매출</td>
-																		<td>5,000,000</td>
-																		<td>88,000,000</td>
-																		<td></td>
-																		<td>93,000,000</td>
-																		<td>1000</td>
-																		<td>강남구</td>
-																		<td>권순용</td>
-																	</tr>
-																</tbody>
+																<tr>
+																	<td>급여이체은행</td>
+																	<td><input type="text" class="">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a> <input
+																		type="text" class="" disabled></td>
+																</tr>
+
+																<tr>
+																	<td>계좌번호</td>
+																	<td><input type="text" class=""></td>
+
+																	<td>예금주</td>
+																	<td><input type="text" class=""></td>
+																</tr>
+
+																<tr>
+																	<td>급여이체은행2</td>
+																	<td><input type="text" class="">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a> <input
+																		type="text" class="" disabled></td>
+																</tr>
+
+																<tr>
+																	<td>계좌번호2</td>
+																	<td><input type="text" class=""></td>
+
+																	<td>예금주2</td>
+																	<td><input type="text" class=""></td>
+																</tr>
 															</table>
 														</div>
 													</div>
 												</div>
-											</div>
-										</div>
 
-										<!-- 총괄내용 -->
-										<div class="tab-pane" id="setting" role="tabpanel"
-											aria-labelledby="setting-tab">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body table-responsive">
-														<div align="right">
-															<button type="button"
-																class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-															<button type="button"
-																class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-															<br>
-														</div>
-														<table id="datatable"
-															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-															<tr>
-																<td>회계단위</td>
-																<td><select class="form-control select2">
-																		<option>전체선택</option>
-																		<option value="">본점</option>
-																</select></td>
-																<td>계정과목조회구분</td>
-																<td><input type="radio">범위 <input
-																	type="radio">개별</td>
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body table-responsive">
+															<div align="left">
+																<h4>사회보험</h4>
+																<br>
+															</div>
+															<table id="datatable"
+																style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+																<tr>
+																	<td>연금유형</td>
+																	<td><select class="">
+																			<option value="">1. 국민연금</option>
+																			<option value="">2. 사학연금</option>
+																	</select></td>
 
-															</tr>
+																	<td>국민연금</td>
+																	<td><input type="text" class="" value="72,000">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a></td>
+																</tr>
 
-															<tr>
+																<tr>
+																	<td>사학연금</td>
+																	<td><input type="text" class="" disabled>&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in" disabled></i></a></td>
 
-																<td>계정과목</td>
-																<td><select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">계정별</option>
-																		<option value="">세목별</option>
-																</select></td>
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a> <input
-																	type="text" class="" readonly></td>
+																	<td>고용보험</td>
+																	<td><input type="text" class="" value="10,400">&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a></td>
+																</tr>
 
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a> <input
-																	type="text" class="" readonly></td>
 
-																<td>기표기간</td>
-																<td>../../.. ~ ../../..</td>
-															</tr>
+																<tr>
+																	<td>건강보험</td>
+																	<td><input type="text" class="" disabled>&nbsp;<a
+																		href="#"><i class="dripicons-zoom-in"></i></a></td>
 
-															<tr>
-																<td>거래처</td>
-																<td><select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">거래처</option>
-																		<option value="">거래처분류</option>
-																</select></td>
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a></td>
+																	<td>건강보험번호</td>
+																	<td><input type="text" class=""></td>
+																</tr>
 
-																<td><input type="text" class="">&nbsp;<a
-																	href="#"><i class="dripicons-zoom-in"></i></a></td>
+																<tr>
+																	<td>노조가입여부</td>
+																	<td><select class="">
+																			<option value="">1. 부</option>
+																			<option value="">2. 여</option>
+																	</select></td>
 
-																<td><< <select class="form-control select2">
-																		<option>선택</option>
-																		<option value="">-</option>
-																		<option value="">-</option>
-																</select> >>
-																</td>
-															</tr>
-														</table>
+																	<td>고용보험여부(대표)</td>
+																	<td><select class="">
+																			<option value="">1. 부</option>
+																			<option value="">2. 여</option>
+																	</select></td>
+																</tr>
 
-														<div class="table-responsive">
-															<table class="table mb-0">
-																<thead class="thead-light">
-																	<tr>
-																		<th>날짜</th>
-																		<th>코드</th>
-																		<th>계정과목</th>
-																		<th>적요</th>
-																		<th>차변</th>
-																		<th>대변</th>
-																	</tr>
+																<tr>
+																	<td>두루누리사회보험</td>
+																	<td><select class="">
+																			<option value="">0. 미신청</option>
+																			<option value="">1. 신청</option>
+																	</select></td>
 
-																</thead>
-																<tbody>
-																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td>[전원이월]</td>
-																		<td>21,600,000</td>
-																		<td></td>
-																	</tr>
-																</tbody>
+																	<td>두루누리적용율</td>
+																	<td><select class="" disabled>
+																			<option></option>
+																	</select>&nbsp;
+																		<button onclick="location=''">안내</button></td>
+																</tr>
 															</table>
 														</div>
 													</div>
 												</div>
-											</div>
+
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body table-responsive">
+															<div align="left">
+																<h4>부양가족</h4>
+																<br>
+															</div>
+															<table id="datatable"
+																style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+																<tr>
+																	<td>배우자공제</td>
+																	<td><select class="">
+																			<option value="">1. 비해당</option>
+																			<option value="">2. 해당</option>
+																	</select></td>
+
+																	<td>부녀자공제</td>
+																	<td><select class="">
+																			<option value="">1. 비해당</option>
+																			<option value="">2. 해당</option>
+																	</select></td>
+																</tr>
+
+																<tr>
+																	<td>20세이하</td>
+																	<td><input type="text" class="" placeholder="0"></td>
+
+																	<td>부양60세이상</td>
+																	<td><input type="text" class="" placeholder="0"></td>
+																</tr>
+
+
+																<tr>
+																	<td>장애인</td>
+																	<td><input type="text" class="" placeholder="0"></td>
+
+																	<td>수급자/위탁아동</td>
+																	<td><input type="text" class="" placeholder="0"></td>
+																</tr>
+
+																<tr>
+																	<td>다자녀추가공제</td>
+																	<td><input type="text" class="" placeholder="0"></td>
+																</tr>
+															</table>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group mb-0">
+													<input type="submit" class="btn btn-success" value="등록">
+												</div>
+											</form>
 										</div>
 									</div>
 
@@ -740,5 +763,8 @@
 
 				<!-- App js -->
 				<script src="/erp/resources/assets/js/app.min.js"></script>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

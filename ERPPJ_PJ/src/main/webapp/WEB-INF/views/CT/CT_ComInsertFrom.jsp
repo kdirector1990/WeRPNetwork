@@ -84,11 +84,11 @@
     
                                             <tbody>
                                             <tr>
-                                            	<td></td>
-                                            	<td></td>
-                                            	<td></td>
-                                            	<td></td>
-                                            	<td></td>
+                                            	<td>CT_R003</td>
+                                            	<td><input type="text" name="" size="10"></td>
+                                            	<td>2019년 08월 14일</td>
+                                            	<td><input type="date" name=""></td>
+                                            	<td><<input type="text" name=""></td>
                                             	<td>업체수리(C)</td>
                                             </tr>
                                             

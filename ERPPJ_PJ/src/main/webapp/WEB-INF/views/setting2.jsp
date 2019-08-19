@@ -225,7 +225,8 @@
         <!-- Validation init js-->
         <script src="/erp/resources/assets/js/pages/form-validation.init.js"></script>
         
-        
+        <!-- jQuery js -->
+		<script src="/erp/resources/assets/js/jquery-3.4.1.min.js"></script>
         
         
         

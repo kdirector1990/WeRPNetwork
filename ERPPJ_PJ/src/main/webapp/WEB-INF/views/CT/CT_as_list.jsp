@@ -63,6 +63,8 @@
                                             </tbody>
                                         </table>
                                           
+                                          <br>
+                                          
                                           <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
@@ -77,12 +79,13 @@
     
     
                                             <tbody>
+                                            <form action="" method="post">
                                             <tr>
-                                            	<td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            	<td>CT_R004</td>
+                                                <td><input type="text" name="" size="10"></td>
+                                                <td>2019년 07월 12일</td>
+                                                <td><input type="date" name=""></td>
+                                                <td><input type="text" name=""></td>
                                                 <td>
                                                 <select class="form-control select2">
 		                                            <option>선택</option>
@@ -93,7 +96,7 @@
 		                                        </td>
                                                 
                                             </tr>
-                                            
+                                            </form>
                                             </tbody>
                                         </table>
                                         

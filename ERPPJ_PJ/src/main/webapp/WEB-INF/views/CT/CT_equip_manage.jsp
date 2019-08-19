@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
+<style type="text/css">
+	.result{
+		display: none;
+	}
+</style>
     <%@ include file="../setting.jsp" %>
 </head>
 	<body>
@@ -39,7 +44,7 @@
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                            	<th><input type="checkbox" name=""></th>
+                                            	<th>선택</th>
                                             	<th>장비코드</th>
                                                 <th>장비구분</th>
                                                 <th>장비명</th>
@@ -54,8 +59,8 @@
     
                                             <tbody>
                                             <tr>
-                                            	<td><input type="checkbox"></td>
-                                            	<td>CT001</td>
+                                            	<td><input type="checkbox" class="box"></td>
+                                            	<td><input type="text" id="CT_code" value="CT001">CT001</td>
                                                 <td>제조기계</td>
                                                 <td>CES</td>
                                                 <td>(주)쌍화탕</td>
@@ -66,7 +71,7 @@
                                             </tr>
                                             
                                             <tr>
-                                            	<td><input type="checkbox"></td>
+                                            	<td><input type="checkbox" class="box"></td>
                                             	<td>CT002</td>
                                                 <td>제조기계</td>
                                                 <td>EOQ</td>
@@ -81,6 +86,7 @@
                                         </table>
                                         
                                         <div class="result">
+                                        <br>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
@@ -135,7 +141,26 @@
         </div>
         <!-- END wrapper -->
 
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
+    <%@ include file="../rightbar.jsp" %>
+    <%@ include file="../setting2.jsp" %>
+    <script type="text/javascript">
+    
+    
+    	$(function(){
+    		alert("start");
+    		$('.box').change(function(){
+    			alert("semi");
+    			var code = $('#CT_code').val();
+        		if(code != null){
+        			alert("ok");
+        			$('.result').show();
+        		}
+        		else{
+        			$('.result').hide();
+        		}	
+    		});
+    	});
+    
+    </script>
     </body>
 </html>

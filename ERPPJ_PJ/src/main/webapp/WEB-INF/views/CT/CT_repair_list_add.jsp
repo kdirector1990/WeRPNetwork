@@ -37,11 +37,12 @@
                                         <div align="right">
 	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light"><a href=CT_as_list>전산실 내부수리</a></button>
 	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light"><a href="CT_ComInsertForm">업체수리</a></button>
-	    									<br>
     									</div>
+    									<br>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
+                                            	<th><input type="checkbox" id="all_check"></th>
                                             	<th>수리의뢰코드</th>
                                                 <th>장비관리번호</th>
                                                 <th>장비구분</th>
@@ -56,6 +57,7 @@
     
                                             <tbody>
                                             <tr>
+                                            	<td><input type="checkbox" class="r_box"></td>
                                             	<td>CT_R003
                                                 <td>CT003</td>
                                                 <td>제조기계</td>
@@ -67,6 +69,7 @@
                                             </tr>
                                             
                                              <tr>
+                                             	<td><input type="checkbox" class="r_box"></td>
                                             	<td>CT_R004</td>
                                                 <td>CT004</td>
                                                 <td>사무용품</td>
@@ -105,5 +108,13 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
+        <script type="text/javascript">
+		   $(function(){
+			$("#all_check").change(function(){
+				var is_check = $(this).is(":checked"); //this는 전체 선택용 체크박스
+					$(".r_box").prop("checked", is_check);
+				});
+			});
+    	</script>
     </body>
 </html>

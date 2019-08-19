@@ -22,11 +22,39 @@ public class HR_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(HR_Controller.class);
 	
 	
+	/*
+	 * @RequestMapping("HR_InputHR") public String HR_InputHR(Locale locale, Model
+	 * model) { logger.info("log => HR_InputHR");
+	 * 
+	 * return "HR/HR_InputHR_ex"; }
+	 */
+	
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(Locale locale, Model model) {
 		logger.info("log => HR_InputHR");
 		
-		return "HR/HR_InputHR_ex";
+		return "HR/HR_InputHR";
+	}
+	
+	@RequestMapping("HR_inputProHR1")
+	public String HR_inputProHR1(Locale locale, Model model) {
+		logger.info("log => HR_inputProHR1");
+		
+		return "HR/HR_inputProHR1";
+	}
+	
+	@RequestMapping("HR_inputProHR2")
+	public String HR_inputProHR2(Locale locale, Model model) {
+		logger.info("log => HR_inputProHR2");
+		
+		return "HR/HR_inputProHR2";
+	}
+	
+	@RequestMapping("HR_inputProHR3")
+	public String HR_inputProHR3(Locale locale, Model model) {
+		logger.info("log => HR_inputProHR3");
+		
+		return "HR/HR_inputProHR3";
 	}
 	
 	@RequestMapping("joinPro")
