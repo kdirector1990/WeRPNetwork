@@ -70,6 +70,10 @@
                                             </tbody>
                                         </table>
                                         
+                                        <div class="page-title-box">
+                                    		<h4 class="page-title">대여장비</h4>
+                                		</div>
+                                        
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>

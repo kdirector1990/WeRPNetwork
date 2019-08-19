@@ -522,8 +522,8 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="CT_equip_add">전산 설비 등록</a></li>
+	                          			<li><a href="CT_equip_list">전산 설비 목록</a></li>
 					                    <li><a href="CT_equip_manage">전산 설비 관리</a></li>
-					                    <li><a href="CT_equip_list">전산 설비 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	

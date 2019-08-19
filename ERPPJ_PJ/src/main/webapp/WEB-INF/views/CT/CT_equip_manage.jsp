@@ -39,6 +39,7 @@
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
+                                            	<th><input type="checkbox" name=""></th>
                                             	<th>장비코드</th>
                                                 <th>장비구분</th>
                                                 <th>장비명</th>
@@ -53,6 +54,7 @@
     
                                             <tbody>
                                             <tr>
+                                            	<td><input type="checkbox"></td>
                                             	<td>CT001</td>
                                                 <td>제조기계</td>
                                                 <td>CES</td>
@@ -64,6 +66,7 @@
                                             </tr>
                                             
                                             <tr>
+                                            	<td><input type="checkbox"></td>
                                             	<td>CT002</td>
                                                 <td>제조기계</td>
                                                 <td>EOQ</td>
@@ -77,6 +80,7 @@
                                             </tbody>
                                         </table>
                                         
+                                        <div class="result">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
@@ -111,6 +115,7 @@
                                             
                                             </tbody>
                                         </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
