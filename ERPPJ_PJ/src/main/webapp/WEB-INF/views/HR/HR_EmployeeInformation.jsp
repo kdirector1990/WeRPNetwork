@@ -51,65 +51,129 @@
 						<div class="card">
 							<div class="card-body table-responsive">
 								<table id="datatable"
-								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-								<tr>
-									<th>조회조건</th>
-									<td><select class="" name="" disabled>
-											<option></option>
-											<option value="">1. 사업장</option>											
-										</select>&nbsp;
-										~ &nbsp;
-										<select class="" name="" disabled>
-											<option></option>											
-										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>						
-									</td>
-									
-									<th>재직구분</th>
-									<td><select class="" name="" disabled>
-											<option></option>																						
-										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-									</td>
-									
-									<th>직급</th>
-									<td><select class="" name="" disabled>
-											<option></option>																						
-										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-									</td>
-								</tr>								
-							</table>					
+									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									<tr>
+										<th>조회조건</th>
+										<td><select class="" name="" disabled>
+												<option></option>
+												<option value="">1. 사업장</option>
+										</select>&nbsp; ~ &nbsp; <select class="" name="" disabled>
+												<option></option>
+										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
 
-								
+										<th>재직구분</th>
+										<td><select class="" name="" disabled>
+												<option></option>
+										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+
+										<th>직급</th>
+										<td><select class="" name="" disabled>
+												<option></option>
+										</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-body">
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="nav-item"><a class="nav-link active" id="study-tab"
+									data-toggle="tab" href="#study" role="tab"
+									aria-controls="study" aria-selected="true"> <span
+										class="d-block d-sm-none"><i class="fa fa-study"></i></span> <span
+										class="d-none d-sm-block">교육</span>
+								</a></li>
+								<li class="nav-item"><a class="nav-link"
+									id="presidency-tab" data-toggle="tab" href="#trip" role="tab"
+									aria-controls="trip" aria-selected="true"> <span
+										class="d-block d-sm-none"><i class="fa fa-user"></i></span> <span
+										class="d-none d-sm-block">출장</span>
+								</a></li>
+								<li class="nav-item"><a class="nav-link" id="message-tab"
+									data-toggle="tab" href="#Passport/Visa" role="tab"
+									aria-controls="Passport/Visa" aria-selected="false"> <span
+										class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
+										<span class="d-none d-sm-block">여권/비자</span>
+								</a></li>
+								<li class="nav-item"><a class="nav-link" id="message-tab"
+									data-toggle="tab" href="#Qualifications" role="tab"
+									aria-controls="Qualifications" aria-selected="false"> <span
+										class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
+										<span class="d-none d-sm-block">자격/면허</span>
+								</a></li>
+								<li class="nav-item"><a class="nav-link" id="message-tab"
+									data-toggle="tab" href="#AddedInfo" role="tab"
+									aria-controls="AddedInfo" aria-selected="false"> <span
+										class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
+										<span class="d-none d-sm-block">추가정보</span>
+								</a></li>
+							</ul>
+							<div class="tab-content">
+								<!-- 잔액 -->
+								<div class="tab-pane" id="study" role="tabpanel"
+									aria-labelledby="study-tab">
+									<div class="col-sm-12">
+										<div class="card">
+											<div class="card-body table-responsive">
+												<div align="right">
+													<br>
+												</div>
+												<table id="datatable"
+													style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+													<tr>
+														<td>기간</td>
+														<td><input type="text" class="" value="____/__/__">&nbsp; ~ &nbsp;<input
+															type="text" class="" value="____/__/__">
+															<a href="#"><i class="dripicons-calendar"></i></a>
+														</td>
 
-
-			<!-- Footer Start -->
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-md-6">
-							2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-						</div>
-						<div class="col-md-6">
-							<div class="text-md-right footer-links d-none d-sm-block">
-								<a href="#">About Us</a> <a href="#">Help</a> <a href="#">Contact
-									Us</a>
+														<td>교육명</td>
+														<td><input type="text" class="">&nbsp;<a
+															href="#"><i class="dripicons-zoom-in"></i></a><input
+															type="text" class=""></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
-			</footer>
-			<!-- end Footer -->
-
+			</div>
 		</div>
 
-		<!-- ============================================================== -->
-		<!-- End Page content -->
-		<!-- ============================================================== -->
+		<!-- Footer Start -->
+		<footer class="footer">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6">
+						2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
+					</div>
+					<div class="col-md-6">
+						<div class="text-md-right footer-links d-none d-sm-block">
+							<a href="#">About Us</a> <a href="#">Help</a> <a href="#">Contact
+								Us</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end Footer -->
+
+	</div>
+
+	<!-- ============================================================== -->
+	<!-- End Page content -->
+	<!-- ============================================================== -->
 
 	</div>
 	<!-- END wrapper -->

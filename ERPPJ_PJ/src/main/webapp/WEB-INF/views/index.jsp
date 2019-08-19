@@ -35,7 +35,12 @@
                                             <li class="breadcrumb-item active">Dashboard</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Welcome John !</h4>
+                                    <sec:authorize access="isAuthenticated()">
+                                    	<h4 class="page-title">${name }님 환영합니다.</h4>
+                                    </sec:authorize>
+                                    <sec:authorize access="isAnonymous()">
+                                 	   <h4 class="page-title">Welcome! 방문해 주셔서 감사합니다.</h4>
+                                    </sec:authorize>
                                 </div>
                             </div>
                         </div>     

@@ -132,13 +132,23 @@
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0">Welcome !</h6>
                             </div>
-
                             <!-- item-->
+                            <sec:authorize access="isAnonymous()">
                             <a href="login" class="dropdown-item notify-item">
                                 <i class="fe-log-in"></i>
                                 <span>LogIn</span>
                             </a>
-
+                            </sec:authorize>
+                            <!-- item-->
+                            <sec:authorize access="isAuthenticated()">
+                            <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
+                                <form id="logout-form" action="logout" method="POST">
+   									<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+   									<i class="fe-log-out"></i>
+                                	<span>Logout</span>
+								</form>
+                            </a>
+                            </sec:authorize>
                         </div>
                     </li>
 					
@@ -294,7 +304,7 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사/급여관리
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="HR_work_record">근태경과입력</a></li>
+	                          			<li><a href="HR_work_record">근태결과입력</a></li>
 					                	<li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
 					                	<li><a href="coming_soon">!급여대장</a></li>
 					                	<li><a href="coming_soon">!급여명세</a></li>
@@ -504,7 +514,7 @@
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-server"></i>
-	                             <span> 전산팀 </span>
+	                             <span> 전산 </span>
 	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
@@ -512,8 +522,8 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="CT_equip_add">전산 설비 등록</a></li>
+	                          			<li><a href="CT_equip_list">전산 설비 목록</a></li>
 					                    <li><a href="CT_equip_manage">전산 설비 관리</a></li>
-					                    <li><a href="CT_equip_list">전산 설비 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -702,7 +712,7 @@
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="admin-grid">Grid</a></li>
                                     <li><a href="admin-sweet-alert">Sweet Alert</a></li>
-                                    <li><a href="admin-widgets">Widgets</a></li>
+                                    <li><a href="admin-widqets">Widgets</a></li>
                                     <li><a href="admin-nestable">Nestable List</a></li>
                                     <li><a href="admin-rangeslider">Range Slider</a></li>
                                     <li><a href="admin-ratings">Ratings</a></li>

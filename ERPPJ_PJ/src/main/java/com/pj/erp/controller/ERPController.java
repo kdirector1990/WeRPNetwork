@@ -4,18 +4,30 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.pj.erp.service.ERPService;
+
 @Controller
 public class ERPController {
 	
+	@Autowired
+	ERPService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.POST})
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -28,15 +40,11 @@ public class ERPController {
 		
 		return "index";
 	}
-	@RequestMapping("ST_index")
-	public String index(Locale locale, Model model) {
-		logger.info("log => index");
-		
-		return "index";
-	}
+	
+
 	@RequestMapping("index")
 	public String index2(Locale locale, Model model) {
-		logger.info("log => index2");
+		logger.info("log => index");
 		
 		return "index";
 	}
@@ -425,276 +433,11 @@ public class ERPController {
 		return "tables-basic";
 	}
 	
-	// 嫄곕옒 紐낆꽭�꽌 諛쒗뻾
-	@RequestMapping("ST_tables-datatable")
-	public String tablesdatatable(Locale locale, Model model) {
-		logger.info("log => ST_tables-datatable");
-		
-		return "ST/tables-datatable";
-	}
-	
-	// �꽭湲� 紐낆꽭�꽌 諛쒗뻾
-	@RequestMapping("ST_tax-statements")
-	public String taxstatements(Locale locale, Model model) {
-		logger.info("log => ST_tax-statements");
-		
-		return "ST/tax-statements";
-	}
-	
-	// 寃ъ쟻 愿�由�
-	@RequestMapping("ST_estimate")
-	public String estimate(Locale locale, Model model) {
-		logger.info("log => estimate");
-		
-		return "ST/estimate";
-	}
-	
-	// 異쒓퀬 愿�由�
-	@RequestMapping("ST_release")
-	public String release(Locale locale, Model model) {
-		logger.info("log => release");
-		
-		return "ST/release";
-	}
-	
-	// 諛섑뭹 愿�由�
-	@RequestMapping("ST_refund")
-	public String refund(Locale locale, Model model) {
-		logger.info("log => refund");
-		
-		return "ST/refund";
-	}
-	
-	@RequestMapping("ST_sale_plan")
-	public String ST_sale_plan(Locale locale, Model model) {
-		logger.info("log => ST_sale_plan");
-		
-		return "ST/ST_sale_plan";
-	}
-	@RequestMapping("ST_sale_plan_state")
-	public String ST_sale_plan_state(Locale locale, Model model) {
-		logger.info("log => ST_sale_plan_state");
-		
-		return "ST/ST_sale_plan_state";
-	}@RequestMapping("ST_contrast_pp")
-	public String ST_contrast_pp(Locale locale, Model model) {
-		logger.info("log => ST_contrast_pp");
-		
-		return "ST/ST_contrast_pp";
-	}
-	@RequestMapping("ST_contrast_pPro")
-	public String ST_contrast_pPro(Locale locale, Model model) {
-		logger.info("log => ST_contrast_pPro");
-		
-		return "ST/ST_contrast_pPro";
-	}
-	
-	@RequestMapping("ST_delay_state")
-	public String ST_delay_state(Locale locale, Model model) {
-		logger.info("log => ST_delay_state");
-		
-		return "ST/ST_delay_state";
-	}
-	
-	@RequestMapping("ST_tex_invoice_list")
-	public String ST_tex_invoice_list(Locale locale, Model model) {
-		logger.info("log => ST_tex_invoice_list");
-		
-		return "ST/ST_tex_invoice_list";
-	}
-	
-	
-	
-	 
-	
-	
-	@RequestMapping("HR_InputHR")
-	public String HR_InputHR(Locale locale, Model model) {
-		logger.info("log => HR_InputHR");
-		
-		return "HR/HR_InputHR";
-	}
-	
-	@RequestMapping("HR_EmployeeInformation")
-	public String HR_EmployeeInformation(Locale locale, Model model) {
-		logger.info("log => HR_EmployeeInformation");
-		
-		return "HR/HR_EmployeeInformation";
-	}
-	
-	@RequestMapping("HR_EmployeeSalary")
-	public String HR_EmployeeSalary(Locale locale, Model model) {
-		logger.info("log => HR_EmployeeSalary");
-		
-		return "HR/HR_EmployeeSalary";
-	}
-	
-	@RequestMapping("HR_GreetingPunishment")
-	public String HR_GreetingPunishment(Locale locale, Model model) {
-		logger.info("log => HR_GreetingPunishment");
-		
-		return "HR/HR_GreetingPunishment";
-	}
-	
-	@RequestMapping("HR_Yearsofservice")
-	public String HR_Yearsofservice(Locale locale, Model model) {
-		logger.info("log => HR_Yearsofservice");
-		
-		return "HR/HR_Yearsofservice";
-	}
-	
-	@RequestMapping("HR_LeaveStandard")
-	public String HR_LeaveStandard(Locale locale, Model model) {
-		logger.info("log => HR_LeaveStandard");
-		
-		return "HR/HR_LeaveStandard";
-	}
-	
-	@RequestMapping("HR_Greeting")
-	public String HR_Greeting(Locale locale, Model model) {
-		logger.info("log => HR_Greeting");
-		
-		return "HR/HR_Greeting";
-	}
-	
-	@RequestMapping("HR_appointment_notice")
-	public String HT_appointment_notice(Locale locale, Model model) {
-		logger.info("log => HR_appointment_notice");
-		
-		return "HR/HR_appointment_notice";
-	}
-	
-	@RequestMapping("HR_appointment_report")
-	public String HR_appointment_report(Locale locale, Model model) {
-		logger.info("log => HR_appointment_report");
-		
-		return "HR/HR_appointment_report";
-	}
-	
-	@RequestMapping("HR_work_record")
-	public String HR_work_record(Locale locale, Model model) {
-		logger.info("log => HR_work_record");
-		
-		return "HR/HR_work_record";
-	}
-	
-	@RequestMapping("coming_soon")
-	public String coming_soon(Locale locale, Model model) {
-		logger.info("log => coming_soon");
-		
-		return "HR/coming_soon";
-	}
-	
-	
-	
-	
-	// �쉶怨꾩쟾�몴�엯�젰
-	@RequestMapping("FT_journal")
-	public String journal(Locale locale, Model model) {
-		logger.info("log => FT_journal");
-		
-		return "FT/FT_journal";
-	}
-	@RequestMapping("FT_ledger")
-	public String ledger(Locale locale, Model model) {
-		logger.info("log => FT_ledger");
-		
-		return "FT/FT_ledger";
-	}
-	@RequestMapping("FT_insertChit")
-	public String insertChit(Locale locale, Model model) {
-		logger.info("log => FT_insertChit");
-		
-		return "FT/FT_insertChit";
-	}
-	@RequestMapping("FT_insertTotal")
-	public String insertTotal(Locale locale, Model model) {
-		logger.info("log => FT_insertTotal");
-		
-		return "FT/FT_insertTotal";
-	}
-	@RequestMapping("FT_Chit_Manager")
-	public String FT_Chit_Manager(Locale locale, Model model) {
-		logger.info("log => FT_Chit_Manager");
-		
-		return "FT/FT_Chit_Manager";
-	}
-	
-	@RequestMapping("FT_DTB")
-	public String FT_DTB(Locale locale, Model model) {
-		logger.info("log => FT_DTB");
-		
-		return "FT/FT_DTB";
-	}
-	
-	@RequestMapping("FT_BS")
-	public String FT_BS(Locale locale, Model model) {
-		logger.info("log => FT_BS");
-		
-		return "FT/FT_BS";
-	}
-	
-	@RequestMapping("FT_IS")
-	public String FT_IS(Locale locale, Model model) {
-		logger.info("log => FT_IS");
-		
-		return "FT/FT_IS";
-	}
-	
-	@RequestMapping("FT_p_cost")
-	public String FT_p_cost(Locale locale, Model model) {
-		logger.info("log => FT_p_cost");
-		
-		return "FT/FT_p_cost";
-	}
-	
-	@RequestMapping("FT_funds_state")
-	public String FT_funds_state(Locale locale, Model model) {
-		logger.info("log => FT_funds_state");
-		
-		return "FT/FT_funds_state";
-	}
-	
-	@RequestMapping("FT_sa_state")
-	public String FT_sa_state(Locale locale, Model model) {
-		logger.info("log => FT_sa_state");
-		
-		return "FT/FT_sa_state";
-	}
-	
-	@RequestMapping("FT_capital_plan")
-	public String FT_capital_plan(Locale locale, Model model) {
-		logger.info("log => FT_capital_plan");
-		
-		return "FT/FT_capital_plan";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("tables-layouts")
 	public String tableslayouts(Locale locale, Model model) {
 		logger.info("log => tables-layouts");
 		
 		return "tables-layouts";
-	}
-	
-	// 寃ъ쟻 �쁽�솴
-	@RequestMapping("ST_tables-responsive")
-	public String tablesresponsive(Locale locale, Model model) {
-		logger.info("log => tables-responsive");
-		
-		return "ST/tables-responsive";
 	}
 	
 	@RequestMapping("tables-tablesaw")
@@ -794,81 +537,7 @@ public class ERPController {
 		return "ui-video";
 	}
 	
-	/* ==========================================================
-	 * 전산팀
-	 */
-	
-	//전산 설비 등록
-	@RequestMapping("CT_equip_add")
-	public String CT_equip_add(Locale locale, Model model) {
-		logger.info("log => CT_equip_add");
-		
-		return "CT/CT_equip_add";
-	}
-	
-	//전산 설비 관리
-	@RequestMapping("CT_equip_manage")
-	public String CT_equip_manage(Locale locale, Model model) {
-		logger.info("log => CT_equip_manage");
-		
-		return "CT/CT_equip_manage";
-	}
-	
-	//전산 설비 목록
-	@RequestMapping("CT_equip_list")
-	public String CT_equip_list(Locale locale, Model model) {
-		logger.info("log => CT_equip_list");
-		
-		return "CT/CT_equip_list";
-	}
-	
-	//수리 일자 등록
-	@RequestMapping("CT_repair_list_add")
-	public String CT_repair_list_add(Locale locale, Model model) {
-		logger.info("log => CT_repair_list_add");
-		
-		return "CT/CT_repair_list_add";
-	}
-	
-	//수리 현황
-	@RequestMapping("CT_reqair_list")
-	public String CT_reqair_list(Locale locale, Model model) {
-		logger.info("log => CT_reqair_list");
-		
-		return "CT/CT_reqair_list";
-	}
-	
-	//예산 현황
-	@RequestMapping("CT_budget")
-	public String CT_budget(Locale locale, Model model) {
-		logger.info("log => CT_budget");
-		
-		return "CT/CT_budget";
-	}
-	
-	//추가 예산 신청
-	@RequestMapping("CT_budget_apply")
-	public String CT_budget_apply(Locale locale, Model model) {
-		logger.info("log => CT_budget_apply");
-		
-		return "CT/CT_budget_apply";
-	}
-	
-	//AS 요청 현황
-	@RequestMapping("CT_as_list")
-	public String CT_as_list(Locale locale, Model model) {
-		logger.info("log => CT_as_list");
-		
-		return "CT/CT_as_list";
-	}
-	
-	//AS 요청 관리
-	@RequestMapping("CT_as_manage")
-	public String CT_as_manage(Locale locale, Model model) {
-		logger.info("log => CT_as_manage");
-		
-		return "CT/CT_as_manage";
-	}
+	//관리자 및 공통
 	
 	//로그인 페이지
 	@RequestMapping("login")
@@ -877,4 +546,17 @@ public class ERPController {
 		
 		return "login";
 	}
+	
+	/*
+	 * //로그아웃
+	 * 
+	 * @RequestMapping(value = "logout", method = RequestMethod.GET) public String
+	 * logout(HttpServletRequest req, HttpServletResponse res) throws Exception{
+	 * logger.info("url == > logout"); Authentication auth =
+	 * SecurityContextHolder.getContext().getAuthentication(); if(auth != null) {
+	 * req.getSession().removeAttribute("memId"); req.getSession().invalidate(); new
+	 * SecurityContextLogoutHandler().logout(req, res, auth); }
+	 * 
+	 * return "redirect:/index"; }
+	 */
 }
