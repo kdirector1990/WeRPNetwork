@@ -57,21 +57,83 @@
                                         <p class="sub-header">
                                            	거래 명세서 발행하는 기능입니다.
                                         </p>
+                                        
+                                        <table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                <td>사원
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>출고 기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
+                                            	</td>
+                                            	<td>납품처</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td>출고창고</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>	
+                                            	<td>출고구분</td>
+                                            	<td>
+                                            		<select class="form-control select2">
+			                                            <option>전체</option>
+			                                                <option value="">--</option>
+			                                        </select>
+                                            	</td>
+                                            	
+                                            	<td><select class="form-control select2">
+			                                            <option>2. 실적담당</option>
+			                                                <option value="">--</option>
+			                                        </select></td>
+                                            	<td>
+                                            		<select class="form-control select2">
+			                                            <option></option>
+			                                                <option value="">--</option>
+			                                        </select>
+                                            	</td>
+                                            	</tr>
+                                            	
+                                            <tr>
+                                            	<td>전표구분</td>
+                                            	<td>
+                                            		<select class="form-control select2">
+			                                            <option>전체</option>
+			                                                <option value="">--</option>
+			                                        </select>
+                                            	</td>
+                                           
+                                            </tr>
+                                            
+                                        </table>
     
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
                                             <thead>
                                             <tr>
                                                 <th>선택 <input type = "checkbox" name = "chk"></th>
-                                                <th>작성일자</th>
-                                                <th>명세서번호</th>
-                                                <th>공급가액</th>
-                                                <th>세액</th>
-                                                <th>합계 금액</th>
-                                                <th>적요</th>
-                                                <th>거래처명</th>
-                                                <th>전표번호</th>
-                                                <th>세금 계산서 번호</th>
+                                                <th>출고번호</th>
+                                                <th>출고일자</th>
+                                                <th>거래처</th>
+                                                <th>창고</th>
+                                                <th>출고구분</th>
+                                                <th>과세구분</th>
+                                                <th>단가구분</th>
+                                                <th>납품처</th>
+                                                <th>담당자</th>
+                                                <th>출력횟수</th>
+                                                <th>비고</th>
                                             </tr>
                                             </thead>
     
@@ -79,30 +141,18 @@
                                             <tbody>
                                             <tr>
                                                 <td><input type = "checkbox" name = "chk"></td>
-                                                <td>2019-08-12</td>
-                                                <td>20190812001</td>
-                                                <td>3,545,000</td>
-                                                <td>354,500</td>
-                                                <td>3,899,500</td>
-                                                <td>상품 판매</td>
-                                                <td>거래처명</td>
-                                                <td>20190812001</td>
-                                                <td>110</td>
+                                                <td>001</td>
+                                                <td>2019-08-19</td>
+                                                <td>일자</td>
+                                                <td>거래처1</td>
+                                                <td>창고1</td>
+                                                <td>출고구분1</td>
+                                                <td>과세구분1</td>
+                                                <th>단가구분1</th>
+                                                <th>납품처1</th>
+                                                <th>담당자1</th>
+                                                <th></th>
                                             </tr>
-                                            
-                                              <tr>
-                                                <td><input type = "checkbox" name = "chk"></td>
-                                                <td>2019-08-13</td>
-                                                <td>20190812001</td>
-                                                <td>3,545,000</td>
-                                                <td>354,500</td>
-                                                <td>3,899,500</td>
-                                                <td>상품 판매 2</td>
-                                                <td>거래처명 2</td>
-                                                <td>20190812002</td>
-                                                <td>111</td>
-                                            </tr>
-                                            
                                             </tbody>
                                         </table>
                                     </div>

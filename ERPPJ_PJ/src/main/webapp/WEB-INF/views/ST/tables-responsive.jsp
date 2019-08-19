@@ -33,10 +33,10 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                            <li class="breadcrumb-item active">견적 관리</li>
+                                            <li class="breadcrumb-item active">견적 현황</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">견적 관리</h4>
+                                    <h4 class="page-title">견적 현황</h4>
                                 </div>
                             </div>
                         </div>     
@@ -52,23 +52,39 @@
                                                     <table id="tech-companies-1" class="table table-striped">
                                                         <thead>
                                                         <tr>
-                                                        	<th data-priority="1">구분</th>
-                                                            <th>거래처명</th>
-                                                            <th data-priority="1">견적 No</th>
-                                                            <th data-priority="3">발행일</th>
-                                                            <th data-priority="6">품목</th>
-                                                            <th data-priority="3">견적가</th>
+                                                        	<th data-priority="1">견적일</th>
+                                                            <th>견적 번호</th>
+                                                            <th data-priority="1">거래처</th>
+                                                            <th data-priority="3">견적 요청자</th>
+                                                            <th data-priority="6">담당자</th>
+                                                            <th data-priority="3">No.</th>
+                                                            <th data-priority="3">품번</th>
+                                                            <th data-priority="3">품명</th>
+                                                            <th data-priority="3">규격</th>
+                                                            <th data-priority="3">단위 (관리)</th>
+                                                            <th data-priority="3">견적 수량</th>
+                                                            <th data-priority="3">단가</th>
+                                                            <th data-priority="3">공급가</th>
+                                                            <th data-priority="3">부가세</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         
                                                           <tr>
-                                                            <th>1</th> <!-- 구분 -->
-                                                            <th> <span class="co-name">Amazon.com Inc.</span> </th> <!--거래처명 -->
-                                                            <td>001</td><!--견적 No -->
-                                                            <td>2019-08-12</td><!--발행일-->
-                                                            <td>여긴 품목 부분입니다</td><!-- 품목 -->
-                                                            <td>100</td><!-- 견적가 -->
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
+                                                           	<td></td>
                                                            
                                                         </tr>
                                                         
