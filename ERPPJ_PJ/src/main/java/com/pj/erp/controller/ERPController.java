@@ -41,11 +41,8 @@ public class ERPController {
 		return "index";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping("index2.")
-=======
-	@RequestMapping("22index")
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	public String index2(Locale locale, Model model) {
 		logger.info("log => index2");
 		
