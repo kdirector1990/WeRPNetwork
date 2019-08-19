@@ -37,8 +37,8 @@
                                         <div align="right">
 	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light"><a href=CT_as_list>전산실 내부수리</a></button>
 	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light"><a href="CT_ComInsertForm">업체수리</a></button>
-	    									<br>
     									</div>
+    									<br>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
