@@ -2,7 +2,24 @@
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
-    <%@ include file="../setting.jsp" %>
+<style type="text/css">
+	.layer{
+		display: none;
+	}
+</style>  
+<script src="/erp/resources/assets/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	jQuery('#selectBurrow').change(function(){
+		var state = jQuery('#selectBurrow option:selected').val();
+		if(state == 'Y'){
+			jQuery('.layer').show();
+		}else{
+			jQuery('.layer').hide();
+		}
+	});
+</script> 
+<%@ include file="../setting.jsp" %> 
+
 </head>
 	<body>
      	 <!-- Begin page -->
@@ -46,16 +63,21 @@
     
     
                                             <tbody>
-                                           
+                                           <form action="" method="post">
                                             <tr>
-                                                <td>제조기계</td>
-                                                <td>CMD</td>
-                                                <td>(주)누룽지</td>
-                                                <td>18,000,000</td>
-                                                <td>2019/04/13</td>
-                                                <td>00/13일</td>
-                                                <td>N</td>
+                                                <td><input type="text" name="" size="20" autofocus></td>
+                                                <td><input type="text" name="" size="10"></td>
+                                                <td><input type="text" name="" size="20"></td>
+                                                <td><input type="number" name="" size="10"></td>
+                                                <td><input type="date" name="" size="10"></td>
+                                                <td><input type="date" name="" size="10"></td>
+                                                <td><select id="selectBurrow" name="" required>
+                                                	<option>선택
+                                                	<option value="Y">Y
+                                                	<option value="N">N
+                                                </select></td>
                                             </tr>
+                                            </form>
                                             
                                             <tr>
                                                 <td>제조기계</td>
@@ -69,7 +91,8 @@
                                             
                                             </tbody>
                                         </table>
-                                        
+			
+										<div class="layer">                                        
                                         <div class="page-title-box">
                                     		<h4 class="page-title">대여장비</h4>
                                 		</div>
@@ -99,6 +122,7 @@
                                             
                                             </tbody>
                                         </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
