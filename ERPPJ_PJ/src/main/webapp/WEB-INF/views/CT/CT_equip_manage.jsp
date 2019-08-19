@@ -144,6 +144,8 @@
     <%@ include file="../rightbar.jsp" %>
     <%@ include file="../setting2.jsp" %>
     <script type="text/javascript">
+    
+    
     	$(function(){
     		alert("start");
     		$('.box').change(function(){
@@ -158,6 +160,7 @@
         		}	
     		});
     	});
+    
     </script>
     </body>
 </html>
