@@ -514,7 +514,7 @@
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-server"></i>
-	                             <span> 전산팀 </span>
+	                             <span> 전산 </span>
 	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	

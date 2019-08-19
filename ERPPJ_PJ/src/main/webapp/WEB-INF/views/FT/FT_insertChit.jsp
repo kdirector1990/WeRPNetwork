@@ -4,7 +4,70 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+        <script type="text/javascript">
+        	var count = 1;	
         
+        	function inin() {
+        		alert("dkdkk");
+        	}
+        	function focuse() {
+        		$(".chit-table-bordered-primary tbody *").focus(function() {
+        			$(".chit-table-bordered-primary tbody *").css("background-color", "");
+        			$(this).parent().parent().children().children().css("background-color", "#D6EAF8");
+        			$(this).parent().parent().children().css("background-color", "#D6EAF8");
+        			$(this).css("background-color", "");
+        			$(this).parent().css("background-color", "");
+        		});
+        	}
+        	
+        	function enterupdate(vv) {
+        		if(event.keyCode == 13) {
+        			alert(vv + 100);
+        		}
+        	}
+        	
+        	function enterinsert(cc) {
+        		if(event.keyCode == 13) {
+        			alert(cc);
+        			alert(count);
+        			$(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + cc + ");");
+        			$(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
+        			$(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
+        			$(".chit-table-bordered-primary tbody").append('<tr>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "date' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "number' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "type' + count + '" style = "width: 100px; -webkit-appearance: none; border:0px;">' +
+                            '<option value="일반">일반</option>' +
+                            '<option value="매입">매입</option>' +
+                            '<option value="매출">매출</option>' +
+                            '<option value="결산">결산</option>' +
+                       		'</select></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "num' + count + '" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "state' + count + '" style = "width: 100px; -webkit-appearance: none; border:0px;">' +
+                            '<option value="미결">미결</option>' +
+                       		'</select></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "confirmname' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "devprice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "writer' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;"></td>' +
+                           '<td><input type="text" onfocus = "focuse();" name = "slee' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
+                        '</tr>');
+                     count = count + 1;
+                     alert(count);
+        			 $(".chit-table-bordered-primary tbody #first").focus();
+        		}
+        	}
+        </script>
+        <!-- Table datatable css -->
+        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -47,13 +110,13 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
                                         <h4 class="header-title">Example</h4>
-                                        <div align="right">
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">전표복사</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">전표검색</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">품의적요등록</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">전표양식</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">재무부서</button>
+                                        <div align="right" style = "margin-bottom: 30px;">
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표복사</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표검색</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">환경설정</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">품의적요등록</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표양식</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">재무부서</button>
     									<br>
     									</div>
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -79,86 +142,106 @@
                                             </tr>
                                         </table>
                                         
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                                <th>일</th>
-                                                <th>번호</th>
-                                                <th>No</th>
-                                                <th>품의내역</th>
-                                                <th>유형</th>
-                                                <th>기표번호</th>
-                                                <th>상태</th>
-                                                <th>승인자</th>
-                                                <th>대차차액</th>
-                                                <th>작업자</th>
-                                                <th>연동구분</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                            <tr>
-                                                <td>31</td>
-                                                <td>00017</td>
-                                                <td>0</td>
-                                                <td>201813결산분개</td>
-                                                <td>결산</td>
-                                                <td>2018-5555</td>
-                                                <td>승인</td>
-                                                <td>권순용</td>
-                                                <td>td>
-                                                <td>권순용</td>
-                                                <td>결산(원가)</td>
-                                            </tr>
-                                            
-                                            </tbody>
-                                        </table>
+                                       <div class="table-responsive" style = "margin: 15px 0px 50px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:50px;">
+                                                <col style = "width:200px;">
+                                                <col style = "width: 100px;">
+                                                <col style = "width:200px;">
+                                                <col style = "width: 100px;">
+                                                <col style = "width: 100px;">
+                                                <col style = "width: 100px;">
+                                                <col style = "width: 100px;">
+                                                <col style = "width: 100px;">
+                                                <thead>
+                                                    <tr>
+		                                                <th>일</th>
+		                                                <th>번호</th>
+		                                                <th>No</th>
+		                                                <th>품의내역</th>
+		                                                <th>유형</th>
+		                                                <th>기표번호</th>
+		                                                <th>상태</th>
+		                                                <th>승인자</th>
+		                                                <th>대차차액</th>
+		                                                <th>작업자</th>
+		                                                <th>연동구분</th>
+		                                            </tr>
+		                                        </thead>
+		    
+		    
+		                                        <tbody>
+		                                            <tr>
+		                                                <td><input type="text" onfocus = "focuse();" name = "date0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 150px; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>
+		                                                <td><select class="form-control" onfocus = "focuse();" name = "type0" style = "width: 100px; -webkit-appearance: none; border:0px;">
+		                                                <option value="일반">일반</option>
+		                                                <option value="매입">매입</option>
+		                                                <option value="매출">매출</option>
+		                                                <option value="결산">결산</option>
+			                                       		</select></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "num0" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>
+		                                                <td><select class="form-control" onfocus = "focuse();" name = "state0" style = "width: 100px; -webkit-appearance: none; border:0px;">
+		                                                <option value="미결">미결</option>
+			                                       		</select></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "confirmname0" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "devprice0" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "writer0" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "slee0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(0);"></td>
+		                                            </tr>
+		                                        </tbody>
+                                            </table>
+                                        </div>
                                         
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                                <th>순번</th>
-                                                <th>구분</th>
-                                                <th>코드</th>
-                                                <th>계정과목</th>
-                                                <th>코드</th>
-                                                <th>거래처명</th>
-                                                <th>사업자(주민)번호</th>
-                                                <th>금액</th>
-                                                <th>No</th>
-                                                <th>적요명</th>
-                                                <th>증빙</th>
-                                                <th>전자</th>
-                                                <th>국세청</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                            <tr>
-                                            	<td>1</td>
-                                                <td>차변</td>
-                                                <td>500050</td>
-                                                <td>원재료비</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>32,000,000</td>
-                                                <td>1</td>
-                                                <td>원재료사용분 재료비</td>
-                                                <td>코드</td>
-                                                <td>PJT명</td>
-                                                <td>코드</td>
-                                            </tr>
-                                            
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive" style = "margin: 0px 0px 50px">
+                                            <table class="table m-0 table-colored-bordered table-bordered-primary table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+		                                                <th>순번</th>
+		                                                <th>구분</th>
+		                                                <th>코드</th>
+		                                                <th>계정과목</th>
+		                                                <th>코드</th>
+		                                                <th>거래처명</th>
+		                                                <th>사업자(주민)번호</th>
+		                                                <th>금액</th>
+		                                                <th>No</th>
+		                                                <th>적요명</th>
+		                                                <th>증빙</th>
+		                                                <th>전자</th>
+		                                                <th>국세청</th>
+		                                            </tr>
+		                                      	</thead>
+		    
+		    
+		                                        <tbody>
+		                                            <tr>
+		                                            	<td>1</td>
+		                                                <td>차변</td>
+		                                                <td>500050</td>
+		                                                <td>원재료비</td>
+		                                                <td></td>
+		                                                <td></td>
+		                                                <td></td>
+		                                                <td>32,000,000</td>
+		                                                <td>1</td>
+		                                                <td>원재료사용분 재료비</td>
+		                                                <td>코드</td>
+		                                                <td>PJT명</td>
+		                                                <td>코드</td>
+		                                            </tr>
+		                                            
+		                                        </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->
@@ -300,7 +383,57 @@
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
-        <%@ include file="../setting2.jsp" %>
+        <!-- Vendor js -->
+        <script src="/erp/resources/assets/js/vendor.min.js"></script>
+
+        <!-- Bootstrap select plugin -->
+        <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+
+        <!-- Datatable plugin js -->
+        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
+        <!-- Plugins js -->
+        <script src="/erp/resources/assets/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
+        <script src="/erp/resources/assets/libs/autonumeric/autoNumeric-min.js"></script>
+		<script src="/erp/resources/assets/libs/select2/select2.min.js"></script>
+        <script src="/erp/resources/assets/libs/jquery-mockjax/jquery.mockjax.min.js"></script>
+        <script src="/erp/resources/assets/libs/autocomplete/jquery.autocomplete.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+        <script src="/erp/resources/assets/libs/switchery/switchery.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-filestyle2/bootstrap-filestyle.min.js"></script>
+		
+        <!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-masks.init.js"></script>
+
+        <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
+        <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
+        <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
+
+        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
+		
+        <!-- form advanced init js -->
+        <script src="/erp/resources/assets/js/pages/form-advanced.init.js"></script>
+
+        <!-- App js -->
+        <script src="/erp/resources/assets/js/app.min.js"></script>
+        
         
     </body>
 </html>
