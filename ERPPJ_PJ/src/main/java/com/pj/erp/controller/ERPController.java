@@ -22,11 +22,9 @@ import com.pj.erp.service.ERPService;
 
 @Controller
 public class ERPController {
-<<<<<<< HEAD
-=======
+
 	//테스트용 문구3 - 권순용 시렁
 	// fkfkfkfkfkfkfkfkfkㅈ아
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	
 	@Autowired
 	ERPService service;
