@@ -8,10 +8,7 @@
         <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
         <script type="text/javascript">
            var count = 1;   
-        
-           function inin() {
-              alert("dkdkk");
-           }
+       
            function focuse() {
                $(".chit-table-bordered-primary tbody *").focus(function() {
                   $(".chit-table-bordered-primary tbody *").css("background-color", "");
@@ -36,20 +33,15 @@
                  $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
                  $(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
                  $(".chit-table-bordered-primary tbody").append('<tr>' +
-                            '<td><input type="text" onfocus = "focuse();" name = "number' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "code' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>' +
                             '<td><input type="text" onfocus = "focuse();" name = "number' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex) 10001" style = "width: 150px; border:0px;"></td>' +
                             '<td><input type="text" onfocus = "focuse();" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "type' + count + '" style = "width: 100px; -webkit-appearance: none; border:0px;">' +
-                            '<option value="일반">일반</option>' +
-                            '<option value="매입">매입</option>' +
-                            '<option value="매출">매출</option>' +
-                            '<option value="결산">결산</option>' +
-                             '</select></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "amount' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
                             '<td><select class="form-control" onfocus = "focuse();" name = "state' + count + '" style = "width: 100px; -webkit-appearance: none; border:0px;">' +
                             '<option value="담당자">담당자</option>' +
                              '</select></td>' +
                              '<td><input type="text" onfocus = "focuse();" name = "date' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>' +
-                             '<td><input type="text" onfocus = "focuse();" name = "date' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "sysdate' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>' +
                              '<td><input type="text" onfocus = "focuse();" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>' +
                            '<td><input type="text" onfocus = "focuse();" name = "slee' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
                         '</tr>');
@@ -136,20 +128,15 @@
           
                                               <tbody>
                                                   <tr>
-                                                      <td><input type="text" onfocus = "focuse();" name = "number0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
-                                                      <td><input type="text" onfocus = "focuse();" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex) 10001" style = "width: 150px; border:0px;"></td>
-                                                      <td><input type="text" onfocus = "focuse();" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>
-                                                      <td><select class="form-control" onfocus = "focuse();" name = "type0" style = "width: 100px; -webkit-appearance: none; border:0px;">
-                                                      <option value="일반">일반</option>
-                                                      <option value="매입">매입</option>
-                                                      <option value="매출">매출</option>
-                                                      <option value="결산">결산</option>
-                                                      </select></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "code0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "ex) 10001;"></td>
+                                                <td><input type="text" onfocus = "focuse();" name = "amount0" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>
                                                       <td><select class="form-control" onfocus = "focuse();" name = "state0" style = "width: 100px; -webkit-appearance: none; border:0px;">
                                                       <option value="미결">담당자</option>
                                                       </select></td>
                                                       <td><input type="text" onfocus = "focuse();" name = "date0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>
-                                                      <td><input type="text" onfocus = "focuse();" name = "date0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "sysdate0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>
                                                       <td><input type="text" onfocus = "focuse();" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>
                                                       <td><input type="text" onfocus = "focuse();" name = "slee0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(0);"></td>
                                                   </tr>

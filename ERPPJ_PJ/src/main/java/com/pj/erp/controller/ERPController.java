@@ -22,7 +22,8 @@ import com.pj.erp.service.ERPService;
 
 @Controller
 public class ERPController {
-	//테스트용 문구 - 권순용 시렁
+	//테스트용 문구3 - 권순용 시렁
+	// fkfkfkfkfkfkfkfkfkㅈ아
 	
 	@Autowired
 	ERPService service;
@@ -42,7 +43,7 @@ public class ERPController {
 		return "index";
 	}
 	
-
+ 
 	@RequestMapping("index")
 	public String index2(Locale locale, Model model) {
 		logger.info("log => index");
