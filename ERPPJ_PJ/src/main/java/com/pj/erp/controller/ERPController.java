@@ -22,6 +22,8 @@ import com.pj.erp.service.ERPService;
 
 @Controller
 public class ERPController {
+	//테스트용 문구3 - 권순용 시렁
+	// fkfkfkfkfkfkfkfkfkㅈ
 	
 	@Autowired
 	ERPService service;
@@ -41,7 +43,7 @@ public class ERPController {
 		return "index";
 	}
 	
-
+ 
 	@RequestMapping("index")
 	public String index2(Locale locale, Model model) {
 		logger.info("log => index");
@@ -447,6 +449,20 @@ public class ERPController {
 		return "tables-tablesaw";
 	}
 	
+	@RequestMapping("tables-responsive")
+	public String tablesresponsive(Locale locale, Model model) {
+		logger.info("log => tables-responsive");
+		
+		return "tables-responsive";
+	}
+	
+	@RequestMapping("tables-editable")
+	public String tableseditable(Locale locale, Model model) {
+		logger.info("log => tables-editable");
+		
+		return "tables-editable";
+	}
+	
 	@RequestMapping("ui-bootstrap")
 	public String uibootstrap(Locale locale, Model model) {
 		logger.info("log => ui-bootstrap");
@@ -559,4 +575,30 @@ public class ERPController {
 	 * 
 	 * return "redirect:/index"; }
 	 */
+	
+	//====================================================================================
+	//기획서 등록 페이지
+	@RequestMapping("planEnrollment")
+	public String planEnrollment(Locale locale, Model model) {
+		logger.info("log => planEnrollment");
+		
+		return "planEnrollment";
+	}
+	
+	//기획서 조회
+	@RequestMapping("planInquiry")
+	public String planInquiry(Locale locale, Model model) {
+		logger.info("log => planInquiry");
+		
+		return "planInquiry";
+	}
+	
+	//기획서 관리
+	@RequestMapping("planManagement")
+	public String planManagement(Locale locale, Model model) {
+		logger.info("log => planManagement");
+		
+		return "planManagement";
+	}
+	//====================================================================================
 }

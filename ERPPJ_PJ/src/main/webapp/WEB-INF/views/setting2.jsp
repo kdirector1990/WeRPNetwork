@@ -23,7 +23,6 @@
         <script src="/erp/resources/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
         <script src="/erp/resources/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
         <script src="/erp/resources/assets/libs/bootstrap-filestyle2/bootstrap-filestyle.min.js"></script>
-        
 		
 		<!--C3 Chart-->
         <script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
