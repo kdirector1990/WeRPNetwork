@@ -20,7 +20,7 @@ public class CT_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	
 	/* ==========================================================
-	 * 전산팀
+	 * 전산팀 : Part 김지원
 	 */
 	
 	//전산 설비 등록
