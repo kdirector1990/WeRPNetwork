@@ -52,7 +52,7 @@
                                         <form class="" action="#">
                                         	<div class="form-group">
                                                 <label>기획명</label>
-                                                <input type="text" name="plan_code" class="form-control" required
+                                                <input type="text" name="plan_name" class="form-control" required
                                                             placeholder="기획명"/>
                                             </div>
                                             <div class="form-group">

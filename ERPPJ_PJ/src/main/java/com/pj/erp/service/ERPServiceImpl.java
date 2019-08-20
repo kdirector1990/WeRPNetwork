@@ -46,6 +46,15 @@ public class ERPServiceImpl implements ERPService{
 	//경영지원 - 기획서 등록
 	@Override
 	public void insertPlan(HttpServletRequest req, Model model) {
+		PlanVO vo = new PlanVO();
+		vo.setPlan_name(req.getParameter("plan_name"));
+		vo.setPlan_regdate(Timestamp.valueOf(req.getParameter("plan_regdate")));
+		vo.setPlan_startdate(Timestamp.valueOf(req.getParameter("plan_startdate")));
+		vo.setPlan_enddate(Timestamp.valueOf(req.getParameter("plan_enddate")));
+		vo.setPlan_state(req.getParameter("plan_state"));
+		vo.setUsername(req.getParameter("username"));
+		vo.setPosition_code(req.getParameter("position_code"));
+		vo.setPlan_objective(req.getParameter("plan_objective"));
 		
 	}
 	
