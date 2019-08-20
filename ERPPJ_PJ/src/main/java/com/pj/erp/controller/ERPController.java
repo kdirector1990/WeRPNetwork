@@ -448,6 +448,20 @@ public class ERPController {
 		return "tables-tablesaw";
 	}
 	
+	@RequestMapping("tables-responsive")
+	public String tablesresponsive(Locale locale, Model model) {
+		logger.info("log => tables-responsive");
+		
+		return "tables-responsive";
+	}
+	
+	@RequestMapping("tables-editable")
+	public String tableseditable(Locale locale, Model model) {
+		logger.info("log => tables-editable");
+		
+		return "tables-editable";
+	}
+	
 	@RequestMapping("ui-bootstrap")
 	public String uibootstrap(Locale locale, Model model) {
 		logger.info("log => ui-bootstrap");
@@ -560,6 +574,7 @@ public class ERPController {
 	 * 
 	 * return "redirect:/index"; }
 	 */
+	
 	//====================================================================================
 	//기획서 등록 페이지
 	@RequestMapping("planEnrollment")

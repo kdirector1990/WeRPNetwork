@@ -41,76 +41,53 @@
                         <!-- end page title --> 
 
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="header-title">등록</h4>
                                         <p class="sub-header">
-                                           	기획서 등록페이지
+                                           	기획서 등록페이지 ++ 추가될 예정
                                         </p>
     
                                         <form class="" action="#">
-                                            <div class="form-group">
-                                                <label>Required</label>
+                                        	<div class="form-group">
+                                                <label>기획명</label>
                                                 <input type="text" class="form-control" required
-                                                            placeholder="Type something"/>
-                                            </div>
-    
-                                            <div class="form-group">
-                                                <label>Equal To</label>
-                                                <div>
-                                                    <input type="password" id="pass2" class="form-control" required
-                                                            placeholder="Password"/>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <input type="password" class="form-control" required
-                                                            data-parsley-equalto="#pass2"
-                                                            placeholder="Re-Type Password"/>
-                                                </div>
-                                            </div>
-    
-                                            <div class="form-group">
-                                                <label>E-Mail</label>
-                                                <div>
-                                                    <input type="email" class="form-control" required
-                                                            parsley-type="email" placeholder="Enter a valid e-mail"/>
-                                                </div>
+                                                            placeholder="기획명"/>
                                             </div>
                                             <div class="form-group">
-                                                <label>URL</label>
+                                                <label>기획등록일</label>
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                            </div>
+                                            <div class="form-group">
+                                            	<label>시작예정일</label>
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                            </div>
+                                            <div class="form-group">
+                                            <label>종료목표일</label>
+                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>기획상태</label>
+                                                <input type="text" class="form-control" required
+                                                            placeholder="기획상태"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>기획제안자</label>
                                                 <div>
-                                                    <input parsley-type="url" type="url" class="form-control"
-                                                            required placeholder="URL"/>
+                                                    <input type="text" class="form-control" required
+                                                            placeholder="기획제안자"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Digits</label>
-                                                <div>
-                                                    <input data-parsley-type="digits" type="text"
-                                                            class="form-control" required
-                                                            placeholder="Enter only digits"/>
-                                                </div>
+                                                <label>책임자</label>
+                                                <input type="text" class="form-control" required
+                                                            placeholder="책임자"/>
                                             </div>
                                             <div class="form-group">
-                                                <label>Number</label>
+                                                <label>기획목표</label>
                                                 <div>
-                                                    <input data-parsley-type="number" type="text"
-                                                            class="form-control" required
-                                                            placeholder="Enter only numbers"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Alphanumeric</label>
-                                                <div>
-                                                    <input data-parsley-type="alphanum" type="text"
-                                                            class="form-control" required
-                                                            placeholder="Enter alphanumeric value"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Textarea</label>
-                                                <div>
-                                                    <textarea required class="form-control" rows="3"></textarea>
+                                                    <textarea required class="form-control" rows="7" placeholder="기획목표"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-0">
@@ -124,86 +101,6 @@
                                                 </div>
                                             </div>
                                         </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title">Range validation</h4>
-                                        <p class="sub-header">
-                                            Parsley is a javascript form validation library. It helps you provide your users with feedback on their form submission before sending it to your server.
-                                        </p>
-    
-                                        <form action="#">
-    
-                                            <div class="form-group">
-                                                <label>Min Length</label>
-                                                <div>
-                                                    <input type="text" class="form-control" required
-                                                            data-parsley-minlength="6" placeholder="Min 6 chars."/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Max Length</label>
-                                                <div>
-                                                    <input type="text" class="form-control" required
-                                                            data-parsley-maxlength="6" placeholder="Max 6 chars."/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Range Length</label>
-                                                <div>
-                                                    <input type="text" class="form-control" required
-                                                            data-parsley-length="[5,10]"
-                                                            placeholder="Text between 5 - 10 chars length"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Min Value</label>
-                                                <div>
-                                                    <input type="text" class="form-control" required
-                                                            data-parsley-min="6" placeholder="Min value is 6"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Max Value</label>
-                                                <div>
-                                                    <input type="text" class="form-control" required
-                                                            data-parsley-max="6" placeholder="Max value is 6"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Range Value</label>
-                                                <div>
-                                                    <input class="form-control" required type="text" min="6"
-                                                            max="100" placeholder="Number between 6 - 100"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Regular Exp</label>
-                                                <div>
-                                                    <input type="text" class="form-control" required
-                                                            data-parsley-pattern="#[A-Fa-f0-9]{6}"
-                                                            placeholder="Hex. Color"/>
-                                                </div>
-                                            </div>
-    
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                        Submit
-                                                    </button>
-                                                    <button type="reset" class="btn btn-secondary waves-effect waves-light">
-                                                        Cancel
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-    
-                                        <div class="visible-lg" style="height: 150px;"></div>
-    
                                     </div>
                                 </div>
                             </div> <!-- end col -->
