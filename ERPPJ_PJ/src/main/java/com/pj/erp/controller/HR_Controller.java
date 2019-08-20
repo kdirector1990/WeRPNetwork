@@ -127,6 +127,13 @@ public class HR_Controller {
 		return "HR/HR_work_record";
 	}
 	
+	@RequestMapping("HR_HrSalaryEnvironment")
+	public String HR_HrSalaryEnvironment(Locale locale, Model model) {
+		logger.info("log => HR_HrSalaryEnvironment");
+		
+		return "HR/HR_HrSalaryEnvironment";
+	}
+	
 	@RequestMapping("coming_soon")
 	public String coming_soon(Locale locale, Model model) {
 		logger.info("log => coming_soon");
