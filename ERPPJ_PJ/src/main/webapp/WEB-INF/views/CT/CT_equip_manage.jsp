@@ -38,7 +38,7 @@
                                         <h4 class="header-title">전산 설비 폐기</h4>
                                         <div align="right">
     									<button type="button" class="btn btn-outline-dark waves-effect waves-light">수정</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">폐기</button>
+    									<button type="button" id="btnTCT" class="btn btn-outline-dark waves-effect waves-light">폐기</button>
     									<br>
     									</div>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -59,8 +59,8 @@
     
                                             <tbody>
                                             <tr>
-                                            	<td><input type="checkbox" class="box"></td>
-                                            	<td><input type="text" id="CT_code" value="CT001">CT001</td>
+                                            	<td><input type="checkbox" name="CT_code" value="CT001" class="box"></td>
+                                            	<td><input type="text" value="CT001">CT001</td>
                                                 <td>제조기계</td>
                                                 <td>CES</td>
                                                 <td>(주)쌍화탕</td>
@@ -71,7 +71,7 @@
                                             </tr>
                                             
                                             <tr>
-                                            	<td><input type="checkbox" class="box"></td>
+                                            	<td><input type="checkbox" name="CT_code" value="CT002" class="box"></td>
                                             	<td>CT002</td>
                                                 <td>제조기계</td>
                                                 <td>EOQ</td>
@@ -145,22 +145,24 @@
     <%@ include file="../setting2.jsp" %>
     <script type="text/javascript">
     
+    var items = [];
     
-    	$(function(){
-    		alert("start");
-    		$('.box').change(function(){
-    			alert("semi");
-    			var code = $('#CT_code').val();
-        		if(code != null){
-        			alert("ok");
-        			$('.result').show();
-        		}
-        		else{
-        			$('.result').hide();
-        		}	
-    		});
-    	});
     
+    $('#btnTCT').click(function(){
+    	alert("킬릭");
+    	if($('input:checkbox[name="CT_code"]').is(":checked") == true){
+    		alert("이건됨");
+    		$('input[name="CT_code"]:checkbox:checked').each(function(){items.push($(this).val());});
+    		var tmp = items.join(',');
+    		alert(tmp)
+    	} 
+    	else{
+    		alert("폐기할 목록을 선택해주세요.")
+    	}
+    });
+    
+    
+    	    
     </script>
     </body>
 </html>
