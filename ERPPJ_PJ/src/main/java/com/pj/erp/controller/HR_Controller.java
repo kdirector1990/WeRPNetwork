@@ -33,7 +33,7 @@ public class HR_Controller {
 	public String HR_InputHR(Locale locale, Model model) {
 		logger.info("log => HR_InputHR");
 		
-		return "HR/HR_InputHR";
+		return "HR/HR_InputHR_ex";
 	}
 	
 	@RequestMapping("HR_inputProHR1")
