@@ -52,42 +52,42 @@
                                         <form class="" action="#">
                                         	<div class="form-group">
                                                 <label>기획명</label>
-                                                <input type="text" class="form-control" required
+                                                <input type="text" name="plan_name" class="form-control" required
                                                             placeholder="기획명"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>기획등록일</label>
-                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                                <input type="text" name="plan_regdate" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
                                             </div>
                                             <div class="form-group">
                                             	<label>시작예정일</label>
-                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                                <input type="text" name="plan_startdate" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
                                             </div>
                                             <div class="form-group">
                                             <label>종료목표일</label>
-                                                <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                                <input type="text" name="plan_enddate" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
                                             </div>
                                             <div class="form-group">
                                                 <label>기획상태</label>
-                                                <input type="text" class="form-control" required
+                                                <input type="text" name="plan_state" class="form-control" required
                                                             placeholder="기획상태"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>기획제안자</label>
                                                 <div>
-                                                    <input type="text" class="form-control" required
+                                                    <input type="text" name="username" class="form-control" required
                                                             placeholder="기획제안자"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>책임자</label>
-                                                <input type="text" class="form-control" required
+                                                <input type="text" name="position_code" class="form-control" required
                                                             placeholder="책임자"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>기획목표</label>
                                                 <div>
-                                                    <textarea required class="form-control" rows="7" placeholder="기획목표"></textarea>
+                                                    <textarea required name="plan_objective"  class="form-control" rows="7" placeholder="기획목표"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group mb-0">

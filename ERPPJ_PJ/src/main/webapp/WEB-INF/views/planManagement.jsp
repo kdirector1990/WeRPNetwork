@@ -67,7 +67,7 @@
                                                 	</td>
                                                 	
                                                 	<td>
-	                                                	<a href="#">&nbsp;<i class="dripicons-zoom-in"></i></a>
+	                                                	<a href="#">&nbsp;<i class="fas fa-search"></i></a>
 	                                                </td>
 	                                                
 	                                                <td>기간</td>
