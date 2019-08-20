@@ -559,4 +559,29 @@ public class ERPController {
 	 * 
 	 * return "redirect:/index"; }
 	 */
+	//====================================================================================
+	//기획서 등록 페이지
+	@RequestMapping("planEnrollment")
+	public String planEnrollment(Locale locale, Model model) {
+		logger.info("log => planEnrollment");
+		
+		return "planEnrollment";
+	}
+	
+	//기획서 조회
+	@RequestMapping("planInquiry")
+	public String planInquiry(Locale locale, Model model) {
+		logger.info("log => planInquiry");
+		
+		return "planInquiry";
+	}
+	
+	//기획서 관리
+	@RequestMapping("planManagement")
+	public String planManagement(Locale locale, Model model) {
+		logger.info("log => planManagement");
+		
+		return "planManagement";
+	}
+	//====================================================================================
 }
