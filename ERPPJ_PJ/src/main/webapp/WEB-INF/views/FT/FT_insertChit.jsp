@@ -549,5 +549,8 @@
             </div> <!-- end slimscroll-menu-->
         </div>
         <!-- /Right-bar -->
+        
+        <%@ include file="../rightbar.jsp" %>
+        <%@ include file="../setting2.jsp" %>
     </body>
 </html>
