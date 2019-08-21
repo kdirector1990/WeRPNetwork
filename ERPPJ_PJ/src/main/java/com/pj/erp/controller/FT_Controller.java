@@ -109,7 +109,6 @@ public class FT_Controller {
 		
 		String key = map.get("key").toString();
 		String date = map.get("date").toString();
-		String number = map.get("number").toString();
 		String no = map.get("no").toString();
 		String text = map.get("text").toString();
 		String type = map.get("type").toString();
@@ -119,7 +118,7 @@ public class FT_Controller {
 		String devprice = map.get("devprice").toString();
 		String writer = map.get("writer").toString();
 		String slee = map.get("slee").toString();
-		return key + " " + date + " " + number + " " + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
+		return key + " " + date + " " + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
 				 + " " + writer + " " + slee; 
 	}
 }

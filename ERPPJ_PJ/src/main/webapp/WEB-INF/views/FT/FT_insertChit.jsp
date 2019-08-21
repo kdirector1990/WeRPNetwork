@@ -65,61 +65,57 @@
         	function enterupdate(vv) {
         		var obj = new Object();
         		var jsonData;
-        		if(event.keyCode == 13) {
-	        		// 자바스크립트 객체 생성
-	        		obj.key = $("input[name=key" + vv + "]").val();
-	        		obj.date = $("input[name=date" + vv + "]").val();
-	        		obj.number = $("input[name=number" + vv + "]").val();
-	        		obj.no = $("input[name=no" + vv + "]").val();
-	        		obj.text = $("input[name=text" + vv + "]").val();
-	        		obj.type = $("select[name=type" + vv + "]").val();
-	        		obj.num = $("input[name=num" + vv + "]").val();
-	        		obj.state = $("select[name=state" + vv + "]").val();
-	        		obj.confirmname = $("input[name=confirmname" + vv + "]").val();
-	        		obj.devprice = $("input[name=devprice" + vv + "]").val();
-	        		obj.writer = $("input[name=writer" + vv + "]").val();
-	        		obj.slee = $("input[name=slee" + vv + "]").val();
-	        		
-	        		// json 객체를 String 객체로 변환 -- 
-	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
-	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
-	        		jsonData = JSON.stringify(obj);
-	        		alert(obj.date);
-	        		alert(obj.number);
-	        		alert(obj.no);
-	        		alert(obj.text);
-	        		alert(obj.type);
-	        		alert(obj.num);
-	        		alert(obj.state);
-	        		alert(obj.confirmname);
-	        		alert(obj.devprice);
-	        		alert(obj.writer);
-	        		alert(obj.slee);
-	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
-	        		
-	        		$.ajax({
-	                       type : "POST",
-	                       url : "/erp/FT_chitupdate",
-	                       data : jsonData,
-	                       contentType : 'application/json;charset=UTF-8',
-	                       success : function(data) {
-	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                              alert(data);
-	                             /*  if (data.answer == 'success') {
-	                                      alert(data.name + '님 환영합니다.');
-	                                      var map = new MapArray();
-	                                      postData('/News/index.do', map);
-	                              } else if (data.answer == 'fail') {
-	                                      alert('아이디와 비번이 일치하지 않습니다.');
-	                              } else if (data.answer == 'error') {
-	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                              } */
-	                       },
-	                       error : function(e) {
-	                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
-	                       }
-	               });
-        		}
+        		// 자바스크립트 객체 생성
+        		obj.key = $("input[name=key" + vv + "]").val();
+        		obj.date = $("input[name=date" + vv + "]").val();
+        		obj.no = $("input[name=no" + vv + "]").val();
+        		obj.text = $("input[name=text" + vv + "]").val();
+        		obj.type = $("select[name=type" + vv + "]").val();
+        		obj.num = $("input[name=num" + vv + "]").val();
+        		obj.state = $("select[name=state" + vv + "]").val();
+        		obj.confirmname = $("input[name=confirmname" + vv + "]").val();
+        		obj.devprice = $("input[name=devprice" + vv + "]").val();
+        		obj.writer = $("input[name=writer" + vv + "]").val();
+        		obj.slee = $("input[name=slee" + vv + "]").val();
+        		
+        		// json 객체를 String 객체로 변환 -- 
+        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+        		jsonData = JSON.stringify(obj);
+        		alert(obj.date);
+        		alert(obj.no);
+        		alert(obj.text);
+        		alert(obj.type);
+        		alert(obj.num);
+        		alert(obj.state);
+        		alert(obj.confirmname);
+        		alert(obj.devprice);
+        		alert(obj.writer);
+        		alert(obj.slee);
+        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+        		
+        		$.ajax({
+                       type : "POST",
+                       url : "/pj/FT_chitupdate",
+                       data : jsonData,
+                       contentType : 'application/json;charset=UTF-8',
+                       success : function(data) {
+                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
+                              alert(data);
+                             /*  if (data.answer == 'success') {
+                                      alert(data.name + '님 환영합니다.');
+                                      var map = new MapArray();
+                                      postData('/News/index.do', map);
+                              } else if (data.answer == 'fail') {
+                                      alert('아이디와 비번이 일치하지 않습니다.');
+                              } else if (data.answer == 'error') {
+                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
+                              } */
+                       },
+                       error : function(e) {
+                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                       }
+               });
         	}
         	
         	function enterinsert(cc) {
@@ -350,7 +346,7 @@
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>
-		                                                <td><select class="form-control" id = "enter" onfocus = "focuse();" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enterinsert(0);">
+		                                                <td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enterinsert(0);">
 		                                                <option value="">== 선택 ==</option>
 		                                                <option value="일반">일반</option>
 		                                                <option value="매입">매입</option>
