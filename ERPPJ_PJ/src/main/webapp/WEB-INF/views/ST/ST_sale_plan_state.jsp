@@ -3,6 +3,98 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+         <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+        <script type="text/javascript">
+           var count = 1;   
+       
+           function focuse() {
+               $(".chit-table-bordered-primary tbody *").focus(function() {
+                  $(".chit-table-bordered-primary tbody *").css("background-color", "");
+                  $(this).parent().parent().children().children().css("background-color", "#D6EAF8");
+                  $(this).parent().parent().children().css("background-color", "#D6EAF8");
+                  $(this).css("background-color", "");
+                  $(this).parent().css("background-color", "");
+               });
+            }
+           
+           function enterupdate(vv) {
+              if(event.keyCode == 13) {
+                 alert(vv + 100);
+              }
+           }
+           
+           function enterinsert(cc) {
+              if(event.keyCode == 13) {
+                 alert(cc);
+                 alert(count);
+                 $(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + cc + ");");
+                 $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
+                 $(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
+                 $(".chit-table-bordered-primary tbody").append('<tr>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "code' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "name' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "standard' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "unit' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "amount' + count + '" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "revise' + count + '" id = "first" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "gap' + count + '" id = "first" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "te' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                           	'<td><input type="text" onfocus = "focuse();" name = "slee' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
+                        '</tr>');
+                     count = count + 1;
+                     alert(count);
+                  $(".chit-table-bordered-primary tbody #first").focus();
+              }
+           }
+           
+           function enterinsert(zz) {
+               if(event.keyCode == 13) {
+                  alert(zz);
+                  alert(count);
+                  $(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + zz + ");");
+                  $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + zz);
+                  $(".chit-table-bordered-primary tbody #first").attr("id", "first" + zz);
+                  $(".chit-table-bordered-primary tbody").append('<tr>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "co' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "na' + count + '" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "am' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "ga' + count + '" id = "first" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "re' + count + '" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                              '<td><input type="text" onfocus = "focuse();" name = "won' + count + '" id = "first" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                              '<td><input type="text" onfocus = "focuse();" name = "rewon' + count + '" id = "first" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>' +
+                            	'<td><input type="text" onfocus = "focuse();" name = "diwon' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
+                         '</tr>');
+                      count = count + 1;
+                      alert(count);
+                   $(".chit-table-bordered-primary tbody #first").focus();
+               }
+            }
+           
+           function enterinsert(ss) {
+               if(event.keyCode == 13) {
+                  alert(ss);
+                  alert(count);
+                  $(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + ss + ");");
+                  $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + ss);
+                  $(".chit-table-bordered-primary tbody #first").attr("id", "first" + ss);
+                  $(".chit-table-bordered-primary tbody").append('<tr>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "h' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "y' + count + '" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "s' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "c' + count + '" id = "first" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "ye' + count + '" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                              '<td><input type="text" onfocus = "focuse();" name = "su' + count + '" id = "first" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "ca' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
+                         '</tr>');
+                      count = count + 1;
+                      alert(count);
+                   $(".chit-table-bordered-primary tbody #first").focus();
+               }
+            }
+           
+        </script>
+        
     </head>
 
     <body>
@@ -10,7 +102,6 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            
             <%@ include file="../sidebar.jsp" %>
 
             <!-- ============================================================== -->
@@ -43,21 +134,289 @@
                         <!-- end row-->
 
                         <!-- ===== MEDIA ==== -->
-
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title"></h4>
-                                         <img src="/erp/resources/img/ST_sale_plan_state.jpg" style="width: 100%;">
+                            <div class="col-lg-6">
+                                <div class="card"  style = "width: 1600px; height: 1700px;">
+                                    <div class="card-body" style = "width: 1600px;">
+                                        <h4 class="header-title mb-3">Default Tabs</h4>
+    
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">
+                                                    <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">품 목 별</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">        
+                                                    <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">품목군별</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false">
+                                                    <span class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
+                                                    <span class="d-none d-sm-block">월   별</span>
+                                                </a>
+                                            </li>
+                                           
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                   <div class="row">
+		                            <div class="col-lg-12">
+		                                <div class="card">
+		                                    <div class="card-body">
+		                                        <p class="sub-header">
+		                                        </p>
+                                        <div class="table-responsive">
+                                          <div class="table-responsive" style = "margin: 15px 0px 15px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;"> 
+                                                <col style = "width:160px;">
+                                               
+                                                <thead>
+                                                    <tr>
+                                                      <th>품번</th>
+                                                      <th>품명</th>
+                                                      <th>규격</th>
+                                                      <th>단위 (관리)</th>
+                                                      <th>연초수량</th>
+                                                      <th>수정수량</th>
+                                                      <th>차이수량</th>
+                                                      <th>연초원화금액</th>
+                                                      <th>수정원화금액</th>
+                                                      <th>차이원화금액</th>
+                                                  </tr>
+                                              </thead>
+          
+          
+                                              <tbody>
+                                                  <tr>
+                                                      <td><input type="text" onfocus = "focuse();" name = "code0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "name0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "standard0" class="form-control"  data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                	  <td><input type="text" onfocus = "focuse();" name = "unit0" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "amount0" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "revise0" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "gap0" class="form-control" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "te0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "slee0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;" onkeyup="enterinsert(0);"></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+		                              </div>
+		                                        
+		                                         <div class="table-responsive">
+		                                            <table class="table m-0">
+		                                                <thead>
+		                                                    <tr>
+		                                                        <th>해당월</th>
+		                                                        <th>연초 수량</th>
+		                                                        <th>수정 수량</th>
+		                                                        <th>차이 수량</th>
+		                                                        <th>연초 원화 단가</th>
+		                                                        <th>연초 원화 금액</th>
+		                                                        <th>수정 원화 금액</th>
+		                                                        <th>차이 원화 금액</th>
+		                                                    </tr>
+		                                                </thead>
+		                                                <tbody>
+		                                                    <tr>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                   </tr>
+		                                                </tbody>
+		                                            </table>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            
+		                        </div>
+		                        
+                                            </div>
+                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                              		                            <div class="col-lg-12">
+		                                <div class="card">
+		                                    <div class="card-body">
+		                                        <p class="sub-header">
+		                                        </p>
+		    
+                                        <div class="table-responsive">
+                                          <div class="table-responsive" style = "margin: 15px 0px 15px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;"> 
+                                               
+                                                <thead>
+                                                    <tr>
+                                                      <th>품목군코드</th>
+                                                      <th>품목군명</th>
+                                                      <th>연초수량</th>
+                                                      <th>수정수량</th>
+                                                      <th>차이수량</th>
+                                                      <th>연초원화금액</th>
+                                                      <th>수정원화금액</th>
+                                                      <th>차이원화금액</th>
+                                                  </tr>
+                                              </thead>
+          
+          
+                                              <tbody>
+                                                  <tr>
+                                                      <td><input type="text" onfocus = "focuse();" name = "co0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "na0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "am0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                	  <td><input type="text" onfocus = "focuse();" name = "ga0" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "re0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "won0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "rewon0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "diwon0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;" onkeyup="enterinsert(0);"></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+		                              </div>
+		                                        
+		                                         <div class="table-responsive">
+		                                         
+		                                            <table class="table m-0">
+		                                                <thead>
+		                                                    <tr>
+		                                                    	<th><input type = "checkbox"></th>
+		                                                        <th>해당월</th>
+		                                                        <th>연초 수량</th>
+		                                                        <th>수정 수량</th>
+		                                                        <th>차이 수량</th>
+		                                                        <th>연초 원화 단가</th>
+		                                                        <th>연초 원화 금액</th>
+		                                                        <th>수정 원화 금액</th>
+		                                                        <th>차이 원화 금액</th>
+		                                                    </tr>
+		                                                </thead>
+		                                                <tbody>
+		                                                    <tr>
+		                                                        <th scope="row"><input type = "checkbox"></th>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                   </tr>
+		                                                </tbody>
+		                                            </table>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            
+                                            </div>
+                                            <div class="tab-pane" id="message" role="tabpanel" aria-labelledby="message-tab">
+                                              <div class="card">
+		                                    <div class="card-body">
+		                                        <p class="sub-header">
+		                                        </p>
+		                                     
+		                                        <div class="table-responsive">
+                                          		<div class="table-responsive" style = "margin: 15px 0px 15px">
+                                            	<table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                               
+                                                <thead>
+                                                    <tr>
+                                                      <th>해당월</th>
+                                                      <th>연초수량</th>
+                                                      <th>수정수량</th>
+                                                      <th>차이수량</th>
+                                                      <th>연초원화금액</th>
+                                                      <th>수정원화금액</th>
+                                                      <th>차이원화금액</th>
+                                                  </tr>
+                                              </thead>
+          
+          
+                                              <tbody>
+                                                  <tr>
+                                                      <td><input type="text" onfocus = "focuse();" name = "h0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "y0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "s0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                	  <td><input type="text" onfocus = "focuse();" name = "c0" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "ye0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "su0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "ca0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;" onkeyup="enterinsert(0);"></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+		                              </div>
+		    
+		                                        <div class="table-responsive">
+		                                            <table class="table m-0">
+		                                                <thead>
+		                                                    <tr>
+		                                                    	<th><input type = "checkbox"></th>
+		                                                        <th>품번군 코드</th>
+		                                                        <th>폼목군명</th>
+		                                                        <th>연초수량</th>
+		                                                        <th>수정수량</th>
+		                                                        <th>차이수량</th>
+		                                                        <th>연초원화금액</th>
+		                                                        <th>수정원화금액</th>
+		                                                        <th>차이원화금액</th>
+		                                                    </tr>
+		                                                </thead>
+		                                                <tbody>
+		                                                    <tr>
+		                                                        <th scope="row"><input type = "checkbox"></th>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                        <td>Table cell</td>
+		                                                   </tr>
+		                                                </tbody>
+		                                            </table>
+		                                        </div>
+                                            </div>
+                                            
+                                        </div>
                                     </div>
-
-                                </div> <!-- end card -->
+                                </div>
                             </div> <!-- end col -->
-                        </div> <!-- end row -->
-
-                        <!-- Media alignment -->
-
                          
                         
                     </div> <!-- end container-fluid -->
