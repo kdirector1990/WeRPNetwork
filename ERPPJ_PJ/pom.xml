@@ -109,6 +109,13 @@
 			<version>1.2</version>
 		</dependency>
 		
+		<!-- JSON converter -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.8</version>
+		</dependency>
+		
 		<!-- Mybatis 설정 시작 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
