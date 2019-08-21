@@ -372,7 +372,7 @@
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>
 		                                                <td><input type="date" onfocus = "focuse(this.name);" id = "first" name = "no0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown="enter(this.tagName, this.name);" onchange="enter(this.tagName, this.name);">
+		                                                <td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown="enter(this.tagName, this.name);" onchange="enterinsert(0);">
 		                                                <option value="">== 선택 ==</option>
 		                                                <option value="일반">일반</option>
 		                                                <option value="매입">매입</option>
