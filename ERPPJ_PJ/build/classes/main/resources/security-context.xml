@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		
+		<security:http pattern = "/HR_InputHR" security = "none"/>
+		<security:http auto-config = "true" use-expressions="true" create-session="never">
+			<security:intercept-url 
+				pattern = "/*_**"
+				access = "hasRole('ROLE_USER')" 
+			/>
+			<security:intercept-url
+				pattern = "**"
+				access = "permitAll"
+			/>
+			<security:form-login 
+						login-page="/login"
+						login-processing-url = "/login_check.do"
+						authentication-success-handler-ref="userLoginSuccessHandler"
+							authentication-failure-handler-ref="userLoginFailureHandler"
+							username-parameter="username"
+							password-parameter="password"
+			/>
+			
+			<security:logout logout-url="/logout"
+					  success-handler-ref="logoutSuccessHandler"
+					  delete-cookies="JSESSIONID"
+					  invalidate-session="true"/>
+			
+			<security:session-management>
+				<security:concurrency-control
+					max-sessions = "10"
+					expired-url="/index"
+					error-if-maximum-exceeded="true"
+				/>
+			</security:session-management>
+		
+			<!-- 접근 권한이 없는 경우의 코드 -->
+			<security:access-denied-handler ref="userDeniedHandler"/>
+		</security:http>
+		
+		<bean id="userLoginSuccessHandler" class ="com.pj.erp.service.UserLoginSuccessHandler"/>
+		<bean id="userLoginFailureHandler" class ="com.pj.erp.service.UserLoginFailureHandler"/>
+		<bean id="userDeniedHandler" class="com.pj.erp.service.UserDeniedHandler"/>
+		<bean id="logoutSuccessHandler" class="com.pj.erp.service.CustomLogoutSuccessHandler"/>
+		<!-- 로그인 인증을 처리하는 빈 -->
+		<bean id="userService" class="com.pj.erp.service.UserAuthenticationService">
+			<constructor-arg name="sqlSession" ref="sqlSession"/>
+		</bean>
+		
+		<!-- 비밀번호 암호화를 빈 -->
+		<bean id="bcryptPasswordEncoder" class ="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+		
+</beans>

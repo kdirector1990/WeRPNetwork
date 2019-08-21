@@ -23,7 +23,7 @@ import com.pj.erp.service.ERPService;
 @Controller
 public class ERPController {
 	//테스트용 문구3 - 권순용 시렁
-	// fkfkfkfkfkfkfkfkfkㅈ
+	// fkfkfkfkfkfkfkfkfkㅈ아
 	
 	@Autowired
 	ERPService service;
