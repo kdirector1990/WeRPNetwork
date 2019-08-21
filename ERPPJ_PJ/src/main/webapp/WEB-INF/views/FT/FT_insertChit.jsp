@@ -4,8 +4,8 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
-        <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/pj/resources/assets/css/js/request.js"></script>
+        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
@@ -549,12 +549,5 @@
             </div> <!-- end slimscroll-menu-->
         </div>
         <!-- /Right-bar -->
-
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
-
-        <!-- Vendor js -->
-        
-        
     </body>
 </html>
