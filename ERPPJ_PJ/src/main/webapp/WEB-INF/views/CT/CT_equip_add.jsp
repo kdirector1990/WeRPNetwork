@@ -25,11 +25,11 @@
         	}
         	
         	function enter(cc) {
-    			$("*[name=" + cc + "]").parent().next().children().focus();
+    			$("input[name=" + cc + "]").parent().next().children().focus();
         	}
         	
         	function change(cc){
-        		$("*[name=" + cc + "]").parent().next().children().focus();
+        		$("select[name=" + cc + "]").parent().next().children().focus();
         	}
         	
         	function enterupdate(vv) {
@@ -98,14 +98,14 @@
        			$(".spoat-table-bordered-primary tbody #first").attr("id", "first" + cc);
        			$(".spoat-table-bordered-primary tbody").append('<tr>' +
        						'<td><input type="text" onfocus = "focuse();" name = "ceq_code"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>' +
-       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name"' + count + ' id="first" onclick="init();" onkeyup = "enter(this.name);" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" readonly></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;">' +
+       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name"' + count + ' id="first" onclick="init();" onkeyup = "enter(this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="change(this.name);">' +
                             	'<option value="">선택</option>' +
                             	'<option value="1">보유' +
                             	'<option value="2">대여' +
                             '</select></td>' +
                             '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);" onkeyup = "enter(this.name);"></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enterinsert(0);">' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="change(this.name);">' +
                             '<option value="">선택</option>' +
                             '<option value="1">인사</option>' +
                             '<option value="2">영업</option>' +
@@ -219,7 +219,7 @@
                                        <div class="table-responsive" style = "margin: 15px 0px 50px">
                                             <table class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
                                                 <col style = "width:7%;">
-                                                <col style = "width:7%;">
+                                                <col style = "width:10%;">
                                                 <col style = "width:7%">
                                                 <col style = "width:7%;">
                                                 <col style = "width:8%;">
@@ -227,7 +227,7 @@
                                                 <col style = "width:7%;">
                                                 <col style = "width:15%;">
                                                 <col style = "width:15%;">
-                                                <col style = "width:19%;">
+                                                <col style = "width:16%;">
                                                 
                                                 <thead>
                                                     <tr>
@@ -247,14 +247,14 @@
 		                                        <tbody>
 		                                            <tr>
 		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_name0" id="first" onclick="inin();" onkeyup = "enter(this.name);" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
-		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.name);">
+		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_name0" id="first" onclick="inin();" onkeyup = "enter(this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
+		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="change(this.name);">
 		                                                	<option value="">선택</option>
 		                                                	<option value="1">보유
 		                                                	<option value="2">대여
 		                                                </select></td>
 		                                                <td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);" onkeyup = "enter(this.name);"></td>
-		                                                <td><select class="form-control" onfocus = "focuse();" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.name);">
+		                                                <td><select class="form-control" onfocus = "focuse();" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="change(this.name);">
 		                                                <option value="">선택</option>
 		                                                <option value="1">인사</option>
 		                                                <option value="2">영업</option>
