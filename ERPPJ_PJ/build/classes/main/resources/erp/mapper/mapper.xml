@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace = "com.pj.erp.persistence.ERPDAO">
+	<insert id="insertMember" parameterType = "java.util.Map">
+		insert into users(username, password, e_name)
+		values(userid.nextval, #{password}, #{e_name}) 
+	</insert>
+	<insert id="insertAuth">
+		insert into authority(username, authority)
+		values(userid.currval, 'ROLE_USER') 
+	</insert>
+	
+	<select id="loginCheck" resultType = "java.util.Map" parameterType = "String">
+		SELECT username, password, enabled, e_name
+		FROM users
+		WHERE username = #{username}	
+	</select>
+	
+	<select id="authCheck" resultType = "java.util.Map" parameterType = "String">
+		SELECT username, authority
+		FROM authority
+		WHERE username = #{username}	
+	</select>
+
+
+</mapper>

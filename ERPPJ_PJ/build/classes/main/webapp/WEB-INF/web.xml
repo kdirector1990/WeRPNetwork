@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml
+					<!-- 추가 -->classpath:/security-context.xml<!-- 추가 -->
+					<!-- 추가 -->classpath:/security-datasource.xml<!-- 추가 -->
+		</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+		<!-- 한글 안깨지게 처리 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- 시큐리티 추가 시작 -->
+		<!-- 보안 필터 체인  : 보안과 관련된 작업을 처리한다.
+		-로그인 폼을 보여주거나, 접근 권한이 없는 경우 403
+		DelegatingFilterProxy - > FilterchainProxy -> SecurityFilterChain -> 실제자원
+	
+		-->
+		<filter>
+			<filter-name>springSecurityFilterChain</filter-name>
+			<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>springSecurityFilterChain</filter-name>
+			<url-pattern>/*</url-pattern>
+		</filter-mapping>
+
+</web-app>
