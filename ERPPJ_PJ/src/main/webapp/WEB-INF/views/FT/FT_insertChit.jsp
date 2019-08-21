@@ -9,15 +9,6 @@
         <script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
-        
-        	function aa(s) {
-        		var name = s;
-        		if($("input[name=key" + name.substring(name.length-1, name.length) + "]").val() != ""){
-        			alert("입력됨");
-        		} else {
-        			alert("입력안됨");
-        		}
-        	}
         	
         	function inin() {
         		alert("dkdkk");
@@ -358,7 +349,7 @@
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);" onclick = "aa(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>
 		                                                <td><select class="form-control" id = "enter" onfocus = "focuse();" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enterinsert(0);">
 		                                                <option value="">== 선택 ==</option>
 		                                                <option value="일반">일반</option>
