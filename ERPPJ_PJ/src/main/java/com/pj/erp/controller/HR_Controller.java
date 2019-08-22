@@ -33,28 +33,28 @@ public class HR_Controller {
 	public String HR_InputHR(Locale locale, Model model) {
 		logger.info("log => HR_InputHR");
 		
-		return "HR/HR_InputHR";
+		return "HR/HR_InputHR_ex";
 	}
 	
 	@RequestMapping("HR_inputProHR1")
 	public String HR_inputProHR1(Locale locale, Model model) {
 		logger.info("log => HR_inputProHR1");
 		
-		return "HR/HR_inputProHR1";
+		return "HR/HR_InputHR";
 	}
 	
 	@RequestMapping("HR_inputProHR2")
 	public String HR_inputProHR2(Locale locale, Model model) {
 		logger.info("log => HR_inputProHR2");
 		
-		return "HR/HR_inputProHR2";
+		return "HR/HR_InputHR";
 	}
 	
 	@RequestMapping("HR_inputProHR3")
 	public String HR_inputProHR3(Locale locale, Model model) {
 		logger.info("log => HR_inputProHR3");
 		
-		return "HR/HR_inputProHR3";
+		return "HR/HR_InputHR";
 	}
 	
 	@RequestMapping("joinPro")
@@ -125,6 +125,13 @@ public class HR_Controller {
 		logger.info("log => HR_work_record");
 		
 		return "HR/HR_work_record";
+	}
+	
+	@RequestMapping("HR_GoodPay")
+	public String HR_GoodPay(Locale locale, Model model) {
+		logger.info("log => HR_GoodPay");
+		
+		return "HR/HR_GoodPay";
 	}
 	
 	@RequestMapping("HR_HrSalaryEnvironment")
