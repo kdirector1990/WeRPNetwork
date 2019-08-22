@@ -25,7 +25,7 @@
         	}
         	
         	function enter(cc, dd) {
-        		alert(window.event.which)
+        		/* alert(window.event.which) */
     			/* $("input[name=" + cc + "]").parent().next().children().focus(); */
         	}
         	
