@@ -31,13 +31,11 @@
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
-										<li class="breadcrumb-item active">Datatables</li>
-									</ol>
+									<button type="button" class="btn btn-outline-primary waves-effect waves-light">조회기준</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">사원추가</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">국민/고용대상자해제</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>부양가족반영</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>책정임금코드반영</button>
 								</div>
 								<h4 class="page-title">인사정보등록</h4>
 							</div>
@@ -78,19 +76,25 @@
 												method="post">
 												<div class="col-sm-12">
 													<div class="card">
-														<div class="card-body table-responsive">
-
+														<div class="card-body table-responsive">														
+															<div class="form-group row">
+																<label class="col-md-2 col-form-label" for="simpleinput">비밀번호</label>
+																<div class="col-md-10">
+																	<input type="password" class="form-control" name="password">
+																</div>
+															</div>															
+															
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">성명(영문)</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" name="engName">
+																	<input type="text" class="form-control" name="e_engName">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label"
-																	for="example-email">성명(한자)</label>
+																	for="simpleinput">성명(한자)</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" name="chineseName"
+																	<input type="text" class="form-control" name="e_name"
 																		placeholder="text name...">
 																</div>
 															</div>
@@ -98,7 +102,7 @@
 																<label class="col-md-2 col-form-label"
 																	for="example-palaceholder">주민등록번호</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" name="jumin"
+																	<input type="text" class="form-control" name="e_code"
 																		placeholder="jumin">
 																</div>
 															</div>
@@ -106,7 +110,7 @@
 																<label class="col-md-2 col-form-label"
 																	for="example-password">성별</label>
 																<div class="col-md-10">
-																	<select class="input" name="gender" onchange="">
+																	<select class="input" name="e_gender" onchange="">
 																		<option value="남성">1.남성</option>
 																		<option value="여성">2.여성</option>
 																	</select>
@@ -115,19 +119,19 @@
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">생년월일</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" name="birth">
+																	<input type="text" class="form-control" name="e_born">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">전화번호</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" name="phoneNum">
+																	<input type="text" class="form-control" name="e_hp">
 																</div>
 															</div>
 															<div class="form-group row">
 																<label class="col-md-2 col-form-label" for="simpleinput">비상전화(HP)</label>
 																<div class="col-md-10">
-																	<input type="text" class="form-control" name="handPhone">
+																	<input type="text" class="form-control" name="e_phone">
 																</div>
 															</div>
 															<br> <br>
@@ -136,32 +140,31 @@
 
 															<div class="form-group">
 																<label for="fullname">주민등록주소</label> <input type="text"
-																	class="form-control" name="juminAddress" required="">
+																	class="form-control" name="e_address" required="required">
 															</div>
 
 															<div class="form-group">
 																<label for="fullname">상세주소</label> <input type="text"
-																	class="form-control" name="address" required="">
+																	class="form-control" name="e_address2" required="required">
 															</div>
 
 															<div class="form-group">
 																<label for="fullname">영문주소</label> <input type="text"
-																	class="form-control" name="endAddress" required="">
+																	class="form-control" name="e_engAddress">
 															</div>
 
 															<div class="form-group">
 																<label for="email">E-MAIL</label> <input type="email"
-																	class="form-control" name="email" data-parsley-trigger="change"
+																	class="form-control" name="e_email" data-parsley-trigger="change"
 																	required="">
 															</div>
 
 															<div class="form-group">
 																<label for="fullname">출입카드No.</label> <input type="text"
-																	class="form-control" name="inNo" required="">
+																	class="form-control" name="e_nfcCodeNFC" required="">
 															</div>
 
 															<div class="form-group">
-
 																<label for="fullname">세대주여부 </label> <select
 																	class="input" name="household" onchange="">
 																	<option value="">1.부</option>

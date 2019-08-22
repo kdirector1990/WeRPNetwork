@@ -1,13 +1,16 @@
 package com.pj.erp.controller;
 
 import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 
@@ -20,7 +23,6 @@ public class FT_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	
 	
-	// �쉶怨꾩쟾�몴�엯�젰
 	@RequestMapping("FT_journal")
 	public String journal(Locale locale, Model model) {
 		logger.info("log => FT_journal");
@@ -99,5 +101,24 @@ public class FT_Controller {
 		logger.info("log => FT_capital_plan");
 		
 		return "FT/FT_capital_plan";
+	}
+	
+	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String basic5(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_chitupdate 호출중");
+		
+		String key = map.get("key").toString();
+		String date = map.get("date").toString();
+		String no = map.get("no").toString();
+		String text = map.get("text").toString();
+		String type = map.get("type").toString();
+		String num = map.get("num").toString();
+		String state = map.get("state").toString();
+		String confirmname = map.get("confirmname").toString();
+		String devprice = map.get("devprice").toString();
+		String writer = map.get("writer").toString();
+		String slee = map.get("slee").toString();
+		return key + " " + date + " " + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
+				 + " " + writer + " " + slee; 
 	}
 }
