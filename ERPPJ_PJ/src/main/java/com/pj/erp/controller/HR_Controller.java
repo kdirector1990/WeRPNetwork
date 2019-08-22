@@ -24,6 +24,7 @@ public class HR_Controller {
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
 		
+
 		return "HR/HR_InputHR";
 	}
 	
@@ -130,6 +131,13 @@ public class HR_Controller {
 		logger.info("log => HR_HrSalaryEnvironment");
 		
 		return "HR/HR_HrSalaryEnvironment";
+	}
+	
+	@RequestMapping("HR_PersonnelBasicCode")
+	public String HR_PersonnelBasicCode(HttpServletRequest req, Model model) {
+		logger.info("log => HR_PersonnelBasicCode");
+		
+		return "HR/HR_PersonnelBasicCode";
 	}
 	
 	@RequestMapping("coming_soon")
