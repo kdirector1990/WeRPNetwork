@@ -151,54 +151,24 @@
 					                                            <table class="table mb-0">
 					                                                <thead class="thead-light">
 					                                                    <tr>
-							                                                <th>날짜</th>
-							                                                <th>적요란</th>
-							                                                <th>차변</th>
-							                                                <th>대변</th>
-							                                                <th>잔액</th>
+							                                                <th>품번</th>
+							                                                <th>품명</th>
+							                                                <th>규격</th>
+							                                                <th>단위 (관리)</th>
+							                                                <th>기초계획수량</th>
+							                                                <th>환종</th>
+							                                                <th>환율</th>
+							                                                <th>기초 계획 단가</th>
+							                                                <th>수정 계획 단가</th>
+							                                                <th>기초 계획 금액</th>
+							                                                <th>수정 계획 금액</th>
+							                                                <th>수정 계획 원화금</th>
+							                                                <th>비고</th>
 							                                            </tr>
 							                                            
 					                                                </thead>
 					                                                <tbody>
-					                                                    <tr>
-					                                                    <th scope="row">2018/12/20</th>
-					                                                    <td>[전이월]</td>
-					                                                    <td>2,390,167,000</td>
-					                                                    <td>1,939,534,000</td>
-					                                                    <td>450,633,000</td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th scope="row">2018/12/20</th>
-					                                                    <td>판관비_복리후생비</td>
-					                                                    <td></td>
-					                                                    <td>1,900,000</td>
-					                                                    <td></td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th scope="row">2018/12/20</th>
-					                                                    <td>판관비_복리후생비</td>
-					                                                    <td></td>
-					                                                    <td>1,900,000</td>
-					                                                    <td></td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th></th>
-					                                                    <td>[월계]</td>
-					                                                    <td></td>
-					                                                    <td>1,000,000</td>
-					                                                    <td></td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th></th>
-					                                                    <td>[누계]</td>
-					                                                    <td>2,930,000,000</td>
-					                                                    <td>100,000,000</td>
-					                                                    <td></td>
-					                                                    </tr>
+					                                       
 					                                                </tbody>
 					                                            </table>
 					                                        </div>

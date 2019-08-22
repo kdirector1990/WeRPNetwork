@@ -1,5 +1,7 @@
 package com.pj.erp.service;
 
+import java.sql.Timestamp;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
@@ -17,22 +19,6 @@ public class STServiceImpl implements STService {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// 글 쓰기
 	@Override
 	public void estimateWrite(HttpServletRequest req, Model model) {
@@ -42,6 +28,15 @@ public class STServiceImpl implements STService {
 		vo.setEq_code(req.getParameter("eq_code"));
 		vo.setCustomer_code(req.getParameter("customer_code"));
 		vo.setAccount_code(req.getParameter("account_code"));
+		vo.setEp_amount(Integer.parseInt(req.getParameter("ep_amount")));
+		vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
+		vo.setEp_deliver_date(Timestamp.valueOf(req.getParameter("Ep_deliver_date")));
+		vo.setEp_reg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setUsername(req.getParameter("username"));
+		vo.setE_approval_code(req.getParameter("e_approval_code"));
+		vo.setEas_code(req.getParameter("eas_code"));
+		vo.setPosition_code(req.getParameter("position_code"));
+		
 		
 	}
 
