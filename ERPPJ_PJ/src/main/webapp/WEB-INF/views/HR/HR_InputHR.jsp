@@ -28,13 +28,11 @@
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
-										<li class="breadcrumb-item active">Datatables</li>
-									</ol>
+									<button type="button" class="btn btn-outline-primary waves-effect waves-light">조회기준</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">사원추가</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">국민/고용대상자해제</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>부양가족반영</button>
+    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>책정임금코드반영</button>
 								</div>
 								<h4 class="page-title">인사정보등록</h4>
 							</div>
@@ -75,8 +73,6 @@
 												method="post">
 												<div class="col-sm-12">
 														<div class="card-body table-responsive">
-														
-
 															<div class="form-group row">
 																<label class="col-md-1 col-form-label" for="simpleinput">사진등록</label>
 																<div class="col-md-4">

@@ -11755,3 +11755,26 @@ p {
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
 >>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
+/* 지원의 css */
+.spoat-table-colored-bordered, .spoatsub-table-colored-bordered {
+	border: 2px solid
+}
+
+.spoat-table-colored-bordered thead th, .spoatsub-table-colored-bordered thead th {
+	border-bottom: 0 !important;
+	color: #000000;
+}
+
+.spoat-table-bordered-primary, .spoatsub-table-bordered-primary {
+	border-color: #ecfd8e
+}
+
+.spoat-table-bordered-primary thead th, .spoatsub-table-bordered-primary thead th {
+	background-color: #ABEBC6
+}
+
+.spoat-table-bordered-primary tbody td, .spoatsub-table-bordered-primary tbody td {
+	padding: 0rem;
+	background-color: #ecfd8e;
+}

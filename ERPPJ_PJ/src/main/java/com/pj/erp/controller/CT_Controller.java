@@ -2,6 +2,8 @@ package com.pj.erp.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
 
 @Controller
@@ -16,6 +19,9 @@ public class CT_Controller {
 
 	@Autowired
 	ERPService service;
+	
+	@Autowired
+	CT_Service CT;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	
@@ -101,5 +107,19 @@ public class CT_Controller {
 		logger.info("log => CT_as_manage");
 		
 		return "CT/CT_as_manage";
+	}
+	
+	/*
+	 * service 타는 지 확인
+	 */
+	
+	//Insert확인
+	@RequestMapping("CT_subject_add")
+	public String CT_subject_add(HttpServletRequest req, Model model) {
+		logger.info("log => CT_subject_add");
+		
+		CT.CT_insert(req, model);
+		
+		return "CT/CT_subject_add";
 	}
 }
