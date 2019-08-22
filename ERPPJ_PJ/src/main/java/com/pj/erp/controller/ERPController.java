@@ -22,12 +22,6 @@ import com.pj.erp.service.ERPService;
 
 @Controller
 public class ERPController {
-<<<<<<< HEAD
-
-	//테스트용 문구3 - 권순용 시렁
-	//190821 - 진태버전 일단 제거 나중에 진태버전 추가 예정
-=======
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	
 	@Autowired
 	ERPService service;
