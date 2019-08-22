@@ -3,6 +3,53 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+               <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+        <script type="text/javascript">
+           var count = 1;   
+       
+           function focuse() {
+               $(".chit-table-bordered-primary tbody *").focus(function() {
+                  $(".chit-table-bordered-primary tbody *").css("background-color", "");
+                  $(this).parent().parent().children().children().css("background-color", "#D6EAF8");
+                  $(this).parent().parent().children().css("background-color", "#D6EAF8");
+                  $(this).css("background-color", "");
+                  $(this).parent().css("background-color", "");
+               });
+            }
+           
+           function enterupdate(vv) {
+              if(event.keyCode == 13) {
+                 alert(vv + 100);
+              }
+           }
+           
+           function enterinsert(cc) {
+              if(event.keyCode == 13) {
+                 alert(cc);
+                 alert(count);
+                 $(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + cc + ");");
+                 $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
+                 $(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
+                 $(".chit-table-bordered-primary tbody").append('<tr>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "code' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "number' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex) 10001" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "amount' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "state' + count + '" style = "width: 100px; -webkit-appearance: none; border:0px;">' +
+                            '<option value="담당자">담당자</option>' +
+                             '</select></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "date' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "sysdate' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>' +
+                           '<td><input type="text" onfocus = "focuse();" name = "slee' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
+                        '</tr>');
+                     count = count + 1;
+                     alert(count);
+                  $(".chit-table-bordered-primary tbody #first").focus();
+              }
+           }
+           
+        </script>
     </head>
 
     <body>
@@ -43,20 +90,70 @@
                         <!-- end row-->
 
                         <!-- ===== MEDIA ==== -->
-
-                        <div class="row">
-                            <div class="col-sm-12">
+                        
+						<div class="row">
+                            <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title"></h4>
-                                         <img src="/erp/resources/img/ST_contrast_pPro.jpg" style="width: 100%;">
-                                    </div>
-
+                                        <h5 class="header-title">견적 관리</h5>
+                                        <p class="sub-header">견적 등록 및 수정하는 기능입니다.</p>
+                                        <div class="table-responsive" style = "width: 900px; height: 500px;">
+                                        <form action ="#" class = "#">
+                                          <div class="table-responsive" style = "margin: 10px 0px 10px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:70px;">
+                                                <col style = "width:70px;">
+                                                <col style = "width:70px;">
+                                                <col style = "width:50px;">
+                                                <col style = "width:50px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                               
+                                                <thead>
+                                                    <tr>
+                                                      <th>견적코드</th>
+                                                      <th>견적일자</th>
+                                                      <th>No.</th>
+                                                      <th>거래처</th>
+                                                      <th>품번</th>
+                                                      <th>품명</th>
+                                                      <th>규격</th>
+                                                      <th>단위</th>
+                                                      <th>견적수량</th>
+                                                  </tr>
+                                              </thead>
+          
+          
+                                              <tbody>
+                                                  <tr>
+                                                      <td><input type="text" onfocus = "focuse();" name = "code0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "ex) 10001;"></td>
+                                                <td><input type="text" onfocus = "focuse();" name = "amount0" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><select class="form-control" onfocus = "focuse();" name = "state0" style = "width: 100px; -webkit-appearance: none; border:0px;">
+                                                      <option value="미결">담당자</option>
+                                                      </select></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "date0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "sysdate0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 200px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "slee0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(0);"></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+                                        </form>
+                                       </div> <!-- end .table-responsive-->
+                                    </div> <!-- end card-body -->
                                 </div> <!-- end card -->
                             </div> <!-- end col -->
                         </div> <!-- end row -->
+                        
+                    </div> <!-- end container-fluid -->
 
-                        <!-- Media alignment -->
+                </div> <!-- end content -->
+
 
                          
                         
