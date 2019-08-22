@@ -3,9 +3,6 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
-<!-- c3 plugin css -->
-<link rel="stylesheet" type="text/css"
-	href="/erp/resources/assets/libs/c3/c3.min.css">
 </head>
 
 <body>
@@ -77,111 +74,93 @@
 											<form action="HR_inputProHR1" class="form-horizontal"
 												method="post">
 												<div class="col-sm-12">
-													<div class="card">
 														<div class="card-body table-responsive">
+														
 
 															<div class="form-group row">
-																<label class="col-md-2 col-form-label" for="simpleinput">성명(영문)</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" name="engName">
+																<label class="col-md-1 col-form-label" for="simpleinput">사진등록</label>
+																<div class="col-md-4">
+																	<input type="file" class="dropify" data-height="300" />
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label" for="simpleinput">성명</label>
+																<div class="col-md-1">
+																	<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																</div>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput	">성별</label>
+																<div class="col-md-3  col-form-label">
+																	<div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value = "male" checked>
+							                                                <label class="custom-control-label" for="customRadioInline1">남성</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value = "female">
+							                                                <label class="custom-control-label" for="customRadioInline2">여성</label>
+							                                            </div>
+							                                        </div>
 																</div>
 															</div>
 															<div class="form-group row">
-																<label class="col-md-2 col-form-label"
-																	for="example-email">성명(한자)</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" name="chineseName"
-																		placeholder="text name...">
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">주민등록번호</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="e_code" placeholder="주민등록번호" size="13">
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">전화번호</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="e_hp" placeholder="전화번호" size="13">
 																</div>
 															</div>
 															<div class="form-group row">
-																<label class="col-md-2 col-form-label"
-																	for="example-palaceholder">주민등록번호</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" name="jumin"
-																		placeholder="jumin">
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">주민등록주소</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">상세주소</label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">
 																</div>
 															</div>
 															<div class="form-group row">
-																<label class="col-md-2 col-form-label"
-																	for="example-password">성별</label>
-																<div class="col-md-10">
-																	<select class="input" name="gender" onchange="">
-																		<option value="남성">1.남성</option>
-																		<option value="여성">2.여성</option>
-																	</select>
+																<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.</label> 
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="e_nfcCodeNFC" placeholder="출입카드No.">
+																</div>	
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label" for="simpleinput">장애인 구분/등급</label> 
+																<div class="col-md-3 col-form-label">
+																	<div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline3" name="e_disability_type" class="custom-control-input" value = "1" checked>
+							                                                <label class="custom-control-label" for="customRadioInline3">비해당</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline4" name="e_disability_type" class="custom-control-input" value = "2">
+							                                                <label class="custom-control-label" for="customRadioInline4">장애인</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline5" name="e_disability_type" class="custom-control-input" value = "3">
+							                                                <label class="custom-control-label" for="customRadioInline5">국가유공자</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline6" name="e_disability_type" class="custom-control-input" value = "4">
+							                                                <label class="custom-control-label" for="customRadioInline6">중증</label>
+							                                            </div>
+							                                        </div>
 																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-md-2 col-form-label" for="simpleinput">생년월일</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" name="birth">
+																<div class="col-md-1">
+																		<input type="text" class="form-control" name="e_disability_level" placeholder="장애인 등급">
 																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-md-2 col-form-label" for="simpleinput">전화번호</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" name="phoneNum">
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-md-2 col-form-label" for="simpleinput">비상전화(HP)</label>
-																<div class="col-md-10">
-																	<input type="text" class="form-control" name="handPhone">
-																</div>
-															</div>
-															<br> <br>
-															<h4 class="header-title">거주정보</h4>
-															<br> <br>
-
-															<div class="form-group">
-																<label for="fullname">주민등록주소</label> <input type="text"
-																	class="form-control" name="juminAddress" required="">
-															</div>
-
-															<div class="form-group">
-																<label for="fullname">상세주소</label> <input type="text"
-																	class="form-control" name="address" required="">
-															</div>
-
-															<div class="form-group">
-																<label for="fullname">영문주소</label> <input type="text"
-																	class="form-control" name="endAddress" required="">
-															</div>
-
-															<div class="form-group">
-																<label for="email">E-MAIL</label> <input type="email"
-																	class="form-control" name="email" data-parsley-trigger="change"
-																	required="">
-															</div>
-
-															<div class="form-group">
-																<label for="fullname">출입카드No.</label> <input type="text"
-																	class="form-control" name="inNo" required="">
-															</div>
-
-															<div class="form-group">
-
-																<label for="fullname">세대주여부 </label> <select
-																	class="input" name="household" onchange="">
-																	<option value="">1.부</option>
-																	<option value="">2.여</option>
-																</select>
-															</div>
-
-															<div class="form-group">
-																<label for="heard">장애인 구분</label> <select class="input"
-																	name="disClass">
-																	<option value="press">0.비해당</option>
-																	<option value="net">1.장애인복지법</option>
-																	<option value="mouth">2.국가유공자등</option>
-																	<option value="other">3.중증환자</option>
-																</select>
-															</div>														
-
+															</div>	
 														</div>
 													</div>
-												</div>
 												<div class="form-group mb-0">
 													<input type="submit" class="btn btn-success" value="등록">
 												</div>
@@ -194,35 +173,41 @@
 											<form action="HR_inputProHR2" class="form-horizontal"
 												method="post">
 												<div class="col-sm-12">
-													<div class="card">
-														<div class="card-body">
-															<div class="row">
-																<div class="col-xl-6">
+														<div class="card-body table-responsive">
 																	<!-- <form class="form-horizontal"> -->
 																	<div class="form-group row">
-																		<label class="col-md-2 col-form-label"
-																			for="simpleinput">입사일</label>
-																		<div class="col-md-10">
-																			<input type="text" class="">&nbsp;<a href="#"><i
-																				class="dripicons-calendar"></i></a>
-																		</div>
+																			<label class="col-md-1 col-form-label" for="simpleinput">입사일</label> 
+																			<div class="col-md-4 input-group">
+																				<input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+					                                                                <div class="input-group-append">
+					                                                                    <span class="input-group-text bg-primary text-white b-0"><i class="mdi mdi-calendar"></i></span>
+					                                                                </div>
+																			</div>
+																		<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																			<label class="col-md-1 col-form-label" for="simpleinput">그룹입사일</label> 
+																			<div class="col-md-4 input-group">
+																				<input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+					                                                            <div class="input-group-append">
+					                                                                <span class="input-group-text bg-primary text-white b-0"><i class="mdi mdi-calendar"></i></span>
+					                                                            </div>
+																			</div>
 																	</div>
 																	<div class="form-group row">
-																		<label class="col-md-2 col-form-label"
-																			for="simpleinput">퇴직일</label>
-																		<div class="col-md-10">
-																			<input type="text" class="" data-provide="datepicker">&nbsp;<a href="#"><i
-																				class="dripicons-calendar"></i></a>
-																		</div>
-																	</div>
-
-																	<div class="form-group row">
-																		<label class="col-md-2 col-form-label"
-																			for="simpleinput">중도퇴사일</label>
-																		<div class="col-md-10">
-																			<input type="text" class="">&nbsp;<a href="#"><i
-																				class="dripicons-calendar"></i></a>
-																		</div>
+																			<label class="col-md-1 col-form-label" for="simpleinput">퇴직일</label> 
+																			<div class="col-md-4 input-group">
+																				<input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+					                                                                <div class="input-group-append">
+					                                                                    <span class="input-group-text bg-primary text-white b-0"><i class="mdi mdi-calendar"></i></span>
+					                                                                </div>
+																			</div>
+																		<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																			<label class="col-md-1 col-form-label" for="simpleinput">중도퇴사일</label> 
+																			<div class="col-md-4 input-group">
+																				<input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+					                                                            <div class="input-group-append">
+					                                                                <span class="input-group-text bg-primary text-white b-0"><i class="mdi mdi-calendar"></i></span>
+					                                                            </div>
+																			</div>
 																	</div>
 																	<div class="form-group row">
 																		<label class="col-md-2 col-form-label"
@@ -257,20 +242,6 @@
 																				class="dripicons-calendar"></i></a>
 																		</div>
 																	</div>
-																	<!-- </form> -->
-																</div>
-
-																<div class="col-xl-6">
-																	<!-- <form class="form-horizontal"> -->
-
-																	<div class="form-group row">
-																		<label class="col-md-2 col-form-label"
-																			for="simpleinput">그룹입사일</label>
-																		<div class="col-md-10">
-																			<input type="text" class="">&nbsp;<a href="#"><i
-																				class="dripicons-calendar"></i></a>
-																		</div>
-																	</div>
 																	<div class="form-group row">
 																		<label class="col-md-2 col-form-label"
 																			for="simpleinput">재직구분</label>
@@ -302,14 +273,10 @@
 																		</div>
 																	</div>
 
-																</div>
 																<!-- end col -->
-															</div>
 															<!-- end row -->
-
 														</div>
-													</div>
-												</div>
+														</div>
 												<div class="form-group mb-0">
 													<input type="submit" class="btn btn-success" value="등록">
 												</div>
@@ -569,23 +536,7 @@
 						</div>
 						<!-- end row -->
 
-						<!-- Footer Start -->
-						<footer class="footer">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-6">
-										2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-									</div>
-									<div class="col-md-6">
-										<div class="text-md-right footer-links d-none d-sm-block">
-											<a href="#">About Us</a> <a href="#">Help</a> <a href="#">Contact
-												Us</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</footer>
-						<!-- end Footer -->
+						<%@ include file="../footer.jsp" %>
 
 					</div>
 
@@ -596,175 +547,11 @@
 				</div>
 				<!-- END wrapper -->
 
-				<!-- Right Sidebar -->
-				<div class="right-bar">
-					<div class="rightbar-title">
-						<a href="javascript:void(0);" class="right-bar-toggle float-right">
-							<i class="mdi mdi-close"></i>
-						</a>
-						<h5 class="m-0 text-white">Settings</h5>
-					</div>
-					<div class="slimscroll-menu">
-						<hr class="mt-0">
-						<h5 class="pl-3">Basic Settings</h5>
-						<hr class="mb-0" />
-
-
-						<div class="p-3">
-							<div class="custom-control custom-checkbox mb-2">
-								<input type="checkbox" class="custom-control-input"
-									id="customCheck1" checked> <label
-									class="custom-control-label" for="customCheck1">Notifications</label>
-							</div>
-							<div class="custom-control custom-checkbox mb-2">
-								<input type="checkbox" class="custom-control-input"
-									id="customCheck2" checked> <label
-									class="custom-control-label" for="customCheck2">API
-									Access</label>
-							</div>
-							<div class="custom-control custom-checkbox mb-2">
-								<input type="checkbox" class="custom-control-input"
-									id="customCheck3"> <label class="custom-control-label"
-									for="customCheck3">Auto Updates</label>
-							</div>
-							<div class="custom-control custom-checkbox mb-2">
-								<input type="checkbox" class="custom-control-input"
-									id="customCheck4" checked> <label
-									class="custom-control-label" for="customCheck4">Online
-									Status</label>
-							</div>
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input"
-									id="customCheck5"> <label class="custom-control-label"
-									for="customCheck5">Auto Payout</label>
-							</div>
-						</div>
-
-						<!-- Timeline -->
-						<hr class="mt-0" />
-						<h5 class="pl-3 pr-3">Timeline</h5>
-						<hr class="mb-0" />
-
-						<div class="p-3">
-							<ul class="list-unstyled activity-widget">
-								<li class="activity-list">
-									<p class="mb-0">
-										<small>08 July</small>
-									</p>
-									<p>Neque porro quisquam est</p>
-								</li>
-								<li class="activity-list">
-									<p class="mb-0">
-										<small>09 July</small>
-									</p>
-									<p>Ut enim ad minima veniam quis velit esse</p>
-								</li>
-								<li class="activity-list">
-									<p class="mb-0">
-										<small>10 July</small>
-									</p>
-									<p>Quis autem vel eum iure</p>
-								</li>
-							</ul>
-						</div>
-
-						<!-- Messages -->
-						<hr class="mt-0" />
-						<h5 class="pl-3 pr-3">
-							Messages <span class="float-right badge badge-pill badge-danger">24</span>
-						</h5>
-						<hr class="mb-0" />
-						<div class="p-3">
-							<div class="inbox-widget">
-								<div class="inbox-item">
-									<div class="inbox-item-img">
-										<img src="/erp/resources/assets/images/users/avatar-1.jpg"
-											class="rounded-circle" alt="">
-									</div>
-									<p class="inbox-item-author">
-										<a href="javascript: void(0);">Chadengle</a>
-									</p>
-									<p class="inbox-item-text">Hey! there I'm available...</p>
-									<p class="inbox-item-date">13:40 PM</p>
-								</div>
-								<div class="inbox-item">
-									<div class="inbox-item-img">
-										<img src="/erp/resources/assets/images/users/avatar-2.jpg"
-											class="rounded-circle" alt="">
-									</div>
-									<p class="inbox-item-author">
-										<a href="javascript: void(0);">Tomaslau</a>
-									</p>
-									<p class="inbox-item-text">I've finished it! See you so...</p>
-									<p class="inbox-item-date">13:34 PM</p>
-								</div>
-								<div class="inbox-item">
-									<div class="inbox-item-img">
-										<img src="assets/images/users/avatar-3.jpg"
-											class="rounded-circle" alt="">
-									</div>
-									<p class="inbox-item-author">
-										<a href="javascript: void(0);">Stillnotdavid</a>
-									</p>
-									<p class="inbox-item-text">This theme is awesome!</p>
-									<p class="inbox-item-date">13:17 PM</p>
-								</div>
-
-								<div class="inbox-item">
-									<div class="inbox-item-img">
-										<img src="/erp/resources/assets/images/users/avatar-4.jpg"
-											class="rounded-circle" alt="">
-									</div>
-									<p class="inbox-item-author">
-										<a href="javascript: void(0);">Kurafire</a>
-									</p>
-									<p class="inbox-item-text">Nice to meet you</p>
-									<p class="inbox-item-date">12:20 PM</p>
-
-								</div>
-								<div class="inbox-item">
-									<div class="inbox-item-img">
-										<img src="/erp/resources/assets/images/users/avatar-5.jpg"
-											class="rounded-circle" alt="">
-									</div>
-									<p class="inbox-item-author">
-										<a href="javascript: void(0);">Shahedk</a>
-									</p>
-									<p class="inbox-item-text">Hey! there I'm available...</p>
-									<p class="inbox-item-date">10:15 AM</p>
-
-								</div>
-							</div>
-							<!-- end inbox-widget -->
-						</div>
-						<!-- end .p-3-->
-
-					</div>
-					<!-- end slimscroll-menu-->
-				</div>
-				<!-- /Right-bar -->
-
-				<!-- Right bar overlay-->
-				<div class="rightbar-overlay"></div>
-
-				<!-- Vendor js -->
-				<script src="/erp/resources/assets/js/vendor.min.js"></script>
-
-				<!-- Bootstrap select plugin -->
-				<script
-					src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-				<!-- plugins -->
-				<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
-				<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-
-				<!-- dashboard init -->
-				<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
-
-				<!-- App js -->
-				<script src="/erp/resources/assets/js/app.min.js"></script>
+				
 			</div>
 		</div>
 	</div>
+	<%@ include file="../rightbar.jsp" %>
+    <%@ include file="../setting2.jsp" %>
 </body>
 </html>
