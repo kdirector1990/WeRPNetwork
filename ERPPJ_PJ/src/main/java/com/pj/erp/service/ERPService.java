@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 @Service
 public interface ERPService {
 	
-	public void inputHRPro(HttpServletRequest req, Model model);
 	
 	//경영지원 - 기획서 등록
 	public void insertPlan(HttpServletRequest req, Model model);

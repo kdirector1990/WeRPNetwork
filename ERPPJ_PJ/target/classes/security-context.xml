@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
 		
-		<security:http pattern = "/HR_InputHR" security = "none"/>
+		<!-- <security:http pattern = "/HR_InputHR" security = "none"/> -->
 		<security:http auto-config = "true" use-expressions="true" create-session="never">
 			<security:intercept-url 
 				pattern = "/*_**"

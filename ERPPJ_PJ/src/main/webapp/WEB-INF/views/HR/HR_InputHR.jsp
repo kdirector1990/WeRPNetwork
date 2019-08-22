@@ -131,11 +131,11 @@
        			$(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
        			$(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
        			$(".chit-table-bordered-primary tbody").append('<tr>' +
-       					'<td><input type="text" onfocus = "focuse(this.name);" name = "f_name0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_cohabitation0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_born0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_born_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+       					'<td><input type="text" onfocus = "focuse(this.name);" name = "f_name'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_type'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_cohabitation'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_born'+count+'" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_born_type'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
                        '</tr>');
                     count = count + 1;
           		 $("input[name=key"+ cc +"]").val("10001");
@@ -207,6 +207,7 @@
 											role="tabpanel" aria-labelledby="employee-tab">
 											<form action="HR_inputProHR1" class="form-horizontal"
 												method="post">
+												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
@@ -214,7 +215,7 @@
 														<div class="form-group row">
 															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
-																	<input type="file" class="dropify" />
+																	<input type="file" class="dropify" name="e_picture"/>
 																</div>
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 																<div class="col-md-6">
@@ -244,11 +245,11 @@
 																		<div class="col-md-4  col-form-label">
 																			<div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value = "male" checked>
+									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value = "local" checked>
 									                                                <label class="custom-control-label" for="customRadioInline7">내국인</label>
 									                                            </div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value = "female">
+									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value = "foreign">
 									                                                <label class="custom-control-label" for="customRadioInline8">외국인</label>
 									                                            </div>
 									                                        </div>
@@ -388,12 +389,12 @@
 							                                       <label class="col-md-1 col-form-label"
 																	for="simpleinput">혈압</label>
 																		<div class="col-md-1">
-																			<input type="text" class="form-control" name="e_height" placeholder="최저">
+																			<input type="text" class="form-control" name="e_blood_pressure1" placeholder="최저">
 																		</div>
 																		<label class="col-md-1 col-form-label"
 																			for="simpleinput">mmHg ~</label>
 																		<div class="col-md-1">
-																			<input type="text" class="form-control" name="e_weight" placeholder="최고">
+																			<input type="text" class="form-control" name="e_blood_pressure2" placeholder="최고">
 																		</div>
 																		<label class="col-md-1 col-form-label"
 																			for="simpleinput">mmHg</label>
