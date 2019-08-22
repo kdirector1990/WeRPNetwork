@@ -33,7 +33,7 @@ public class HR_Controller {
 	public String HR_InputHR(Locale locale, Model model) {
 		logger.info("log => HR_InputHR");
 		
-		return "HR/HR_InputHR_ex";
+		return "HR/HR_InputHR";
 	}
 	
 	@RequestMapping("HR_inputProHR1")
@@ -139,6 +139,13 @@ public class HR_Controller {
 		logger.info("log => HR_HrSalaryEnvironment");
 		
 		return "HR/HR_HrSalaryEnvironment";
+	}
+	
+	@RequestMapping("HR_PersonnelBasicCode")
+	public String HR_PersonnelBasicCode(Locale locale, Model model) {
+		logger.info("log => HR_PersonnelBasicCode");
+		
+		return "HR/HR_PersonnelBasicCode";
 	}
 	
 	@RequestMapping("coming_soon")
