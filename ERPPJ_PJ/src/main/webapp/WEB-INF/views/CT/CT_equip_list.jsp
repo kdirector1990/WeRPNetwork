@@ -32,12 +32,13 @@
                                     <div class="card-body table-responsive">
                                         <h4 class="header-title">전산 목록</h4>
                                         <div align="right">
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">장비코드복사</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">제작사</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">정기검정</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">대여일자</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">장비코드복사</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">제작사</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">정기검정</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">대여일자</button>
     									<br>
     									</div>
+    									
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
                                             	<td>장비코드</td>
@@ -60,7 +61,6 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                        
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>

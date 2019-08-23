@@ -121,5 +121,9 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
+        
+        <!-- Datatable plugin js -- table page -->
+        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
     </body>
 </html>

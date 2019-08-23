@@ -151,6 +151,11 @@
 
     <%@ include file="../rightbar.jsp" %>
     <%@ include file="../setting2.jsp" %>
+    
+    <!-- Datatable plugin js -->
+    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+        
     <script type="text/javascript">
     
     var items = [];
