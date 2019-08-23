@@ -169,7 +169,7 @@
 	   			
 	   			var CT_code = td.eq(1).text();
 	   			var ceq_code = td.eq(2).text();
-	   			var ceq_name = td.eq(3).text();
+#	   			var ceq_name = td.eq(3).text();
 	   			var ceq_type = td.eq(4).text();
 	   			var ceq_date = td.eq(5).text();
 	   			var ceq_deparment_code = td.eq(6).text();
