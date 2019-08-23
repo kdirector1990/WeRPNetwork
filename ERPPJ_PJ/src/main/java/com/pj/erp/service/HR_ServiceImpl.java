@@ -46,7 +46,7 @@ public class HR_ServiceImpl implements HR_Service{
 		String e_blood_type= req.getParameter("e_blood_type");
 		String e_blood_pressure1= req.getParameter("e_blood_pressure1");
 		String e_blood_pressure2= req.getParameter("e_blood_pressure2");
-		
+		String e_blood_pressure = e_blood_pressure1+e_blood_pressure2;
 		
 		System.out.println(e_picture);
 		System.out.println(e_name);
@@ -68,6 +68,23 @@ public class HR_ServiceImpl implements HR_Service{
 		System.out.println(e_blood_pressure1);
 		System.out.println(e_blood_pressure2);
 		
+		int i=0;
+		do {
+			String f_name = req.getParameter("f_name"+i);
+			String f_type = req.getParameter("f_type"+i);
+			String f_cohabitation = req.getParameter("f_cohabitation"+i);
+			String f_born = req.getParameter("f_born"+i);
+			String f_born_type = req.getParameter("f_born_type"+i);
+			
+			//insert 하는기능 넣으면됨
+			System.out.println(f_name);
+			System.out.println(f_type);
+			System.out.println(f_cohabitation);
+			System.out.println(f_born);
+			System.out.println(f_born_type);
+			
+			i++;
+		}while(req.getParameter("f_name"+i)!=null);
 		
 		
 		
