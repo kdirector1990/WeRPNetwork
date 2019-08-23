@@ -3,6 +3,146 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<link href="/erp/resources/assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
+<!-- Table datatable css -->
+        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+		<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
+        <script type="text/javascript">
+        	var count = 1;
+        	var subcount = 1;
+        	
+        	function inin() {
+        		alert("dkdkk");
+        	}
+        	function focuse(s) {
+        		var name = s;
+        		$(".chit-table-bordered-primary tbody *").focus(function() {
+        			$(".chit-table-bordered-primary tbody *").css("background-color", "");
+        			$(this).parent().parent().children().children().css("background-color", "#D6EAF8");
+        			$(this).parent().parent().children().css("background-color", "#D6EAF8");
+        			$(this).css("background-color", "");
+        			$(this).parent().css("background-color", "");
+        		});
+        		if($("input[name=key" + name.substring(name.length-1, name.length) + "]").val() != ""){
+        			subcount = 1;
+        			$(".chitsub-table-bordered-primary tbody").html('<tr>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subnumber0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" id = "first"  name = "subtype0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "code0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subject0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "accountcode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "accountname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "hostno0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "price0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subno0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "summary0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "document0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "entersubinsert(0);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "computer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "tax0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                   '</tr>');
+        		} else {
+        			$(".chitsub-table-bordered-primary tbody").html('');
+        		}
+        	}
+        	
+        	function subfocuse(s) {
+        		if($("input[name=" + s + "]").attr("readonly")){
+        			$("input[name=" + s + "]").parent().next().children().focus();
+        			return false;
+        		}
+        		$(".chitsub-table-bordered-primary tbody *").focus(function() {
+        			$(".chitsub-table-bordered-primary tbody *").css("background-color", "");
+        			$(this).parent().parent().children().children().css("background-color", "#D6EAF8");
+        			$(this).parent().parent().children().css("background-color", "#D6EAF8");
+        			$(this).css("background-color", "");
+        			$(this).parent().css("background-color", "");
+        		});
+        	}
+        	
+        	function enter(cc) {
+    			$("input[name=" + cc + "]").parent().next().children().focus();
+        	}
+        	
+        	function enterupdate(vv) {
+        		var obj = new Object();
+        		var jsonData;
+        		// 자바스크립트 객체 생성
+        		obj.key = $("input[name=key" + vv + "]").val();
+        		obj.date = $("input[name=date" + vv + "]").val();
+        		obj.no = $("input[name=no" + vv + "]").val();
+        		obj.text = $("input[name=text" + vv + "]").val();
+        		obj.type = $("select[name=type" + vv + "]").val();
+        		obj.num = $("input[name=num" + vv + "]").val();
+        		obj.state = $("select[name=state" + vv + "]").val();
+        		obj.confirmname = $("input[name=confirmname" + vv + "]").val();
+        		obj.devprice = $("input[name=devprice" + vv + "]").val();
+        		obj.writer = $("input[name=writer" + vv + "]").val();
+        		obj.slee = $("input[name=slee" + vv + "]").val();
+        		
+        		// json 객체를 String 객체로 변환 -- 
+        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+        		jsonData = JSON.stringify(obj);
+        		alert(obj.date);
+        		alert(obj.no);
+        		alert(obj.text);
+        		alert(obj.type);
+        		alert(obj.num);
+        		alert(obj.state);
+        		alert(obj.confirmname);
+        		alert(obj.devprice);
+        		alert(obj.writer);
+        		alert(obj.slee);
+        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+        		
+        		$.ajax({
+                       type : "POST",
+                       url : "/pj/FT_chitupdate",
+                       data : jsonData,
+                       contentType : 'application/json;charset=UTF-8',
+                       success : function(data) {
+                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
+                              alert(data);
+                             /*  if (data.answer == 'success') {
+                                      alert(data.name + '님 환영합니다.');
+                                      var map = new MapArray();
+                                      postData('/News/index.do', map);
+                              } else if (data.answer == 'fail') {
+                                      alert('아이디와 비번이 일치하지 않습니다.');
+                              } else if (data.answer == 'error') {
+                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
+                              } */
+                       },
+                       error : function(e) {
+                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                       }
+               });
+        	}
+        	
+        	function enterinsert(cc) {
+       			$(".chit-table-bordered-primary tbody #enter").attr("onchange", "enterupdate(" + cc + ");");
+       			$(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
+       			$(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
+       			$(".chit-table-bordered-primary tbody").append('<tr>' +
+       					'<td><input type="text" onfocus = "focuse(this.name);" name = "f_name'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_type'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_cohabitation'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_born'+count+'" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "f_born_type'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>'+
+                       '</tr>');
+                    count = count + 1;
+          		 $("input[name=key"+ cc +"]").val("10001");
+       			 $(".chit-table-bordered-primary tbody #first").focus();
+        	}
+        	
+        </script>
 </head>
 
 <body>
@@ -28,11 +168,12 @@
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									<button type="button" class="btn btn-outline-primary waves-effect waves-light">조회기준</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">사원추가</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">국민/고용대상자해제</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>부양가족반영</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>책정임금코드반영</button>
+									<ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사정보</a></li>
+                                            <li class="breadcrumb-item active">인사정보등록</li>
+                                        </ol>
 								</div>
 								<h4 class="page-title">인사정보등록</h4>
 							</div>
@@ -45,17 +186,12 @@
 							<div class="card">
 								<div class="card-body">
 									<ul class="nav nav-tabs" role="tablist">
-										<li class="nav-item"><a class="nav-link active"
-											id="employee-tab" data-toggle="tab" href="#employee"
-											role="tab" aria-controls="employee" aria-selected="false">
-												<span class="d-block d-sm-none"><i
-													class="fa fa-employee"></i></span> <span class="d-none d-sm-block">인적정보</span>
+										<li class="nav-item"><a class="nav-link active"	id="employee-tab" data-toggle="tab" href="#employee" role="tab" aria-controls="employee" aria-selected="false">
+											<span class="d-block d-sm-none"><i class="fa fa-employee"></i></span> <span class="d-none d-sm-block">인적정보</span>
 										</a></li>
-										<li class="nav-item"><a class="nav-link"
-											id="presidency-tab" data-toggle="tab" href="#presidency"
-											role="tab" aria-controls="presidency" aria-selected="true">
-												<span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-												<span class="d-none d-sm-block">재직정보</span>
+										<li class="nav-item"><a class="nav-link" id="presidency-tab" data-toggle="tab" href="#presidency" role="tab" aria-controls="presidency" aria-selected="true">
+											<span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
+											<span class="d-none d-sm-block">재직정보</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" id="message-tab"
 											data-toggle="tab" href="#message" role="tab"
@@ -71,66 +207,90 @@
 											role="tabpanel" aria-labelledby="employee-tab">
 											<form action="HR_inputProHR1" class="form-horizontal"
 												method="post">
+												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
-														<div class="card-body table-responsive">
-															<div class="form-group row">
-																<label class="col-md-1 col-form-label" for="simpleinput">사진등록</label>
+													<div class="card-body table-responsive">
+													 <h4 class="header-title">기초 정보</h4>
+													 <h4 class="header-title">&nbsp;</h4>
+														<div class="form-group row">
+															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
-																	<input type="file" class="dropify" data-height="300" />
+																	<input type="file" class="dropify" name="e_picture"/>
 																</div>
-																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-																<label class="col-md-1 col-form-label" for="simpleinput">성명</label>
-																<div class="col-md-1">
-																	<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
-																</div>
-																<label class="col-md-1 col-form-label"
-																	for="simpleinput	">성별</label>
-																<div class="col-md-3  col-form-label">
-																	<div>
-							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-							                                                <input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value = "male" checked>
-							                                                <label class="custom-control-label" for="customRadioInline1">남성</label>
-							                                            </div>
-							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-							                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value = "female">
-							                                                <label class="custom-control-label" for="customRadioInline2">여성</label>
-							                                            </div>
-							                                        </div>
-																</div>
+															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<div class="col-md-6">
+																	<div class="form-group row">
+																		<label class="col-lg-2 col-form-label" for="simpleinput">성명<span class="text-danger">*</span></label>
+																		<div class="col-lg-8">
+																			<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																		</div>
+																	</div>
+																	<div class="form-group row">	
+																		<label class="col-md-2 col-form-label"
+																			for="simpleinput	">성별<span class="text-danger">*</span></label>
+																		<div class="col-md-3  col-form-label">
+																			<div>
+								                                        	    <div class="custom-control custom-radio custom-control-inline mb-2">
+								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value = "male" checked>
+								                                      	         	<label class="custom-control-label" for="customRadioInline1">남성</label>
+								                                           		</div>
+									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value = "female">
+									                                                <label class="custom-control-label" for="customRadioInline2">여성</label>
+									                                            </div>
+								                                        	</div>
+																		</div>
+																		<label class="col-md-2 col-form-label"
+																			for="simpleinput	">내/외국인<span class="text-danger">*</span></label>
+																		<div class="col-md-4  col-form-label">
+																			<div>
+									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value = "local" checked>
+									                                                <label class="custom-control-label" for="customRadioInline7">내국인</label>
+									                                            </div>
+									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value = "foreign">
+									                                                <label class="custom-control-label" for="customRadioInline8">외국인</label>
+									                                            </div>
+									                                        </div>
+																		</div>
+																	</div>	
+																	<div class="form-group row">
+																		<label class="col-md-2 col-form-label"
+																			for="simpleinput">주민등록번호<span class="text-danger">*</span></label>
+																		<div class="col-md-8">
+																			<input type="text" class="form-control" name="e_code" placeholder="주민등록번호" size="13">
+																		</div>
+																	</div>
+																	<div class="form-group row">	
+																		<label class="col-md-2 col-form-label"
+																			for="simpleinput">전화번호<span class="text-danger">*</span></label>
+																		<div class="col-md-8">
+																		<input type="text" class="form-control" name="e_hp" placeholder="전화번호" size="13">
+																		</div>
+																	</div>
+																</div>	
 															</div>
 															<div class="form-group row">
 																<label class="col-md-1 col-form-label"
-																	for="simpleinput">주민등록번호</label>
-																<div class="col-md-4">
-																	<input type="text" class="form-control" name="e_code" placeholder="주민등록번호" size="13">
-																</div>
-																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-																<label class="col-md-1 col-form-label"
-																	for="simpleinput">전화번호</label>
-																<div class="col-md-4">
-																	<input type="text" class="form-control" name="e_hp" placeholder="전화번호" size="13">
-																</div>
-															</div>
-															<div class="form-group row">
-																<label class="col-md-1 col-form-label"
-																	for="simpleinput">주민등록주소</label>
+																	for="simpleinput">주민등록주소<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">
 																</div>
 																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 																<label class="col-md-1 col-form-label"
-																	for="simpleinput">상세주소</label>
+																	for="simpleinput">상세주소<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">
 																</div>
 															</div>
 															<div class="form-group row">
-																<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.</label> 
+																<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label> 
 																<div class="col-md-4">
 																	<input type="text" class="form-control" name="e_nfcCodeNFC" placeholder="출입카드No.">
 																</div>	
 																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-																<label class="col-md-1 col-form-label" for="simpleinput">장애인 구분/등급</label> 
+																<label class="col-md-1 col-form-label" for="simpleinput">장애 구분/등급<span class="text-danger">*</span></label> 
 																<div class="col-md-3 col-form-label">
 																	<div>
 							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
@@ -156,10 +316,139 @@
 																</div>
 															</div>	
 														</div>
+														<div class="card-body table-responsive">
+															<h4 class="header-title">신체 정보</h4>
+															<h4 class="header-title">&nbsp;</h4>
+															<div class="form-group row">
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">신장</label>
+																<div class="col-md-3">
+																	<input type="text" class="form-control" name="e_height" placeholder="신장">
+																</div>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">cm</label>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">체중</label>
+																<div class="col-md-3">
+																	<input type="text" class="form-control" name="e_weight" placeholder="체중">
+																</div>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">kg</label>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">시력(좌)</label>
+																<div class="col-md-1">
+																	<input type="text" class="form-control" name="e_left_sight" placeholder="시력(좌)">
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">시력(우)</label>
+																<div class="col-md-1">
+																	<input type="text" class="form-control" name="e_right_sight" placeholder="시력(우)">
+																</div>
+																
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">색약</label>
+																	<div class="col-md-3 col-form-label">
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline9" name="e_color_blind" class="custom-control-input" value = "blind" checked>
+							                                                <label class="custom-control-label" for="customRadioInline9">유</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline10" name="e_color_blind" class="custom-control-input" value = "common">
+							                                                <label class="custom-control-label" for="customRadioInline10">무</label>
+							                                            </div>
+							                                        </div>
+															</div>
+															<div class="form-group row">
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">혈액형</label>
+																	<div class="col-md-3 col-form-label">
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline11" name="e_blood_type" class="custom-control-input" value = "a" checked>
+							                                                <label class="custom-control-label" for="customRadioInline11">A</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline12" name="e_blood_type" class="custom-control-input" value = "b">
+							                                                <label class="custom-control-label" for="customRadioInline12">B</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline13" name="e_blood_type" class="custom-control-input" value = "ab" checked>
+							                                                <label class="custom-control-label" for="customRadioInline13">AB</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline14" name="e_blood_type" class="custom-control-input" value = "o">
+							                                                <label class="custom-control-label" for="customRadioInline14">O</label>
+							                                            </div>
+							                                        </div>
+							                                        <label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+							                                        <label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+							                                       <label class="col-md-1 col-form-label"
+																	for="simpleinput">혈압</label>
+																		<div class="col-md-1">
+																			<input type="text" class="form-control" name="e_blood_pressure1" placeholder="최저">
+																		</div>
+																		<label class="col-md-1 col-form-label"
+																			for="simpleinput">mmHg ~</label>
+																		<div class="col-md-1">
+																			<input type="text" class="form-control" name="e_blood_pressure2" placeholder="최고">
+																		</div>
+																		<label class="col-md-1 col-form-label"
+																			for="simpleinput">mmHg</label>
+															</div>
+															
+															
+														</div>
+														<div class="card-body table-responsive">
+														<h4 class="header-title">가족 정보</h4>
+													 	<h4 class="header-title">&nbsp;</h4>
+														<div class="table-responsive" style = "margin: 15px 0px 50px">
+                                            				<table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+			                                                <col style = "width:20%;">
+			                                                <col style = "width:20%;">
+			                                                <col style = "width:20%">
+			                                                <col style = "width:20%;">
+			                                                <col style = "width:20%;">
+			                                                <thead>
+			                                                    <tr>
+					                                                <th>성명</th>
+					                                                <th>관계</th>
+					                                                <th>동거여부</th>
+					                                                <th>생년월일</th>
+					                                                <th>음력/양력</th>
+					                                            </tr>
+					                                        </thead>
+					    
+					                                        <tbody>
+					                                            <tr>
+					                                                <td><input type="text" onfocus = "focuse(this.name);" name = "f_name0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+					                                                <td><input type="text" onfocus = "focuse(this.name);" name = "f_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+					                                                <td><input type="text" onfocus = "focuse(this.name);" name = "f_cohabitation0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+					                                                <td><input type="text" onfocus = "focuse(this.name);" name = "f_born0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;"></td>
+					                                                <td><input type="text" onfocus = "focuse(this.name);" name = "f_born_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+					                                            </tr>
+					                                        </tbody>
+			                                            </table>
+			                                            </div>
+                                            <div class="form-group text-right mb-0">
+		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterinsert(0);">
+		                                                   		 추가
+		                                                </button>
+		                                            </div>
+                                        </div>
 													</div>
-												<div class="form-group mb-0">
-													<input type="submit" class="btn btn-success" value="등록">
-												</div>
+													<div class="form-group text-right mb-0">
+		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+		                                                    Submit
+		                                                </button>
+		                                                <button type="reset" class="btn btn-secondary waves-effect">
+		                                                    Cancel
+		                                                </button>
+		                                            </div>
+                                           
 											</form>
 										</div>
 
@@ -548,6 +837,14 @@
 		</div>
 	</div>
 	<%@ include file="../rightbar.jsp" %>
+	
     <%@ include file="../setting2.jsp" %>
+
+        <!-- Plugins js -->
+        <script src="/erp/resources/assets/libs/dropify/dropify.min.js"></script>
+
+        <!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-fileuploads.init.js"></script>
+
 </body>
 </html>
