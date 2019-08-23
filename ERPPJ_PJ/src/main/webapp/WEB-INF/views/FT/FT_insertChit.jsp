@@ -67,19 +67,8 @@
         					}
         				}
             		} else if(window.event.which == 9) {
-            			if($("input[name=" + dd + "]").val() == ""){
-            				$("input[name=" + dd + "]").parent().prev().children().focus();
-            				return false;
-            			}
-            			for(var i = 0; i < $("input[name=" + dd + "]").parent().nextAll().children().length; i++){
-        					nowme = nowme.next();
-        					if(!nowme.children().attr("readonly")){
-        						nowme.prev().children().focus();
-        						return false;
-        					}
-        				}
+            			$("*[name=" + dd + "]").parent().prev().children().focus();
             		} else if(window.event.which == 37) {
-            			$("input[name=" + dd + "]").parent().prev().children().focus();
             			for(var i = 0; i < $("input[name=" + dd + "]").parent().prevAll().children().length; i++){
         					nowme = nowme.prev();
         					if(!nowme.children().attr("readonly")){
@@ -90,7 +79,6 @@
             		} else if(window.event.which == 38) {
             			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) - 1) + "]").focus();
             		} else if(window.event.which == 39) {
-        				$("input[name=" + dd + "]").parent().next().children().focus();
         				for(var i = 0; i < $("input[name=" + dd + "]").parent().nextAll().children().length; i++){
         					nowme = nowme.next();
         					if(!nowme.children().attr("readonly")){
@@ -102,7 +90,9 @@
             			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) + 1) + "]").focus();
             		}
         		} else if(cc == "SELECT"){
-        			$("select[name=" + dd + "]").parent().next().children().focus();
+        			if(window.event.which == 9) {
+            			$("select[name=" + dd + "]").parent().prev().children().focus();
+            		}
         		}
         	}
         	
@@ -161,7 +151,7 @@
                            '<td><input type="text" onfocus = "focuse(this.name);" name = "key' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>' +
                            '<td><input type="text" onfocus = "focuse(this.name);" id = "first" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
                             '<td><input type="text" onfocus = "focuse(this.name);" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
-                            '<td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enterinsert(' + count + ');">' +
+                            '<td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
                             '<option value="">== 선택 ==</option>' +
                             '<option value="일반">일반</option>' +
                             '<option value="매입">매입</option>' +
@@ -200,7 +190,32 @@
         	}
         	
         	function entersubinsert(cc, dd) {
-        		if(window.event.which == 13){
+        		var nowme = $("*[name=" + dd + "]").parent();
+        		if(window.event.which == 9) {
+        			$("*[name=" + dd + "]").parent().prev().children().focus();
+        		} else if(window.event.which == 37) {
+        			for(var i = 0; i < $("*[name=" + dd + "]").parent().prevAll().children().length; i++){
+    					nowme = nowme.prev();
+    					if(!nowme.children().attr("readonly")){
+    						nowme.children().focus();
+    						return false;
+    					}
+    				}
+        		} else if(window.event.which == 38) {
+        			$("*[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) - 1) + "]").focus();
+        			return false;
+        		} else if(window.event.which == 39) {
+    				for(var i = 0; i < $("*[name=" + dd + "]").parent().nextAll().children().length; i++){
+    					nowme = nowme.next();
+    					if(!nowme.children().attr("readonly")){
+    						nowme.children().focus();
+    						return false;
+    					}
+    				}
+        		} else if(window.event.which == 40) {
+        			$("*[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) + 1) + "]").focus();
+        			return false;
+        		} else if(window.event.which == 13){
         			/* var nowme = $("input[name=" + dd + "]").parent();
         			if($("input[name=" + dd + "]").val() == ""){
         				alert("글씨를 입력하세요!");
@@ -391,7 +406,7 @@
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enterinsert(0);">
+		                                                <td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(0);">
 		                                                <option value="">== 선택 ==</option>
 		                                                <option value="일반">일반</option>
 		                                                <option value="매입">매입</option>
