@@ -45,41 +45,50 @@
                                             <thead>
                                             <tr>
                                             	<th>선택</th>
-                                            	<th>장비코드</th>
-                                                <th>장비구분</th>
-                                                <th>장비명</th>
-                                                <th>제작사</th>
-                                                <th>가격</th>
-                                                <th>구입일자</th>
-                                                <th>정기검정일자</th>
-                                                <th>장비대여 여부</th>
+                                            	<th>전산설비코드</th>
+                                            	<th>계정코드</th>
+                                                <th>설비명</th>
+                                                <th>보유구분</th>
+                                                <th>구입일</th>
+                                                <th>사용부서</th>
+                                                <th>위치</th>
+                                                <th>매입가</th>
+                                                <th>예상내용연수</th>
+                                                <th>감가상각여부</th>
+                                                <th>감가상각법</th>
                                             </tr>
                                             </thead>
     
     
                                             <tbody>
                                             <tr>
-                                            	<td><input type="checkbox" name="CT_code" value="CT001" class="box"></td>
-                                            	<td><input type="text" value="CT001">CT001</td>
-                                                <td>제조기계</td>
-                                                <td>CES</td>
-                                                <td>(주)쌍화탕</td>
-                                                <td>18,000,000</td>
+                                            	<td><input type="checkbox" name="CT_code" value="CT002" class="box"></td>
+                                            	<td>CT001
+                                            	<td>계정코드</td>
+                                            	<td>CES</td>
+                                                <td>보유</td>
                                                 <td>2017/04/13</td>
-                                                <td>00/13일</td>
+                                                <td>전산</td>
+                                                <td>창원공장</td>
+                                                <td>8,000,000</td>
+                                                <td>2100</td>
                                                 <td>N</td>
+                                                <td></td>
                                             </tr>
                                             
                                             <tr>
                                             	<td><input type="checkbox" name="CT_code" value="CT002" class="box"></td>
                                             	<td>CT002</td>
-                                                <td>제조기계</td>
-                                                <td>EOQ</td>
-                                                <td>(주)녹차</td>
-                                                <td>3,000,000</td>
-                                                <td>2017/04/13</td>
-                                                <td>00/13일</td>
+                                            	<td>계정코드</td>
+                                            	<td>COT</td>
+                                                <td>대여</td>
+                                                <td>2017/04/17</td>
+                                                <td>인사</td>
+                                                <td>본사</td>
+                                                <td>2,000,000</td>
+                                                <td>1200</td>
                                                 <td>Y</td>
+                                                <td>유형자산</td>
                                             </tr>
                                             
                                             </tbody>
