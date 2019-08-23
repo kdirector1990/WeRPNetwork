@@ -53,12 +53,12 @@
 	                                            <tr>
 		                                            <td>검색</td>
 	                                                <td>
-	                                                	<select class="form-control">
-				                                            <option>선택</option>
-			                                                <option value="">작성자</option>
-			                                                <option value="">책임자</option>
-			                                                <option value="">기획명</option>
-				                                        </select>
+	                                                    <select class="selectpicker" data-style="btn-light">
+	                                                    	<option>선택</option>
+                                                            <option>Tent</option>
+                                                            <option>Flashlight</option>
+                                                            <option>Toilet Paper</option>
+	                                                    </select>
 			                                        </td>
 			                                        
 			                                        <td></td>
