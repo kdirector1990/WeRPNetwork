@@ -377,7 +377,16 @@ public class ERPController {
 		
 		return "pages-500";
 	}
+	//
 	
+	@RequestMapping("tables-datatable")
+	public String tablesdatatable(Locale locale, Model model) {
+		logger.info("log => tables-datatable");
+		
+		return "tables-datatable";
+	}
+	
+	//
 	@RequestMapping("pages-comfirm-mail")
 	public String pagescomfirmmail(Locale locale, Model model) {
 		logger.info("log => pages-comfirm-mail");

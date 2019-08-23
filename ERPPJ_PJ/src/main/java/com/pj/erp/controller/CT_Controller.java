@@ -120,6 +120,6 @@ public class CT_Controller {
 		
 		CT.CT_insert(req, model);
 		
-		return "CT/CT_subject_add";
+		return "CT/CT_equip_add";
 	}
 }
