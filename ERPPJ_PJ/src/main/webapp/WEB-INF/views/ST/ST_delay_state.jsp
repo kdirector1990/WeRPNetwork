@@ -43,18 +43,59 @@
                         <!-- end row-->
 
                         <!-- ===== MEDIA ==== -->
-
-                        <div class="row">
-                            <div class="col-sm-12">
+							  <div class="row">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title"></h4>
-                                         <img src="/erp/resources/img/ST_delay_state.jpg" style="width: 100%;">
+                                        <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>주문번호</th>
+                                                        <th>No.</th>
+                                                        <th>주문일자</th>
+                                                        <th>납기일</th>
+                                                        <th>출하예정일</th>
+                                                        <th>과세부분</th>
+                                                        <th>납품처</th>
+                                                        <th>담당자</th>
+                                                        <th>품번</th>
+                                                        <th>품명</th>
+                                                        <th>규격</th>
+                                                        <th>단위</th>
+                                                        <th>미납수량</th>
+                                                        <th>단가</th>
+                                                        <th>공급가</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+                                </div>
 
-                                </div> <!-- end card -->
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
+                            </div>
+                        </div>
+                        <!-- end row -->  
+                     
 
                         <!-- Media alignment -->
 
