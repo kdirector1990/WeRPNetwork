@@ -149,32 +149,23 @@
     
     
     $('#btnTCT').click(function(){
-   	   	alert("킬릭");
    	   	if($('input:checkbox[name="CT_code"]').is(":checked") == true){
    	   		var rowDate = new Array();
    	   		var tdArr = new Array();
    	   		var checkbox = $('input[name="CT_code"]:checked');
-	   		alert("이건됨");
 	   		checkbox.each(function(i){
-	   			alert("이것도 됨.");
 	   			var tr = checkbox.parent().parent().eq(i);
 	   			var td = tr.children();
 	   			
-	   			alert("죠것도 됨.");
 	   			rowDate.push(tr.text());
-	   			alert("저것도 됨.");
 	   			var CT_type = td.eq(1).text();
 	   			var CT_name = td.eq(3).text();
 	   			
-	   			alert("그것도 됨.");
 	   			tdArr.push(CT_type);
 	   			tdArr.push(CT_name);
 	   			
-	   			alert("조것도 됨.");
 	   			$('.result').show();
-	   			alert("효것도 됨.");
 	   			$('#datatable2 > tbody:last').append('<tr><td>폐기코드</td><td>'+tdArr[0]+'</td><td>'+tdArr[1]+'</td><td><input type="date" name="trashDate" autofocus></td><td><input type="text" name="trashLocation"></td><td><input type="text" name="trashContent" size="50"></td</tr>');
-	   			alert("쳐것도 됨.");
 	   		})
 	   		
 	    	/* $('input[name="CT_code"]:checkbox:checked').each(function(){items.push($(this).val());});
