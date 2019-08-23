@@ -14,15 +14,7 @@ public class ERPDAOImpl implements ERPDAO{
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public int insertMember(Map<String, Object> map) {
-		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertMember",map);
-	}
-
-	@Override
-	public int insertAuth() {
-		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertAuth");
-	}
+	
 	
 	@Override
 	public Map<String, Object> loginCheck(String username) {

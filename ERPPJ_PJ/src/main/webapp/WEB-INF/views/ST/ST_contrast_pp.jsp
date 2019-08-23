@@ -47,9 +47,30 @@
               }
            }
            
+           function enterinsert(aa) {
+               if(event.keyCode == 13) {
+                  alert(aa);
+                  alert(count);
+                  $(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + aa + ");");
+                  $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + aa);
+                  $(".chit-table-bordered-primary tbody #first").attr("id", "first" + aa);
+                  $(".chit-table-bordered-primary tbody").append('<tr>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "co' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "fo' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "go' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "cu' + count + '" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" style = "width: 150px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "ge' + count + '" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"></td>' +
+                             '<td><input type="text" onfocus = "focuse();" name = "gp' + count + '" id = "first" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "sl' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
+                         '</tr>');
+                      count = count + 1;
+                      alert(count);
+                   $(".chit-table-bordered-primary tbody #first").focus();
+               }
+            }
            
         </script>
-        
+           
         
     </head>
 
@@ -183,17 +204,131 @@
                                             
                                             
                                             <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-                                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+                                          <div class="table-responsive">
+                                          <div class="table-responsive" style = "margin: 15px 0px 15px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:100px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;"> 
+                                                <col style = "width:130px;">
+                                               
+                                                <thead>
+                                                    <tr>
+                                                      <th>코드</th>
+                                                      <th>품목군</th>
+                                                      <th>계획수량</th>
+                                                      <th>출고수량</th>
+                                                      <th>계획금액</th>
+                                                      <th>출고금액</th>
+                                                      <th>달성율</th>
+                                                  </tr>
+                                              </thead>
+          
+          
+                                              <tbody>
+                                                  <tr>
+                                                      <td><input type="text" onfocus = "focuse();" name = "co0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "fo0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "go0" class="form-control"  data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                	  <td><input type="text" onfocus = "focuse();" name = "cu0" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "ge0" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "gp0" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "sl0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;" onkeyup="enterinsert(0);"></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+		                              </div> <!-- 품목군 -->
+		                              
                                             </div>
                                             <div class="tab-pane" id="message" role="tabpanel" aria-labelledby="message-tab">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                                <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                                                                                              <div class="table-responsive">
+                                          <div class="table-responsive" style = "margin: 15px 0px 15px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;">
+                                                <col style = "width:150px;"> 
+                                                <col style = "width:160px;">
+                                               
+                                                <thead>
+                                                    <tr>
+                                                      <th>월</th>
+                                                      <th>계획수량</th>
+                                                      <th>출고수량</th>
+                                                      <th>계획금액</th>
+                                                      <th>출고금액</th>
+                                                      <th>달성율</th>
+                                                  </tr>
+                                              </thead>
+          
+          
+                                              <tbody>
+                                                  <tr>
+                                                      <td><input type="text" onfocus = "focuse();" name = "mo0" id = "first" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "00000" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "g0" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "c0" class="form-control"  data-toggle="input-mask" style = "width: 150px; border:0px;"></td>
+                                                	  <td><input type="text" onfocus = "focuse();" name = "cu0" class="form-control" data-toggle="input-mask"  style = "width: 150px; border:0px;"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "ge0" class="form-control"  data-toggle="input-mask" style = "width: 50px; border:0px;"  placeholder = "00"></td>
+                                                      <td><input type="text" onfocus = "focuse();" name = "sl0" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 150px; border:0px;" onkeyup="enterinsert(0);"></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table>
+                                        </div>
+		                              </div> <!-- 월별 -->
+		                              
+		                              <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>품번</th>
+                                                        <th>품명</th>
+                                                        <th>규격</th>
+                                                        <th>단위</th>
+                                                        <th>계획 수량</th>
+                                                        <th>출고 수량</th>
+                                                        <th>계획 금액</th>
+                                                        <th>출고 금액</th>
+                                                        <th>달성율</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                                </div>
                                             </div>
-                                            <div class="tab-pane" id="setting" role="tabpanel" aria-labelledby="setting-tab">
-                                                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-                                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>

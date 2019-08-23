@@ -24,8 +24,9 @@
         		});
         	}
         	
-        	function enter(cc) {
-    			$("input[name=" + cc + "]").parent().next().children().focus();
+        	function enter(cc, dd) {
+        		/* alert(window.event.which) */
+    			/* $("input[name=" + cc + "]").parent().next().children().focus(); */
         	}
         	
         	function change(cc){
@@ -98,14 +99,14 @@
        			$(".spoat-table-bordered-primary tbody #first").attr("id", "first" + cc);
        			$(".spoat-table-bordered-primary tbody").append('<tr>' +
        						'<td><input type="text" onfocus = "focuse();" name = "ceq_code"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>' +
-       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name"' + count + ' id="first" onclick="init();" onkeyup = "enter(this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="change(this.name);">' +
+       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name"' + count + ' id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                             	'<option value="">선택</option>' +
                             	'<option value="1">보유' +
                             	'<option value="2">대여' +
                             '</select></td>' +
-                            '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);" onkeyup = "enter(this.name);"></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="change(this.name);">' +
+                            '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
                             '<option value="">선택</option>' +
                             '<option value="1">인사</option>' +
                             '<option value="2">영업</option>' +
@@ -113,11 +114,9 @@
                             '<option value="4">전산</option>' +
                             '<option value="5">제조</option>' +
                        		'</select></td>' +
-                       		'<td><input type="text" onfocus = "focuse();" name = "location"' + count +' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_prime_cost"' + count +' style = "width: 100%; -webkit-appearance: none; border:0px;">' +
-                            '<option value="미정">미정</option>' +
-                            '</select></td>' +
-                            '<td><input type="number" onfocus = "focuse();" name = "ceq_durable"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
+                       		'<td><input type="text" onfocus = "focuse();" name = "location"' + count +' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                            '<td><input type="number" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);"></td>' +
+                            '<td><input type="number" onfocus = "focuse();" name = "ceq_durable"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
                        		'<td><select onfocus = "focuse();" name="ceq_depreciation"' + count + ' id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;">' +
                        			'<option value="">선택</option>' +
                        			'<option value="1">Y</option>' +
@@ -217,6 +216,8 @@
                                         </table>
                                         
                                        <div class="table-responsive" style = "margin: 15px 0px 50px">
+                                       <form action="CT_subject_add" method="post" class="form-horizontal">
+                                       <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
                                             <table class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
                                                 <col style = "width:7%;">
                                                 <col style = "width:10%;">
@@ -246,15 +247,15 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_name0" id="first" onclick="inin();" onkeyup = "enter(this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
-		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="change(this.name);">
+		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_code" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>
+		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_name" id="first" onclick="inin();" onkeyup = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
+		                                                <td><select class="form-control" name = "ceq_type" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName,this.name);">
 		                                                	<option value="">선택</option>
 		                                                	<option value="1">보유
 		                                                	<option value="2">대여
 		                                                </select></td>
-		                                                <td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.name);" onkeyup = "enter(this.name);"></td>
-		                                                <td><select class="form-control" onfocus = "focuse();" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="change(this.name);">
+		                                                <td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>
+		                                                <td><select class="form-control" onfocus = "focuse();" name = "deparment_code" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
 		                                                <option value="">선택</option>
 		                                                <option value="1">인사</option>
 		                                                <option value="2">영업</option>
@@ -262,22 +263,28 @@
 		                                                <option value="4">전산</option>
 		                                                <option value="5">제조</option>
 			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse();" name = "location0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.name);"></td>
-		                                                <td><select class="form-control" onfocus = "focuse();" name = "ceq_prime_cost0" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.name);">
-		                                                <option value="미정">미정</option>
-			                                       		</select></td>
-			                                       		<td><input type="number" onfocus = "focuse();" name = "ceq_durable0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.name);"></td>
-			                                       		<td><select name="ceq_depreciation0" id = "enter" onfocus = "focuse();" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;">
+		                                                <td><input type="text" onfocus = "focuse();" name = "location" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
+		                                                <td><input type="number" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);"></td>
+			                                       		<td><input type="number" onfocus = "focuse();" name = "ceq_durable" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
+			                                       		<td><select name="ceq_depreciation" id = "enter" onfocus = "focuse();" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;">
 			                                       			<option value="">선택</option>
 			                                       			<option value="1">Y</option>
 			                                       			<option value="2">N</option>
 			                                       		</select>
-			                                       		<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+			                                       		<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
                                         </div>
-                                        
+                                        <div align="right" style = "margin-bottom: 30px;">
+		                                                <button class="btn btn-outline-primary waves-effect waves-light" type="submit">
+		                                                    등록
+		                                                </button>
+		                                                <button type="reset" class="btn btn-outline-primary waves-effect waves-light">
+		                                                    삭제
+		                                                </button>
+		                                     </div>
+										</form>                                        
                                     </div>
                                 </div>
                             </div>
