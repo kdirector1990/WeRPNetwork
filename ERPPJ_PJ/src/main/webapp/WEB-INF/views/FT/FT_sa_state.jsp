@@ -52,13 +52,13 @@
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
                                                     <span class="d-none d-sm-block">잔액</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                                                     <span class="d-none d-sm-block">원장</span>
                                                 </a>
@@ -66,7 +66,7 @@
                                         </ul>
                                         <div class="tab-content">
                                         	<!-- 잔액 -->
-                                           	<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                           	<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
@@ -76,7 +76,7 @@
 						                                            <tr>
 						                                            	<td>회계단위</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
+						                                                	<select class="form-control">
 									                                            <option>선택</option>
 									                                                <option value="">본사</option>
 									                                        </select>
@@ -88,9 +88,8 @@
 						                                                
 						                                                <td>&nbsp;계정과목</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
+						                                                	<select class="form-control">
 									                                            <option>선택</option>
-									                                                <option value=""></option>
 									                                                <option value=""></option>
 									                                        </select>
 						                                                </td>
@@ -148,7 +147,7 @@
                                           <!-- 잔액 끝 -->
                                           
                                           <!-- 원장 -->
-                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                             	<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
@@ -156,7 +155,7 @@
 						                                             <tr>
 						                                             	   <td>회계단위</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
+						                                                	<select class="form-control">
 									                                            <option>선택</option>
 									                                                <option value="">본사</option>
 									                                        </select>
@@ -173,7 +172,7 @@
 						                                                
 						                                                <td>&nbsp;계정과목</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
+						                                                	<select class="form-control">
 									                                            <option>선택</option>
 									                                                <option value=""></option>
 									                                                <option value=""></option>

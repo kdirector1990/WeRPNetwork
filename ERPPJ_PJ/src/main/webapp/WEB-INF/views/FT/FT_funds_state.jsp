@@ -52,25 +52,29 @@
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" 
+                                                	role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
                                                     <span class="d-none d-sm-block">총괄거래현황</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" 
+                                                	role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                                                     <span class="d-none d-sm-block">어음현황</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false">
+                                                <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" 
+                                                	role="tab" aria-controls="message" aria-selected="false">
                                                     <span class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
                                                     <span class="d-none d-sm-block">자금집행실적</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" id="setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="setting" aria-selected="false">
+                                                <a class="nav-link" id="setting-tab" data-toggle="tab" href="#setting" 
+                                                	role="tab" aria-controls="setting" aria-selected="false">
                                                     <span class="d-block d-sm-none"><i class="fa fa-cog"></i></span>
                                                     <span class="d-none d-sm-block">일일자금계획</span>
                                                 </a>
@@ -78,7 +82,7 @@
                                         </ul>
                                         <div class="tab-content">
                                         	<!-- 총괄거래현황 -->
-                                           	<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                           	<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
@@ -88,8 +92,7 @@
 						                                            <tr>
 						                                            	<td>회계단위</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
+						                                                	<select class="form-control">
 									                                                <option value="">본사</option>
 									                                        </select>
 								                                        </td>
@@ -152,19 +155,58 @@
 				                                                <tbody>
 				                                                    <tr>
 				                                                    	<td>1</td>
-				                                                    	<td>2</td>
-				                                                    	<td>3</td>
-				                                                    	<td>4</td>
-				                                                    	<td>5</td>
-				                                                    	<td>6</td>
-				                                                    	<td>7</td>
-				                                                    	<td>8</td>
-				                                                    	<td>9</td>
-				                                                    	<td>10</td>
+				                                                    	<td>현금</td>
+				                                                    	<td></td>
+				                                                    	<td>현금</td>
+				                                                    	<td>5,274,000</td>
+				                                                    	<td></td>
+				                                                    	<td>5,274,000</td>
+				                                                    	<td>62,000,000</td>
+				                                                    	<td>959,526,600</td>
+				                                                    	<td>-892,252,600</td>
 				                                                    </tr>
+				                                                    <tr>
+				                                                    	<td>2</td>
+				                                                    	<td>소계</td>
+				                                                    	<td></td>
+				                                                    	<td></td>
+				                                                    	<td>5,274,000</td>
+				                                                    	<td></td>
+				                                                    	<td>5,274,000</td>
+				                                                    	<td>62,000,000</td>
+				                                                    	<td>959,526,600</td>
+				                                                    	<td>-892,252,600</td>
+				                                                    </tr>
+				                                                    <tr>
+				                                                    	<td>3</td>
+				                                                    	<td>당좌예금</td>
+				                                                    	<td>8890-6984-25-55641</td>
+				                                                    	<td>한아은행</td>
+				                                                    	<td>5,274,000</td>
+				                                                    	<td></td>
+				                                                    	<td></td>
+				                                                    	<td></td>
+				                                                    	<td>959,526,600</td>
+				                                                    	<td>-892,252,600</td>
+				                                                    </tr>
+				                                                    
 				                                                </tbody>
 				                                            </table>
-				                                        </div>
+				                                            
+				                                            <table class="table mb-0">
+				                                                <thead class="thead-light">
+				                                                    <tr>
+						                                                <th colspan="4">합계</th>
+						                                                <th>0</th>
+						                                                <th>0</th>
+						                                                <th>0</th>
+						                                                <th>0</th>
+						                                                <th>0</th>
+						                                                <th>0</th>
+						                                            </tr>
+				                                                </thead>
+				                                            </table>
+			                                            </div>
 				                                    </div>
 				                                </div>
 				                            </div>
@@ -172,7 +214,7 @@
                                           <!-- 총괄거래현황 끝 -->
                                           
                                           <!-- 어음현황 -->
-                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="tab-pane show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                             	<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
@@ -180,8 +222,7 @@
 						                                             <tr>
 						                                             	   <td>회계단위</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
+						                                                	<select class="form-control">
 									                                                <option value="">본사</option>
 									                                        </select>
 								                                        </td>
@@ -196,77 +237,80 @@
 						                                                </td>
 						                                            </tr>
 						                                        </table>
-		                                       	 <hr>
-                                                <div class="col-lg-6">
-					                                <div class="card">
-					                                    <div class="card-body table-responsive">
-					                                        <div class="table-responsive">
-					                                            <table class="table mb-0">
-					                                                <thead class="thead-light">
-					                                                    <tr>
-							                                                <th>지급어음 </th>
-							                                                <th>금액</th>
-							                                            </tr>
-							                                            
-							                                            <tr>
-							                                                <th>전일잔액 </th>
-							                                                <th></th>
-							                                            </tr>
-							                                            
-					                                                </thead>
-					                                                <tbody>
-					                                                    <tr>
-					                                                    	<td>..</td>
-					                                                    	<td>..</td>
-					                                                    </tr>
-					                                                </tbody>
-					                                                	<tr>
-					                                                		<td>금일잔액</td>
-					                                                		<td>0</td>
-					                                                	</tr>
-					                                            </table>
-					                                        </div>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                            
-					                            <div class="col-lg-6">
-					                                <div class="card">
-					                                    <div class="card-body table-responsive">
-					                                        <div class="table-responsive">
-					                                            <table class="table mb-0">
-					                                                <thead class="thead-light">
-					                                                    <tr>
-							                                                <th>받을어음 </th>
-							                                                <th>금액</th>
-							                                            </tr>
-							                                            
-							                                            <tr>
-							                                                <th>전일잔액 </th>
-							                                                <th></th>
-							                                            </tr>
-							                                            
-					                                                </thead>
-					                                                <tbody>
-					                                                    <tr>
-					                                                    	<td>..</td>
-					                                                    	<td>..</td>
-					                                                    	
-					                                                    </tr>
-					                                                </tbody>
-					                                                	<tr>
-					                                                		<td>금일잔액</td>
-					                                                		<td>0</td>
-					                                                	</tr>
-					                                            </table>
-					                                        </div>
-					                                    </div>
-					                                </div>
-					                            </div><!-- col-lg-6 끝 -->
-					                            </div>
-					                            </div>
-					                            </div>
-                                            </div>
+		                                       				 <hr>
+		                                       				 
+		                                       			 	<!-- 받을어음 -->
+				                                                <div class="col-lg-6">
+									                                <div class="card">
+									                                    <div class="card-body table-responsive">
+									                                        <div class="table-responsive">
+									                                            <table class="table mb-0">
+									                                                <thead class="thead-light">
+									                                                    <tr>
+											                                                <th colspan="2">받을어음 </th>
+											                                                <th>금액</th>
+											                                            </tr>
+											                                            
+											                                            <tr>
+											                                                <th colspan="2">전일잔액 </th>
+											                                                <th>100,000,000</th>
+											                                            </tr>
+											                                            
+									                                                </thead>
+									                                                <tbody>
+									                                                    <tr>
+									                                                    	<td>증가</td>
+									                                                    	<td>00001 (주)영은실업 자가 2018013101</td>
+									                                                    	<td>30,000,000</td>
+									                                                    </tr>
+									                                                </tbody>
+									                                                	<tr>
+									                                                		<td colspan="2">금일잔액</td>
+									                                                		<td>0</td>
+									                                                	</tr>
+									                                            </table>
+									                                        </div>
+									                                    </div>
+									                                </div>
+									                            </div><!-- end col-lg-6  -->
+				                                                
+				                                                <div class="col-lg-6">
+									                                <div class="card">
+									                                    <div class="card-body table-responsive">
+									                                        <div class="table-responsive">
+									                                            <table class="table mb-0">
+									                                                <thead class="thead-light">
+									                                                    <tr>
+											                                                <th colspan="2">지급어음 </th>
+											                                                <th>금액</th>
+											                                            </tr>
+											                                            
+											                                            <tr>
+											                                                <th colspan="2">전일잔액 </th>
+											                                                <th>100,000,000</th>
+											                                            </tr>
+											                                            
+									                                                </thead>
+									                                                <tbody>
+									                                                    <tr>
+									                                                    	<td>증가</td>
+									                                                    	<td>00001 (주)영은실업 자가 2018013101</td>
+									                                                    	<td>30,000,000</td>
+									                                                    </tr>
+									                                                </tbody>
+									                                                	<tr>
+									                                                		<td colspan="2">금일잔액</td>
+									                                                		<td>0</td>
+									                                                	</tr>
+							                                                	</table>
+									                                        </div>
+									                                    </div>
+									                                </div>
+									                            </div><!-- end col-lg-6  -->
+				                            			</div>
+					                           		</div>
+					                           	</div>
+                                           	</div>
                                              <!-- 어음현황 끝 -->
                                             
                                             <!-- 자금집행실적 -->
@@ -280,8 +324,8 @@
 						                                             <tr>
 						                                                <td>회계단위</td>
 						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
+						                                                	<select class="form-control">
+									                                            	<option>전체선택</option>
 									                                                <option value="">본사</option>
 									                                        </select>
 								                                        </td>
@@ -304,7 +348,7 @@
 				                                            <table class="table mb-0">
 				                                                <thead class="thead-light">
 				                                                    <tr>
-						                                                <th>적요</th>
+						                                                <th colspan="2">적요</th>
 						                                                <th>금액</th>
 						                                                <th>거래처명</th>
 						                                                <th>비고</th>
@@ -313,12 +357,43 @@
 				                                                </thead>
 				                                                <tbody>
 				                                                    <tr>
-					                                                    <td>ㅇㅇ</td>
-					                                                    <td>100</td>
-					                                                    <td>권순용집</td>
-					                                                    <td>권순용</td>
+					                                                    <td>수입</td>
+					                                                    <td>현금입금</td>
+					                                                    <td>4,000,000</td>
+					                                                    <td>신안은행</td>
+					                                                    <td></td>
+				                                                    </tr>
+				                                                    <tr>
+					                                                    <td>수입</td>
+					                                                    <td>제조경비-사무용품비</td>
+					                                                    <td>350,000</td>
+					                                                    <td></td>
+					                                                    <td>일반경비</td>
+				                                                    </tr>
+				                                                    <tr>
+					                                                    <td>수입</td>
+					                                                    <td>외상매입근 발생</td>
+					                                                    <td>330,000</td>
+					                                                    <td>신안은행</td>
+					                                                    <td>일반경비</td>
+				                                                    </tr>
+				                                                    <tr>
+					                                                    <td>수입</td>
+					                                                    <td>제조경비-사무용품비</td>
+					                                                    <td>350,000</td>
+					                                                    <td></td>
+					                                                    <td>일반경비</td>
 				                                                    </tr>
 				                                                </tbody>
+				                                            </table>
+				                                            
+				                                            <table class="table mb-0">
+				                                                <thead class="thead-light">
+						                                            <tr>
+				                                                    	<th colspan="2">전일이월시재 : 1,340,241,536</th>
+				                                                    	<th colspan="2">금일시월시재 : 1,382,265,536</th>
+				                                                    </tr>
+				                                                </thead>
 				                                            </table>
 				                                        </div>
 				                                    </div>
@@ -332,9 +407,9 @@
 		                                             <tr>
 		                                                <td>회계단위</td>
 		                                                <td>
-		                                                	<select class="form-control select2">
+		                                                	<select class="form-control">
 					                                            <option>선택</option>
-					                                                <option value="">본사</option>
+				                                                <option value="">본사</option>
 					                                        </select>
 				                                        </td>
 				                                        
@@ -373,13 +448,13 @@
 					                                                </thead>
 					                                                <tbody>
 					                                                    <tr>
-					                                                    	<td>순용</td>
-					                                                   	 	<td>보민</td>
-					                                                    	<td>준선</td>
-					                                                    	<td>선우</td>
-					                                                    	<td>지원</td>
-					                                                   	 	<td>진태</td>
-					                                                    	<td>성미</td>
+					                                                    	<td></td>
+					                                                   	 	<td></td>
+					                                                    	<td></td>
+					                                                    	<td></td>
+					                                                    	<td></td>
+					                                                   	 	<td></td>
+					                                                    	<td></td>
 					                                                    </tr>
 					                                                    
 					                                                    <tr>
@@ -389,7 +464,7 @@
 					                                                    
 					                                                    <tr>
 					                                                    	<td colspan="6">전이월시재</td>
-					                                                    	<td>0</td>
+					                                                    	<td>1,340,241,536</td>
 					                                                    </tr>
 					                                                </tbody>
 					                                            </table>
@@ -421,23 +496,43 @@
 					                                                </thead>
 					                                                <tbody>
 					                                                    <tr>
-					                                                    	<td>순용</td>
-					                                                   	 	<td>보민</td>
-					                                                    	<td>준선</td>
-					                                                    	<td>선우</td>
-					                                                    	<td>지원</td>
-					                                                   	 	<td>진태</td>
-					                                                    	<td>성미</td>
+					                                                    	<td>2018/05/20</td>
+					                                                   	 	<td>원재료비</td>
+					                                                    	<td>DN상사(주)</td>
+					                                                    	<td></td>
+					                                                    	<td></td>
+					                                                   	 	<td>외상매입금 발생</td>
+					                                                    	<td>3,300,000</td>
+					                                                    </tr>
+					                                                    
+					                                                     <tr>
+					                                                    	<td>2018/05/25</td>
+					                                                   	 	<td>인권비</td>
+					                                                    	<td>급여</td>
+					                                                    	<td></td>
+					                                                    	<td></td>
+					                                                   	 	<td>급여</td>
+					                                                    	<td>50,000,000</td>
+					                                                    </tr>
+					                                                    
+					                                                    <tr>
+					                                                    	<td>2018/05/20</td>
+					                                                   	 	<td>원재료비</td>
+					                                                    	<td>유신상사(주)</td>
+					                                                    	<td></td>
+					                                                    	<td></td>
+					                                                   	 	<td>외상매입금 발생</td>
+					                                                    	<td>3,300,000</td>
 					                                                    </tr>
 					                                                    
 					                                                    <tr>
 					                                                    	<td colspan="6">지출예정계</td>
-					                                                    	<td>0</td>
+					                                                    	<td>57,100,000</td>
 					                                                    </tr>
 					                                                    
 					                                                    <tr>
 					                                                    	<td colspan="6">당일말예정잔액</td>
-					                                                    	<td>0</td>
+					                                                    	<td>1,283,141,536</td>
 					                                                    </tr>
 					                                                </tbody>
 					                                            </table>
@@ -447,10 +542,9 @@
 					                              </div>
 	                                            </div><!-- 일일자금계획 끝 -->  
 	                                        </div>
-	                                    </div>
+	                                    </div><!-- end tab-content -->
 	                                 </div>
 	                               </div>
-	                             <!--  -->
 	                        </div>
 	                    </div> <!-- end container-fluid -->
 	
@@ -484,115 +578,8 @@
 
         </div>
         <!-- END wrapper -->
-
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <hr class="mt-0">
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
-
-
-                <div class="p-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                        <label class="custom-control-label" for="customCheck1">Notifications</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
-                        <label class="custom-control-label" for="customCheck2">API Access</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Auto Updates</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
-                        <label class="custom-control-label" for="customCheck4">Online Status</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck5">
-                        <label class="custom-control-label" for="customCheck5">Auto Payout</label>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Timeline</h5>
-                <hr class="mb-0" />
-
-                <div class="p-3">
-                    <ul class="list-unstyled activity-widget">
-                        <li class="activity-list">
-                            <p class="mb-0"><small>08 July</small></p>
-                            <p>Neque porro quisquam est</p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>09 July</small></p>
-                            <p>Ut enim ad minima veniam quis velit esse </p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>10 July</small></p>
-                            <p>Quis autem vel eum iure</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Messages -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">13:40 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                            <p class="inbox-item-date">13:34 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                            <p class="inbox-item-date">13:17 PM</p>
-                        </div>
-
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                            <p class="inbox-item-date">12:20 PM</p>
-
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">10:15 AM</p>
-
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
-
+        
+        <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
         
     </body>

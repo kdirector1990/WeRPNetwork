@@ -41,6 +41,7 @@
     									<button type="button"  class="btn btn-outline-dark waves-effect waves-light">폐기</button>
     									<br>
     									</div>
+    									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
@@ -140,7 +141,6 @@
           
                 <%@ include file="../footer.jsp" %>
 
-            </div>
 
             <!-- ============================================================== -->
             <!-- End Page content -->
