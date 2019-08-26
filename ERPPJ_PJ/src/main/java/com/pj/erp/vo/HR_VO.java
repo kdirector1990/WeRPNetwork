@@ -2,41 +2,28 @@ package com.pj.erp.vo;
 
 public class HR_VO {
 
-	private String username;
-	private String password;
 	private String e_picture;
-	private String e_engName;
 	private String e_name;
+	private String e_gender;
+	private String e_type;
 	private String e_code;
-	private int e_gender;
-	private String e_born;
 	private String e_hp;
-	private String e_phone;
-	private String e_address;
+	private String e_address1;
 	private String e_address2;
-	private String e_endAddress;
-	private String e_email;
 	private String e_nfcCodeNFC;
-	private int household;
-	private int disClass;
+	private String e_disability_type;
+	private String e_disability_level;
+	private String e_height;
+	private String e_weight;
+	private String e_left_sight;
+	private String e_right_sight;
+	private String e_color_blind;
+	private String e_blood_type;
+	private String e_blood_pressure1;
+	private String e_blood_pressure2;
+	private String e_blood_pressure;
 	
 	public HR_VO() {}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public String getE_picture() {
 		return e_picture;
@@ -44,14 +31,6 @@ public class HR_VO {
 
 	public void setE_picture(String e_picture) {
 		this.e_picture = e_picture;
-	}
-
-	public String getE_engName() {
-		return e_engName;
-	}
-
-	public void setE_engName(String e_engName) {
-		this.e_engName = e_engName;
 	}
 
 	public String getE_name() {
@@ -62,28 +41,28 @@ public class HR_VO {
 		this.e_name = e_name;
 	}
 
+	public String getE_gender() {
+		return e_gender;
+	}
+
+	public void setE_gender(String e_gender) {
+		this.e_gender = e_gender;
+	}
+
+	public String getE_type() {
+		return e_type;
+	}
+
+	public void setE_type(String e_type) {
+		this.e_type = e_type;
+	}
+
 	public String getE_code() {
 		return e_code;
 	}
 
 	public void setE_code(String e_code) {
 		this.e_code = e_code;
-	}
-
-	public int getE_gender() {
-		return e_gender;
-	}
-
-	public void setE_gender(int e_gender) {
-		this.e_gender = e_gender;
-	}
-
-	public String getE_born() {
-		return e_born;
-	}
-
-	public void setE_born(String e_born) {
-		this.e_born = e_born;
 	}
 
 	public String getE_hp() {
@@ -94,20 +73,12 @@ public class HR_VO {
 		this.e_hp = e_hp;
 	}
 
-	public String getE_phone() {
-		return e_phone;
+	public String getE_address1() {
+		return e_address1;
 	}
 
-	public void setE_phone(String e_phone) {
-		this.e_phone = e_phone;
-	}
-
-	public String getE_address() {
-		return e_address;
-	}
-
-	public void setE_address(String e_address) {
-		this.e_address = e_address;
+	public void setE_address1(String e_address1) {
+		this.e_address1 = e_address1;
 	}
 
 	public String getE_address2() {
@@ -118,22 +89,6 @@ public class HR_VO {
 		this.e_address2 = e_address2;
 	}
 
-	public String getE_endAddress() {
-		return e_endAddress;
-	}
-
-	public void setE_endAddress(String e_endAddress) {
-		this.e_endAddress = e_endAddress;
-	}
-
-	public String getE_email() {
-		return e_email;
-	}
-
-	public void setE_email(String e_email) {
-		this.e_email = e_email;
-	}
-
 	public String getE_nfcCodeNFC() {
 		return e_nfcCodeNFC;
 	}
@@ -142,21 +97,95 @@ public class HR_VO {
 		this.e_nfcCodeNFC = e_nfcCodeNFC;
 	}
 
-	public int getHousehold() {
-		return household;
+	public String getE_disability_type() {
+		return e_disability_type;
 	}
 
-	public void setHousehold(int household) {
-		this.household = household;
+	public void setE_disability_type(String e_disability_type) {
+		this.e_disability_type = e_disability_type;
 	}
 
-	public int getDisClass() {
-		return disClass;
+	public String getE_disability_level() {
+		return e_disability_level;
 	}
 
-	public void setDisClass(int disClass) {
-		this.disClass = disClass;
+	public void setE_disability_level(String e_disability_level) {
+		this.e_disability_level = e_disability_level;
 	}
+
+	public String getE_height() {
+		return e_height;
+	}
+
+	public void setE_height(String e_height) {
+		this.e_height = e_height;
+	}
+
+	public String getE_weight() {
+		return e_weight;
+	}
+
+	public void setE_weight(String e_weight) {
+		this.e_weight = e_weight;
+	}
+
+	public String getE_left_sight() {
+		return e_left_sight;
+	}
+
+	public void setE_left_sight(String e_left_sight) {
+		this.e_left_sight = e_left_sight;
+	}
+
+	public String getE_right_sight() {
+		return e_right_sight;
+	}
+
+	public void setE_right_sight(String e_right_sight) {
+		this.e_right_sight = e_right_sight;
+	}
+
+	public String getE_color_blind() {
+		return e_color_blind;
+	}
+
+	public void setE_color_blind(String e_color_blind) {
+		this.e_color_blind = e_color_blind;
+	}
+
+	public String getE_blood_type() {
+		return e_blood_type;
+	}
+
+	public void setE_blood_type(String e_blood_type) {
+		this.e_blood_type = e_blood_type;
+	}
+
+	public String getE_blood_pressure1() {
+		return e_blood_pressure1;
+	}
+
+	public void setE_blood_pressure1(String e_blood_pressure1) {
+		this.e_blood_pressure1 = e_blood_pressure1;
+	}
+
+	public String getE_blood_pressure2() {
+		return e_blood_pressure2;
+	}
+
+	public void setE_blood_pressure2(String e_blood_pressure2) {
+		this.e_blood_pressure2 = e_blood_pressure2;
+	}
+
+	public String getE_blood_pressure() {
+		return e_blood_pressure;
+	}
+
+	public void setE_blood_pressure(String e_blood_pressure) {
+		this.e_blood_pressure = e_blood_pressure;
+	}
+
+	
 	
 	
 	
