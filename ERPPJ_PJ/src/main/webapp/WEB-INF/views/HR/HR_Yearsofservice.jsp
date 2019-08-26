@@ -49,49 +49,53 @@
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body table-responsive">
-								<table>
-									<tr>
-										<th>사업장</th>
-										<td><input class="input" type="text" name=""
-											 value="1000" readonly>&nbsp;<a
-										href="#"><i class="dripicons-zoom-in"></i></a> <input class="input" type="text"
-											name="" value="인사1급 회사본사">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-										<th><select class="input" name="department" onchange="">
-												<option value="">0.부서</option>
-												<option value="">1.직종</option>
-												<option value="">2.직책</option>
-										</select></th>
-										<td><select class="input" name="department2" disabled>
-												<option value="">1100 총무부</option>
-										</select>&nbsp;<a
-										href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-										<th>퇴사자</th>
-										<td><select class="input" name="department" onchange="">
-												<option value="">0. 제외</option>
-												<option value="">1. 포함</option>												
-										</select></td>
+							<table class = "col-12" id="datatable"
+								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+								<tr class="form-group row">
+									<td class="col-md-1 col-form-label">부서</td>
+									<td class="col-md-2 input-group">
+											<input type="text" class="form-control" name="e_name" placeholder = "부서명">
+											<div class="input-group-append">
+											<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
+											</div>
+											</td>
+											<th class="col-md-1 col-form-label">&nbsp;</th>	
+									<th class="col-md-1 col-form-label">사원검색</th>
+										<td class="col-md-2 input-group">
+											<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+											<div class="input-group-append">
+											<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
+											</div>
+											</td>
+											<th class="col-md-1 col-form-label">&nbsp;</th>	
+										<th class="col-md-1 col-form-label">퇴사자</th>
+										<td class="col-md-1 input-group"><select class="form-control select2" name="" onchange="">
+												<option value="">제외</option>
+												<option value="">포함</option>																						
+											</select></td>
 									</tr>
-
-									<tr>
-										<th>기준일</th>
-										<td><input class="input" type="text" name="" value="2019/08/14">&nbsp;<a
-										href="#"><i class="dripicons-zoom-in"></i></a>&nbsp;&nbsp;</td>
-										<th>년수기준</th>
-										<td><select class="input" name="year" onchange="">
+									<tr class="form-group row">		
+										<th class="col-md-1 col-form-label">기준일</th>
+										<td class="col-md-2 input-group"><input class="form-control input-daterange-datepicker" type="text" name="daterange" /></td>
+										<th class="col-md-1 col-form-label">&nbsp;</th>
+										<th class="col-md-1 col-form-label">년수기준</th>
+										<td class="col-md-2 input-group"><select class="form-control select2" name="" onchange="">
 												<option value="">1. 미만일수 버림</option>
 												<option value="">2. 미만일수 올림</option>
-												<option value="">3. 미만일수 표시</option>
-										</select>&nbsp;&nbsp;</td>
-										<th>경력포함</th>
-										<td><select class="input" name="career" onchange="">
+												<option value="">3. 미만일수 표시</option>																						
+											</select></td>
+										<th class="col-md-1 col-form-label">&nbsp;</th>
+										<th class="col-md-1 col-form-label">경력포함</th>
+										<td class="col-md-2 input-group"><select class="form-control select2" name="" onchange="">
 												<option value="">0. 제외</option>
 												<option value="">1. 포함(근속기간'여'만)</option>
 												<option value="">2. 포함(모든 경력사항)</option>
 												<option value="">3. 포함(병역 복무기간)</option>
-										</select>&nbsp;&nbsp;</td>
-									</tr>
+										</select></td>
+								</tr>
+							</table>
+								
 
-								</table>
 
 								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap"
@@ -134,6 +138,21 @@
 
 	<%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
+            <!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
 
 </body>
 </html>
