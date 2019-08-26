@@ -112,6 +112,13 @@ public class ST_Controller {
 		
 		return "ST/tables-responsive";
 	}
+	
+	@RequestMapping("ST_salesStatus")
+	public String salesStatus(Locale locale, Model model) {
+		logger.info("log => salesStatus");
+		
+		return "ST/ST_salesStatus";
+	}
 		
 	
 }
