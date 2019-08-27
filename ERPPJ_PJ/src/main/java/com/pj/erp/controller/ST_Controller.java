@@ -119,6 +119,20 @@ public class ST_Controller {
 		
 		return "ST/ST_salesStatus";
 	}
+	
+	@RequestMapping("ST_salesTotal")
+	public String ST_salesTotal(Locale locale, Model model) {
+		logger.info("log => ST_salesTotal");
+		
+		return "ST/ST_salesTotal";
+	}
+	
+	@RequestMapping("ST_salesTotal2")
+	public String ST_salesTotal2(Locale locale, Model model) {
+		logger.info("log => ST_salesTotal2");
+		
+		return "ST/ST_salesTotal2";
+	}
 		
 	
 }
