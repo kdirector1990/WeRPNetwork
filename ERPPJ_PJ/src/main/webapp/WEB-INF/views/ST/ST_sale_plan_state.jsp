@@ -130,6 +130,8 @@
                             </div>
                         </div>     
                         <!-- end page title --> 
+                        
+                        
  
                         <!-- end row-->
 
@@ -139,6 +141,57 @@
                                 <div class="card"  style = "width: 1600px; height: 1700px;">
                                     <div class="card-body" style = "width: 1600px;">
                                         <h4 class="header-title mb-3">Default Tabs</h4>
+                                        
+                                                                               <div class="table-responsive">
+                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                <td>사원
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>견적기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="yyyy">
+                                            	</td>
+                                            	<td>품목군</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            
+                                            	<td><select class="">
+			                                                <option value="">0.품번</option>
+			                                                <option value="">1.품명</option>
+			                                                <option value="">2.규격</option>
+			                                                <option value="">3.품번범위</option>
+			                                                <option value="">4.품번개별</option>
+			                                        </select>
+			                                        <input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                            	</td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td>대분류</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            	<td>중분류</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            	<td>소분류
+                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>  
+                                            </tr>
+                                            
+                                            <tr>
+                                            <td>환종</td>
+                                           	 <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><td>
+                                            </tr>
+                                        </table>
+                                        </div>
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">

@@ -52,13 +52,13 @@
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
                                                     <span class="d-none d-sm-block">잔액</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                                                     <span class="d-none d-sm-block">원장</span>
                                                 </a>
@@ -66,44 +66,36 @@
                                         </ul>
                                         <div class="tab-content">
                                         	<!-- 잔액 -->
-                                           	<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                           	<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
 					                                   		<form>
 					                                    	<div class="form-group mb-3">
 						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-						                                            <tr>
-						                                            	<td>회계단위</td>
-						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
-									                                                <option value="">본사</option>
-									                                        </select>
-								                                        </td>
-								                                        
-								                                        <td>
-						                                                	&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-						                                                </td>
-						                                                
-						                                                <td>&nbsp;계정과목</td>
-						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
-									                                                <option value=""></option>
-									                                                <option value=""></option>
-									                                        </select>
-						                                                </td>
-						                                                
-						                                                <td>기간</td>
-						                                                <td>
-						                                               	 	<input type="text" id="reportrange" class="form-control"/>
-						                                                </td>
-						                                                
-						                                                <td>
-						                                                	<input type="checkbox">&nbsp;잔액 '0'값 표시
-					                                                	</td>
-				                                                	</tr>
+				                                                	<tr class="form-group row">
+																		<th class="col-md-1 col-form-label">회계단위</th>
+																		<td class="col-md-2 input-group"><select class="form-control" name="" onchange="">
+																				<option>전체선택</option>
+																				<option>1000(주)한국생상 본점</option>
+																			</select>
+																			<div class="input-group-append">
+																			<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
+																			</div> 
+																		</td>
+																		<th class="col-md-1 col-form-label">계정과목</th>
+																		<td class="col-md-2 input-group"><select class="form-control" name="" onchange="">
+																				<option>전체선택</option>
+																				<option></option>
+																			</select>
+																			<div class="input-group-append">
+																			<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
+																			</div> 
+																		</td>
+																		<th class="col-md-1 col-form-label">조회기간</th>
+																		<td><input class="form-control input-daterange-datepicker" type="text" name="daterange" /></td>
+																		<td><input type="checkbox" name="">&nbsp;잔액 '0'값 표시</td>
+																	</tr>
 						                                        </table>
 					                                        </div>
 					                                        </form>
@@ -148,46 +140,40 @@
                                           <!-- 잔액 끝 -->
                                           
                                           <!-- 원장 -->
-                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                             	<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
 				                                        		<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-						                                             <tr>
-						                                             	   <td>회계단위</td>
-						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
-									                                                <option value="">본사</option>
-									                                        </select>
-								                                        </td>
-								                                        
-								                                        <td>
-						                                                	&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-						                                                </td>
-						                                                
-						                                                <td>조회기간</td>
-						                                                <td>
-						                                               		 <input type="text" id="reportrange" class="form-control"/>
-						                                                </td>
-						                                                
-						                                                <td>&nbsp;계정과목</td>
-						                                                <td>
-						                                                	<select class="form-control select2">
-									                                            <option>선택</option>
-									                                                <option value=""></option>
-									                                                <option value=""></option>
-									                                        </select>
-						                                                </td>
-						                                            </tr>
-						                                            
-						                                            <tr>
-						                                            	<td>거래처</td>
-						                                            	<td><input type="text" class="form-control" ></td>
-						                                            	<td>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-						                                            	<td><input type="text" class="form-control"></td>
-						                                            	<td>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-						                                            	<td><input type="text" class="form-control"></td>
+						                                             <tr class="form-group row">
+																		<th class="col-md-1 col-form-label">회계단위</th>
+																		<td class="col-md-2 input-group"><select class="form-control" name="" onchange="">
+																				<option>전체선택</option>
+																				<option>1000(주)한국생상 본점</option>
+																			</select>
+																			<div class="input-group-append">
+																			<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
+																			</div> 
+																		</td>
+																		
+																		<th class="col-md-1 col-form-label">조회기간</th>
+																		<td><input class="form-control input-daterange-datepicker" type="text" name="daterange" /></td>
+																	
+																		<th class="col-md-1 col-form-label">계정과목</th>
+																		<td class="col-md-2 input-group"><select class="form-control" name="" onchange="">
+																				<option>전체선택</option>
+																				<option></option>
+																			</select>
+																		</td>
+																		<th class="col-md-1 col-form-label">거래처</th>
+						                                            	<td class="col-md-2 input-group">
+																		<input type="text" class="form-control" name="e_name" placeholder = "거래처">
+																		<div class="input-group-append">
+																		<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
+																		</div>
+																		<input type="text" class="form-control" name="e_name" placeholder = "거래처" readonly>
+																		</td>	
+																		
 						                                            </tr>
 						                                        </table>
 		                                       	 <hr>
@@ -205,13 +191,21 @@
 							                                            </tr>
 					                                                </thead>
 					                                                <tbody>
+					                                                	<tr>
+					                                                    	<td></td>
+					                                                    	<td></td>
+					                                                    	<td>전기이월</td>
+					                                                    	<td>-348,650,000</td>
+					                                                    	<td></td>
+					                                                    	<td>-348,650,000</td>
+					                                                    </tr>
 					                                                    <tr>
-					                                                    	<td>권순용</td>
-					                                                    	<td>권순용</td>
-					                                                    	<td>권순용</td>
-					                                                    	<td>권순용</td>
-					                                                    	<td>권순용</td>
-					                                                    	<td>권순용</td>
+					                                                    	<td>1</td>
+					                                                    	<td>10</td>
+					                                                    	<td>현금입그</td>
+					                                                    	<td></td>
+					                                                    	<td>4,000,000</td>
+					                                                    	<td>-352,650,000</td>
 					                                                    </tr>
 					                                                </tbody>
 					                                            </table>
@@ -370,6 +364,23 @@
         <div class="rightbar-overlay"></div>
 
         <%@ include file="../setting2.jsp" %>
+        
+        <!-- plugins -->
+		<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+		<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+		<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+		<!-- dashboard init -->
+		<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+		<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+        
         
     </body>
 </html>

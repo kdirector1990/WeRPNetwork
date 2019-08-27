@@ -39,22 +39,62 @@
                             </div>
                         </div>     
                         <!-- end page title --> 
+                        
+                        
  
                         <!-- end row-->
 
                         <!-- ===== MEDIA ==== -->
-
-                        <div class="row">
-                            <div class="col-sm-12">
+						<div class="row">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title"></h4>
-                                         <img src="/erp/resources/img/ST_tex_invoice_list.jpg" style="width: 100%;">
+                                        <div class="table-responsive">
+                                        
+                                            <table class="table m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>계산서 번호</th>
+                                                        <th>발행일자</th>
+                                                        <th>고객</th>
+                                                        <th>사업자 번호</th>
+                                                        <th>거래구분</th>
+                                                        <th>과세구분</th>
+                                                        <th>권</th>
+                                                        <th>호</th>
+                                                        <th>출력 회수</th>
+                                                        <th>공급가</th>
+                                                        <th>부가세</th>
+                                                        <th>합계액</th>
+                                                        <th>비고</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+                                </div>
 
-                                </div> <!-- end card -->
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
+                            </div>
+                        </div>
+                        <!-- end row -->  
 
                         <!-- Media alignment -->
 

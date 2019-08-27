@@ -97,6 +97,52 @@
         
                                         <h5 class="header-title">견적 관리</h5>
                                         <p class="sub-header">견적 등록 및 수정하는 기능입니다.</p>
+                                        
+                                       <div class="table-responsive">
+                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                <td>사원
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>견적기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
+                                            	</td>
+                                            	<td>납품처</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            
+                                            	<td><select class="">
+			                                                <option value="">1. 품목 담당</option>
+			                                                <option value="" selected="selected">2. 실적 담당</option>
+			                                        </select>
+			                                        <input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                            	</td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td><select class="" name="">
+			                                            <option>0. 품번</option>
+			                                                <option value="">1. 품명</option>
+			                                                <option value="">2. 규격</option>
+			                                        </select></td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            	<td>관리 구분</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            </tr>
+                                        </table>
+                                        </div>
+                                        
                                         <div class="table-responsive">
                                         <form action ="#" class = "#">
                                           <div class="table-responsive" style = "margin: 15px 0px 15px">

@@ -53,12 +53,13 @@
 	                                            <tr>
 		                                            <td>검색</td>
 	                                                <td>
-	                                                	<select class="form-control">
-				                                            <option>선택</option>
-			                                                <option value="">작성자</option>
-			                                                <option value="">책임자</option>
-			                                                <option value="">기획명</option>
-				                                        </select>
+	                                                	<select class="selectpicker" data-style="btn-light">
+                                                            <option>선택</option>
+                                                            <option>Ketchup</option>
+                                                            <option>Relish</option>
+                                                            <option>Flashlight</option>
+                                                            <option>Toilet Paper</option>
+                                                    </select>
 			                                        </td>
 			                                        
 			                                        <td></td>
@@ -66,10 +67,6 @@
 	                                                	<input type="text" class="form-control">
                                                 	</td>
                                                 	
-                                                	<td>
-	                                                	<a href="#">&nbsp;<i class="fas fa-search"></i></a>
-	                                                </td>
-	                                                
 	                                                <td>기간</td>
 	                                                <td>
 		                                                <div class="form-group mb-0">
@@ -83,6 +80,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+	                                                </td>
+	                                                <td>
+	                                                	<a href="#">&nbsp;<i class="fas fa-search"></i></a>
 	                                                </td>
                                                 </tr>
 	                                        </table>

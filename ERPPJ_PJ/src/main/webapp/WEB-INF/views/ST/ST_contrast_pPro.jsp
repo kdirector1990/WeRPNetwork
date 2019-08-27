@@ -97,7 +97,7 @@
                                     <div class="card-body">
                                         <h5 class="header-title">견적 관리</h5>
                                         <p class="sub-header">견적 등록 및 수정하는 기능입니다.</p>
-                                        <div class="table-responsive" style = "width: 900px; height: 500px;">
+                                        <div class="table-responsive" style = "height: 500px; float: left; width: 900px; padding:10px;"" >
                                         <form action ="#" class = "#">
                                           <div class="table-responsive" style = "margin: 10px 0px 10px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
@@ -143,13 +143,41 @@
                                               </tbody>
                                             </table>
                                         </div>
+                                        
                                         </form>
                                        </div> <!-- end .table-responsive-->
-                                    </div> <!-- end card-body -->
+                           <div class="row">         
+              				<div class="col-lg-6"  style = "float: right;">
+                                <div class="card" style = "width: 680px; height: 500px;">
+                                    <div class="card-body"  style = "width: 500px; padding:10px;">
+                                        <div class="table-responsive" style = "width: 630px;" >
+                                            <table class="table mb-0">
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">주문번호</th>
+                                                    <th scope="col">주문일자</th>
+                                                    <th scope="col">No.</th>
+                                                    <th scope="col">주문수량</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>	
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                  <td></td>
+                                                   				
+                                                   </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div> <!-- end row -->
+						</div>
+	                                    </div> <!-- end card-body -->
                                 </div> <!-- end card -->
                             </div> <!-- end col -->
-                        </div> <!-- end row -->
-                        
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->

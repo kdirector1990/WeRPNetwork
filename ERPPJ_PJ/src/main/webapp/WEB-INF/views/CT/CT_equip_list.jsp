@@ -32,35 +32,13 @@
                                     <div class="card-body table-responsive">
                                         <h4 class="header-title">전산 목록</h4>
                                         <div align="right">
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">장비코드복사</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">제작사</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">정기검정</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">대여일자</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">장비코드복사</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">제작사</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">정기검정</button>
+	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">대여일자</button>
     									<br>
     									</div>
-    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <tr>
-                                            	<td>장비코드</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-                                            	
-                                                <td>장비명</td>
-                                                <td>
-                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                </td>
-                                                
-                                                <td>제작사</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-                                                
-                                                <td>
-                                                <!-- 기간 달력 여기 넣고 -->
-                                                </td>
-                                                <td>정기검정일자</td>
-                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                	<input type="text" class="" readonly>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        
+    									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
@@ -74,7 +52,6 @@
                                                 <th>장비대여 여부</th>
                                             </tr>
                                             </thead>
-    
     
                                             <tbody>
                                             <tr>
@@ -101,34 +78,6 @@
                                             
                                             </tbody>
                                         </table>
-                                        
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                            	<th>장비코드</th>
-                                                <th>대여장비명</th>
-                                                <th>대여업체</th>
-                                                <th>대여비용</th>
-                                                <th>수량</th>
-                                                <th>대여일자</th>
-                                                <th>정기검정일자</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                            <tr>
-                                            	<td>CT0002</td>
-                                            	<td>ERP</td>
-                                                <td>(주)동서식품</td>
-                                                <td>1,200,000</td>
-                                                <td>3</td>
-                                                <td>19/08/16</td>
-                                                <td>00/16일</td>
-                                            </tr>
-                                            
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -139,8 +88,6 @@
           
                 <%@ include file="../footer.jsp" %>
 
-            </div>
-
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
@@ -150,5 +97,9 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
+        
+        <!-- Datatable plugin js -->
+	    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
     </body>
 </html>
