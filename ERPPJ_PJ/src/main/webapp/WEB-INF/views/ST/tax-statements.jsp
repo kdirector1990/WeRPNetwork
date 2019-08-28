@@ -69,7 +69,7 @@
                                            	세금 명세서 발행하는 기능입니다.
                                         </p>
                                         
-                                                                               <div class="table-responsive">
+                                    <div class="table-responsive">
                                          <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
                                             <tr>
                                                 <td>사업장</td>

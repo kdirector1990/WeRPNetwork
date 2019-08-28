@@ -123,6 +123,8 @@ public class HR_Controller {
 	public String HR_GoodPay(HttpServletRequest req, Model model) {
 		logger.info("log => HR_GoodPay");
 		
+		service.selectRank(req, model);
+		
 		return "HR/HR_GoodPay";
 	}
 	

@@ -47,6 +47,71 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="responsive-table-plugin">
+                                        
+                                       <div class="table-responsive">
+                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                <td>담당자
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>견적기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
+                                            	</td>
+                                            	<td>납품처</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	<td>거래구분
+                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td><select class="" name="">
+			                                                <option value="">0.품목담당</option>
+			                                                <option value="">1.고객담당</option>
+			                                                <option value="">2.실적담당</option>
+			                                        </select></td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	
+                                            	<td><select class="" name="">
+			                                                <option value="">0.견적번호</option>
+			                                                <option value="">1.비고 (건)</option>
+			                                                <option value="">2.비고 (내역)</option>
+			                                     </select></td>
+			                                     <td><input type="text" class=""><i class="dripicons-zoom-in"></td>
+			                                     <td>환종
+                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            </tr>
+                                            	
+                                            <tr>
+                                            <td><select class="" name="">
+			                                                <option value="">0.품번</option>
+			                                                <option value="">1.품명</option>
+			                                                <option value="">2.규격</option>
+			                                                <option value="">3.품번범위</option>
+			                                                <option value="">4.품번개별</option>
+			                                       </select></td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>~<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	
+                                            	<td>관리구분</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	
+                                            	<td>프로젝트
+                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            
+                                            </tr>
+                                        </table>
+                                        </div>
                                             <div class="table-rep-plugin">
                                                 <div class="table-responsive" data-pattern="priority-columns">
                                                     <table id="tech-companies-1" class="table table-striped">
