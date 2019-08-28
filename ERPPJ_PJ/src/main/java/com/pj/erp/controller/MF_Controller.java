@@ -16,5 +16,4 @@ public class MF_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(MF_Controller.class);
 	
 	
-	
 }
