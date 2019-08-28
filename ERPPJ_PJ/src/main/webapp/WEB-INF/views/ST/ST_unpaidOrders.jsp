@@ -39,8 +39,8 @@
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
-											<td class="col-md-2 input-group">
-												<input type="text" class="form-control" name="" placeholder = "부서">
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="부서">
 												<div class="input-group-append">
 													<button type="button"
 														class="btn btn-icon waves-effect waves-light btn-primary">
@@ -49,7 +49,8 @@
 												</div></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">사원</th>
-											<td class="col-md-2 input-group"><input type="text" class="form-control" name="" placeholder = "사원">
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="사원">
 												<div class="input-group-append">
 													<button type="button"
 														class="btn btn-icon waves-effect waves-light btn-primary">
@@ -57,24 +58,23 @@
 													</button>
 												</div></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label">마감기간</th>
+											<th class="col-md-1 col-form-label">주문일</th>
 											<td><input
 												class="form-control input-daterange-datepicker" type="text"
 												name="daterange" /></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 										</tr>
 
-										<tr class="form-group row">											
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">고객</th>
-											<td class="col-md-2 input-group"><input type="text" class="form-control" name="" placeholder = "고객">
-												</td>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="고객"></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">거래구분</th>
 											<td class="col-md-2 input-group"><select
 												class="form-control select2" name="" onchange="">
 													<option>-- --</option>
-											</select>
-											</td>
+											</select></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">부서기준</th>
 											<td class="col-md-2 input-group"><select
@@ -85,7 +85,7 @@
 											</select></td>
 										</tr>
 
-										<tr class="form-group row">											
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
 													<option>2. 실적담당</option>
@@ -95,10 +95,9 @@
 											<td class="col-md-2 input-group"><select
 												class="form-control select2" name="" onchange="">
 													<option>-- --</option>
-											</select>
-											</td>
+											</select></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
-											
+
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
 													<option>3. 품번범위</option>
@@ -113,7 +112,9 @@
 														class="btn btn-icon waves-effect waves-light btn-primary">
 														<i class="fas fa-search"></i>
 													</button>
-												</div></td><th class="col-md-1 col-form-label">~</th><td class="col-md-2 input-group"><input type="text"
+												</div></td>
+											<th class="col-md-1 col-form-label">~</th>
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="" placeholder="사원">
 												<div class="input-group-append">
 													<button type="button"
@@ -131,33 +132,114 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-										<thead>
-											<tr>
-												<th></th>
-												<th>부서</th>
-												<th>마감일자</th>
-												<th>고객</th>
-												<th>거래구분</th>
-												<th>마감번호</th>
-												<th>No.</th>
-												<th>품번</th>
-												<th>품명</th>
-												<th>규격</th>
-												<th>단위</th>
-												<th>수량</th>
-												<th>단가</th>
-												<th>공급가</th>
-												<th>부가세</th>
-												<th>합계액</th>
-												<th>관리구분</th>												
-												<th>비고(내역)</th>
-											</tr>
-										</thead>
-									</table>
+								<div class="card-body">
+									<ul class="nav nav-tabs" role="tablist">
+										<li class="nav-item"><a class="nav-link active"
+											id="usergroup-tab" data-toggle="tab" href="#usergroup" role="tab"
+											aria-controls="user" aria-selected="false"> <span
+												class="d-block d-sm-none"><i class="fa fa-usergroup"></i></span>
+												<span class="d-none d-sm-block">고객</span>
+										</a></li>
+										<li class="nav-item"><a class="nav-link" id="region-tab"
+											data-toggle="tab" href="#region" role="tab"
+											aria-controls="product" aria-selected="true"> <span
+												class="d-block d-sm-none"><i class="fa fa-user"></i></span>
+												<span class="d-none d-sm-block">품목</span>
+										</a></li>
+										<li class="nav-item"><a class="nav-link" id="region2-tab"
+											data-toggle="tab" href="#region2" role="tab"
+											aria-controls="manager" aria-selected="false"> <span
+												class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
+												<span class="d-none d-sm-block">담당자</span>
+										</a></li>										
+									</ul>
+
+									<div class="tab-content">
+										<!-- 고객 -->
+										<div class="tab-pane show active" id="usergroup" role="tabpanel"
+											aria-labelledby="usergroup-tab">
+											<input type="hidden" name="${_csrf.parameterName }"
+												value="${_csrf.token }">
+											<div class="col-sm-12">
+												<div class="card-body table-responsive">
+													<div class="table-responsive" style="margin: 15px 0px 50px">
+														<table
+															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+															<thead>
+																<tr>
+																	<th></th>
+																	<th>코드</th>
+																	<th>고객명</th>
+																	<th>품번</th>
+																	<th>품명</th>
+																	<th>규격</th>
+																	<th>단위</th>
+																	<th>거래구분</th>
+																	<th>미납수량</th>
+																	<th>미납금액(원화)</th>																	
+																</tr>
+															</thead>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- 품목 -->
+										<div class="tab-pane" id="region" role="tabpanel"
+											aria-labelledby="region-tab">
+											<div class="col-sm-12">
+												<div class="card-body table-responsive">
+													<div class="table-responsive" style="margin: 15px 0px 50px">
+														<table
+															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+															<thead>
+																<tr>
+																	<th></th>
+																	<th>품번</th>
+																	<th>품명</th>
+																	<th>규격</th>																	
+																	<th>단위</th>
+																	<th>거래구분</th>
+																	<th>미납수량</th>
+																	<th>미납금액(원화)</th>																	
+																</tr>
+															</thead>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- 담당자 -->
+										<div class="tab-pane" id="region2" role="tabpanel"
+											aria-labelledby="region2-tab">
+											<div class="col-sm-12">
+												<div class="card-body table-responsive">
+													<div class="table-responsive" style="margin: 15px 0px 50px">
+														<table
+															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+															<thead>
+																<tr>
+																	<th></th>
+																	<th>코드</th>
+																	<th>담당자명</th>
+																	<th>품번</th>
+																	<th>품명</th>
+																	<th>규격</th>
+																	<th>단위</th>
+																	<th>거래구분</th>
+																	<th>미납수량</th>
+																	<th>미납금액(원화)</th>																	
+																</tr>
+															</thead>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>										
+										
+									</div>
 								</div>
 							</div>
 						</div>

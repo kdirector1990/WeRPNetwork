@@ -14,4 +14,9 @@
 		values(userid.currval, 'ROLE_USER') 
 	</insert>
 	
+	<!-- 호봉테이블(랭크) -->	
+	<select id="rank" resultType="com.pj.erp.vo.HR_RankVO">
+		select * from rank_tbl
+	</select>
+	
 </mapper>

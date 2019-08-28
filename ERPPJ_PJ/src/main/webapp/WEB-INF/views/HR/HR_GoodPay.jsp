@@ -6,6 +6,42 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
+	
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+
+	function load(rank){
+		$("#rank2").click(function(){
+			var rank = "";
+			var tdArr = new Array();
+			
+			//현재 클릭된 Row(tr)
+			var tr = $(this);
+			var td = tr.children();
+			
+			console.log("클릭한 row의 모든 데이터 : "+tr.text());
+			
+		})
+		var rank;
+		$("rank")
+		
+		alert(rank);
+		/* $("#rank2").on("click", "td", function(){
+					selectTrendGroup($(this).val());
+		}); */
+		/* $("#rank2").children().each(function(){
+			alert("돌아감");
+			console.log("1. $((this).text() : )"+$(this).text()+", $(this).attr() : "+$(this).attr("value"));
+		});
+		alert("돌아감");
+		$(".UserRank").each(function(){
+			alert("돌아감");
+			 consol.log("2. $(this).text() : "+$(this).text()+", $(this).attr() : "+$(this).attr("value"));
+		}); */
+	}
+
+</script>
+
 </head>
 
 <body>
@@ -50,13 +86,21 @@
 								<table class="table table-bordered mb-0">
 									<thead>
 										<tr>
-											<th scope="col" colspan="2">대 상 직 급</th>																						
+											<th scope="col" colspan="2" style="center">대 상 직 급</th>																						
 										</tr>
 										
 										<tr>
 											<th scope="col">코 드</th>
 											<th scope="col">직 급</th>
 										</tr>
+										
+										<c:forEach var="rank" items="${vo}">
+											<tr id="rank2">
+												<td class="UserRank" onclick="load(${rank.rank_code});">${rank.rank_code}</td>
+												<td class="UserRank2" onclick="load(${rank.rank_code});">${rank.rank_name}</td>
+											</tr>
+										</c:forEach>
+										
 									</thead>									
 								</table>							
 							</div>
