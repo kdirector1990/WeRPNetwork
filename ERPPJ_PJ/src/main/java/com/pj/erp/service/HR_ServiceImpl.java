@@ -1,6 +1,7 @@
 package com.pj.erp.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.HR_RankVO;
 
 @Service
 public class HR_ServiceImpl implements HR_Service{
@@ -99,4 +101,15 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		
 	}
+
+	//호봉테이블(직급)
+	@Override
+	public void selectRank(HttpServletRequest req, Model model) {
+		List<HR_RankVO> vo = dao.rank();
+		
+		model.addAttribute("vo", vo);
+		
+	}
+	
+	
 }
