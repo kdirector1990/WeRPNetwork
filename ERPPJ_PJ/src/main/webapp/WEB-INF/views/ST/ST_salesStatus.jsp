@@ -82,15 +82,11 @@
 											<th class="col-md-1 col-form-label">부서기준</th>
 											<td class="col-md-2 input-group"><select
 												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
+													<option>0. 입력부서</option>
+													<option>1. 품목담당부서</option>
+													<option>2. 고객담당부서</option>
 											</select></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label">환종</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
-											</select>
-												</td>
+											
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
@@ -104,6 +100,16 @@
 											</select>
 											</td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
+											
+											<th class="col-md-1 col-form-label"><select
+												class="form-control select2" name="" onchange="">
+													<option>3. 품번범위</option>
+													<option>2. 규격</option>
+													<option>1. 품명</option>
+													<option>0. 품번</option>
+											</select></th>
+											<td><input type="text" class="">&nbsp;~&nbsp;<input
+												type="text" class=""></td>
 										</tr>
 									</table>
 								</div>
