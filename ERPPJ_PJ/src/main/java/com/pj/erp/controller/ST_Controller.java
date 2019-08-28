@@ -133,6 +133,13 @@ public class ST_Controller {
 		
 		return "ST/ST_salesTotal2";
 	}
+	
+	@RequestMapping("ST_unpaidOrders")
+	public String ST_unpaidOrders(Locale locale, Model model) {
+		logger.info("log => ST_unpaidOrders");
+		
+		return "ST/ST_unpaidOrders";
+	}
 		
 	
 }

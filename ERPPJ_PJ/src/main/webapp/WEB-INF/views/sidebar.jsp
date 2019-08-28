@@ -424,8 +424,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          				<li><a href="coming_soon">!출고 지연 집계</a></li>
-						                    <li><a href="coming_soon">!출고 실적 집계표(월별)</a></li>
+	                          				<li><a href="ST_unpaidOrders">!출고 지연 집계</a></li>						                   
 						                    <li><a href="ST_salesStatus">!매출 현황</a></li>
 						                    <li><a href="ST_salesTotal">!매출 집계표(월별)</a></li>
 						                    <li><a href="ST_salesTotal2">!매출 집계표(관리분류별)</a></li>

@@ -40,7 +40,7 @@
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="e_name" placeholder="한글이름">
+												class="form-control" name="" placeholder="부서">
 												<div class="input-group-append">
 													<button type="button"
 														class="btn btn-icon waves-effect waves-light btn-primary">
@@ -50,7 +50,7 @@
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">사원</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="e_name" placeholder="한글이름">
+												class="form-control" name="" placeholder="사원">
 												<div class="input-group-append">
 													<button type="button"
 														class="btn btn-icon waves-effect waves-light btn-primary">
@@ -70,7 +70,7 @@
 
 											<th class="col-md-1 col-form-label">고객</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="e_name" placeholder="한글이름">
+												class="form-control" name="" placeholder="고객">
 											</td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">거래구분</th>
@@ -88,7 +88,6 @@
 										</tr>
 
 										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
 													<option>2. 실적담당</option>
@@ -107,10 +106,21 @@
 													<option>1. 품명</option>
 													<option>0. 품번</option>
 											</select></th>
-											<td><input type="text" class=""><a href="#"><i
-													class="dripicons-zoom-in"></i></a>&nbsp;~&nbsp;<input
-												type="text" class=""><a href="#"><i
-													class="dripicons-zoom-in"></i></a></td>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="사원">
+												<div class="input-group-append">
+													<button type="button"
+														class="btn btn-icon waves-effect waves-light btn-primary">
+														<i class="fas fa-search"></i>
+													</button>
+												</div></td><th class="col-md-1 col-form-label">~</th><td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="사원">
+												<div class="input-group-append">
+													<button type="button"
+														class="btn btn-icon waves-effect waves-light btn-primary">
+														<i class="fas fa-search"></i>
+													</button>
+												</div></td>
 
 										</tr>
 									</table>
