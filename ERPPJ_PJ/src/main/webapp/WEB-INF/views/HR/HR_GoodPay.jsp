@@ -11,21 +11,19 @@
 <script type="text/javascript">
 
 	function load(rank){
-		$("#rank2").click(function(){
-			var rank = "";
-			var tdArr = new Array();
-			
-			//현재 클릭된 Row(tr)
-			var tr = $(this);
-			var td = tr.children();
-			
-			console.log("클릭한 row의 모든 데이터 : "+tr.text());
-			
-		})
-		var rank;
-		$("rank")
-		
 		alert(rank);
+		var jsonData = rank;
+		$.ajax({
+			type : "GET",
+			url : "/erp/HR_GoodPay_paystep?data="+rank,
+			success : function(data){
+				alert("3")
+				//Controller에 메서드랑 DAO Mapper 만들어야됨.
+			},
+			error : function(e){
+				alert('서버 연결 도중 에러가 났습니다. 다시 시도해주세요.');
+			}
+		});
 		/* $("#rank2").on("click", "td", function(){
 					selectTrendGroup($(this).val());
 		}); */

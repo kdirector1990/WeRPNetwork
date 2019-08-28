@@ -119,11 +119,20 @@ public class HR_Controller {
 		return "HR/HR_work_record";
 	}
 	
+	//호봉테이블(직급)
 	@RequestMapping("HR_GoodPay")
 	public String HR_GoodPay(HttpServletRequest req, Model model) {
 		logger.info("log => HR_GoodPay");
 		
 		service.selectRank(req, model);
+		
+		return "HR/HR_GoodPay";
+	}
+	
+	//호봉테이블(호봉)
+	@RequestMapping("HR_GoodPay_paystep")
+	public String HR_GoodPay_paystep(HttpServletRequest req, Model model) {
+		logger.info("log => HR_GoodPay");
 		
 		return "HR/HR_GoodPay";
 	}
