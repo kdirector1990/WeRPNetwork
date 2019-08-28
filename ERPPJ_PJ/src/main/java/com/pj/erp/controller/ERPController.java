@@ -583,7 +583,7 @@ public class ERPController {
 	public String planEnrollment(Locale locale, Model model) {
 		logger.info("log => MS_planEnrollment");
 		
-		return "MS_planEnrollment";
+		return "MS/MS_planEnrollment";
 	}
 	
 	//기획서 조회
@@ -591,7 +591,7 @@ public class ERPController {
 	public String planInquiry(Locale locale, Model model) {
 		logger.info("log => MS_planInquiry");
 		
-		return "MS_planInquiry";
+		return "MS/MS_planInquiry";
 	}
 	
 	//기획서 관리
@@ -599,7 +599,7 @@ public class ERPController {
 	public String planManagement(Locale locale, Model model) {
 		logger.info("log => MS_planManagement");
 		
-		return "MS_planManagement";
+		return "MS/MS_planManagement";
 	}
 	//====================================================================================
 }
