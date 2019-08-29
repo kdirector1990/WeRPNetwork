@@ -34,7 +34,7 @@
                                             <li class="breadcrumb-item active">Images</li>
                                         </ol> -->
                                     </div>
-                                    <h2 class="page-title">판매계획 대비 출고 현황</h2>
+                                    <h2 class="page-title">세금계산서 발행 대장</h2>
                                 </div>
                             </div>
                         </div>     
@@ -48,6 +48,46 @@
 						<div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
+                                
+                                 <div class="table-responsive">
+                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                <td>담당자
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>발행기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
+                                            	</td>
+                                            	<td>납품처</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            
+                                      		<td>거래구분
+                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td><select class="" name="">
+			                                                <option value="">0.계산서 번호</option>
+			                                                <option value="">1. 비   고</option>
+			                                        </select></td>
+                                            	<td><input type="text" class=""></td>
+                                            </tr>
+                                        </table>
+                                        </div>
+                                        
+                                        
                                     <div class="card-body">
                                         <div class="table-responsive">
                                         

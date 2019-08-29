@@ -579,27 +579,27 @@ public class ERPController {
 	
 	//====================================================================================
 	//기획서 등록 페이지
-	@RequestMapping("planEnrollment")
+	@RequestMapping("MS_planEnrollment")
 	public String planEnrollment(Locale locale, Model model) {
-		logger.info("log => planEnrollment");
+		logger.info("log => MS_planEnrollment");
 		
-		return "planEnrollment";
+		return "MS/MS_planEnrollment";
 	}
 	
 	//기획서 조회
-	@RequestMapping("planInquiry")
+	@RequestMapping("MS_planInquiry")
 	public String planInquiry(Locale locale, Model model) {
-		logger.info("log => planInquiry");
+		logger.info("log => MS_planInquiry");
 		
-		return "planInquiry";
+		return "MS/MS_planInquiry";
 	}
 	
 	//기획서 관리
-	@RequestMapping("planManagement")
+	@RequestMapping("MS_planManagement")
 	public String planManagement(Locale locale, Model model) {
-		logger.info("log => planManagement");
+		logger.info("log => MS_planManagement");
 		
-		return "planManagement";
+		return "MS/MS_planManagement";
 	}
 	//====================================================================================
 }
