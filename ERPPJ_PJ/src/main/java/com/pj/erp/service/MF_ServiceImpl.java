@@ -19,5 +19,4 @@ public class MF_ServiceImpl implements MF_Service {
 		vo.setMaterials_unit(req.getParameter("materials_unit"));
 		
 	}
-
 }
