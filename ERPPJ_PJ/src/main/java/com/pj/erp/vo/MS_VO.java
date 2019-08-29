@@ -2,8 +2,8 @@ package com.pj.erp.vo;
 
 import java.sql.Timestamp;
 
-public class PlanVO {
-	
+public class MS_VO {
+	//경영지원
 	private String plan_code;			//기획서 코드
 	private String plan_name;			//기획명
 	private String username;			//기획제안자
@@ -15,7 +15,7 @@ public class PlanVO {
 	private String plan_state;			//기획 상태
 	private String plan_proposal;		//상세 기획안 파일
 	
-	public PlanVO() {}
+	public MS_VO() {}
 
 	public String getPlan_code() {
 		return plan_code;
@@ -96,6 +96,5 @@ public class PlanVO {
 	public void setPlan_proposal(String plan_proposal) {
 		this.plan_proposal = plan_proposal;
 	}
-	
 	
 }
