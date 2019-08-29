@@ -35,8 +35,14 @@ public class STServiceImpl implements STService {
 		vo.setUsername(req.getParameter("username"));
 		vo.setE_approval_code(req.getParameter("e_approval_code"));
 		vo.setEas_code(req.getParameter("eas_code"));
-		vo.setPosition_code(req.getParameter("position_code"));
+		vo.setPosition_code(req.getParameter("position_code"));	
 		
+	}
+
+
+	@Override
+	public void totalSales(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
 		
 	}
 
