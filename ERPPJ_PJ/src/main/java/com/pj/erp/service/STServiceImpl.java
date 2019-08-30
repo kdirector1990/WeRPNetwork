@@ -40,6 +40,9 @@ public class STServiceImpl implements STService {
 	// ST_sale_plan 목록
 	@Override
 	public void salePlan(HttpServletRequest req, Model model) {
+		// 바구니 생성
+		STVO vo = new STVO();
+		
 		vo.setPosition_code(req.getParameter("position_code"));	
 		
 	}
