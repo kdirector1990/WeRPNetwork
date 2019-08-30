@@ -11,5 +11,13 @@ public interface STService {
 	
 	// 글 쓰기 처리
 	public void estimateWrite(HttpServletRequest req, Model model);
+	
+	// ST_sale_plan 목록
+	public void salePlan(HttpServletRequest req, Model model);
+	
+	// ST_sale_plan 글 쓰기
+	public void salePlanWrite(HttpServletRequest req, Model model);
+	
+	
 
 }
