@@ -33,14 +33,13 @@ public class STServiceImpl implements STService {
 		vo.setUsername(req.getParameter("username"));
 		vo.setE_approval_code(req.getParameter("e_approval_code"));
 		vo.setEas_code(req.getParameter("eas_code"));
-<<<<<<< HEAD
+
 		vo.setPosition_code(req.getParameter("position_code"));
 	}
 	
 	// ST_sale_plan 목록
 	@Override
 	public void salePlan(HttpServletRequest req, Model model) {
-=======
 		vo.setPosition_code(req.getParameter("position_code"));	
 		
 	}
@@ -48,7 +47,7 @@ public class STServiceImpl implements STService {
 
 	@Override
 	public void totalSales(HttpServletRequest req, Model model) {
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
 		// TODO Auto-generated method stub
 		
 	}

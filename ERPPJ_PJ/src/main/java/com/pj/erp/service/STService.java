@@ -12,7 +12,7 @@ public interface STService {
 	// 글 쓰기 처리
 	public void estimateWrite(HttpServletRequest req, Model model);
 	
-<<<<<<< HEAD
+
 	// ST_sale_plan 목록
 	public void salePlan(HttpServletRequest req, Model model);
 	
@@ -20,9 +20,7 @@ public interface STService {
 	public void salePlanWrite(HttpServletRequest req, Model model);
 	
 	
-=======
 	// 매출현황
 	public void totalSales(HttpServletRequest req, Model model);
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 
 }
