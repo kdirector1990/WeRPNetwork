@@ -315,7 +315,7 @@
 		                                            </tr>
 		                                        </tbody>
                                             </table>
-                                        </div>
+                                       
                                         <div align="right" style = "margin-bottom: 30px;">
 		                                                <button class="btn btn-outline-primary waves-effect waves-light" type="submit">
 		                                                    등록
@@ -324,7 +324,8 @@
 		                                                    삭제
 		                                                </button>
 		                                     </div>
-										</form>                                        
+										</form>  
+									  </div>                                      
                                     </div>
                                 </div>
                             </div>
