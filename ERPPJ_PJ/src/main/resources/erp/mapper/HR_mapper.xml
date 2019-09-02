@@ -5,9 +5,18 @@
     
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
-	<insert id="insertMember" parameterType = "com.pj.erp.persistence.MS_VO">
-		insert into plan_list_tbl(plan_name, username, posotion_code, plan_regdate, plan_startdate, plan_enddate, plan_objective, plan_state, plan_proposal)
-		values(#{plan_name}, #{username}, #{posotion_code}, #{plan_regdate} ,#{plan_startdate} , #{plan_enddate}, #{plan_objective}, #{plan_state}, #{plan_proposal}) 
+	<insert id="insertMember" parameterType = "java.util.Map">
+		insert into users(username, password, e_name)
+		values(userid.nextval, #{password}, #{e_name}) 
 	</insert>
+	<insert id="insertAuth">
+		insert into authority(username, authority)
+		values(userid.currval, 'ROLE_USER') 
+	</insert>
+	
+	<!-- 호봉테이블(랭크) -->	
+	<select id="rank" resultType="com.pj.erp.vo.HR_RankVO">
+		select * from rank_tbl
+	</select>
 	
 </mapper>

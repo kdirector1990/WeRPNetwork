@@ -4,8 +4,6 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,7 @@ public class ERPController {
 	ERPService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
+	
 	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.POST})
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -579,29 +578,5 @@ public class ERPController {
 	 * return "redirect:/index"; }
 	 */
 	
-	//====================================================================================
-	//기획서 등록 페이지
-	@RequestMapping("MS_planEnrollment")
-	public String planEnrollment(HttpServletRequest req, Model model) {
-		logger.info("log => MS_planEnrollment");
-		
-		return "MS/MS_planEnrollment";
-	}
 	
-	//기획서 조회
-	@RequestMapping("MS_planInquiry")
-	public String planInquiry(HttpServletRequest req, Model model) {
-		logger.info("log => MS_planInquiry");
-		
-		return "MS/MS_planInquiry";
-	}
-	
-	//기획서 관리
-	@RequestMapping("MS_planManagement")
-	public String planManagement(HttpServletRequest req, Model model) {
-		logger.info("log => MS_planManagement");
-		
-		return "MS/MS_planManagement";
-	}
-	//====================================================================================
 }

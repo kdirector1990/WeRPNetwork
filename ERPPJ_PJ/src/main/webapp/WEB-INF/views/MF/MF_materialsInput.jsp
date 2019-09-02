@@ -42,12 +42,7 @@
                                        		 아 뭐더라 그거 자재등록페이지
                                         </p>
     
-                                        <form class="" action="#">
-                                        	<div class="form-group">
-                                                <label>자재관리코드</label>
-                                                <input type="text" name="materials_code" class="form-control" required
-                                                            placeholder="자재관리코드"/>
-                                            </div>
+                                        <form class="" action="MF_materialsInsertPro">
                                             <div class="form-group">
                                                 <label>계정코드</label>
                                                 <input type="text" name="account_code" class="form-control" required
