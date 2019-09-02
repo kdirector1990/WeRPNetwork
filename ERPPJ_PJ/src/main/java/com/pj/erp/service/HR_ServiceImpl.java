@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.HR_PaystepVO;
 import com.pj.erp.vo.HR_RankVO;
 
 @Service
@@ -27,7 +28,7 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	@Override
 	public void inputHRPro(HttpServletRequest req, Model model) {
-		
+		/*
 		String pw = "1234";
 		String e_picture = req.getParameter("e_picture");
 		String e_name = req.getParameter("e_name");
@@ -88,15 +89,16 @@ public class HR_ServiceImpl implements HR_Service{
 			i++;
 		}while(req.getParameter("f_name"+i)!=null);
 		
+		*/
+		String e_name = "1234";
 		
+		String password = passwordEncoder.encode(e_name);
+		System.out.println(e_name);
+		map.put("password", password);
+		map.put("e_name", e_name);
 		
-		//String password = passwordEncoder.encode(pw);
-		//System.out.println(e_name);
-		//map.put("password", password);
-		//map.put("e_name", e_name);
-		
-		//dao.insertMember(map);
-		//dao.insertAuth();
+		dao.insertMember(map);
+		dao.insertAuth();
 		
 		
 		
@@ -109,6 +111,19 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("vo", vo);
 		
+	}
+
+	//호봉테이블(호봉)
+	@Override
+	public List<HR_PaystepVO> selectMoney(HttpServletRequest req, Model model) {
+		String rank = req.getParameter("rank_code");
+		System.out.println(rank);
+		List<HR_PaystepVO> vo = dao.pay(rank);
+		System.out.println(vo.get(0).getBASE_PAYMENT());
+		return vo;
+		/*
+		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
+		 */
 	}
 	
 	

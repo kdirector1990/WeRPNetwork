@@ -478,10 +478,9 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">일자별자금계획입력</a></li>
-					                    <li><a href="#">예산신청입력</a></li>
-					                    <li><a href="#">예산조정입력</a></li>
-					                    <li><a href="#">예산계획현황</a></li>
+					                    <li><a href="FT_apply_input">예산신청입력</a></li>
+					                    <li><a href="FT_adjustment_input">예산조정입력</a></li>
+					                    <li><a href="FT_organization_input">예산편성입력</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	

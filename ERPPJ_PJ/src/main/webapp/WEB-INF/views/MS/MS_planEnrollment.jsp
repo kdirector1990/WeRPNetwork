@@ -49,23 +49,19 @@
                                            	기획서 등록페이지 ++ 추가될 예정
                                         </p>
     
-                                        <form class="" action="#">
+                                        <form class="" action="MS_insertPlanPro">
                                         	<div class="form-group">
                                                 <label>기획명</label>
                                                 <input type="text" name="plan_name" class="form-control" required
                                                             placeholder="기획명"/>
                                             </div>
                                             <div class="form-group">
-                                                <label>기획등록일</label>
-                                                <input type="text" name="plan_regdate" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
-                                            </div>
-                                            <div class="form-group">
                                             	<label>시작예정일</label>
-                                                <input type="text" name="plan_startdate" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                                <input type="datetime-local" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;" onkeyup="enter(this.tagName, this.name);">
                                             </div>
                                             <div class="form-group">
                                             <label>종료목표일</label>
-                                                <input type="text" name="plan_enddate" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
+                                                <input type="datetime-local" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" onkeyup="enter(this.tagName, this.name);">
                                             </div>
                                             <div class="form-group">
                                                 <label>기획상태</label>
