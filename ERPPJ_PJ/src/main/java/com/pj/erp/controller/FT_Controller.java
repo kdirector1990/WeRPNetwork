@@ -21,7 +21,7 @@ public class FT_Controller {
 	ERPService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
-	
+	//asdsa
 	
 	@RequestMapping("FT_journal")
 	public String journal(Locale locale, Model model) {
