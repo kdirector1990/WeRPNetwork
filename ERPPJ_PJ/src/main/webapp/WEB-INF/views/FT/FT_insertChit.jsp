@@ -9,7 +9,27 @@
         <script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
-        	
+        	var frontcursor;
+        	var updatekey = 0;
+        	var selectval;
+        	function notfocus(dd){
+    			var nowme = $("*[name=" + dd + "]").parent();
+        		for(var i = 0; i < $("*[name=" + dd + "]").parent().nextAll().children().length; i++){
+					nowme = nowme.next();
+					if(!nowme.children().attr("readonly")){
+						nowme.children().focus();
+						return false;
+					}
+				}
+    			nowme = $("*[name=" + dd + "]").parent();
+    			for(var i = 0; i < $("*[name=" + dd + "]").parent().prevAll().children().length; i++){
+					nowme = nowme.prev();
+					if(!nowme.children().attr("readonly")){
+						nowme.children().focus();
+						return false;
+					}
+				}
+        	}
         	function inin() {
         		alert("dkdkk");
         	}
@@ -25,19 +45,19 @@
         		if($("input[name=key" + name.substring(name.length-1, name.length) + "]").val() != ""){
         			subcount = 1;
         			$(".chitsub-table-bordered-primary tbody").html('<tr>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subnumber0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly></td>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" id = "first"  name = "subtype0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subnumber0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" id = "firstsub"  name = "subtype0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "code0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subject0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subject0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "accountcode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "accountname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "hostno0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "hostno0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "price0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subno0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "summary0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "document0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "entersubinsert(0,this.name);"></td>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "computer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
-                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "tax0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" id = "entersub" name = "document0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "entersubinsert(0,this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "computer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                       '<td><input type="text" onfocus = "subfocuse(this.name);" name = "tax0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                    '</tr>');
         		} else {
         			$(".chitsub-table-bordered-primary tbody").html('');
@@ -67,7 +87,15 @@
         					}
         				}
             		} else if(window.event.which == 9) {
-            			$("*[name=" + dd + "]").parent().prev().children().focus();
+            			if($("*[name=" + dd + "]").parent().parent().parent().parent().attr("class") == "table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered"){
+                			frontcursor = dd;
+            				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
+            				$(".chitsub-table-bordered-primary tbody #firstsub").parent().prev().children().focus();
+            			} else if($("*[name=" + dd + "]").parent().parent().parent().parent().attr("class") == "table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered"){
+            				$("*[name=" + frontcursor + "]").focus();
+            				$("*[name=" + frontcursor + "]").parent().prev().children().focus();
+            			}
+            				
             		} else if(window.event.which == 37) {
             			for(var i = 0; i < $("input[name=" + dd + "]").parent().prevAll().children().length; i++){
         					nowme = nowme.prev();
@@ -99,6 +127,54 @@
         	function enterupdate(vv) {
         		var obj = new Object();
         		var jsonData;
+        		frontcursor = $(".chit-table-bordered-primary tbody #enter" + vv).attr("name");
+        		if(window.event.which == 9) {
+        			$(".chit-table-bordered-primary tbody #enter" + vv).parent().prev().children().focus();
+        		}
+        		var nowme = $("#enter" + vv).parent();
+				
+                if(window.event.which == 37) {
+                	updatekey = 1;
+                	selectval = $("#enter" + vv).val();
+          			for(var i = 0; i < $("#enter" + vv).parent().prevAll().children().length; i++){
+    					nowme = nowme.prev();
+    					if(!nowme.children().attr("readonly")){
+    						nowme.children().focus();
+    						return false;
+    					}
+    				}
+        		} else if(window.event.which == 38) {
+                	updatekey = 1;
+                	selectval = $("#enter" + vv).val();
+                	alert("#enter" + (vv-1));
+                	$("#enter" + (vv-1)).focus();
+					return false;
+        		} else if(window.event.which == 39) {
+        			updatekey = 1;
+                	selectval = $("#enter" + vv).val();
+    				for(var i = 0; i < $("#enter" + vv).parent().nextAll().children().length; i++){
+    					nowme = nowme.next();
+    					if(!nowme.children().attr("readonly")){
+    						nowme.children().focus();
+    						return false;
+    					}
+    				}
+                	$("#first" + (vv+1)).focus();
+					return false;
+        		} else if(window.event.which == 40) {
+                	updatekey = 1;
+                	selectval = $("#enter" + vv).val();
+                	alert("#enter" + (vv+1));
+                	if($("#enter" + (vv+1)).attr("onchange") != "enterinsert(" + (vv+1) + ");"){
+                    	$("#enter" + (vv+1)).focus();
+                	}
+					return false;
+        		} else if(window.event.which == 13) {
+                	updatekey = 2;
+        			$(".chit-table-bordered-primary tbody #enter" + vv).onclick();
+					return false;
+        		}
+        		
         		// 자바스크립트 객체 생성
         		obj.key = $("input[name=key" + vv + "]").val();
         		obj.date = $("input[name=date" + vv + "]").val();
@@ -125,7 +201,6 @@
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
                               // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-                              alert(data);
                              /*  if (data.answer == 'success') {
                                       alert(data.name + '님 환영합니다.');
                                       var map = new MapArray();
@@ -135,6 +210,16 @@
                               } else if (data.answer == 'error') {
                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
                               } */
+                              if(updatekey == 0){
+                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
+                              } else {
+                            	 if(updatekey == 1){
+                             	 	$("#enter" + vv).val(selectval);
+                            	 } else if(updatekey == 2){
+                                 	$("#first" + (vv+1)).focus();
+                            	 }
+                            	 updatekey = 0;
+                              }
                        },
                        error : function(e) {
                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -143,33 +228,64 @@
         	}
         	
         	function enterinsert(cc) {
-       			$(".chit-table-bordered-primary tbody #enter").attr("onchange", "enterupdate(" + cc + ");");
-       			$(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
-       			$(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
+				var nowme = $("#enter" + cc).parent();
+				
+                if(window.event.which == 37) {
+                	updatekey = 1;
+                	selectval = $("#enter" + cc).val();
+          			for(var i = 0; i < $("#enter" + cc).parent().prevAll().children().length; i++){
+    					nowme = nowme.prev();
+    					if(!nowme.children().attr("readonly")){
+    						nowme.children().focus();
+    						return false;
+    					}
+    				}
+        		} else if(window.event.which == 38) {
+                	updatekey = 1;
+                	selectval = $("#enter" + cc).val();
+                	alert("#enter" + (cc-1));
+                	$("#enter" + (cc-1)).focus();
+					return false;
+        		} else if(window.event.which == 39) {
+        			updatekey = 1;
+                	selectval = $("#enter" + cc).val();
+    				for(var i = 0; i < $("#enter" + cc).parent().nextAll().children().length; i++){
+    					nowme = nowme.next();
+    					if(!nowme.children().attr("readonly")){
+    						nowme.children().focus();
+    						return false;
+    					}
+    				}
+                	$("#first" + (cc+1)).focus();
+					return false;
+        		}
+        		frontcursor = $(".chit-table-bordered-primary tbody #enter" + cc).attr("name");
+       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onchange", "enterupdate(" + cc + ");");
+       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
        			$(".chit-table-bordered-primary tbody").append('<tr>' +
-                           '<td><input type="text" onfocus = "focuse(this.name);" name = "date' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly></td>' +
-                           '<td><input type="text" onfocus = "focuse(this.name);" name = "key' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>' +
-                           '<td><input type="text" onfocus = "focuse(this.name);" id = "first" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
+                           '<td><input type="text" onfocus = "focuse(this.name);" name = "date' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
+                           '<td><input type="text" onfocus = "focuse(this.name);" name = "key' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                           '<td><input type="text" onfocus = "focuse(this.name);" id = "first' + count + '" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
                             '<td><input type="text" onfocus = "focuse(this.name);" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
-                            '<td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
+                            '<td><select class="form-control" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
                             '<option value="">== 선택 ==</option>' +
                             '<option value="일반">일반</option>' +
                             '<option value="매입">매입</option>' +
                             '<option value="매출">매출</option>' +
                             '<option value="결산">결산</option>' +
                     		'</select></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "num' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
-                            '<td><select class="form-control" onfocus = "focuse(this.name);" name = "state' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly>' +
+                            '<td><input type="text" onfocus = "focuse(this.name);" name = "num' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                            '<td><select class="form-control" onfocus = "focuse(this.name);" name = "state' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly onclick = "notfocus(this.name);">' +
                             '<option value="미결">미결</option>' +
                     		'</select></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "confirmname' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "devprice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "writer' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "slee' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+                            '<td><input type="text" onfocus = "focuse(this.name);" name = "confirmname' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                            '<td><input type="text" onfocus = "focuse(this.name);" name = "devprice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                            '<td><input type="text" onfocus = "focuse(this.name);" name = "writer' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                            '<td><input type="text" onfocus = "focuse(this.name);" name = "slee' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                        '</tr>');
                     count = count + 1;
           		 $("input[name=key"+ cc +"]").val("1000" + cc);
-       			 $(".chit-table-bordered-primary tbody #first").focus();
+       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
        			 /* $.ajax({
             			url : '${pageContext.request.contextPath}/FT_chitupdate?data=' + vv, 
             			type : 'GET',
@@ -225,19 +341,19 @@
 	       			$(".chitsub-table-bordered-primary tbody #entersub").attr("id", "entersub" + cc);
 	       			$(".chitsub-table-bordered-primary tbody #firstsub").attr("id", "firstsub" + cc);
 	       			$(".chitsub-table-bordered-primary tbody").append('<tr>' +
-	       					'<td><input type="text" onfocus = "subfocuse(this.name);" name = "subnumber' + subcount + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly></td>' +
+	       					'<td><input type="text" onfocus = "subfocuse(this.name);" name = "subnumber' + subcount + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" id = "firstsub"  name = "subtype' + subcount + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "code' + subcount + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subject' + subcount + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subject' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "accountcode' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "accountname' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "hostno' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "hostno' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "price' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subno' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "summary' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
 	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "document' + subcount + '" id = "entersub" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "entersubinsert(' + subcount + ',this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "computer' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
-	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "tax' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>' +
+	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "computer' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+	                        '<td><input type="text" onfocus = "subfocuse(this.name);" name = "tax' + subcount + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 	                       '</tr>');
 	                    subcount = subcount + 1;
 	       			 $(".chitsub-table-bordered-primary tbody #firstsub").focus();
@@ -334,40 +450,43 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        <h4 class="header-title">Example</h4>
                                         <div align="right" style = "margin-bottom: 30px;">
     									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표복사</button>
     									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표검색</button>
     									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표삭제</button>
     									<button type="button" class="btn btn-outline-primary waves-effect waves-light">품의적요등록</button>
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표양식</button>
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">재무부서</button>
     									<br>
     									</div>
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
-                                                <td>회계단위</td>
-                                                <td>
-                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                </td>
-                                                
-                                                <td>기표기간</td>
-                                                <td>.. / .. / ..</td>
-                                                
-                                                <td>
-                                                <!-- 기간 달력 여기 넣고 -->
-                                                </td>
                                                 <td>결의부서</td>
-                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                	<input type="text" class="" readonly>
+                                                <td><input type="text" class="" readonly style = "width: 100px;">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                	<input type="text" class="" readonly style = "width: 100px;">
                                                 </td>
+                                                
+                                                <td>작성자</td>
+                                                <td><input type="text" class="" readonly style = "width: 100px;">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                	<input type="text" class="" readonly style = "width: 100px;"></td>
                                                
                                                 <td>년</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="0000" placeholder = "ex)2018" style = "width: 100px;"></td>
                                             	<td>월</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	<td><select class="form-control select2">
+			                                                <option value="1">1</option>
+			                                                <option value="2">2</option>
+			                                                <option value="3">3</option>
+			                                                <option value="4">4</option>
+			                                                <option value="5">5</option>
+			                                                <option value="6">6</option>
+			                                                <option value="7">7</option>
+			                                                <option value="8">8</option>
+			                                                <option value="9">9</option>
+			                                                <option value="10">10</option>
+			                                                <option value="11">11</option>
+			                                                <option value="12" selected="selected">12</option>
+			                                        </select></td>
                                             	<td>일</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="00" placeholder = "ex)29" style = "width: 100px;"></td>
                                             </tr>
                                         </table>
                                         
@@ -402,25 +521,25 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><select class="form-control" id = "enter" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(0);">
+		                                                <td><select class="form-control" id = "enter0" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(0);">
 		                                                <option value="">== 선택 ==</option>
 		                                                <option value="일반">일반</option>
 		                                                <option value="매입">매입</option>
 		                                                <option value="매출">매출</option>
 		                                                <option value="결산">결산</option>
 			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "num0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>
-		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "state0" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "num0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "state0" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly onclick = "notfocus(this.name);">
 		                                                <option value="미결">미결</option>
 			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "confirmname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "devprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "writer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "slee0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "confirmname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "devprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "writer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "slee0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
@@ -610,8 +729,6 @@
         <div class="rightbar-overlay"></div>
 
         <!-- Vendor js -->
-        
-        
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
         
