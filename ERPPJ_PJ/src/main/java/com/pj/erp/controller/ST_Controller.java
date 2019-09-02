@@ -73,6 +73,14 @@ public class ST_Controller {
 		
 		return "ST/ST_sale_plan";
 	}
+	
+	@RequestMapping("ST_sale_plan_writeForm")
+	public String ST_sale_plan_writeForm(Locale locale, Model model) {
+		logger.info("log => ST_sale_plan_writeForm");
+		
+		return "ST/ST_sale_plan_writeForm";
+	}
+	
 	@RequestMapping("ST_sale_plan_state")
 	public String ST_sale_plan_state(Locale locale, Model model) {
 		logger.info("log => ST_sale_plan_state");

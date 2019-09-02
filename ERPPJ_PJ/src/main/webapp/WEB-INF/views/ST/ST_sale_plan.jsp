@@ -5,9 +5,35 @@
     <head>
         <%@ include file="../setting.jsp" %>
         <!-- Table datatable css -->
-        
     </head>
+    <script type="text/javascript">
+    function contentForm(url) {
+    	sendRequest(callback, "ST_sale_plan_writeForm", "post");
+    }
+    
+    function callback() {
+    	var result = document.getElementById("result");
+    	
+    	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+    		if(httpRequest.status == 200){	// 200 : 정상 종료
+    		 	result.innerHTML = "정상종료";
+    			
+    			var datas = httpRequest.responseText;
+    			
+    			var bookList = "";
+    			
+    			result.innerHTML = datas;
+    		} else {
+    			result.innerHTML = "에러발생";
+    		}
+    	} else {
+    		result.innerHTML = "상태 : " + httpRequest.readyState;
+    	}
+    }
 
+    
+    
+    </script>
     <body>
 
         <!-- Begin page -->
@@ -161,12 +187,8 @@
 						                                                <th rowspan="2">품명</th>
 						                                                <th>규격</th>
 						                                                <th>단위 (관리)</th>
-						                                                <th rowspan="2">계획 수량</th>
-						                                                <th>환종</th>
-						                                                <th>환율</th>
-						                                                <th>예상 단가</th>
-						                                                <th>예상 금액</th>
-						                                                <th>예상 원화 금액</th>
+						                                                <th rowspan="2">계획 수량</th> <!-- ef_amount -->
+						                                                <th>예상 금액</th> <!-- ef_price -->
 						                                                <th>비고</th>
 						                                            </tr>
 						                                            
@@ -174,11 +196,7 @@
 				                                                <tbody>
 				                                                    <tr>
 				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
+				                                                    <td><input type = "button" value = ""  onclick="contentForm();"></td>
 				                                                    <td></td>
 				                                                    <td></td>
 				                                                    <td></td>
@@ -219,7 +237,7 @@
 						                                        </table>
 					    
 					                                        <div class="table-responsive">
-					                                            <table class="table mb-0">
+					                                            <table class="table mb-0"  style="display: none;">
 					                                                <thead class="thead-light">
 					                                                    <tr>
 							                                                <th>품번</th>
@@ -227,13 +245,13 @@
 							                                                <th>규격</th>
 							                                                <th>단위 (관리)</th>
 							                                                <th>기초계획수량</th>
-							                                                <th>환종</th>
-							                                                <th>환율</th>
+							                                                <th>환종</th> <!-- 제외 -->
+							                                                <th>환율</th> <!-- 제외 -->
 							                                                <th>기초 계획 단가</th>
 							                                                <th>수정 계획 단가</th>
 							                                                <th>기초 계획 금액</th>
 							                                                <th>수정 계획 금액</th>
-							                                                <th>수정 계획 원화금</th>
+							                                                <th>수정 계획 원화금</th> <!-- 얘도 제외 -->
 							                                                <th>비고</th>
 							                                            </tr>
 							                                            
@@ -243,6 +261,9 @@
 					                                                </tbody>
 					                                            </table>
 					                                        </div>
+					                                        
+					                                        
+					                                        
 					                                    </div>
 					                                </div>
 					                            </div>
@@ -251,8 +272,19 @@
                                         </div>
                                       </div>
                                    </div>
-                        </div>
+                       		 </div>
                     </div> <!-- end container-fluid -->
+                    
+                    <br>
+					<hr  style="border: solid 1px black;">
+					
+					<h3>글 상세 페이지</h3>
+					<br>
+					
+					<div id = "result">
+						<!-- 상세 페이지 출력 위치 -->
+						
+					</div>
 
                 </div> <!-- end content -->
                 
