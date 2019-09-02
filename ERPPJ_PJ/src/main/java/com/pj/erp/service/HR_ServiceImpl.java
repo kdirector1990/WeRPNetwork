@@ -20,7 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.persistence.HR_DAO;
+<<<<<<< HEAD
 import com.pj.erp.vo.HR_PhysicalVO;
+=======
+import com.pj.erp.vo.HR_PaystepVO;
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_VO;
 
@@ -37,6 +41,7 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	// 인사정보등록
 	@Override
+<<<<<<< HEAD
 	public void inputProHR1(MultipartHttpServletRequest req, Model model) {		
 		
 		MultipartFile file = req.getFile("e_picture");
@@ -60,6 +65,11 @@ public class HR_ServiceImpl implements HR_Service{
             fis.close();
             fos.close();
 		/*
+=======
+	public void inputHRPro(HttpServletRequest req, Model model) {
+		/*
+		String pw = "1234";
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		String e_picture = req.getParameter("e_picture");
 		String e_name = req.getParameter("e_name");
 		String e_gender = req.getParameter("e_gender");
@@ -151,9 +161,20 @@ public class HR_ServiceImpl implements HR_Service{
 			
 			i++;
 		}while(req.getParameter("f_name"+i)!=null);
+<<<<<<< HEAD
 		*/
+=======
 		
+		*/
+		String e_name = "1234";
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		
+		String password = passwordEncoder.encode(e_name);
+		System.out.println(e_name);
+		map.put("password", password);
+		map.put("e_name", e_name);
+		
+<<<<<<< HEAD
 		//String password = passwordEncoder.encode(pw);
 		//System.out.println(e_name);
 		//map.put("password", password);
@@ -164,6 +185,10 @@ public class HR_ServiceImpl implements HR_Service{
         } catch(IOException e) {
             e.printStackTrace();
         }	
+=======
+		dao.insertMember(map);
+		dao.insertAuth();
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		
 	}
 	
@@ -199,7 +224,24 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("vo", vo);
 		
+<<<<<<< HEAD
 	}	
+=======
+	}
+
+	//호봉테이블(호봉)
+	@Override
+	public List<HR_PaystepVO> selectMoney(HttpServletRequest req, Model model) {
+		String rank = req.getParameter("rank_code");
+		System.out.println(rank);
+		List<HR_PaystepVO> vo = dao.pay(rank);
+		System.out.println(vo.get(0).getBASE_PAYMENT());
+		return vo;
+		/*
+		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
+		 */
+	}
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	
 	
 }

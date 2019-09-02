@@ -1,8 +1,8 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.ST;
 
 import java.sql.Timestamp;
 
-public class STVO {
+public class Estimate {
 	
 	private String eq_code; // 견적 코드
 	private String customer_code;	// 거래처코드
@@ -17,7 +17,7 @@ public class STVO {
 	private String position_code;	// 현재 결제자
 	
 	// 생성자
-	public STVO() {}
+	public Estimate() {}
 	
 	
 	// getter, setter

@@ -57,6 +57,7 @@ public class MS_VO {
 		this.plan_regdate = plan_regdate;
 	}
 
+
 	public Timestamp getPlan_startdate() {
 		return plan_startdate;
 	}
