@@ -19,4 +19,10 @@
 		select * from rank_tbl
 	</select>
 	
+	<!-- 호봉테이블(금액) -->
+	<select id="pay" resultType="com.pj.erp.vo.HR_PaystepVO">
+		select * from paystep_tbl
+		Where rank_code = #{rank_code}
+	</select>
+	
 </mapper>

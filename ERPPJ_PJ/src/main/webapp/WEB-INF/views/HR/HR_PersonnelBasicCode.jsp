@@ -31,8 +31,12 @@
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									<button type="button" class="btn btn-outline-primary waves-effect waves-light">코드표</button>
-									<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>근태코드등록</button>
+									<ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사정보</a></li>
+                                            <li class="breadcrumb-item active">인사기초코드등록</li>
+                                        </ol>
 								</div>
 								<h4 class="page-title">인사기초코드등록</h4>
 							</div>
@@ -45,15 +49,10 @@
 				<div class="col-sm-12">
 					<div class="card">
 						<div class="card-body table-responsive">
-							<div align="right">
-								<br>
-							</div>
-							<table id="datatable"
-								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-								<tr>
-									<td>출력구분</td>
-									<td>
-										<select class="" name="" onchange="">										
+							<div class="form-group row">
+									<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
+									<div class="col-md-4 input-group">
+										<select class=" form-control" name="">										
 											<option value="">0. 인사(H,R)</option>
 											<option value="">1. 근태(R)</option>
 											<option value="">2. 급여(P)</option>
@@ -63,12 +62,14 @@
 											<option value="">6. 기타(E)</option>
 											<option value="">7. 시스템설정(S)</option>
 											<option value="">8. 전체</option>											
-										</select></td>
-
-									<td>검색</td>
-									<td><input type="text" class="">&nbsp;&nbsp;<button type="button" class="btn btn-outline-primary waves-effect waves-light">찾기</button></td>
-								</tr>								
-							</table>
+										</select>
+									</div>
+									<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+									<label class="col-md-1 col-form-label" for="simpleinput">검색</label>
+									<div class="col-md-4 input-group">
+									<input type="text" class=" form-control"><button type="button" class="btn btn-outline-primary waves-effect waves-light">찾기</button>
+									</div>
+							</div>
 						</div>
 					</div>
 				</div>
