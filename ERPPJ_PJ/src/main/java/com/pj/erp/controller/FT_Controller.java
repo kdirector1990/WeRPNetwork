@@ -102,6 +102,27 @@ public class FT_Controller {
 		
 		return "FT/FT_capital_plan";
 	}
+	//예산 조정 입력
+	@RequestMapping("FT_adjustment_input")
+	public String FT_adjustment_input(Locale locale, Model model) {
+		logger.info("log => FT_adjustment_input");
+		
+		return "FT/FT_adjustment_input";
+	}
+	//예산 신청 입력
+	@RequestMapping("FT_apply_input")
+	public String FT_apply_input(Locale locale, Model model) {
+		logger.info("log => FT_apply_input");
+		
+		return "FT/FT_apply_input";
+	}
+	//예산 편성 입력
+	@RequestMapping("FT_organization_input")
+	public String FT_organization_input(Locale locale, Model model) {
+		logger.info("log => FT_organization_input");
+		
+		return "FT/FT_organization_input";
+	}
 	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String basic5(@RequestBody Map<String, Object> map) throws Exception {

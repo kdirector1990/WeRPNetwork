@@ -1,5 +1,7 @@
 package com.pj.erp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -8,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.vo.HR_PaystepVO;
 
 @Controller
 public class HR_Controller {
@@ -24,14 +28,22 @@ public class HR_Controller {
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
 		
-
+		 
 		return "HR/HR_InputHR";
+	}
+	
+	@RequestMapping("HR_InputHRex")
+	public String HR_InputHRex(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR");
+		
+		service.inputHRPro(req, model); 
+		return "HR/HR_InputHR_ex";
 	}
 	
 	@RequestMapping("HR_inputProHR1")
 	public String HR_inputProHR1(HttpServletRequest req, Model model) {
 		logger.info("log => HR_inputProHR1");
-		service.inputHRPro(req, model);
+		
 		return "HR/HR_InputHR";
 	}
 	
@@ -131,10 +143,14 @@ public class HR_Controller {
 	
 	//호봉테이블(호봉)
 	@RequestMapping("HR_GoodPay_paystep")
-	public String HR_GoodPay_paystep(HttpServletRequest req, Model model) {
-		logger.info("log => HR_GoodPay");
+	@ResponseBody
+	public List<HR_PaystepVO> HR_GoodPay_paystep(HttpServletRequest req, Model model) {
+		logger.info("log => HR_GoodPay_paystep");
 		
-		return "HR/HR_GoodPay";
+		List<HR_PaystepVO> vo = service.selectMoney(req, model);
+		System.out.println(vo.get(0).getBASE_PAYMENT());
+		
+		return vo;
 	}
 	
 	@RequestMapping("HR_HrSalaryEnvironment")

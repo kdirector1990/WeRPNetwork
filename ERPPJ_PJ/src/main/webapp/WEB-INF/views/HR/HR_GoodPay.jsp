@@ -11,14 +11,41 @@
 <script type="text/javascript">
 
 	function load(rank){
-		alert(rank);
-		var jsonData = rank;
 		$.ajax({
 			type : "GET",
-			url : "/erp/HR_GoodPay_paystep?data="+rank,
-			success : function(data){
-				alert("3")
+			url : "/erp/HR_GoodPay_paystep",
+			data : { 'rank_code' : rank},
+			async: false,
+			contentType : 'application/json',
+			dataType : "json",
+			success : function(vo){
+				if($(".payRank") != null){
+					$(".payRank").remove();
+				}				
+				var ss = JSON.stringify(vo);
+				alert(vo);
+				
+				alert(vo[0].paystep_code);
+				alert(vo[0].base_PAYMENT);
+				
+				for(var i = 0; i < vo.length; i++){
+					var paystep_code = vo[i].paystep_code;
+					var BASE_PAYMENT = vo[i].base_PAYMENT;
+					var ADD_PAYMENT = vo[i].add_PAYMENT;
+					var EXTENSION_PAYMENT = vo[i].extension_PAYMENT;
+					
+					$('#pay2').append("<tr class='payRank'><td>"+paystep_code+"</td><td>"	
+										+BASE_PAYMENT+"</td><td>"
+										+ADD_PAYMENT+"</td><td>"
+										+EXTENSION_PAYMENT+"</td><td>"
+										+(BASE_PAYMENT+ADD_PAYMENT+EXTENSION_PAYMENT)+"</td></tr>");
+				}
+				
+				/* alert(vo); */
 				//Controller에 메서드랑 DAO Mapper 만들어야됨.
+			},
+			complete : function(rank){
+				alert("통신완료 : " + rank);
 			},
 			error : function(e){
 				alert('서버 연결 도중 에러가 났습니다. 다시 시도해주세요.');
@@ -37,6 +64,7 @@
 			 consol.log("2. $(this).text() : "+$(this).text()+", $(this).attr() : "+$(this).attr("value"));
 		}); */
 	}
+	
 
 </script>
 
@@ -125,7 +153,7 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered mb-0">
+								<table id="pay2" class="table table-bordered mb-0">
 									<thead>
 										<tr>
 											<th rowspan="2" align="center">호 봉</th>
@@ -138,6 +166,16 @@
 											<th scope="col" align="center">급 호 수 당</th>
 											<th scope="col" align="center">연 장 수 당</th>
 										</tr>
+										
+										<%-- <c:forEach var="pays" items="${pay}">
+											<tr>
+												<td>${pays.paystep_code}</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</c:forEach> --%>
 									</thead>									
 								</table>							
 							</div>
