@@ -6,11 +6,17 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
-	
-<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+
+<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> -->	
 <script type="text/javascript">
 
+/* function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+} */
+
 	function load(rank){
+		alert(rank);
 		$.ajax({
 			type : "GET",
 			url : "/erp/HR_GoodPay_paystep",
@@ -29,17 +35,17 @@
 				alert(vo[0].base_PAYMENT);
 				
 				for(var i = 0; i < vo.length; i++){
-					var paystep_code = vo[i].paystep_code;
-					var BASE_PAYMENT = vo[i].base_PAYMENT;
-					var ADD_PAYMENT = vo[i].add_PAYMENT;
-					var EXTENSION_PAYMENT = vo[i].extension_PAYMENT;
+					var paystep_codeS = vo[i].paystep_code;
+					var BASE_PAYMENTS = vo[i].base_PAYMENT;
+					var ADD_PAYMENTS = vo[i].add_PAYMENT;
+					var EXTENSION_PAYMENTS = vo[i].extension_PAYMENT;
 					
-					$('#pay2').append("<tr class='payRank'><td>"+paystep_code+"</td><td>"	
-										+BASE_PAYMENT+"</td><td>"
-										+ADD_PAYMENT+"</td><td>"
-										+EXTENSION_PAYMENT+"</td><td>"
-										+(BASE_PAYMENT+ADD_PAYMENT+EXTENSION_PAYMENT)+"</td></tr>");
-				}
+					$('#pay2').append("<tr class='payRank'><td>"+paystep_codeS+"</td><td>"	
+						+"<input type='text' id='simpleinput' class='form-control' name='BASE_PAYMENT' value='"+BASE_PAYMENTS+"' numberOnly size='10' style='width:200px; text-align:center'>"+"</td><td>"
+						+"<input type='text' id='simpleinput' class='form-control' name='ADD_PAYMENT' value='"+ADD_PAYMENTS+"' numberOnly size='10' style='width:200px; text-align:center'>"+"</td><td>"
+						+"<input type='text' id='simpleinput' class='form-control' name='EXTENSION_PAYMENT' value='"+EXTENSION_PAYMENTS+"' numberOnly size='10' style='width:200px; text-align:center'>"+"</td><td>"
+						+(BASE_PAYMENTS+ADD_PAYMENTS+EXTENSION_PAYMENTS)+"</td></tr>");
+				} 
 				
 				/* alert(vo); */
 				//Controller에 메서드랑 DAO Mapper 만들어야됨.
@@ -51,21 +57,8 @@
 				alert('서버 연결 도중 에러가 났습니다. 다시 시도해주세요.');
 			}
 		});
-		/* $("#rank2").on("click", "td", function(){
-					selectTrendGroup($(this).val());
-		}); */
-		/* $("#rank2").children().each(function(){
-			alert("돌아감");
-			console.log("1. $((this).text() : )"+$(this).text()+", $(this).attr() : "+$(this).attr("value"));
-		});
-		alert("돌아감");
-		$(".UserRank").each(function(){
-			alert("돌아감");
-			 consol.log("2. $(this).text() : "+$(this).text()+", $(this).attr() : "+$(this).attr("value"));
-		}); */
 	}
 	
-
 </script>
 
 </head>
@@ -166,16 +159,6 @@
 											<th scope="col" align="center">급 호 수 당</th>
 											<th scope="col" align="center">연 장 수 당</th>
 										</tr>
-										
-										<%-- <c:forEach var="pays" items="${pay}">
-											<tr>
-												<td>${pays.paystep_code}</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-										</c:forEach> --%>
 									</thead>									
 								</table>							
 							</div>
