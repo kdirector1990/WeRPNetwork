@@ -24,14 +24,22 @@ public class HR_Controller {
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
 		
-
+		 
 		return "HR/HR_InputHR";
+	}
+	
+	@RequestMapping("HR_InputHRex")
+	public String HR_InputHRex(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR");
+		
+		service.inputHRPro(req, model); 
+		return "HR/HR_InputHR_ex";
 	}
 	
 	@RequestMapping("HR_inputProHR1")
 	public String HR_inputProHR1(HttpServletRequest req, Model model) {
 		logger.info("log => HR_inputProHR1");
-		service.inputHRPro(req, model);
+		
 		return "HR/HR_InputHR";
 	}
 	
