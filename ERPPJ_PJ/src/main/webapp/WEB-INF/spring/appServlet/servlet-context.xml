@@ -23,6 +23,12 @@
 	
 	<context:component-scan base-package="com.pj.erp" />
 	
+	<!-- MultipartResolver 설정 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize" value="100000000" />
+	</beans:bean>
+	
 	<!-- Mybatis 설정 시작 -->
 	<beans:bean class="org.springframework.jndi.JndiObjectFactoryBean" name="dataSource">
 	

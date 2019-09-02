@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.HR_Service;
 
@@ -28,11 +30,13 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
-	@RequestMapping("HR_inputProHR1")
-	public String HR_inputProHR1(HttpServletRequest req, Model model) {
+	@RequestMapping(value="insertProHR1", method=RequestMethod.POST)
+	public String HR_inputProHR1(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputProHR1");
-		service.inputHRPro(req, model);
-		return "HR/HR_InputHR";
+		
+		service.inputProHR1(req, model);
+		
+		return "HR/HR_InputProHR1";
 	}
 	
 	@RequestMapping("HR_inputProHR2")
@@ -49,12 +53,12 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
-	@RequestMapping("joinPro")
+	/*@RequestMapping("joinPro")
 	public String joinPro(HttpServletRequest req, Model model) {
 		logger.info("url == > joinPro");
 		service.inputHRPro(req, model);
 		return "index";
-	}
+	}*/
 	
 	@RequestMapping("HR_EmployeeInformation")
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
