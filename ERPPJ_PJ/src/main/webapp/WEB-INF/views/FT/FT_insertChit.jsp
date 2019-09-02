@@ -146,7 +146,6 @@
         		} else if(window.event.which == 38) {
                 	updatekey = 1;
                 	selectval = $("#enter" + vv).val();
-                	alert("#enter" + (vv-1));
                 	$("#enter" + (vv-1)).focus();
 					return false;
         		} else if(window.event.which == 39) {
@@ -164,7 +163,6 @@
         		} else if(window.event.which == 40) {
                 	updatekey = 1;
                 	selectval = $("#enter" + vv).val();
-                	alert("#enter" + (vv+1));
                 	if($("#enter" + (vv+1)).attr("onchange") != "enterinsert(" + (vv+1) + ");"){
                     	$("#enter" + (vv+1)).focus();
                 	}
@@ -471,7 +469,7 @@
                                                 <td>년</td>
                                             	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="0000" placeholder = "ex)2018" style = "width: 100px;"></td>
                                             	<td>월</td>
-                                            	<td><select class="form-control select2">
+                                            	<td><select class="" style = "width:50px;">
 			                                                <option value="1">1</option>
 			                                                <option value="2">2</option>
 			                                                <option value="3">3</option>
