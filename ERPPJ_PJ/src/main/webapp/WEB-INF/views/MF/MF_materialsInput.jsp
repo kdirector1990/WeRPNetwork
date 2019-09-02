@@ -45,25 +45,25 @@
                                         <form class="" action="#">
                                         	<div class="form-group">
                                                 <label>자재관리코드</label>
-                                                <input type="text" name="plan_name" class="form-control" required
-                                                            placeholder="기획명"/>
+                                                <input type="text" name="materials_code" class="form-control" required
+                                                            placeholder="자재관리코드"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>계정코드</label>
-                                                <input type="text" name="plan_state" class="form-control" required
-                                                            placeholder="기획상태"/>
+                                                <input type="text" name="account_code" class="form-control" required
+                                                            placeholder="계정코드"/>
                                             </div>
                                             <div class="form-group">
                                                 <label>자재명</label>
                                                 <div>
-                                                    <input type="text" name="username" class="form-control" required
-                                                            placeholder="기획제안자"/>
+                                                    <input type="text" name="materials_name" class="form-control" required
+                                                            placeholder="자재명"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>단위</label>
-                                                <input type="text" name="position_code" class="form-control" required
-                                                            placeholder="책임자"/>
+                                                <input type="text" name="materials_unit" class="form-control" required
+                                                            placeholder="단위"/>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <div>
