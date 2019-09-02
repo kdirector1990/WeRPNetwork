@@ -34,27 +34,107 @@
                                             <li class="breadcrumb-item active">Images</li>
                                         </ol> -->
                                     </div>
-                                    <h2 class="page-title">판매계획 대비 출고 현황</h2>
+                                    <h2 class="page-title">세금계산서 발행 대장</h2>
                                 </div>
                             </div>
                         </div>     
                         <!-- end page title --> 
+                        
+                        
  
                         <!-- end row-->
 
                         <!-- ===== MEDIA ==== -->
-
-                        <div class="row">
-                            <div class="col-sm-12">
+						<div class="row">
+                            <div class="col-lg-12">
                                 <div class="card">
+                                
+                                 <div class="table-responsive">
+                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                <td>담당자
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>발행기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
+                                            	</td>
+                                            	<td>납품처</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            
+                                      		<td>거래구분
+                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td><select class="" name="">
+			                                                <option value="">0.계산서 번호</option>
+			                                                <option value="">1. 비   고</option>
+			                                        </select></td>
+                                            	<td><input type="text" class=""></td>
+                                            </tr>
+                                        </table>
+                                        </div>
+                                        
+                                        
                                     <div class="card-body">
-                                        <h4 class="header-title"></h4>
-                                         <img src="/erp/resources/img/ST_tex_invoice_list.jpg" style="width: 100%;">
+                                        <div class="table-responsive">
+                                        
+                                            <table class="table m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>계산서 번호</th>
+                                                        <th>발행일자</th>
+                                                        <th>고객</th>
+                                                        <th>사업자 번호</th>
+                                                        <th>거래구분</th>
+                                                        <th>과세구분</th>
+                                                        <th>권</th>
+                                                        <th>호</th>
+                                                        <th>출력 회수</th>
+                                                        <th>공급가</th>
+                                                        <th>부가세</th>
+                                                        <th>합계액</th>
+                                                        <th>비고</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   		<td></td>
+                                                   
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+                                </div>
 
-                                </div> <!-- end card -->
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
+                            </div>
+                        </div>
+                        <!-- end row -->  
 
                         <!-- Media alignment -->
 

@@ -13,6 +13,17 @@
         <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
         <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     </head>
+    
+    <script type="text/javascript">
+    function multiSelect(value){
+
+    	 if(value=="OPEN") Div.style.visibility="visible";
+
+    	 else Div.style.visibility="hidden";
+
+    	}
+    
+    </script>
 
     <body>
 
@@ -57,6 +68,58 @@
                                         <p class="sub-header">
                                            	세금 명세서 발행하는 기능입니다.
                                         </p>
+                                        
+                                    <div class="table-responsive">
+                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
+                                            <tr>
+                                                <td>사업장</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                                
+                                                <td>부서</td>
+                                                <td>
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                <td>담당자
+                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                            	<td>발행기간</td>
+                                            	<td>
+                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
+                                            	</td>
+                                            	<td>납품처</td>
+                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class=""></td>
+                                            
+                                            <td>거래구분
+											 <table style="cursor:pointer" onClick="multiSelect('OPEN')">
+											 <tr>
+											 <td>&nbsp;&nbsp;&nbsp;<input type="button" value="▼" onclick=""></td>
+											 </tr>
+											 </table>
+											 <div id="Div" style="position:absolute;visibility:hidden;font-size:12px;">
+											  <ul>
+											     <li><input type="checkbox" name="chk1" id="chk1">0. DOMESTIC</li>
+											     <li><input type="checkbox" name="chk2" id="chk2">1. LOCAL L/C</li>
+											     <li><input type="checkbox" name="chk3" id="chk3">2. 구매승인서</li>
+											     <li><input type="checkbox" name="chk4" id="chk4">7. 유상사급</li>
+											    </ul>
+											    <div style="padding-top:3px;text-align:right"><input type="button" value="확인" onClick="multiSelect('CLOSE')"></div>
+											   </div>
+											   </td>
+                                            </tr>	
+                                            	
+                                            <tr>
+                                            	<td><select class="" name="">
+			                                                <option value="">0.계산서 번호</option>
+			                                                <option value="">1. 비   고</option>
+			                                        </select></td>
+                                            	<td><input type="text" class=""></td>
+                                            </tr>
+                                        </table>
+                                        </div>
     
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
