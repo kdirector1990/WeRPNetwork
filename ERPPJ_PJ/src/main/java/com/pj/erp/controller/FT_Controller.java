@@ -22,7 +22,6 @@ public class FT_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	
-	
 	@RequestMapping("FT_journal")
 	public String journal(Locale locale, Model model) {
 		logger.info("log => FT_journal");
@@ -124,6 +123,38 @@ public class FT_Controller {
 		return "FT/FT_organization_input";
 	}
 	
+	// 거래처 관리
+	@RequestMapping("FT_BasicAccount_Input")
+	public String FT_BasicAccount_Input(Locale locale, Model model) {
+		logger.info("log => FT_BasicAccount_Input");
+		
+		return "FT/FT_BasicAccount_Input";
+	}
+	
+	// 적금관리
+	@RequestMapping("FT_Savings")
+	public String FT_Savings(Locale locale, Model model) {
+		logger.info("log => FT_Savings");
+		
+		return "FT/FT_Savings";
+	}
+	
+	// 예금관리
+	@RequestMapping("FT_Deposit")
+	public String FT_Deposit(Locale locale, Model model) {
+		logger.info("log => FT_Deposit");
+		
+		return "FT/FT_Deposit";
+	}
+	
+	// 카드관리
+	@RequestMapping("FT_CardManagement")
+	public String FT_CardManagement(Locale locale, Model model) {
+		logger.info("log => FT_CardManagement");
+		
+		return "FT/FT_CardManagement";
+	}
+	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String basic5(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_chitupdate 호출중");
@@ -141,5 +172,62 @@ public class FT_Controller {
 		String slee = map.get("slee").toString();
 		return key + " " + date + " " + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
 				 + " " + writer + " " + slee; 
+	}
+	
+	@RequestMapping(value = "FT_AccinputInput", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_AccinputEx(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_AccinputEx 호출중");
+		
+		String key = map.get("key").toString();
+		String date = map.get("date").toString();
+		String no = map.get("no").toString();
+		String text = map.get("text").toString();
+		String type = map.get("type").toString();
+		String num = map.get("num").toString();
+		String state = map.get("state").toString();
+		String confirmname = map.get("confirmname").toString();
+		String devprice = map.get("devprice").toString();
+		String writer = map.get("writer").toString();
+		String slee = map.get("slee").toString();
+		return key + " " + date + " "  + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
+				 + " " + writer + " " + slee; 
+	}
+	
+	@RequestMapping(value = "FT_SavingsInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SavingsInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SavingsInsert 호출중");
+		String AccCode = map.get("AccCode").toString();
+		String AccName = map.get("AccName").toString();
+		String SubjectCode = map.get("SubjectCode").toString();
+		String SubjectName = map.get("SubjectName").toString();
+		String AccountNo = map.get("AccountNo").toString();
+		String AccountHolder = map.get("AccountHolder").toString();
+		String DevPrice = map.get("DevPrice").toString();
+		return AccCode + " " + AccName + " "  + SubjectCode + " " + SubjectName + " " + AccountNo + " " + AccountHolder + " " + DevPrice; 
+	}
+	
+	@RequestMapping(value = "FT_DepositInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_DepositInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SavingsInsert 호출중");
+		String AccCode = map.get("AccCode").toString();
+		String AccName = map.get("AccName").toString();
+		String SubjectCode = map.get("SubjectCode").toString();
+		String SubjectName = map.get("SubjectName").toString();
+		String AccountNo = map.get("AccountNo").toString();
+		String AccountHolder = map.get("AccountHolder").toString();
+		return AccCode + " " + AccName + " "  + SubjectCode + " " + SubjectName + " " + AccountNo + " " + AccountHolder; 
+	}
+	
+	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_CardManagementInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_CardManagementInsert 호출중");
+		String AccCode = map.get("AccCode").toString();
+		String SubjectCode = map.get("SubjectCode").toString();
+		String CardName = map.get("CardName").toString();
+		String CardType = map.get("CardType").toString();
+		String CardPurpose = map.get("CardPurpose").toString();
+		String Owner = map.get("Owner").toString();
+		String PayCode = map.get("PayCode").toString();
+		return AccCode + " " + CardName + " "  + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose + " " + Owner + " " + PayCode; 
 	}
 }
