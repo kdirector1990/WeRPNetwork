@@ -266,9 +266,9 @@
 	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">  	
-	                          	<li><a href="planInquiry">기획서 조회</a></li>
-	                          	<li><a href="planManagement">기획서 관리</a></li>
-	                          	<li><a href="planEnrollment">기획서 등록</a></li> 	
+	                          	<li><a href="MS_planInquiry">기획서 조회</a></li>
+	                          	<li><a href="MS_planManagement">기획서 관리</a></li>
+	                          	<li><a href="MS_planEnrollment">기획서 등록</a></li> 	
 	                          </ul>
 							</li>
                            
@@ -424,8 +424,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          				<li><a href="coming_soon">!출고 지연 집계</a></li>
-						                    <li><a href="coming_soon">!출고 실적 집계표(월별)</a></li>
+	                          				<li><a href="ST_unpaidOrders">!출고 지연 집계</a></li>						                   
 						                    <li><a href="ST_salesStatus">!매출 현황</a></li>
 						                    <li><a href="ST_salesTotal">!매출 집계표(월별)</a></li>
 						                    <li><a href="ST_salesTotal2">!매출 집계표(관리분류별)</a></li>
@@ -603,8 +602,8 @@
 	                          		<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">자재등록</a></li>
-					                    <li><a href="#">자재관리</a></li>
+	                          			<li><a href="MF_materialsInput">자재등록</a></li>
+					                    <li><a href="MF_materialsManagement">자재관리</a></li>
 										<li><a href="#">자재사용현황(작업별)</a></li>
 										<li><a href="#">자재사용현황(자재별)</a></li>
 										<li><a href="#">자재사용현황(제품별)</a></li>
