@@ -85,6 +85,8 @@
                 	<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
+							 <form name = "FT_apply_input" action = "FT_apply_input_pro" method = "post">
+							 <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 								<div class="card-body">
                                          <!-- 기간 달력 여기 넣고 -->
                                          <!--  <label class="col-md-1 col-form-label" for="simpleinput">기간</label> 
@@ -113,7 +115,9 @@
 		                                                   		 삭제
 		                                                </button>
 		                                                </div>
+		                                                
                                        <div class="table-responsive" style = "margin: 15px 0px 50px">
+                                      
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
                                                 <col style = "width:10%;">
                                                 <col style = "width:10%">
@@ -155,6 +159,7 @@
                                             <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">입력</button>
                                             <button type="reset" class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
                                     </div>
+                                    </form>
 		                        </div> 
 							</div>
 						</div>		
