@@ -317,11 +317,9 @@
                                             </table>
                                        
                                         <div align="right" style = "margin-bottom: 30px;">
-		                                                <button class="btn btn-outline-primary waves-effect waves-light" type="submit">
-		                                                    등록
+		                                                <button class="btn btn-outline-primary waves-effect waves-light" type="submit">등록
 		                                                </button>
-		                                                <button type="reset" class="btn btn-outline-primary waves-effect waves-light">
-		                                                    삭제
+		                                                <button type="reset" class="btn btn-outline-primary waves-effect waves-light">삭제
 		                                                </button>
 		                                     </div>
 										</form>  

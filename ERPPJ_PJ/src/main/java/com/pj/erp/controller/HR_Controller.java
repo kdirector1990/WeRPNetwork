@@ -10,7 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR_PaystepVO;
@@ -32,24 +37,20 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
-	@RequestMapping("HR_InputHRex")
-	public String HR_InputHRex(HttpServletRequest req, Model model) {
-		logger.info("log => HR_InputHR");
+
+	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST)
+	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
+		logger.info("log => HR_InputProHR1");
 		
-		service.inputHRPro(req, model); 
-		return "HR/HR_InputHR_ex";
-	}
+		service.inputFoundation(req, model);
 	
-	@RequestMapping("HR_inputProHR1")
-	public String HR_inputProHR1(HttpServletRequest req, Model model) {
-		logger.info("log => HR_inputProHR1");
+		return "HR/index";
 		
-		return "HR/HR_InputHR";
-	}
+	}	
 	
-	@RequestMapping("HR_inputProHR2")
-	public String HR_inputProHR2(HttpServletRequest req, Model model) {
-		logger.info("log => HR_inputProHR2");
+	@RequestMapping("inputPhysical")
+	public String HR_inputPhysical(HttpServletRequest req, Model model) {
+		logger.info("log => HR_inputPhysicalPro");
 		
 		return "HR/HR_InputHR";
 	}
@@ -61,12 +62,12 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
-	@RequestMapping("joinPro")
+	/*@RequestMapping("joinPro")
 	public String joinPro(HttpServletRequest req, Model model) {
 		logger.info("url == > joinPro");
 		service.inputHRPro(req, model);
 		return "index";
-	}
+	}*/
 	
 	@RequestMapping("HR_EmployeeInformation")
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
@@ -153,6 +154,15 @@ public class HR_Controller {
 		return vo;
 	}
 	
+	//호봉테이블(호봉 수정)
+	@RequestMapping("HR_GoodPay_payUpdate")
+	@ResponseBody
+	public String HR_GoodPay_payUpdate(HttpServletRequest req, Model model) {
+		logger.info("log => HR_GoodPay_payUpdate");
+		service.updateMoney(req, model);
+		return "HR/HR_HrSalaryEnvironment";
+	}
+	
 	@RequestMapping("HR_HrSalaryEnvironment")
 	public String HR_HrSalaryEnvironment(HttpServletRequest req, Model model) {
 		logger.info("log => HR_HrSalaryEnvironment");
@@ -174,4 +184,29 @@ public class HR_Controller {
 		return "HR/coming_soon";
 	}
 	
+	@RequestMapping("HR_InputDepartment")
+	public String InputDepartment(HttpServletRequest req, Model model) {
+		logger.info("log => InputDepartment");				
+		
+		return "HR/HR_InputDepartment"; 
+	}
+	
+	@RequestMapping("HR_inputDepartmentPro") 
+	public String inputDepartmentPro(HttpServletRequest req, Model model) {
+		logger.info("log => inputDepartmentPro");
+		
+		service.inputDepartmentPro(req, model);
+		
+		return "index"; 
+	}
+	
+	/*
+	 * @RequestMapping("HR_InputHRex")
+	public String HR_InputHRex(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR");
+		
+		service.inputHRPro(req, model); 
+		return "HR/HR_InputHR_ex";
+	}
+	 */
 }

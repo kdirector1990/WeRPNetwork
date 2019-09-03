@@ -194,7 +194,7 @@
         		
         		$.ajax({
                        type : "POST",
-                       url : "/pj/FT_chitupdate",
+                       url : "/erp/FT_chitupdate",
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
