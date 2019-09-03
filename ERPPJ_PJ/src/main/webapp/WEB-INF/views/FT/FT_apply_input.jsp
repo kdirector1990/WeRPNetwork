@@ -14,13 +14,13 @@
         	function enterinsert() {
        			
        			$(".chit-table-bordered-primary tbody").append('<tr>' +
-       					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+       					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "subject'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "money'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "dept'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "cf'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
                        '</tr>');
                     count = count + 1;
           		
@@ -30,13 +30,13 @@
        		
         		
        			$(".chit-table-bordered-primary tbody").empty('<tr>' +
-       					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+       					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "subject'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "money'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "dept'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "cf'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
                        '</tr>');
                     count = 0;
           		
@@ -140,13 +140,13 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = data-provide="datepicker" data-date-autoclose="true"></td>
-		                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate0" data-provide="datepicker" data-date-autoclose="true"></td>
+		                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate0" data-provide="datepicker" data-date-autoclose="true"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subject0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "money0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "dept0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "cf0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                            </tr>
 		                                            
 		                                        </tbody>
