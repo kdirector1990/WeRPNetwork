@@ -4,8 +4,8 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
-        <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/pj/resources/assets/css/js/request.js"></script>
+        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
@@ -86,11 +86,11 @@
         	}
         	
         	function allCheck(dd) {
-        		if($("img[name=" + dd + "]").attr("src") == "/pj/resources/img/checked.png"){
-        			$("img[name=" + dd + "]").attr("src", "/pj/resources/img/checked2.png");
+        		if($("img[name=" + dd + "]").attr("src") == "/erp/resources/img/checked.png"){
+        			$("img[name=" + dd + "]").attr("src", "/erp/resources/img/checked2.png");
         			$("input[type='checkbox']").attr("checked", true);
         		} else {
-        			$("img[name=" + dd + "]").attr("src", "/pj/resources/img/checked.png");
+        			$("img[name=" + dd + "]").attr("src", "/erp/resources/img/checked.png");
         			$("input[type='checkbox']").attr("checked", false);
         		}
         	}
@@ -198,7 +198,7 @@
                                                 <col style = "width: 10%;">
                                                 <thead>
                                                     <tr>
-		                                                <th style = "text-align: center;"><img src = "/pj/resources/img/checked.png" width = "20px" height = "20px" name = "all_Check" style = "align: center;" onclick = "allCheck(this.name);"></th>
+		                                                <th style = "text-align: center;"><img src = "/erp/resources/img/checked.png" width = "20px" height = "20px" name = "all_Check" style = "align: center;" onclick = "allCheck(this.name);"></th>
 		                                                <th>결의일자</th>
 		                                                <th>번호</th>
 		                                                <th>품의내역</th>

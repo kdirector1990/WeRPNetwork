@@ -1,5 +1,9 @@
 package com.pj.erp.persistence;
 
-public interface FT_DAO {
+import java.util.Map;
 
+public interface FT_DAO {
+	
+	public int FT_AccInsert(Map<String, Object> map);
+	
 }
