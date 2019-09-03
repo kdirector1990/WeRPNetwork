@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pj.erp.service.ERPService;
+import com.pj.erp.service.HR_Service;
 
 @Controller
 public class ERPController {
 	
 	@Autowired
 	ERPService service;
+	
+	@Autowired
+	HR_Service service2;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	@RequestMapping(value="/", method = {RequestMethod.GET, RequestMethod.POST})
@@ -34,12 +40,17 @@ public class ERPController {
 		 
 		return "index";
 	} 
-	     
+	
  
 	@RequestMapping("index")
-	public String index2(Locale locale, Model model) {
-		logger.info("log => index");
-		
+	public String index(Locale locale, Model model) {
+		logger.info("log => index"); 
+		return "index";
+	}
+	@RequestMapping("index2")
+	public String index2(HttpServletRequest req, Model model) {
+		logger.info("log => index2");
+		service.testreg(req, model); 
 		return "index";
 	}
 	

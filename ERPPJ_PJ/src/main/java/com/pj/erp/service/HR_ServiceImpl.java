@@ -111,6 +111,5 @@ public class HR_ServiceImpl implements HR_Service{
 		model.addAttribute("vo", vo);
 		
 	}
-	
-	
+ 
 }
