@@ -93,13 +93,14 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String username = req.getParameter("username");
 		String e_name = "1234";
+		String e_picture = file.getOriginalFilename();
 		
 		String password = passwordEncoder.encode(e_name);
 		System.out.println(e_name);				
 		
 		vo.setUsername(username);
 		vo.setPassword(password);
-		vo.setE_picture(req.getParameter("e_picture"));
+		vo.setE_picture(e_picture);
 		vo.setE_name(e_name);
 		vo.setE_gender(Integer.parseInt(req.getParameter("e_gender")));
 		vo.setE_type(req.getParameter("e_type"));
