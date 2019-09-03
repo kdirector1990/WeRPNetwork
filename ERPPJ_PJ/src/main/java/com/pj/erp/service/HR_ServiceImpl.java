@@ -112,9 +112,7 @@ public class HR_ServiceImpl implements HR_Service{
 		model.addAttribute("vo", vo);
 		
 	}
-<<<<<<< HEAD
- 
-=======
+
 
 	//호봉테이블(호봉)
 	@Override
@@ -130,5 +128,4 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 	
 	
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 }

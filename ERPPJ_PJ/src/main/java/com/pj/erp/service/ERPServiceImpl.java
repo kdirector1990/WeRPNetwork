@@ -29,7 +29,6 @@ public class ERPServiceImpl implements ERPService{
 	
 	Map<String, Object> map = new HashMap<String, Object>();
 
-<<<<<<< HEAD
 
 	//경영지원 - 기획서 등록
 	@Override
@@ -65,7 +64,4 @@ public class ERPServiceImpl implements ERPService{
 	}
 	
 	
-
-=======
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 }
