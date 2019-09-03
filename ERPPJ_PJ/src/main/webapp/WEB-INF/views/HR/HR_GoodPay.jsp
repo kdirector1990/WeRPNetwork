@@ -37,10 +37,11 @@
 					var EXTENSION_PAYMENTS = addComma(vo[i].extension_PAYMENT);
 					var total = addComma(vo[i].base_PAYMENT+vo[i].add_PAYMENT+vo[i].extension_PAYMENT);
 					
-					$('#pay2').append("<tr class='payRank'><td>"+paystep_codeS+"</td><td>"	
-						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='BASE_PAYMENT' value='"+BASE_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
-						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='ADD_PAYMENT' value='"+ADD_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
-						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='EXTENSION_PAYMENT' value='"+EXTENSION_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
+					$('#pay2').append("<tr class='payRank'>" +
+							+"<input type = 'hidde' name = 'paystep_code"+i+"' value ='paystep_codeS'><td>"+paystep_codeS+"</td><td>"	
+						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='BASE_PAYMENT"+i+"' value='"+BASE_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
+						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='ADD_PAYMENT"+i+"' value='"+ADD_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
+						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='EXTENSION_PAYMENT"+i+"' value='"+EXTENSION_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
 						+total+"</td></tr>");
 				} 
 				
@@ -55,6 +56,14 @@
 			}
 		});
 	}
+	
+	/* function payUpdates(){
+		var obj = new Object();
+		var jsonData;
+		
+		obj.key = $("input[name=]")
+		
+	} */
 	
 </script>
 
@@ -77,7 +86,6 @@
 
 				<!-- Start Content-->
 				<div class="container-fluid">
-
 					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
@@ -88,7 +96,7 @@
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>호봉복사</button>
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light">코드설정</button>
 								</div>
-								<h4 class="page-title">근태결과입력</h4>
+								<h4 class="page-title">호봉테이블 입력</h4>
 							</div>
 						</div>
 					</div>
@@ -139,10 +147,13 @@
 					</div>
 				</div>
 
+			
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
+							<form name="updatePay" action="HR_GoodPay_payUpdate" method="post"  onsubmit="removeComma(str);" class="form-horizontal">
+							<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
 								<table id="pay2" class="table table-bordered mb-0">
 									<thead>
 										<tr>
@@ -156,14 +167,17 @@
 											<th scope="col" align="center">급 호 수 당</th>
 											<th scope="col" align="center">연 장 수 당</th>
 										</tr>
-									</thead>									
-								</table>							
+									</thead>
+								</table>
+								<div class="page-title-center">
+									<button type="submit" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
+									</div>								
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			 <%@ include file="../footer.jsp" %>
 			</div>
 		</div>
@@ -230,6 +244,20 @@
     	    obj.value = comma(obj.value);
     	}
      
+   /* //콤마 제거
+     function removeComma(n) {  // 콤마제거
+    	    if ( typeof n == "undefined" || n == null || n == "" ) {
+    	        return "";
+    	    }
+    	    var txtNumber = '' + n;
+    	    return txtNumber.replace(/(,)/g, "");
+    	} */
+   //콤마제거 2
+   function removeComma(str){
+   		n = parseInt(str.replace(/,/g,""));
+   		return n;		
+    }
+
      </script>
 </body>
 </html>

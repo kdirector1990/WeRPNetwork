@@ -111,11 +111,24 @@
 										<!-- 인적정보 -->
 										<div class="tab-pane show active" id="employee"
 											role="tabpanel" aria-labelledby="employee-tab">											
+<<<<<<< HEAD
+=======
 												
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 												<div class="col-sm-12">
+<<<<<<< HEAD
 													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" 
+=======
+<<<<<<< HEAD
+													<form action="inputFoundation" class="form-horizontal" id="foundation"
+														method="post">
+														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+=======
+													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" enctype="multipart/form-data"
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 														method="post">	
 														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">													
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
 													 <h4 class="header-title">&nbsp;</h4>

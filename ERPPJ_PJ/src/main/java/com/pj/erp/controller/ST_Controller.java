@@ -2,6 +2,8 @@ package com.pj.erp.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pj.erp.service.ERPService;
+import com.pj.erp.service.ST_Service;
 
 @Controller
 public class ST_Controller {
 
 	@Autowired
-	ERPService service;
+	ST_Service service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ST_Controller.class);
 	
@@ -64,23 +67,35 @@ public class ST_Controller {
 	public String refund(Locale locale, Model model) {
 		logger.info("log => refund");
 		
-		return "ST/refund";
+		return "ST/refund";  
 	}
 	
 	@RequestMapping("ST_sale_plan")
-	public String ST_sale_plan(Locale locale, Model model) {
+	public String ST_sale_plan(HttpServletRequest req, Model model) {
 		logger.info("log => ST_sale_plan");
+		service.salePlan(req, model);
 		
 		return "ST/ST_sale_plan";
-	}
+	}       
 	
+	// ST_sale_plan 상세 정보
 	@RequestMapping("ST_sale_plan_writeForm")
-	public String ST_sale_plan_writeForm(Locale locale, Model model) {
+	public String ST_sale_plan_writeForm(HttpServletRequest req, Model model) {
 		logger.info("log => ST_sale_plan_writeForm");
-		
+		service.salePlanWriteForm(req, model); 
+		   
 		return "ST/ST_sale_plan_writeForm";
 	}
 	
+	// ST_sale_Plan_modifyPro 수정 처리 페이지
+	@RequestMapping("ST_sale_Plan_modifyPro")
+	public String ST_sale_Plan_modifyPro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_sale_Plan_modifyPro");
+		service.salePlanmodifyPro(req, model);
+		    
+		return "ST/ST_sale_Plan_modifyPro";
+	}
+	      
 	@RequestMapping("ST_sale_plan_state")
 	public String ST_sale_plan_state(Locale locale, Model model) {
 		logger.info("log => ST_sale_plan_state");
