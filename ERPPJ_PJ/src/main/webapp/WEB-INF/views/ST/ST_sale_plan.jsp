@@ -6,9 +6,10 @@
         <%@ include file="../setting.jsp" %>
         <!-- Table datatable css -->
     </head>
+    <script src="/erp/resources/assets/js/request.js" ></script>
     <script type="text/javascript">
-    function contentForm(url) {
-    	sendRequest(callback, "ST_sale_plan_writeForm", "post");
+    function salePlanWriteForm(url) {
+    	sendRequest(callback, "ST_sale_plan_writeForm", "post", "${_csrf.parameterName }=${_csrf.token }&saleplan_code="+url);
     }
     
     function callback() {
@@ -18,7 +19,7 @@
     		if(httpRequest.status == 200){	// 200 : 정상 종료
     		 	result.innerHTML = "정상종료";
     			
-    			var datas = httpRequest.responseText;
+    			var datas = httpRequest.responseText; 
     			
     			var bookList = "";
     			
@@ -26,7 +27,8 @@
     		} else {
     			result.innerHTML = "에러발생";
     		}
-    	} else {
+    	} 
+    	else {
     		result.innerHTML = "상태 : " + httpRequest.readyState;
     	}
     }
@@ -166,12 +168,6 @@
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
-					                                        <div align="left">
-						    									환종<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a><input type="text" class="">
-						    									환율 <input type="text" class="">&nbsp;<button type="button" class="btn btn-outline-dark waves-effect waves-light">일괄 수정</button>
-						    									
-					    										<br>
-					    									</div>
 				                                        <div class="table-responsive">
 				                                            <table class="table mb-0">
 				                                                <thead class="thead-light">
@@ -194,15 +190,19 @@
 						                                            
 				                                                </thead>
 				                                                <tbody>
+				                                             <c:if test = "${cnt > 0}">   
+				                                              <c:forEach var="dto" items = "${dtos}">
 				                                                    <tr>
+				                                                    <td>${dto.saleplan_no}</td>
+				                                                    <td><input type = "button" value = "${dto.saleplan_code}"  onclick="salePlanWriteForm(${dto.saleplan_code});"></td>
 				                                                    <td></td>
-				                                                    <td><input type = "button" value = ""  onclick="contentForm();"></td>
-				                                                    <td></td>
-				                                                    <td></td>
+				                                                    <td>${dto.ef_price}</td>
 				                                                    <td></td>
 				                                                    <td></td>
 				                                                    <td></td>
 				                                                    </tr>
+				                                                 </c:forEach>
+				                                                 </c:if>
 				                                                </tbody>
 				                                            </table>
 				                                        </div>
@@ -276,7 +276,7 @@
                     </div> <!-- end container-fluid -->
                     
                     <br>
-					<hr  style="border: solid 1px black;">
+					<hr>
 					
 					<h3>글 상세 페이지</h3>
 					<br>
