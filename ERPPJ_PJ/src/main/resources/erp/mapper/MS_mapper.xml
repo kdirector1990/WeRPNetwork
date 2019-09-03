@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pj.erp.persistence.MS_DAO">
+ 	<insert id="insertPlan" parameterType = "com.pj.erp.vo.MS_VO">
+		insert into plan_list_tbl(plan_code, plan_name, username, position_code, plan_regdate, plan_startdate, plan_enddate, plan_objective, plan_state, plan_proposal)
+		values('pl0001', #{plan_name}, #{username} ,#{position_code} , #{plan_regdate}, #{plan_startdate}, #{plan_enddate}, #{plan_objective}, #{plan_state},'파일') 
+	</insert>
+</mapper>

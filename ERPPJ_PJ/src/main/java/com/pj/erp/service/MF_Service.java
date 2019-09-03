@@ -7,6 +7,6 @@ import org.springframework.ui.Model;
 public interface MF_Service {
 	
 	// 자재등록
-	public void planEnrollment(HttpServletRequest req, Model model);
+	//public void insertMF(HttpServletRequest req, Model model);
 	
 }
