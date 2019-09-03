@@ -3,6 +3,8 @@ package com.pj.erp.controller;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pj.erp.service.ERPService;
+import com.pj.erp.service.FT_Service;
 
 @Controller
 public class FT_Controller {
 
-	@Autowired
-	ERPService service;
+	
+	@Autowired 
+	FT_Service service;
+	 
 	
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	
@@ -121,6 +125,14 @@ public class FT_Controller {
 		logger.info("log => FT_organization_input");
 		
 		return "FT/FT_organization_input";
+	}
+	
+	//예산 신청 입력처리
+	@RequestMapping("FT_apply_input_pro")
+	public String FT_apply_input_pro(HttpServletRequest req, Model model) {
+		logger.info("log => FT_apply_input_pro");
+		service.FT_applyinput(req,model);
+		return "FT/FT_apply_input_pro";
 	}
 	
 	// 거래처 관리

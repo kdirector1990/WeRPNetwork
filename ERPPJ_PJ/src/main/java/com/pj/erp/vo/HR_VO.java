@@ -1,29 +1,43 @@
 package com.pj.erp.vo;
 
-public class HR_VO {
+import java.sql.Timestamp;
 
+public class HR_VO {
+	
+	private String username;
+	private String password;
 	private String e_picture;
 	private String e_name;
-	private String e_gender;
+	private int e_gender;
 	private String e_type;
 	private String e_code;
 	private String e_hp;
 	private String e_address1;
 	private String e_address2;
+	private String e_mailcode;
+	private String level_step;
 	private String e_nfcCodeNFC;
 	private String e_disability_type;
 	private String e_disability_level;
-	private String e_height;
-	private String e_weight;
-	private String e_left_sight;
-	private String e_right_sight;
-	private String e_color_blind;
-	private String e_blood_type;
-	private String e_blood_pressure1;
-	private String e_blood_pressure2;
-	private String e_blood_pressure;
+	private Timestamp start_date; 
 	
 	public HR_VO() {}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getE_picture() {
 		return e_picture;
@@ -41,11 +55,11 @@ public class HR_VO {
 		this.e_name = e_name;
 	}
 
-	public String getE_gender() {
+	public int getE_gender() {
 		return e_gender;
 	}
 
-	public void setE_gender(String e_gender) {
+	public void setE_gender(int e_gender) {
 		this.e_gender = e_gender;
 	}
 
@@ -89,6 +103,22 @@ public class HR_VO {
 		this.e_address2 = e_address2;
 	}
 
+	public String getE_mailcode() {
+		return e_mailcode;
+	}
+
+	public void setE_mailcode(String e_mailcode) {
+		this.e_mailcode = e_mailcode;
+	}
+
+	public String getLevel_step() {
+		return level_step;
+	}
+
+	public void setLevel_step(String level_step) {
+		this.level_step = level_step;
+	}
+
 	public String getE_nfcCodeNFC() {
 		return e_nfcCodeNFC;
 	}
@@ -113,80 +143,14 @@ public class HR_VO {
 		this.e_disability_level = e_disability_level;
 	}
 
-	public String getE_height() {
-		return e_height;
+	public Timestamp getStart_date() {
+		return start_date;
 	}
 
-	public void setE_height(String e_height) {
-		this.e_height = e_height;
+	public void setStart_date(Timestamp start_date) {
+		this.start_date = start_date;
 	}
 
-	public String getE_weight() {
-		return e_weight;
-	}
-
-	public void setE_weight(String e_weight) {
-		this.e_weight = e_weight;
-	}
-
-	public String getE_left_sight() {
-		return e_left_sight;
-	}
-
-	public void setE_left_sight(String e_left_sight) {
-		this.e_left_sight = e_left_sight;
-	}
-
-	public String getE_right_sight() {
-		return e_right_sight;
-	}
-
-	public void setE_right_sight(String e_right_sight) {
-		this.e_right_sight = e_right_sight;
-	}
-
-	public String getE_color_blind() {
-		return e_color_blind;
-	}
-
-	public void setE_color_blind(String e_color_blind) {
-		this.e_color_blind = e_color_blind;
-	}
-
-	public String getE_blood_type() {
-		return e_blood_type;
-	}
-
-	public void setE_blood_type(String e_blood_type) {
-		this.e_blood_type = e_blood_type;
-	}
-
-	public String getE_blood_pressure1() {
-		return e_blood_pressure1;
-	}
-
-	public void setE_blood_pressure1(String e_blood_pressure1) {
-		this.e_blood_pressure1 = e_blood_pressure1;
-	}
-
-	public String getE_blood_pressure2() {
-		return e_blood_pressure2;
-	}
-
-	public void setE_blood_pressure2(String e_blood_pressure2) {
-		this.e_blood_pressure2 = e_blood_pressure2;
-	}
-
-	public String getE_blood_pressure() {
-		return e_blood_pressure;
-	}
-
-	public void setE_blood_pressure(String e_blood_pressure) {
-		this.e_blood_pressure = e_blood_pressure;
-	}
-
-	
-	
 	
 	
 }
