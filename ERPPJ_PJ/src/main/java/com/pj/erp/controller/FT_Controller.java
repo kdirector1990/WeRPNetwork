@@ -17,8 +17,9 @@ import com.pj.erp.service.FT_Service;
 @Controller
 public class FT_Controller {
 
-	@Autowired
-	FT_Service service;
+	/*
+	 * @Autowired FT_Service service;
+	 */
 	
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	

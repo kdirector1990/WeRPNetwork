@@ -8,7 +8,8 @@ import com.pj.erp.persistence.FT_DAO;
 @Service
 public class FT_ServiceImpl {
 	
-	@Autowired
-	FT_DAO dao;
+	/*
+	 * @Autowired FT_DAO dao;
+	 */
 
 }
