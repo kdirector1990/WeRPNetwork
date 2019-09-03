@@ -3,6 +3,7 @@ package com.pj.erp.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.pj.erp.vo.HR_PaystepVO;
 import com.pj.erp.vo.HR_RankVO;
 
 public interface HR_DAO {
@@ -11,5 +12,9 @@ public interface HR_DAO {
 	
 	public int insertAuth();
 	
+	//호봉테이블 직급 가져오기
 	public List<HR_RankVO> rank();
+	
+	//호봉테이블 호봉금액 가져오기
+	public List<HR_PaystepVO> pay(String rank);
 }

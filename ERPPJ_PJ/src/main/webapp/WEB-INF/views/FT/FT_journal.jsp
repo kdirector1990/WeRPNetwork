@@ -4,10 +4,79 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
-        
+        <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/pj/resources/assets/css/js/request.js"></script>
+        <script type="text/javascript">
+        	var count = 1;
+        	var subcount = 1;
+        	var frontcursor;
+        	var updatekey = 0;
+        	var selectval;
+        	function start() {
+    			$(".chit-table-bordered-primary tbody *").css("background-color", "#fff");
+    			$(".chit-table-bordered-primary tbody *").parent().css("background-color", "#fff");
+        	}
+        	
+        	function focuse(s) {
+        		$(".chit-table-bordered-primary tbody *").focus(function() {
+        			$(".chit-table-bordered-primary tbody *").css("background-color", "");
+        			$(this).parent().parent().children().children().css("background-color", "#D6EAF8");
+        			$(this).parent().parent().children().css("background-color", "#D6EAF8");
+        			$(this).css("background-color", "#fff");
+        			$(this).parent().css("background-color", "#fff");
+        		});
+        	}
+        	
+        	function enter(cc, dd) {
+        		if(cc == "INPUT") {
+        			var swit = 0;
+        			var nowme = $("*[name=" + dd + "]").parent();
+        			if(window.event.which == 13){
+    					nowme.next().children().focus();
+    					return false;
+            		} else if(window.event.which == 9) {
+            			if($("*[name=" + dd + "]").parent().parent().parent().parent().attr("class") == "table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered"){
+                			frontcursor = dd;
+            				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
+            				$(".chitsub-table-bordered-primary tbody #firstsub").parent().prev().children().focus();
+            			} else if($("*[name=" + dd + "]").parent().parent().parent().parent().attr("class") == "table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered"){
+            				$("*[name=" + frontcursor + "]").focus();
+            				$("*[name=" + frontcursor + "]").parent().prev().children().focus();
+            			}
+            				
+            		} else if(window.event.which == 37) {
+            			for(var i = 0; i < $("*[name=" + dd + "]").parent().prevAll().children().length; i++){
+        					nowme.prev().children().focus();
+        					return false;
+        				}
+            		} else if(window.event.which == 38) {
+            			$("*[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) - 1) + "]").focus();
+            		} else if(window.event.which == 39) {
+        				for(var i = 0; i < $("*[name=" + dd + "]").parent().nextAll().children().length; i++){
+        					nowme.next().children().focus();
+        					return false;
+        				}
+            		} else if(window.event.which == 40) {
+            			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) + 1) + "]").focus();
+            		}
+        		} else if(cc == "SELECT"){
+        			if(window.event.which == 9) {
+            			$("select[name=" + dd + "]").parent().prev().children().focus();
+            		}
+        		}
+        	}
+        </script>
+        <!-- Table datatable css -->
+        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     </head>
 
-    <body>
+    <body onload = "start();">
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -46,22 +115,13 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        <h4 class="header-title">Example</h4>
                                         <div align="right">
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">정렬순서</button>
-    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">조건검색</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">정렬순서</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">조건검색</button>
     									<br>
     									</div>
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
-                                                <td>회계단위</td>
-                                                <td>
-                                                <select class="form-control select2">
-		                                            <option>전체선택</option>
-		                                                <option value="">오디</option>
-		                                                <option value="">본점</option>
-		                                        </select>
-                                                </td>
                                                 <td>기표기간</td>
                                                 <td>
                                                 <!-- 기간 달력 여기 넣고 -->
@@ -97,51 +157,71 @@
 			                                                <option value="">1.일 반</option>
 			                                                <option value="">2.매 입</option>
 			                                                <option value="">3.매 출</option>
-			                                                <option value="">4.수 금</option>
-			                                                <option value="">5.반 제</option>
-			                                                <option value="">6.수 정</option>
-			                                                <option value="">7.본지점</option>
-			                                                <option value="">8.결 산</option>
-			                                                <option value="">9.결의서</option>
+			                                                <option value="">4.수 정</option>
+			                                                <option value="">5.결 산</option>
 			                                        </select>
                                             	</td>
                                             	
-                                            	<td>작성자</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	<td>작성자&emsp;<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
+                                            	<td></td>
                                             </tr>
                                         </table>
                                         
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                                <th>구분[기표]</th>
-                                                <th colspan="2">차변</th>
-                                                <th colspan="2">대변</th>
-                                                <th rolspan="2">적요</th>
-                                                <th colspan="2">거래처</th>
-                                                <th colspan="2">구분[결의]</th>
-                                                <th colspan="2">PJT</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                            <tr>
-                                                <td>번호</td>
-                                                <td>금액</td>
-                                                <td>계정과목</td>
-                                                <td>계정과목</td>
-                                                <td>금액</td>
-                                                <td>코드</td>
-                                                <td>거래처명</td>
-                                                <td>년/월/일</td>
-                                                <td>번호</td>
-                                                <td>코드</td>
-                                                <td>PJT명</td>
-                                            </tr>
-                                            
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
+	                                        <table id="datatable" class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:5%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:10%">
+	                                            <col style = "width:5%">
+	                                            <thead>
+	                                            <tr>
+	                                                <th colspan="2">구분[기표]</th>
+	                                                <th colspan="2">차변</th>
+	                                                <th colspan="2">대변</th>
+	                                                <th rowspan="2">적요</th>
+	                                                <th colspan="2">거래처</th>
+	                                                <th colspan="2">구분[결의]</th>
+	                                            </tr>
+	                                            <tr>
+	                                            	<th>년/월/일</th>
+	                                                <th>번호</th>
+	                                                <th>금액</th>
+	                                                <th>계정과목</th>
+	                                                <th>계정과목</th>
+	                                                <th>금액</th>
+	                                                <th>코드</th>
+	                                                <th>거래처명</th>
+	                                                <th>년/월/일</th>
+	                                                <th>번호</th>
+	                                            </tr>
+	                                            </thead>
+	    		
+	    
+	                                            <tbody>
+	                                            	<tr>
+	                                            		<td><input type="text" onfocus = "focuse(this.name);" name = "WriteDate0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit'; chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "WriteNo0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "LeftPrice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "LeftSubject0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "RightSubejct0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "RightPrice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "Briefs0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ResolutionDate0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit'; chitManager.submit();"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ResolutionNo0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
+		                                            </tr>
+	                                            
+	                                            </tbody>
+	                                        </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -179,115 +259,43 @@
         </div>
         <!-- END wrapper -->
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <hr class="mt-0">
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
-
-
-                <div class="p-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                        <label class="custom-control-label" for="customCheck1">Notifications</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
-                        <label class="custom-control-label" for="customCheck2">API Access</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Auto Updates</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
-                        <label class="custom-control-label" for="customCheck4">Online Status</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck5">
-                        <label class="custom-control-label" for="customCheck5">Auto Payout</label>
-                    </div>
-                </div>
-
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Timeline</h5>
-                <hr class="mb-0" />
-
-                <div class="p-3">
-                    <ul class="list-unstyled activity-widget">
-                        <li class="activity-list">
-                            <p class="mb-0"><small>08 July</small></p>
-                            <p>Neque porro quisquam est</p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>09 July</small></p>
-                            <p>Ut enim ad minima veniam quis velit esse </p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>10 July</small></p>
-                            <p>Quis autem vel eum iure</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Messages -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">13:40 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                            <p class="inbox-item-date">13:34 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                            <p class="inbox-item-date">13:17 PM</p>
-                        </div>
-
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                            <p class="inbox-item-date">12:20 PM</p>
-
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">10:15 AM</p>
-
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
-        <%@ include file="../setting2.jsp" %>
+        <!-- Vendor js -->
+        <%@ include file="../rightbar.jsp" %>
+        <script src="/erp/resources/assets/js/vendor.min.js"></script>
+
+        <!-- Bootstrap select plugin -->
+        <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+
+        <!-- Datatable plugin js -->
+        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
+        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
+
+        <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
+        <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
+        <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
+
+        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
+
+        <!-- App js -->
+        <script src="/erp/resources/assets/js/app.min.js"></script>
         
     </body>
 </html>
