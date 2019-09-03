@@ -111,10 +111,10 @@
 										<!-- 인적정보 -->
 										<div class="tab-pane show active" id="employee"
 											role="tabpanel" aria-labelledby="employee-tab">											
-												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
 													<form action="inputFoundation" class="form-horizontal" id="foundation"
 														method="post">
+														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
 													 <h4 class="header-title">&nbsp;</h4>

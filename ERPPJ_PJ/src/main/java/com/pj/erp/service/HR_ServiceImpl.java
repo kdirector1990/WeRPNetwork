@@ -197,10 +197,6 @@ public class HR_ServiceImpl implements HR_Service{
 
 	}	
 
-
-
-
-
 	//호봉테이블(호봉)
 	@Override
 	public List<HR_PaystepVO> selectMoney(HttpServletRequest req, Model model) {
@@ -209,10 +205,25 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_PaystepVO> vo = dao.pay(rank);
 		System.out.println(vo.get(0).getBASE_PAYMENT());
 		return vo;
-		/*
-		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
-		 */
+	}
 
+	//호봉테이블(호봉수정)
+	@Override
+	public void updateMoney(HttpServletRequest req, Model model) {
+		int i = 0;
+		do{
+			String paystep_code = req.getParameter("paystep_code"+i);
+			int Base_Payment = Integer.parseInt(req.getParameter("BASE_PAYMENT"+i));
+			int ADD_PAYMENT = Integer.parseInt(req.getParameter("ADD__PAYMENT"+i));
+			int EXTENSION_PAYMENT = Integer.parseInt(req.getParameter("EXTENSION_PAYMENT"+i));
+			
+			System.out.println(paystep_code);
+			System.out.println(Base_Payment);
+			System.out.println(ADD_PAYMENT);
+			System.out.println(EXTENSION_PAYMENT);
+			
+			i++;
+		}while(req.getParameter("paystep_code"+i) != null);
 	}	
 	
 

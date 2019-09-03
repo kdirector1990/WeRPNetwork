@@ -154,6 +154,15 @@ public class HR_Controller {
 		return vo;
 	}
 	
+	//호봉테이블(호봉 수정)
+	@RequestMapping("HR_GoodPay_payUpdate")
+	@ResponseBody
+	public String HR_GoodPay_payUpdate(HttpServletRequest req, Model model) {
+		logger.info("log => HR_GoodPay_payUpdate");
+		service.updateMoney(req, model);
+		return "HR/HR_HrSalaryEnvironment";
+	}
+	
 	@RequestMapping("HR_HrSalaryEnvironment")
 	public String HR_HrSalaryEnvironment(HttpServletRequest req, Model model) {
 		logger.info("log => HR_HrSalaryEnvironment");
