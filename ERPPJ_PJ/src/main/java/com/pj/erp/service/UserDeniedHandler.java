@@ -15,6 +15,7 @@ public class UserDeniedHandler implements AccessDeniedHandler{
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		request.setAttribute("errMsg", "관리자 페이지 입니다. 접근할 수 없습니다.");
+		System.out.println("나갔는데요");
 		request.getRequestDispatcher("/denied").forward(request, response);;
 		
 	}

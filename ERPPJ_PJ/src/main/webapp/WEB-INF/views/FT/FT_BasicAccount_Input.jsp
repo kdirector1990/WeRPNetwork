@@ -4,17 +4,17 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
-<link href="/pj/resources/assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
 <!-- Table datatable css -->
-        <link href="/pj/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/pj/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/pj/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/pj/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/pj/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/pj/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/pj/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-		<script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/pj/resources/assets/css/js/request.js"></script>
+        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+		<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
@@ -88,7 +88,6 @@
         		} else if(window.event.which == 38) {
                 	updatekey = 1;
                 	selectval = $("#enter" + vv).val();
-                	alert("#enter" + (vv-1));
                 	$("#enter" + (vv-1)).focus();
 					return false;
         		} else if(window.event.which == 39) {
@@ -106,7 +105,6 @@
         		} else if(window.event.which == 40) {
                 	updatekey = 1;
                 	selectval = $("#enter" + vv).val();
-                	alert("#enter" + (vv+1));
                 	if($("#enter" + (vv+1)).attr("onchange") != "enterinsert(" + (vv+1) + ");"){
                     	$("#enter" + (vv+1)).focus();
                 	}
@@ -118,10 +116,10 @@
         		}
         		
         		// 자바스크립트 객체 생성
-        		obj.checkbox = $("input[name=checkbox" + vv + "]").val();
-        		obj.code = $("input[name=code" + vv + "]").val();
-        		obj.AccName = $("input[name=AccName" + vv + "]").val();
-        		obj.type = $("input[name=type" + vv + "]").val();
+        		obj.checkbox = $("*[name=checkbox" + vv + "]").val();
+        		obj.code = $("*[name=code" + vv + "]").val();
+        		obj.AccName = $("*[name=AccName" + vv + "]").val();
+        		obj.type = $("*[name=type" + vv + "]").val();
         		
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -131,7 +129,7 @@
         		
         		$.ajax({
                        type : "POST",
-                       url : "/pj/FT_AccinputEx",
+                       url : "/erp/FT_AccinputEx?${_csrf.parameterName }=${_csrf.token }",
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
@@ -145,16 +143,17 @@
                               } else if (data.answer == 'error') {
                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
                               } */
+                              alert(data);
                               if(updatekey == 0){
-                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
-                              } else {
-                            	 if(updatekey == 1){
-                             	 	$("#enter" + vv).val(selectval);
-                            	 } else if(updatekey == 2){
-                                 	$("#first" + (vv+1)).focus();
-                            	 }
-                            	 updatekey = 0;
-                              }
+                    				
+                                } else {
+                              	 if(updatekey == 1){
+                               	 	$("#enter" + vv).val(selectval);
+                              	 } else if(updatekey == 2){
+                                   	$("#first" + (vv+1)).focus();
+                              	 }
+                              	 updatekey = 0;
+                                }
                        },
                        error : function(e) {
                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -229,11 +228,11 @@
         	}
         	
         	function allCheck(dd) {
-        		if($("img[name=" + dd + "]").attr("src") == "/pj/resources/img/checked.png"){
-        			$("img[name=" + dd + "]").attr("src", "/pj/resources/img/checked2.png");
+        		if($("img[name=" + dd + "]").attr("src") == "/erp/resources/img/checked.png"){
+        			$("img[name=" + dd + "]").attr("src", "/erp/resources/img/checked2.png");
         			$("input[type='checkbox']").prop("checked", true);
         		} else {
-        			$("img[name=" + dd + "]").attr("src", "/pj/resources/img/checked.png");
+        			$("img[name=" + dd + "]").attr("src", "/erp/resources/img/checked.png");
         			$("input[type='checkbox']").prop("checked", false);
         		}
         	}
@@ -298,7 +297,7 @@
                                                 <col>
                                                 <thead>
                                                     <tr>
-		                                                <th style = "text-align: center;"><img src = "/pj/resources/img/checked.png" width = "20px" height = "20px" name = "all_Check" style = "align: center;" onclick = "allCheck(this.name);"></th>
+		                                                <th style = "text-align: center;"><img src = "/erp/resources/img/checked.png" width = "20px" height = "20px" name = "all_Check" style = "align: center;" onclick = "allCheck(this.name);"></th>
 		                                                <th>코드</th>
 		                                                <th>거래처명</th>
 		                                                <th>구분</th>
@@ -480,21 +479,6 @@
 	
         <%@ include file="../rightbar.jsp" %>
    		<%@ include file="../setting2.jsp" %>
-
-        <!-- Plugins js -->
-        <script src="/erp/resources/assets/libs/dropify/dropify.min.js"></script>
-
-        <!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-fileuploads.init.js"></script>
-        
-        <!-- Vendor js -->
-        <script src="/erp/resources/assets/js/vendor.min.js"></script>
-
-        <!-- Bootstrap select plugin -->
-        <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-        <!-- App js -->
-        <script src="/erp/resources/assets/js/app.min.js"></script>
 
 </body>
 </html>

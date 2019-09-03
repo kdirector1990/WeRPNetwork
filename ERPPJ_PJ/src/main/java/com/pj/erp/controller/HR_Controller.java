@@ -38,13 +38,13 @@ public class HR_Controller {
 	}
 	
 
-	@RequestMapping(value="inputFoundation", method=RequestMethod.POST)
+	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST)
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_InputProHR1");
 		
 		service.inputFoundation(req, model);
 	
-		return "HR/HR_InputHR";
+		return "HR/index";
 		
 	}	
 	
@@ -182,6 +182,22 @@ public class HR_Controller {
 		logger.info("log => coming_soon");
 		
 		return "HR/coming_soon";
+	}
+	
+	@RequestMapping("HR_InputDepartment")
+	public String InputDepartment(HttpServletRequest req, Model model) {
+		logger.info("log => InputDepartment");				
+		
+		return "HR/HR_InputDepartment"; 
+	}
+	
+	@RequestMapping("HR_inputDepartmentPro") 
+	public String inputDepartmentPro(HttpServletRequest req, Model model) {
+		logger.info("log => inputDepartmentPro");
+		
+		service.inputDepartmentPro(req, model);
+		
+		return "index"; 
 	}
 	
 	/*
