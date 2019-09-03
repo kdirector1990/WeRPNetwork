@@ -113,8 +113,8 @@
 											role="tabpanel" aria-labelledby="employee-tab">											
 												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
-													<form action="inputFoundation" class="form-horizontal" id="foundation"
-														method="post">
+													<form action="inputFoundation" class="form-horizontal" id="foundation" enctype="multipart/form-data"
+														method="post">														
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
 													 <h4 class="header-title">&nbsp;</h4>

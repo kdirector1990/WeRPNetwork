@@ -52,4 +52,11 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.pay", rank);
 	}
 
+	@Override
+	public int insertDepartment(Map<String, Object> map) {		
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertDepartment", map);
+	}
+
+	
+
 }

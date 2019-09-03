@@ -175,6 +175,22 @@ public class HR_Controller {
 		return "HR/coming_soon";
 	}
 	
+	@RequestMapping("InputDepartment")
+	public String InputDepartment(HttpServletRequest req, Model model) {
+		logger.info("log => InputDepartment");				
+		
+		return "HR/InputDepartment";
+	}
+	
+	@RequestMapping("HR_inputDepartmentPro") 
+	public String inputDepartmentPro(HttpServletRequest req, Model model) {
+		logger.info("log => inputDepartmentPro");
+		
+		service.inputDepartmentPro(req, model);
+		
+		return "index";
+	}
+	
 	/*
 	 * @RequestMapping("HR_InputHRex")
 	public String HR_InputHRex(HttpServletRequest req, Model model) {

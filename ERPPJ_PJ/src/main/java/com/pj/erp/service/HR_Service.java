@@ -22,4 +22,7 @@ public interface HR_Service {
 	
 	//호봉테이블 호봉이력 가져오기
 	public List<HR_PaystepVO> selectMoney(HttpServletRequest req, Model model);
+	
+	// 부서 등록
+	public void inputDepartmentPro(HttpServletRequest req, Model model);
 }

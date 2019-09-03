@@ -271,6 +271,26 @@
 	                          	<li><a href="MS_planEnrollment">기획서 등록</a></li> 	
 	                          </ul>
 							</li>
+							
+							<li> 
+	                          <a href="javascript: void(0);">
+	                             <i class="mdi mdi-file-document"></i>
+	                             <span> 부서 </span>
+	                             <span class="menu-arrow"></span>
+	                          </a>
+	                          <ul class="nav-second-level" aria-expanded="false">  	
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">부서관리
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
+	                          		<ul>
+	                          			<li><a href="InputDepartment">부서등록</a></li>
+										<li><a href="">부서
+										조회</a></li>									
+	                          		</ul>
+	                          	</li>
+	                          		                          	 	
+	                          </ul>
+							</li>
                            
                            
                            	<li> 

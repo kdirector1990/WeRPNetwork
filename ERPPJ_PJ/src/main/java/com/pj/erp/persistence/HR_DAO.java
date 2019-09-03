@@ -24,4 +24,7 @@ public interface HR_DAO {
 	
 	//호봉테이블 호봉금액 가져오기
 	public List<HR_PaystepVO> pay(String rank);
+	
+	// 부서 등록
+	public int insertDepartment(Map<String, Object> map);
 }

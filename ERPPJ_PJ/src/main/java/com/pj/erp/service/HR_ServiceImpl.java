@@ -37,7 +37,7 @@ public class HR_ServiceImpl implements HR_Service{
 	@Autowired
 	HR_DAO dao;
 	
-	Map<String, Object> map = new HashMap<String, Object>();
+	
 	
 	// 인사정보등록
 	@Override
@@ -213,6 +213,20 @@ public class HR_ServiceImpl implements HR_Service{
 		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
 		 */
 
+	}
+	
+	// 부서 등록
+	@Override
+	public void inputDepartmentPro(HttpServletRequest req, Model model) {
+		String department_code = req.getParameter("department_code");
+		String department_name = req.getParameter("department_name");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("department_code", department_code);
+		map.put("department_name", department_name);
+		
+		dao.insertDepartment(map);
+		
 	}	
 	
 
