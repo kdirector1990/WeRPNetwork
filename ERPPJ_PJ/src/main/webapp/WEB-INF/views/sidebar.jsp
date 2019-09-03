@@ -271,28 +271,7 @@
 	                          	<li><a href="MS_planEnrollment">기획서 등록</a></li> 	
 	                          </ul>
 							</li>
-							
-							<li> 
-	                          <a href="javascript: void(0);">
-	                             <i class="mdi mdi-file-document"></i>
-	                             <span> 부서 </span>
-	                             <span class="menu-arrow"></span>
-	                          </a>
-	                          <ul class="nav-second-level" aria-expanded="false">  	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">부서관리
-	                          			<span class="menu-arrow"></span>
-	                          		</a>
-	                          		<ul>
-	                          			<li><a href="HR_InputDepartment">부서등록</a></li>
-										<li><a href="">부서
-										조회</a></li>									
-	                          		</ul>
-	                          	</li>
-	                          		                          	 	
-	                          </ul>
-							</li>
-                           
-                           
+                                                      
                            	<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-account"></i> 
@@ -300,10 +279,18 @@
 	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">부서관리
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
+	                          			<li><a href="HR_InputDepartment">부서등록</a></li>
+	                          			<li><a href="#">부서조회</a></li>
+	                          		</ul>
+	                          	</li>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
+	                          		<ul>	                          			
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>

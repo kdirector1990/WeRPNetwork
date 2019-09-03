@@ -33,7 +33,7 @@
 	                <!-- 페이지 내용 입력 공간 -->
             		<div class="col-sm-12">
 						<form action="HR_inputDepartmentPro" class="form-horizontal" id="department" method="post">
-						<input type="hidden" name="pageNum" value="${pageNum}">
+						<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }"> 
 						<div class="card-body table-responsive">
 						    <h4 class="header-title">새 부서 등록</h4>
 						    <h4 class="header-title">&nbsp;</h4>						         
