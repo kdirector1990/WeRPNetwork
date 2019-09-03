@@ -41,7 +41,7 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	// 인사정보등록
 	@Override
-	public void inputProHR1(MultipartHttpServletRequest req, Model model) {			
+	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
@@ -163,7 +163,7 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 	
 	@Override
-	public void inputProHR2(HttpServletRequest req, Model model) {
+	public void inputPhysical(HttpServletRequest req, Model model) {
 		HR_PhysicalVO vo = new HR_PhysicalVO();
 		vo.setE_height(Integer.parseInt(req.getParameter("e_height")));
 		vo.setE_weight(Integer.parseInt(req.getParameter("e_weight")));

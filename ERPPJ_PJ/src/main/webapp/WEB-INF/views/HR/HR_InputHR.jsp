@@ -113,7 +113,7 @@
 											role="tabpanel" aria-labelledby="employee-tab">											
 												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
-													<form action="inputProHR1" class="form-horizontal" id="foundation"
+													<form action="inputFoundation" class="form-horizontal" id="foundation"
 														method="post">
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
@@ -245,7 +245,8 @@
 														</div>
 														</form>
 														
-														<form action="HR_inputProHR2" class="form-horizontal" id="physical"
+														<form action="HR_inputPhysical
+														" class="form-horizontal" id="physical"
 															method="post">
 														<div class="card-body table-responsive">
 															<h4 class="header-title">신체 정보</h4>

@@ -38,18 +38,19 @@ public class HR_Controller {
 	}
 	
 
-	@RequestMapping(value="insertProHR1", method=RequestMethod.POST)
-	public String HR_inputProHR1(MultipartHttpServletRequest req, Model model) {
+	@RequestMapping(value="inputFoundation", method=RequestMethod.POST)
+	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_InputProHR1");
 		
-		service.inputProHR1(req, model);
+		service.inputFoundation(req, model);
 	
-		return "HR/HR_InputProHR1";
+		return "HR/HR_InputHR";
+		
 	}	
 	
-	@RequestMapping("HR_inputProHR2")
-	public String HR_inputProHR2(HttpServletRequest req, Model model) {
-		logger.info("log => HR_inputProHR2");
+	@RequestMapping("inputPhysical")
+	public String HR_inputPhysical(HttpServletRequest req, Model model) {
+		logger.info("log => HR_inputPhysicalPro");
 		
 		return "HR/HR_InputHR";
 	}
