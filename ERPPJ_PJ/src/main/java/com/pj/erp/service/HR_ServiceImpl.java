@@ -20,11 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.persistence.HR_DAO;
-<<<<<<< HEAD
+
 import com.pj.erp.vo.HR_PhysicalVO;
-=======
+
 import com.pj.erp.vo.HR_PaystepVO;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_VO;
 
@@ -41,9 +41,7 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	// 인사정보등록
 	@Override
-<<<<<<< HEAD
-	public void inputProHR1(MultipartHttpServletRequest req, Model model) {		
-		
+	public void inputProHR1(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
@@ -51,8 +49,7 @@ public class HR_ServiceImpl implements HR_Service{
         String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
         
         try {
-            file.transferTo(new File(saveDir+file.getOriginalFilename()));
-            
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
             
             FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
             FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
@@ -65,11 +62,10 @@ public class HR_ServiceImpl implements HR_Service{
             fis.close();
             fos.close();
 		/*
-=======
+
 	public void inputHRPro(HttpServletRequest req, Model model) {
 		/*
 		String pw = "1234";
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		String e_picture = req.getParameter("e_picture");
 		String e_name = req.getParameter("e_name");
 		String e_gender = req.getParameter("e_gender");
@@ -90,36 +86,21 @@ public class HR_ServiceImpl implements HR_Service{
 		String e_blood_pressure1= req.getParameter("e_blood_pressure1");
 		String e_blood_pressure2= req.getParameter("e_blood_pressure2");		
 		
-		System.out.println(e_picture);
-		System.out.println(e_name);
-		System.out.println(e_gender);
-		System.out.println(e_type);
-		System.out.println(e_code);
-		System.out.println(e_hp);
-		System.out.println(e_address1);
-		System.out.println(e_address2);
-		System.out.println(e_nfcCodeNFC);
-		System.out.println(e_disability_type);
-		System.out.println(e_disability_level);
-		System.out.println(e_height);
-		System.out.println(e_weight);
-		System.out.println(e_left_sight);
-		System.out.println(e_right_sight);
-		System.out.println(e_color_blind);
-		System.out.println(e_blood_type);
-		System.out.println(e_blood_pressure1);
-		System.out.println(e_blood_pressure2);
+		
 		*/		
 		
 		HR_VO vo = new HR_VO();
 		
 		String username = req.getParameter("username");
-		String password = "1234";		
+		String e_name = "1234";
+		
+		String password = passwordEncoder.encode(e_name);
+		System.out.println(e_name);				
 		
 		vo.setUsername(username);
 		vo.setPassword(password);
 		vo.setE_picture(req.getParameter("e_picture"));
-		vo.setE_name(req.getParameter("e_name"));
+		vo.setE_name(e_name);
 		vo.setE_gender(Integer.parseInt(req.getParameter("e_gender")));
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
@@ -139,6 +120,7 @@ public class HR_ServiceImpl implements HR_Service{
 		int cnt = 0;		
 		
 		cnt = dao.insertMember(vo);		
+		dao.insertAuth();
 		
 		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);		
@@ -161,20 +143,10 @@ public class HR_ServiceImpl implements HR_Service{
 			
 			i++;
 		}while(req.getParameter("f_name"+i)!=null);
-<<<<<<< HEAD
-		*/
-=======
 		
-		*/
-		String e_name = "1234";
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+		*/		
 		
-		String password = passwordEncoder.encode(e_name);
-		System.out.println(e_name);
-		map.put("password", password);
-		map.put("e_name", e_name);
-		
-<<<<<<< HEAD
+
 		//String password = passwordEncoder.encode(pw);
 		//System.out.println(e_name);
 		//map.put("password", password);
@@ -185,10 +157,7 @@ public class HR_ServiceImpl implements HR_Service{
         } catch(IOException e) {
             e.printStackTrace();
         }	
-=======
-		dao.insertMember(map);
-		dao.insertAuth();
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+		
 		
 	}
 	
@@ -223,11 +192,9 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_RankVO> vo = dao.rank();
 		
 		model.addAttribute("vo", vo);
-		
-<<<<<<< HEAD
+
 	}	
-=======
-	}
+
 
 	//호봉테이블(호봉)
 	@Override
@@ -240,8 +207,6 @@ public class HR_ServiceImpl implements HR_Service{
 		/*
 		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
 		 */
-	}
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-	
+	}	
 	
 }

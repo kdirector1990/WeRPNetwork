@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-=======
+
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
 
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR_PaystepVO;
@@ -37,31 +37,15 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping(value="insertProHR1", method=RequestMethod.POST)
 	public String HR_inputProHR1(MultipartHttpServletRequest req, Model model) {
-=======
-	@RequestMapping("HR_InputHRex")
-	public String HR_InputHRex(HttpServletRequest req, Model model) {
-		logger.info("log => HR_InputHR");
+		logger.info("log => HR_InputProHR1");
 		
-		service.inputHRPro(req, model); 
-		return "HR/HR_InputHR_ex";
-	}
-	
-	@RequestMapping("HR_inputProHR1")
-	public String HR_inputProHR1(HttpServletRequest req, Model model) {
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-		logger.info("log => HR_inputProHR1");
-		
-<<<<<<< HEAD
 		service.inputProHR1(req, model);
-		
+	
 		return "HR/HR_InputProHR1";
-=======
-		return "HR/HR_InputHR";
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-	}
+	}	
 	
 	@RequestMapping("HR_inputProHR2")
 	public String HR_inputProHR2(HttpServletRequest req, Model model) {
@@ -190,4 +174,13 @@ public class HR_Controller {
 		return "HR/coming_soon";
 	}
 	
+	/*
+	 * @RequestMapping("HR_InputHRex")
+	public String HR_InputHRex(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR");
+		
+		service.inputHRPro(req, model); 
+		return "HR/HR_InputHR_ex";
+	}
+	 */
 }

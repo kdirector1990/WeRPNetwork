@@ -3,11 +3,11 @@ package com.pj.erp.persistence;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
+
 import com.pj.erp.vo.HR_PhysicalVO;
-=======
+
 import com.pj.erp.vo.HR_PaystepVO;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_VO;
 
