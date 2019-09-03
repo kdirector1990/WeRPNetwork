@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.MS_VO;
 
 @Service
@@ -48,15 +49,16 @@ public class ERPServiceImpl implements ERPService{
 
 	@Override
 	public void testreg(HttpServletRequest req, Model model) {
-		 
+		
+		HR_VO vo = new HR_VO();
 		String e_name = "1234";
 		
 		String password = passwordEncoder.encode(e_name);
 		System.out.println(e_name);
-		map.put("password", password);
-		map.put("e_name", e_name);
+		vo.setPassword(password);
+		vo.setE_name(e_name);
 		
-		dao2.insertMember(map);
+		dao2.insertMember(vo);
 		dao2.insertAuth();
 		
 		

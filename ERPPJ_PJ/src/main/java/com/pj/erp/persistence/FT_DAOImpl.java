@@ -16,4 +16,9 @@ public class FT_DAOImpl implements FT_DAO{
 	public int FT_AccInsert(Map<String, Object> map) {
 		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccInsert",map);
 	}
+	
+	public int FT_applyinput() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
