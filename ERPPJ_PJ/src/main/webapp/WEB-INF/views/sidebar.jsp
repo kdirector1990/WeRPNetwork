@@ -283,7 +283,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="InputDepartment">부서등록</a></li>
+	                          			<li><a href="HR_InputDepartment">부서등록</a></li>
 										<li><a href="">부서
 										조회</a></li>									
 	                          		</ul>
