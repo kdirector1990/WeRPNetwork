@@ -193,7 +193,11 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("vo", vo);
 
+
 	}	
+
+
+
 
 
 	//호봉테이블(호봉)
@@ -207,6 +211,11 @@ public class HR_ServiceImpl implements HR_Service{
 		/*
 		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
 		 */
+
 	}	
 	
+
+	
+	
+
 }
