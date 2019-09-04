@@ -105,6 +105,7 @@ public class FT_Controller {
 		
 		return "FT/FT_capital_plan";
 	}
+	
 	//예산 조정 입력
 	@RequestMapping("FT_adjustment_input")
 	public String FT_adjustment_input(Locale locale, Model model) {
@@ -145,8 +146,10 @@ public class FT_Controller {
 	
 	// 적금관리
 	@RequestMapping("FT_Savings")
-	public String FT_Savings(Locale locale, Model model) {
+	public String FT_Savings(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Savings");
+		
+		service.FT_SavingsSelect(req, model);
 		
 		return "FT/FT_Savings";
 	}
@@ -167,12 +170,36 @@ public class FT_Controller {
 		return "FT/FT_CardManagement";
 	}
 	
-	// 단기차입금목록
-	@RequestMapping("FT_short_borrowings_list")
-	public String FT_short_borrowings_list(Locale locale, Model model) {
-		logger.info("log => FT_short_borrowings_list");
+	// 예금목록
+	@RequestMapping("FT_Deposit_list")
+	public String FT_Deposit_list(Locale locale, Model model) {
+		logger.info("log => FT_Deposit_list");
 		
-		return "FT/FT_short_borrowings_list";
+		return "FT/FT_Deposit_list";
+	}
+	
+	// 단기대여금목록
+	@RequestMapping("FT_short_Loan_list")
+	public String FT_short_Loan_list(Locale locale, Model model) {
+		logger.info("log => FT_short_Loan_list");
+		
+		return "FT/FT_short_Loan_list";
+	}
+	
+	// 단기매매증권목록
+	@RequestMapping("FT_short_Securities_list")
+	public String FT_short_Securities_list(Locale locale, Model model) {
+		logger.info("log => FT_short_Securities_list");
+		
+		return "FT/FT_short_Securities_list";
+	}
+	
+	// 받을어음목록
+	@RequestMapping("FT_Note_list")
+	public String FT_Note_list(Locale locale, Model model) {
+		logger.info("log => FT_Note_list");
+		
+		return "FT/FT_Note_list";
 	}
 	
 	// 장기차입금목록
@@ -191,6 +218,14 @@ public class FT_Controller {
 		return "FT/FT_note_payable_list";
 	}
 	
+	// 건물목록
+	@RequestMapping("FT_building_management")
+	public String FT_building_management(Locale locale, Model model) {
+		logger.info("log => FT_building_management");
+		
+		return "FT/FT_building_management";
+	}
+		
 	// 토지 목록
 	@RequestMapping("FT_land_list")
 	public String FT_land_list(Locale locale, Model model) {
@@ -212,18 +247,7 @@ public class FT_Controller {
 		logger.info("url : FT_chitupdate 호출중");
 		
 		String key = map.get("key").toString();
-		String date = map.get("date").toString();
-		String no = map.get("no").toString();
-		String text = map.get("text").toString();
-		String type = map.get("type").toString();
-		String num = map.get("num").toString();
-		String state = map.get("state").toString();
-		String confirmname = map.get("confirmname").toString();
-		String devprice = map.get("devprice").toString();
-		String writer = map.get("writer").toString();
-		String slee = map.get("slee").toString();
-		return key + " " + date + " " + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
-				 + " " + writer + " " + slee; 
+		return key + "호출"; 
 	}
 	
 	@RequestMapping(value = "FT_AccinputEx", produces = "application/text; charset=utf8")
@@ -235,17 +259,22 @@ public class FT_Controller {
 		return "완료"; 
 	}
 	
+	// 적금 추가
 	@RequestMapping(value = "FT_SavingsInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_SavingsInsert(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_SavingsInsert 호출중");
-		String AccCode = map.get("AccCode").toString();
-		String AccName = map.get("AccName").toString();
-		String SubjectCode = map.get("SubjectCode").toString();
-		String SubjectName = map.get("SubjectName").toString();
-		String AccountNo = map.get("AccountNo").toString();
-		String AccountHolder = map.get("AccountHolder").toString();
-		String DevPrice = map.get("DevPrice").toString();
-		return AccCode + " " + AccName + " "  + SubjectCode + " " + SubjectName + " " + AccountNo + " " + AccountHolder + " " + DevPrice; 
+		
+		String result = service.FT_SavingsInsert(map);
+		
+		return result; 
+	}
+	
+	// 적금 수정
+	@RequestMapping(value = "FT_SavingsUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SavingsUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SavingsUpdate 호출중");
+		String result = service.FT_SavingsUpdate(map);
+		return result; 
 	}
 	
 	@RequestMapping(value = "FT_DepositInsert", produces = "application/text; charset=utf8")

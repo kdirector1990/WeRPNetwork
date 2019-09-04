@@ -6,8 +6,8 @@
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
 	<insert id="insertMember" parameterType="com.pj.erp.vo.HR_VO">
-		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address1, e_address2, e_mailcode, level_step, e_nfcCodeNFC, e_disability_type, e_disability_level, start_date)
-		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address1}, #{e_address2}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{e_disability_type}, #{e_disability_level}, #{start_date}) 
+		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, start_date, enabled)
+		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{start_date}, #{enabled}) 
 	</insert>
 	<insert id="insertAuth">
 		insert into authority(username, authority)
@@ -30,5 +30,12 @@
 		select * from paystep_tbl
 		Where rank_code = #{rank_code}
 	</select>
+	
+	<!-- 호봉테이블(금액수정) -->
+	<update id="updatePay" parameterType="com.pj.erp.vo.HR_PaystepVO">
+		Update paystep_tbl
+		Set BASE_PAYMENT = #{BASE_PAYMENT}, ADD_PAYMENT = #{ADD_PAYMENT}, EXTENSION_PAYMENT = #{EXTENSION_PAYMENT}
+		Where paystep_code = #{paystep_code} And rank_code = #{rank_code}
+	</update>
 	
 </mapper>
