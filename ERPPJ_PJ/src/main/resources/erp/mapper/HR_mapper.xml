@@ -31,4 +31,11 @@
 		Where rank_code = #{rank_code}
 	</select>
 	
+	<!-- 호봉테이블(금액수정) -->
+	<update id="updatePay" parameterType="com.pj.erp.vo.HR_PaystepVO">
+		Update paystep_tbl
+		Set BASE_PAYMENT = #{BASE_PAYMENT}, ADD_PAYMENT = #{ADD_PAYMENT}, EXTENSION_PAYMENT = #{EXTENSION_PAYMENT}
+		Where paystep_code = #{paystep_code} And rank_code = #{rank_code}
+	</update>
+	
 </mapper>

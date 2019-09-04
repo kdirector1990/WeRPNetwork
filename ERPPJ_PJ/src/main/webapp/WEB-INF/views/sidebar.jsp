@@ -491,23 +491,32 @@
 					                    <li><a href="FT_plan">예산계획현황</a></li>
 	                          		</ul>
 	                          	</li>
+
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">당좌자산
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
+<<<<<<< HEAD
 					                    <li><a href="FT_Deposit_list">예금 목록</a></li>
 					                    <li><a href="FT_short_Loan_list">단기 대여금 목록</a></li>
 					                    <li><a href="FT_short_Securities_list">단기매매증권목록</a></li>
 					                    <li><a href="FT_Note_list">받을 어음 목록</a></li>
+=======
+	                          			<li><a href="FT_Deposit">예금 목록</a></li>
+	                          			<li><a href="#">단기 대여금 목록</a></li>
+	                          			<li><a href="#">단기매매증권 목록</a></li>
+	                          			<li><a href="#">받을 어음 목록</a></li>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          		</ul>
 	                          	</li>
+	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">부채목록
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-					                    <li><a href="FT_short_borrowings_list">단기 차입금 목록</a></li>
-					                    <li><a href="FT_long_borrowings_list">장기 차입금 목록</a></li>
-					                    <li><a href="FT_note_payable_list">지급 어음 목록</a></li>
+	                          			<li><a href="#">단기 차입금 목록</a></li>
+	                          			<li><a href="#">장기 차입금 목록</a></li>
+	                          			<li><a href="#">지급 어음 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -515,9 +524,15 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
+<<<<<<< HEAD
 	                          			<li><a href="FT_building_management">건물 목록(고정자산관리)</a></li>
 	                          			<li><a href="#">토지 목록</a></li>
 	                          			<li><a href="#">설비 목록</a></li>
+=======
+	                          			<li><a href="#">건물 목록(고정자산관리)</a></li>
+	                          			<li><a href="FT_land_list">토지 목록</a></li>
+	                          			<li><a href="FT_facility_list">설비 목록</a></li>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	                          			<li><a href="#">제품 목록</a></li>
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="#">자재 목록</a></li>
@@ -540,7 +555,6 @@
 	                          		<ul>
 	                          			<li><a href="FT_BasicAccount_Input">거래처 관리</a></li>
 	                          			<li><a href="FT_Savings">적금 관리</a></li>
-	                          			<li><a href="FT_Deposit">예금 관리</a></li>
                     					<li><a href="FT_CardManagement">카드 관리</a></li>
 	                          		</ul>
 	                          	</li>

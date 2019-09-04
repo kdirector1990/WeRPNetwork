@@ -225,6 +225,22 @@ public class FT_Controller {
 		
 		return "FT/FT_building_management";
 	}
+		
+	// 토지 목록
+	@RequestMapping("FT_land_list")
+	public String FT_land_list(Locale locale, Model model) {
+		logger.info("log => FT_land_list");
+		
+		return "FT/FT_land_list";
+	}
+	
+	// 설비 목록
+	@RequestMapping("FT_facility_list")
+	public String FT_facility_list(Locale locale, Model model) {
+		logger.info("log => FT_facility_list");
+		
+		return "FT/FT_facility_list";
+	}
 	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String basic5(@RequestBody Map<String, Object> map) throws Exception {

@@ -194,41 +194,50 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_RankVO> vo = dao.rank();
 		
 		model.addAttribute("vo", vo);
-
-
 	}	
 
 	//호봉테이블(호봉)
 	@Override
 	public List<HR_PaystepVO> selectMoney(HttpServletRequest req, Model model) {
 		String rank = req.getParameter("rank_code");
-		System.out.println(rank);
 		List<HR_PaystepVO> vo = dao.pay(rank);
-		System.out.println(vo.get(0).getBASE_PAYMENT());
 		return vo;
 	}
 
 	//호봉테이블(호봉수정)
 	@Override
-	public void updateMoney(HttpServletRequest req, Model model) {
+	public int updateMoney(HttpServletRequest req, Model model) {
 		int i = 0;
+		int updateCnt = 0;
+		HR_PaystepVO vo = new HR_PaystepVO();
 		do{
-			String paystep_code = req.getParameter("paystep_code"+i);
-			int Base_Payment = Integer.parseInt(req.getParameter("BASE_PAYMENT"+i));
-			int ADD_PAYMENT = Integer.parseInt(req.getParameter("ADD__PAYMENT"+i));
-			int EXTENSION_PAYMENT = Integer.parseInt(req.getParameter("EXTENSION_PAYMENT"+i));
+			//화면에서 값 입력
+			int paystep_code = Integer.parseInt(req.getParameter("paystep_code"+i));
+			String rank_code = req.getParameter("rank_code");
+			String base = req.getParameter("BASE_PAYMENT"+i);
+			String add = req.getParameter("ADD_PAYMENT"+i);
+			String Extension = req.getParameter("EXTENSION_PAYMENT"+i);
+
+			//콤마제거
+			int BASE_PAYMENT = Integer.parseInt(base.replace(",", ""));
+			int ADD_PAYMENT = Integer.parseInt(add.replace(",", ""));
+			int EXTENSION_PAYMENT = Integer.parseInt(Extension.replace(",", ""));
 			
-			System.out.println(paystep_code);
-			System.out.println(Base_Payment);
-			System.out.println(ADD_PAYMENT);
-			System.out.println(EXTENSION_PAYMENT);
+			vo.setPaystep_code(paystep_code);
+			vo.setRank_code(rank_code);
+			vo.setBASE_PAYMENT(BASE_PAYMENT);
+			vo.setADD_PAYMENT(ADD_PAYMENT);
+			vo.setEXTENSION_PAYMENT(EXTENSION_PAYMENT);
+			
+			updateCnt= dao.updatePay(vo);
 			
 			i++;
 		}while(req.getParameter("paystep_code"+i) != null);
 		/*
 		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
 		 */
-
+		
+		return updateCnt;
 	}
 	
 	// 부서 등록

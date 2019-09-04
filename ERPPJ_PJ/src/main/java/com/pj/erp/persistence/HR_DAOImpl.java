@@ -44,18 +44,25 @@ public class HR_DAOImpl implements HR_DAO{
 		
 	}
 
-
-	//호봉테이블 (돈)
+	//호봉테이블 (금액)
 	@Override
 	public List<HR_PaystepVO> pay(String rank) {
 		
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.pay", rank);
+	}
+	
+	//호봉테이블(금액수정)
+	@Override
+	public int updatePay(HR_PaystepVO vo) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updatePay", vo);
 	}
 
 	@Override
 	public int insertDepartment(Map<String, Object> map) {		
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertDepartment", map);
 	}
+
+	
 
 	
 
