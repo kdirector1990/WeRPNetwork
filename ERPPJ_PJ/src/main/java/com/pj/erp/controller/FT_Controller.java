@@ -3,6 +3,8 @@ package com.pj.erp.controller;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pj.erp.service.ERPService;
+import com.pj.erp.service.FT_Service;
 
 @Controller
 public class FT_Controller {
 
-	@Autowired
-	ERPService service;
+	
+	@Autowired 
+	FT_Service service;
+	 
 	
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 	
@@ -115,12 +119,20 @@ public class FT_Controller {
 		
 		return "FT/FT_apply_input";
 	}
-	//예산 편성 입력
-	@RequestMapping("FT_organization_input")
-	public String FT_organization_input(Locale locale, Model model) {
-		logger.info("log => FT_organization_input");
+	//예산 계획 현황
+	@RequestMapping("FT_plan")
+	public String FT_plan(Locale locale, Model model) {
+		logger.info("log => FT_plan");
 		
-		return "FT/FT_organization_input";
+		return "FT/FT_plan";
+	}
+	
+	//예산 신청 입력처리
+	@RequestMapping("FT_apply_input_pro")
+	public String FT_apply_input_pro(HttpServletRequest req, Model model) {
+		logger.info("log => FT_apply_input_pro");
+		service.FT_applyinput(req,model);
+		return "FT/FT_apply_input_pro";
 	}
 	
 	// 거래처 관리
@@ -174,23 +186,13 @@ public class FT_Controller {
 				 + " " + writer + " " + slee; 
 	}
 	
-	@RequestMapping(value = "FT_AccinputInput", produces = "application/text; charset=utf8")
-	public @ResponseBody String FT_AccinputEx(@RequestBody Map<String, Object> map) throws Exception {
+	@RequestMapping(value = "FT_AccinputEx", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_AccinputEx(@RequestBody Map<String, Object> map) {
 		logger.info("url : FT_AccinputEx 호출중");
 		
-		String key = map.get("key").toString();
-		String date = map.get("date").toString();
-		String no = map.get("no").toString();
-		String text = map.get("text").toString();
-		String type = map.get("type").toString();
-		String num = map.get("num").toString();
-		String state = map.get("state").toString();
-		String confirmname = map.get("confirmname").toString();
-		String devprice = map.get("devprice").toString();
-		String writer = map.get("writer").toString();
-		String slee = map.get("slee").toString();
-		return key + " " + date + " "  + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
-				 + " " + writer + " " + slee; 
+		service.FT_ACCInsert(map);
+		
+		return "완료"; 
 	}
 	
 	@RequestMapping(value = "FT_SavingsInsert", produces = "application/text; charset=utf8")

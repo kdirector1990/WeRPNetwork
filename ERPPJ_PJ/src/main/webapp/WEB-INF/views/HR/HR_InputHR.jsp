@@ -93,7 +93,7 @@
 								<div class="card-body">
 									<ul class="nav nav-tabs" role="tablist">
 										<li class="nav-item"><a class="nav-link active"	id="employee-tab" data-toggle="tab" href="#employee" role="tab" aria-controls="employee" aria-selected="false">
-											<span class="d-block d-sm-none"><i class="fa fa-employee"></i></span> <span class="d-none d-sm-block">인적정보</span>
+											<span class="d-block d-sm-none"><i class="fa fa-employee"></i></span> <span class="d-none d-sm-block">사원정보</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" id="presidency-tab" data-toggle="tab" href="#presidency" role="tab" aria-controls="presidency" aria-selected="true">
 											<span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
@@ -110,19 +110,23 @@
 									<div class="tab-content">
 										<!-- 인적정보 -->
 										<div class="tab-pane show active" id="employee"
-											role="tabpanel" aria-labelledby="employee-tab">
-											<form action="HR_inputProHR1" class="form-horizontal"
-												method="post">
-												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+											role="tabpanel" aria-labelledby="employee-tab">											
+
 												<div class="col-sm-12">
+													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" method="post">
+																																		
+
+														
+													<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">													
+
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
 													 <h4 class="header-title">&nbsp;</h4>
 														<div class="form-group row">
-															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
+															<!-- <label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<input type="file" class="dropify" name="e_picture"/>
-																</div>
+																</div> -->
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 																<div class="col-md-6">
 																	<div class="form-group row">
@@ -137,11 +141,11 @@
 																		<div class="col-md-3  col-form-label">
 																			<div>
 								                                        	    <div class="custom-control custom-radio custom-control-inline mb-2">
-								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value = "male" checked>
+								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="male" checked>
 								                                      	         	<label class="custom-control-label" for="customRadioInline1">남성</label>
 								                                           		</div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value = "female">
+									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="female">
 									                                                <label class="custom-control-label" for="customRadioInline2">여성</label>
 									                                            </div>
 								                                        	</div>
@@ -151,11 +155,11 @@
 																		<div class="col-md-4  col-form-label">
 																			<div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value = "local" checked>
+									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>
 									                                                <label class="custom-control-label" for="customRadioInline7">내국인</label>
 									                                            </div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value = "foreign">
+									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">
 									                                                <label class="custom-control-label" for="customRadioInline8">외국인</label>
 									                                            </div>
 									                                        </div>
@@ -191,6 +195,19 @@
 																</div>
 															</div>
 															<div class="form-group row">
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">우편번호<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="e_mailcode" placeholder="우편번호">
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label"
+																	for="simpleinput">호봉<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="level_step" placeholder="호봉">
+																</div>
+															</div>
+															<div class="form-group row">
 																<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label> 
 																<div class="col-md-4">
 																	<input type="text" class="form-control" name="e_nfcCodeNFC" placeholder="출입카드No.">
@@ -220,9 +237,22 @@
 																<div class="col-md-1">
 																		<input type="text" class="form-control" name="e_disability_level" placeholder="장애인 등급">
 																</div>
-															</div>	
+															</div>
+															<div class="form-group text-right mb-0">
+		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+		                                                    Submit
+		                                                </button>
+		                                                <button type="reset" class="btn btn-secondary waves-effect">
+		                                                    Cancel
+		                                                </button>
+		                                            </div>																
 														</div>
-														<div class="card-body table-responsive">
+														</form>
+														
+														<form action="HR_inputPhysical" class="form-horizontal" id="physical" 
+															method="post">
+															<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+															<div class="card-body table-responsive">
 															<h4 class="header-title">신체 정보</h4>
 															<h4 class="header-title">&nbsp;</h4>
 															<div class="form-group row">
@@ -295,19 +325,29 @@
 							                                       <label class="col-md-1 col-form-label"
 																	for="simpleinput">혈압</label>
 																		<div class="col-md-1">
-																			<input type="text" class="form-control" name="e_blood_pressure1" placeholder="최저">
+																			<input type="text" class="form-control" name="e_blood_presure1" placeholder="최저">
 																		</div>
 																		<label class="col-md-1 col-form-label"
 																			for="simpleinput">mmHg ~</label>
 																		<div class="col-md-1">
-																			<input type="text" class="form-control" name="e_blood_pressure2" placeholder="최고">
+																			<input type="text" class="form-control" name="e_blood_presure2" placeholder="최고">
 																		</div>
 																		<label class="col-md-1 col-form-label"
 																			for="simpleinput">mmHg</label>
 															</div>
 															
+															<div class="form-group text-right mb-0">
+		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+		                                                    Submit
+		                                                </button>
+		                                                <button type="reset" class="btn btn-secondary waves-effect">
+		                                                    Cancel
+		                                                </button>
+		                                            </div>
+															
 															
 														</div>
+														</form>
 														<div class="card-body table-responsive">
 														<h4 class="header-title">가족 정보</h4>
 													 	<h4 class="header-title">&nbsp;</h4>
@@ -347,8 +387,8 @@
 		                                                   		 삭제
 		                                                </button>
 		                                                </div>
-		                                                
-                                        </div>
+		                                              
+                                        			</div>
 													</div>
 													<div class="form-group text-right mb-0">
 		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
@@ -359,7 +399,7 @@
 		                                                </button>
 		                                            </div>
                                            
-											</form>
+											
 										</div>
 
 										<!-- 재직정보 -->
@@ -367,6 +407,7 @@
 											aria-labelledby="presidency-tab">
 											<form action="HR_inputProHR2" class="form-horizontal"
 												method="post">
+												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
 														<div class="card-body table-responsive">
 																	<!-- <form class="form-horizontal"> -->
@@ -483,6 +524,7 @@
 											aria-labelledby="message-tab">
 											<form action="HR_inputProHR3" class="form-horizontal"
 												method="post">
+												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<div class="col-sm-12">
 													<div class="card">
 														<div class="card-body table-responsive">

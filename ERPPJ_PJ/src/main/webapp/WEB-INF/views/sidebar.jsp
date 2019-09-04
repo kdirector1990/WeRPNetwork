@@ -271,8 +271,7 @@
 	                          	<li><a href="MS_planEnrollment">기획서 등록</a></li> 	
 	                          </ul>
 							</li>
-                           
-                           
+                                                      
                            	<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-account"></i> 
@@ -280,10 +279,18 @@
 	                             <span class="menu-arrow"></span>
 	                          </a>
 	                          <ul class="nav-second-level" aria-expanded="false">
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">부서관리
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
+	                          			<li><a href="HR_InputDepartment">부서등록</a></li>
+	                          			<li><a href="#">부서조회</a></li>
+	                          		</ul>
+	                          	</li>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
+	                          		<ul>	                          			
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
@@ -480,7 +487,7 @@
 	                          		<ul>
 					                    <li><a href="FT_apply_input">예산신청입력</a></li>
 					                    <li><a href="FT_adjustment_input">예산조정입력</a></li>
-					                    <li><a href="FT_organization_input">예산편성입력</a></li>
+					                    <li><a href="FT_plan">예산계획현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -505,8 +512,10 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">금융관리
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#">계좌번호 관리</a></li>
-                    					<li><a href="#">카드번호 관리</a></li>
+	                          			<li><a href="FT_BasicAccount_Input">거래처 관리</a></li>
+	                          			<li><a href="FT_Savings">적금 관리</a></li>
+	                          			<li><a href="FT_Deposit">예금 관리</a></li>
+                    					<li><a href="FT_CardManagement">카드 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	 	

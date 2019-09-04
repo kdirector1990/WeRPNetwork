@@ -11,17 +11,13 @@
 <!-- <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> -->	
 <script type="text/javascript">
 
-/* function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-} */
-
+	
 	function load(rank){
 		alert(rank);
 		$.ajax({
 			type : "GET",
 			url : "/erp/HR_GoodPay_paystep",
 			data : { 'rank_code' : rank},
-			async: false,
 			contentType : 'application/json',
 			dataType : "json",
 			success : function(vo){
@@ -36,15 +32,17 @@
 				
 				for(var i = 0; i < vo.length; i++){
 					var paystep_codeS = vo[i].paystep_code;
-					var BASE_PAYMENTS = vo[i].base_PAYMENT;
-					var ADD_PAYMENTS = vo[i].add_PAYMENT;
-					var EXTENSION_PAYMENTS = vo[i].extension_PAYMENT;
+					var BASE_PAYMENTS = addComma(vo[i].base_PAYMENT);
+					var ADD_PAYMENTS = addComma(vo[i].add_PAYMENT);
+					var EXTENSION_PAYMENTS = addComma(vo[i].extension_PAYMENT);
+					var total = addComma(vo[i].base_PAYMENT+vo[i].add_PAYMENT+vo[i].extension_PAYMENT);
 					
-					$('#pay2').append("<tr class='payRank'><td>"+paystep_codeS+"</td><td>"	
-						+"<input type='text' id='simpleinput' class='form-control' name='BASE_PAYMENT' value='"+BASE_PAYMENTS+"' numberOnly size='10' style='width:200px; text-align:center'>"+"</td><td>"
-						+"<input type='text' id='simpleinput' class='form-control' name='ADD_PAYMENT' value='"+ADD_PAYMENTS+"' numberOnly size='10' style='width:200px; text-align:center'>"+"</td><td>"
-						+"<input type='text' id='simpleinput' class='form-control' name='EXTENSION_PAYMENT' value='"+EXTENSION_PAYMENTS+"' numberOnly size='10' style='width:200px; text-align:center'>"+"</td><td>"
-						+(BASE_PAYMENTS+ADD_PAYMENTS+EXTENSION_PAYMENTS)+"</td></tr>");
+					$('#pay2').append("<tr class='payRank'>" +
+							+"<input type = 'hidde' name = 'paystep_code"+i+"' value ='paystep_codeS'><td>"+paystep_codeS+"</td><td>"	
+						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='BASE_PAYMENT"+i+"' value='"+BASE_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
+						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='ADD_PAYMENT"+i+"' value='"+ADD_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
+						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='EXTENSION_PAYMENT"+i+"' value='"+EXTENSION_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
+						+total+"</td></tr>");
 				} 
 				
 				/* alert(vo); */
@@ -58,6 +56,14 @@
 			}
 		});
 	}
+	
+	/* function payUpdates(){
+		var obj = new Object();
+		var jsonData;
+		
+		obj.key = $("input[name=]")
+		
+	} */
 	
 </script>
 
@@ -80,7 +86,6 @@
 
 				<!-- Start Content-->
 				<div class="container-fluid">
-
 					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
@@ -91,7 +96,7 @@
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>호봉복사</button>
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light">코드설정</button>
 								</div>
-								<h4 class="page-title">근태결과입력</h4>
+								<h4 class="page-title">호봉테이블 입력</h4>
 							</div>
 						</div>
 					</div>
@@ -142,10 +147,13 @@
 					</div>
 				</div>
 
+			
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
+							<form name="updatePay" action="HR_GoodPay_payUpdate" method="post"  onsubmit="removeComma(str);" class="form-horizontal">
+							<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
 								<table id="pay2" class="table table-bordered mb-0">
 									<thead>
 										<tr>
@@ -159,14 +167,17 @@
 											<th scope="col" align="center">급 호 수 당</th>
 											<th scope="col" align="center">연 장 수 당</th>
 										</tr>
-									</thead>									
-								</table>							
+									</thead>
+								</table>
+								<div class="page-title-center">
+									<button type="submit" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
+									</div>								
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			 <%@ include file="../footer.jsp" %>
 			</div>
 		</div>
@@ -181,5 +192,72 @@
 
 	 <%@ include file="../rightbar.jsp" %>
      <%@ include file="../setting2.jsp" %>
+     
+     <script type="text/javascript">
+
+     function addComma(num) {
+   	  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+   	  return num.toString().replace(regexp, ',');
+   	}
+     
+
+    //숫자만 입력
+    function onlyNumber(event){
+ 	    event = event || window.event;
+ 	    var keyID = (event.which) ? event.which : event.keyCode;
+ 	    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
+ 	    	   return 
+ 	    else
+ 	        return false;
+ 	}
+     
+    //문자 지우기
+     function removeChar(event) {
+    	    event = event || window.event;
+    	    var keyID = (event.which) ? event.which : event.keyCode;
+    	    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+    	        return;
+    	    else
+    	    	 event.target.value = event.target.value.replace(/[^-\.0-9]/g, "");
+    }
+    
+   //콤마 찍기
+     function comma(obj) {
+         var regx = new RegExp(/(-?\d+)(\d{3})/);
+         var bExists = obj.indexOf(".", 0);//0번째부터 .을 찾는다.
+         var strArr = obj.split('.');
+         while (regx.test(strArr[0])) {//문자열에 정규식 특수문자가 포함되어 있는지 체크
+             //정수 부분에만 콤마 달기 
+             strArr[0] = strArr[0].replace(regx, "$1,$2");//콤마추가하기
+         }
+         if (bExists > -1) {
+             //. 소수점 문자열이 발견되지 않을 경우 -1 반환
+             obj = strArr[0] + "." + strArr[1];
+         } else { //정수만 있을경우 //소수점 문자열 존재하면 양수 반환 
+             obj = strArr[0];
+         }
+         return obj;//문자열 반환
+     }
+   
+   //input 태그 콤마 달기
+     function inputNumberFormat(obj) {
+    	    obj.value = comma(obj.value);
+    	}
+     
+   /* //콤마 제거
+     function removeComma(n) {  // 콤마제거
+    	    if ( typeof n == "undefined" || n == null || n == "" ) {
+    	        return "";
+    	    }
+    	    var txtNumber = '' + n;
+    	    return txtNumber.replace(/(,)/g, "");
+    	} */
+   //콤마제거 2
+   function removeComma(str){
+   		n = parseInt(str.replace(/,/g,""));
+   		return n;		
+    }
+
+     </script>
 </body>
 </html>

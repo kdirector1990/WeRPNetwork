@@ -1,5 +1,11 @@
 package com.pj.erp.service;
 
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +16,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.persistence.HR_DAO;
+
+import com.pj.erp.vo.HR_PhysicalVO;
+
 import com.pj.erp.vo.HR_PaystepVO;
+
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_VO;
 
 @Service
 public class HR_ServiceImpl implements HR_Service{
@@ -24,9 +37,32 @@ public class HR_ServiceImpl implements HR_Service{
 	@Autowired
 	HR_DAO dao;
 	
-	Map<String, Object> map = new HashMap<String, Object>();
 	
+	
+	// 인사정보등록
 	@Override
+	public void inputFoundation(HttpServletRequest req, Model model) {			
+		/*MultipartFile file = req.getFile("e_picture");
+        
+        String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
+        
+        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+        
+        try {
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
+            
+            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            
+            int data = 0;
+            
+            while((data = fis.read()) != -1) {
+                fos.write(data);
+            }
+            fis.close();
+            fos.close();
+		/*
+
 	public void inputHRPro(HttpServletRequest req, Model model) {
 		/*
 		String pw = "1234";
@@ -48,29 +84,50 @@ public class HR_ServiceImpl implements HR_Service{
 		String e_color_blind= req.getParameter("e_color_blind");
 		String e_blood_type= req.getParameter("e_blood_type");
 		String e_blood_pressure1= req.getParameter("e_blood_pressure1");
-		String e_blood_pressure2= req.getParameter("e_blood_pressure2");
-		String e_blood_pressure = e_blood_pressure1+e_blood_pressure2;
+		String e_blood_pressure2= req.getParameter("e_blood_pressure2");		
 		
-		System.out.println(e_picture);
-		System.out.println(e_name);
-		System.out.println(e_gender);
-		System.out.println(e_type);
-		System.out.println(e_code);
-		System.out.println(e_hp);
-		System.out.println(e_address1);
-		System.out.println(e_address2);
-		System.out.println(e_nfcCodeNFC);
-		System.out.println(e_disability_type);
-		System.out.println(e_disability_level);
-		System.out.println(e_height);
-		System.out.println(e_weight);
-		System.out.println(e_left_sight);
-		System.out.println(e_right_sight);
-		System.out.println(e_color_blind);
-		System.out.println(e_blood_type);
-		System.out.println(e_blood_pressure1);
-		System.out.println(e_blood_pressure2);
 		
+		*/		
+		
+		HR_VO vo = new HR_VO();
+		
+		String username = req.getParameter("username");
+		String e_name = "1234";
+		// String e_picture = file.getOriginalFilename();
+		
+		String password = passwordEncoder.encode(e_name);
+		System.out.println(e_name);				
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));		
+		
+		vo.setUsername(username);
+		vo.setPassword(password);
+		// vo.setE_picture(e_picture);
+		vo.setE_name(e_name);
+		vo.setE_gender(e_gender);
+		vo.setE_type(req.getParameter("e_type"));
+		vo.setE_code(req.getParameter("e_code"));
+		vo.setE_hp(req.getParameter("e_hp"));
+		vo.setE_address1(req.getParameter("e_address1"));
+		vo.setE_address2(req.getParameter("e_address2"));
+		vo.setE_mailcode(req.getParameter("e_mailcode"));
+		
+		String level_step = "920";
+		vo.setLevel_step(level_step);		
+		
+		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));
+		vo.setE_disability_type(req.getParameter("e_disability_type"));
+		vo.setE_disability_level(req.getParameter("e_disability_level"));
+		vo.setStart_date(new Timestamp(System.currentTimeMillis()));				
+		
+		int cnt = 0;		
+		
+		cnt = dao.insertMember(vo);		
+		dao.insertAuth();
+		
+		model.addAttribute("cnt", 1);		
+		model.addAttribute("insertCnt", cnt);		
+		
+		/*
 		int i=0;
 		do {
 			String f_name = req.getParameter("f_name"+i);
@@ -89,18 +146,45 @@ public class HR_ServiceImpl implements HR_Service{
 			i++;
 		}while(req.getParameter("f_name"+i)!=null);
 		
+		*/		
+		
+
+		//String password = passwordEncoder.encode(pw);
+		//System.out.println(e_name);
+		//map.put("password", password);
+		//map.put("e_name", e_name);
+		
+		//dao.insertMember(map);
+		//dao.insertAuth();
+        /*} catch(IOException e) {
+            e.printStackTrace();
+        }	
 		*/
-		String e_name = "1234";
 		
-		String password = passwordEncoder.encode(e_name);
-		System.out.println(e_name);
-		map.put("password", password);
-		map.put("e_name", e_name);
+	}
+	
+	@Override
+	public void inputPhysical(HttpServletRequest req, Model model) {
+		HR_PhysicalVO vo = new HR_PhysicalVO();
+		vo.setE_height(Integer.parseInt(req.getParameter("e_height")));
+		vo.setE_weight(Integer.parseInt(req.getParameter("e_weight")));
+		vo.setE_left_sight(Integer.parseInt(req.getParameter("e_left_sight")));
+		vo.setE_right_sight(Integer.parseInt(req.getParameter("e_right_sight")));
+		vo.setE_color_blind(req.getParameter("e_color_blind"));
+		vo.setE_blood_type(req.getParameter("e_blood_type"));
 		
-		dao.insertMember(map);
-		dao.insertAuth();
+		String e_blood_presure = "";
+		String e_blood_presure1 = req.getParameter("e_blood_presure1");
+		String e_blood_presure2 = req.getParameter("e_blood_presure2");
+		e_blood_presure = e_blood_presure1 + "mmHg ~ " + e_blood_presure2 + "mmHg";
+		vo.setE_blood_presure(e_blood_presure);		
 		
+		int cnt = 0;
 		
+		cnt = dao.insertPhysical(vo);
+		model.addAttribute("cnt", 1);
+		
+		model.addAttribute("insertCnt", cnt);
 		
 	}
 
@@ -110,8 +194,9 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_RankVO> vo = dao.rank();
 		
 		model.addAttribute("vo", vo);
-		
-	}
+
+
+	}	
 
 	//호봉테이블(호봉)
 	@Override
@@ -121,10 +206,47 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_PaystepVO> vo = dao.pay(rank);
 		System.out.println(vo.get(0).getBASE_PAYMENT());
 		return vo;
+	}
+
+	//호봉테이블(호봉수정)
+	@Override
+	public void updateMoney(HttpServletRequest req, Model model) {
+		int i = 0;
+		do{
+			String paystep_code = req.getParameter("paystep_code"+i);
+			int Base_Payment = Integer.parseInt(req.getParameter("BASE_PAYMENT"+i));
+			int ADD_PAYMENT = Integer.parseInt(req.getParameter("ADD__PAYMENT"+i));
+			int EXTENSION_PAYMENT = Integer.parseInt(req.getParameter("EXTENSION_PAYMENT"+i));
+			
+			System.out.println(paystep_code);
+			System.out.println(Base_Payment);
+			System.out.println(ADD_PAYMENT);
+			System.out.println(EXTENSION_PAYMENT);
+			
+			i++;
+		}while(req.getParameter("paystep_code"+i) != null);
 		/*
 		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
 		 */
+
 	}
 	
+	// 부서 등록
+	@Override
+	public void inputDepartmentPro(HttpServletRequest req, Model model) {
+		String department_code = req.getParameter("department_code");
+		String department_name = req.getParameter("department_name");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("department_code", department_code);
+		map.put("department_name", department_name);
+		
+		dao.insertDepartment(map);
+		
+	}	
 	
+
+	
+	
+
 }

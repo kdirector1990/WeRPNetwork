@@ -15,10 +15,15 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
+                                        <c:if test="${saleplanCnt != 0 }">
+                                        <form action = "ST_sale_Plan_modifyPro" method="post">
+                                        
+                            				<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+                                        	<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
                                             <table class="table table-striped mb-0">
                                                    <tr>
                                               		<th> 품번 </th>
-                                              		<td> <input class = "input" type = "text" name = "saleplan_no" value = "">
+                                              		<td> <input class = "input" type = "text" name = "saleplan_code" value = "${dto.saleplan_code}">
                                               		</td>
                                               		
                                               		<th>품명 </th>
@@ -47,8 +52,18 @@
                                                   		<td><input class = "input" type = "text" name = "note" value = "">
                                                   		</td>
                                                     </tr>
+                                                    
+                                                    <tr>
+                                                    	<th>
+                                                    	<input class="inputButton" type="submit" value="글수정">
+														<input class="inputButton" type="reset" value="수정취소">
+														<input class="inputButton" type="button" value="목록보기"
+																onClick="window.location.reload()">
+                                                    </tr>
                                                
                                             </table>
+                                            </form>
+                                            </c:if>
                                         </div>
                                     </div>
                             </div>
