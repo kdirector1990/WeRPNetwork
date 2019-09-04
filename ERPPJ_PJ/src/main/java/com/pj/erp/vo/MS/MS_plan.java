@@ -1,21 +1,22 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.MS;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
-public class MS_VO {
+public class MS_plan {
 	//경영지원
 	private String plan_code;			//기획서 코드
 	private String plan_name;			//기획명
 	private String username;			//기획제안자
 	private String position_code;		//책임자
 	private Timestamp plan_regdate;		//기획등록일
-	private Timestamp plan_startdate;	//기획 시작 예정일
-	private Timestamp plan_enddate;		//기획 종료 목표일
+	private Date plan_startdate;	//기획 시작 예정일
+	private Date plan_enddate;		//기획 종료 목표일
 	private String plan_objective;		//기획 목표
 	private String plan_state;			//기획 상태
 	private String plan_proposal;		//상세 기획안 파일
 	
-	public MS_VO() {}
+	public MS_plan() {}
 
 	public String getPlan_code() {
 		return plan_code;
@@ -57,20 +58,19 @@ public class MS_VO {
 		this.plan_regdate = plan_regdate;
 	}
 
-
-	public Timestamp getPlan_startdate() {
+	public Date getPlan_startdate() {
 		return plan_startdate;
 	}
 
-	public void setPlan_startdate(Timestamp plan_startdate) {
+	public void setPlan_startdate(Date plan_startdate) {
 		this.plan_startdate = plan_startdate;
 	}
 
-	public Timestamp getPlan_enddate() {
+	public Date getPlan_enddate() {
 		return plan_enddate;
 	}
 
-	public void setPlan_enddate(Timestamp plan_enddate) {
+	public void setPlan_enddate(Date plan_enddate) {
 		this.plan_enddate = plan_enddate;
 	}
 
