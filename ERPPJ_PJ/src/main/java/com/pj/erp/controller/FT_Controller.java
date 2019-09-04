@@ -119,12 +119,12 @@ public class FT_Controller {
 		
 		return "FT/FT_apply_input";
 	}
-	//예산 편성 입력
-	@RequestMapping("FT_organization_input")
-	public String FT_organization_input(Locale locale, Model model) {
-		logger.info("log => FT_organization_input");
+	//예산 계획 현황
+	@RequestMapping("FT_plan")
+	public String FT_plan(Locale locale, Model model) {
+		logger.info("log => FT_plan");
 		
-		return "FT/FT_organization_input";
+		return "FT/FT_plan";
 	}
 	
 	//예산 신청 입력처리
@@ -173,6 +173,30 @@ public class FT_Controller {
 		logger.info("log => FT_AccountInquiry");
 		
 		return "FT/FT_AccountInquiry";
+	}
+		
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+		
+		return "FT/FT_short_borrowings_list";
+	}
+	
+	// 장기차입금목록
+	@RequestMapping("FT_long_borrowings_list")
+	public String FT_long_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_long_borrowings_list");
+		
+		return "FT/FT_long_borrowings_list";
+	}
+	
+	// 지급어음 목록
+	@RequestMapping("FT_note_payable_list")
+	public String FT_note_payable_list(Locale locale, Model model) {
+		logger.info("log => FT_note_payable_list");
+		
+		return "FT/FT_note_payable_list";
 	}
 	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
