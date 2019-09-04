@@ -31,11 +31,11 @@
 									<ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">재무</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">부채목록</a></li>
-                                            <li class="breadcrumb-item active">지급어음 목록</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">유형자산(고정자산)</a></li>
+                                            <li class="breadcrumb-item active">토지 목록</li>
                                         </ol>
 								</div>
-								<h4 class="page-title">지급어음목록</h4>
+								<h4 class="page-title">토지 목록</h4>
 							</div>
 						</div>
 					</div>
@@ -46,20 +46,22 @@
 							<div class="card">
 								<div class="card-body table-responsive">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-                                            <col style = "width:20%;">
-                                            <col style = "width:20%">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%">
                                             <col style = "width:15%;">
+                                            <col style = "width:20%;">
                                             <col style = "width:15%;">
                                             <col style = "width:15%;">
                                             <col style = "width:15%;">
                                             <thead>
                                                 <tr>
-	                                              <th>지급어음계정코드</th>
-	                                              <th>거래처코드</th>
-	                                              <th>액면가</th>
-	                                              <th>발생일</th>
-	                                              <th>만기일</th>
-	                                              <th>이자율</th>
+	                                              <th>토지관리코드</th>
+	                                              <th>계정코드</th>
+	                                              <th>사용부서</th>
+	                                              <th>토지명</th>
+	                                              <th>토지주소</th>
+	                                              <th>구입일</th>
+	                                              <th>구입가</th>
                                          		</tr>
                                       		</thead>
                                     		<tbody>
@@ -70,62 +72,70 @@
 	                                              <td>1</td>
 	                                              <td>1</td>
 	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                           		<tr>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
+	                                              <td>1</td>
                                           		</tr>
                                       		</tbody>
                                         </table>

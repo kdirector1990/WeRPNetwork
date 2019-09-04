@@ -515,8 +515,8 @@
 	                          		</a>
 	                          		<ul>
 	                          			<li><a href="#">건물 목록(고정자산관리)</a></li>
-	                          			<li><a href="#">토지 목록</a></li>
-	                          			<li><a href="#">설비 목록</a></li>
+	                          			<li><a href="FT_land_list">토지 목록</a></li>
+	                          			<li><a href="FT_facility_list">설비 목록</a></li>
 	                          			<li><a href="#">제품 목록</a></li>
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="#">자재 목록</a></li>
