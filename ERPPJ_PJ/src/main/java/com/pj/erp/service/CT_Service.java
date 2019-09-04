@@ -6,5 +6,5 @@ import org.springframework.ui.Model;
 
 public interface CT_Service {
 
-	public void CT_insert(HttpServletRequest req, Model model);
+	public int CT_insert(HttpServletRequest req, Model model);
 }

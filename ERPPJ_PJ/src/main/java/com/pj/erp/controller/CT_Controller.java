@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
@@ -115,11 +116,12 @@ public class CT_Controller {
 	
 	//Insert확인
 	@RequestMapping("CT_subject_add")
-	public String CT_subject_add(HttpServletRequest req, Model model) {
+	@ResponseBody
+	public int CT_subject_add(HttpServletRequest req, Model model) {
 		logger.info("log => CT_subject_add");
 		
-		CT.CT_insert(req, model);
+		int insertCnt = CT.CT_insert(req, model);
 		
-		return "CT/CT_equip_add";
+		return insertCnt;
 	}
 }
