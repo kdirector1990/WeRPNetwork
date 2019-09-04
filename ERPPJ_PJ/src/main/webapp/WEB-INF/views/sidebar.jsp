@@ -490,13 +490,38 @@
 					                    <li><a href="FT_plan">예산계획현황</a></li>
 	                          		</ul>
 	                          	</li>
-	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">고정자산
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">당좌자산
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">고정자산관리</a></li>
-                    					<li><a href="#">감가상각누계액 현황</a></li>
+					                    <li><a href="#">예금 목록</a></li>
+					                    <li><a href="#">단기 대여금 목록</a></li>
+					                    <li><a href="#">단기매매증권목록</a></li>
+					                    <li><a href="#">받을 어음 목록</a></li>
+	                          		</ul>
+	                          	</li>
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">부채목록
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
+	                          		<ul>
+					                    <li><a href="FT_short_borrowings_list">단기 차입금 목록</a></li>
+					                    <li><a href="FT_long_borrowings_list">장기 차입금 목록</a></li>
+					                    <li><a href="FT_note_payable_list">지급 어음 목록</a></li>
+	                          		</ul>
+	                          	</li>
+	                          	
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">유형자산(고정자산)
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
+	                          		<ul>
+	                          			<li><a href="#">건물 목록(고정자산관리)</a></li>
+	                          			<li><a href="#">토지 목록</a></li>
+	                          			<li><a href="#">설비 목록</a></li>
+	                          			<li><a href="#">제품 목록</a></li>
+	                          			<li><a href="#">제공품 목록</a></li>
+                    					<li><a href="#">자재 목록</a></li>
+                    					<li><a href="#">전산설비 목록</a></li>
+                    					<li><a href="#">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	

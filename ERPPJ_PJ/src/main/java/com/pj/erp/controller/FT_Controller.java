@@ -167,6 +167,30 @@ public class FT_Controller {
 		return "FT/FT_CardManagement";
 	}
 	
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+		
+		return "FT/FT_short_borrowings_list";
+	}
+	
+	// 장기차입금목록
+	@RequestMapping("FT_long_borrowings_list")
+	public String FT_long_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_long_borrowings_list");
+		
+		return "FT/FT_long_borrowings_list";
+	}
+	
+	// 지급어음 목록
+	@RequestMapping("FT_note_payable_list")
+	public String FT_note_payable_list(Locale locale, Model model) {
+		logger.info("log => FT_note_payable_list");
+		
+		return "FT/FT_note_payable_list";
+	}
+	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String basic5(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_chitupdate 호출중");
