@@ -10,8 +10,16 @@
  	</select>
  	
  	<select id="getsaleplan" resultType="com.pj.erp.vo.ST.SalePlan" parameterType="java.util.Map">
- 		select  * from saleplan_tbl
+ 		select * from saleplan_tbl
  	</select>
+ 	
+ 	<select id="getSaleplanArticle" resultType="com.pj.erp.vo.ST.SalePlan">
+ 		SELECT * FROM saleplan_tbl WHERE saleplan_code=#{saleplan_code}
+ 	</select>
+ 	
+ 	<update id="updatesalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
+ 		UPDATE saleplan_tbl SET saleplan_code=#{saleplan_code}
+ 	</update>
  
  
  </mapper>

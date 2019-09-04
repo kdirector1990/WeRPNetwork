@@ -41,8 +41,8 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	// 인사정보등록
 	@Override
-	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
-		MultipartFile file = req.getFile("e_picture");
+	public void inputFoundation(HttpServletRequest req, Model model) {			
+		/*MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
         
@@ -93,16 +93,17 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String username = req.getParameter("username");
 		String e_name = "1234";
-		String e_picture = file.getOriginalFilename();
+		// String e_picture = file.getOriginalFilename();
 		
 		String password = passwordEncoder.encode(e_name);
 		System.out.println(e_name);				
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));		
 		
 		vo.setUsername(username);
 		vo.setPassword(password);
-		vo.setE_picture(e_picture);
+		// vo.setE_picture(e_picture);
 		vo.setE_name(e_name);
-		vo.setE_gender(Integer.parseInt(req.getParameter("e_gender")));
+		vo.setE_gender(e_gender);
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
 		vo.setE_hp(req.getParameter("e_hp"));
@@ -155,10 +156,10 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		//dao.insertMember(map);
 		//dao.insertAuth();
-        } catch(IOException e) {
+        /*} catch(IOException e) {
             e.printStackTrace();
         }	
-		
+		*/
 		
 	}
 	

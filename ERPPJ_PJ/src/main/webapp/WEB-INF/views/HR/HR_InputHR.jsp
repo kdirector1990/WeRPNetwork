@@ -111,28 +111,22 @@
 										<!-- 인적정보 -->
 										<div class="tab-pane show active" id="employee"
 											role="tabpanel" aria-labelledby="employee-tab">											
-<<<<<<< HEAD
-=======
-												
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
 												<div class="col-sm-12">
-<<<<<<< HEAD
-													<form action="inputFoundation" class="form-horizontal" id="foundation"
-														method="post">
-														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-=======
-													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" enctype="multipart/form-data"
-														method="post">	
-														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">													
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" method="post">
+																																		
+
+														
+													<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">													
+
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
 													 <h4 class="header-title">&nbsp;</h4>
 														<div class="form-group row">
-															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
+															<!-- <label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<input type="file" class="dropify" name="e_picture"/>
-																</div>
+																</div> -->
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 																<div class="col-md-6">
 																	<div class="form-group row">
@@ -147,11 +141,11 @@
 																		<div class="col-md-3  col-form-label">
 																			<div>
 								                                        	    <div class="custom-control custom-radio custom-control-inline mb-2">
-								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value = "male" checked>
+								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="male" checked>
 								                                      	         	<label class="custom-control-label" for="customRadioInline1">남성</label>
 								                                           		</div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value = "female">
+									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="female">
 									                                                <label class="custom-control-label" for="customRadioInline2">여성</label>
 									                                            </div>
 								                                        	</div>
@@ -161,11 +155,11 @@
 																		<div class="col-md-4  col-form-label">
 																			<div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value = "local" checked>
+									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>
 									                                                <label class="custom-control-label" for="customRadioInline7">내국인</label>
 									                                            </div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value = "foreign">
+									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">
 									                                                <label class="custom-control-label" for="customRadioInline8">외국인</label>
 									                                            </div>
 									                                        </div>
@@ -393,7 +387,7 @@
 		                                                   		 삭제
 		                                                </button>
 		                                                </div>
-		                                                
+		                                              
                                         			</div>
 													</div>
 													<div class="form-group text-right mb-0">

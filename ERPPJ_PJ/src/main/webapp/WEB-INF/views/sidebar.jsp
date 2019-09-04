@@ -487,10 +487,10 @@
 	                          		<ul>
 					                    <li><a href="FT_apply_input">예산신청입력</a></li>
 					                    <li><a href="FT_adjustment_input">예산조정입력</a></li>
-					                    <li><a href="FT_organization_input">예산편성입력</a></li>
+					                    <li><a href="FT_plan">예산계획현황</a></li>
 	                          		</ul>
 	                          	</li>
-	                          	
+
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">당좌자산
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
@@ -512,18 +512,18 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">유형자산
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">유형자산(고정자산)
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">건물 목록</a></li>
-	                          			<li><a href="#">토지 목록</a></li>
-	                          			<li><a href="#">설비 목록</a></li>
+	                          			<li><a href="#">건물 목록(고정자산관리)</a></li>
+	                          			<li><a href="FT_land_list">토지 목록</a></li>
+	                          			<li><a href="FT_facility_list">설비 목록</a></li>
 	                          			<li><a href="#">제품 목록</a></li>
 	                          			<li><a href="#">제공품 목록</a></li>
-	                          			<li><a href="#">자재 목록</a></li>
-	                          			<li><a href="#">전산설비 목록</a></li>
-                    					<li><a href="#">감가상각누계액 현황</a></li>
+                    					<li><a href="#">자재 목록</a></li>
+                    					<li><a href="#">전산설비 목록</a></li>
+                    					<li><a href="#">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	

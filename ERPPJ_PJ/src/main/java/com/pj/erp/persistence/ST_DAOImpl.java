@@ -33,5 +33,17 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getSaleCnt");
 	}
 	
+	// saleplan 상세 페이지
+	@Override
+	public SalePlan getSaleplanArticle(String saleplan_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getSaleplanArticle", saleplan_code);
+	}
+	
+	// saleplan 수정 처리
+	@Override
+	public int updatesalePlan(SalePlan vo) {
+		return sqlSession.update("com.pj.erp.persistence.ST_DAO.updatesalePlan", vo);
+	}
+	
 
 }

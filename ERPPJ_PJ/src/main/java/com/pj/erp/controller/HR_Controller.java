@@ -38,13 +38,11 @@ public class HR_Controller {
 	}
 	
 
-	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST)
-	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
-		logger.info("log => HR_InputProHR1");
-		
+	@RequestMapping("HR_inputFoundation")
+	public String inputFoundation(HttpServletRequest req, Model model) {
+		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);
-	
-		return "HR/index";
+		return "index";
 		
 	}	
 	
