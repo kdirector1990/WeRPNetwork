@@ -203,6 +203,20 @@ public class HR_Controller {
 		return "index"; 
 	}
 	
+	@RequestMapping("HR_searchDepartment")
+	public String searchDeapartment(HttpServletRequest req, Model model) {
+		logger.info("log => searchDepartment");
+		
+		return "HR/HR_searchDepartment";
+	}
+	
+	@RequestMapping("HR_searchDepartment_result")
+	public String searchDeapartment_result(HttpServletRequest req, Model model) {
+		logger.info("log => searchDepartment_result");
+		
+		return "HR/HR_searchDepartment_result";
+	}
+	
 	/*
 	 * @RequestMapping("HR_InputHRex")
 	public String HR_InputHRex(HttpServletRequest req, Model model) {

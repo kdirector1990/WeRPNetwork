@@ -8,15 +8,15 @@
     </head>
 
     <body>
-	<c:if test="${saleplanCnt == 0}">
+	<c:if test="${deletesale == 0}">
 		<script type="text/javascript">
-			alert("수정 ㄴㄴ");
+			alert("삭제 ㄴㄴ");
 		</script>
 	</c:if>
 	
-	<c:if test="${saleplanCnt != 0}">
+	<c:if test="${deletesale != 0}">
 		<script type="text/javascript">
-			alert("수정 완료");
+			alert("삭제 완료");
 			window.location='ST_sale_plan';
 		</script>
 	</c:if>

@@ -1,16 +1,16 @@
 package com.pj.erp.vo.ST;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Estimate {
 	
-	private String eq_code; // 견적 코드
+	private String ep_code; // 견적 코드
 	private String customer_code;	// 거래처코드
 	private String account_code;	// 계정코드
 	private int ep_amount;	// 수량
 	private int ep_price;	// 견적 단가
-	private Timestamp ep_deliver_date; // 납품 예정일
-	private Timestamp ep_reg_date;	// 견적 등록일
+	private Date ep_deliver_date; // 납품 예정일
+	private Date ep_reg_date;	// 견적 등록일
 	private String username;	// 담당자
 	private String e_approval_code;	// 전결 현황 코드
 	private String eas_code;	// 전결 라인 코드
@@ -21,12 +21,12 @@ public class Estimate {
 	
 	
 	// getter, setter
-	public String getEq_code() {
-		return eq_code;
+	public String getEp_code() {
+		return ep_code;
 	}
 
-	public void setEq_code(String eq_code) {
-		this.eq_code = eq_code;
+	public void setEp_code(String ep_code) {
+		this.ep_code = ep_code;
 	}
 
 	public String getCustomer_code() {
@@ -60,22 +60,26 @@ public class Estimate {
 	public void setEp_price(int ep_price) {
 		this.ep_price = ep_price;
 	}
-
-	public Timestamp getEp_deliver_date() {
+	
+	public Date getEp_deliver_date() {
 		return ep_deliver_date;
 	}
 
-	public void setEp_deliver_date(Timestamp ep_deliver_date) {
+
+	public void setEp_deliver_date(Date ep_deliver_date) {
 		this.ep_deliver_date = ep_deliver_date;
 	}
 
-	public Timestamp getEp_reg_date() {
+
+	public Date getEp_reg_date() {
 		return ep_reg_date;
 	}
 
-	public void setEp_reg_date(Timestamp ep_reg_date) {
+
+	public void setEp_reg_date(Date ep_reg_date) {
 		this.ep_reg_date = ep_reg_date;
 	}
+
 
 	public String getUsername() {
 		return username;

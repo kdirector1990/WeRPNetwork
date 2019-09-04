@@ -102,7 +102,7 @@ public class ERPController {
 		logger.info("log => calender");
 		
 		return "calender";
-	}
+	} 
 	
 	@RequestMapping("charts-c3")
 	public String chartsc3(Locale locale, Model model) {

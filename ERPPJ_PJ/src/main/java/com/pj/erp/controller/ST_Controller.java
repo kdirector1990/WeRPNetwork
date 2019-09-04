@@ -70,6 +70,7 @@ public class ST_Controller {
 		return "ST/refund";  
 	}
 	
+	// ST_sale_plan
 	@RequestMapping("ST_sale_plan")
 	public String ST_sale_plan(HttpServletRequest req, Model model) {
 		logger.info("log => ST_sale_plan");
@@ -84,18 +85,27 @@ public class ST_Controller {
 		logger.info("log => ST_sale_plan_writeForm");
 		service.salePlanWriteForm(req, model); 
 		   
-		return "ST/ST_sale_plan_writeForm";
+		return "ST/ST_sale_plan_writeForm";    
 	}
 	
 	// ST_sale_Plan_modifyPro 수정 처리 페이지
 	@RequestMapping("ST_sale_Plan_modifyPro")
 	public String ST_sale_Plan_modifyPro(HttpServletRequest req, Model model) {
 		logger.info("log => ST_sale_Plan_modifyPro");
-		service.salePlanmodifyPro(req, model);
+		service.estimatemodifyPro(req, model);
 		    
-		return "ST/ST_sale_Plan_modifyPro";
-	}
-	      
+		return "ST/ST_sale_Plan_modifyPro"; 
+	}           
+	
+	// ST_sale_Plan_modifyPro 삭제 처리 페이지
+	@RequestMapping("ST_sale_Plan_deletePro")
+	public String ST_sale_Plan_deletePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_sale_Plan_deletePro");
+		service.salePlandeletePro(req, model);
+		    
+		return "ST/ST_sale_Plan_deletePro"; 
+	}     
+	          
 	@RequestMapping("ST_sale_plan_state")
 	public String ST_sale_plan_state(Locale locale, Model model) {
 		logger.info("log => ST_sale_plan_state");
@@ -128,13 +138,33 @@ public class ST_Controller {
 		return "ST/ST_tex_invoice_list";
 	}
 	
-	// 寃ъ쟻 �쁽�솴
-	@RequestMapping("ST_tables-responsive")
-	public String tablesresponsive(Locale locale, Model model) {
-		logger.info("log => tables-responsive");
+	// 견적 현황
+	@RequestMapping("ST_estimate_price")
+	public String tablesresponsive(HttpServletRequest req, Model model) {
+		logger.info("log => ST_estimate_price");
+		service.estimateTBL(req, model);
 		
-		return "ST/tables-responsive";
+		return "ST/ST_estimate_price";
 	}
+	
+	// 견적 현황 상세 페이지
+	@RequestMapping("ST_estimate_Form")
+	public String ST_estimate_Form(HttpServletRequest req, Model model) {
+		logger.info("log => ST_estimate_Form");
+		service.estimateForm(req, model);
+		
+		return "ST/ST_estimate_Form";
+	}
+	
+	// 견적 현황 상세 수정 처리 페이지
+	@RequestMapping("ST_estimate_modifyPro")
+	public String ST_estimate_modifyPro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_estimate_modifyPro");
+		service.estimatemodifyPro(req, model);
+		
+		return "ST/ST_estimate_modifyPro";
+	}
+	
 	
 	@RequestMapping("ST_salesStatus")
 	public String salesStatus(Locale locale, Model model) {
