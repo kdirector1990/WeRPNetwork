@@ -97,7 +97,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String password = passwordEncoder.encode(e_name);
 		System.out.println(e_name);				
-		int e_gender = Integer.parseInt(req.getParameter("e_gender"));		
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
 		vo.setUsername(username);
 		vo.setPassword(password);
@@ -107,17 +107,24 @@ public class HR_ServiceImpl implements HR_Service{
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
 		vo.setE_hp(req.getParameter("e_hp"));
-		vo.setE_address1(req.getParameter("e_address1"));
-		vo.setE_address2(req.getParameter("e_address2"));
+		
+		String e_address = "";
+		String e_address1 = req.getParameter("e_address1");
+		String e_address2 = req.getParameter("e_address2");
+		
+		e_address = e_address1 + "/" + e_address2;
+		vo.setE_address(e_address);
+		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
 		String level_step = "920";
 		vo.setLevel_step(level_step);		
 		
-		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));
-		vo.setE_disability_type(req.getParameter("e_disability_type"));
-		vo.setE_disability_level(req.getParameter("e_disability_level"));
-		vo.setStart_date(new Timestamp(System.currentTimeMillis()));				
+		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
+		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		
+		int enabled = 1;
+		vo.setEnabled(enabled);
 		
 		int cnt = 0;		
 		
@@ -172,6 +179,8 @@ public class HR_ServiceImpl implements HR_Service{
 		vo.setE_right_sight(Integer.parseInt(req.getParameter("e_right_sight")));
 		vo.setE_color_blind(req.getParameter("e_color_blind"));
 		vo.setE_blood_type(req.getParameter("e_blood_type"));
+		vo.setE_disability_type(req.getParameter("e_disability_type"));
+		vo.setE_disability_level(req.getParameter("e_disability_level"));
 		
 		String e_blood_presure = "";
 		String e_blood_presure1 = req.getParameter("e_blood_presure1");
