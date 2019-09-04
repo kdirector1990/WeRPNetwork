@@ -18,6 +18,7 @@ public class MS_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MS_Controller.class);
 	
+	// 기획서 등록 페이지
 	@RequestMapping("MS_planEnrollment")
 	public String planEnrollment(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planEnrollment");
@@ -51,14 +52,24 @@ public class MS_Controller {
 		
 		return "MS/MS_planManagement";
 	}
-	
-	//기획서 수정
-	@RequestMapping("MS_updatePlan")
-	public String MS_updatePlan(HttpServletRequest req, Model model) {
-		logger.info("log => MS_updatePlan");
+	/*
+	//기획서 상세페이지
+	@RequestMapping("MS_detailPlan")
+	public String MS_detailPlan(HttpServletRequest req, Model model) {
+		logger.info("log => MS_detailPlan");
+		service.detailPlan(req, model);
+		
+		return "MS/MS_detailPlan";
+	}
+	*/
+	//기획서 수정 처리
+	@RequestMapping("MS_updatePlanPro")
+	public String MS_updatePlanPro(HttpServletRequest req, Model model) {
+		logger.info("log => MS_updatePlanPro");
 		service.updatePlan(req, model);
 		
-		return "MS/MS_updatePlan";
+		
+		return "MS/MS_updatePlanPro";
 	}
 	
 }

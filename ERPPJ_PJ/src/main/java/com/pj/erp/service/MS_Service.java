@@ -15,4 +15,7 @@ public interface MS_Service {
 	
 	//기획서 수정
 	public void updatePlan(HttpServletRequest req, Model model);
+	
+	//기획서 상세
+	public void detailPlan(HttpServletRequest req, Model model);
 }

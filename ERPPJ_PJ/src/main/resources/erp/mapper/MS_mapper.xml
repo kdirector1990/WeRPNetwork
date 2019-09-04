@@ -21,6 +21,14 @@
 	
 	<!-- 기획서 수정 -->
 	<update id="updatePlan" parameterType="com.pj.erp.vo.MF_VO">
-		update plan_list_tbl set plan_name=#{plan_name}, username=#{username}, position_code=#{position_code}, plan_regdate=#{plan_regdate}, plan_startdate=#{plan_startdate}, plan_enddate=#{plan_enddate}, plan_objective=#{plan_objective}, plan_state=#{plan_state}, plan_proposal=#{plan_proposal} where plan_code=#{plan_code}
+		update plan_list_tbl 
+			set plan_name=#{plan_name}, username=#{username}, position_code=#{position_code}, plan_regdate=#{plan_regdate}, plan_startdate=#{plan_startdate}, 
+											plan_enddate=#{plan_enddate}, plan_objective=#{plan_objective}, plan_state=#{plan_state}, plan_proposal=#{plan_proposal}
+			where plan_code=#{plan_code}
 	</update>
+	
+	<!-- 기획서 상세 조회 -->
+	<select id="getDetailPlan" resultType="com.pj.erp.vo.MF_VO" parameterType="String">
+		select * from plan_list_tbl where plan_code = #{plan_code}
+	</select>
 </mapper>

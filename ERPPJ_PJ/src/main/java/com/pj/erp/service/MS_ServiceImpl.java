@@ -47,32 +47,23 @@ public class MS_ServiceImpl implements MS_Service {
 	@Override
 	public void selectPlan(HttpServletRequest req, Model model) {
 		int cnt = 0; 			//글의 갯수
-		int start = 0;			//현재 페이지의 시작 글 번호
-		int end = 0;			//현재 페이지의 마지막 글 번호
+		
 		cnt = dao.getPlanListCnt();
 		
 		System.out.println("cnt : "+ cnt);
 		
-		System.out.println("start : "+ start);
-		System.out.println("end : "+ end);
-		
-		if(end > cnt) end = cnt;
-		
-		if(cnt > 0) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("start", start);
-		map.put("end", end);
-		
-		List<MS_VO> dto = dao.getPlanList(map);
+		List<MS_VO> dto = dao.getPlanList();
 		model.addAttribute("dto", dto);
-		}
 	}
 
 	// 기획서 수정
 	@Override
 	public void updatePlan(HttpServletRequest req, Model model) {
 		
+		System.out.println("test Plan_code : "+ req.getParameter("Plan_code"));
+		
 		MS_VO vo = new MS_VO();
+		vo.setPlan_code(req.getParameter("Plan_code"));
 		vo.setPlan_name(req.getParameter("plan_name"));
 		vo.setPlan_regdate(new Timestamp(System.currentTimeMillis()));
 		vo.setPlan_startdate(Date.valueOf(req.getParameter("plan_startdate")));
@@ -85,5 +76,13 @@ public class MS_ServiceImpl implements MS_Service {
 		int updateCnt = dao.updatePlan(vo);
 		
 		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	//기획서 상세
+	@Override
+	public void detailPlan(HttpServletRequest req, Model model) {
+		String plan_code = req.getParameter("Plan_code");
+		
+		MS_VO vo = dao.getDetailPlan(plan_code);
 	}
 }

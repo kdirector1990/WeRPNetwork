@@ -12,11 +12,14 @@ public interface MS_DAO{
 	public int insertPlan(MS_VO vo);
 	
 	// 기획서 조회
-	public List<MS_VO> getPlanList(Map<String, Object> map);
+	public List<MS_VO> getPlanList();
 	
 	//기획서 목록 수량
 	public int getPlanListCnt();
 	
 	//기획서 수정
 	public int updatePlan(MS_VO vo);
+	
+	//기획서 상세
+	public MS_VO getDetailPlan(String plan_code);
 }

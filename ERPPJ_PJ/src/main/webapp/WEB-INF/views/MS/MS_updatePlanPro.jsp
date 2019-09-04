@@ -19,7 +19,7 @@
 		<script type="text/javascript">
 		alert("기획서 수정 성공/n 확인해보러가쟈 ");
 		</script>
-		<c:redirect url="MS_planEnrollment"/>
+		<c:redirect url="MS_planManagement"/>
 		
 	</c:if>
 </body>
