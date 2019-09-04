@@ -128,7 +128,11 @@
                        			'<option value="1">Y</option>' +
                        			'<option value="2">N</option>' +
                        		'</select>' +
-                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
+                       		'<td><select id="enter" name = "ceq_depreciation_type'+ count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);">' +
+                   			'<option value="">선택' +
+                   			'<option value="정률법">정률법' +
+                   			'<option value="정액법">정액법' +
+                   			'</select> </td>' +
                        '</tr>');
        			 $(".spoat-table-bordered-primary tbody #first").focus();
        			count = count + 1;
@@ -318,7 +322,13 @@
 			                                       			<option value="2">Y</option>
 			                                       			<option value="1">N</option>
 			                                       		</select>
-			                                       		<td><input type="text" id = "enter" onfocus = "focuse();" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
+			                                       		<td>
+			                                       		<select id="enter" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);">
+			                                       			<option value="">선택
+			                                       			<option value="정률법">정률법
+			                                       			<option value="정액법">정액법
+			                                       		</select>
+			                                       		</td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
