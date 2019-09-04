@@ -1,5 +1,6 @@
 package com.pj.erp.service;
 
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.FT_DAO;
+import com.pj.erp.vo.FT.FT_Savings;
 
 @Service
 public class FT_ServiceImpl implements FT_Service{
@@ -23,7 +25,10 @@ public class FT_ServiceImpl implements FT_Service{
 	// 적금가져오기
 	@Override
 	public void FT_SavingsSelect(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		List<FT_Savings> savings = dao.FT_SavingsSelect();
+		System.out.println("ACCCode : " + savings.get(0).getAccCode());
+		model.addAttribute("saving", savings);
+		model.addAttribute("listsize", savings.size() + 1);
 	}
 
 	// 적금추가

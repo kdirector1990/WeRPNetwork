@@ -284,7 +284,7 @@
 	                          		</a>
 	                          		<ul>
 	                          			<li><a href="HR_InputDepartment">부서등록</a></li>
-	                          			<li><a href="#">부서조회</a></li>
+	                          			<li><a href="HR_searchDepartment">부서조회</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
@@ -456,7 +456,6 @@
 					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
 					                    <li><a href="FT_journal">분개장</a></li>
 					                    <li><a href="FT_ledger">거래처원장</a></li>
-					                    <li><a href="FT_AccountInquiry">계정별 상세 페이지</a></li>
 					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
 					                    <li><a href="coming_soon">!계정별 변동추이 분석</a></li>
                           			</ul>

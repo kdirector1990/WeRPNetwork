@@ -9,11 +9,25 @@
 		insert into customer_list_tbl(customer_code, customer_name, deal_state)
 		values(customer_seq.nextval, #{AccName}, #{type}) 
 	</insert>
+	
+	<!-- 적금 가져오기 -->
+	<select id="FT_SavingsSelect" resultType="com.pj.erp.vo.FT.FT_Savings">
+		SELECT
+		a.account_code as savingsCode, a.account_name as savingsName, 
+		c.customer_code as accCode, c.customer_name as accName, a.ag_code as subjectCode,
+		ag.ag_name as subjectName, s.sa_number as accountNo, s.sa_holder as accountHolder, s.sa_amount as devPrice
+		FROM ACCOUNTS_TBL a, SAVING_ACCOUNT_TBL s, customer_list_tbl c, accounts_group_tbl ag
+		where a.account_code = s.sa_code
+		and a.ag_code = ag.ag_code
+		and s.customer_code = c.customer_code
+		order by to_number(a.account_code) asc
+	</select>
+	
 	<!-- 적금 key 가져오기 -->
 	<select id="FT_SavingsKeySelect" resultType="String">
 		select sa_code from SAVING_ACCOUNT_TBL
 		where ROWNUM = 1
-		ORDER BY sa_code desc
+		ORDER BY to_number(sa_code) desc
 	</select>
 	
 	<!-- 적금 추가 -->

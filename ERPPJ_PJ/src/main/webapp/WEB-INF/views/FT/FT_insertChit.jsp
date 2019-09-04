@@ -4,8 +4,8 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
-        <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/pj/resources/assets/css/js/request.js"></script>
+        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
@@ -95,7 +95,8 @@
             				$("*[name=" + frontcursor + "]").focus();
             				$("*[name=" + frontcursor + "]").parent().prev().children().focus();
             			}
-            				
+            			$("*[name=" + dd + "]").parent().prev().children().focus();
+            			return false;	
             		} else if(window.event.which == 37) {
             			for(var i = 0; i < $("input[name=" + dd + "]").parent().prevAll().children().length; i++){
         					nowme = nowme.prev();
@@ -104,6 +105,7 @@
         						return false;
         					}
         				}
+						return false;
             		} else if(window.event.which == 38) {
             			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) - 1) + "]").focus();
             		} else if(window.event.which == 39) {
@@ -175,16 +177,6 @@
         		
         		// 자바스크립트 객체 생성
         		obj.key = $("input[name=key" + vv + "]").val();
-        		obj.date = $("input[name=date" + vv + "]").val();
-        		obj.no = $("input[name=no" + vv + "]").val();
-        		obj.text = $("input[name=text" + vv + "]").val();
-        		obj.type = $("select[name=type" + vv + "]").val();
-        		obj.num = $("input[name=num" + vv + "]").val();
-        		obj.state = $("select[name=state" + vv + "]").val();
-        		obj.confirmname = $("input[name=confirmname" + vv + "]").val();
-        		obj.devprice = $("input[name=devprice" + vv + "]").val();
-        		obj.writer = $("input[name=writer" + vv + "]").val();
-        		obj.slee = $("input[name=slee" + vv + "]").val();
         		
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -194,7 +186,7 @@
         		
         		$.ajax({
                        type : "POST",
-                       url : "/erp/FT_chitupdate",
+                       url : "/erp/FT_chitupdate?${_csrf.parameterName }=${_csrf.token }",
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
@@ -209,7 +201,7 @@
                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
                               } */
                               if(updatekey == 0){
-                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
+                  				
                               } else {
                             	 if(updatekey == 1){
                              	 	$("#enter" + vv).val(selectval);
@@ -261,25 +253,27 @@
        			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onchange", "enterupdate(" + cc + ");");
        			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
        			$(".chit-table-bordered-primary tbody").append('<tr>' +
-                           '<td><input type="text" onfocus = "focuse(this.name);" name = "date' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
-                           '<td><input type="text" onfocus = "focuse(this.name);" name = "key' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-                           '<td><input type="text" onfocus = "focuse(this.name);" id = "first' + count + '" name = "no' + count + '" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName,this.name);"></td>' +
-                            '<td><select class="form-control" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
-                            '<option value="">== 선택 ==</option>' +
-                            '<option value="일반">일반</option>' +
-                            '<option value="매입">매입</option>' +
-                            '<option value="매출">매출</option>' +
-                            '<option value="결산">결산</option>' +
-                    		'</select></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "num' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-                            '<td><select class="form-control" onfocus = "focuse(this.name);" name = "state' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly onclick = "notfocus(this.name);">' +
-                            '<option value="미결">미결</option>' +
-                    		'</select></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "confirmname' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "devprice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "writer' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-                            '<td><input type="text" onfocus = "focuse(this.name);" name = "slee' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+       					'<input type = "hidden" name = "writer' + count + '" value = "작성자">' +
+                		'<input type = "hidden" name = "formaler' + count + '" value = "승인자">' +
+       					'<td><input type="text" onfocus = "focuse(this.name);" name = "date' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "key' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" id = "first' + count + '" name = "number' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "subjectcode' + count + '" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "subjectname' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "accountcode' + count + '" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "accountname' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "leftprice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "rightprice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "count' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "text' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+                        '<td><select class="form-control" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
+                        '<option value="">== 선택 ==</option>' +
+                        '<option value="일반">일반</option>' +
+                        '<option value="매입">매입</option>' +
+                        '<option value="매출">매출</option>' +
+                        '<option value="결산">결산</option>' +
+                   		'</select></td>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "updateday' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                        '</tr>');
                     count = count + 1;
           		 $("input[name=key"+ cc +"]").val("1000" + cc);
@@ -449,10 +443,7 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
                                         <div align="right" style = "margin-bottom: 30px;">
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표복사</button>
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표검색</button>
     									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표삭제</button>
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">품의적요등록</button>
     									<br>
     									</div>
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -491,37 +482,51 @@
                                        <div class="table-responsive" style = "margin: 15px 0px 50px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
                                                 <col style = "width:5%;">
-                                                <col style = "width:10%;">
+                                                <col style = "width:8%;">
                                                 <col style = "width:5%">
+                                                <col style = "width:5%;">
                                                 <col style = "width:10%;">
-                                                <col style = "width:10%;">
-                                                <col style = "width:10%;">
+                                                <col style = "width:5%;">
                                                 <col style = "width: 10%;">
                                                 <col style = "width: 10%;">
                                                 <col style = "width: 10%;">
+                                                <col style = "width: 5%;">
                                                 <col style = "width: 10%;">
+                                                <col style = "width: 7%;">
                                                 <col style = "width: 10%;">
                                                 <thead>
                                                     <tr>
 		                                                <th>일</th>
+		                                                <th>분개코드</th>
 		                                                <th>번호</th>
-		                                                <th>No</th>
-		                                                <th>품의내역</th>
-		                                                <th>유형</th>
-		                                                <th>기표번호</th>
-		                                                <th>상태</th>
-		                                                <th>승인자</th>
-		                                                <th>대차차액</th>
-		                                                <th>작업자</th>
-		                                                <th>연동구분</th>
+		                                                <th>계정</th>
+		                                                <th>계정명</th>
+		                                                <th>거래처</th>
+		                                                <th>거래처명</th>
+		                                                <th>차변금액</th>
+		                                                <th>대변금액</th>
+		                                                <th>수량</th>
+		                                                <th>적요</th>
+		                                                <th>전표상태</th>
+		                                                <th>최종수정일</th>
 		                                            </tr>
 		                                        </thead>
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "no0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <input type = "hidden" name = "writer0" value = "작성자">
+		                                                <input type = "hidden" name = "formaler0" value = "승인자">
+		                                                <td>
+		                                                <input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectcode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountcode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "leftprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "rightprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "count0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><select class="form-control" id = "enter0" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(0);">
 		                                                <option value="">== 선택 ==</option>
@@ -530,20 +535,13 @@
 		                                                <option value="매출">매출</option>
 		                                                <option value="결산">결산</option>
 			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "num0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "state0" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly onclick = "notfocus(this.name);">
-		                                                <option value="미결">미결</option>
-			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "confirmname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "devprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "writer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "slee0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "updateday0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
                                         </div>
                                         
-                                        <div class="table-responsive" style = "margin: 0px 0px 50px">
+                                        <!-- <div class="table-responsive" style = "margin: 0px 0px 50px">
                                             <table class="table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered">
                                                 <col style = "width:5%;">
                                                 <col style = "width:10%;">
@@ -580,7 +578,7 @@
 		                                            
 		                                        </tbody>
                                             </table>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
