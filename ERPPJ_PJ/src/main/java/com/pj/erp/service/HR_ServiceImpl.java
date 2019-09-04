@@ -41,8 +41,8 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	// 인사정보등록
 	@Override
-	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
-		MultipartFile file = req.getFile("e_picture");
+	public void inputFoundation(HttpServletRequest req, Model model) {			
+		/*MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
         
@@ -93,30 +93,38 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String username = req.getParameter("username");
 		String e_name = "1234";
-		String e_picture = file.getOriginalFilename();
+		// String e_picture = file.getOriginalFilename();
 		
 		String password = passwordEncoder.encode(e_name);
 		System.out.println(e_name);				
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
 		vo.setUsername(username);
 		vo.setPassword(password);
-		vo.setE_picture(e_picture);
+		// vo.setE_picture(e_picture);
 		vo.setE_name(e_name);
-		vo.setE_gender(Integer.parseInt(req.getParameter("e_gender")));
+		vo.setE_gender(e_gender);
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
 		vo.setE_hp(req.getParameter("e_hp"));
-		vo.setE_address1(req.getParameter("e_address1"));
-		vo.setE_address2(req.getParameter("e_address2"));
+		
+		String e_address = "";
+		String e_address1 = req.getParameter("e_address1");
+		String e_address2 = req.getParameter("e_address2");
+		
+		e_address = e_address1 + "/" + e_address2;
+		vo.setE_address(e_address);
+		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
 		String level_step = "920";
 		vo.setLevel_step(level_step);		
 		
-		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));
-		vo.setE_disability_type(req.getParameter("e_disability_type"));
-		vo.setE_disability_level(req.getParameter("e_disability_level"));
-		vo.setStart_date(new Timestamp(System.currentTimeMillis()));				
+		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
+		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		
+		int enabled = 1;
+		vo.setEnabled(enabled);
 		
 		int cnt = 0;		
 		
@@ -155,10 +163,10 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		//dao.insertMember(map);
 		//dao.insertAuth();
-        } catch(IOException e) {
+        /*} catch(IOException e) {
             e.printStackTrace();
         }	
-		
+		*/
 		
 	}
 	
@@ -171,6 +179,8 @@ public class HR_ServiceImpl implements HR_Service{
 		vo.setE_right_sight(Integer.parseInt(req.getParameter("e_right_sight")));
 		vo.setE_color_blind(req.getParameter("e_color_blind"));
 		vo.setE_blood_type(req.getParameter("e_blood_type"));
+		vo.setE_disability_type(req.getParameter("e_disability_type"));
+		vo.setE_disability_level(req.getParameter("e_disability_level"));
 		
 		String e_blood_presure = "";
 		String e_blood_presure1 = req.getParameter("e_blood_presure1");
@@ -193,41 +203,50 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_RankVO> vo = dao.rank();
 		
 		model.addAttribute("vo", vo);
-
-
 	}	
 
 	//호봉테이블(호봉)
 	@Override
 	public List<HR_PaystepVO> selectMoney(HttpServletRequest req, Model model) {
 		String rank = req.getParameter("rank_code");
-		System.out.println(rank);
 		List<HR_PaystepVO> vo = dao.pay(rank);
-		System.out.println(vo.get(0).getBASE_PAYMENT());
 		return vo;
 	}
 
 	//호봉테이블(호봉수정)
 	@Override
-	public void updateMoney(HttpServletRequest req, Model model) {
+	public int updateMoney(HttpServletRequest req, Model model) {
 		int i = 0;
+		int updateCnt = 0;
+		HR_PaystepVO vo = new HR_PaystepVO();
 		do{
-			String paystep_code = req.getParameter("paystep_code"+i);
-			int Base_Payment = Integer.parseInt(req.getParameter("BASE_PAYMENT"+i));
-			int ADD_PAYMENT = Integer.parseInt(req.getParameter("ADD__PAYMENT"+i));
-			int EXTENSION_PAYMENT = Integer.parseInt(req.getParameter("EXTENSION_PAYMENT"+i));
+			//화면에서 값 입력
+			int paystep_code = Integer.parseInt(req.getParameter("paystep_code"+i));
+			String rank_code = req.getParameter("rank_code");
+			String base = req.getParameter("BASE_PAYMENT"+i);
+			String add = req.getParameter("ADD_PAYMENT"+i);
+			String Extension = req.getParameter("EXTENSION_PAYMENT"+i);
+
+			//콤마제거
+			int BASE_PAYMENT = Integer.parseInt(base.replace(",", ""));
+			int ADD_PAYMENT = Integer.parseInt(add.replace(",", ""));
+			int EXTENSION_PAYMENT = Integer.parseInt(Extension.replace(",", ""));
 			
-			System.out.println(paystep_code);
-			System.out.println(Base_Payment);
-			System.out.println(ADD_PAYMENT);
-			System.out.println(EXTENSION_PAYMENT);
+			vo.setPaystep_code(paystep_code);
+			vo.setRank_code(rank_code);
+			vo.setBASE_PAYMENT(BASE_PAYMENT);
+			vo.setADD_PAYMENT(ADD_PAYMENT);
+			vo.setEXTENSION_PAYMENT(EXTENSION_PAYMENT);
+			
+			updateCnt= dao.updatePay(vo);
 			
 			i++;
 		}while(req.getParameter("paystep_code"+i) != null);
 		/*
 		 * System.out.println(vo.get(1).getRank_code()); model.addAttribute("pay", vo);
 		 */
-
+		
+		return updateCnt;
 	}
 	
 	// 부서 등록

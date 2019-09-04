@@ -15,6 +15,8 @@ public interface HR_DAO {
 
 	public int insertMember(HR_VO vo);
 	
+	public int insertMember2(HR_VO vo);
+	
 	public int insertPhysical(HR_PhysicalVO vo);
 	
 	public int insertAuth();
@@ -24,6 +26,9 @@ public interface HR_DAO {
 	
 	//호봉테이블 호봉금액 가져오기
 	public List<HR_PaystepVO> pay(String rank);
+	
+	//호봉테이블 금액수정하기
+	public int updatePay(HR_PaystepVO vo);
 	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);

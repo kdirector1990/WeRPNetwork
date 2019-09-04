@@ -38,13 +38,11 @@ public class HR_Controller {
 	}
 	
 
-	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST)
-	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
-		logger.info("log => HR_InputProHR1");
-		
+	@RequestMapping("HR_inputFoundation")
+	public String inputFoundation(HttpServletRequest req, Model model) {
+		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);
-	
-		return "HR/index";
+		return "index";
 		
 	}	
 	
@@ -89,6 +87,13 @@ public class HR_Controller {
 		
 		return "HR/HR_GreetingPunishment";
 	}
+	
+	@RequestMapping("HR_GreetingPunishment_result")
+	public String HR_GreetingPunishment_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_GreetingPunishment_result");
+		
+		return "HR/HR_GreetingPunishment_result";
+	}	
 	
 	@RequestMapping("HR_Yearsofservice")
 	public String HR_Yearsofservice(HttpServletRequest req, Model model) {
@@ -149,18 +154,16 @@ public class HR_Controller {
 		logger.info("log => HR_GoodPay_paystep");
 		
 		List<HR_PaystepVO> vo = service.selectMoney(req, model);
-		System.out.println(vo.get(0).getBASE_PAYMENT());
-		
 		return vo;
 	}
 	
 	//호봉테이블(호봉 수정)
 	@RequestMapping("HR_GoodPay_payUpdate")
 	@ResponseBody
-	public String HR_GoodPay_payUpdate(HttpServletRequest req, Model model) {
+	public int HR_GoodPay_payUpdate(HttpServletRequest req, Model model) {
 		logger.info("log => HR_GoodPay_payUpdate");
-		service.updateMoney(req, model);
-		return "HR/HR_HrSalaryEnvironment";
+		int updateCnt = service.updateMoney(req, model);
+		return updateCnt;
 	}
 	
 	@RequestMapping("HR_HrSalaryEnvironment")

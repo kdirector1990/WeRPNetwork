@@ -110,29 +110,19 @@
 									<div class="tab-content">
 										<!-- 인적정보 -->
 										<div class="tab-pane show active" id="employee"
-											role="tabpanel" aria-labelledby="employee-tab">											
-<<<<<<< HEAD
-=======
-												
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+											role="tabpanel" aria-labelledby="employee-tab">
 												<div class="col-sm-12">
-<<<<<<< HEAD
-													<form action="inputFoundation" class="form-horizontal" id="foundation"
-														method="post">
-														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-=======
-													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" enctype="multipart/form-data"
-														method="post">	
-														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">													
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" method="post">
+													<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">												
+
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
 													 <h4 class="header-title">&nbsp;</h4>
 														<div class="form-group row">
-															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
+															<!-- <label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<input type="file" class="dropify" name="e_picture"/>
-																</div>
+																</div> -->
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 																<div class="col-md-6">
 																	<div class="form-group row">
@@ -147,11 +137,11 @@
 																		<div class="col-md-3  col-form-label">
 																			<div>
 								                                        	    <div class="custom-control custom-radio custom-control-inline mb-2">
-								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value = "male" checked>
+								                                       	        	<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>
 								                                      	         	<label class="custom-control-label" for="customRadioInline1">남성</label>
 								                                           		</div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value = "female">
+									                                                <input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">
 									                                                <label class="custom-control-label" for="customRadioInline2">여성</label>
 									                                            </div>
 								                                        	</div>
@@ -161,11 +151,11 @@
 																		<div class="col-md-4  col-form-label">
 																			<div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value = "local" checked>
+									                                                <input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>
 									                                                <label class="custom-control-label" for="customRadioInline7">내국인</label>
 									                                            </div>
 									                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value = "foreign">
+									                                                <input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">
 									                                                <label class="custom-control-label" for="customRadioInline8">외국인</label>
 									                                            </div>
 									                                        </div>
@@ -217,33 +207,8 @@
 																<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label> 
 																<div class="col-md-4">
 																	<input type="text" class="form-control" name="e_nfcCodeNFC" placeholder="출입카드No.">
-																</div>	
-																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-																<label class="col-md-1 col-form-label" for="simpleinput">장애 구분/등급<span class="text-danger">*</span></label> 
-																<div class="col-md-3 col-form-label">
-																	<div>
-							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-							                                                <input type="radio" id="customRadioInline3" name="e_disability_type" class="custom-control-input" value = "1" checked>
-							                                                <label class="custom-control-label" for="customRadioInline3">비해당</label>
-							                                            </div>
-							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-							                                                <input type="radio" id="customRadioInline4" name="e_disability_type" class="custom-control-input" value = "2">
-							                                                <label class="custom-control-label" for="customRadioInline4">장애인</label>
-							                                            </div>
-							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-							                                                <input type="radio" id="customRadioInline5" name="e_disability_type" class="custom-control-input" value = "3">
-							                                                <label class="custom-control-label" for="customRadioInline5">국가유공자</label>
-							                                            </div>
-							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
-							                                                <input type="radio" id="customRadioInline6" name="e_disability_type" class="custom-control-input" value = "4">
-							                                                <label class="custom-control-label" for="customRadioInline6">중증</label>
-							                                            </div>
-							                                        </div>
 																</div>
-																<div class="col-md-1">
-																		<input type="text" class="form-control" name="e_disability_level" placeholder="장애인 등급">
-																</div>
-															</div>
+															</div>															
 															<div class="form-group text-right mb-0">
 		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
 		                                                    Submit
@@ -340,7 +305,35 @@
 																		</div>
 																		<label class="col-md-1 col-form-label"
 																			for="simpleinput">mmHg</label>
-															</div>
+																</div>
+																
+																<div class="form-group row">																
+																	
+																	<label class="col-md-1 col-form-label" for="simpleinput">장애 구분/등급<span class="text-danger">*</span></label> 
+																	<div class="col-md-3 col-form-label">
+																		<div>
+								                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+								                                                <input type="radio" id="customRadioInline3" name="e_disability_type" class="custom-control-input" value = "1" checked>
+								                                                <label class="custom-control-label" for="customRadioInline3">비해당</label>
+								                                            </div>
+								                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+								                                                <input type="radio" id="customRadioInline4" name="e_disability_type" class="custom-control-input" value = "2">
+								                                                <label class="custom-control-label" for="customRadioInline4">장애인</label>
+								                                            </div>
+								                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+								                                                <input type="radio" id="customRadioInline5" name="e_disability_type" class="custom-control-input" value = "3">
+								                                                <label class="custom-control-label" for="customRadioInline5">국가유공자</label>
+								                                            </div>
+								                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+								                                                <input type="radio" id="customRadioInline6" name="e_disability_type" class="custom-control-input" value = "4">
+								                                                <label class="custom-control-label" for="customRadioInline6">중증</label>
+								                                            </div>
+								                                        </div>
+																	</div>
+																	<div class="col-md-1">
+																			<input type="text" class="form-control" name="e_disability_level" placeholder="장애인 등급">
+																	</div>
+																</div>
 															
 															<div class="form-group text-right mb-0">
 		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
@@ -393,7 +386,7 @@
 		                                                   		 삭제
 		                                                </button>
 		                                                </div>
-		                                                
+		                                              
                                         			</div>
 													</div>
 													<div class="form-group text-right mb-0">
