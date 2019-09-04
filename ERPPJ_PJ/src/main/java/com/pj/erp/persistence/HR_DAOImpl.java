@@ -28,6 +28,11 @@ public class HR_DAOImpl implements HR_DAO{
 	}
 	
 	@Override
+	public int insertMember2(HR_VO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertMember2", vo);
+	}
+	
+	@Override
 	public int insertPhysical(HR_PhysicalVO vo) {
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertPhysical", vo);
 	}

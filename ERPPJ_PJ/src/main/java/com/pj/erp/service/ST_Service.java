@@ -9,6 +9,12 @@ public interface ST_Service {
 	// 글 목록 (견적 관리)
 	public void estimateTBL(HttpServletRequest req, Model model);
 	
+	// 견적 현황 (ST_estimate_Form) 상세 페이지
+	public void estimateForm(HttpServletRequest req, Model model);
+	
+	// 견적 현황 (ST_estimate_form) 수정 처리 페이지
+	public void estimatemodifyPro(HttpServletRequest req, Model model);
+	
 	// ST_sale_plan (판매 계획) 목록
 	public void salePlan(HttpServletRequest req, Model model);
 	
@@ -17,6 +23,9 @@ public interface ST_Service {
 	
 	// ST_sale_plan 수정 처리 페이지
 	public void salePlanmodifyPro(HttpServletRequest req, Model model);
+	
+	// ST_sale_plan 삭제 처리 페이지
+	public void salePlandeletePro(HttpServletRequest req, Model model);
 	
 	// tables-datatable (거래 명세서) 목록
 	public void transaction(HttpServletRequest req, Model model);
