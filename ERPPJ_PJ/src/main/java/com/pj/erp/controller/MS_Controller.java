@@ -38,6 +38,7 @@ public class MS_Controller {
 	@RequestMapping("MS_planInquiry")
 	public String planInquiry(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planInquiry");
+		service.selectPlan(req, model);
 		
 		return "MS/MS_planInquiry";
 	}
@@ -46,8 +47,18 @@ public class MS_Controller {
 	@RequestMapping("MS_planManagement")
 	public String planManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planManagement");
+		service.selectPlan(req, model);
 		
 		return "MS/MS_planManagement";
+	}
+	
+	//기획서 수정
+	@RequestMapping("MS_updatePlan")
+	public String MS_updatePlan(HttpServletRequest req, Model model) {
+		logger.info("log => MS_updatePlan");
+		service.updatePlan(req, model);
+		
+		return "MS/MS_updatePlan";
 	}
 	
 }

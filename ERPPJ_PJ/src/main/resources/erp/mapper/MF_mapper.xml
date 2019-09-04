@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pj.erp.persistence.MF_DAO">
+ 	<insert id="insertMF" parameterType = "com.pj.erp.vo.MF_VO">
+		insert into material_tbl(material_code, material_name, material_unit)
+		values('MF19090301', #{account_code}, #{material_name} ,#{material_unit}') 
+	</insert>
+</mapper>

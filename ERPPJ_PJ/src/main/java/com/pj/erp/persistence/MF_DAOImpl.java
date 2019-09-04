@@ -11,12 +11,9 @@ public class MF_DAOImpl implements MF_DAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-/*
 	//자재등록
 	@Override
 	public int insertMF(MF_VO vo) {
 		return sqlSession.insert("com.pj.erp.persistence.MF_DAO.insertMF", vo);
 	}
-	
-	*/
 }

@@ -15,7 +15,6 @@ public class MF_ServiceImpl implements MF_Service {
 	
 	@Autowired
 	MF_DAO dao;
-	/*
 	// 자재등록
 	@Override
 	public void insertMF(HttpServletRequest req, Model model) {
@@ -30,8 +29,6 @@ public class MF_ServiceImpl implements MF_Service {
 		
 		model.addAttribute("insertCnt", insertCnt);
 	}
-	
-	*/
 	
 	
 }

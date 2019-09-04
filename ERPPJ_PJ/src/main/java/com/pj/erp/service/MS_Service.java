@@ -9,4 +9,10 @@ public interface MS_Service {
 
 	//기획서 등록
 	public void insertPlan(HttpServletRequest req, Model model);
+	
+	//기획서 조회
+	public void selectPlan(HttpServletRequest req, Model model);
+	
+	//기획서 수정
+	public void updatePlan(HttpServletRequest req, Model model);
 }

@@ -40,7 +40,7 @@
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                            	<th>no</th>
+                                            	<th>기획서 코드</th>
                                             	<th>기획명</th>
                                                 <th>기획제안자</th>
                                                 <th>책임자</th>
@@ -49,24 +49,26 @@
                                                 <th>종료예정일</th>
                                                 <th>기획상태</th>
                                                 <th>기획목표</th>
-                                                <th>--</th>
+                                                <th>상세 기획안 파일</th>
                                             </tr>
                                             </thead>
     
     
                                             <tbody>
-                                            <tr>
-                                            	<td>1</td>
-                                            	<td>werp</td>
-                                            	<td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+											<c:forEach var="list" items="${dto}">
+	                                            <tr>
+	                                            	<td>${list.plan_code}</td>
+	                                            	<td>${list.plan_name}</td>
+	                                            	<td>${list.username}</td>
+	                                                <td>${list.position_code}</td>
+	                                                <td>${list.plan_regdate}</td>
+	                                                <td>${list.plan_startdate}</td>
+	                                                <td>${list.plan_enddate}</td>
+	                                                <td>${list.plan_objective}</td>
+	                                                <td>${list.plan_state}</td>
+	                                                <td>${list.plan_proposal}</td>
+	                                            </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
