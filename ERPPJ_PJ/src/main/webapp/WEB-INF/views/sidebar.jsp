@@ -414,7 +414,7 @@
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan_state">판매계획 현황</a></li>
 										<li><a href="ST_contrast_pp">판매계획 대비 출고 현황</a></li>
-										<li><a href="ST_tables-responsive">견적 현황</a></li>
+										<li><a href="ST_estimate_price">견적 현황</a></li>
 										<li><a href="ST_contrast_pPro">견적 대비 생산 현황</a></li>
 										<li><a href="ST_delay_state">출고 지연 현황</a></li>
 										<li><a href="ST_release">출고 관리</a></li>

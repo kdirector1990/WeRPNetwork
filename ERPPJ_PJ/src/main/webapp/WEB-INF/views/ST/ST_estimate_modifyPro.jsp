@@ -8,16 +8,16 @@
     </head>
 
     <body>
-	<c:if test="${saleplanCnt == 0}">
+	<c:if test="${updateEstimate == 0}">
 		<script type="text/javascript">
 			alert("수정 ㄴㄴ");
 		</script>
 	</c:if>
 	
-	<c:if test="${saleplanCnt != 0}">
+	<c:if test="${updateEstimate != 0}">
 		<script type="text/javascript">
 			alert("수정 완료");
-			window.location='ST_sale_plan';
+			window.location='ST_estimate_price';
 		</script>
 	</c:if>
           
