@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.MS_DAO;
-import com.pj.erp.vo.MS_VO;
+import com.pj.erp.vo.MS.MS_plan;
 
 // 경영지원
 @Service
@@ -29,7 +29,7 @@ public class MS_ServiceImpl implements MS_Service {
 		System.out.println(req.getParameter("plan_startdate"));
 		System.out.println(req.getParameter("plan_enddate"));
 		
-		MS_VO vo = new MS_VO();
+		MS_plan vo = new MS_plan();
 		vo.setPlan_name(req.getParameter("plan_name"));
 		vo.setPlan_regdate(new Timestamp(System.currentTimeMillis()));
 		vo.setPlan_startdate(Date.valueOf(req.getParameter("plan_startdate")));
@@ -44,6 +44,7 @@ public class MS_ServiceImpl implements MS_Service {
 		model.addAttribute("insertCnt", insertCnt);
 	}
 
+	//기획서 목록가져오기
 	@Override
 	public void selectPlan(HttpServletRequest req, Model model) {
 		int cnt = 0; 			//글의 갯수
@@ -52,37 +53,47 @@ public class MS_ServiceImpl implements MS_Service {
 		
 		System.out.println("cnt : "+ cnt);
 		
-		List<MS_VO> dto = dao.getPlanList();
+		List<MS_plan> dto = dao.getPlanList();
 		model.addAttribute("dto", dto);
 	}
 
 	// 기획서 수정
 	@Override
-	public void updatePlan(HttpServletRequest req, Model model) {
+	public int updatePlan(HttpServletRequest req, Model model) {
 		
-		System.out.println("test Plan_code : "+ req.getParameter("Plan_code"));
-		
-		MS_VO vo = new MS_VO();
-		vo.setPlan_code(req.getParameter("Plan_code"));
+		MS_plan vo = new MS_plan();
+		vo.setPlan_code(req.getParameter("plan_code"));
 		vo.setPlan_name(req.getParameter("plan_name"));
-		vo.setPlan_regdate(new Timestamp(System.currentTimeMillis()));
+		vo.setUsername(req.getParameter("username"));
+		vo.setPosition_code(req.getParameter("position_code"));
 		vo.setPlan_startdate(Date.valueOf(req.getParameter("plan_startdate")));
 		vo.setPlan_enddate(Date.valueOf(req.getParameter("plan_enddate")));
 		vo.setPlan_state(req.getParameter("plan_state"));
-		vo.setUsername(req.getParameter("username"));
-		vo.setPosition_code(req.getParameter("position_code"));
 		vo.setPlan_objective(req.getParameter("plan_objective"));
+		vo.setPlan_proposal(req.getParameter("plan_proposal"));
+		
+		System.out.println(vo.getPlan_code());
+		System.out.println(vo.getPlan_name());
+		System.out.println(vo.getUsername());
+		System.out.println(vo.getPosition_code());
+		System.out.println(vo.getPlan_startdate());
+		System.out.println(vo.getPlan_enddate());
+		System.out.println(vo.getPlan_state());
+		System.out.println(vo.getPlan_objective());
+		System.out.println(vo.getPlan_proposal());
 		
 		int updateCnt = dao.updatePlan(vo);
 		
-		model.addAttribute("updateCnt", updateCnt);
+		return updateCnt;
 	}
 
-	//기획서 상세
+	//기획서 삭제
 	@Override
-	public void detailPlan(HttpServletRequest req, Model model) {
-		String plan_code = req.getParameter("Plan_code");
+	public int deletePlan(HttpServletRequest req, Model model) {
+		String plan_code = req.getParameter("plan_code");
 		
-		MS_VO vo = dao.getDetailPlan(plan_code);
+		int deleteCnt = dao.deletePlan(plan_code);
+		return deleteCnt;
 	}
+
 }

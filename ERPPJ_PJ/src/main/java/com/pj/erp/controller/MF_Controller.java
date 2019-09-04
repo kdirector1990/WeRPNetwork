@@ -31,7 +31,7 @@ public class MF_Controller {
 	@RequestMapping("MF_materialsInsertPro")
 	public String MF_materialsInsertPro(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsInsertPro");
-		service.insertMF(req, model);
+		//service.insertMF(req, model);
 		
 		return "MF/MF_materialsInsertPro";
 	}
@@ -40,6 +40,7 @@ public class MF_Controller {
 	@RequestMapping("MF_materialsManagement")
 	public String MF_materialsManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsManagement");
+		service.selectMF(req, model);
 		
 		return "MF/MF_materialsManagement";
 	}

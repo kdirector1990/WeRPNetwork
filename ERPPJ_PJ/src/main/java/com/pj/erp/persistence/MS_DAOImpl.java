@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pj.erp.vo.MS_VO;
+import com.pj.erp.vo.MS.MS_plan;
 
 //경영지원
 @Repository
@@ -18,13 +18,13 @@ public class MS_DAOImpl implements MS_DAO{
 	
 	//기획서 등록
 	@Override
-	public int insertPlan(MS_VO vo) {
+	public int insertPlan(MS_plan vo) {
 		return sqlSession.insert("com.pj.erp.persistence.MS_DAO.insertPlan", vo);
 	}
 
 	//기획서 조회
 	@Override
-	public List<MS_VO> getPlanList() {
+	public List<MS_plan> getPlanList() {
 		return sqlSession.selectList("com.pj.erp.persistence.MS_DAO.getPlanList");
 	}
 
@@ -36,13 +36,13 @@ public class MS_DAOImpl implements MS_DAO{
 
 	//기획서 수정
 	@Override
-	public int updatePlan(MS_VO vo) {
+	public int updatePlan(MS_plan vo) {
 		return sqlSession.update("com.pj.erp.persistence.MS_DAO.updatePlan", vo);
 	}
 
-	//기획서 상세
+	//기획서 삭제
 	@Override
-	public MS_VO getDetailPlan(String plan_code) {
-		return sqlSession.selectOne("com.pj.erp.persistence.MS_DAO.getDetailPlan", plan_code);
+	public int deletePlan(String plan_code) {
+		return sqlSession.delete("com.pj.erp.persistence.MS_DAO.deletePlan", plan_code);
 	}
 }

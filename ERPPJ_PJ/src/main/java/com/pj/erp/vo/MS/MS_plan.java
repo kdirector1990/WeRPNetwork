@@ -1,9 +1,9 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.MS;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class MS_VO {
+public class MS_plan {
 	//경영지원
 	private String plan_code;			//기획서 코드
 	private String plan_name;			//기획명
@@ -16,7 +16,7 @@ public class MS_VO {
 	private String plan_state;			//기획 상태
 	private String plan_proposal;		//상세 기획안 파일
 	
-	public MS_VO() {}
+	public MS_plan() {}
 
 	public String getPlan_code() {
 		return plan_code;

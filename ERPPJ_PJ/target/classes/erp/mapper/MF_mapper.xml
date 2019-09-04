@@ -3,8 +3,21 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pj.erp.persistence.MF_DAO">
- 	<insert id="insertMF" parameterType = "com.pj.erp.vo.MF_VO">
+
+	<!-- 자재등록 -->
+<!--  	
+	<insert id="insertMF" parameterType = "com.pj.erp.vo.MF.MF_material">
 		insert into material_tbl(material_code, material_name, material_unit)
-		values('MF19090301', #{account_code}, #{material_name} ,#{material_unit}') 
+		values(#{material_code}, #{material_name} ,#{material_unit}') 
 	</insert>
+ -->	
+	<!-- 기획서 목록 가져오기 -->
+	<select id="getMaterialList" resultType="com.pj.erp.vo.MF.MF_material">
+		SELECT * FROM material_tbl
+	</select>
+	
+	<!-- 기획서 수량 갯수 -->
+	<select id="getMaterialListCnt" resultType="int">
+		SELECT COUNT(*) FROM material_tbl 
+	</select>
 </mapper>

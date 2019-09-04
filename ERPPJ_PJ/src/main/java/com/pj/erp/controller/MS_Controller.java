@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pj.erp.service.MS_Service;
@@ -51,25 +52,27 @@ public class MS_Controller {
 		service.selectPlan(req, model);
 		
 		return "MS/MS_planManagement";
+
 	}
-	/*
-	//기획서 상세페이지
-	@RequestMapping("MS_detailPlan")
-	public String MS_detailPlan(HttpServletRequest req, Model model) {
-		logger.info("log => MS_detailPlan");
-		service.detailPlan(req, model);
-		
-		return "MS/MS_detailPlan";
-	}
-	*/
+	
 	//기획서 수정 처리
 	@RequestMapping("MS_updatePlanPro")
-	public String MS_updatePlanPro(HttpServletRequest req, Model model) {
+	@ResponseBody
+	public int MS_updatePlanPro(HttpServletRequest req, Model model) {
 		logger.info("log => MS_updatePlanPro");
-		service.updatePlan(req, model);
+		int updateCnt = service.updatePlan(req, model);
 		
+		return updateCnt;
+	}
+	
+	//기획서 삭제 처리
+	@RequestMapping("MS_deletePlanPro")
+	@ResponseBody
+	public int MS_deletePlanPro(HttpServletRequest req, Model model) {
+		logger.info("log => MS_deletePlanPro");
+		int deleteCnt = service.deletePlan(req, model);
 		
-		return "MS/MS_updatePlanPro";
+		return deleteCnt;
 	}
 	
 }

@@ -8,14 +8,14 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<!-- 자재 등록 처리 -->
+<!-- 자재 등록 처리 실패-->
 	<c:if test="${insertCnt == 0}">
 		<script type="text/javascript">
 			alert("자재 등록 실패");
 		</script>
 	</c:if>
 	
-	<!-- 상품등록 성공 -->
+	<!-- 자재등록 성공 -->
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 		alert("자재 등록 성공/n 확인해보러가 ");

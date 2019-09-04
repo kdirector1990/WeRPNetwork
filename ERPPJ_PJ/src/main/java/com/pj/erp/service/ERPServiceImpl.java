@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.MS_VO;
+import com.pj.erp.vo.MS.MS_plan;
 
 @Service
 public class ERPServiceImpl implements ERPService{

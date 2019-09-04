@@ -76,12 +76,8 @@
                                         
                                         <div class="result">
                                         <br>
-                                        <form action="">
-                                        	<input type = "hidden" name = "plan_code" value = "${list.plan_code}">
-                                        <div align="right">
-    									<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light">수정</button>
-    									<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light">폐기</button>
-    									</div>
+                                        <form id="updatePlan">
+                                        	<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
     									<br>
                                         <table id="datatable2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0;">
                                             <thead>
@@ -101,6 +97,10 @@
                                             <tbody>
                                             </tbody>
                                         </table>
+                                        <div align="right">
+	    									<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>
+	    									<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>
+    									</div>
                                         </form>
                                         </div>
                                     
@@ -130,66 +130,6 @@
     <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
         
     <script type="text/javascript">
-    
-    /* var items = [];
-    
-    
-    $('#btnRe').click(function(){
-   	   	if($('input:checkbox[name="plan_code"]').is(":checked") == true){
-   	   		var rowDate = new Array();
-   	   		var tdArr = new Array();
-   	   		var checkbox = $('input[name="plan_code"]:checked');
-	   		checkbox.each(function(i){
-	   			var tr = checkbox.parent().parent().eq(i);
-	   			var td = tr.children();
-	   			
-	   			rowDate.push(tr.text());
-	   			
-	   			var plan_code = td.eq(1).text();
-	   			var plan_name = td.eq(2).text();
-	   			var username = td.eq(3).text();
-	   			var position_code = td.eq(4).text();
-	   			var plan_regdate = td.eq(5).text();
-	   			var plan_startdate = td.eq(6).text();
-	   			var plan_enddate = td.eq(7).text();
-	   			var plan_state = td.eq(8).text();
-	   			var plan_objective = td.eq(9).text();
-	   			var plan_proposal = td.eq(10).text();
-	   			
-	   			tdArr.push(plan_code);
-	   			tdArr.push(plan_name);
-	   			tdArr.push(username);
-	   			tdArr.push(position_code);
-	   			tdArr.push(plan_regdate);
-	   			tdArr.push(plan_startdate);
-	   			tdArr.push(plan_enddate);
-	   			tdArr.push(plan_state);
-	   			tdArr.push(plan_objective);
-	   			tdArr.push(plan_proposal);
-	   			
-	   			$('.result').show();
-	   			
-	   			$('#datatable2 > tbody:last').append(
-   					'<tr><td>' +tdArr[0] +'</td>'+
-	   					'<td><input type="text" name="plan_name" value="' +tdArr[1]+'"></td>' +
-	   					'<td><input type="text" name="username" value="' +tdArr[2]+'"</td>' +
-	   					'<td><input type="text" "position_code" value="'+tdArr[3]+'"></td>' +
-	   					 '<td>' + tdArr[4] +'</td>' +
-	   					'<td><input type="date" name = "plan_startdate" value="'  + tdArr[5] +'"></td>' +
-                        '<td><input type="date" name="plan_enddate" value="' + tdArr[6] +'"></td>' +
-                        '<td><input type="text" name="plan_state" value="' + tdArr[7] +'"></td>' +
-                        '<td><input type="text" name="plan_objective" value="' + tdArr[8]+'"></td>' +
-                        '<td><input type="text" name="plan_proposal" value="' + tdArr[9]+'"></td>' +
-               		'</tr>'); 
-	   		});
-	   		
-	    } 
-	    else{
-	    	alert("수정할 목록을 선택해주세요.")
-	    }
-  	 });
-     */
-     
      $("#datatable tr").click(function(){
     	 
 			if($(".plantr") != null){
@@ -233,11 +173,11 @@
    			$('.result').show();
    			
    			$('#datatable2 > tbody:last').append(
-				'<tr class="plantr"><td>' +tdArr[0] +'</td>'+
+				'<tr class="plantr">'+'<input type = "hidden" name = "plan_code" value = "'+tdArr[0]+'">'+'<td>' +tdArr[0] +'</td>'+
 					'<td><input type="text" name="plan_name" value="' +tdArr[1]+'"></td>' +
 					'<td><input type="text" name="username" value="' +tdArr[2]+'"</td>' +
-					'<td><input type="text" "position_code" value="'+tdArr[3]+'"></td>' +
-					 '<td>' + tdArr[4] +'</td>' +
+					'<td><input type="text" name="position_code" value="'+tdArr[3]+'"></td>' +
+					'<td><input type="text" name="plan_regdate" value="' + tdArr[4] +'"></td>' +
 					'<td><input type="date" name = "plan_startdate" value="'  + tdArr[5] +'"></td>' +
                     '<td><input type="date" name="plan_enddate" value="' + tdArr[6] +'"></td>' +
                     '<td><input type="text" name="plan_state" value="' + tdArr[7] +'"></td>' +
@@ -245,6 +185,44 @@
                     '<td><input type="text" name="plan_proposal" value="' + tdArr[9]+'"></td>' +
            		'</tr>');
 		});
+     
+     function updatePlan(){
+		 var param = $("#updatePlan").serializeArray();
+		 alert(JSON.stringify(param));
+		$.ajax({
+			url: '/erp/MS_updatePlanPro',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("기획서 수정 성공.");
+				location.reload();
+			},
+			error : function(){
+				alert("수정에 실패하였습니다.");
+			}
+			
+		});
+	}
+     
+     function deletePlan(){
+		 var param = $("#updatePlan").serializeArray();
+		 alert(JSON.stringify(param));
+		$.ajax({
+			url: '/erp/MS_deletePlanPro',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("기획서 삭제 성공하였습니다.");
+				location.reload();
+			},
+			error : function(){
+				alert("기획서 삭제에 실패하였습니다.");
+			}
+			
+		});
+	}
     </script>
     </body>
 </html>
