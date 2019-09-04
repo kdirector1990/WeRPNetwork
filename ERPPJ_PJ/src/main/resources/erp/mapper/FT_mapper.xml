@@ -4,9 +4,40 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "com.pj.erp.persistence.FT_DAO">
+	<!-- 거래처 추가 -->
 	<insert id="FT_AccInsert" parameterType = "java.util.Map">
 		insert into customer_list_tbl(customer_code, customer_name, deal_state)
 		values(customer_seq.nextval, #{AccName}, #{type}) 
+	</insert>
+	<!-- 적금 key 가져오기 -->
+	<select id="FT_SavingsKeySelect" resultType="String">
+		select sa_code from SAVING_ACCOUNT_TBL
+		where ROWNUM = 1
+		ORDER BY sa_code desc
+	</select>
+	
+	<!-- 적금 추가 -->
+	<insert id="FT_SavingsPrevInsert" parameterType = "java.util.Map">
+		insert into ACCOUNTS_TBL(AG_CODE, ACCOUNT_CODE, ACCOUNT_NAME)
+		values (#{SubjectCode}, accounts_seq.nextval, #{savingsName})
+	</insert>
+	
+	<insert id="FT_SavingsInsert" parameterType = "java.util.Map">
+		insert into SAVING_ACCOUNT_TBL(SA_CODE, CUSTOMER_CODE, SA_NUMBER, SA_HOLDER, SA_AMOUNT)
+		values (accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder}, #{DevPrice})
+	</insert>
+	
+	<!-- 적금수정 -->
+	<insert id="FT_SavingsPrevUpdate" parameterType = "java.util.Map">
+		update ACCOUNTS_TBL
+		set AG_CODE = #{SubjectCode}, ACCOUNT_NAME = #{savingsName}
+		where ACCOUNT_CODE = #{savingsCode}
+	</insert>
+	
+	<insert id="FT_SavingsUpdate" parameterType = "java.util.Map">
+		update SAVING_ACCOUNT_TBL
+		set CUSTOMER_CODE = #{AccCode}, SA_NUMBER = #{AccountNo}, SA_HOLDER = #{AccountHolder}, SA_AMOUNT = #{DevPrice}
+		where SA_CODE = #{savingsCode}
 	</insert>
 	
 </mapper>

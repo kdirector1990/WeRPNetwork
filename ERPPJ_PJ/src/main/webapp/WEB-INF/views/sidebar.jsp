@@ -495,10 +495,10 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-					                    <li><a href="#">예금 목록</a></li>
-					                    <li><a href="#">단기 대여금 목록</a></li>
-					                    <li><a href="#">단기매매증권목록</a></li>
-					                    <li><a href="#">받을 어음 목록</a></li>
+					                    <li><a href="FT_Deposit_list">예금 목록</a></li>
+					                    <li><a href="FT_short_Loan_list">단기 대여금 목록</a></li>
+					                    <li><a href="FT_short_Securities_list">단기매매증권목록</a></li>
+					                    <li><a href="FT_Note_list">받을 어음 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">부채목록
@@ -515,7 +515,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">건물 목록(고정자산관리)</a></li>
+	                          			<li><a href="FT_building_management">건물 목록(고정자산관리)</a></li>
 	                          			<li><a href="#">토지 목록</a></li>
 	                          			<li><a href="#">설비 목록</a></li>
 	                          			<li><a href="#">제품 목록</a></li>
