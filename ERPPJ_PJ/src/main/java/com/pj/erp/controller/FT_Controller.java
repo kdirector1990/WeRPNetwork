@@ -167,6 +167,14 @@ public class FT_Controller {
 		return "FT/FT_CardManagement";
 	}
 	
+	// 카드관리
+	@RequestMapping("FT_AccountInquiry")
+	public String FT_AccountInquiry(Locale locale, Model model) {
+		logger.info("log => FT_AccountInquiry");
+		
+		return "FT/FT_AccountInquiry";
+	}
+	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String basic5(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_chitupdate 호출중");

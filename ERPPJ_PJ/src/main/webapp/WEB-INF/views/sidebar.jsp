@@ -456,6 +456,7 @@
 					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
 					                    <li><a href="FT_journal">분개장</a></li>
 					                    <li><a href="FT_ledger">거래처원장</a></li>
+					                    <li><a href="FT_AccountInquiry">계정별 상세 페이지</a></li>
 					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
 					                    <li><a href="coming_soon">!계정별 변동추이 분석</a></li>
                           			</ul>
