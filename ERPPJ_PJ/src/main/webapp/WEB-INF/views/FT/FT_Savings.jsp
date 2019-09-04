@@ -7,7 +7,7 @@
         <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
-        	var count = 1;
+        	var count = ${listsize};
         	var subcount = 1;
         	var frontcursor;
         	var updatekey = 0;
@@ -355,16 +355,31 @@
 		                                        </thead>
 		    
 		                                        <tbody>
+		                                        	<c:set var="cnt" value="0"/>
+		                                        	<c:forEach var="save" items="${saving}">
+		                                        		<tr>																			
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "savingsCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${save.savingsCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first${cnt}" name = "savingsName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${save.savingsName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${save.accCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${save.accName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${save.subjectCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${save.subjectName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${save.accountNo}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${save.accountHolder}"></td>
+			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(this.name);" name = "DevPrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterupdate(${cnt});" value = "${save.devPrice}"></td>
+			                                            </tr>
+			                                            <c:set var="cnt" value="${cnt+1}"/>
+		                                        	</c:forEach>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "savingsCode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "savingsName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountHolder0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" id = "enter0" onfocus = "focuse(this.name);" name = "DevPrice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(0);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "savingsCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first${cnt}" name = "savingsName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(this.name);" name = "DevPrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>

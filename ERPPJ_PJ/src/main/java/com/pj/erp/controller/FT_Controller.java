@@ -149,7 +149,7 @@ public class FT_Controller {
 	public String FT_Savings(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Savings");
 		
-		/* service.FT_SavingsSelect(HttpServletRequest req, Model model); */
+		service.FT_SavingsSelect(req, model);
 		
 		return "FT/FT_Savings";
 	}
@@ -247,18 +247,7 @@ public class FT_Controller {
 		logger.info("url : FT_chitupdate 호출중");
 		
 		String key = map.get("key").toString();
-		String date = map.get("date").toString();
-		String no = map.get("no").toString();
-		String text = map.get("text").toString();
-		String type = map.get("type").toString();
-		String num = map.get("num").toString();
-		String state = map.get("state").toString();
-		String confirmname = map.get("confirmname").toString();
-		String devprice = map.get("devprice").toString();
-		String writer = map.get("writer").toString();
-		String slee = map.get("slee").toString();
-		return key + " " + date + " " + no + " " + text + " " + type + " " + num + " " + state + " " + confirmname + " " + devprice
-				 + " " + writer + " " + slee; 
+		return key + "호출"; 
 	}
 	
 	@RequestMapping(value = "FT_AccinputEx", produces = "application/text; charset=utf8")
