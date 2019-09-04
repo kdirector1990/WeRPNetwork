@@ -13,7 +13,6 @@
 
 	
 	function load(rank){
-		alert(rank);
 		$.ajax({
 			type : "GET",
 			url : "/erp/HR_GoodPay_paystep",
@@ -24,11 +23,6 @@
 				if($(".payRank") != null){
 					$(".payRank").remove();
 				}				
-				var ss = JSON.stringify(vo);
-				alert(vo);
-				
-				alert(vo[0].paystep_code);
-				alert(vo[0].base_PAYMENT);
 				
 				for(var i = 0; i < vo.length; i++){
 					var paystep_codeS = vo[i].paystep_code;
@@ -36,20 +30,16 @@
 					var ADD_PAYMENTS = addComma(vo[i].add_PAYMENT);
 					var EXTENSION_PAYMENTS = addComma(vo[i].extension_PAYMENT);
 					var total = addComma(vo[i].base_PAYMENT+vo[i].add_PAYMENT+vo[i].extension_PAYMENT);
+					var rank = vo[i].rank_code;
 					
-					$('#pay2').append("<tr class='payRank'>" +
-							+"<input type = 'hidde' name = 'paystep_code"+i+"' value ='paystep_codeS'><td>"+paystep_codeS+"</td><td>"	
+					$('#pay2').append("<tr class='payRank'>"+"<input type='hidden' name = 'paystep_code"+i+"' value ='"+paystep_codeS+"'>"+"<input type='hidden' name='rank_code' value='"+rank+"'>"+
+						"<td>"+paystep_codeS+"</td><td>"	
 						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='BASE_PAYMENT"+i+"' value='"+BASE_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
 						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='ADD_PAYMENT"+i+"' value='"+ADD_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
 						+"<input type='text' numberOnly id='simpleinput' class='form-control' name='EXTENSION_PAYMENT"+i+"' value='"+EXTENSION_PAYMENTS+"' maxlength='10' style='width:200px; text-align:center;' onKeyUp='removeChar(event); inputNumberFormat(this);'>"+"</td><td>"
 						+total+"</td></tr>");
 				} 
 				
-				/* alert(vo); */
-				//Controller에 메서드랑 DAO Mapper 만들어야됨.
-			},
-			complete : function(rank){
-				alert("통신완료 : " + rank);
 			},
 			error : function(e){
 				alert('서버 연결 도중 에러가 났습니다. 다시 시도해주세요.');
@@ -57,13 +47,27 @@
 		});
 	}
 	
-	/* function payUpdates(){
-		var obj = new Object();
-		var jsonData;
+	
+	function payUpdate(){
+		 var param = $("#updatePay").serializeArray();
+		$.ajax({
+			url: '/erp/HR_GoodPay_payUpdate',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("호봉 수정을 완료하였습니다.");
+			},
+			error : function(){
+				alert("전산 오류로 인하여 수정에 실패하였습니다.");
+			}
+			
+		});
+	}
 		
-		obj.key = $("input[name=]")
 		
-	} */
+		
+
 	
 </script>
 
@@ -81,6 +85,8 @@
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
+<form id="updatePay" action="HR_GoodPay_payUpdate" method="post" class="form-horizontal">
+		<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
 		<div class="content-page">
 			<div class="content">
 
@@ -94,6 +100,7 @@
 									<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>일괄등록</button>
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>일괄인상</button>
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>호봉복사</button>
+    								<button id="updatePA" onclick="payUpdate();" type="button" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
     								<button type="button" class="btn btn-outline-primary waves-effect waves-light">코드설정</button>
 								</div>
 								<h4 class="page-title">호봉테이블 입력</h4>
@@ -152,8 +159,6 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
-							<form name="updatePay" action="HR_GoodPay_payUpdate" method="post"  onsubmit="removeComma(str);" class="form-horizontal">
-							<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
 								<table id="pay2" class="table table-bordered mb-0">
 									<thead>
 										<tr>
@@ -170,18 +175,18 @@
 									</thead>
 								</table>
 								<div class="page-title-center">
-									<button type="submit" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
 									</div>								
-								</form>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			</div>
 			 <%@ include file="../footer.jsp" %>
 			</div>
 		</div>
 		</div>
+		</form>
 
 		<!-- ============================================================== -->
 		<!-- End Page content -->
@@ -206,11 +211,10 @@
  	    event = event || window.event;
  	    var keyID = (event.which) ? event.which : event.keyCode;
  	    if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 )
- 	    	   return 
+ 	    	   return;
  	    else
  	        return false;
- 	}
-     
+ 	   }
     //문자 지우기
      function removeChar(event) {
     	    event = event || window.event;

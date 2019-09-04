@@ -147,18 +147,16 @@ public class HR_Controller {
 		logger.info("log => HR_GoodPay_paystep");
 		
 		List<HR_PaystepVO> vo = service.selectMoney(req, model);
-		System.out.println(vo.get(0).getBASE_PAYMENT());
-		
 		return vo;
 	}
 	
 	//호봉테이블(호봉 수정)
 	@RequestMapping("HR_GoodPay_payUpdate")
 	@ResponseBody
-	public String HR_GoodPay_payUpdate(HttpServletRequest req, Model model) {
+	public int HR_GoodPay_payUpdate(HttpServletRequest req, Model model) {
 		logger.info("log => HR_GoodPay_payUpdate");
-		service.updateMoney(req, model);
-		return "HR/HR_HrSalaryEnvironment";
+		int updateCnt = service.updateMoney(req, model);
+		return updateCnt;
 	}
 	
 	@RequestMapping("HR_HrSalaryEnvironment")

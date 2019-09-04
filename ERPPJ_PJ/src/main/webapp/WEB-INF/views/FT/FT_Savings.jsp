@@ -30,9 +30,6 @@
 					}
 				}
         	}
-        	function inin() {
-        		alert("dkdkk");
-        	}
         	function focuse(s) {
         		var name = s;
         		$(".chit-table-bordered-primary tbody *").focus(function() {
@@ -131,57 +128,57 @@
                 	}
 					return false;
         		} else if(window.event.which == 13) {
-                	updatekey = 2;
-        			$(".chit-table-bordered-primary tbody #enter" + vv).onclick();
-					return false;
+	        		// 자바스크립트 객체 생성
+	        		obj.savingsCode = $("input[name=savingsCode" + vv + "]").val();
+	        		obj.savingsName = $("input[name=savingsName" + vv + "]").val();
+	        		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
+	        		obj.AccName = $("input[name=AccName" + vv + "]").val();
+	        		obj.SubjectCode = $("input[name=SubjectCode" + vv + "]").val();
+	        		obj.SubjectName = $("input[name=SubjectName" + vv + "]").val();
+	        		obj.AccountNo = $("input[name=AccountNo" + vv + "]").val();
+	        		obj.AccountHolder = $("input[name=AccountHolder" + vv + "]").val();
+	        		obj.DevPrice = $("input[name=DevPrice" + vv + "]").val();
+	        		
+	        		// json 객체를 String 객체로 변환 -- 
+	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+	        		jsonData = JSON.stringify(obj);
+	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+	        		
+	        		$.ajax({
+	                       type : "POST",
+	                       url : "/erp/FT_SavingsUpdate?${_csrf.parameterName }=${_csrf.token }",
+	                       data : jsonData,
+	                       contentType : 'application/json;charset=UTF-8',
+	                       success : function(data) {
+	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
+	                             /*  if (data.answer == 'success') {
+	                                      alert(data.name + '님 환영합니다.');
+	                                      var map = new MapArray();
+	                                      postData('/News/index.do', map);
+	                              } else if (data.answer == 'fail') {
+	                                      alert('아이디와 비번이 일치하지 않습니다.');
+	                              } else if (data.answer == 'error') {
+	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
+	                              } */
+	                              alert(data);
+	                              if(updatekey == 0){
+	                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
+	                              } else {
+	                            	 if(updatekey == 1){
+	                             	 	$("#enter" + vv).val(selectval);
+	                            	 } else if(updatekey == 2){
+	                                 	$("#first" + (vv+1)).focus();
+	                            	 }
+	                            	 updatekey = 0;
+	                              }
+	                       },
+	                       error : function(e) {
+	                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+	                       }
+	               });
+
         		}
-        		
-        		// 자바스크립트 객체 생성
-        		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
-        		obj.AccName = $("input[name=AccName" + vv + "]").val();
-        		obj.SubjectCode = $("input[name=SubjectCode" + vv + "]").val();
-        		obj.SubjectName = $("input[name=SubjectName" + vv + "]").val();
-        		obj.AccountNo = $("input[name=AccountNo" + vv + "]").val();
-        		obj.AccountHolder = $("input[name=AccountHolder" + vv + "]").val();
-        		obj.DevPrice = $("input[name=DevPrice" + vv + "]").val();
-        		
-        		// json 객체를 String 객체로 변환 -- 
-        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
-        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
-        		jsonData = JSON.stringify(obj);
-        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
-        		
-        		$.ajax({
-                       type : "POST",
-                       url : "/pj/FT_SavingsInsert",
-                       data : jsonData,
-                       contentType : 'application/json;charset=UTF-8',
-                       success : function(data) {
-                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-                             /*  if (data.answer == 'success') {
-                                      alert(data.name + '님 환영합니다.');
-                                      var map = new MapArray();
-                                      postData('/News/index.do', map);
-                              } else if (data.answer == 'fail') {
-                                      alert('아이디와 비번이 일치하지 않습니다.');
-                              } else if (data.answer == 'error') {
-                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-                              } */
-                              if(updatekey == 0){
-                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
-                              } else {
-                            	 if(updatekey == 1){
-                             	 	$("#enter" + vv).val(selectval);
-                            	 } else if(updatekey == 2){
-                                 	$("#first" + (vv+1)).focus();
-                            	 }
-                            	 updatekey = 0;
-                              }
-                       },
-                       error : function(e) {
-                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
-                       }
-               });
         	}
         	
         	function enterinsert(cc) {
@@ -223,37 +220,63 @@
                 	}
 					return false;
         		} else if(window.event.which == 13) {
-	        		frontcursor = $(".chit-table-bordered-primary tbody #enter" + cc).attr("name");
-	       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onchange", "enterupdate(" + cc + ");");
-	       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
-	       			$(".chit-table-bordered-primary tbody").append('<tr>' +
-	       					'<td><input type="text" onfocus = "focuse(this.name);" id = "first' + count + '" name = "AccCode' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode' + count + '" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "AccountHolder' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-	                        '<td><input type="text" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "DevPrice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(' + count + ');"></td>' +
-	                       '</tr>');
-	       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
-	                 count = count + 1;
-	       			 /* $.ajax({
-	            			url : '${pageContext.request.contextPath}/FT_chitupdate?data=' + vv, 
-	            			type : 'GET',
-	            			success : function(data) { // 콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
-	            				// 변수명이 반드시 . html(result)일 필요는 없으나 위 콜백함수의 변수명 result와 일치해야 한다.
-	            				var text = "";
-	            				alert(data.length);
-	            				for(var i = 0; i<data.length; i++){
-	            					alert(data[i].name);
-	            					text += "<option value = " + data[i].price + ">" + data[i].name + "</option>";
-	            				}
-	            				$('input[name=key' + vv + ']').val(text);
-	            			},
-	            			error : function() {
-	            				alert('오류');
-	            			}
-	            		}); */
+        			var obj = new Object();
+            		var jsonData;
+	                 
+	              	// 자바스크립트 객체 생성
+	         		obj.savingsName = $("input[name=savingsName" + cc + "]").val();
+	         		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
+	         		obj.AccName = $("input[name=AccName" + cc + "]").val();
+	         		obj.SubjectCode = $("input[name=SubjectCode" + cc + "]").val();
+	         		obj.SubjectName = $("input[name=SubjectName" + cc + "]").val();
+	         		obj.AccountNo = $("input[name=AccountNo" + cc + "]").val();
+	         		obj.AccountHolder = $("input[name=AccountHolder" + cc + "]").val();
+	         		obj.DevPrice = $("input[name=DevPrice" + cc + "]").val();
+	         		
+	         		// json 객체를 String 객체로 변환 -- 
+	         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+	         		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+	         		jsonData = JSON.stringify(obj);
+	         		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+	         		
+	         		$.ajax({
+	                        type : "POST",
+	                        url : "/erp/FT_SavingsInsert?${_csrf.parameterName }=${_csrf.token }",
+	                        data : jsonData,
+	                        contentType : 'application/json;charset=UTF-8',
+	                        success : function(data) {
+	                               // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
+	                              /*  if (data.answer == 'success') {
+	                                       alert(data.name + '님 환영합니다.');
+	                                       var map = new MapArray();
+	                                       postData('/News/index.do', map);
+	                               } else if (data.answer == 'fail') {
+	                                       alert('아이디와 비번이 일치하지 않습니다.');
+	                               } else if (data.answer == 'error') {
+	                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
+	                               } */
+	                               frontcursor = $(".chit-table-bordered-primary tbody #enter" + cc).attr("name");
+		           	       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
+		           	       			$(".chit-table-bordered-primary tbody").append('<tr>' +
+		           	       					'<td><input type="text" onfocus = "focuse(this.name);" name = "savingsCode' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                       '<td><input type="text" onfocus = "focuse(this.name);" id = "first' + count + '" name = "savingsName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                       '<td><input type="text" onfocus = "focuse(this.name);" name = "AccCode' + count + '" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                       '<td><input type="text" onfocus = "focuse(this.name);" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		           	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode' + count + '" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		           	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		           	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		           	                        '<td><input type="text" onfocus = "focuse(this.name);" name = "AccountHolder' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		           	                        '<td><input type="text" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "DevPrice' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(' + count + ');"></td>' +
+		           	                       '</tr>');
+		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
+		           	                 count = count + 1;
+	                               alert(data);
+	                               $("*[name=savingsCode" + cc + "]").val(data);
+	                        },
+	                        error : function(e) {
+	                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+	                        }
+	                });
         		}
         	}
         </script>
@@ -309,14 +332,18 @@
                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
                                                 <col style = "width:10%;">
-                                                <col style = "width:20%;">
+                                                <col style = "width:10%;">
                                                 <col style = "width:10%">
-                                                <col style = "width:20%;">
-                                                <col style = "width:20%;">
+                                                <col style = "width:10%;">
+                                                <col style = "width:10%;">
+                                                <col style = "width:10%;">
+                                                <col style = "width:10%;">
                                                 <col style = "width:10%;">
                                                 <col style = "width:10%;">
                                                 <thead>
                                                     <tr>
+                                                    	<th>적금코드</th>
+                                                    	<th>적금명</th>
 		                                                <th>거래처코드</th>
 		                                                <th>거래처명</th>
 		                                                <th>계정코드</th>
@@ -329,9 +356,11 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "AccCode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "savingsCode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "savingsName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountHolder0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
