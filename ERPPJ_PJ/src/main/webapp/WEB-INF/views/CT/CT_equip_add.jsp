@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
- 
-<%@ include file="../setting.jsp" %> 
-<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+<%@ include file="../setting.jsp" %>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js" ></script> 
 		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
         	var count = 1;
@@ -14,7 +13,8 @@
         		alert("inin알럿");
         	}
         	
-        	function focuse() {
+        	function focuse(s) {
+        		var name = s;
         		$(".spoat-table-bordered-primary tbody *").focus(function() {
         			$(".spoat-table-bordered-primary tbody *").css("background-color", "");
         			$(this).parent().parent().children().children().css("background-color", "#E8F8F5");
@@ -24,19 +24,35 @@
         		});
         	}
         	
+        	
+        	/* submit 엔터로 넘어가는 거 막는 이벤트. 
         	document.addEventListener("keydown", function(event){
         		if(event.keyCode == 13){
         			event.preventDefault();
         		};
-        	}, true);
+        	}, true); */
+        	
+        	
         	
         	function enter(cc, dd) {
-        		alert("동작")
+        		alert("동작");
         		if(cc == "INPUT"){
-        			alert("동작1")
+        			alert("동작1");
         			var swit = 0;
         			var nowme = $("input[name=" + dd +"]").parent();
-        			if(window.event.which == 38){
+        			if(window.event.which == 13){
+        				for(var i = 0; i < $("input[name=" + dd +"]").parent().nextAll.children().length; i++){
+        					nowme = nowme.next();
+        					if(!nowme.children().attr("readonly")){
+        						nowme.children().focus();
+        						return false;
+        					}
+        				}
+        			} }/*  else if(window.event.which == 9){
+        				$("*[name=" + dd +"]").parent().prev().children().focus();
+        				return false;
+        			}
+        			else if(window.event.which == 37){
         				alert("동작2")
         				for(var i = 0; i < $("input[name=" + dd + "]").parent().prevAll().children().length; i++){
         					nowme = nowme.prev();
@@ -63,8 +79,13 @@
         			else if(window.event.which == 40){
         				alert("동작5")
         				$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1, dd.length)) + 1) +"]").focus();
-        			}
-        		}
+        			} */
+        		/* }
+        		 else if(cc == "SELECT"){
+    				if(window.event.which == 9){
+    					$("select[name=" + dd +"]").parent().prev().children().focus();
+    				} 	
+    			}
         		/* alert(window.event.which) */
     			/* $("input[name=" + cc + "]").parent().next().children().focus(); */
         	}
@@ -73,80 +94,25 @@
         		$("select[name=" + cc + "]").parent().next().children().focus();
         	}
         	
-        	function enterupdate(vv) {
-        		var obj = new Object();
-        		var jsonData;
-        		if(event.keyCode == 13) {
-	        		// 자바스크립트 객체 생성
-	        		obj.ceq_code = $("input[name=ceq_code" + vv + "]").val();
-	        		obj.account_code = $("input[name=account_code" + vv + "]").val();
-	        		obj.ceq_name = $("input[name=ceq_name" + vv + "]").val();
-	        		obj.ceq_type = $("input[name=ceq_type" + vv + "]").val();
-	        		obj.ceq_acquire_date = $("input[name=ceq_acquire_date" + vv + "]").val();
-	        		obj.department_code = $("select[name=department_code" + vv + "]").val();
-	        		obj.ceq_location = $("input[name=ceq_location" + vv + "]").val();
-	        		obj.ceq_prime_cost = $("select[name=ceq_prime_cost" + vv + "]").val();
-	        		obj.ceq_durable = $("input[name=ceq_durable" + vv + "]").val();
-	        		obj.ceq_depreciation = $("input[name=ceq_depreciation" + vv + "]").val();
-	        		obj.ceq_depreciation_type = $("input[name=ceq_depreciation_type" + vv + "]").val();
-	        		
-	        		
-	        		// json 객체를 String 객체로 변환 -- 
-	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
-	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
-	        		jsonData = JSON.stringify(obj);
-	        		alert(obj.ceq_code);
-	        		alert(obj.account_code);
-	        		alert(obj.ceq_name);
-	        		alert(obj.ceq_type);
-	        		alert(obj.ceq_acquire_date);
-	        		alert(obj.department_code);
-	        		alert(obj.ceq_location);
-	        		alert(obj.ceq_prime_cost);
-	        		alert(obj.ceq_durable);
-	        		alert(obj.ceq_depreciation);
-	        		alert(obj.ceq_depreciation_type);
-	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
-	        		
-	        		$.ajax({
-	                       type : "POST",
-	                       url : "/erp/CT_subject_add",
-	                       data : jsonData,
-	                       contentType : 'application/json;charset=UTF-8',
-	                       success : function(data) {
-	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                              alert(data);
-	                             /*  if (data.answer == 'success') {
-	                                      alert(data.name + '님 환영합니다.');
-	                                      var map = new MapArray();
-	                                      postData('/News/index.do', map);
-	                              } else if (data.answer == 'fail') {
-	                                      alert('아이디와 비번이 일치하지 않습니다.');
-	                              } else if (data.answer == 'error') {
-	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                              } */
-	                       },
-	                       error : function(e) {
-	                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
-	                       }
-	               });
-        		}
-        	}
+        	$(document).ready(function(){
+        		$("#enter").keydown(function(key){
+        			if(key.keyCode == 13){
+        				alert("엔터키 작동합니다.");
+        				enterinsert(cc);
+        			}
+        		});
+        	});
         	
-        	function enterinsert(cc) {
-       			$(".spoat-table-bordered-primary tbody #enter").attr("onchange", "enterupdate(" + cc + ");");
-       			$(".spoat-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
-       			$(".spoat-table-bordered-primary tbody #first").attr("id", "first" + cc);
-       			$(".spoat-table-bordered-primary tbody").append('<tr>' +
-       						'<td><input type="text" onfocus = "focuse();" name = "ceq_code"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>' +
-       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name"' + count + ' id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
+        	function add(){
+        		$(".spoat-table-bordered-primary tbody").append('<tr>' +
+       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                             	'<option value="">선택</option>' +
                             	'<option value="1">보유' +
                             	'<option value="2">대여' +
                             '</select></td>' +
-                            '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code"' + count + ' style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
+                            '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
                             '<option value="">선택</option>' +
                             '<option value="1">인사</option>' +
                             '<option value="2">영업</option>' +
@@ -154,62 +120,103 @@
                             '<option value="4">전산</option>' +
                             '<option value="5">제조</option>' +
                        		'</select></td>' +
-                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_location"' + count +' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
-                            '<td><input type="number" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);"></td>' +
-                            '<td><input type="number" onfocus = "focuse();" name = "ceq_durable"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
-                       		'<td><select onfocus = "focuse();" name="ceq_depreciation"' + count + ' id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;">' +
+                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                            '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "ceq_durable' + count + '" onkeyup="removeChar(event); inputNumberFormat(this);" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                       		'<td><select onfocus = "focuse();" name="ceq_depreciation' + count + '" id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" required>' +
                        			'<option value="">선택</option>' +
                        			'<option value="1">Y</option>' +
                        			'<option value="2">N</option>' +
                        		'</select>' +
-                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type"' + count + ' class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
+                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
                        '</tr>');
-                    count = count + 1;
-          		 $("input[name=key"+ cc +"]").val("10001");
        			 $(".spoat-table-bordered-primary tbody #first").focus();
-       			 /* $.ajax({
-            			url : '${pageContext.request.contextPath}/FT_chitupdate?data=' + vv, 
-            			type : 'GET',
-            			success : function(data) { // 콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
-            				// 변수명이 반드시 . html(result)일 필요는 없으나 위 콜백함수의 변수명 result와 일치해야 한다.
-            				var text = "";
-            				alert(data.length);
-            				for(var i = 0; i<data.length; i++){
-            					alert(data[i].name);
-            					text += "<option value = " + data[i].price + ">" + data[i].name + "</option>";
-            				}
-            				$('input[name=key' + vv + ']').val(text);
-            			},
-            			error : function() {
-            				alert('오류');
-            			}
-            		}); */
+       			count = count + 1;
         	}
         	
+        	function del(){
+        		$(".spoat-table-bordered-primary tbody").empty('<tr>'+
+        		'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+                '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
+                	'<option value="">선택</option>' +
+                	'<option value="1">보유' +
+                	'<option value="2">대여' +
+                '</select></td>' +
+                '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>' +
+                '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
+                '<option value="">선택</option>' +
+                '<option value="1">인사</option>' +
+                '<option value="2">기획</option>' +
+                '<option value="3">영업</option>' +
+                '<option value="4">재무</option>' +
+                '<option value="5">전산</option>' +
+                '<option value="6">제조</option>' +
+           		'</select></td>' +
+           		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
+                '<td><input type="text" onfocus = "focuse();" name = "ceq_durable' + count + '" onkeyup="removeChar(event); inputNumberFormat(this);" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+           		'<td><select onfocus = "focuse();" name="ceq_depreciation' + count + '" id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" required>' +
+           			'<option value="">선택</option>' +
+           			'<option value="1">Y</option>' +
+           			'<option value="2">N</option>' +
+           		'</select>' +
+           		'<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
+           '</tr>');
+           count = 0;
+        	}
         	
-        	/*
-    		 * 콜백함수
-    		 	- 서버로부터 응답이 오면 동작할 함수(시스템이 자동으로 호출)
-    		 	- 콜백함수 명은 sendRequest(콜백함수명)과 일치해야 한다.
-    		 	- simple_callback() : 콜백함수
-    		 	- result : 출력위치
-    		 */
-    		 function load_insert(){
-     			// 4 : completed => 전체데이터가 취득환료된 상태
-     			if(httpRequest.readyState == 4){ 
-     				if(httpRequest.status == 200) { // 200 : 정상종료
-     					//result.innerHTML = "정상종료";
-     					var data = httpRequest.responseText;
-     					
-     					alert(data);
-     					//result.innerHTML = httpRequest.responseXML;
-     				} else {
-     					alert("에러발생");
-     				}
-     			} else {
-     				alert("상태 : " + httpRequest.readyState);
-     			}
-     		}
+        	/* function enterinsert(cc) {
+       			$(".spoat-table-bordered-primary tbody #enter").attr("onchange", "enterupdate(" + cc + ");");
+       			$(".spoat-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
+       			$(".spoat-table-bordered-primary tbody #first").attr("id", "first" + cc);
+       			$(".spoat-table-bordered-primary tbody").append('<tr>' +
+       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
+                            	'<option value="">선택</option>' +
+                            	'<option value="1">보유' +
+                            	'<option value="2">대여' +
+                            '</select></td>' +
+                            '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>' +
+                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
+                            '<option value="">선택</option>' +
+                            '<option value="1">인사</option>' +
+                            '<option value="2">영업</option>' +
+                            '<option value="3">재무</option>' +
+                            '<option value="4">전산</option>' +
+                            '<option value="5">제조</option>' +
+                       		'</select></td>' +
+                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                            '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
+                            '<td><input type="text" onfocus = "focuse();" name = "ceq_durable' + count + '" onkeyup="removeChar(event); inputNumberFormat(this);" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
+                       		'<td><select onfocus = "focuse();" name="ceq_depreciation' + count + '" id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" required>' +
+                       			'<option value="">선택</option>' +
+                       			'<option value="1">Y</option>' +
+                       			'<option value="2">N</option>' +
+                       		'</select>' +
+                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
+                       '</tr>');
+       			 $(".spoat-table-bordered-primary tbody #first").focus();
+        	} */
+        	
+        	
+        	
+        	function Insert(){
+        		var param = $("#CTinsert").serializeArray();
+        		alert(JSON.stringify(param));
+        		$.ajax({
+        			url: '/erp/CT_subject_add',
+        			type: 'POST',
+        			data : param,
+        			dataTpye: 'json',
+        			success: function(param){
+        				alert("자산을 입력하였습니다.");
+        			},
+        			error : function(){
+        				alert("전산 오류로 인하여 입력에 실패하였습니다.");
+        			}
+        		});
+        	}
+        	
         </script> 
 </head>
 	<body>
@@ -247,32 +254,32 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
                                         <h4 class="header-title">설비등록</h4>
+                                        <div align="right">
+		    								<button id="insertCT" onclick="Insert();" type="button" class="btn btn-outline-primary waves-effect waves-light">등록</button>
+										</div>
                                         
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
-                                                <td>작성자</td>
-                                            	<td><input type="text" class="" placeholder="사원명">&nbsp;<a href="#"></a></td>
+                                                <td>작성자 : ${name }</td>
                                             </tr>
                                         </table>
                                         
                                        <div class="table-responsive" style = "margin: 15px 0px 50px">
-                                       <form action="CT_subject_add" method="post" class="form-horizontal">
+                                       <form id="CTinsert" action="CT_subject_add" method="post" class="form-horizontal">
                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
                                             <table class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
-                                                <col style = "width:7%;">
-                                                <col style = "width:10%;">
+	                                            <col style = "width:10%;">
                                                 <col style = "width:7%">
                                                 <col style = "width:7%;">
                                                 <col style = "width:8%;">
-                                                <col style = "width:8%;">
-                                                <col style = "width:7%;">
+                                                <col style = "width:11%;">
+                                                <col style = "width:9%;">
                                                 <col style = "width:15%;">
-                                                <col style = "width:15%;">
-                                                <col style = "width:16%;">
-                                                
+                                                <col style = "width:13%;">
+                                                <col style = "width:19%;">
+
                                                 <thead>
                                                     <tr>
-		                                                <th>계정코드</th>
 		                                                <th>설비명</th>
 		                                                <th>보유구분</th>
 		                                                <th>구입일</th>
@@ -287,43 +294,40 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "10021" readonly></td>
-		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_name0" id="first" onclick="inin();" onkeyup = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
-		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName,this.name);">
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onclick="inin();" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
+		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" required onchange="enter(this.tagName,this.name);">
 		                                                	<option value="null">선택</option>
 		                                                	<option value="1">보유
 		                                                	<option value="2">대여
 		                                                </select></td>
-		                                                <td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>
-		                                                <td><select class="form-control" onfocus = "focuse();" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
+		                                                <td><input type="date" onfocus = "focuse(this.name);" name = "ceq_acquire_date0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>
+		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
 		                                                <option value="null">선택</option>
 		                                                <option value="1">인사</option>
-		                                                <option value="2">영업</option>
-		                                                <option value="3">재무</option>
-		                                                <option value="4">전산</option>
-		                                                <option value="5">제조</option>
+		                                                <option value="2">기획</option>
+		                                                <option value="3">영업</option>
+		                                                <option value="4">재무</option>
+		                                                <option value="5">전산</option>
+		                                                <option value="6">제조</option>
 			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse();" name = "ceq_location0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
-		                                                <td><input type="number" class="form-control" name = "ceq_prime_cost0" onfocus = "focuse();" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);"></td>
-			                                       		<td><input type="number" onfocus = "focuse();" name = "ceq_durable0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
-			                                       		<td><select name="ceq_depreciation0" id = "enter" onfocus = "focuse();" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;">
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_location0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" class="form-control" name = "ceq_prime_cost0" onfocus = "focuse();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onchange="enter(this.tagName,this.name);" required></td>
+			                                       		<td><input type="text" onfocus = "focuse(this.name);" name = "ceq_durable0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onkeyup="enter(this.tagName, this.name);"></td>
+			                                       		<td><select name="ceq_depreciation0" onfocus = "focuse();" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enterinsert(0);" required>
 			                                       			<option value="">선택</option>
-			                                       			<option value="1">Y</option>
-			                                       			<option value="2">N</option>
+			                                       			<option value="2">Y</option>
+			                                       			<option value="1">N</option>
 			                                       		</select>
-			                                       		<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+			                                       		<td><input type="text" id = "enter" onfocus = "focuse();" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
-                                       
-                                        <div align="right" style = "margin-bottom: 30px;">
-		                                                <button class="btn btn-outline-primary waves-effect waves-light" type="submit">등록
-		                                                </button>
-		                                                <button type="reset" class="btn btn-outline-primary waves-effect waves-light">삭제
-		                                                </button>
-		                                     </div>
-										</form>  
-									  </div>                                      
+										  </div>
+										  <div class="form-group text-right mb-0">
+		    										<button onclick="add();" type="button" class="btn btn-outline-primary waves-effect waves-light">추가</button>
+		    										<button onclick="del();" type="button" class="btn btn-outline-primary waves-effect waves-light">삭제</button>
+											</div>
+									  </form>                                      
                                     </div>
                                 </div>
                             </div>
@@ -345,6 +349,42 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
+        
+        <script type="text/javascript">
+        
+        //문자 지우기
+        function removeChar(event) {
+       	    event = event || window.event;
+       	    var keyID = (event.which) ? event.which : event.keyCode;
+       	    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+       	        return;
+       	    else
+       	    	 event.target.value = event.target.value.replace(/[^-\.0-9]/g, "");
+       }
+       
+      //콤마 찍기
+        function comma(obj) {
+            var regx = new RegExp(/(-?\d+)(\d{3})/);
+            var bExists = obj.indexOf(".", 0);//0번째부터 .을 찾는다.
+            var strArr = obj.split('.');
+            while (regx.test(strArr[0])) {//문자열에 정규식 특수문자가 포함되어 있는지 체크
+                //정수 부분에만 콤마 달기 
+                strArr[0] = strArr[0].replace(regx, "$1,$2");//콤마추가하기
+            }
+            if (bExists > -1) {
+                //. 소수점 문자열이 발견되지 않을 경우 -1 반환
+                obj = strArr[0] + "." + strArr[1];
+            } else { //정수만 있을경우 //소수점 문자열 존재하면 양수 반환 
+                obj = strArr[0];
+            }
+            return obj;//문자열 반환
+        }
+      
+      //input 태그 콤마 달기
+        function inputNumberFormat(obj) {
+       	    obj.value = comma(obj.value);
+       	}
+        
+        </script>
     </body>
-    
 </html>

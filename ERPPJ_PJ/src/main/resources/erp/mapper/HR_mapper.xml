@@ -6,8 +6,12 @@
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
 	<insert id="insertMember" parameterType="com.pj.erp.vo.HR_VO">
-		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address1, e_address2, e_mailcode, level_step, e_nfcCodeNFC, e_disability_type, e_disability_level, start_date)
-		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address1}, #{e_address2}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{e_disability_type}, #{e_disability_level}, #{start_date}) 
+		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, start_date, enabled)
+		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{start_date}, #{enabled}) 
+	</insert>
+	<insert id="insertMember2" parameterType="com.pj.erp.vo.HR_VO">
+		insert into users(username, password, e_name, enabled)
+		values(userid.nextval, #{password}, #{e_name}, 1) 
 	</insert>
 	<insert id="insertAuth">
 		insert into authority(username, authority)

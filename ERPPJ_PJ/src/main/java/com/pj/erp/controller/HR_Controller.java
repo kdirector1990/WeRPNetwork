@@ -88,6 +88,13 @@ public class HR_Controller {
 		return "HR/HR_GreetingPunishment";
 	}
 	
+	@RequestMapping("HR_GreetingPunishment_result")
+	public String HR_GreetingPunishment_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_GreetingPunishment_result");
+		
+		return "HR/HR_GreetingPunishment_result";
+	}	
+	
 	@RequestMapping("HR_Yearsofservice")
 	public String HR_Yearsofservice(HttpServletRequest req, Model model) {
 		logger.info("log => HR_Yearsofservice");

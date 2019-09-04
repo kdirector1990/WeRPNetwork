@@ -247,20 +247,6 @@
      function inputNumberFormat(obj) {
     	    obj.value = comma(obj.value);
     	}
-     
-   /* //콤마 제거
-     function removeComma(n) {  // 콤마제거
-    	    if ( typeof n == "undefined" || n == null || n == "" ) {
-    	        return "";
-    	    }
-    	    var txtNumber = '' + n;
-    	    return txtNumber.replace(/(,)/g, "");
-    	} */
-   //콤마제거 2
-   function removeComma(str){
-   		n = parseInt(str.replace(/,/g,""));
-   		return n;		
-    }
 
      </script>
 </body>

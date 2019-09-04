@@ -41,7 +41,7 @@ public class ERPServiceImpl implements ERPService{
 		vo.setPassword(password);
 		vo.setE_name(e_name);
 		
-		dao2.insertMember(vo);
+		dao2.insertMember2(vo);
 		dao2.insertAuth();
 		
 		
