@@ -1,17 +1,20 @@
 package com.pj.erp.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.FT.FT_Savings;
+
 @Repository
 public class FT_DAOImpl implements FT_DAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	// 거래처 추가
 	@Override
 	public int FT_AccInsert(Map<String, Object> map) {
@@ -23,6 +26,12 @@ public class FT_DAOImpl implements FT_DAO{
 		return 0;
 	}
 
+	// 적금 가져오기
+	@Override
+	public List<FT_Savings> FT_SavingsSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_SavingsSelect");
+	}
+	
 	// 적금 key 가져오기
 	@Override
 	public String FT_SavingsKeySelect() {

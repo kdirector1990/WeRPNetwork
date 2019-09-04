@@ -12,14 +12,12 @@ public class HR_VO {
 	private String e_type;
 	private String e_code;
 	private String e_hp;
-	private String e_address1;
-	private String e_address2;
+	private String e_address;
 	private String e_mailcode;
 	private String level_step;
-	private String e_nfcCodeNFC;
-	private String e_disability_type;
-	private String e_disability_level;
-	private Timestamp start_date; 
+	private String e_nfcCodeNFC;	
+	private Timestamp start_date;
+	private int enabled;
 	
 	public HR_VO() {}
 
@@ -87,21 +85,13 @@ public class HR_VO {
 		this.e_hp = e_hp;
 	}
 
-	public String getE_address1() {
-		return e_address1;
+	public String getE_address() {
+		return e_address;
 	}
 
-	public void setE_address1(String e_address1) {
-		this.e_address1 = e_address1;
-	}
-
-	public String getE_address2() {
-		return e_address2;
-	}
-
-	public void setE_address2(String e_address2) {
-		this.e_address2 = e_address2;
-	}
+	public void setE_address(String e_address) {
+		this.e_address = e_address;
+	}	
 
 	public String getE_mailcode() {
 		return e_mailcode;
@@ -125,23 +115,7 @@ public class HR_VO {
 
 	public void setE_nfcCodeNFC(String e_nfcCodeNFC) {
 		this.e_nfcCodeNFC = e_nfcCodeNFC;
-	}
-
-	public String getE_disability_type() {
-		return e_disability_type;
-	}
-
-	public void setE_disability_type(String e_disability_type) {
-		this.e_disability_type = e_disability_type;
-	}
-
-	public String getE_disability_level() {
-		return e_disability_level;
-	}
-
-	public void setE_disability_level(String e_disability_level) {
-		this.e_disability_level = e_disability_level;
-	}
+	}	
 
 	public Timestamp getStart_date() {
 		return start_date;
@@ -150,6 +124,16 @@ public class HR_VO {
 	public void setStart_date(Timestamp start_date) {
 		this.start_date = start_date;
 	}
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+	
+	
 
 	
 	

@@ -9,6 +9,8 @@ public class HR_PhysicalVO {
 	private String e_color_blind;
 	private String e_blood_type;	
 	private String e_blood_presure;
+	private String e_disability_type;
+	private String e_disability_level;
 	
 	public HR_PhysicalVO() {}
 
@@ -67,6 +69,24 @@ public class HR_PhysicalVO {
 	public void setE_blood_presure(String e_blood_presure) {
 		this.e_blood_presure = e_blood_presure;
 	}
+
+	public String getE_disability_type() {
+		return e_disability_type;
+	}
+
+	public void setE_disability_type(String e_disability_type) {
+		this.e_disability_type = e_disability_type;
+	}
+
+	public String getE_disability_level() {
+		return e_disability_level;
+	}
+
+	public void setE_disability_level(String e_disability_level) {
+		this.e_disability_level = e_disability_level;
+	}
+
+	
 	
 	
 }
