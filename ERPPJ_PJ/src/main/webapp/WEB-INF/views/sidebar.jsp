@@ -549,6 +549,7 @@
 	                          		<ul>
 	                          			<li><a href="FT_BasicAccount_Input">거래처 관리</a></li>
 	                          			<li><a href="FT_Savings">적금 관리</a></li>
+	                          			<li><a href="FT_Deposit">예금 관리</a></li>
                     					<li><a href="FT_CardManagement">카드 관리</a></li>
 	                          		</ul>
 	                          	</li>
