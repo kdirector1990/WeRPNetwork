@@ -115,7 +115,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.8</version>
 		</dependency>
-		
+		<!-- gson, json -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
 		
 		<!-- Mybatis 설정 시작 -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->

@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +24,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.persistence.HR_DAO;
 
 import com.pj.erp.vo.HR_PhysicalVO;
-
+import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_VO;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
 public class HR_ServiceImpl implements HR_Service{
@@ -260,6 +263,51 @@ public class HR_ServiceImpl implements HR_Service{
 		map.put("department_name", department_name);
 		
 		dao.insertDepartment(map);
+		
+	}
+
+	@Override
+	public List<HR_GreetingVO> getGreeting(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		String pa_code= (String)map.get("pa_code");
+		String username = (String)map.get("username");
+		String e_name = (String)map.get("e_name");
+		/*String pa_dates = (String)map.get("pa_date");
+		String pa_sDate = pa_dates.substring(0, 10);
+		String pa_eDate = pa_dates.substring(13, 23);
+		String spa_date = "";
+		String epa_date = "";
+		if(pa_code == null) {
+			pa_code = "*";
+		}
+		if(username == null) {
+			username = "*";
+		}
+		if(e_name == null) {
+			e_name = "*";
+		}
+		
+		map.put("pa_code", pa_code);
+		map.put("username", username);
+		map.put("e_name", e_name);
+		
+		Date sdate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
+		Date edate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		
+		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
+
+			
+			spa_date = new_format.format(sdate);
+			epa_date = new_format.format(edate);
+			
+			
+		
+		
+		map.put("spa_date", spa_date);
+		map.put("epa_date", epa_date);
+		*/
+		List<HR_GreetingVO> list = dao.getGreeting(map);
+		
+		return list;
 		
 	}	
 	

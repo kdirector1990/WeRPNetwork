@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.pj.erp.vo.HR_PhysicalVO;
-
+import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
@@ -65,6 +65,12 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int insertDepartment(Map<String, Object> map) {		
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertDepartment", map);
+	}
+
+	@Override
+	public List<HR_GreetingVO> getGreeting(Map<String, Object> map) {
+		
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getGreeting", map);
 	}
 
 	
