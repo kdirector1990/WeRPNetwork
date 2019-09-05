@@ -24,6 +24,15 @@
 		values(#{department_code}, #{department_name})
 	</insert>
 	
+	<!-- 부서 목록 -->
+	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+		<![CDATA[
+    	select * from department_tbl 
+				
+		]]> 
+	</select>
+	
+	
 	<!-- 호봉테이블(랭크) -->	
 	<select id="rank" resultType="com.pj.erp.vo.HR_RankVO">
 		select * from rank_tbl

@@ -32,4 +32,7 @@ public interface HR_DAO {
 	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);
+	
+	// 부서 목록
+	public List<HR_VO> getDepartmentList(Map<String, Object> map);
 }

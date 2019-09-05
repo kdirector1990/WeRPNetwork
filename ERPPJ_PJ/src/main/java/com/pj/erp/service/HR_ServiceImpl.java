@@ -122,6 +122,8 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		String department_code = req.getParameter("department_code");
+		vo.setDepartment_code(department_code);
 		
 		int enabled = 1;
 		vo.setEnabled(enabled);
@@ -260,6 +262,20 @@ public class HR_ServiceImpl implements HR_Service{
 		map.put("department_name", department_name);
 		
 		dao.insertDepartment(map);
+		
+	}
+
+	@Override
+	public void departmentList(HttpServletRequest req, Model model) {
+		int start = 0;
+		int end = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		List<HR_VO> dep = dao.getDepartmentList(map);
+		
+		model.addAttribute("dep", dep);
 		
 	}	
 	

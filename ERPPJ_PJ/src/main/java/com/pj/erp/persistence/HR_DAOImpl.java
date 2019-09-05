@@ -67,6 +67,14 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertDepartment", map);
 	}
 
+	@Override
+	public List<HR_VO> getDepartmentList(Map<String, Object> map) {
+		List<HR_VO> dep = null;
+		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
+		dep = dao.getDepartmentList(map);
+		return dep;
+	}
+
 	
 
 	
