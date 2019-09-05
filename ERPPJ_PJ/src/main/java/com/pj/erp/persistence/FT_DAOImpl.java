@@ -69,4 +69,48 @@ public class FT_DAOImpl implements FT_DAO{
 			return 0;
 		}
 	}
+
+	// 예금 가져오기
+	@Override
+	public List<FT_Savings> FT_DepositSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepositSelect");
+	}
+	
+	// 예금 키 가져오기
+	@Override
+	public String FT_DepositKeySelect() {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DepositKeySelect");
+	}
+
+	// 예금추가
+	@Override
+	public int FT_DepositPrevInsert(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_DepositPrevInsert",map);
+	}
+
+	@Override
+	public int FT_DepositInsert(Map<String, Object> map) {
+		int previnsertCnt = FT_SavingsPrevInsert(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_DepositInsert",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 예금수정
+	@Override
+	public int FT_DepositPrevUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_DepositPrevUpdate",map);
+	}
+
+	@Override
+	public int FT_DepositUpdate(Map<String, Object> map) {
+		int previnsertCnt = FT_SavingsPrevUpdate(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_DepositUpdate",map);
+		} else {
+			return 0;
+		}
+	}
 }

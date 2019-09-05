@@ -369,29 +369,18 @@
         		}
         	}
         	
-        	/*
-    		 * 콜백함수
-    		 	- 서버로부터 응답이 오면 동작할 함수(시스템이 자동으로 호출)
-    		 	- 콜백함수 명은 sendRequest(콜백함수명)과 일치해야 한다.
-    		 	- simple_callback() : 콜백함수
-    		 	- result : 출력위치
-    		 */
-    		 function load_insert(){
-     			// 4 : completed => 전체데이터가 취득환료된 상태
-     			if(httpRequest.readyState == 4){ 
-     				if(httpRequest.status == 200) { // 200 : 정상종료
-     					//result.innerHTML = "정상종료";
-     					var data = httpRequest.responseText;
-     					
-     					alert(data);
-     					//result.innerHTML = httpRequest.responseXML;
-     				} else {
-     					alert("에러발생");
-     				}
-     			} else {
-     				alert("상태 : " + httpRequest.readyState);
-     			}
-     		}
+        	
+        	function subjectlist(subjectcode) {
+        		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
+        		window.open(url, "subject_list", "menubar=no, width=500, height = 300");
+        		
+        	}
+        	
+        	function accountlist(subjectcode) {
+        		var url = "FT_account_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
+        		window.open(url, "account_list", "menubar=no, width=500, height = 300");
+        		
+        	}
         </script>
         <!-- Table datatable css -->
         <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />

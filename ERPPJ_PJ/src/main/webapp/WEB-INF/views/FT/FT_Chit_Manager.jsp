@@ -21,7 +21,7 @@
         			$(this).parent().css("background-color", "");
            			subcount = 1;
            			$(".chitsub-table-bordered-primary tbody").html('<tr>' +
-                         '<td><input type="text" onfocus = "subfocuse(this.name);" id = "firstsub" name = "subnumber0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit\' chitManager.submit();"></td>' +
+                         '<td><input type="text" onfocus = "subfocuse(this.name);" id = "firstsub" name = "subnumber0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "30" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit\' chitManager.submit();"></td>' +
                          '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subtype0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = \'FT_insertChit\' chitManager.submit();"></td>' +
                          '<td><input type="text" onfocus = "subfocuse(this.name);" name = "code0" class="form-control" onclick = "inin();" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = \'FT_insertChit\' chitManager.submit();"></td>' +
                          '<td><input type="text" onfocus = "subfocuse(this.name);" name = "subject0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit\' chitManager.submit();"></td>' +
@@ -88,11 +88,45 @@
         	function allCheck(dd) {
         		if($("img[name=" + dd + "]").attr("src") == "/erp/resources/img/checked.png"){
         			$("img[name=" + dd + "]").attr("src", "/erp/resources/img/checked2.png");
-        			$("input[type='checkbox']").attr("checked", true);
+        			$("input[type='checkbox']").prop("checked", true);
         		} else {
         			$("img[name=" + dd + "]").attr("src", "/erp/resources/img/checked.png");
-        			$("input[type='checkbox']").attr("checked", false);
+        			$("input[type='checkbox']").prop("checked", false);
         		}
+        	}
+        	
+        	function chkformal(dd) {
+        		var obj = new Object();
+        		var jsonData;
+                 
+              	// 자바스크립트 객체 생성
+         		obj.savingsName = $("input[name=savingsName" + cc + "]").val();
+         		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
+         		obj.AccName = $("input[name=AccName" + cc + "]").val();
+         		obj.SubjectCode = $("input[name=SubjectCode" + cc + "]").val();
+         		obj.SubjectName = $("input[name=SubjectName" + cc + "]").val();
+         		obj.AccountNo = $("input[name=AccountNo" + cc + "]").val();
+         		obj.AccountHolder = $("input[name=AccountHolder" + cc + "]").val();
+         		obj.DevPrice = $("input[name=DevPrice" + cc + "]").val();
+         		
+         		// json 객체를 String 객체로 변환 -- 
+         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+         		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+         		jsonData = JSON.stringify(obj);
+         		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+         		
+         		$.ajax({
+                        type : "POST",
+                        url : "/erp/FT_SavingsInsert?${_csrf.parameterName }=${_csrf.token }",
+                        data : jsonData,
+                        contentType : 'application/json;charset=UTF-8',
+                        success : function(data) {
+                        	
+                        },
+                        error : function(e) {
+                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                        }
+                });
         	}
         </script>
         <!-- Table datatable css -->
@@ -146,7 +180,7 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
                                         <div align="right" style = "margin-bottom: 30px;">
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">승인처리</button>
+    									<button type="button" class="btn btn-outline-primary waves-effect waves-light" onclick = "chkformal();">승인처리</button>
     									<button type="button" class="btn btn-outline-primary waves-effect waves-light">전표검색</button>
     									<br>
     									</div>
@@ -212,18 +246,20 @@
 		                                        </thead>
 		    
 		                                        <tbody>
-		                                            <tr>
-		                                                <td align = "center" ondblclick="javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"><input type="checkbox" onfocus = "focuse(this.name);" name = "checkbox0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 20px; border:0px;" value = "30" readonly onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit'; chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "no0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "confirmname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "writer0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "leftprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "rightprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "slee0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                            </tr>
+		                                        	<c:forEach var="i" begin="0" end="10" step="1">
+			                                            <tr>
+			                                                <td align = "center" ondblclick="javascript: chitManager.action = 'FT_insertChit?keynum=${i}' chitManager.submit();"><input type="checkbox" onfocus = "focuse(this.name);" name = "checkbox" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" value = "${i}" readonly onkeydown = "enter(this.tagName, this.name);"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "date${i}" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "no${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "type${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "confirmname${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "writer${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "leftprice${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "rightprice${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "slee${i}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit?keynum=${i}'; chitManager.submit();"></td>
+			                                            </tr>
+		                                            </c:forEach>
 		                                        </tbody>
                                             </table>
                                         </div>

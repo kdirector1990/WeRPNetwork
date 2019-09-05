@@ -51,6 +51,36 @@ public class FT_ServiceImpl implements FT_Service{
 			return "실패";
 		}
 	}
+
+	// 예금가져오기
+	@Override
+	public void FT_DepositSelect(HttpServletRequest req, Model model) {
+		List<FT_Savings> savings = dao.FT_DepositSelect();
+		System.out.println("ACCCode : " + savings.get(0).getAccCode());
+		model.addAttribute("saving", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+
+	// 예금추가
+	@Override
+	public String FT_DepositInsert(Map<String, Object> map) {
+		int result = dao.FT_DepositInsert(map);
+		if(result != 0) {
+			return dao.FT_DepositKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 예금수정
+	@Override
+	public String FT_DepositUpdate(Map<String, Object> map) {
+		if(dao.FT_DepositUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
 	
 	@Override
 	public void FT_applyinput(HttpServletRequest req, Model model) {
