@@ -6,7 +6,6 @@
     </head>
 
     <body>
-
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -57,11 +56,11 @@
                                             </div>
                                             <div class="form-group">
                                             	<label>시작예정일</label>
-                                                <input type="datetime-local" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;" onkeyup="enter(this.tagName, this.name);">
+                                                <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"">
                                             </div>
                                             <div class="form-group">
                                             <label>종료목표일</label>
-                                                <input type="datetime-local" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" onkeyup="enter(this.tagName, this.name);">
+                                                <input type="date" id="datepicker2" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" data-date-autoclose="true">
                                             </div>
                                             <div class="form-group">
                                                 <label>기획상태</label>

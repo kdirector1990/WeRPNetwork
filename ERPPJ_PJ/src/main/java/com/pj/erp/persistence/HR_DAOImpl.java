@@ -75,6 +75,14 @@ public class HR_DAOImpl implements HR_DAO{
 		return dep;
 	}
 
+	@Override
+	public List<HR_VO> getPositionList(Map<String, Object> map) {
+		List<HR_VO> poi = null;
+		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
+		poi = dao.getDepartmentList(map);
+		return poi;
+	}
+
 	
 
 	

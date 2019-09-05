@@ -33,6 +33,7 @@ public class HR_Controller {
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
 		service.departmentList(req, model);
+		service.positionList(req, model);
 		 
 		return "HR/HR_InputHR";
 	}

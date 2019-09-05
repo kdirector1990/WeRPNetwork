@@ -149,15 +149,17 @@ public class FT_Controller {
 	public String FT_Savings(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Savings");
 		
-		service.FT_SavingsSelect(req, model);
+		/* service.FT_SavingsSelect(req, model); */
 		
 		return "FT/FT_Savings";
 	}
 	
 	// 예금관리
 	@RequestMapping("FT_Deposit")
-	public String FT_Deposit(Locale locale, Model model) {
+	public String FT_Deposit(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Deposit");
+		
+		/* service.FT_DepositSelect(req, model); */
 		
 		return "FT/FT_Deposit";
 	}
@@ -236,10 +238,30 @@ public class FT_Controller {
 	
 	// 설비 목록
 	@RequestMapping("FT_facility_list")
-	public String FT_facility_list(Locale locale, Model model) {
+	public String FT_facility_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_facility_list");
 		
 		return "FT/FT_facility_list";
+	}
+	
+	// 거래처 목록
+	@RequestMapping("FT_account_list")
+	public String FT_account_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_account_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		
+		return "FT/FT_account_list";
+	}
+	
+	// 계정 목록
+	@RequestMapping("FT_Subject_list")
+	public String FT_Subject_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Subject_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		
+		return "FT/FT_Subject_list";
 	}
 	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
@@ -277,16 +299,22 @@ public class FT_Controller {
 		return result; 
 	}
 	
+	// 예금 추가
 	@RequestMapping(value = "FT_DepositInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_DepositInsert(@RequestBody Map<String, Object> map) throws Exception {
-		logger.info("url : FT_SavingsInsert 호출중");
-		String AccCode = map.get("AccCode").toString();
-		String AccName = map.get("AccName").toString();
-		String SubjectCode = map.get("SubjectCode").toString();
-		String SubjectName = map.get("SubjectName").toString();
-		String AccountNo = map.get("AccountNo").toString();
-		String AccountHolder = map.get("AccountHolder").toString();
-		return AccCode + " " + AccName + " "  + SubjectCode + " " + SubjectName + " " + AccountNo + " " + AccountHolder; 
+		logger.info("url : FT_DepositInsert 호출중");
+		
+		String result = service.FT_DepositInsert(map);
+		
+		return result;  
+	}
+	
+	// 예금 수정
+	@RequestMapping(value = "FT_DepositUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_DepositUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_DepositUpdate 호출중");
+		String result = service.FT_DepositInsert(map);
+		return result; 
 	}
 	
 	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")

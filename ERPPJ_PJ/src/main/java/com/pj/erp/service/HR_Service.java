@@ -14,8 +14,11 @@ public interface HR_Service {
 	// 인사정보등록
 	public void inputFoundation(HttpServletRequest req, Model model);
 	
-	// 부서코드 리스트
+	// 부서코드 가져오기
 	public void departmentList(HttpServletRequest req, Model model);
+	
+	// 직책 가져오기
+	public void positionList(HttpServletRequest req, Model model);
 	
 	// 인사정보등록2
 	public void inputPhysical(HttpServletRequest req, Model model);

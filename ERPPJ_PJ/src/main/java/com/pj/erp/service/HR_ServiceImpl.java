@@ -267,17 +267,21 @@ public class HR_ServiceImpl implements HR_Service{
 
 	@Override
 	public void departmentList(HttpServletRequest req, Model model) {
-		int start = 0;
-		int end = 0;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("start", start);
-		map.put("end", end);
+		Map<String, Object> map = new HashMap<String, Object>();		
 		List<HR_VO> dep = dao.getDepartmentList(map);
 		
-		model.addAttribute("dep", dep);
-		
+		model.addAttribute("dep", dep);		
 	}	
+	
+	@Override
+	public void positionList(HttpServletRequest req, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();		
+		List<HR_VO> poi = dao.getPositionList(map);
+		
+		model.addAttribute("poi", poi);
+		
+	}
 	
 
 	

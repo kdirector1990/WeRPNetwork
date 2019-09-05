@@ -26,10 +26,12 @@
 	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
-		<![CDATA[
-    	select * from department_tbl 
-				
-		]]> 
+		select department_code, department_name from department_tbl	 
+	</select>
+	
+	<!-- 직책 목록 -->
+	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+		select position_code from position_tbl
 	</select>
 	
 	

@@ -35,4 +35,7 @@ public interface HR_DAO {
 	
 	// 부서 목록
 	public List<HR_VO> getDepartmentList(Map<String, Object> map);
+	
+	// 직책 목록
+	public List<HR_VO> getPositionList(Map<String, Object> map);
 }
