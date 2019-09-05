@@ -37,7 +37,6 @@
                                     <div class="card-body table-responsive">
                                     
                                         <h4 class="header-title">기획서 관리</h4>
-                                        
     									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>

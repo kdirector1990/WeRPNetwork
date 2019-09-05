@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
@@ -20,29 +21,7 @@
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	
-	/* function changeSelect(url){
-		sendRequest(callback, "CT_select_type2", "post", "${_csrf.parameterName }=${_csrf.token }&ceq_type="+url);
-	}
 	
-	function callback() {
-    	var result = document.getElementById("result");
-    	
-    	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-    		if(httpRequest.status == 200){	// 200 : 정상 종료
-    		 	result.innerHTML = "정상종료";
-    			
-    			var datas = httpRequest.responseText; 
-    			
-    			result.innerHTML = datas;
-    		} else {
-    			result.innerHTML = "에러발생";
-    		}
-    	} 
-    	else {
-    		result.innerHTML = "상태 : " + httpRequest.readyState;
-    	}
-    } */
-
 	  function changeSelect(value){
 		var param = $("#select1").serializeArray();
 		$.ajax({
@@ -252,4 +231,5 @@
     var items = [];
     </script>
     </body>
+
 </html>

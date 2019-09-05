@@ -1,14 +1,18 @@
 package com.pj.erp.controller;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 @Controller
@@ -32,7 +37,9 @@ public class HR_Controller {
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
-		
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
 		 
 		return "HR/HR_InputHR";
 	}
@@ -42,6 +49,8 @@ public class HR_Controller {
 	public String inputFoundation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);
+		
+		
 		return "index";
 		
 	}	
@@ -88,12 +97,14 @@ public class HR_Controller {
 		return "HR/HR_GreetingPunishment";
 	}
 	
-	@RequestMapping("HR_GreetingPunishment_result")
-	public String HR_GreetingPunishment_result(HttpServletRequest req, Model model) {
+	@RequestMapping(value = "HR_GreetingPunishment_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_GreetingVO> HR_GreetingPunishment_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_GreetingPunishment_result");
-		
-		return "HR/HR_GreetingPunishment_result";
+		List<HR_GreetingVO> list = service.getGreeting(map, req, model);
+		return list;
 	}	
+	
 	
 	@RequestMapping("HR_Yearsofservice")
 	public String HR_Yearsofservice(HttpServletRequest req, Model model) {

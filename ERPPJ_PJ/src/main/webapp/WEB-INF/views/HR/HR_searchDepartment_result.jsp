@@ -43,10 +43,10 @@
 						</thead>
 						<tbody>
 							<c:forEach var="var" begin="1" end="10" step="1">
-								<c:if test="${var eq param.username }">
+								<c:if test="${var eq param.department_code }">
 									<tr>
-										<td>${var.department_code }</td>
-										<td>${var.department_name }</td>										
+										<td>${var }</td>
+										<td>${var }</td>										
 									</tr>
 								</c:if>
 							</c:forEach>

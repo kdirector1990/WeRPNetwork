@@ -25,14 +25,6 @@
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                            <li class="breadcrumb-item active">Form Validation</li>
-                                        </ol>
-                                    </div>
                                     <h4 class="page-title">기획서등록</h4>
                                 </div>
                             </div>
@@ -48,7 +40,7 @@
                                            	기획서 등록페이지 ++ 추가될 예정
                                         </p>
     
-                                        <form class="" action="MS_insertPlanPro">
+                                        <form action="MS_insertPlanPro" name="insertPlan">
                                         	<div class="form-group">
                                                 <label>기획명</label>
                                                 <input type="text" name="plan_name" class="form-control" required
@@ -56,11 +48,13 @@
                                             </div>
                                             <div class="form-group">
                                             	<label>시작예정일</label>
-                                                <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"">
+                                                <!-- <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"> -->
+                                                <input type="text" name="plan_startdate" class="form-control" placeholder="yyyy/mm/dd" data-provide="datepicker" data-date-autoclose="true">
                                             </div>
                                             <div class="form-group">
                                             <label>종료목표일</label>
-                                                <input type="date" id="datepicker2" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" data-date-autoclose="true">
+                                                <!-- <input type="date" id="datepicker2" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" data-date-autoclose="true"> -->
+                                                <input type="text" name="plan_enddate" class="form-control" placeholder="yyyy/mm/dd" data-provide="datepicker" data-date-autoclose="true">
                                             </div>
                                             <div class="form-group">
                                                 <label>기획상태</label>
@@ -71,7 +65,8 @@
                                                 <label>기획제안자</label>
                                                 <div>
                                                     <input type="text" name="username" class="form-control" required
-                                                            placeholder="기획제안자"/>
+                                                            placeholder="기획제안자" />
+                                                    <button onclick="window.open('MS_searchUsername','window_name','width=430,height=300,location=no,status=no,scrollbars=yes');">검색</button>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -119,6 +114,5 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
-        
     </body>
 </html>

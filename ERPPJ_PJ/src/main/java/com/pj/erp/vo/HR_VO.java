@@ -15,6 +15,7 @@ public class HR_VO {
 	private String e_address;
 	private String e_mailcode;
 	private String department_code;
+	private String department_name;
 	private String rank_code;
 	private String position_code;
 	private String level_step;
@@ -110,6 +111,14 @@ public class HR_VO {
 
 	public void setDepartment_code(String department_code) {
 		this.department_code = department_code;
+	}
+	
+	public String getDepartment_name() {
+		return department_name;
+	}
+
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
 	}
 
 	public String getRank_code() {
