@@ -35,18 +35,14 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
+                                    
                                         <h4 class="header-title">기획서 관리</h4>
-                                        <div align="right">
-    									<button type="button" id="btnTCT" class="btn btn-outline-dark waves-effect waves-light">수정</button>
-    									<button type="button"  class="btn btn-outline-dark waves-effect waves-light">폐기</button>
-    									<br>
-    									</div>
+                                        
     									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                            	<th>선택</th>
-                                            	<th>no</th>
+                                            	<th>기획서 코드</th>
                                             	<th>기획명</th>
                                                 <th>기획제안자</th>
                                                 <th>책임자</th>
@@ -55,45 +51,38 @@
                                                 <th>종료예정일</th>
                                                 <th>기획상태</th>
                                                 <th>기획목표</th>
-                                                <th>--</th>
+                                                <th>상세 기획안 파일</th>
                                             </tr>
                                             </thead>
     
     
                                             <tbody>
-                                            <tr>
-                                            	<td><input type="checkbox" name="CT_code" value="CT001" class="box"></td>
-                                            	<td>1</td>
-                                            	<td>werp</td>
-                                            	<td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
+                                           	<c:forEach var="list" items="${dto}">
+	                                            <tr>
+	                                            	<td>${list.plan_code}</td>
+	                                            	<td>${list.plan_name}</td>
+	                                            	<td>${list.username}</td>
+	                                                <td>${list.position_code}</td>
+	                                                <td>${list.plan_regdate}</td>
+	                                                <td>${list.plan_startdate}</td>
+	                                                <td>${list.plan_enddate}</td>
+	                                                <td>${list.plan_objective}</td>
+	                                                <td>${list.plan_state}</td>
+	                                                <td>${list.plan_proposal}</td>
+	                                            </tr>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                         
                                         <div class="result">
                                         <br>
-                                        <table id="datatable2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-	                                        <col style = "width:7%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:7%">
-                                            <col style = "width:7%;">
-                                            <col style = "width:8%;">
-                                            <col style = "width:8%;">
-                                            <col style = "width:7%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:16%;">
+                                        <form id="updatePlan">
+                                        	<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
+    									<br>
+                                        <table id="datatable2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0;">
                                             <thead>
                                             <tr>
-                                            	<th>선택</th>
-                                            	<th>no</th>
+                                            	<th>기획서 코드</th>
                                             	<th>기획명</th>
                                                 <th>기획제안자</th>
                                                 <th>책임자</th>
@@ -102,26 +91,19 @@
                                                 <th>종료예정일</th>
                                                 <th>기획상태</th>
                                                 <th>기획목표</th>
-                                                <th>--</th>
+                                                <th>상세 기획안 파일</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                            	<td><input type="checkbox" name="CT_code" value="CT001" class="box"></td>
-                                            	<td>1</td>
-                                            	<td>werp</td>
-                                            	<td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
                                             </tbody>
                                         </table>
+                                        <div align="right">
+	    									<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>
+	    									<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>
+    									</div>
+                                        </form>
                                         </div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -148,87 +130,99 @@
     <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
         
     <script type="text/javascript">
-    
-    var items = [];
-    
-    
-    $('#btnTCT').click(function(){
-   	   	if($('input:checkbox[name="CT_code"]').is(":checked") == true){
-   	   		var rowDate = new Array();
-   	   		var tdArr = new Array();
-   	   		var checkbox = $('input[name="CT_code"]:checked');
-	   		checkbox.each(function(i){
-	   			var tr = checkbox.parent().parent().eq(i);
-	   			var td = tr.children();
-	   			
-	   			rowDate.push(tr.text());
-	   			
-	   			var CT_code = td.eq(1).text();
-	   			var ceq_code = td.eq(2).text();
-	   			var ceq_name = td.eq(3).text();
-	   			var ceq_type = td.eq(4).text();
-	   			var ceq_date = td.eq(5).text();
-	   			var ceq_deparment_code = td.eq(6).text();
-	   			var ceq_location = td.eq(7).text();
-	   			var ceq_prime_cost = td.eq(8).text();
-	   			var ceq_durable = td.eq(9).text();
-	   			var ceq_depreciation = td.eq(10).text();
-	   			var ceq_depreciation_type = td.eq(11).text();
-	   			
-	   			tdArr.push(CT_code);
-	   			tdArr.push(ceq_code);
-	   			tdArr.push(ceq_name);
-	   			tdArr.push(ceq_type);
-	   			tdArr.push(ceq_date);
-	   			tdArr.push(ceq_deparment_code);
-	   			tdArr.push(ceq_location);
-	   			tdArr.push(ceq_prime_cost);
-	   			tdArr.push(ceq_durable);
-	   			tdArr.push(ceq_depreciation);
-	   			tdArr.push(ceq_depreciation_type);
-	   			
-	   			$('.result').show();
-	   			
-	   			$('#datatable2 > tbody:last').append(
-	   					'<tr><td>' +tdArr[0] +'</td>'+
-	   					'<td><input type="text" name="ceq_code" value="' +tdArr[1]+'"></td>' +
-	   					'<td><input type="text" name="ceq_name" value="' +tdArr[2]+'"</td>' +
-	   					'<td><select name = "ceq_type">' +
-		   					'<option value="' +tdArr[3]+'" checked>'+tdArr[3]+
-		   					'<option value="1">보유'+
-		   					'<option value="2">대여'+
-	   					'</select></td>' +
-	   					 '<td><input type="date" name = "ceq_acquire_date"></td>' +
-	   					'<td><select name = "ceq_deparment_code">' +
-	   						'<option value="'+ tdArr[5] +'">'+ tdArr[5] +
-		   					'<option value="1">인사</option>' +
-	                        '<option value="2">영업</option>' +
-	                        '<option value="3">재무</option>' +
-	                        '<option value="4">전산</option>' +
-	                        '<option value="5">제조</option>' +
-                        '</select></td>' +
-                        '<td><input type="text" name="ceq_location" value="' + tdArr[6] +'"></td>' +
-                        '<td><input type="number" name="ceq_prime_cost" value="' + tdArr[7] +'"></td>' +
-                        '<td><input type="number" name="ceq_durable" value="' + tdArr[8]+'"></td>' +
-                        '<td><select name="ceq_depreciation">' +
-                        	'<option value="' + tdArr[9] +'">'+ tdArr[9] +
-                        	'<option value="1">Y</option>' +
-                   			'<option value="2">N</option>' +
-                   		'</select>' +
-                   		'<td><input type="text" name = "ceq_depreciation_type" value="'+ tdArr[10] + '"></td>' + 
-                   		'</tr>'); 
-	   		});
-	   		
-	    	/* $('input[name="CT_code"]:checkbox:checked').each(function(){items.push($(this).val());});
-	    	var tmp = items.join(',');
-	    	$('.result').show();
-	    	alert(tmp) 
-	    	$('#datatable2 > tbody:last').append('<tr><td></td><td>'+tmp+'</td></tr>');*/
-	    } 
-	    else{
-	    	alert("수정할 목록을 선택해주세요.")
-	    }
-  	 });
+     $("#datatable tr").click(function(){
+    	 
+			if($(".plantr") != null){
+				$(".plantr").remove();
+			}
+			
+			var tdArr = new Array();	// 배열 선언
+			
+			// 현재 클릭된 Row(<tr>)
+			var tr = $(this);
+			var td = tr.children();
+			
+			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+			td.each(function(i){
+				tdArr.push(td.eq(i).text());
+			});
+			
+			// td.eq(index)를 통해 값을 가져올 수도 있다.
+			var plan_code = td.eq(1).text();
+   			var plan_name = td.eq(2).text();
+   			var username = td.eq(3).text();
+   			var position_code = td.eq(4).text();
+   			var plan_regdate = td.eq(5).text();
+   			var plan_startdate = td.eq(6).text();
+   			var plan_enddate = td.eq(7).text();
+   			var plan_state = td.eq(8).text();
+   			var plan_objective = td.eq(9).text();
+   			var plan_proposal = td.eq(10).text();
+			
+   			tdArr.push(plan_code);
+   			tdArr.push(plan_name);
+   			tdArr.push(username);
+   			tdArr.push(position_code);
+   			tdArr.push(plan_regdate);
+   			tdArr.push(plan_startdate);
+   			tdArr.push(plan_enddate);
+   			tdArr.push(plan_state);
+   			tdArr.push(plan_objective);
+   			tdArr.push(plan_proposal);
+   			
+   			$('.result').show();
+   			
+   			$('#datatable2 > tbody:last').append(
+				'<tr class="plantr">'+'<input type = "hidden" name = "plan_code" value = "'+tdArr[0]+'">'+'<td>' +tdArr[0] +'</td>'+
+					'<td><input type="text" name="plan_name" value="' +tdArr[1]+'"></td>' +
+					'<td><input type="text" name="username" value="' +tdArr[2]+'"</td>' +
+					'<td><input type="text" name="position_code" value="'+tdArr[3]+'"></td>' +
+					'<td><input type="text" name="plan_regdate" readonly value="' + tdArr[4] +'"></td>' +
+					'<td><input type="text" name = "plan_startdate" data-provide="datepicker" data-date-autoclose="true" value="'  + tdArr[5] +'"></td>' +
+                    '<td><input type="text" name="plan_enddate" data-provide="datepicker" data-date-autoclose="true" value="' + tdArr[6] +'"></td>' +
+                    '<td><input type="text" name="plan_state" value="' + tdArr[7] +'"></td>' +
+                    '<td><input type="text" name="plan_objective" value="' + tdArr[8]+'"></td>' +
+                    '<td><input type="text" name="plan_proposal" value="' + tdArr[9]+'"></td>' +
+           		'</tr>');
+		});
+     
+     function updatePlan(){
+		 var param = $("#updatePlan").serializeArray();
+		 alert(JSON.stringify(param));
+		$.ajax({
+			url: '/erp/MS_updatePlanPro',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("기획서 수정 성공.");
+				location.reload();
+			},
+			error : function(){
+				alert("수정에 실패하였습니다.");
+			}
+			
+		});
+	}
+     
+     function deletePlan(){
+		 var param = $("#updatePlan").serializeArray();
+		 alert(JSON.stringify(param));
+		$.ajax({
+			url: '/erp/MS_deletePlanPro',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("기획서 삭제 성공하였습니다.");
+				location.reload();
+			},
+			error : function(){
+				alert("기획서 삭제에 실패하였습니다.");
+			}
+			
+		});
+	}
     </script>
     </body>
 </html>

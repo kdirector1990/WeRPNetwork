@@ -40,6 +40,7 @@ public class MF_Controller {
 	@RequestMapping("MF_materialsManagement")
 	public String MF_materialsManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsManagement");
+		service.selectMF(req, model);
 		
 		return "MF/MF_materialsManagement";
 	}

@@ -284,7 +284,7 @@
 	                          		</a>
 	                          		<ul>
 	                          			<li><a href="HR_InputDepartment">부서등록</a></li>
-	                          			<li><a href="#">부서조회</a></li>
+	                          			<li><a href="HR_searchDepartment">부서조회</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
