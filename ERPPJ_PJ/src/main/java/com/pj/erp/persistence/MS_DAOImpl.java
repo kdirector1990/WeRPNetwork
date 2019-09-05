@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.MS.MS_plan;
 
 //경영지원
@@ -45,4 +46,17 @@ public class MS_DAOImpl implements MS_DAO{
 	public int deletePlan(String plan_code) {
 		return sqlSession.delete("com.pj.erp.persistence.MS_DAO.deletePlan", plan_code);
 	}
+
+	// 사원이름 검색 확인
+	@Override 
+	public int selectEname() { 
+		return sqlSession.selectOne("com.pj.erp.persistence.MS_DAO.selectEname"); 
+	}
+
+	//검색 목록 가져오기
+	@Override
+	public List<HR_VO> getUsernameList(String e_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.MS_DAO.getUsernameList", e_name);
+	}
+
 }

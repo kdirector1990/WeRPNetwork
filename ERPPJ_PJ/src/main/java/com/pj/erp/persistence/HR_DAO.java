@@ -38,4 +38,7 @@ public interface HR_DAO {
 	
 	// 직책 목록
 	public List<HR_VO> getPositionList(Map<String, Object> map);
+	
+	// 직책 목록
+	public List<HR_VO> getRankList(Map<String, Object> map);
 }

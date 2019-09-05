@@ -6,8 +6,8 @@
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
 	<insert id="insertMember" parameterType="com.pj.erp.vo.HR_VO">
-		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, start_date, enabled)
-		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{start_date}, #{enabled}) 
+		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
+		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{department_code}, #{position_code}, #{rank_code}, #{start_date}, #{enabled}) 
 	</insert>
 	<insert id="insertMember2" parameterType="com.pj.erp.vo.HR_VO">
 		insert into users(username, password, e_name, enabled)
@@ -32,6 +32,10 @@
 	<!-- 직책 목록 -->
 	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
 		select position_code from position_tbl
+	</select>
+	
+	<select id="getRankList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+		select rank_code from rank_tbl
 	</select>
 	
 	

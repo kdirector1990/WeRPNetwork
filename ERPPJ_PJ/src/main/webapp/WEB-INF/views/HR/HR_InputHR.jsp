@@ -227,10 +227,9 @@
 																<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<select class="form-control select2" name="rank_code" onchange="">
-																		<option></option>
-																		<option></option>
-																		<option></option>
-																		<option></option>																							
+																		<c:forEach var="rank" items="${rank}">
+																		<option value="${rank.rank_code}">${rank.rank_code}</option>	
+																		</c:forEach>																							
 																	</select>
 																</div>
 																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>

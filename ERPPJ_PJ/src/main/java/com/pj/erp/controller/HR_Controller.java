@@ -34,6 +34,7 @@ public class HR_Controller {
 		logger.info("log => HR_InputHR");
 		service.departmentList(req, model);
 		service.positionList(req, model);
+		service.rankList(req, model);
 		 
 		return "HR/HR_InputHR";
 	}
