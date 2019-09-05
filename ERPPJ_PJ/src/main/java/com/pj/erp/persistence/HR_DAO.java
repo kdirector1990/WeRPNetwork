@@ -15,6 +15,8 @@ public interface HR_DAO {
 
 	public int insertMember(HR_VO vo);
 	
+	public int insertMember2(HR_VO vo);
+	
 	public int insertPhysical(HR_PhysicalVO vo);
 	
 	public int insertAuth();

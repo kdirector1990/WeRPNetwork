@@ -197,17 +197,49 @@
 																	<input type="text" class="form-control" name="e_mailcode" placeholder="우편번호">
 																</div>
 																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-																<label class="col-md-1 col-form-label"
-																	for="simpleinput">호봉<span class="text-danger">*</span></label>
-																<div class="col-md-4">
-																	<input type="text" class="form-control" name="level_step" placeholder="호봉">
-																</div>
-															</div>
-															<div class="form-group row">
 																<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label> 
 																<div class="col-md-4">
 																	<input type="text" class="form-control" name="e_nfcCodeNFC" placeholder="출입카드No.">
+																</div>																
+															</div>
+															
+															<div class="form-group row">
+																<label class="col-md-1 col-form-label" for="simpleinput">부서<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<select class="form-control select2" name="department_code" onchange="">
+																		<option></option>
+																		<option></option>
+																		<option></option>
+																		<option></option>																							
+																	</select>
 																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label" for="simpleinput">직책<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<select class="form-control select2" name="position_code" onchange="">
+																		<option></option>
+																		<option></option>
+																		<option></option>
+																		<option></option>																							
+																	</select>
+																</div>																
+															</div>
+															
+															<div class="form-group row">
+																<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<select class="form-control select2" name="rank_code" onchange="">
+																		<option>2017년 상반기 인사고과</option>
+																		<option>2017년 하반기 인사고과</option>
+																		<option>2018년 상반기 인사고과</option>
+																		<option>2018년 하반기 인사고과</option>																							
+																	</select>
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label" for="simpleinput">호봉<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<input type="text" class="form-control" name="level_step" placeholder="호봉">
+																</div>																
 															</div>															
 															<div class="form-group text-right mb-0">
 		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">

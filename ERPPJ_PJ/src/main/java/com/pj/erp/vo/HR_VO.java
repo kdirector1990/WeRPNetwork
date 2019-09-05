@@ -14,6 +14,9 @@ public class HR_VO {
 	private String e_hp;
 	private String e_address;
 	private String e_mailcode;
+	private String department_code;
+	private String rank_code;
+	private String position_code;
 	private String level_step;
 	private String e_nfcCodeNFC;	
 	private Timestamp start_date;
@@ -91,7 +94,7 @@ public class HR_VO {
 
 	public void setE_address(String e_address) {
 		this.e_address = e_address;
-	}	
+	}
 
 	public String getE_mailcode() {
 		return e_mailcode;
@@ -99,6 +102,30 @@ public class HR_VO {
 
 	public void setE_mailcode(String e_mailcode) {
 		this.e_mailcode = e_mailcode;
+	}
+
+	public String getDepartment_code() {
+		return department_code;
+	}
+
+	public void setDepartment_code(String department_code) {
+		this.department_code = department_code;
+	}
+
+	public String getRank_code() {
+		return rank_code;
+	}
+
+	public void setRank_code(String rank_code) {
+		this.rank_code = rank_code;
+	}
+
+	public String getPosition_code() {
+		return position_code;
+	}
+
+	public void setPosition_code(String position_code) {
+		this.position_code = position_code;
 	}
 
 	public String getLevel_step() {
@@ -115,7 +142,7 @@ public class HR_VO {
 
 	public void setE_nfcCodeNFC(String e_nfcCodeNFC) {
 		this.e_nfcCodeNFC = e_nfcCodeNFC;
-	}	
+	}
 
 	public Timestamp getStart_date() {
 		return start_date;
@@ -132,9 +159,7 @@ public class HR_VO {
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-	
-	
-
-	
+		
+		
 	
 }

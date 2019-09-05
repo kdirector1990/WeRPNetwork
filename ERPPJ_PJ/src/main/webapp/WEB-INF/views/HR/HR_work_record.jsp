@@ -33,8 +33,8 @@
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item active">Dashboard</li>
+											href="javascript: void(0);">인사</a></li>
+										<li class="breadcrumb-item active">인사/급여관리</li>
 									</ol>
 								</div>
 								<h4 class="page-title">근태결과입력</h4>

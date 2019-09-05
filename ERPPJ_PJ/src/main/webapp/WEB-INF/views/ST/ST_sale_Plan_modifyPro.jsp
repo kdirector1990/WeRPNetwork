@@ -16,7 +16,7 @@
 	
 	<c:if test="${saleplanCnt != 0}">
 		<script type="text/javascript">
-			alert("수정 됨");
+			alert("수정 완료");
 			window.location='ST_sale_plan';
 		</script>
 	</c:if>

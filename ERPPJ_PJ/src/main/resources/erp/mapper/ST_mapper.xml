@@ -18,7 +18,29 @@
  	</select>
  	
  	<update id="updatesalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
- 		UPDATE saleplan_tbl SET saleplan_code=#{saleplan_code}
+ 		UPDATE saleplan_tbl SET ef_price=#{ef_price}, s_plan_start =#{s_plan_start}, s_plan_end=#{s_plan_end} WHERE saleplan_code=#{saleplan_code}
+ 	</update>
+ 	
+ 	<delete id="deletesalePlan" parameterType="String">
+ 		DELETE saleplan_tbl WHERE saleplan_code=#{saleplan_code}
+ 	</delete>
+ 	
+ 	
+ 	<!-- estimate_price 견적 현황 -->
+ 	<select id="getestimateCnt" resultType="int">
+ 		select COUNT(*) as FROM estimate_price_tbl
+ 	</select>
+ 	
+ 	<select id="getestimate" resultType="com.pj.erp.vo.ST.Estimate" parameterType="java.util.Map">
+ 		SELECT * FROM estimate_price_tbl
+ 	</select>
+ 	
+ 	<select id="getEstimateArticle" resultType="com.pj.erp.vo.ST.Estimate">
+ 		SELECT * FROM estimate_price_tbl WHERE ep_code=#{ep_code}
+ 	</select>
+ 	
+ 	<update id="updateEstimate" parameterType="com.pj.erp.vo.ST.Estimate">
+ 		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_reg_date=sysdate WHERE ep_code=#{ep_code}
  	</update>
  
  

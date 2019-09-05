@@ -1,6 +1,6 @@
 package com.pj.erp.service;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,30 +15,115 @@ import com.pj.erp.persistence.ST_DAO;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.SalePlan;
 
+import javafx.scene.chart.PieChart.Data;
+
 @Service
 public class ST_ServiceImpl implements ST_Service {
 	
 	@Autowired
 	ST_DAO dao;
 	
-	// 글 목록
+	// ST_estimate_price 글 목록
 	@Override
 	public void estimateTBL(HttpServletRequest req, Model model) {
-		// 바구니 생성
-		Estimate vo = new Estimate();
-	
-		vo.setEq_code(req.getParameter("eq_code"));
-		vo.setCustomer_code(req.getParameter("customer_code"));
-		vo.setAccount_code(req.getParameter("account_code"));
-		vo.setEp_amount(Integer.parseInt(req.getParameter("ep_amount")));
-		vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
-		vo.setEp_deliver_date(Timestamp.valueOf(req.getParameter("Ep_deliver_date")));
-		vo.setEp_reg_date(new Timestamp(System.currentTimeMillis()));
-		vo.setUsername(req.getParameter("username"));
-		vo.setE_approval_code(req.getParameter("e_approval_code"));
-		vo.setEas_code(req.getParameter("eas_code"));
-		vo.setPosition_code(req.getParameter("position_code"));
+		/*
+		 * // 바구니 생성 Estimate vo = new Estimate();
+		 * 
+		 * vo.setEp_code(req.getParameter("ep_code"));
+		 * vo.setCustomer_code(req.getParameter("customer_code"));
+		 * vo.setAccount_code(req.getParameter("account_code"));
+		 * vo.setEp_amount(Integer.parseInt(req.getParameter("ep_amount")));
+		 * vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
+		 * vo.setEp_deliver_date(Timestamp.valueOf(req.getParameter("Ep_deliver_date")))
+		 * ; vo.setEp_reg_date(new Timestamp(System.currentTimeMillis()));
+		 * vo.setUsername(req.getParameter("username"));
+		 * vo.setE_approval_code(req.getParameter("e_approval_code"));
+		 * vo.setEas_code(req.getParameter("eas_code"));
+		 * vo.setPosition_code(req.getParameter("position_code"));
+		 */
 		
+		int pageSize =  10;		//한 페이지당 출력할 글 갯수
+		int cnt = 0; 			//글의 갯수
+		int start = 0;			//현재 페이지의 시작 글 번호
+		int end = 0;			//현재 페이지의 마지막 글 번호
+		int number = 0; 		//출력용 글 번호
+		String pageNum = ""; 	//페이지 번호
+		int currentPage = 0; 	//현재 페이지
+		
+		cnt = dao.getestimateCnt();
+		System.out.println("cnt : " + cnt);
+		
+		pageNum = req.getParameter("pageNum");
+		System.out.println(req.getParameter("pageNum"));
+		
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		System.out.println("currentPage " + currentPage);
+		
+		//현재페이지 시작 글번호
+		// 1 = ( 1 - 1 ) * 5 + 1(페이지별)
+		start = (currentPage - 1) * pageSize + 1;
+		
+		//현재페이지의 마지막 글번호(페이지별)
+		//5 =  1 + 5 - 1
+		end = start + pageSize - 1;
+		
+		System.out.println("start : "+ start);
+		System.out.println("end : "+ end);
+		
+		number = cnt - (currentPage -1) *pageSize;
+		System.out.println("number : "+ number);
+		
+		if(end > cnt) end = cnt;
+		
+
+		if(cnt > 0) {
+			//5-2단계. 게시글 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			
+			List<Estimate> etos = dao.getestimate(map);
+			 model.addAttribute("etos", etos); 		}
+		
+		System.out.println("==========================================");
+		model.addAttribute("cnt", cnt);				//글 갯수
+		model.addAttribute("number", number); 		//출력용 글번호
+		model.addAttribute("pageNum", pageNum); 		//페이지 번호
+		
+		if(cnt > 0) {
+			model.addAttribute("curruentPage", currentPage);  //현재페이지
+		}
+		
+	}
+	
+	// ST_estimate_price -> ST_estimate_Form 상세 페이지
+	@Override
+	public void estimateForm(HttpServletRequest req, Model model) {
+		String ep_code = req.getParameter("ep_code");
+		
+		Estimate vo = dao.getEstimateArticle(ep_code);
+	
+		model.addAttribute("eto", vo);
+		model.addAttribute("ep_code", ep_code);
+	}
+	
+	// ST_estimate 수정 처리 페이지
+	@Override
+	public void estimatemodifyPro(HttpServletRequest req, Model model) {
+		String ep_code = req.getParameter("ep_code");
+		
+		Estimate vo = new Estimate();
+		vo.setEp_code(ep_code);
+		vo.setEp_amount(Integer.parseInt(req.getParameter("ep_amount")));
+		vo.setEp_deliver_date(Date.valueOf(req.getParameter("ep_deliver_date")));
+		
+		int updateEstimate = dao.updateEstimate(vo);
+		req.setAttribute("ep_code", ep_code);
+		req.setAttribute("updateEstimate", updateEstimate);
 		
 		
 	}
@@ -63,7 +148,7 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setNote(req.getParameter("note"));	// 비고
 		*/
 		
-		int pageSize =  10;		//한페이지당 출력할 글 갯수
+		int pageSize =  10;		//한 페이지당 출력할 글 갯수
 		int cnt = 0; 			//글의 갯수
 		int start = 0;			//현재 페이지의 시작 글 번호
 		int end = 0;			//현재 페이지의 마지막 글 번호
@@ -110,7 +195,7 @@ public class ST_ServiceImpl implements ST_Service {
 			map.put("end", end);
 			
 			List<SalePlan> dtos = dao.getsaleplan(map);
-			 model.addAttribute("dtos", dtos); //큰바구니 : 게시글 목록  cf)작은바구니 : 게시글1건
+			 model.addAttribute("dtos", dtos); 
 		}
 		
 		System.out.println("==========================================");
@@ -141,13 +226,37 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public void salePlanmodifyPro(HttpServletRequest req, Model model) {
 		//3단계. 화면으로부터 입력받은 값을 받아온다.
-		String saleplan_code = req.getParameter("salepaln_code");
+		String saleplan_code = req.getParameter("saleplan_code");
 		
 		SalePlan vo = new SalePlan();
 		vo.setSaleplan_code(saleplan_code);
+		vo.setEf_price(Integer.parseInt(req.getParameter("ef_price")));
+		vo.setS_plan_start(Date.valueOf(req.getParameter("s_plan_start")));
+		vo.setS_plan_end(Date.valueOf(req.getParameter("s_plan_end")));
+		
+		System.out.println("code" + saleplan_code);
+		System.out.println("가격 : " + req.getParameter("ef_price"));
 		
 		int saleplanCnt = dao.updatesalePlan(vo);
+		req.setAttribute("saleplan_code", saleplan_code);
 		req.setAttribute("saleplanCnt", saleplanCnt);
+		
+	}
+	
+	// ST_sale_plan 삭제 처리 페이지
+	@Override
+	public void salePlandeletePro(HttpServletRequest req, Model model) {
+		//3단계. 화면으로부터 입력받은 값을 받아온다.
+		String saleplan_code = req.getParameter("saleplan_code");
+		
+		System.out.println("code : " + saleplan_code);
+		
+		SalePlan vo = new SalePlan();
+		int deletesale = dao.deletesalePlan(saleplan_code);
+		
+		
+		model.addAttribute("deletesale", deletesale);
+		model.addAttribute("saleplan_code", saleplan_code);
 		
 	}
 	
