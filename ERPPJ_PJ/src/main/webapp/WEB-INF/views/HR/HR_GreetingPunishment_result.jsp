@@ -48,7 +48,7 @@
                                       		</thead>
                                     		<tbody>
                                           		<c:forEach var="var" begin = "1" end = "20" step = "1">
-                                          			<c:if test="${var eq param.username }">
+                                          			 <c:if test="${var eq param.username }">
                                           			<tr>
                                           				<td>${var }</td>
                                           				<td>${var }</td>
@@ -63,7 +63,7 @@
                                           				<td>${var }</td>
                                           				<td>${var }</td>
                                           			</tr>
-                                          			</c:if>
+                                          			 </c:if> 
                                           		</c:forEach>
                                       		</tbody>
                                         </table>

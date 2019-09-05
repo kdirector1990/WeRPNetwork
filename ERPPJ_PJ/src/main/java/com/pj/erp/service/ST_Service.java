@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 
 public interface ST_Service {
 	
+	// ST_estimate 견적 등록
+	public void estimatewritePro(HttpServletRequest req, Model model);
+	
 	// 글 목록 (견적 관리)
 	public void estimateTBL(HttpServletRequest req, Model model);
 	
@@ -14,6 +17,9 @@ public interface ST_Service {
 	
 	// 견적 현황 (ST_estimate_form) 수정 처리 페이지
 	public void estimatemodifyPro(HttpServletRequest req, Model model);
+	
+	// 견적 현황  (ST_estimate_form) 삭제 처리 페이지
+	public void estimatedeletePro(HttpServletRequest req, Model model);
 	
 	// ST_sale_plan (판매 계획) 목록
 	public void salePlan(HttpServletRequest req, Model model);

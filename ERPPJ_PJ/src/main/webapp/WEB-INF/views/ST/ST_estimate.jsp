@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+    <!DOCTYPE html>
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+        
+ 
     </head>
 
     <body>
@@ -19,131 +22,103 @@
 
             <div class="content-page">
                 <div class="content">
-                    
-                    <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                       <!--  <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UI Kit</a></li>
-                                            <li class="breadcrumb-item active">Images</li>
-                                        </ol> -->
-                                    </div>
-                                    <h2 class="page-title">세금계산서 발행 대장</h2>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
-                        
-                        
- 
-                        <!-- end row-->
+                
+                 <div class="container-fluid">
+                 <!-- Start Content-->
 
-                        <!-- ===== MEDIA ==== -->
-						<div class="row">
-                            <div class="col-lg-12">
+					<div class="row">
+                            <div class="col-sm-12" style = "padding: 20px 0px 0px 0px;">
                                 <div class="card">
-                                <div class="card-body">
-                                 <div class="table-responsive">
-                                         <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
-                                            <tr>
-                                                <td>사업장</td>
-                                                <td>
-                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                </td>
+                                    <div class="card-body" >
+                                        <h4 class="header-title">견적 등록</h4>
+                                        <p class="sub-header">
+                                        </p>
+    									
+    								<form class="form-horizontal" action = "ST_estimate_writePro" method="post">
+    								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                                        <div class="row">
+                                            <div class="col-xl-6" style="height: 400px;">
                                                 
-                                                <td>부서</td>
-                                                <td>
-                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                <td>담당자
-                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                            	<td>발행기간</td>
-                                            	<td>
-                                            		<input type="date" id="userdate" name="userdate" value="sysdate">&nbsp;~&nbsp;<input type="date" id="userdate" name="userdate" value="sysdate">
-                                            	</td>
-                                            	<td>납품처</td>
-                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-                                            
-                                      		<td>거래구분
-                                            	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-                                            </tr>	
-                                            	
-                                            <tr>
-                                            	<td><select class="" name="">
-			                                                <option value="">0.계산서 번호</option>
-			                                                <option value="">1. 비   고</option>
-			                                        </select></td>
-                                            	<td><input type="text" class=""></td>
-                                            </tr>
-                                        </table>
-                                        </div>
-                                        </div>
-                                        
-                                        
-                                        
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                        
-                                            <table class="table m-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>계산서 번호</th>
-                                                        <th>발행일자</th>
-                                                        <th>고객</th>
-                                                        <th>사업자 번호</th>
-                                                        <th>거래구분</th>
-                                                        <th>과세구분</th>
-                                                        <th>권</th>
-                                                        <th>호</th>
-                                                        <th>출력 회수</th>
-                                                        <th>공급가</th>
-                                                        <th>부가세</th>
-                                                        <th>합계액</th>
-                                                        <th>비고</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   		<td></td>
-                                                   
-                                                    </tr>
+                                                <div class="form-group row">
+                                                 <label class="col-md-2 col-form-label">품명</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" name="" class="form-control" value="" style="width: 350px;">
+                                                        </div>
+                                                    </div>
                                                     
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-form-label">수량</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" name="ep_amount" class="form-control" placeholder="" style="width: 350px;">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-form-label">납품 예정일</label>
+                                                             <div class="col-md-10">
+                                                                 <input type="date" name= "ep_deliver_date" placeholder="mm/dd/yyyy" style="size: 100px;">
+                                                                 <i class="mdi mdi-calendar"></i>
+                                                             </div>
+                                     				  </div>
+
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label"
+														for="example-textarea">비고</label>
+													<div class="col-md-10">
+														<textarea class="" rows="7" cols="200"
+															id="example-textarea"></textarea>
+													</div>
+												</div>
+
+											
+                                            </div>
+    
+                                            <div class="col-xl-6">
+                                              
+    
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-form-label">품번</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" name="ep_code" class="form-control" value="" style="width: 350px;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-form-label">견적 단가</label>
+                                                        <div class="col-md-10">
+                                                           <input type="text" name="ep_price" class="form-control" value="" style="width: 350px;">
+                                                        </div>
+                                                    </div>
+    
+                                            </div> <!-- end col -->
+                                            
+                                             
+                                             
+                                              <div class="form-group mb-0">
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                        Submit
+                                                    </button>
+                                                    <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            
+                                        <!-- end row -->
+    									
                                     </div>
+                                    </form>
                                 </div>
-
-                            </div>
+                            </div><!-- end col -->
                         </div>
-                        <!-- end row -->  
 
-                        <!-- Media alignment -->
 
-                         
-                        
-                    </div> <!-- end container-fluid -->
 
+
+
+
+                            </div><!-- end col -->
+                        </div><!-- end row -->
                 </div> <!-- end content -->
 
                 
@@ -290,8 +265,25 @@
         <!-- Bootstrap select plugin -->
         <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 
+        <!-- Table Editable plugin-->
+        <script src="/erp/resources/assets/libs/jquery-tabledit/jquery.tabledit.min.js"></script>
+
+        <!-- Table editable init-->
+        <script src="/erp/resources/assets/js/pages/tabledit.init.js"></script>
+
         <!-- App js -->
         <script src="/erp/resources/assets/js/app.min.js"></script>
+        
+         <!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        
+         <!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
         
     </body>
 </html>
