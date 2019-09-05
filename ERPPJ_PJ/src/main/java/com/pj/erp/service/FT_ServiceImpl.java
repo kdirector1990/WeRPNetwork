@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.FT_DAO;
+import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Subject;
 
 @Service
 public class FT_ServiceImpl implements FT_Service{
@@ -80,6 +82,24 @@ public class FT_ServiceImpl implements FT_Service{
 		} else {
 			return "실패";
 		}
+	}
+
+	// 거래처 가져오기
+	@Override
+	public void FT_AccountSelect(HttpServletRequest req, Model model) {
+		List<FT_Account> account = dao.FT_AccountSelect();
+		System.out.println("customerCode : " + account.get(0).getCustomer_code());
+		model.addAttribute("account", account);
+		model.addAttribute("listsize", account.size() + 1);
+	}
+
+	// 계정과목 가져오기
+	@Override
+	public void FT_SubjectSelect(HttpServletRequest req, Model model) {
+		List<FT_Subject> subject = dao.FT_SubjectSelect();
+		System.out.println("AccountCode : " + subject.get(0).getAccounts_code());
+		model.addAttribute("subject", subject);
+		model.addAttribute("listsize", subject.size() + 1);
 	}
 	
 	@Override

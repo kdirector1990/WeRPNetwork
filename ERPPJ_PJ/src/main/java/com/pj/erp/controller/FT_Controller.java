@@ -149,7 +149,7 @@ public class FT_Controller {
 	public String FT_Savings(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Savings");
 		
-		service.FT_SavingsSelect(req, model);
+		/* service.FT_SavingsSelect(req, model); */
 		
 		return "FT/FT_Savings";
 	}
@@ -159,7 +159,7 @@ public class FT_Controller {
 	public String FT_Deposit(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Deposit");
 		
-		service.FT_DepositSelect(req, model);
+		/* service.FT_DepositSelect(req, model); */
 		
 		return "FT/FT_Deposit";
 	}
@@ -238,10 +238,30 @@ public class FT_Controller {
 	
 	// 설비 목록
 	@RequestMapping("FT_facility_list")
-	public String FT_facility_list(Locale locale, Model model) {
+	public String FT_facility_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_facility_list");
 		
 		return "FT/FT_facility_list";
+	}
+	
+	// 거래처 목록
+	@RequestMapping("FT_account_list")
+	public String FT_account_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_account_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		
+		return "FT/FT_account_list";
+	}
+	
+	// 계정 목록
+	@RequestMapping("FT_Subject_list")
+	public String FT_Subject_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Subject_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		
+		return "FT/FT_Subject_list";
 	}
 	
 	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")

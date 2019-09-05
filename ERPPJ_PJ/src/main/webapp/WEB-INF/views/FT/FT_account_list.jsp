@@ -61,13 +61,17 @@
                                              <tr>
                                             <th>코드</th>
                                             <th>거래처명</th>
+                                            <th>사업자번호</th>
                                       		</tr>
                                    		</thead>
                                  		<tbody>
-                                       		<c:forEach var = "va" begin="1" end="200" step="1">
+                                 			<c:set var="count" value="0"/>
+                                       		<c:forEach var = "acc" items="${account}">
                                        		<tr>
-                                       			<td id = "code${va}" ondblclick="setvalue(${va})">${va}</td>
-                                       			<td id = "name${va}" ondblclick="setvalue(${va})">${va}</td>
+                                       			<td id = "code${count}" ondblclick="setvalue(${count})">${acc.customer_code}</td>
+                                       			<td id = "name${count}" ondblclick="setvalue(${count})">${acc.customer_name}</td>
+                                       			<td id = "licenseNo${vcounta}" ondblclick="setvalue(${count})">${acc.license_number}</td>
+                                       			<c:set var="count" value="${count+1}"/>
                                        		</tr>
                                        		</c:forEach>
                                    		</tbody>

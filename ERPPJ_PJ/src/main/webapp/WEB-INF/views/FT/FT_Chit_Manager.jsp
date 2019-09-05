@@ -174,7 +174,7 @@
                         </div>     
                         <!-- end page title --> 
 						
-						<form name = "chitManager" method="post">
+						<form name = "chitManager" method="get">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">

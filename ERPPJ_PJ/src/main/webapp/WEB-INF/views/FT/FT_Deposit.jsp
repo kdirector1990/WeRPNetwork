@@ -7,7 +7,7 @@
         <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 		<script src="/pj/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
-        	var count = ${listsize};
+        	var count = 1/* ${listsize} */;
         	var subcount = 1;
         	var frontcursor;
         	var updatekey = 0;

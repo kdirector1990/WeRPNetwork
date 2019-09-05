@@ -371,14 +371,14 @@
         	
         	
         	function subjectlist(subjectcode) {
-        		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
-        		window.open(url, "subject_list", "menubar=no, width=500, height = 300");
+        		var url = "FT_Subject_list?key=" + $("*[name=subjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
+        		window.open(url, "subject_list", "menubar=no, width=700, height = 500");
         		
         	}
         	
-        	function accountlist(subjectcode) {
-        		var url = "FT_account_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
-        		window.open(url, "account_list", "menubar=no, width=500, height = 300");
+        	function accountlist(accountcode) {
+        		var url = "FT_account_list?key=" + $("*[name=accountCode" + accountcode + "]").val() + "&keyname=" + accountcode;
+        		window.open(url, "account_list", "menubar=no, width=700, height = 500");
         		
         	}
         </script>
@@ -509,9 +509,9 @@
 		                                                <input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectcode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectcode0" class="form-control" onclick = "subjectlist(0)" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountcode0" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountcode0" class="form-control" onclick = "accountlist(0)" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "leftprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "rightprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
@@ -570,6 +570,38 @@
                                         </div> -->
                                     </div>
                                 </div>
+                                <div class="card">
+									<div class="card-body">
+										<!-- 인적정보 -->
+										<form action="HR_inputProHR1" class="form-horizontal"
+											method="post">
+											<div class="col-sm-12">
+												<div class="card-body table-responsive">
+													<h4 class="header-title">상세 정보</h4>
+													<h4 class="header-title">&nbsp;</h4>
+													<div class="form-group row">
+														<div class="col-md-5" id = "leftsummary">
+															
+														</div>
+														<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+														<div class="col-md-5" id = "rightsummary">
+															
+														</div>	
+													</div>
+												</div>
+											</div>
+											<div class="form-group text-right mb-0">
+	                                            <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+	                                                Submit
+	                                            </button>
+	                                            <button type="reset" class="btn btn-secondary waves-effect">
+	                                                Cancel
+	                                            </button>
+	                                        </div>
+										</form>
+									</div>
+								</div>
+                                
                             </div>
                         </div>
                     </div> <!-- end container-fluid -->

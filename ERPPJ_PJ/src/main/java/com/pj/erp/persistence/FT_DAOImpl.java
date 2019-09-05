@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Subject;
 
 @Repository
 public class FT_DAOImpl implements FT_DAO{
@@ -112,5 +114,17 @@ public class FT_DAOImpl implements FT_DAO{
 		} else {
 			return 0;
 		}
+	}
+	
+	// 계정과목 가져오기
+	@Override
+	public List<FT_Subject> FT_SubjectSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_SubjectSelect");
+	}
+	
+	// 거래처 가져오기
+	@Override
+	public List<FT_Account> FT_AccountSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_AccountSelect");
 	}
 }
