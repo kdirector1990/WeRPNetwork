@@ -19,4 +19,6 @@ public interface MS_Service {
 	//기획서 삭제
 	public int deletePlan(HttpServletRequest req, Model model);
 	
+	//e_name(사원명)으로 username 찾기
+	public void searchUsername(HttpServletRequest req, Model model);
 }

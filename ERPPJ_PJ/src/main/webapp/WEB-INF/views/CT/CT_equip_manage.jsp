@@ -36,6 +36,7 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
                                         <h4 class="header-title">전산 설비 폐기</h4>
+                                        
                                         <div align="right">
     									<button type="button" id="btnTCT" class="btn btn-outline-dark waves-effect waves-light">수정</button>
     									<button type="button"  class="btn btn-outline-dark waves-effect waves-light">폐기</button>

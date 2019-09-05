@@ -177,9 +177,9 @@
 					'<td><input type="text" name="plan_name" value="' +tdArr[1]+'"></td>' +
 					'<td><input type="text" name="username" value="' +tdArr[2]+'"</td>' +
 					'<td><input type="text" name="position_code" value="'+tdArr[3]+'"></td>' +
-					'<td><input type="text" name="plan_regdate" value="' + tdArr[4] +'"></td>' +
-					'<td><input type="date" name = "plan_startdate" value="'  + tdArr[5] +'"></td>' +
-                    '<td><input type="date" name="plan_enddate" value="' + tdArr[6] +'"></td>' +
+					'<td><input type="text" name="plan_regdate" readonly value="' + tdArr[4] +'"></td>' +
+					'<td><input type="text" name = "plan_startdate" data-provide="datepicker" data-date-autoclose="true" value="'  + tdArr[5] +'"></td>' +
+                    '<td><input type="text" name="plan_enddate" data-provide="datepicker" data-date-autoclose="true" value="' + tdArr[6] +'"></td>' +
                     '<td><input type="text" name="plan_state" value="' + tdArr[7] +'"></td>' +
                     '<td><input type="text" name="plan_objective" value="' + tdArr[8]+'"></td>' +
                     '<td><input type="text" name="plan_proposal" value="' + tdArr[9]+'"></td>' +
