@@ -54,11 +54,10 @@ public class CT_Controller {
 	}
 	
 	//전산 설비 관리
-	/*
-	 * @RequestMapping("CT_equip_manage") public String
-	 * CT_equip_manage(HttpServletRequest req, Model model) {
-	 * logger.info("log => CT_equip_manage"); return "CT/CT_equip_manage"; }
-	 */
+	  @RequestMapping("CT_equip_manage2") public String
+	  CT_equip_manage2(HttpServletRequest req, Model model) {
+	 logger.info("log => CT_equip_manage2"); return "CT/CT_equip_manage"; }
+	 
 	
 	
 	  @RequestMapping("CT_select_type")
