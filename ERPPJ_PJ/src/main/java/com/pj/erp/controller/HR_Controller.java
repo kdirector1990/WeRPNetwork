@@ -37,7 +37,9 @@ public class HR_Controller {
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
-		
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
 		 
 		return "HR/HR_InputHR";
 	}
@@ -47,6 +49,8 @@ public class HR_Controller {
 	public String inputFoundation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);
+		
+		
 		return "index";
 		
 	}	

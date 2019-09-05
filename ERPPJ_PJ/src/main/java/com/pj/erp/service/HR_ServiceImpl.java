@@ -125,6 +125,13 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		String department_code = req.getParameter("department_code");
+		String position_code = req.getParameter("position_code");
+		String rank_code = req.getParameter("rank_code");
+		
+		vo.setDepartment_code(department_code);
+		vo.setPosition_code(position_code);
+		vo.setRank_code(rank_code);
 		
 		int enabled = 1;
 		vo.setEnabled(enabled);
@@ -308,8 +315,33 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_GreetingVO> list = dao.getGreeting(map);
 		
 		return list;
+	}
 		
+	public void departmentList(HttpServletRequest req, Model model) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();		
+		List<HR_VO> dep = dao.getDepartmentList(map);
+		
+		model.addAttribute("dep", dep);		
 	}	
+	
+	@Override
+	public void positionList(HttpServletRequest req, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();		
+		List<HR_VO> poi = dao.getPositionList(map);
+		
+		model.addAttribute("poi", poi);
+		
+	}
+
+	@Override
+	public void rankList(HttpServletRequest req, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();		
+		List<HR_VO> rank = dao.getRankList(map);
+		
+		model.addAttribute("rank", rank);
+		
+	}
 	
 
 	

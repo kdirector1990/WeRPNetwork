@@ -20,6 +20,21 @@ public interface FT_Service {
 	// 적금수정
 	public String FT_SavingsUpdate(Map<String, Object> map);
 	
+	// 예금 가져오기
+	public void FT_DepositSelect(HttpServletRequest req, Model model);
+	
+	// 예금추가
+	public String FT_DepositInsert(Map<String, Object> map);
+	
+	// 예금수정
+	public String FT_DepositUpdate(Map<String, Object> map);
+	
+	// 거래처 가져오기
+	public void FT_AccountSelect(HttpServletRequest req, Model model);
+	
+	// 계정과목 가져오기
+	public void FT_SubjectSelect(HttpServletRequest req, Model model);
+	
 	//예산신청입력처리
 	public void FT_applyinput(HttpServletRequest req, Model model);
 }

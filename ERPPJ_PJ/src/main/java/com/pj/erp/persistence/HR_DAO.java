@@ -35,4 +35,13 @@ public interface HR_DAO {
 
 	//인사고과/상벌현황 검색결과
 	public List<HR_GreetingVO> getGreeting(Map<String, Object> map);
+	
+	// 부서 목록
+	public List<HR_VO> getDepartmentList(Map<String, Object> map);
+	
+	// 직책 목록
+	public List<HR_VO> getPositionList(Map<String, Object> map);
+	
+	// 직책 목록
+	public List<HR_VO> getRankList(Map<String, Object> map);
 }

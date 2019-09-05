@@ -27,6 +27,13 @@
  	
  	
  	<!-- estimate_price 견적 현황 -->
+ 	
+ 	<insert id="estimatewritePro" parameterType="com.pj.erp.vo.ST.Estimate">
+ 		INSERT INTO estimate_price_tbl(ep_code, ep_amount, ep_deliver_date, ep_price, ep_reg_date)
+ 			VALUES(#{ep_code}, #{ep_amount}, #{ep_deliver_date}, #{ep_price}, sysdate)
+ 	</insert>
+ 	
+ 	
  	<select id="getestimateCnt" resultType="int">
  		select COUNT(*) as FROM estimate_price_tbl
  	</select>
@@ -42,6 +49,10 @@
  	<update id="updateEstimate" parameterType="com.pj.erp.vo.ST.Estimate">
  		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_reg_date=sysdate WHERE ep_code=#{ep_code}
  	</update>
+ 	
+ 	<delete id="deleteEstimate" parameterType="String">
+ 		DELETE estimate_price_tbl WHERE ep_code =#{ep_code}
+ 	</delete>
  
  
  </mapper>

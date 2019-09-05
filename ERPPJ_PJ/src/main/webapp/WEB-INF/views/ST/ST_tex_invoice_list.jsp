@@ -48,7 +48,7 @@
 						<div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
-                                
+                                <div class="card-body">
                                  <div class="table-responsive">
                                          <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
                                             <tr>
@@ -86,6 +86,8 @@
                                             </tr>
                                         </table>
                                         </div>
+                                        </div>
+                                        
                                         
                                         
                                     <div class="card-body">

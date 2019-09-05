@@ -16,28 +16,39 @@ public class ST_DAOImpl implements ST_DAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// estimate 게시글 갯수 
+	@Override
+	public int estimatewritePro(Estimate vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.estimatewritePro", vo);
+	}
+	
+	// estimate_price 게시글 갯수 
 	@Override
 	public int getestimateCnt() {
 		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getestimateCnt");
 	}
 	
-	// estimate (견적 글 목록)
+	// estimate_price (견적 글 목록)
 	@Override
 	public List<Estimate> getestimate(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getestimate", map);
 	}
 	
-	// estimate (상세 페이지)
+	// estimate_price (상세 페이지)
 	@Override
 	public Estimate getEstimateArticle(String ep_code) {
 		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getEstimateArticle", ep_code);
 	}
 	
-	// estimate 수정 처리
+	// estimate_price 수정 처리
 	@Override
 	public int updateEstimate(Estimate vo) {
 		return sqlSession.update("com.pj.erp.persistence.ST_DAO.updateEstimate", vo);
+	}
+	
+	// estimate_price
+	@Override
+	public int deleteEstimate(String ep_code) {
+		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteEstimate", ep_code);
 	}
 	
 	
