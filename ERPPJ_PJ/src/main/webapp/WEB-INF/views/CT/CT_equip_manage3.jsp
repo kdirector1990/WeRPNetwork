@@ -20,7 +20,7 @@
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	
-	/* function changeSelect(url){
+	function changeSelect(url){
 		sendRequest(callback, "CT_select_type2", "post", "${_csrf.parameterName }=${_csrf.token }&ceq_type="+url);
 	}
 	
@@ -41,9 +41,9 @@
     	else {
     		result.innerHTML = "상태 : " + httpRequest.readyState;
     	}
-    } */
+    }
 
-	  function changeSelect(value){
+	 /* function changeSelect(value){
 		var param = $("#select1").serializeArray();
 		$.ajax({
 			url: '/erp/CT_select_type',
@@ -68,7 +68,7 @@
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
 					
-					 $('#spoat tbody').append('<tr class="spoat2"><td>'+ceq_code+'</td><td>'+
+					 $('#datatable tbody').append('<tr class="spoat2"><td>'+ceq_code+'</td><td>'+
 						ceq_name + '</td><td>'+
 						ceq_type + '</td><td>'+
 						ceq_acquire_date + '</td><td>'+
@@ -85,7 +85,7 @@
 				alert("전산 오류로 인하여 불러오기에 실패하였습니다.");
 			}
 		}); 
-	} 
+	} */
 </script>
 </head>
 	<body>
@@ -138,35 +138,6 @@
 								</div>
 							</div>
 						</div>
-						
-						<div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-    									<hr>
-                                        <table id="spoat" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                            	<th>전산설비코드</th>
-			                                    <th>설비명</th>
-			                                    <th>보유구분</th>
-			                                    <th>구입일</th>
-			                                    <th>사용부서</th>
-			                                    <th>위치</th>
-			                                    <th>매입가</th>
-			                                    <th>예상내용연수</th>
-			                                    <th>감가상각여부</th>
-			                                    <th>감가상각법</th>
-                                            </tr>
-                                            </thead>
-    
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 						
 						<div id="result" class="card-body">
 								<!-- 상세 페이지 출력 위치 -->

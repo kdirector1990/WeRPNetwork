@@ -109,20 +109,25 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         	
         	function add(){
         		$(".spoat-table-bordered-primary tbody").append('<tr>' +
-       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+       						'<td><select name="ceq_code' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>' +
+		                 			'<option value="">선택' +
+		                 			'<option value="003">장비' +
+								'</select></td>'+
+        					'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
                             '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                             	'<option value="">선택</option>' +
-                            	'<option value="1">보유' +
-                            	'<option value="2">대여' +
+                            	'<option value="보유">보유' +
+                            	'<option value="대여">대여' +
                             '</select></td>' +
                             '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>' +
                             '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
-                            '<option value="">선택</option>' +
-                            '<option value="1">인사</option>' +
-                            '<option value="2">영업</option>' +
-                            '<option value="3">재무</option>' +
-                            '<option value="4">전산</option>' +
-                            '<option value="5">제조</option>' +
+	                            '<option value="null">선택</option>' +
+	                            '<option value="인사">인사</option>' +
+	                            '<option value="기획">기획</option>' +
+	                            '<option value="영업">영업</option>' +
+	                            '<option value="재무">재무</option>' +
+	                            '<option value="전산">전산</option>' +
+	                            '<option value="제조">제조</option>' +
                        		'</select></td>' +
                        		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
                             '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
@@ -146,28 +151,29 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         		$(".spoat-table-bordered-primary tbody").empty('<tr>'+
         		'<td><select name="ceq_code' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>' +
 		                 '<option value="">선택' +
+		                 '<option value="003">장비' +
 					'</select></td>'+
         		'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
                 '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                 	'<option value="">선택</option>' +
-                	'<option value="1">보유' +
-                	'<option value="2">대여' +
+                	'<option value="보유">보유' +
+                	'<option value="대여">대여' +
                 '</select></td>' +
                 '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>' +
                 '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
-                '<option value="">선택</option>' +
-                '<option value="1">인사</option>' +
-                '<option value="2">기획</option>' +
-                '<option value="3">영업</option>' +
-                '<option value="4">재무</option>' +
-                '<option value="5">전산</option>' +
-                '<option value="6">제조</option>' +
+                '<option value="null">선택</option>' +
+                '<option value="인사">인사</option>' +
+                '<option value="기획">기획</option>' +
+                '<option value="영업">영업</option>' +
+                '<option value="재무">재무</option>' +
+                '<option value="전산">전산</option>' +
+                '<option value="제조">제조</option>' +
            		'</select></td>' +
            		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
                 '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
                 '<td><input type="text" onfocus = "focuse();" name = "ceq_durable' + count + '" onkeyup="removeChar(event); inputNumberFormat(this);" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
            		'<td><select onfocus = "focuse();" name="ceq_depreciation' + count + '" id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" required>' +
-           			'<option value="">선택</option>' +
+           			'<option value="N">선택</option>' +
            			'<option value="1">Y</option>' +
            			'<option value="2">N</option>' +
            		'</select>' +
@@ -274,22 +280,23 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                                            <tr>
 		                                            	<td><select name="ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>
 		                                            			<option value="">선택
+		                                            			<option value="020">장비
 		                                            		</select></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onclick="inin();" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;"></td>
 		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" required onchange="enter(this.tagName,this.name);">
 		                                                	<option value="null">선택</option>
-		                                                	<option value="1">보유
-		                                                	<option value="2">대여
+		                                                	<option value="보유">보유
+		                                                	<option value="대여">대여
 		                                                </select></td>
 		                                                <td><input type="date" onfocus = "focuse(this.name);" name = "ceq_acquire_date0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>
 		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
 		                                                <option value="null">선택</option>
-		                                                <option value="1">인사</option>
-		                                                <option value="2">기획</option>
-		                                                <option value="3">영업</option>
-		                                                <option value="4">재무</option>
-		                                                <option value="5">전산</option>
-		                                                <option value="6">제조</option>
+		                                                <option value="인사">인사</option>
+		                                                <option value="기획">기획</option>
+		                                                <option value="영업">영업</option>
+		                                                <option value="재무">재무</option>
+		                                                <option value="전산">전산</option>
+		                                                <option value="제조">제조</option>
 			                                       		</select></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_location0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" class="form-control" name = "ceq_prime_cost0" onfocus = "focuse();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onchange="enter(this.tagName,this.name);" required></td>
@@ -301,7 +308,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 			                                       		</select>
 			                                       		<td>
 			                                       		<select id="enter" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);">
-			                                       			<option value="">선택
+			                                       			<option value="N">선택
 			                                       			<option value="정률법">정률법
 			                                       			<option value="정액법">정액법
 			                                       		</select>
