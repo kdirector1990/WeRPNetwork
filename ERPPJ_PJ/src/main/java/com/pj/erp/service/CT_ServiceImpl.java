@@ -36,6 +36,7 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		do {
 			System.out.println("동작2");
+			String ceq_code = req.getParameter("ceq_code"+i);
 			String ceq_name = req.getParameter("ceq_name" + i);
 			String ceq_type = req.getParameter("ceq_type" + i);
 			String ceq_acquire_date = req.getParameter("ceq_acquire_date" + i);
@@ -60,6 +61,7 @@ public class CT_ServiceImpl implements CT_Service{
 			String ceq_depreciation_type = req.getParameter("ceq_depreciation_type"+i);
 			System.out.println(ceq_depreciation_type);
 			
+			vo.setCeq_code(ceq_code);
 			vo.setCeq_name(ceq_name);
 			vo.setCeq_type(ceq_type);
 			vo.setCeq_acquire_date(col);

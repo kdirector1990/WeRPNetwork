@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
+<!--  
+상세계정 코드의 값 설정들이 완료되어야지 완벽하게 돌릴 수 있음.
+ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
+-->
 <head>
 <%@ include file="../setting.jsp" %>
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js" ></script> 
@@ -140,6 +144,9 @@
         	
         	function del(){
         		$(".spoat-table-bordered-primary tbody").empty('<tr>'+
+        		'<td><select name="ceq_code' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>' +
+		                 '<option value="">선택' +
+					'</select></td>'+
         		'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
                 '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                 	'<option value="">선택</option>' +
@@ -168,41 +175,6 @@
            '</tr>');
            count = 0;
         	}
-        	
-        	/* function enterinsert(cc) {
-       			$(".spoat-table-bordered-primary tbody #enter").attr("onchange", "enterupdate(" + cc + ");");
-       			$(".spoat-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
-       			$(".spoat-table-bordered-primary tbody #first").attr("id", "first" + cc);
-       			$(".spoat-table-bordered-primary tbody").append('<tr>' +
-       						'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
-                            	'<option value="">선택</option>' +
-                            	'<option value="1">보유' +
-                            	'<option value="2">대여' +
-                            '</select></td>' +
-                            '<td><input type="date" onfocus = "focuse();" name = "ceq_acquire_date' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>' +
-                            '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
-                            '<option value="">선택</option>' +
-                            '<option value="1">인사</option>' +
-                            '<option value="2">영업</option>' +
-                            '<option value="3">재무</option>' +
-                            '<option value="4">전산</option>' +
-                            '<option value="5">제조</option>' +
-                       		'</select></td>' +
-                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
-                            '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
-                            '<td><input type="text" onfocus = "focuse();" name = "ceq_durable' + count + '" onkeyup="removeChar(event); inputNumberFormat(this);" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
-                       		'<td><select onfocus = "focuse();" name="ceq_depreciation' + count + '" id = "enter" onchange="enterinsert(0);" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" required>' +
-                       			'<option value="">선택</option>' +
-                       			'<option value="1">Y</option>' +
-                       			'<option value="2">N</option>' +
-                       		'</select>' +
-                       		'<td><input type="text" onfocus = "focuse();" name = "ceq_depreciation_type' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
-                       '</tr>');
-       			 $(".spoat-table-bordered-primary tbody #first").focus();
-        	} */
-        	
-        	
         	
         	function Insert(){
         		var param = $("#CTinsert").serializeArray();
@@ -272,18 +244,20 @@
                                        <form id="CTinsert" action="CT_subject_add" method="post" class="form-horizontal">
                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
                                             <table class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
-	                                            <col style = "width:10%;">
+	                                            <col style = "width:12%">
+	                                            <col style = "width:13%;">
                                                 <col style = "width:7%">
                                                 <col style = "width:7%;">
                                                 <col style = "width:8%;">
                                                 <col style = "width:11%;">
                                                 <col style = "width:9%;">
-                                                <col style = "width:15%;">
                                                 <col style = "width:13%;">
-                                                <col style = "width:19%;">
+                                                <col style = "width:10%;">
+                                                <col style = "width:10%;">
 
                                                 <thead>
                                                     <tr>
+                                                    	<th>설비코드</th>
 		                                                <th>설비명</th>
 		                                                <th>보유구분</th>
 		                                                <th>구입일</th>
@@ -298,7 +272,10 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onclick="inin();" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>
+		                                            	<td><select name="ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>
+		                                            			<option value="">선택
+		                                            		</select></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onclick="inin();" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;"></td>
 		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" required onchange="enter(this.tagName,this.name);">
 		                                                	<option value="null">선택</option>
 		                                                	<option value="1">보유

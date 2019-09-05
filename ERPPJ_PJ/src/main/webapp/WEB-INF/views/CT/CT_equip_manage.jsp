@@ -35,7 +35,7 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        <h4 class="header-title">전산 설비 폐기</h4>
+                                        <h4 class="header-title">전산 설비 관리</h4>
                                         <div align="right">
     									<button type="button" id="btnTCT" class="btn btn-outline-dark waves-effect waves-light">수정</button>
     									<button type="button"  class="btn btn-outline-dark waves-effect waves-light">폐기</button>
@@ -45,7 +45,6 @@
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                            	<th>선택</th>
                                             	<th>전산설비코드</th>
                                             	<th>계정코드</th>
                                                 <th>설비명</th>
@@ -63,12 +62,11 @@
     
                                             <tbody>
                                             <tr>
-                                            	<td><input type="checkbox" name="CT_code" value="CT001" class="box"></td>
-                                            	<td>CT001
+                                            	<td>CT001</td>
                                             	<td>계정코드</td>
                                             	<td>CES</td>
                                                 <td>보유</td>
-                                                <td>2017/04/13</td>
+                                                <td>2017-04-13</td>
                                                 <td>전산</td>
                                                 <td>창원공장</td>
                                                 <td>8000000</td>
@@ -78,12 +76,11 @@
                                             </tr>
                                             
                                             <tr>
-                                            	<td><input type="checkbox" name="CT_code" value="CT002" class="box"></td>
                                             	<td>CT002</td>
                                             	<td>계정코드</td>
                                             	<td>COT</td>
                                                 <td>대여</td>
-                                                <td>2017/04/17</td>
+                                                <td>2017-04-17</td>
                                                 <td>인사</td>
                                                 <td>본사</td>
                                                 <td>2000000</td>
@@ -98,19 +95,19 @@
                                         <div class="result">
                                         <br>
                                         <table id="datatable2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-	                                        <col style = "width:7%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:7%">
-                                            <col style = "width:7%;">
-                                            <col style = "width:8%;">
-                                            <col style = "width:8%;">
-                                            <col style = "width:7%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:16%;">
+		                                        <col style = "width:12%">
+	                                            <col style = "width:13%;">
+	                                            <col style = "width:7%">
+	                                            <col style = "width:7%;">
+	                                            <col style = "width:8%;">
+	                                            <col style = "width:11%;">
+	                                            <col style = "width:9%;">
+	                                            <col style = "width:13%;">
+	                                            <col style = "width:10%;">
+	                                            <col style = "width:10%;">
                                             <thead>
                                             <tr>
-                                            	<th>전산설비코드</th>
+                                            	<th>설비코드</th>
                                             	<th>계정코드</th>
                                                 <th>설비명</th>
                                                 <th>보유구분</th>
@@ -158,8 +155,9 @@
         
     <script type="text/javascript">
     
-    var items = [];
     
+    
+    var items = [];
     
     $('#btnTCT').click(function(){
    	   	if($('input:checkbox[name="CT_code"]').is(":checked") == true){
@@ -176,7 +174,7 @@
 	   			var ceq_code = td.eq(2).text();
 	   			var ceq_name = td.eq(3).text();
 	   			var ceq_type = td.eq(4).text();
-	   			var ceq_date = td.eq(5).text();
+	   			var date = td.eq(5).text();
 	   			var ceq_deparment_code = td.eq(6).text();
 	   			var ceq_location = td.eq(7).text();
 	   			var ceq_prime_cost = td.eq(8).text();
@@ -184,11 +182,16 @@
 	   			var ceq_depreciation = td.eq(10).text();
 	   			var ceq_depreciation_type = td.eq(11).text();
 	   			
+	   			var yyyy = date.substr(0, 4);
+	   			var mm = date.substr(5, 2);
+	   			var dd = date.substr(8, 2);
+	   			var ceq_date = new Date(yyyy, mm-1, dd);
+	   			
 	   			tdArr.push(CT_code);
 	   			tdArr.push(ceq_code);
 	   			tdArr.push(ceq_name);
 	   			tdArr.push(ceq_type);
-	   			tdArr.push(ceq_date);
+	   			tdArr.push(date);
 	   			tdArr.push(ceq_deparment_code);
 	   			tdArr.push(ceq_location);
 	   			tdArr.push(ceq_prime_cost);
@@ -207,7 +210,7 @@
 		   					'<option value="1">보유'+
 		   					'<option value="2">대여'+
 	   					'</select></td>' +
-	   					 '<td><input type="date" name = "ceq_acquire_date"></td>' +
+	   					 '<td><input type="date" name = "ceq_acquire_date" value="'+tdArr[4]+'"></td>' +
 	   					'<td><select name = "ceq_deparment_code">' +
 	   						'<option value="'+ tdArr[5] +'">'+ tdArr[5] +
 		   					'<option value="1">인사</option>' +
