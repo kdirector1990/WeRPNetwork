@@ -24,6 +24,21 @@ public class FT_ServiceImpl implements FT_Service{
 		return dao.FT_AccInsert(map);
 	}
 
+	// 거래처 가져오기
+	@Override
+	public void FT_AccountAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Account> account = dao.FT_AccountAllSelect();
+		System.out.println("customerCode : " + account.get(0).getCustomer_code());
+		model.addAttribute("account", account);
+		model.addAttribute("listsize", account.size() + 1);
+	}
+
+	// 거래처 검색한 것 가져오기
+	@Override
+	public List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
+		return dao.FT_AccountSelect(req.getParameter("srhval"));
+	}
+	
 	// 적금가져오기
 	@Override
 	public void FT_SavingsSelect(HttpServletRequest req, Model model) {
@@ -82,15 +97,6 @@ public class FT_ServiceImpl implements FT_Service{
 		} else {
 			return "실패";
 		}
-	}
-
-	// 거래처 가져오기
-	@Override
-	public void FT_AccountSelect(HttpServletRequest req, Model model) {
-		List<FT_Account> account = dao.FT_AccountSelect();
-		System.out.println("customerCode : " + account.get(0).getCustomer_code());
-		model.addAttribute("account", account);
-		model.addAttribute("listsize", account.size() + 1);
 	}
 
 	// 계정과목 가져오기
