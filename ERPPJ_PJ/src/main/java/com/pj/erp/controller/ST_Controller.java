@@ -63,13 +63,20 @@ public class ST_Controller {
 		return "ST/ST_estimate_writePro";
 	}
 	
-	
-	// 異쒓퀬 愿�由�
+	// 출고 등록
 	@RequestMapping("ST_release")
-	public String release(Locale locale, Model model) {
-		logger.info("log => release");
+	public String ST_release(Locale locale, Model model) {
+		logger.info("log => ST_release");
 		
-		return "ST/release";
+		return "ST/ST_release";
+	}
+	
+	// 출고 관리
+	@RequestMapping("ST_release_manage")
+	public String release(Locale locale, Model model) {
+		logger.info("log => ST_release_manage");
+		
+		return "ST/ST_release_manage";
 	}
 	
 	// 諛섑뭹 愿�由�
@@ -116,11 +123,19 @@ public class ST_Controller {
 		return "ST/ST_sale_Plan_deletePro"; 
 	}     
 	          
+	@RequestMapping("ST_sale_plan_state2")
+	public String ST_sale_plan_state2(Locale locale, Model model) {
+		logger.info("log => ST_sale_plan_state2");
+		
+		return "ST/ST_sale_plan_state2";
+	
+	}	
 	@RequestMapping("ST_sale_plan_state")
 	public String ST_sale_plan_state(Locale locale, Model model) {
 		logger.info("log => ST_sale_plan_state");
 		
 		return "ST/ST_sale_plan_state";
+		
 	}@RequestMapping("ST_contrast_pp")
 	public String ST_contrast_pp(Locale locale, Model model) {
 		logger.info("log => ST_contrast_pp");
