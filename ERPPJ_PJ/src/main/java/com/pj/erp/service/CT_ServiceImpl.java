@@ -130,17 +130,67 @@ public class CT_ServiceImpl implements CT_Service{
 
 	//전산설비 목록 code 검색
 	@Override
-	public void CT_select_code(HttpServletRequest req, Model model) {
-		int selectCnt = 1;
+	public CT_VO CT_select_code(HttpServletRequest req, Model model) {
 		String code = req.getParameter("ceq_code");
-		CT_VO vo = null;
-		vo = dao.selectCode(code);
-		
-		model.addAttribute("selectCnt", selectCnt);
-		model.addAttribute("voC", vo);
+		CT_VO vo = dao.selectCode(code);
+		System.out.println(code);
+		System.out.println(vo.getCeq_code());
+		System.out.println(vo.getCeq_name());
+		System.out.println(vo.getCeq_type());
+		return vo;
 	}
+
 	
 	//전산설비 수정화면 입력폼
+	@Override
+	public void CT_update_ct(HttpServletRequest req, Model model) {
+		String ceq_code = req.getParameter("ceq_code");
+		String ceq_name = req.getParameter("ceq_name");
+		String ceq_type = req.getParameter("ceq_type");
+		String ceq_acquire_date = req.getParameter("ceq_acquire_date");
+		Date col = Date.valueOf(ceq_acquire_date);
+		String deparment_code = req.getParameter("department_code");
+		System.out.println("부서번호 : " + deparment_code);
+		String location = req.getParameter("ceq_location");
+		
+		//콤마제거(매입가, 예상연수내용)
+		String cost = req.getParameter("ceq_prime_cost");
+		int ceq_prime_cost = Integer.parseInt(cost.replace(",", ""));;
+		
+		String durable = req.getParameter("ceq_durable");
+		int ceq_durable = Integer.parseInt(durable.replace(",", ""));
+		
+		int ceq_depreciation = Integer.parseInt(req.getParameter("ceq_depreciation"));
+		String ceq_depreciation_type = req.getParameter("ceq_depreciation_type");
+		
+		CT_VO vo = new CT_VO();
+		
+		vo.setCeq_code(ceq_code);
+		vo.setCeq_name(ceq_name);
+		vo.setCeq_type(ceq_type);
+		vo.setCeq_acquire_date(col);
+		vo.setDepartment_code(deparment_code);
+		vo.setCeq_location(location);
+		vo.setCeq_prime_cost(ceq_prime_cost);
+		vo.setCeq_durable(ceq_durable);
+		vo.setCeq_depreciation(ceq_depreciation);
+		vo.setCeq_depreciation_type(ceq_depreciation_type);
+		
+		System.out.println(vo.getCeq_name());
+		System.out.println(vo.getCeq_type());
+		System.out.println(vo.getCeq_acquire_date());
+		System.out.println(vo.getDepartment_code());
+		System.out.println(vo.getCeq_location());
+		System.out.println(vo.getCeq_prime_cost());
+		System.out.println(vo.getCeq_durable());
+		System.out.println(vo.getCeq_depreciation());
+		System.out.println(vo.getCeq_depreciation_type());
+		
+		int updateCnt = dao.updateCT(vo);
+		
+		System.out.println(updateCnt);
+	}
+	
 	
 	
 	

@@ -85,10 +85,20 @@ public class CT_Controller {
 	
 	//전산 설비 관리 수정폼
 	@RequestMapping("CT_select_code")
-	public String CT_select_code(HttpServletRequest req, Model model) {
+	@ResponseBody
+	public CT_VO CT_select_code(HttpServletRequest req, Model model) {
 		logger.info("log => CT_select_code");
-		CT.CT_select_code(req, model);
-		return "CT/CT_Test";
+		CT_VO voC = CT.CT_select_code(req, model);
+		return voC;
+	}
+	
+	
+	//전산설비 수정
+	@RequestMapping("CT_update_ct")
+	@ResponseBody
+	public void CT_update_ct(HttpServletRequest req, Model model) {
+		logger.info("log => CT_update_ct");
+		CT.CT_update_ct(req, model);
 	}
 	
 	
