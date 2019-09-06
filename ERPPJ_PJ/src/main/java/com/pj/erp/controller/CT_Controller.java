@@ -58,11 +58,10 @@ public class CT_Controller {
 	  public String CT_equip_manage2(HttpServletRequest req, Model model) {
 		  logger.info("log => CT_equip_manage"); 
 	 
-		  return "CT/CT_equip_manage3"; 
+		  return "CT/CT_equip_manage"; 
 	 }
 	 
 	
-	/*
 	  @RequestMapping("CT_select_type")
 	  @ResponseBody 
 	  public List<CT_VO> CT_select_type(HttpServletRequest req, Model model) { 
@@ -71,9 +70,10 @@ public class CT_Controller {
 	  
 		  return vo; 
 	  }
-	 */
+	 
 
-	  // 전산설비 관리 상태검색
+	 /*
+	 // 전산설비 관리 상태검색
 	@RequestMapping("CT_select_type2")
 	public String CT_select_type2(HttpServletRequest req, Model model) {
 		logger.info("log => CT_select_type");
@@ -81,6 +81,7 @@ public class CT_Controller {
 		
 		return "CT/CT_Test";
 	}
+	*/
 	
 	//전산 설비 관리 수정폼
 	@RequestMapping("CT_select_code")

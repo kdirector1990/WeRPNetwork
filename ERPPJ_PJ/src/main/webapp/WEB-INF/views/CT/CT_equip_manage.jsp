@@ -20,6 +20,7 @@
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 	
+	var searchCount = 1;
 	
 	  function changeSelect(value){
 		var param = $("#select1").serializeArray();
@@ -29,15 +30,18 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
-				if($(".spoat2") != null){
-					$(".spoat2").remove();
-				}
+				
+				$('#result').empty();
 				
 				for(var i = 0; i < vo.length; i++){
 					var ceq_code = vo[i].ceq_code; 
 					var ceq_name = vo[i].ceq_name; 
 					var ceq_type = vo[i].ceq_type; 
+					
 					var ceq_acquire_date = vo[i].ceq_acquire_date; 
+					/* alert(ceq_acquire_date.format('{yyyy}-{MM}-{dd}')); */
+					
+					
 					var ceq_department_code = vo[i].department_code; 
 					var ceq_location = vo[i].ceq_location; 
 					var ceq_prime_cost = addComma(vo[i].ceq_prime_cost); 
@@ -45,7 +49,7 @@
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
 					
-					 $('#spoat tbody').append('<tr class="spoat2"><td>'+ceq_code+'</td><td>'+
+					 $('#result').append('<tr class="spoat"><td>'+ceq_code+'</td><td>'+
 						ceq_name + '</td><td>'+
 						ceq_type + '</td><td>'+
 						ceq_acquire_date + '</td><td>'+
@@ -55,6 +59,30 @@
 						ceq_durable  + '</td><td>'+
 						ceq_depreciation  + '</td><td>'+
 						ceq_depreciation_type  + '</td></tr>');
+					 
+					 if(searchCount == 1){
+						 $('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+							);
+						 searchCount = searchCount + 1;
+					 }
+					 
 					}   
 				
 			},
@@ -121,13 +149,13 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
     									<hr>
-                                        <table id="spoat" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
                                             <thead>
                                             <tr>
                                             	<th>전산설비코드</th>
 			                                    <th>설비명</th>
 			                                    <th>보유구분</th>
-			                                    <th>구입일</th>
+			                                    <th>구입/대여일</th>
 			                                    <th>사용부서</th>
 			                                    <th>위치</th>
 			                                    <th>매입가</th>
@@ -136,8 +164,7 @@
 			                                    <th>감가상각법</th>
                                             </tr>
                                             </thead>
-    
-                                            <tbody>
+                                            <tbody id = "result">
                                             </tbody>
                                         </table>
                                     </div>
@@ -145,10 +172,6 @@
                             </div>
                         </div>
 						
-						<div id="result" class="card-body">
-								<!-- 상세 페이지 출력 위치 -->
-
-						</div>
                          <!-- end container-fluid -->
 
                 </div> <!-- end content -->
@@ -166,35 +189,24 @@
     <%@ include file="../rightbar.jsp" %>
     <%@ include file="../setting2.jsp" %>
     
-    <!-- Datatable plugin js -->
-    	<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-        <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
-
-        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
-         <!-- Plugins js -->
-        <script src="/erp/resources/assets/libs/dropify/dropify.min.js"></script>
-
-        <!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-fileuploads.init.js"></script>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+        <div id = "bodyappend"></div>
+        
+        
     <script type="text/javascript">
     
     
