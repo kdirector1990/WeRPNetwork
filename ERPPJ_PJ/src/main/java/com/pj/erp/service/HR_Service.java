@@ -43,5 +43,9 @@ public interface HR_Service {
 	
 	//인사고과/상벌현황 검색
 	public List<HR_GreetingVO> getGreeting(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	// 사원정보 현황
+	public void selectFoundation(HttpServletRequest req, Model model);
 
+	
 }

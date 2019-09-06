@@ -79,6 +79,7 @@ public class HR_Controller {
 	@RequestMapping("HR_EmployeeInformation")
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeInformation");
+		service.selectFoundation(req, model);
 		
 		return "HR/HR_EmployeeInformation";
 	}
