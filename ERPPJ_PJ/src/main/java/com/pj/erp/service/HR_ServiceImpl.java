@@ -198,6 +198,14 @@ public class HR_ServiceImpl implements HR_Service{
 		e_blood_presure = e_blood_presure1 + "mmHg ~ " + e_blood_presure2 + "mmHg";
 		vo.setE_blood_presure(e_blood_presure);		
 		
+		int e_veteran_type = Integer.parseInt(req.getParameter("e_veteran_type"));
+		vo.setE_veteran_type(e_veteran_type);
+		vo.setE_veteran_info(req.getParameter("e_veteran_info"));
+		vo.setE_veteran_level(req.getParameter("e_veteran_level"));
+		
+		vo.setE_disability_type(req.getParameter("e_disability_type"));
+		vo.setE_disability_level(req.getParameter("e_disability_level"));		
+		
 		int cnt = 0;
 		
 		cnt = dao.insertPhysical(vo);

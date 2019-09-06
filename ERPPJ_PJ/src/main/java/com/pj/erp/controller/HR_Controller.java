@@ -55,11 +55,12 @@ public class HR_Controller {
 		
 	}	
 	
-	@RequestMapping("inputPhysical")
+	@RequestMapping("HR_inputPhysical")
 	public String HR_inputPhysical(HttpServletRequest req, Model model) {
 		logger.info("log => HR_inputPhysicalPro");
+		service.inputPhysical(req, model);
 		
-		return "HR/HR_InputHR";
+		return "index";
 	}
 	
 	@RequestMapping("HR_inputProHR3")
