@@ -1,5 +1,6 @@
 package com.pj.erp.controller;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.FT_Service;
+import com.pj.erp.vo.FT.FT_Account;
 
 @Controller
 public class FT_Controller {
@@ -279,6 +281,15 @@ public class FT_Controller {
 		service.FT_ACCInsert(map);
 		
 		return "완료"; 
+	}
+	
+	// 거래처 검색 가져오기
+	@RequestMapping(value = "FT_accountSelect", produces = "application/text; charset=utf8")
+	public @ResponseBody List<FT_Account> FT_accountSelect(HttpServletRequest req) {
+		logger.info("url : FT_accountSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+		
+		return service.FT_AccountSelect(req);
 	}
 	
 	// 적금 추가

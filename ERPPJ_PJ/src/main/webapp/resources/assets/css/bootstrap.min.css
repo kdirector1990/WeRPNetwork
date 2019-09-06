@@ -11753,6 +11753,97 @@ p {
 .chit-table-bordered-primary tbody td, .chitsub-table-bordered-primary tbody td {
 	padding: 0rem;
 }
+
+.btn-subpage {
+	display: inline-block;
+  	outline: none;
+  	cursor: pointer;
+  	text-align: center;
+  	text-decoration: none;
+ 	font: 14px/100% Arial, Helvetica, sans-serif;
+ 	padding: .1em 1em .15em;
+  	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  	-webkit-border-radius: .5em;
+  	-moz-border-radius: .5em;
+ 	border-radius: .5em;
+  	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  	border: solid 1px #99dbff;
+	color:  #000;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #dbf1ff 39%, #99dbff 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#dbf1ff 39%,#99dbff 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #ffffff 0%,#dbf1ff 39%,#99dbff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#99dbff',GradientType=0 );
+}
+
+.btn-subpage:hover {
+	color: #000;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #dbf1ff 0%, #6bcbff 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#dbf1ff 0%,#6bcbff 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #ffffff 0%,#dbf1ff 0%,#6bcbff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#6bcbff',GradientType=0 );
+	outline: none;
+}
+
+.btn-subpage.active, .btn-subpage:active {
+	outline: none;
+	color:  #348cd4;
+	background: #58cbf4; /* Old browsers */
+	background: -moz-linear-gradient(top, #58cbf4 0%, #b3e1f2 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #58cbf4 0%,#b3e1f2 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #58cbf4 0%,#b3e1f2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#58cbf4', endColorstr='#b3e1f2',GradientType=0 );
+}
+
+.btn-subpage.focus, .btn-subpage:focus {
+	-webkit-box-shadow: 0 0 0 .15rem rgba(52, 140, 212, .5);
+	box-shadow: 0 0 0 .15rem rgba(52, 140, 212, .5)
+}
+
+.btn-subpage.disabled, .btn-subpage:disabled {
+	color: #348cd4;
+	background-color: transparent
+}
+
+.btn-subpage:not (:disabled ):not (.disabled ).active,
+	.btn-subpage:not (:disabled ):not (.disabled ):active, .show>.btn-subpage.dropdown-toggle
+	{
+	color: #fff;
+	background-color: #348cd4;
+	border-color: #348cd4
+}
+
+.btn-subpage:not (:disabled ):not (.disabled ).active:focus,
+	.btn-subpage:not (:disabled ):not (.disabled ):active:focus,
+	.show>.btn-subpage.dropdown-toggle:focus {
+	-webkit-box-shadow: 0 0 0 .15rem rgba(52, 140, 212, .5);
+	box-shadow: 0 0 0 .15rem rgba(52, 140, 212, .5)
+}
+
+.subtables {
+    display: block;
+    border-collapse: collapse;
+    border: 0px;
+}
+.subtables tbody {
+    display: block;
+    height: 261px;
+    overflow: auto;
+}
+
+.subtables tbody td {
+    padding-top:2px;
+    padding-bottom:2px;
+}
+
+.subtables thead th {
+	text-align:center;
+    padding-top:1px;
+    padding-bottom:1px;
+}
 /*# sourceMappingURL=bootstrap.min.css.map */
 >>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 

@@ -369,16 +369,19 @@
         		}
         	}
         	
-        	
         	function subjectlist(subjectcode) {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
         		var url = "FT_Subject_list?key=" + $("*[name=subjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
-        		window.open(url, "subject_list", "menubar=no, width=700, height = 500");
+        		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
         		
         	}
         	
         	function accountlist(accountcode) {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
         		var url = "FT_account_list?key=" + $("*[name=accountCode" + accountcode + "]").val() + "&keyname=" + accountcode;
-        		window.open(url, "account_list", "menubar=no, width=700, height = 500");
+        		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
         		
         	}
         </script>
