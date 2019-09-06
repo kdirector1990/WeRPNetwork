@@ -127,6 +127,15 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		return vo;
 	}
+
+	@Override
+	public void CT_select_code(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//전산설비 수정화면 입력폼
+	
 	
 	
 

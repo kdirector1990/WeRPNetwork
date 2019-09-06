@@ -343,6 +343,14 @@ public class HR_ServiceImpl implements HR_Service{
 		model.addAttribute("rank", rank);
 		
 	}
+
+	@Override
+	public void selectFoundation(HttpServletRequest req, Model model) {
+		List<HR_VO> vo = dao.foundation();
+		
+		model.addAttribute("vo", vo);
+		
+	}
 	
 
 	
