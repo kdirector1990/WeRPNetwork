@@ -18,6 +18,10 @@
 		values(userid.currval, 'ROLE_USER') 
 	</insert>
 	
+	<insert id="insertPhysical" parameterType="com.pj.erp.vo.HR_PhysicalVO">
+	
+	</insert>
+	
 	<!-- 부서 등록 -->
 	<insert id="insertDepartment" parameterType="java.util.Map">
 		insert into department_tbl(department_code, department_name)
