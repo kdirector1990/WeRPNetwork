@@ -43,49 +43,6 @@
     	}
     }
 
-	 /* function changeSelect(value){
-		var param = $("#select1").serializeArray();
-		$.ajax({
-			url: '/erp/CT_select_type',
-			type: 'POST',
-			data : param,
-			dataTpye: 'json',
-			success: function(vo){
-				
-				if($(".spoat2") != null){
-					$(".spoat2").remove();
-				}
-				
-				for(var i = 0; i < vo.length; i++){
-					var ceq_code = vo[i].ceq_code; 
-					var ceq_name = vo[i].ceq_name; 
-					var ceq_type = vo[i].ceq_type; 
-					var ceq_acquire_date = vo[i].ceq_acquire_date; 
-					var ceq_department_code = vo[i].department_code; 
-					var ceq_location = vo[i].ceq_location; 
-					var ceq_prime_cost = addComma(vo[i].ceq_prime_cost); 
-					var ceq_durable = vo[i].ceq_durable; 
-					var ceq_depreciation = vo[i].ceq_depreciation; 
-					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
-					
-					 $('#datatable tbody').append('<tr class="spoat2"><td>'+ceq_code+'</td><td>'+
-						ceq_name + '</td><td>'+
-						ceq_type + '</td><td>'+
-						ceq_acquire_date + '</td><td>'+
-						ceq_department_code + '</td><td>'+
-						ceq_location  + '</td><td>'+
-						ceq_prime_cost  + '</td><td>'+
-						ceq_durable  + '</td><td>'+
-						ceq_depreciation  + '</td><td>'+
-						ceq_depreciation_type  + '</td></tr>');
-					}   
-				
-			},
-			error : function(){
-				alert("전산 오류로 인하여 불러오기에 실패하였습니다.");
-			}
-		}); 
-	} */
 </script>
 </head>
 	<body>
@@ -139,10 +96,18 @@
 							</div>
 						</div>
 						
-						<div id="result" class="card-body">
-								<!-- 상세 페이지 출력 위치 -->
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-body table-responsive">
+										<div class="table-responsive" style = "margin: 15px 0px 50px">
+											<div id="result" class="card-body">
+												<!-- 상세 페이지 출력 위치 -->
 
-						</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
                          <!-- end container-fluid -->
 
                 </div> <!-- end content -->
