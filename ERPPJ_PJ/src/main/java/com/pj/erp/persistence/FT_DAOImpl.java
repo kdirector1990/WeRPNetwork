@@ -17,12 +17,6 @@ public class FT_DAOImpl implements FT_DAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 거래처 추가
-	@Override
-	public int FT_AccInsert(Map<String, Object> map) {
-		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccInsert",map);
-	}
-	
 	public int FT_applyinput() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -122,9 +116,30 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_SubjectSelect");
 	}
 	
+	// 거래처 추가
+	@Override
+	public int FT_AccInsert(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccInsert",map);
+	}
+	
+	// 거래처 검색 한 것 개수 가져오기
+	public int FT_AccountCntSelect(String srhval) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_AccountCntSelect", srhval);
+	}
+	
+	// 거래처 검색한 것 가져오기
+	@Override
+	public List<FT_Account> FT_AccountSelect(String srhval) {
+		if(FT_AccountCntSelect(srhval) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_accountSelect", srhval);
+		}
+	}
+
 	// 거래처 가져오기
 	@Override
-	public List<FT_Account> FT_AccountSelect() {
-		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_AccountSelect");
+	public List<FT_Account> FT_AccountAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_AccountAllSelect");
 	}
 }

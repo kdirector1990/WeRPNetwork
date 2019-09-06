@@ -6,8 +6,8 @@
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
 	<insert id="insertMember" parameterType="com.pj.erp.vo.HR_VO">
-		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, start_date, enabled)
-		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{start_date}, #{enabled}) 
+		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
+		values(userid.nextval, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{department_code}, #{position_code}, #{rank_code}, #{start_date}, #{enabled}) 
 	</insert>
 	<insert id="insertMember2" parameterType="com.pj.erp.vo.HR_VO">
 		insert into users(username, password, e_name, enabled)
@@ -18,11 +18,35 @@
 		values(userid.currval, 'ROLE_USER') 
 	</insert>
 	
+	<insert id="insertPhysical" parameterType="com.pj.erp.vo.HR_PhysicalVO">
+	
+	</insert>
+	
 	<!-- 부서 등록 -->
 	<insert id="insertDepartment" parameterType="java.util.Map">
 		insert into department_tbl(department_code, department_name)
 		values(#{department_code}, #{department_name})
 	</insert>
+	
+	<!-- 사원 정보 -->
+	<select id="foundation" resultType="com.pj.erp.vo.HR_VO">
+		select * from users
+	</select>
+	
+	<!-- 부서 목록 -->
+	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+		select department_code, department_name from department_tbl	 
+	</select>
+	
+	<!-- 직책 목록 -->
+	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+		select position_code from position_tbl
+	</select>
+	
+	<select id="getRankList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+		select rank_code from rank_tbl
+	</select>
+	
 	
 	<!-- 호봉테이블(랭크) -->	
 	<select id="rank" resultType="com.pj.erp.vo.HR_RankVO">
@@ -41,5 +65,17 @@
 		Set BASE_PAYMENT = #{BASE_PAYMENT}, ADD_PAYMENT = #{ADD_PAYMENT}, EXTENSION_PAYMENT = #{EXTENSION_PAYMENT}
 		Where paystep_code = #{paystep_code} And rank_code = #{rank_code}
 	</update>
+	
+	<!-- 인사고과조회 -->
+	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_GreetingVO">
+	<![CDATA[
+		select pa_code, username, pa_date, pa_type, pa_name, department_Code, pa_details, detail_ac_code, pa_value, pa_other, jr_state  from getgreeting_view 
+		where pa_code like '%'||#{pa_code}||'%' 
+		and username like '%'||#{username}||'%' 
+		and e_name like '%'||#{e_name}||'%' 
+		and pa_date >= #{spa_date} and pa_date <= #{epa_date}
+		]]>
+	</select>
+	<!-- and pa_date >= #{spa_date} and pa_date <= #{epa_date} -->
 	
 </mapper>

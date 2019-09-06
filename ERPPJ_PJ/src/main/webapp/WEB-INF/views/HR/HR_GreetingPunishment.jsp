@@ -6,61 +6,104 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
-		
-    
 	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <script type = "text/javascript">
-/* 
-	function search(url){
-		sendRequest(load_callback, url, "post");
-	}
-	
-	 function load_callback(){
-		var result =  document.getElementById("result");
-		
-		if(httpRequest.readyState == 1){
-			setTimeout(function(){
-				if(httpRequest.readyState == 4){
-					if(httpRequest.status == 200){
-						//result.innerHTML = "정상종료";
-						//응답결과가 html 이면 responseText로 받고, XML 이면 responseXML로 받는다.
-						result.innerHTML = httpRequest.responseText;
-						
-					} else{
-						result.innerHTML = "error";
-					}
-				} else{
-					result.innerHTML = "error : httpRequest.readyState" + httpRequest.readyState;
-				}
-				
-			},2000);
-		}
-		
-		search('HR_GreetingPunishment_result?${_csrf.parameterName}=${_csrf.token }');"
-		
-	} */
+    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
-			var param = {
-				
-			}
-			param.pa_name = $("#pa_name").val();
+			var param = new Object();
+			var jsonData;
+			
+			
+			param.pa_code = $("#pa_code").val();
 			param.username = $("#username").val();
 			param.e_name = $("#e_name").val();
 			param.pa_date = $("#pa_date").val();
 					
-			
+			jsonData = JSON.stringify(param);
 			/* alert(param.pa_name);
 			alert(param.username);
 			alert(param.e_name);
 			alert(param.pa_date); */
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_GreetingPunishment_result?${_csrf.parameterName}=${_csrf.token }',
-				type : 'GET',
-				data : param,
-				success : function(data){
-					$('#result').html(data);
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){
+					
+					$('#result').empty();
+					
+					
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var pa_codes = list[i].pa_code;
+						var usernames = list[i].username;
+						var pa_dates = list[i].pa_date;
+						var pa = new Date(pa_dates);
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var pa_datess = year + "/" + month +"/"+day;
+						var pa_types = list[i].pa_type;
+						var pa_names = list[i].pa_name;
+						var department_codes = list[i].department_code;
+						var pa_detailss = list[i].pa_details;
+						var account_codes = list[i].detail_ac_code;
+						var pa_values = list[i].pa_value;
+						var pa_others = list[i].pa_other;
+						var jr_states = list[i].jr_state;
+						
+					$('#result').append('<tr>'+
+                         	'<td>'+ pa_codes +'</td>'+
+							'<td>'+ usernames +'</td>'+
+							'<td>'+ pa_datess +'</td>'+
+							'<td>'+ pa_types +'</td>'+
+							'<td>'+ pa_names +'</td>'+
+							'<td>'+ department_codes +'</td>'+
+							'<td>'+ pa_detailss +'</td>'+
+							'<td>'+ account_codes +'</td>'+
+							'<td>'+ pa_values +'</td>'+
+							'<td>'+ pa_others +'</td>'+
+							'<td>'+ jr_states +'</td>'+
+                 		'</tr>');
+					
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
+					
+					}
+					
 				},
 				error : function(){
 					alert("에러");
@@ -71,7 +114,7 @@
 	 
 	 
 	 
-
+console.log(searchCount);
 </script>
 
 </head>
@@ -116,13 +159,10 @@
 								<div class="card-body table-responsive">
 								<table class="col-12">
 									<tr class="form-group row">
-										<th class="col-md-1 col-form-label">고과명</th>
-										<td class="col-md-2 input-group"><select class="form-control select2" id = "pa_name" name="pa_name">
-												<option></option>
-												<option value = "2018first">2018년 상반기</option>
-												<option value = "2018second">2018년 하반기</option>
-												<option value = "2019first">2019년 상반기</option>
-											</select> </td>
+										<th class="col-md-1 col-form-label">인사고과코드 검색</th>
+										<td class="col-md-1 input-group">
+											<input type="text" class="form-control" name="pa_code" id = "pa_code">
+											</td>
 										<th class="col-md-1 col-form-label">&nbsp;</th>
 										<th class="col-md-1 col-form-label">사원번호 검색</th>
 										<td class="col-md-1 input-group">
@@ -144,10 +184,42 @@
 		                   </div> 
                          </div>
                          
-                      </div> 
-                      <div id = "result">
-                      
-                      </div>
+                      <div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                                            <col style = "width:8%;">
+                                            <col style = "width:7%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:5%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <thead>
+                                                <tr>
+	                                             	<th>인사고과코드</th>
+													<th>사원번호</th>
+													<th>일자</th>
+													<th>인사고과 구분</th>
+													<th>인사고과명</th>
+													<th>시행처</th>
+													<th>고과 내역</th>
+													<th>계정코드</th>
+													<th>금액</th>
+													<th>비고</th>
+													<th>처리상태</th>
+                                         		</tr>
+                                      		</thead>
+                                    		<tbody id = "result">
+                                    		
+                                      		</tbody>
+                                        </table>
+</div></div></div></div></div>
                
                <!-- 페이지 내용 입력 공간 종료 -->
 
@@ -172,7 +244,6 @@
 	<!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
 	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-	
 	<!-- plugins -->
         <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
         <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
@@ -185,7 +256,7 @@
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
         <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-
+	<div id = "bodyappend"></div>
 
 </body>
 </html>

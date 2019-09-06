@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.pj.erp.vo.HR_PhysicalVO;
-
+import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
@@ -65,6 +65,40 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int insertDepartment(Map<String, Object> map) {		
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertDepartment", map);
+	}
+
+	@Override
+	public List<HR_GreetingVO> getGreeting(Map<String, Object> map) {
+		
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getGreeting", map);
+	}
+	
+	public List<HR_VO> getDepartmentList(Map<String, Object> map) {
+		List<HR_VO> dep = null;
+		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
+		dep = dao.getDepartmentList(map);
+		return dep;
+	}
+
+	@Override
+	public List<HR_VO> getPositionList(Map<String, Object> map) {
+		List<HR_VO> poi = null;
+		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
+		poi = dao.getPositionList(map);
+		return poi;
+	}
+
+	@Override
+	public List<HR_VO> getRankList(Map<String, Object> map) {
+		List<HR_VO> rank = null;
+		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
+		rank = dao.getRankList(map);
+		return rank;
+	}
+
+	@Override
+	public List<HR_VO> foundation() {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.foundation");
 	}
 
 	
