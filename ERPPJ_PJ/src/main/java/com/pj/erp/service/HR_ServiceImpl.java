@@ -283,20 +283,21 @@ public class HR_ServiceImpl implements HR_Service{
 		String pa_eDate = pa_dates.substring(13, 23);
 		String spa_date = "";
 		String epa_date = "";
-		if(pa_code == null) {
+		*/
+		if(pa_code == " ") {
 			pa_code = "*";
 		}
-		if(username == null) {
+		if(username == " ") {
 			username = "*";
 		}
-		if(e_name == null) {
+		if(e_name == " ") {
 			e_name = "*";
 		}
 		
 		map.put("pa_code", pa_code);
 		map.put("username", username);
 		map.put("e_name", e_name);
-		
+		/*
 		Date sdate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
 		Date edate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
 		
@@ -313,7 +314,7 @@ public class HR_ServiceImpl implements HR_Service{
 		map.put("epa_date", epa_date);
 		*/
 		List<HR_GreetingVO> list = dao.getGreeting(map);
-		
+		System.out.println(list.get(0).getPa_date());
 		return list;
 	}
 		
