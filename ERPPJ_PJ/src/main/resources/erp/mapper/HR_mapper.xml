@@ -28,6 +28,11 @@
 		values(#{department_code}, #{department_name})
 	</insert>
 	
+	<!-- 사원 정보 -->
+	<select id="foundation" resultType="com.pj.erp.vo.HR_VO">
+		select * from users
+	</select>
+	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
 		select department_code, department_name from department_tbl	 

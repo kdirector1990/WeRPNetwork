@@ -96,6 +96,11 @@ public class HR_DAOImpl implements HR_DAO{
 		return rank;
 	}
 
+	@Override
+	public List<HR_VO> foundation() {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.foundation");
+	}
+
 	
 
 	
