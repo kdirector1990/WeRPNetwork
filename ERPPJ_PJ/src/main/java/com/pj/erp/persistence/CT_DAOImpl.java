@@ -34,10 +34,22 @@ public class CT_DAOImpl implements CT_DAO{
 	}
 	
 
-	//고정자산 목록 가져오기
+	//고정자산 목록 가져오기(type)
 	@Override
 	public List<CT_VO> SelectCT(String type) {
 		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.SelectCT", type);
+	}
+
+	//고정자산 목록 가져오기(code)
+	@Override
+	public CT_VO selectCode(String code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.SelectCode", code);
+	}
+
+	//고정자산 수정
+	@Override
+	public int updateCT(CT_VO vo) {
+		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.updateCT", vo);
 	}
 
 	

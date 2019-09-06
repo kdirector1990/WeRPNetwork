@@ -20,6 +20,9 @@ public interface CT_Service {
 	public List<CT_VO> CT_select_A(HttpServletRequest req, Model model);
 	
 	//전산설비 수정(개인) 입력폼.
-	public void CT_select_code(HttpServletRequest req, Model model);
+	public CT_VO CT_select_code(HttpServletRequest req, Model model);
+	
+	//전산설비 수정
+	public void CT_update_ct(HttpServletRequest req, Model model);
 	
 }
