@@ -10,8 +10,8 @@ public class MS_plan {
 	private String username;			//기획제안자
 	private String position_code;		//책임자
 	private Timestamp plan_regdate;		//기획등록일
-	private Date plan_startdate;	//기획 시작 예정일
-	private Date plan_enddate;		//기획 종료 목표일
+	private String plan_startdate;	//기획 시작 예정일
+	private String plan_enddate;		//기획 종료 목표일
 	private String plan_objective;		//기획 목표
 	private String plan_state;			//기획 상태
 	private String plan_proposal;		//상세 기획안 파일
@@ -58,19 +58,19 @@ public class MS_plan {
 		this.plan_regdate = plan_regdate;
 	}
 
-	public Date getPlan_startdate() {
+	public String getPlan_startdate() {
 		return plan_startdate;
 	}
 
-	public void setPlan_startdate(Date plan_startdate) {
+	public void setPlan_startdate(String plan_startdate) {
 		this.plan_startdate = plan_startdate;
 	}
 
-	public Date getPlan_enddate() {
+	public String getPlan_enddate() {
 		return plan_enddate;
 	}
 
-	public void setPlan_enddate(Date plan_enddate) {
+	public void setPlan_enddate(String plan_enddate) {
 		this.plan_enddate = plan_enddate;
 	}
 

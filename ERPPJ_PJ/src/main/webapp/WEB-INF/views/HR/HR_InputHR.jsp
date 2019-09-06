@@ -207,20 +207,18 @@
 																<label class="col-md-1 col-form-label" for="simpleinput">부서<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<select class="form-control select2" name="department_code" onchange="">
-																		<option></option>
-																		<option></option>
-																		<option></option>
-																		<option></option>																							
+																		<c:forEach var="dep" items="${dep}">
+																		<option value="${dep.department_code}">${dep.department_name}</option>	
+																		</c:forEach>																																							
 																	</select>
 																</div>
 																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 																<label class="col-md-1 col-form-label" for="simpleinput">직책<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<select class="form-control select2" name="position_code" onchange="">
-																		<option></option>
-																		<option></option>
-																		<option></option>
-																		<option></option>																							
+																		<c:forEach var="poi" items="${poi}">
+																		<option value="${poi.position_code}">${poi.position_code}</option>	
+																		</c:forEach>																							
 																	</select>
 																</div>																
 															</div>
@@ -229,10 +227,9 @@
 																<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<select class="form-control select2" name="rank_code" onchange="">
-																		<option>2017년 상반기 인사고과</option>
-																		<option>2017년 하반기 인사고과</option>
-																		<option>2018년 상반기 인사고과</option>
-																		<option>2018년 하반기 인사고과</option>																							
+																		<c:forEach var="rank" items="${rank}">
+																		<option value="${rank.rank_code}">${rank.rank_code}</option>	
+																		</c:forEach>																							
 																	</select>
 																</div>
 																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>

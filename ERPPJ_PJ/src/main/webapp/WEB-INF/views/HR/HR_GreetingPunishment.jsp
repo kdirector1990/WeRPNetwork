@@ -6,8 +6,6 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
-		
-    
 	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 	<script src="/erp/resources/assets/css/js/request.js"></script>
     <script type = "text/javascript">
@@ -42,25 +40,59 @@
 	} */
 	 $(function(){
 		$('#search').click(function(){
-			var param = {
-				
-			}
-			param.pa_name = $("#pa_name").val();
+			var param = new Object();
+			var jsonData;
+			
+			param.pa_code = $("#pa_code").val();
 			param.username = $("#username").val();
 			param.e_name = $("#e_name").val();
 			param.pa_date = $("#pa_date").val();
 					
-			
+			jsonData = JSON.stringify(param);
 			/* alert(param.pa_name);
 			alert(param.username);
 			alert(param.e_name);
 			alert(param.pa_date); */
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_GreetingPunishment_result?${_csrf.parameterName}=${_csrf.token }',
-				type : 'GET',
-				data : param,
-				success : function(data){
-					$('#result').html(data);
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){
+					
+					$('#result').empty("");
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var pa_codes = list[i].pa_code;
+						var usernames = list[i].username;
+						var pa_dates = list[i].pa_date;
+						var pa_types = list[i].pa_type;
+						var pa_names = list[i].pa_name;
+						var department_codes = list[i].department_code;
+						var pa_detailss = list[i].pa_details;
+						var account_codes = list[i].detail_ac_code;
+						var pa_values = list[i].pa_value;
+						var pa_others = list[i].pa_other;
+						var jr_states = list[i].jr_state;
+						
+					$('#result').append('<tr>'+
+                         	'<td>'+ pa_codes +'</td>'+
+							'<td>'+ usernames +'</td>'+
+							'<td>'+ pa_dates +'</td>'+
+							'<td>'+ pa_types +'</td>'+
+							'<td>'+ pa_names +'</td>'+
+							'<td>'+ department_codes +'</td>'+
+							'<td>'+ pa_detailss +'</td>'+
+							'<td>'+ account_codes +'</td>'+
+							'<td>'+ pa_values +'</td>'+
+							'<td>'+ pa_others +'</td>'+
+							'<td>'+ jr_states +'</td>'+
+                 		'</tr>');
+					
+					
+					}
 				},
 				error : function(){
 					alert("에러");
@@ -116,13 +148,10 @@
 								<div class="card-body table-responsive">
 								<table class="col-12">
 									<tr class="form-group row">
-										<th class="col-md-1 col-form-label">고과명</th>
-										<td class="col-md-2 input-group"><select class="form-control select2" id = "pa_name" name="pa_name">
-												<option></option>
-												<option value = "2018first">2018년 상반기</option>
-												<option value = "2018second">2018년 하반기</option>
-												<option value = "2019first">2019년 상반기</option>
-											</select> </td>
+										<th class="col-md-1 col-form-label">인사고과코드 검색</th>
+										<td class="col-md-1 input-group">
+											<input type="text" class="form-control" name="pa_code" id = "pa_code">
+											</td>
 										<th class="col-md-1 col-form-label">&nbsp;</th>
 										<th class="col-md-1 col-form-label">사원번호 검색</th>
 										<td class="col-md-1 input-group">
@@ -144,10 +173,42 @@
 		                   </div> 
                          </div>
                          
-                      </div> 
-                      <div id = "result">
-                      
-                      </div>
+                      <div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                                            <col style = "width:8%;">
+                                            <col style = "width:7%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:5%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <thead>
+                                                <tr>
+	                                             	<th>인사고과코드</th>
+													<th>사원번호</th>
+													<th>일자</th>
+													<th>인사고과 구분</th>
+													<th>인사고과명</th>
+													<th>시행처</th>
+													<th>고과 내역</th>
+													<th>계정코드</th>
+													<th>금액</th>
+													<th>비고</th>
+													<th>처리상태</th>
+                                         		</tr>
+                                      		</thead>
+                                    		<tbody id = "result">
+                                    		
+                                      		</tbody>
+                                        </table>
+</div></div></div></div></div>
                
                <!-- 페이지 내용 입력 공간 종료 -->
 
@@ -172,7 +233,6 @@
 	<!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
 	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-	
 	<!-- plugins -->
         <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
         <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>

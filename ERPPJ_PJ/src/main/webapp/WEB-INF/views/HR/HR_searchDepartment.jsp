@@ -24,18 +24,18 @@
 							alert(param.username);
 							alert(param.e_name);
 							alert(param.pa_date); */
-							$
-									.ajax({
-										url : '${pageContext.request.contextPath}/HR_searchDepartment_result?${_csrf.parameterName}=${_csrf.token }',
-										type : 'GET',
-										data : param,
-										success : function(data) {
-											$('#result').html(data);
-										},
-										error : function() {
-											alert("에러");
-										}
-									});
+							$.ajax({
+								url : '${pageContext.request.contextPath}/HR_searchDepartment_result?${_csrf.parameterName}=${_csrf.token }',
+								type : 'GET',
+								data : param,
+								success : function(data) {
+									$('#result').html(data)
+									;
+								},
+								error : function() {
+									alert("에러");
+								}
+							});
 						});
 	});
 </script>
@@ -66,7 +66,7 @@
 										<li class="breadcrumb-item active">인사고과/상벌현황</li>
 									</ol>
 								</div>
-								<h4 class="page-title">인사고과/상벌현황</h4>
+								<h4 class="page-title">부서조회</h4>
 							</div>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 		<!-- ============================================================== -->
 
 	</div>
-	</div>
+	
 	<!-- END wrapper -->
 
 	<%@ include file="../rightbar.jsp"%>

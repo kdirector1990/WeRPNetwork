@@ -11,7 +11,13 @@
 
 	<c:if test="${updateEstimate == 0}">
 		<script type="text/javascript">
-			alert("안 됨");
+			alert("수정 안 됨");
+		</script>
+	</c:if>
+	
+	<c:if test="${deleteEstimate == 0}">
+		<script type="text/javascript">
+			alert("삭제 안 됨");
 		</script>
 	</c:if>
 
@@ -20,6 +26,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="table-responsive">
+					<c:if test="${deleteEstimate !=0 }">
 						<c:if test="${updateEstimate !=0 }">
 							<form method="post">
 								<input type="hidden" name="${_csrf.parameterName }"
@@ -76,11 +83,12 @@
 								<input class="inputButton" type="submit" value="수정"
 									formaction="ST_estimate_modifyPro"> <input
 									class="inputButton" type="submit" value="삭제"
-									formaction="ST_sale_Plan_deletePro"> <input
+									formaction="ST_estimate_deletePro"> <input
 									class="inputButton" type="reset" value="수정 취소"> <input
 									class="inputButton" type="button" value="목록보기"
 									onClick="window.location.reload()">
 							</form>
+						</c:if>
 						</c:if>
 					</div>
 				</div>

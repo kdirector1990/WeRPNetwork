@@ -44,15 +44,25 @@ public class ST_Controller {
 		logger.info("log => ST_tax-statements");
 		
 		return "ST/tax-statements";
+	}    
+	
+	// 견적 등록 (ST_estimate)
+	@RequestMapping("ST_estimate")
+	public String estimate(HttpServletRequest req, Model model) {
+		logger.info("log => ST_estimate");
+		
+		return "ST/ST_estimate";
 	}
 	
-	// 寃ъ쟻 愿�由�
-	@RequestMapping("ST_estimate")
-	public String estimate(Locale locale, Model model) {
-		logger.info("log => estimate");
+	// 견적 등록 처리 페이지
+	@RequestMapping("ST_estimate_writePro")
+	public String ST_estimate_writePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_estimate_writePro");
+		service.estimatewritePro(req, model);
 		
-		return "ST/estimate";
+		return "ST/ST_estimate_writePro";
 	}
+	
 	
 	// 異쒓퀬 愿�由�
 	@RequestMapping("ST_release")
@@ -92,7 +102,7 @@ public class ST_Controller {
 	@RequestMapping("ST_sale_Plan_modifyPro")
 	public String ST_sale_Plan_modifyPro(HttpServletRequest req, Model model) {
 		logger.info("log => ST_sale_Plan_modifyPro");
-		service.estimatemodifyPro(req, model);
+		service.salePlanmodifyPro(req, model);
 		    
 		return "ST/ST_sale_Plan_modifyPro"; 
 	}           
@@ -124,11 +134,20 @@ public class ST_Controller {
 		return "ST/ST_contrast_pPro";
 	}
 	
+	// 출고 지연 ST_delay_state (검색 부분)
 	@RequestMapping("ST_delay_state")
 	public String ST_delay_state(Locale locale, Model model) {
 		logger.info("log => ST_delay_state");
 		
 		return "ST/ST_delay_state";
+	}
+	
+	// 출고 지연 결과 (표)
+	@RequestMapping("ST_delay_state_result")
+	public String ST_delay_state_result(Locale locale, Model model) {
+		logger.info("log => ST_delay_state_result");
+		
+		return "ST/ST_delay_state_result";
 	}
 	
 	@RequestMapping("ST_tex_invoice_list")
@@ -163,6 +182,15 @@ public class ST_Controller {
 		service.estimatemodifyPro(req, model);
 		
 		return "ST/ST_estimate_modifyPro";
+	}
+	
+	// 견적 현황 상세 삭제 처리 페이지
+	@RequestMapping("ST_estimate_deletePro")
+	public String ST_estimate_deletePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_estimate_deletePro");
+		service.estimatedeletePro(req, model);
+		
+		return "ST/ST_estimate_deletePro";
 	}
 	
 	

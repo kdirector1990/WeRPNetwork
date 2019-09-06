@@ -402,7 +402,7 @@
 	                          		</a>
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
-										<li><a href="ST_estimate">견적 관리</a></li>
+										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
 										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
 	                          		</ul>
@@ -560,8 +560,7 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="CT_equip_add">전산 설비 등록</a></li>
-	                          			<li><a href="CT_equip_list">전산 설비 목록</a></li>
-					                    <li><a href="CT_equip_manage">전산 설비 관리</a></li>
+					                    <li><a href="CT_equip_manage2">전산 설비 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
