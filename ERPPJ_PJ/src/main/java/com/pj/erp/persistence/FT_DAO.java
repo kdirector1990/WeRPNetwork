@@ -51,10 +51,16 @@ public interface FT_DAO {
 	// 거래처 추가
 	public int FT_AccInsert(Map<String, Object> map);
 	
-	// 계정과목가져오기
-	public List<FT_Subject> FT_SubjectSelect();
+	// 거래처 검색 한 것 개수 가져오기
+	public int FT_AccountCntSelect(String srhval);
+	
+	// 거래처 검색 한 것 가져오기
+	public List<FT_Account> FT_AccountSelect(String srhval);
 	
 	// 거래처가져오기
-	public List<FT_Account> FT_AccountSelect();
+	public List<FT_Account> FT_AccountAllSelect();
+	
+	// 계정과목가져오기
+	public List<FT_Subject> FT_SubjectSelect();
 	
 }

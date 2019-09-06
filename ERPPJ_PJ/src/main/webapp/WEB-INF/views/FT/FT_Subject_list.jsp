@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <%@ include file="../setting.jsp" %>
     <!-- Table datatable css -->
-    <link href="/erp/resources/assets/css/bootstrap.min.list.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -18,8 +17,9 @@
 		//self.close() : 메시지 없이 현재 창을 닫을 때 사용
 		//hiddenId : 중복확인 버튼 클릭 여부 체크(0: 클릭안함, 1: 클릭함)
     	$(function(){
-    		$(".form-control form-control-sm", parent.opener.document).val(${key})
-    	})
+    		$(".form-control form-control-sm", parent.opener.document).val(${key});
+    	});
+    	
 	    function setvalue(val){
     		$("input[name=SubjectCode" + ${keyname} + "]", parent.opener.document).val($("#code" + val).html());
     		$("input[name=SubjectName" + ${keyname} + "]", parent.opener.document).val($("#name" + val).html());
@@ -28,15 +28,15 @@
     		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
     		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
     		var deposit = '<div class="form-group row">' +	
-			'<label class="col-lg-4 col-form-label" for="simpleinput">예금코드<span class="text-danger">*</span></label>' +
-			'<div class="col-lg-8">' +
-				'<input type="text" class="form-control" name="e_name" placeholder = "한글이름" style = "display:inline; width: 100px;">' +
-				'<button type="button" class="btn btn-icon waves-effect waves-light btn-primary">' +
-					'<i class="fas fa-search"></i>' +
-				'</button>' +
-				'<input type="text" class="form-control" name="e_name" placeholder = "한글이름">' +
-			'</div>' +
-		'</div>';
+				'<label class="col-lg-4 col-form-label" for="simpleinput">예금코드<span class="text-danger">*</span></label>' +
+				'<div class="col-lg-8">' +
+					'<input type="text" class="form-control" name="e_name" placeholder = "한글이름" style = "display:inline; width: 100px;">' +
+					'<button type="button" class="btn btn-icon waves-effect waves-light btn-primary">' +
+						'<i class="fas fa-search"></i>' +
+					'</button>' +
+					'<input type="text" class="form-control" name="e_name" placeholder = "한글이름">' +
+				'</div>' +
+			'</div>';
     		var note = '<div class="form-group row">' +	
 					'<label class="col-lg-4 col-form-label" for="simpleinput">액면가<span class="text-danger">*</span></label>' +
 					'<div class="col-lg-8">' +
@@ -201,7 +201,7 @@
 		}
     </script>
     </head>
-	<body style = "width: 700px; height: 500px;">
+	<body style = "padding-bottom:0px;">
      	 <!-- Begin page -->
     	 <div id="wrapper">
             <div>
@@ -214,84 +214,60 @@
             		<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
-							<div class="page-title-box">
-								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item active">계정과목 목록</li>
-                                        </ol>
-								</div>
-								<h4 class="page-title">계정과목목록</h4>
+							<div class="page-title-box" style = "text-align:center;">
+								<h4><b>계정과목목록</b></h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
                 
                 	<div class="row">
-						<div>
+						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-                                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                     	<div class="row">
-                                     		<div class="col-sm-12 col-md-6">
-                                     			<div class="dataTables_length" id="datatable_length">
-                                     				<label>Show 
-	                                    			 	<select name="datatable_length" aria-controls="datatable" class="custom-select custom-select-sm form-control form-control-sm">
-		                                     				<option value="10">10</option>
-		                                     				<option value="25">25</option>
-		                              			       		<option value="50">50</option>
-		                              			       		<option value="100">100</option>
-	                              			       		</select>
-                              			       		</label>
-                                     			</div>
-                                     		</div>
-                                     		<div class="col-sm-12 col-md-6">
-                                     			<div id="datatable_filter" class="dataTables_filter">
-                                     				<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="datatable"></label>
-                                     			</div>
-                                     		</div>
-                                     	</div>
-                                     	<div class="row">
-                                     		<div class="col-sm-12">
-                                     			<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable_info" style="width: 371px;">
-			                                        <colgroup>
-			                                        <col style="width:30%;">
-			                                        <col style="width:70%">
-			                                        </colgroup>
-			                                        <thead>
-			                                             <tr role="row">
-			                                             	<th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 67.4057px;" aria-sort="ascending" aria-label="코드: activate to sort column descending">
-			                                             	코드
-			                                             	</th>
-			                                             	<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" style="width: 215.4px;" aria-label="계정과목명: activate to sort column ascending">
-			                                             	계정과목명
-			                                             	</th>
-			                                             </tr>
-			                                   		</thead>
-			                                 		<tbody style="overflow:scroll; width:300px; height:150px;">
-			                                       		<c:set var="count" value="0"/>
-			                                       		<c:if test="${subject != null}">
-				                                       		<c:forEach var = "sub" items="${subject}">
-					                                       		<tr>
-					                                       			<td id = "code${count}" ondblclick="setvalue(${count})">${sub.accounts_code}</td>
-					                                       			<td id = "name${count}" ondblclick="setvalue(${count})">${sub.accounts_name}</td>
-					                                       			<c:set var="count" value="${count+1}"/>
-					                                       		</tr>
-				                                       		</c:forEach>
-			                                       		</c:if>
-			                                       		<c:if test="${subject == null}">
-					                                   		<c:forEach var = "sub" begin="1" end="100">
-					                                       		<tr>
-					                                       			<td id = "code${count}" ondblclick="setvalue(${count})">${sub}</td>
-					                                       			<td id = "name${count}" ondblclick="setvalue(${count})">${sub}</td>
-					                                       			<c:set var="count" value="${count+1}"/>
-					                                       		</tr>
-				                                       		</c:forEach>
-				                                   		</c:if>
-			                                   		</tbody>
-			                                    </table>
-                                     		</div>
-                                     	</div>
-                                    </div>
+								<div class="card-body" style = "padding-bottom:0px;">
+									<div style = "text-align: center;">
+										<label>Search : <input type="search" class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;"></label>
+									</div>
+									<div align="right">
+   										<button type="button" class="btn-subpage">조회</button>
+   										<button type="button" class="btn-subpage">확인</button>
+   										<button type="button" class="btn-subpage">취소</button>
+   									</div>
+								</div>
+								<div class="card-body" style = "padding-bottom:0px;">
+                           			<table style = "width: 280px" id="datatable" class="table table-bordered dt-responsive nowrap subtables">
+	                                   <colgroup>
+	                            			<col style = "width:80px;">
+	                            			<col style = "width:200px;">
+	                                   </colgroup>
+	                                   <thead>
+	                                        <tr class="table-info">
+	                                        	<th>코드</th>
+	                                        	<th>계정과목명</th>
+	                                        </tr>
+	                              		</thead>
+	                            		<tbody>
+	                                  		<c:set var="count" value="0"/>
+	                                  		<c:if test="${subject != null}">
+	                                   		<c:forEach var = "sub" items="${subject}">
+	                                    		<tr>
+	                                    			<td id = "code${count}" style = "width: 100px;" ondblclick="setvalue(${count})">${sub.accounts_code}</td>
+	                                    			<td id = "name${count}" ondblclick="setvalue(${count})" style = "width: calc( 400px - 19px );">${sub.accounts_name}</td>
+	                                    			<c:set var="count" value="${count+1}"/>
+	                                    		</tr>
+	                                   		</c:forEach>
+	                                  		</c:if>
+	                                  		<c:if test="${subject == null}">
+		                                		<c:forEach var = "sub" begin="1" end="100">
+		                                    		<tr>
+		                                    			<td id = "code${count}" ondblclick="setvalue(${count})" style = "width:80px;">${sub}</td>
+		                                    			<td id = "name${count}" ondblclick="setvalue(${count})" style = "width: calc( 200px - 16px );">${sub}</td>
+		                                    			<c:set var="count" value="${count+1}"/>
+		                                    		</tr>
+		                                   		</c:forEach>
+		                               		</c:if>
+	                              		</tbody>
+	                               </table>
                                	</div>
                              </div>
 		                   </div> 

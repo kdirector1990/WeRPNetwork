@@ -69,11 +69,13 @@
 	<!-- 인사고과조회 -->
 	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_GreetingVO">
 	<![CDATA[
-		select * from getgreeting_view 
+		select pa_code, username, pa_date, pa_type, pa_name, department_Code, pa_details, detail_ac_code, pa_value, pa_other, jr_state  from getgreeting_view 
 		where pa_code like '%'||#{pa_code}||'%' 
 		and username like '%'||#{username}||'%' 
 		and e_name like '%'||#{e_name}||'%' 
+		and pa_date >= #{spa_date} and pa_date <= #{epa_date}
 		]]>
 	</select>
+	<!-- and pa_date >= #{spa_date} and pa_date <= #{epa_date} -->
 	
 </mapper>

@@ -33,12 +33,14 @@
 	</delete>
 	
 	<!-- e_name(사원명)검색  -->
-	<select id="selectEname" resultType="int">
-		select * from users where e_name like %#{e_name}%
+	<select id="selectEname" resultType="int" parameterType="String" >
+	<![CDATA[
+		select COUNT(*) from users where e_name like '%'||#{e_name}||'%'
+	]]>
 	</select>
 	
 	<!-- 검색 목록 가져오기 -->
-	<select id="getUsernameList" resultType="com.pj.erp.vo.HR_VO">
-		select username, e_name, department_code, position_code from users where e_name like %#{e_name}%
+	<select id="getUsernameList" resultType="com.pj.erp.vo.HR_VO" parameterType="String">
+		select username, e_name, department_code, position_code from users where e_name like '%'||#{e_name}||'%'
 	</select>
 </mapper>

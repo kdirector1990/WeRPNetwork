@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <%@ include file="../setting.jsp" %>
     <!-- Table datatable css -->
@@ -15,6 +15,20 @@
 		//opener : window 객체의 open() 메소드로 열린 새창(=중복확인창)에서, 열어준 부모창(=회원가입창)에 접근할 때 사용
 		//self.close() : 메시지 없이 현재 창을 닫을 때 사용
 		//hiddenId : 중복확인 버튼 클릭 여부 체크(0: 클릭안함, 1: 클릭함)
+    	function selectlist(searchvalue){
+    		
+    		/* $.ajax({
+                type : "POST",
+                url : "/erp/FT_accountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + searchvalue,
+                success : function(data) {
+                       alert(data);
+                },
+                error : function(e) {
+                       alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                }
+           	}); */
+		}
+    
 		function setvalue(val){
 			opener.document.inputForm.id.value = $("#code" + val).html();
 			opener.document.inputForm.hiddenId.value = $("#name" + val).html();
@@ -22,10 +36,10 @@
 		}
     </script>
     </head>
-	<body>
+	<body style = "padding-bottom:0px;">
      	 <!-- Begin page -->
     	 <div id="wrapper">
-            <div class="content-page">
+            <div>
 			<!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->           
@@ -35,47 +49,63 @@
             		<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
-							<div class="page-title-box">
-								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">재무</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">부채목록</a></li>
-                                            <li class="breadcrumb-item active">거래처 목록</li>
-                                        </ol>
-								</div>
-								<h4 class="page-title">거래처목록</h4>
+							<div class="page-title-box" style = "text-align:center;">
+								<h4><b>거래처목록</b></h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
-                
                 	<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-                                     <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-                                         <col style = "width:30%">
-                                         <col style = "width:40%">
-                                         <thead>
-                                             <tr>
-                                            <th>코드</th>
-                                            <th>거래처명</th>
-                                            <th>사업자번호</th>
-                                      		</tr>
-                                   		</thead>
-                                 		<tbody>
-                                 			<c:set var="count" value="0"/>
-                                       		<c:forEach var = "acc" items="${account}">
-                                       		<tr>
-                                       			<td id = "code${count}" ondblclick="setvalue(${count})">${acc.customer_code}</td>
-                                       			<td id = "name${count}" ondblclick="setvalue(${count})">${acc.customer_name}</td>
-                                       			<td id = "licenseNo${vcounta}" ondblclick="setvalue(${count})">${acc.license_number}</td>
-                                       			<c:set var="count" value="${count+1}"/>
-                                       		</tr>
-                                       		</c:forEach>
-                                   		</tbody>
-                                     </table>
+								<div class="card-body" style = "padding-bottom:0px;">
+									<div style = "text-align: center;">
+										<label>Search : <input type="search" class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;" onkeyup = "selectlist(this.value);"></label>
+									</div>
+									<div align="right">
+   										<button type="button" class="btn-subpage">조회</button>
+   										<button type="button" class="btn-subpage">확인</button>
+   										<button type="button" class="btn-subpage">취소</button>
+   									</div>
+								</div>
+								<div class="card-body" style = "padding-bottom:0px;">
+                           			<table style = "width: 280px" id="datatable" class="table table-bordered dt-responsive nowrap subtables">
+	                                   <colgroup>
+	                            			<col style = "width:60px;">
+	                            			<col style = "width:90px;">
+	                            			<col style = "width:130px;">
+	                                   </colgroup>
+	                                   <thead>
+	                                        <tr class="table-info">
+	                                            <th>코드</th>
+	                                            <th>거래처명</th>
+	                                            <th>사업자번호</th>
+	                                        </tr>
+	                              		</thead>
+	                            		<tbody>
+	                                  		<c:set var="count" value="0"/>
+	                                  		<c:if test="${account != null}">
+		                                   		<c:forEach var = "acc" items="${account}">
+		                                       		<tr>
+		                                       			<td id = "code${count}" ondblclick="setvalue(${count})" style = "width:60px;">${acc.customer_code}</td>
+		                                       			<td id = "name${count}" ondblclick="setvalue(${count})" style = "width:90px;">${acc.customer_name}</td>
+		                                       			<td id = "licenseNo${count}" ondblclick="setvalue(${count})" style = "width: calc( 130px - 16px );">${acc.license_number}</td>
+		                                       			<c:set var="count" value="${count+1}"/>
+		                                       		</tr>
+	                                       		</c:forEach>
+	                                  		</c:if>
+	                                  		<c:if test="${account == null}">
+		                                		<c:forEach var = "sub" begin="1" end="100">
+		                                    		<tr>
+		                                       			<td id = "code${count}" ondblclick="setvalue(${count})" style = "width:60px;">${sub}</td>
+		                                       			<td id = "name${count}" ondblclick="setvalue(${count})" style = "width:90px;">${sub}</td>
+		                                       			<td id = "licenseNo${count}" ondblclick="setvalue(${count})" style = "width: calc( 130px - 16px );">${sub}</td>
+		                                       			<c:set var="count" value="${count+1}"/>
+		                                       		</tr>
+		                                   		</c:forEach>
+		                               		</c:if>
+	                              		</tbody>
+	                               </table>
                                	</div>
                              </div>
 		                   </div> 
@@ -96,7 +126,6 @@
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
         <!-- Datatable plugin js -->
-        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
         <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
 
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
