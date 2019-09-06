@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace = "com.pj.erp.persistence.ST_DAO">
+ 	
+ 	<select id = "getSaleCnt" resultType="int">
+ 		SELECT COUNT(*) as FROM saleplan_tbl
+ 	</select>
+ 	
+ 	<select id="getsaleplan" resultType="com.pj.erp.vo.ST.SalePlan" parameterType="java.util.Map">
+ 		select * from saleplan_tbl
+ 	</select>
+ 	
+ 	<select id="getSaleplanArticle" resultType="com.pj.erp.vo.ST.SalePlan">
+ 		SELECT * FROM saleplan_tbl WHERE saleplan_code=#{saleplan_code}
+ 	</select>
+ 	
+ 	<update id="updatesalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
+ 		UPDATE saleplan_tbl SET ef_price=#{ef_price}, s_plan_start =#{s_plan_start}, s_plan_end=#{s_plan_end} WHERE saleplan_code=#{saleplan_code}
+ 	</update>
+ 	
+ 	<delete id="deletesalePlan" parameterType="String">
+ 		DELETE saleplan_tbl WHERE saleplan_code=#{saleplan_code}
+ 	</delete>
+ 	
+ 	
+ 	<!-- estimate_price 견적 현황 -->
+ 	
+ 	<insert id="estimatewritePro" parameterType="com.pj.erp.vo.ST.Estimate">
+ 		INSERT INTO estimate_price_tbl(ep_code, ep_amount, ep_deliver_date, ep_price, ep_reg_date)
+ 			VALUES(#{ep_code}, #{ep_amount}, #{ep_deliver_date}, #{ep_price}, sysdate)
+ 	</insert>
+ 	
+ 	
+ 	<select id="getestimateCnt" resultType="int">
+ 		select COUNT(*) as FROM estimate_price_tbl
+ 	</select>
+ 	
+ 	<select id="getestimate" resultType="com.pj.erp.vo.ST.Estimate" parameterType="java.util.Map">
+ 		SELECT * FROM estimate_price_tbl
+ 	</select>
+ 	
+ 	<select id="getEstimateArticle" resultType="com.pj.erp.vo.ST.Estimate">
+ 		SELECT * FROM estimate_price_tbl WHERE ep_code=#{ep_code}
+ 	</select>
+ 	
+ 	<update id="updateEstimate" parameterType="com.pj.erp.vo.ST.Estimate">
+ 		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_reg_date=sysdate WHERE ep_code=#{ep_code}
+ 	</update>
+ 	
+ 	<delete id="deleteEstimate" parameterType="String">
+ 		DELETE estimate_price_tbl WHERE ep_code =#{ep_code}
+ 	</delete>
+ 
+ 
+ </mapper>

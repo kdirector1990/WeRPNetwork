@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.pj.erp.persistence.CT_DAO">
+	
+	<insert id="InsertAC" parameterType="com.pj.erp.vo.FT.FT_Detail_ac">
+		Insert Into detail_ac_tbl(accounts_code, detail_ac_code, account_name)
+		Values(#{accounts_code}, #{detail_ac_code}, #{account_name})
+		
+	</insert>
+	
+	<!-- 고정자산 입력 -->
+	<insert id="InsertCT" parameterType="com.pj.erp.vo.CT.CT_VO">
+		Insert into computer_equipment_tbl(ceq_code, ceq_name, ceq_type, ceq_acquire_date, department_code, ceq_location, ceq_prime_cost, ceq_durable, ceq_depreciation, ceq_depreciation_type)
+		Values(#{ceq_code}, #{ceq_name}, #{ceq_type}, #{ceq_acquire_date}, #{department_code}, #{ceq_location}, #{ceq_prime_cost}, #{ceq_durable}, #{ceq_depreciation}, #{ceq_depreciation_type})
+	</insert>
+	
+	<!-- 고정자산 목록 구하기 -->
+	<select id="selectCTcnt" resultType="int">
+		Select Count(*) From computer_equipment_tbl
+		Where ceq_type = #{cep_type}
+	</select>
+	
+	<!-- 고정자산 목록 -->
+	<select id="SelectCT" resultType="com.pj.erp.vo.CT.CT_VO">
+		select * from computer_equipment_tbl
+		Where ceq_type = #{ceq_type}
+	</select>
+
+</mapper>
