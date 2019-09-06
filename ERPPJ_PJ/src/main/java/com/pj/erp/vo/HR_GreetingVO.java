@@ -1,15 +1,24 @@
 package com.pj.erp.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class HR_GreetingVO {
 
 	String pa_code;
 	String username;
 	String e_name;
-	Date pa_date;
+	Timestamp pa_date;
 	String pa_type;
 	String pa_name;
+	String department_code;
+	String detail_ac_code;
+	String pa_details;
+	int pa_value;
+	String pa_other;
+	int jr_state;
+	
+	
 	public String getPa_code() {
 		return pa_code;
 	}
@@ -34,11 +43,11 @@ public class HR_GreetingVO {
 		this.e_name = e_name;
 	}
 
-	public Date getPa_date() {
+	public Timestamp getPa_date() {
 		return pa_date;
 	}
 
-	public void setPa_date(Date pa_date) {
+	public void setPa_date(Timestamp pa_date) {
 		this.pa_date = pa_date;
 	}
 
@@ -106,12 +115,6 @@ public class HR_GreetingVO {
 		this.jr_state = jr_state;
 	}
 
-	String department_code;
-	String detail_ac_code;
-	String pa_details;
-	int pa_value;
-	String pa_other;
-	int jr_state;
 	
 	public HR_GreetingVO() {
 	}
