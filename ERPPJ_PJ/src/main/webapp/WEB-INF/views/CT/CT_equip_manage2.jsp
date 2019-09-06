@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
@@ -12,15 +11,7 @@
     
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/js/request.js"></script>
-<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-	
 	
 	  function changeSelect(value){
 		var param = $("#select1").serializeArray();
@@ -31,8 +22,8 @@
 			dataTpye: 'json',
 			success: function(vo){
 				
-				if($(".spoat2") != null){
-					$(".spoat2").remove();
+				if($("#spoat2") != null){
+					$("#spoat2").remove();
 				}
 				
 				for(var i = 0; i < vo.length; i++){
@@ -231,5 +222,4 @@
     var items = [];
     </script>
     </body>
-
 </html>

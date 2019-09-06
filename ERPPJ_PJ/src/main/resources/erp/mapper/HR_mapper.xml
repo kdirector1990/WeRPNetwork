@@ -61,4 +61,14 @@
 		Where paystep_code = #{paystep_code} And rank_code = #{rank_code}
 	</update>
 	
+	<!-- 인사고과조회 -->
+	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_GreetingVO">
+	<![CDATA[
+		select * from getgreeting_view 
+		where pa_code like '%'||#{pa_code}||'%' 
+		and username like '%'||#{username}||'%' 
+		and e_name like '%'||#{e_name}||'%' 
+		]]>
+	</select>
+	
 </mapper>

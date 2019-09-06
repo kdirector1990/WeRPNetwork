@@ -1,12 +1,15 @@
 package com.pj.erp.service;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 public interface HR_Service {
@@ -37,5 +40,8 @@ public interface HR_Service {
 
 	// 부서 등록
 	public void inputDepartmentPro(HttpServletRequest req, Model model);
+	
+	//인사고과/상벌현황 검색
+	public List<HR_GreetingVO> getGreeting(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 
 }

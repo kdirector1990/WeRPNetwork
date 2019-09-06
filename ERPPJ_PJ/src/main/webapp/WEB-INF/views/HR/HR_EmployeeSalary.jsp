@@ -32,10 +32,11 @@
 							<div class="page-title-box">
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item active">Dashboard</li>
-									</ol>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사정보</a></li>
+                                            <li class="breadcrumb-item active">책정임금현황</li>
+                                        </ol>
 								</div>
 								<h4 class="page-title">책정임금현황</h4>
 							</div>
@@ -54,22 +55,11 @@
 									<td class="col-md-1 col-form-label">부서</td>
 									<td class="col-md-2 input-group">
 											<input type="text" class="form-control" name="e_name" placeholder = "부서명">
-											<div class="input-group-append">
-											<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
-											</div>
 											</td>	
 									<th class="col-md-1 col-form-label">사원검색</th>
 										<td class="col-md-2 input-group">
 											<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
-											<div class="input-group-append">
-											<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"> <i class="fas fa-search"></i> </button>
-											</div>
 											</td>	
-										<th class="col-md-1 col-form-label">퇴사자</th>
-										<td class="col-md-1 input-group"><select class="form-control select2" name="" onchange="">
-												<option value="">제외</option>
-												<option value="">포함</option>																						
-											</select></td>
 										<th class="col-md-1 col-form-label">계약시작일</th>
 										<td><input class="form-control input-daterange-datepicker" type="text" name="daterange" /></td>
 								</tr>
