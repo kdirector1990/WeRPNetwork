@@ -102,15 +102,17 @@ public class MS_ServiceImpl implements MS_Service {
 	public void searchUsername(HttpServletRequest req, Model model) {
 		String e_name = req.getParameter("e_name");
 		
-		System.out.println("e_name : " + e_name);
+		System.out.println("e_name : " + e_name); 
+		int cnt = dao.selectEname(e_name); 
 		
-		int cnt = dao.selectEname();
-		
+		System.out.println("cnt: "+cnt);
 		if(cnt > 0) {
 			List<HR_VO> dto = dao.getUsernameList(e_name);
 			model.addAttribute("dto", dto);
 			model.addAttribute("cnt", cnt);
 		}
+		
+		System.out.println("e_name : " + e_name);
 	}
 
 }

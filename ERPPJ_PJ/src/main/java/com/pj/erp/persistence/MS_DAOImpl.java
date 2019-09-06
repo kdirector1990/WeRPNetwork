@@ -49,8 +49,8 @@ public class MS_DAOImpl implements MS_DAO{
 
 	// 사원이름 검색 확인
 	@Override 
-	public int selectEname() { 
-		return sqlSession.selectOne("com.pj.erp.persistence.MS_DAO.selectEname"); 
+	public int selectEname(String e_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.MS_DAO.selectEname", e_name); 
 	}
 
 	//검색 목록 가져오기

@@ -167,7 +167,7 @@
    			$('.result').show();
    			
    			$('#datatable2 > tbody:last').append(
-				'<tr><td>'+tdArr[0] +'</td>'+
+				'<tr class="plantr"><td>'+tdArr[0] +'</td>'+
 					'<td>' +tdArr[1]+'</td>' +
 					'<td>' +tdArr[2]+'</td>' +
 					'<td>'+tdArr[3]+'</td>' +
