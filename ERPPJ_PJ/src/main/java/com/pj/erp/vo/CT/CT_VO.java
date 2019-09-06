@@ -75,7 +75,7 @@ public class CT_VO {
 
 	public void setCeq_prime_cost(int ceq_prime_cost) {
 		this.ceq_prime_cost = ceq_prime_cost;
-	}
+	}	
 
 	public int getCeq_durable() {
 		return ceq_durable;
