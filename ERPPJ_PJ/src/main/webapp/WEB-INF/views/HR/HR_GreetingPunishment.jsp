@@ -8,40 +8,20 @@
 	href="/erp/resources/assets/libs/c3/c3.min.css">
 	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <script type = "text/javascript">
-/* 
-	function search(url){
-		sendRequest(load_callback, url, "post");
-	}
-	
-	 function load_callback(){
-		var result =  document.getElementById("result");
-		
-		if(httpRequest.readyState == 1){
-			setTimeout(function(){
-				if(httpRequest.readyState == 4){
-					if(httpRequest.status == 200){
-						//result.innerHTML = "정상종료";
-						//응답결과가 html 이면 responseText로 받고, XML 이면 responseXML로 받는다.
-						result.innerHTML = httpRequest.responseText;
-						
-					} else{
-						result.innerHTML = "error";
-					}
-				} else{
-					result.innerHTML = "error : httpRequest.readyState" + httpRequest.readyState;
-				}
-				
-			},2000);
-		}
-		
-		search('HR_GreetingPunishment_result?${_csrf.parameterName}=${_csrf.token }');"
-		
-	} */
+    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			var param = new Object();
 			var jsonData;
+			
 			
 			param.pa_code = $("#pa_code").val();
 			param.username = $("#username").val();
@@ -61,13 +41,17 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty("");
+					$('#result').empty();
+					
+					
 					
 					for(var i = 0 ; i < list.length; i++){
 					
 						var pa_codes = list[i].pa_code;
 						var usernames = list[i].username;
 						var pa_dates = list[i].pa_date;
+						var pa = new Date(pa_dates);
+						var pa_datess = pa.getFullYear()+"/"+pa.getMonth()+"/"+pa.getDate();
 						var pa_types = list[i].pa_type;
 						var pa_names = list[i].pa_name;
 						var department_codes = list[i].department_code;
@@ -80,7 +64,7 @@
 					$('#result').append('<tr>'+
                          	'<td>'+ pa_codes +'</td>'+
 							'<td>'+ usernames +'</td>'+
-							'<td>'+ pa_dates +'</td>'+
+							'<td>'+ pa_datess +'</td>'+
 							'<td>'+ pa_types +'</td>'+
 							'<td>'+ pa_names +'</td>'+
 							'<td>'+ department_codes +'</td>'+
@@ -91,8 +75,32 @@
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
 					
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
 					
 					}
+					
 				},
 				error : function(){
 					alert("에러");
@@ -103,7 +111,7 @@
 	 
 	 
 	 
-
+console.log(searchCount);
 </script>
 
 </head>
@@ -245,7 +253,7 @@
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
         <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-
+	<div id = "bodyappend"></div>
 
 </body>
 </html>

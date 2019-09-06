@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
@@ -30,7 +29,6 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
-				
 				if($(".spoat2") != null){
 					$(".spoat2").remove();
 				}

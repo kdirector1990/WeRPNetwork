@@ -30,6 +30,9 @@ public interface HR_DAO {
 	//호봉테이블 금액수정하기
 	public int updatePay(HR_PaystepVO vo);
 	
+	// 사원정보 가져오기
+	public List<HR_VO> foundation();
+	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);
 

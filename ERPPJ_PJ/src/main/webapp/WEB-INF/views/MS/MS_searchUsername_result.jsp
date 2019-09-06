@@ -74,8 +74,8 @@
         <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
         <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
 
-        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>  
-		
+        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script> 
+         
 </body>
 </html>
 
