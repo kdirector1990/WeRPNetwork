@@ -18,11 +18,20 @@
 		values(userid.currval, 'ROLE_USER') 
 	</insert>
 	
+	<insert id="insertPhysical" parameterType="com.pj.erp.vo.HR_PhysicalVO">
+	
+	</insert>
+	
 	<!-- 부서 등록 -->
 	<insert id="insertDepartment" parameterType="java.util.Map">
 		insert into department_tbl(department_code, department_name)
 		values(#{department_code}, #{department_name})
 	</insert>
+	
+	<!-- 사원 정보 -->
+	<select id="foundation" resultType="com.pj.erp.vo.HR_VO">
+		select * from users
+	</select>
 	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
@@ -60,7 +69,7 @@
 	<!-- 인사고과조회 -->
 	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_GreetingVO">
 	<![CDATA[
-		select * from getgreeting_view 
+		select pa_code, username, pa_date, pa_type, pa_name, department_Code, pa_details, detail_ac_code, pa_value, pa_other, jr_state  from getgreeting_view 
 		where pa_code like '%'||#{pa_code}||'%' 
 		and username like '%'||#{username}||'%' 
 		and e_name like '%'||#{e_name}||'%' 
