@@ -25,7 +25,7 @@ public interface MS_DAO{
 	public int deletePlan(String plan_code);
 	
 	// 사원이름 검색 확인
-	public int selectEname();
+	public int selectEname(String e_name);
 	
 	//검색 목록 가져오기
 	public List<HR_VO> getUsernameList(String e_name);

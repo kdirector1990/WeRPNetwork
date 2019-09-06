@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <style type="text/css">
-	.result{
+	#update{
 		display: none;
 	}
 </style>
@@ -22,6 +22,23 @@
 	
 	var searchCount = 1;
 	
+	function sunyoungJoa(code){
+		alert(code);
+		$.ajax({
+			url: '/erp/CT_select_code?${_csrf.parameterName }=${_csrf.token }&ceq_code='+code,
+			type: 'POST',
+			data : {'ceq_code' : code},
+			dataTpye: 'json',
+			success: function(param){
+				document.getElementById("update").style.display="block";
+				alert("자산을 입력하였습니다.");
+			},
+			error : function(){
+				alert("전산 오류로 인하여 입력에 실패하였습니다.");
+			}
+		});
+	}
+	
 	  function changeSelect(value){
 		var param = $("#select1").serializeArray();
 		$.ajax({
@@ -38,9 +55,19 @@
 					var ceq_name = vo[i].ceq_name; 
 					var ceq_type = vo[i].ceq_type; 
 					
-					var ceq_acquire_date = vo[i].ceq_acquire_date; 
-					/* alert(ceq_acquire_date.format('{yyyy}-{MM}-{dd}')); */
+					var acquire_date = vo[i].ceq_acquire_date; 
+					var pa = new Date(acquire_date);
+					var year = pa.getFullYear();
 					
+					var month = (1+pa.getMonth());
+					if(month <10){
+						month = "0" +month;
+					}
+					var day = pa.getDate();
+					if(day <10){
+						day = "0" +day;
+					}
+					var ceq_acquire_date = year + "-" + month + "-" +day; 
 					
 					var ceq_department_code = vo[i].department_code; 
 					var ceq_location = vo[i].ceq_location; 
@@ -49,7 +76,7 @@
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
 					
-					 $('#result').append('<tr class="spoat"><td>'+ceq_code+'</td><td>'+
+					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa('+ceq_code+')"><td>'+ceq_code+'</td><td>'+
 						ceq_name + '</td><td>'+
 						ceq_type + '</td><td>'+
 						ceq_acquire_date + '</td><td>'+
@@ -171,7 +198,34 @@
                                 </div>
                             </div>
                         </div>
-						
+                        
+                       <div id="update">
+                        <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-body table-responsive">
+										<div class="table-responsive" style = "margin: 15px 0px 50px">
+											<div id="result2" class="card-body">
+												<!-- 상세 페이지 출력 위치 -->
+												<table class="table mb-0">
+													<tr>
+														<th>전산설비코드</th>
+														<th>설비명</th>
+														<th>보유구분</th>
+														<th>구입일</th>
+														<th>사용부서</th>
+														<th>위치</th>
+														<th>매입가</th>
+														<th>예상내용연수</th>
+														<th>감가상각여부</th>
+														<th>감가상각법</th>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
                          <!-- end container-fluid -->
 
                 </div> <!-- end content -->

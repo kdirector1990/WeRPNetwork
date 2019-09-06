@@ -61,7 +61,7 @@ public class CT_Controller {
 		  return "CT/CT_equip_manage"; 
 	 }
 	 
-	
+	// 전산설비 관리 상태
 	  @RequestMapping("CT_select_type")
 	  @ResponseBody 
 	  public List<CT_VO> CT_select_type(HttpServletRequest req, Model model) { 

@@ -143,7 +143,7 @@ public class ERPController {
 	public String chartsmorris(Locale locale, Model model) {
 		logger.info("log => charts-morris");
 		
-		return "charts-morris";
+		return "charts-morris"; 
 	}
 	
 	@RequestMapping("charts-google")
