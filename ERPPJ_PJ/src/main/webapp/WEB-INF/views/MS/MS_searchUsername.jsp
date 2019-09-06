@@ -45,7 +45,7 @@ function loadBook_callback() {
 			result.innerHTML = "에러발생";
 		}
 	} else {
-		result.innerHTML = "상태 : " + httpRequest.readyState;
+		//result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 } 
 </script>
@@ -68,6 +68,7 @@ function loadBook_callback() {
 							<div class="card" style="margin-bottom: 0px;">
 								<div class="card-body table-responsive">
 									<form action="" name="searchName" onsubmit="return searchNameCheck();">
+										
 										<table>
 											<tr>
 												<th>사원명</th>
@@ -76,7 +77,7 @@ function loadBook_callback() {
 												</td>
 												
 												<td>
-													<button type="button" class="btn btn-primary waves-effect waves-light" id = "search" onclick="load1();">검색</button>
+													<button type=button class="btn btn-primary waves-effect waves-light" id = "search" onclick="load1();">검색</button>
 												</td>
 											</tr>
 										</table>
@@ -84,8 +85,8 @@ function loadBook_callback() {
                                	</div>
                              </div>
 		                   </div> 
-                         </div>
-                      </div> 
+                       </div>
+                    </div> 
                       
                       <div id = "result">
                       <!-- 출력결과위치 -->

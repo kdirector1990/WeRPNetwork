@@ -14,7 +14,7 @@
     </head>
 <body>
 
-<div class="row">
+					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
@@ -50,7 +50,10 @@
 												</c:if>
                                       		</tbody>
                                         </table>
-</div></div></div></div>
+									</div>
+								</div>
+							</div>
+						</div>
 <!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
         <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
@@ -72,7 +75,7 @@
         <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
 
         <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>  
-
+		
 </body>
 </html>
 
