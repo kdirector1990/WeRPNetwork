@@ -73,7 +73,9 @@
 		where pa_code like '%'||#{pa_code}||'%' 
 		and username like '%'||#{username}||'%' 
 		and e_name like '%'||#{e_name}||'%' 
+		and pa_date >= #{spa_date} and pa_date <= #{epa_date}
 		]]>
 	</select>
+	<!-- and pa_date >= #{spa_date} and pa_date <= #{epa_date} -->
 	
 </mapper>

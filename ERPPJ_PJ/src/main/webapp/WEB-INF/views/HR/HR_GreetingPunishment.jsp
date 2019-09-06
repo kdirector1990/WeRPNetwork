@@ -51,7 +51,10 @@
 						var usernames = list[i].username;
 						var pa_dates = list[i].pa_date;
 						var pa = new Date(pa_dates);
-						var pa_datess = pa.getFullYear()+"/"+pa.getMonth()+"/"+pa.getDate();
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var pa_datess = year + "/" + month +"/"+day;
 						var pa_types = list[i].pa_type;
 						var pa_names = list[i].pa_name;
 						var department_codes = list[i].department_code;
