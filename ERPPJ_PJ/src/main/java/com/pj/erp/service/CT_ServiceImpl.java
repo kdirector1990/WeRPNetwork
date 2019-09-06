@@ -128,10 +128,16 @@ public class CT_ServiceImpl implements CT_Service{
 		return vo;
 	}
 
+	//전산설비 목록 code 검색
 	@Override
 	public void CT_select_code(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		int selectCnt = 1;
+		String code = req.getParameter("ceq_code");
+		CT_VO vo = null;
+		vo = dao.selectCode(code);
 		
+		model.addAttribute("selectCnt", selectCnt);
+		model.addAttribute("voC", vo);
 	}
 	
 	//전산설비 수정화면 입력폼

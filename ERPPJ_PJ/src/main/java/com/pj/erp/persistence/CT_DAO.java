@@ -16,6 +16,9 @@ public interface CT_DAO {
 	//고정자산 목록 갯수 
 	public int selectCTcnt(String type);
 	
-	//고정자산 select
+	//고정자산 select(type)
 	public List<CT_VO> SelectCT(String type);
+	
+	//고정자산 select(code)
+	public CT_VO selectCode(String code);
 }

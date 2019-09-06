@@ -23,10 +23,16 @@
 		Where ceq_type = #{cep_type}
 	</select>
 	
-	<!-- 고정자산 목록 -->
+	<!-- 고정자산 목록  type-->
 	<select id="SelectCT" resultType="com.pj.erp.vo.CT.CT_VO">
 		select * from computer_equipment_tbl
 		Where ceq_type = #{ceq_type}
+	</select>
+
+	<!-- 고정자산 목록 code-->
+	<select id="SelectCode" resultType="com.pj.erp.vo.CT.CT_VO">
+		select * from computer_equipment_tbl
+		Where ceq_code = #{ceq_code}
 	</select>
 
 </mapper>
