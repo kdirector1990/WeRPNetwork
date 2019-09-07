@@ -113,6 +113,13 @@ public class CT_Controller {
 		return deleteCnt;
 	}
 	
+	//A/S 입력 폼
+	@RequestMapping("CT_write_AS")
+	public String CT_write_AS(HttpServletRequest req, Model model) {
+		logger.info("log => CT_write_AS");
+		
+		return "CT/CT_write_AS";
+	}
 	
 	//전산 설비 목록
 	@RequestMapping("CT_equip_list")
