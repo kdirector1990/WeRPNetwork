@@ -50,5 +50,18 @@
 		Set ceq_type = '폐기'
 		Where ceq_code = #{ceq_code}
 	</update>
+	
+	<!-- AS(고장) 등록 -->
+	<insert id="insertAS" parameterType="com.pj.erp.vo.CT.CT_AS_VO">
+		Insert into computer_as_tbl(cas_code, department_code, username, cas_title, cas_content, cas_uri, cas_date, cas_result, cas_state)
+		Values(lpad(asnumber.nextval,6,'AS'), #{department_code}, #{username}, #{cas_title},
+			#{cas_content}, #{cas_uri}, sysdate, '미처리', 1)
+	</insert>
+	
+	<!-- AS(고장) 목록 -->
+	<select id="selectAS" resultType="com.pj.erp.vo.CT.CT_AS_VO">
+		Select * from computer_as_tbl
+		Where cas_state = #{cas_state}
+	</select>
 
 </mapper>

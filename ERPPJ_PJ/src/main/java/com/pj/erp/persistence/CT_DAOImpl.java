@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.CT.CT_AS_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
@@ -55,8 +56,19 @@ public class CT_DAOImpl implements CT_DAO{
 	//고정자산 폐기처리
 	@Override
 	public int deleteCT(CT_VO vo) {
-		sqlSession.update("com.pj.erp.persistence.CT_DAO.deleteCT", vo);
-		return 0;
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.deleteCT", vo);
+	}
+
+	//AS등록
+	@Override
+	public int insertAS(CT_AS_VO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.CT_DAO.insertAS", vo);
+	}
+
+	//AS 목록 가져오기
+	@Override
+	public List<CT_AS_VO> selectAS(CT_AS_VO vo) {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectAS", vo);
 	}
 
 	

@@ -2,6 +2,7 @@ package com.pj.erp.persistence;
 
 import java.util.List;
 
+import com.pj.erp.vo.CT.CT_AS_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
@@ -27,4 +28,10 @@ public interface CT_DAO {
 	
 	//고정자산 폐기처리
 	public int deleteCT(CT_VO vo);
+	
+	//AS 등록
+	public int insertAS(CT_AS_VO vo);
+	
+	//고정자산 목록 갯수
+	public List<CT_AS_VO> selectAS(CT_AS_VO vo);
 }

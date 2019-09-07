@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
+import com.pj.erp.vo.CT.CT_AS_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 @Controller
@@ -120,6 +121,27 @@ public class CT_Controller {
 		
 		return "CT/CT_write_AS";
 	}
+	
+	//AS등록
+	@RequestMapping("CT_AS_add")
+	@ResponseBody
+	public int CT_AS_add(HttpServletRequest req, Model model) {
+		logger.info("log => CT_AS_add");
+		int insertCnt = CT.AS_insert_ct(req, model);
+		return insertCnt;
+	}
+	
+	//AS 요청 목록 가져오기
+	@RequestMapping("CT_select_as")
+	@ResponseBody
+	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
+		logger.info("log => CT_select_as");
+		
+		List<CT_AS_VO> vo = CT.CT_select_as(req, model);
+		
+		return vo;
+	}
+	
 	
 	//전산 설비 목록
 	@RequestMapping("CT_equip_list")

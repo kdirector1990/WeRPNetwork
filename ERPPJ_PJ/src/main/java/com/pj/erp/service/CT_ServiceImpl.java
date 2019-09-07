@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.CT_DAO;
+import com.pj.erp.vo.CT.CT_AS_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
@@ -72,20 +73,6 @@ public class CT_ServiceImpl implements CT_Service{
 				vo.setCeq_depreciation(ceq_depreciation);
 				vo.setCeq_depreciation_type(ceq_depreciation_type);
 
-				
-				System.out.println(vo.getCeq_name());
-				System.out.println(vo.getCeq_type());
-				System.out.println(vo.getCeq_acquire_date());
-				System.out.println(vo.getDepartment_code());
-				System.out.println(vo.getCeq_location());
-				System.out.println(vo.getCeq_prime_cost());
-				System.out.println(vo.getCeq_durable());
-				System.out.println(vo.getCeq_depreciation());
-				System.out.println(vo.getCeq_depreciation_type());
-				System.out.println();
-				
-				insertCnt = dao.InsertCT(vo);
-				
 				System.out.println("다 돌아갔다.");
 				
 				i++;
@@ -176,16 +163,6 @@ public class CT_ServiceImpl implements CT_Service{
 		vo.setCeq_depreciation(ceq_depreciation);
 		vo.setCeq_depreciation_type(ceq_depreciation_type);
 		
-		System.out.println(vo.getCeq_name());
-		System.out.println(vo.getCeq_type());
-		System.out.println(vo.getCeq_acquire_date());
-		System.out.println(vo.getDepartment_code());
-		System.out.println(vo.getCeq_location());
-		System.out.println(vo.getCeq_prime_cost());
-		System.out.println(vo.getCeq_durable());
-		System.out.println(vo.getCeq_depreciation());
-		System.out.println(vo.getCeq_depreciation_type());
-		
 		int updateCnt = dao.updateCT(vo);
 		
 		System.out.println(updateCnt);
@@ -204,6 +181,48 @@ public class CT_ServiceImpl implements CT_Service{
 		int deleteCnt = dao.deleteCT(vo);
 		
 		return deleteCnt;
+	}
+
+	//AS 등록
+	@Override
+	public int AS_insert_ct(HttpServletRequest req, Model model) {
+		
+		String department_code = req.getParameter("department_code");
+		String username = req.getParameter("username");
+		String cas_title = req.getParameter("cas_title");
+		String cas_content = req.getParameter("cas_content");
+		String cas_url = req.getParameter("cas_url");
+		
+		CT_AS_VO vo = new CT_AS_VO();
+		
+		vo.setDepartment_code(department_code);
+		vo.setUsername(username);
+		vo.setCas_title(cas_title);
+		vo.setCas_content(cas_content);
+		vo.setCas_uri(cas_url);
+		
+		System.out.println(vo.getDepartment_code());
+		System.out.println(vo.getUsername());
+		System.out.println(vo.getCas_title());
+		System.out.println(vo.getCas_content());
+		System.out.println(vo.getCas_uri());
+		
+		int insertCnt = dao.insertAS(vo);
+		
+		return insertCnt;
+	}
+
+	//전산설비 목록
+	@Override
+	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
+		int state = Integer.parseInt(req.getParameter("cas_state"));
+		
+		CT_AS_VO se = new CT_AS_VO();
+		se.setCas_state(state);
+		
+		List<CT_AS_VO> vo = dao.selectAS(se);
+		
+		return vo;
 	}
 	
 	

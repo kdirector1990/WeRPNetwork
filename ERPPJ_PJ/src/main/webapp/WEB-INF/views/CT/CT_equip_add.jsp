@@ -13,10 +13,6 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         	var count = 1;
         	var subcount = 1;
         	
-        	function inin() {
-        		alert("inin알럿");
-        	}
-        	
         	function focuse(s) {
         		var name = s;
         		$(".spoat-table-bordered-primary tbody *").focus(function() {
@@ -113,7 +109,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                 			'<option value="">선택' +
 		                 			'<option value="003">장비' +
 								'</select></td>'+
-        					'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onclick="init();" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
+        					'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
                             '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                             	'<option value="">선택</option>' +
                             	'<option value="보유">보유' +
@@ -282,7 +278,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                                            			<option value="">선택
 		                                            			<option value="020">장비
 		                                            		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onclick="inin();" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;"></td>
 		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" required onchange="enter(this.tagName,this.name);">
 		                                                	<option value="null">선택</option>
 		                                                	<option value="보유">보유
