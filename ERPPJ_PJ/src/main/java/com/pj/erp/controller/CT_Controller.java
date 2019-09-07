@@ -96,9 +96,21 @@ public class CT_Controller {
 	//전산설비 수정
 	@RequestMapping("CT_update_ct")
 	@ResponseBody
-	public void CT_update_ct(HttpServletRequest req, Model model) {
+	public int CT_update_ct(HttpServletRequest req, Model model) {
 		logger.info("log => CT_update_ct");
-		CT.CT_update_ct(req, model);
+		int updateCnt = CT.CT_update_ct(req, model);
+		
+		return updateCnt;
+	}
+	
+	//전산설비 폐기
+	@RequestMapping("CT_delete_ct")
+	@ResponseBody
+	public int CT_delete_ct(HttpServletRequest req, Model model) {
+		logger.info("log => CT_delete_ct");
+		int deleteCnt = CT.CT_delete_ct(req, model);
+		
+		return deleteCnt;
 	}
 	
 	

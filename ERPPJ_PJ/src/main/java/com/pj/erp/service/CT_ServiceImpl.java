@@ -143,7 +143,7 @@ public class CT_ServiceImpl implements CT_Service{
 	
 	//전산설비 수정화면 입력폼
 	@Override
-	public void CT_update_ct(HttpServletRequest req, Model model) {
+	public int CT_update_ct(HttpServletRequest req, Model model) {
 		String ceq_code = req.getParameter("ceq_code");
 		String ceq_name = req.getParameter("ceq_name");
 		String ceq_type = req.getParameter("ceq_type");
@@ -189,6 +189,21 @@ public class CT_ServiceImpl implements CT_Service{
 		int updateCnt = dao.updateCT(vo);
 		
 		System.out.println(updateCnt);
+		return updateCnt;
+	}
+
+	//전산설비 폐기처리
+	@Override
+	public int CT_delete_ct(HttpServletRequest req, Model model) {
+		String ceq_code = req.getParameter("ceq_code");
+		
+		CT_VO vo = new CT_VO();
+		
+		vo.setCeq_code(ceq_code);
+		
+		int deleteCnt = dao.deleteCT(vo);
+		
+		return deleteCnt;
 	}
 	
 	

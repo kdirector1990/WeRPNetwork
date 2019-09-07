@@ -23,6 +23,9 @@ public interface CT_Service {
 	public CT_VO CT_select_code(HttpServletRequest req, Model model);
 	
 	//전산설비 수정
-	public void CT_update_ct(HttpServletRequest req, Model model);
+	public int CT_update_ct(HttpServletRequest req, Model model);
+	
+	//전산설비 폐
+	public int CT_delete_ct(HttpServletRequest req, Model model);
 	
 }

@@ -43,5 +43,12 @@
 			ceq_durable = #{ceq_durable}, ceq_depreciation = #{ceq_depreciation}, ceq_depreciation_type = #{ceq_depreciation_type}
 		Where ceq_code = #{ceq_code}
 	</update>
+	
+	<!-- 고정자산 폐기처리 -->
+	<update id="deleteCT" parameterType="com.pj.erp.vo.CT.CT_VO">
+		Update computer_equipment_tbl
+		Set ceq_type = '폐기'
+		Where ceq_code = #{ceq_code}
+	</update>
 
 </mapper>

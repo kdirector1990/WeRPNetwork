@@ -24,4 +24,7 @@ public interface CT_DAO {
 	
 	//고정자산 update
 	public int updateCT(CT_VO vo);
+	
+	//고정자산 폐기처리
+	public int deleteCT(CT_VO vo);
 }

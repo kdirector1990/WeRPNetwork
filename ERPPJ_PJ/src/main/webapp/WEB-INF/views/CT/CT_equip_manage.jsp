@@ -28,7 +28,7 @@
 		}else if(code < 100){
 			code = "0"+code;
 		}
-		alert(code);
+
 		$.ajax({
 			url: '/erp/CT_select_code?${_csrf.parameterName }=${_csrf.token }&ceq_code='+code,
 			type: 'POST',
@@ -107,7 +107,6 @@
 					var ceq_code = vo[i].ceq_code; 
 					var ceq_name = vo[i].ceq_name; 
 					var ceq_type = vo[i].ceq_type; 
-					alert(ceq_code);
 					var acquire_date = vo[i].ceq_acquire_date; 
 					var pa = new Date(acquire_date);
 					var year = pa.getFullYear();
@@ -172,15 +171,14 @@
 		}); 
 	} 
 	  
-	  function updateCT(){
+	function updateCT(){
 		  var param = $("#updateCTS").serializeArray();
-	  		alert(JSON.stringify(param));
 	  		$.ajax({
 	  			url: '/erp/CT_update_ct',
 	  			type: 'POST',
 	  			data : param,
 	  			dataTpye: 'json',
-	  			success: function(param){
+	  			success: function(updateCnt){
 	  				document.getElementById("update").style.display="none";
 	  				alert("자산을 수정했습니다.");
 	  			},
@@ -189,6 +187,24 @@
 	  			}
 	  		});
 	  }
+
+	function deleteCT(){
+		var param = $("#updateCTS").serializeArray();
+  		$.ajax({
+  			url: '/erp/CT_delete_ct',
+  			type: 'POST',
+  			data : param,
+  			dataTpye: 'json',
+  			success: function(deleteCnt){
+  				document.getElementById("update").style.display="none";
+  				alert("자산을 폐기하였습니다.");
+  			},
+  			error : function(){
+  				alert("전산 오류로 인하여 폐기에 실패하였습니다.");
+  			}
+  		});
+	}
+	  
 </script>
 </head>
 	<body>
@@ -234,7 +250,7 @@
 												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 												<div class="col-md-4 input-group">
 												<button type="button" id="btnTCT" onclick = "updateCT();"class="btn btn-outline-dark waves-effect waves-light width-md">수정</button>&nbsp;
-    											<button type="button"  class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
+    											<button type="button" onclick="deleteCT();" class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
 												</div>
 										</div>
 									</div>

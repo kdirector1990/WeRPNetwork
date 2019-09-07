@@ -49,7 +49,14 @@ public class CT_DAOImpl implements CT_DAO{
 	//고정자산 수정
 	@Override
 	public int updateCT(CT_VO vo) {
-		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.updateCT", vo);
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.updateCT", vo);
+	}
+
+	//고정자산 폐기처리
+	@Override
+	public int deleteCT(CT_VO vo) {
+		sqlSession.update("com.pj.erp.persistence.CT_DAO.deleteCT", vo);
+		return 0;
 	}
 
 	
