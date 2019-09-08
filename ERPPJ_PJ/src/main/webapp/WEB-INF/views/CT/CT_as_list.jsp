@@ -1,39 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%@ include file="../setting.jsp" %>
-        
-<script src="/erp/resources/assets/js/request.js"></script>
-<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<head>
+<%@ include file="../setting.jsp"%>
+<!-- c3 plugin css -->
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
+    <script type = "text/javascript">
         
         var searchCount = 1;
         
-        function SelectAS(value){
-        	var param = $("#selectAS").serializeArray();
-        	$.ajax({
-      			url: '/erp/CT_select_as',
-      			type: 'POST',
-      			data : param,
-      			dataTpye: 'json',
-      			success: function(vo){
+        function SelectAS(){
+        	/* var param = $("#selectAS").serializeArray(); */
+        	
+        	var param2 = new Object();
+        	var jsonData;
+        	
+        	param2.cas_state = $("#cas_state").val();
+        	
+        	alert(param2.cas_state);
+        	
+        	jsonData = JSON.stringify(param2);
+        	alert(jsonData);
+        	 $.ajax({
+        		url : '${pageContext.request.contextPath}/CT_select_as2?${_csrf.parameterName}=${_csrf.token }',
+        		type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(data){
+					
+					$('#result').empty();
       				
-      				$('#result').empty();
-      				
-      				for(var i = 0; i < vo.length; i++){
-      					var cas_code = vo[i].cas_code;
-      					var department_code = vo[i].department_code;
-      					var username = vo[i].username;
-      					var cas_title = vo[i].cas_title; 
-      					var date = vo[i].cas_date;
+      				for(var i = 0; i < data.length; i++){
+      					var cas_code = data[i].cas_code;
+      					var department_code = data[i].department_code;
+      					var username = data[i].username;
+      					var cas_title = data[i].cas_title; 
+      					var date = data[i].cas_date;
       					
       					var pa = new Date(date);
       					var year = pa.getFullYear();
@@ -48,8 +61,9 @@
     					
     					var cas_date = year + "-" + month + "-" +day;
       					
-    					$('#result').append(
-    							'<tr class="spoat" onclick="detail('+cas_code+')"><td>'+
+    					$('#result').append('<tr>' +
+    							/* '<tr class="spoat" onclick="detail('+cas_code+')"> */
+    							'<td>'+
     							cas_code+'</td><td>' +
       							department_code + '</td><td>' +
       							username + '</td><td>' +
@@ -66,13 +80,8 @@
    						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
    						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
    						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-   						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-   						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-   						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-   						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
    						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-   						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-   						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+   						     	'<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>' +
    						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>' 	
    							);
    						 searchCount = searchCount + 1;
@@ -82,8 +91,10 @@
       			error : function(){
       				alert("전산 오류로 인하여 폐기에 실패하였습니다.");
       			}
-      		});
-        };
+         	});
+        }
+        
+        	
         
         </script>
         
@@ -124,25 +135,18 @@
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-body table-responsive">
-										<div class="form-group row">
-												<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
-												<div class="col-md-4 input-group">
-													<form id="selectAS" style="width:400px; text-align:center;">
-														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-														<select class=" form-control" name="cas_state" onchange="SelectAS(this.value);">
+									<table class="col-12">
+										<tr class="form-group row">
+												<td class="col-md-1 col-form-label" >출력구분</td>
+												<td class="col-md-4 input-group">
+														<select class=" form-control" id="cas_state" name="cas_state" onchange="SelectAS(this.value);">
 															<option value="" selected disabled></option>								
 															<option value="1">미처리</option>
 															<option value="2">처리</option>
 														</select>
-													</form>
-												</div>
-												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-												<div class="col-md-4 input-group">
-												<button type="button" onclick = "updateAS();"class="btn btn-outline-dark waves-effect waves-light width-md">처리</button>&nbsp;
-    											<button type="button" onclick="deleteAS();" class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
-												</div>
-										</div>
+												</td>
+										</tr>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -153,7 +157,6 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-    									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
                                             <thead>
                                             <tr>
@@ -185,7 +188,7 @@
 
         </div>
         <!-- END wrapper -->
-
+</div>
         <%@ include file="../rightbar.jsp" %>
 		<%@ include file="../setting2.jsp" %>
 		
