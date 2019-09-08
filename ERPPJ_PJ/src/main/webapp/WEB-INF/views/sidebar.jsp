@@ -506,9 +506,9 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">단기 차입금 목록</a></li>
-	                          			<li><a href="#">장기 차입금 목록</a></li>
-	                          			<li><a href="#">지급 어음 목록</a></li>
+	                          			<li><a href="FT_short_borrowings_list">단기 차입금 목록</a></li>
+	                          			<li><a href="FT_long_borrowings_list">장기 차입금 목록</a></li>
+	                          			<li><a href="FT_note_payable_list">지급 어음 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
