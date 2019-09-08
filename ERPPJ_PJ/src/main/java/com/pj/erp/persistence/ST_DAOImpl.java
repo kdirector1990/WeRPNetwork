@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
 
 @Repository
@@ -82,6 +83,20 @@ public class ST_DAOImpl implements ST_DAO {
 	public int deletesalePlan(String saleplan_code) {
 		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deletesalePlan", saleplan_code);
 	}
+	
+	// ------ ST_release 출고 관리 
+	// release 게시글 갯수
+	@Override
+	public int getReleaseCnt() {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getReleaseCnt");
+	}
+	
+	// release 게시글 목록 조회
+	@Override
+	public List<Release> getReleaseList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getReleaseList", map);
+	}
+	
 	
 
 }

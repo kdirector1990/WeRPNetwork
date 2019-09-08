@@ -33,55 +33,39 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        <h4 class="header-title">수리의뢰</h4>
-                                        <div align="right">
-	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light"><a href=CT_as_list>전산실 내부수리</a></button>
-	    									<button type="button" class="btn btn-outline-dark waves-effect waves-light"><a href="CT_ComInsertForm">업체수리</a></button>
-    									</div>
+                                        <h4 class="header-title">수리일지</h4>
     									<br>
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                            	<th><input type="checkbox" id="all_check"></th>
-                                            	<th>수리의뢰코드</th>
-                                                <th>장비관리번호</th>
-                                                <th>장비구분</th>
-                                                <th>장비명</th>
-                                                <th>의뢰인</th>
-                                                <th>의뢰일</th>
-                                                <th>완료요구일</th>
-                                                <th>고장내용</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                            <tr>
-                                            	<td><input type="checkbox" class="r_box"></td>
-                                            	<td>CT_R003
-                                                <td>CT003</td>
-                                                <td>제조기계</td>
-                                                <td>CARD</td>
-                                                <td>10003</td>
-                                                <td>2019/08/14</td>
-                                                <td>2019/08/17</td>
-                                                <td>맛동산이 양이 너무 적네요.</td>
-                                            </tr>
-                                            
-                                             <tr>
-                                             	<td><input type="checkbox" class="r_box"></td>
-                                            	<td>CT_R004</td>
-                                                <td>CT004</td>
-                                                <td>사무용품</td>
-                                                <td>Geth</td>
-                                                <td>10001</td>
-                                                <td>2019/08/14</td>
-                                                <td>2019/08/17</td>
-                                                <td>블록체인 극혐</td>
-                                            </tr>
-                                           
-                                            </tbody>
-                                        </table>
+                                         <form action="CT_repair_add" name="insertRP">
+                                        	<div class="form-group">
+                                                <label>제목</label>
+                                                <input type="text" name="rr_title" class="form-control" required
+                                                            placeholder="제목"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>전산설비코드</label>
+                                                <div>
+                                                    <input type="text" name="ceq_code" class="form-control" required
+                                                            />
+                                                    <button onclick="window.open('CT_Ceq_Search','window_name','width=430,height=300,location=no,status=no,scrollbars=yes');">검색</button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>내용</label>
+                                                <div>
+                                                    <textarea required name="rr_content"  class="form-control" rows="7" placeholder="내용"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0">
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                    	등록
+		                                            </button>
+                                                    <button type="reset" class="btn btn-secondary waves-effect waves-light">
+														취소
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                                                                 
                                     </div>
                                 </div>
@@ -90,7 +74,6 @@
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->
-                
                
                
                <!-- 페이지 내용 입력 공간 종료 -->

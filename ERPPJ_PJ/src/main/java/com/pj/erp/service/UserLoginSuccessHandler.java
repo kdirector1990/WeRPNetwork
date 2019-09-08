@@ -20,7 +20,9 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		
 		UserVO vo = (UserVO)authentication.getPrincipal();
 		String name = vo.getE_name();
+		String username = vo.getUsername();
 		request.getSession().setAttribute("name", name);
+		request.getSession().setAttribute("username", username);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 		dispatcher.forward(request, response);

@@ -23,10 +23,69 @@
 		Where ceq_type = #{cep_type}
 	</select>
 	
-	<!-- 고정자산 목록 -->
+	<!-- 고정자산 목록  type-->
 	<select id="SelectCT" resultType="com.pj.erp.vo.CT.CT_VO">
 		select * from computer_equipment_tbl
 		Where ceq_type = #{ceq_type}
 	</select>
+
+	<!-- 고정자산 목록 code-->
+	<select id="SelectCode" resultType="com.pj.erp.vo.CT.CT_VO">
+		select * from computer_equipment_tbl
+		Where ceq_code = #{ceq_code}
+	</select>
+	
+	<!-- 고정자산 수정 -->
+	<update id="updateCT" parameterType="com.pj.erp.vo.CT.CT_VO">
+		Update computer_equipment_tbl
+		Set ceq_name = #{ceq_name}, ceq_type = #{ceq_type}, ceq_acquire_date = #{ceq_acquire_date},
+			department_code = #{department_code}, ceq_location = #{ceq_location}, ceq_prime_cost = #{ceq_prime_cost},
+			ceq_durable = #{ceq_durable}, ceq_depreciation = #{ceq_depreciation}, ceq_depreciation_type = #{ceq_depreciation_type}
+		Where ceq_code = #{ceq_code}
+	</update>
+	
+	<!-- 고정자산 폐기처리 -->
+	<update id="deleteCT" parameterType="com.pj.erp.vo.CT.CT_VO">
+		Update computer_equipment_tbl
+		Set ceq_type = '폐기'
+		Where ceq_code = #{ceq_code}
+	</update>
+	
+	<!-- AS(고장) 등록 -->
+	<insert id="insertAS" parameterType="com.pj.erp.vo.CT.CT_AS_VO">
+		Insert into computer_as_tbl(cas_code, department_code, username, cas_title, cas_content, cas_uri, cas_date, cas_result, cas_state)
+		Values(lpad(asnumber.nextval,6,'AS'), #{department_code}, #{username}, #{cas_title},
+			#{cas_content}, #{cas_uri}, sysdate, '미처리', 1)
+	</insert>
+	
+	<!-- AS(고장) 목록 -->
+	<select id="selectAS" resultType="com.pj.erp.vo.CT.CT_AS_VO">
+		Select * from computer_as_tbl
+		Where cas_state = #{cas_state}
+	</select>
+	
+	<!-- AS 목록 준선이형 버전 -->
+	<select id="selectAS2" parameterType="java.util.Map" resultType="com.pj.erp.vo.CT.CT_AS_VO">
+		Select cas_code, department_code, username, cas_title, cas_date from computer_as_tbl
+		Where cas_state = #{cas_state}
+	</select>
+	
+	<!-- 부서코드를 통한 전산설비목록 갯수 -->
+	<select id="selectCEQ" resultType="int">
+		select Count(*) from computer_equipment_tbl
+		Where department_code = #{department_code}
+	</select>
+	
+	<!-- 부서코드를 통한 전산설비목록 가져오기 -->
+	<select id="selectCeqS" parameterType="String" resultType="com.pj.erp.vo.CT.CT_VO">
+		select ceq_code, ceq_name, department_code From computer_equipment_tbl
+		Where department_code = #{department_code}
+	</select>
+	
+	<!-- 수리일지등록 -->
+	<insert id="InsertRP" parameterType="com.pj.erp.vo.CT.CT_RP_VO">
+		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state)
+		Values(lpad(asnumber.nextval,6,'RP'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1)
+	</insert>
 
 </mapper>

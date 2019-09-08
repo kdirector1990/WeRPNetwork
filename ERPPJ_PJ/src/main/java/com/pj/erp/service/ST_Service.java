@@ -33,6 +33,9 @@ public interface ST_Service {
 	// ST_sale_plan 삭제 처리 페이지
 	public void salePlandeletePro(HttpServletRequest req, Model model);
 	
+	// ST_release 목록 페이지
+	public void release(HttpServletRequest req, Model model);
+	
 	// tables-datatable (거래 명세서) 목록
 	public void transaction(HttpServletRequest req, Model model);
 	

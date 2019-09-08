@@ -14,28 +14,7 @@
     <script src="/erp/resources/assets/js/request.js"></script>
     
     <script type="text/javascript">
-    function sunyoungJoa(code){
-    	sendRequest(callback, "CT_select_code", "post", "${_csrf.parameterName }=${_csrf.token }&ceq_code="+code);
-    }
     
-    function callback(){
-    	var result = document.getElementById("result2");
-    	
-    	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-    		if(httpRequest.status == 200){	// 200 : 정상 종료
-    		 	result.innerHTML = "정상종료";
-    			
-    			var datas = httpRequest.responseText; 
-    			
-    			result.innerHTML = datas;
-    		} else {
-    			result.innerHTML = "에러발생";
-    		}
-    	} 
-    	else {
-    		result.innerHTML = "상태 : " + httpRequest.readyState;
-    	}
-    }
     </script>
     
 </head>
@@ -49,60 +28,6 @@
 	</c:if>
 	        
                 <!-- 페이지 내용 입력 공간 -->
-		          
-             <c:if test="${cnt != 0}">   
-	          	<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-	          		<col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	                        <col style = "width:10%;">
-	               <thead>
-	               <tr>
-		               	<th>전산설비코드</th>
-		                <th>설비명</th>
-		                <th>보유구분</th>
-		                <th>구입일</th>
-		                <th>사용부서</th>
-		                <th>위치</th>
-		                <th>매입가</th>
-		                <th>예상내용연수</th>
-		                <th>감가상각여부</th>
-		                <th>감가상각법</th>
-	               </tr>
-	               </thead>
-	               
-	               <tbody>
-	                <c:forEach var="vo" items="${vo}">
-	                	<tr onclick="sunyoungJoa(${vo.ceq_code});">
-	                		<td>${vo.ceq_code}
-	                		<td>${vo.ceq_name }
-	                		<td>${vo.ceq_type }
-	                		<td>${vo.ceq_acquire_date }
-	                		<td>${vo.department_code }
-	                		<td>${vo.ceq_location }
-	                		<td><fmt:formatNumber value="${vo.ceq_prime_cost }" pattern="#,###" />
-	                		<td>${vo.ceq_durable }
-	                		<c:choose>
-	                		<c:when test="${vo.ceq_depreciation == 1}">
-	                		<td>N
-	                		</c:when>
-	                		<c:when test="${vo.ceq_depreciation == 2}">
-	                		<td>Y
-	                		</c:when>
-	                		</c:choose>
-	                		<td>${vo.ceq_depreciation_type }
-	                </c:forEach>
-	               </tbody>
-	           </table>
-
-               </c:if>
-               
                <div id="result2">
 	               <c:if test="${selectCnt == 1 }">
 							<table class="table mb-0">
@@ -138,7 +63,7 @@
 			                				<option value="${voC.department_code }">${voC.department_code }
 			                				<c:choose>
 				                				<c:when test="${voC.department_code} == '인사'">
-				                					<option value="기획">기획
+													<option value="기획">기획
 				                					<option value="영업">영업
 				                					<option value="재무">재무
 				                					<option value="전산">전산
