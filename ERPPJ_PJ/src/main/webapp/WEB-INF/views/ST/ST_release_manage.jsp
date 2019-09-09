@@ -9,7 +9,7 @@
     <script src="/erp/resources/assets/js/request.js"></script>
 	<script type="text/javascript">
 	    function ST_releaseDetailForm(url) {
-	    	sendRequest(callback, "ST_releaseDetail", "post", "${_csrf.parameterName }=${_csrf.token }&saleplan_code="+url);
+	    	sendRequest(callback, "ST_releaseDetail", "post", "${_csrf.parameterName }=${_csrf.token }&sar_code="+url);
 	    }
 	    
 	    function callback() {
@@ -167,15 +167,15 @@
 														<c:if test="${cnt > 0}">
 															<c:forEach var="rto" items="${rtos}">
 																<tr>
-																	<td>${rto.release_name }</td>
-																	<td>${rto. }</td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
+																	<td></td> <!-- 구분 -->
+																	<td><input type ="button" value="${rto.release_name }" onclick="ST_releaseDetailForm(${rto.release_name });"></td><!-- 출고 거래처명 -->
+																	<td>${rto.release_date }</td> <!-- 출고 일자 -->
+																	<td><input type = "button" value = "${rto.sar_code }" onclick="ST_releaseDetailForm(${rto.sar_code });"></td><!-- 출고 번호 -->
+																	<td></td><!-- 납품처 -->
+																	<td></td><!--담당자  -->
+																	<td>${rto.release_count }</td><!-- 출고 수량 -->
+																	<td>${rto.unit_cost }</td><!-- 단가 -->
+																	<td></td><!-- 합계액 -->
 																</tr>
 															</c:forEach>
 														</c:if>
@@ -188,14 +188,13 @@
                                     </div>
                                 </div> <!-- end card -->
 							<br>
-							<hr style="border: dotted 2px red;">
+							
+							<hr>
 							<br>
-							<div id="result" class="card-body">
-								<!-- 상세 페이지 출력 위치 -->
+							<div id="result" class="card-body" style="width: 3500px;">
+							<!-- 상세 페이지 출력 위치 -->
 
-								</div>
-                                
-                                
+							</div>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
