@@ -69,8 +69,8 @@ public class CT_DAOImpl implements CT_DAO{
 
 	//AS 목록 가져오기
 	@Override
-	public List<CT_AS_VO> selectAS(CT_AS_VO vo) {
-		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectAS", vo);
+	public CT_AS_VO selectAS(int state) {
+		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.selectAS", state);
 	}
 
 	//AS 목록 가져오기(준선이형 버전)
@@ -78,6 +78,25 @@ public class CT_DAOImpl implements CT_DAO{
 	public List<CT_AS_VO> selectAS2(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectAS2", map);
 	}
+	
+	//AS 목록 코드로 가져오기
+	@Override
+	public CT_AS_VO selectAScode(String cas_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.selectAScode", cas_code);
+	}
+	
+	//AS 시작
+	@Override
+	public int updateAS(String cas_code) {
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.updateAS", cas_code);
+	}
+	
+	//AS 처리완료
+	@Override
+	public int completeAS(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.completeAS", map);
+	}
+
 
 	//수리일지 부서코드를 통한 전산설비 갯수
 	@Override
@@ -96,6 +115,10 @@ public class CT_DAOImpl implements CT_DAO{
 	public int InsertRP(CT_RP_VO rp) {
 		return sqlSession.insert("com.pj.erp.persistence.CT_DAO.InsertRP", rp);
 	}
+
+
+	
+
 
 	
 
