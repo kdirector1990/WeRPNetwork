@@ -113,7 +113,7 @@ public class CT_ServiceImpl implements CT_Service{
 		String type = req.getParameter("ceq_type");
 		List<CT_VO> vo = null;
 		vo = dao.SelectCT(type);
-		
+		System.out.println(vo.get(0).getCeq_code());
 		return vo;
 	}
 
