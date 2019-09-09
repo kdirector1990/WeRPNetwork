@@ -36,7 +36,11 @@
                                         </ol>
                                     </div>
                                     <sec:authorize access="isAuthenticated()">
-                                    	<h4 class="page-title">${name }님 환영합니다.</h4>
+                                    	<h4 class="page-title">${name }&nbsp;님 환영합니다.</h4><hr>
+                                    	<h4 class="page-title">${pCode }&nbsp; : 직책코드</h4><hr>
+                                    	<h4 class="page-title">${pName }&nbsp; : 직책명</h4><hr>
+                                    	<h4 class="page-title">${dCode }&nbsp; : 부서코드</h4><hr>
+                                    	<h4 class="page-title">${dName }&nbsp; : 부서명</h4><hr>
                                     </sec:authorize>
                                     <sec:authorize access="isAnonymous()">
                                  	   <h4 class="page-title">Welcome! 방문해 주셔서 감사합니다.</h4>
