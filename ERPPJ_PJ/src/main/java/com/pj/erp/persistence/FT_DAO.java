@@ -61,6 +61,9 @@ public interface FT_DAO {
 	public List<FT_Account> FT_AccountAllSelect();
 	
 	// 계정과목가져오기
-	public List<FT_Subject> FT_SubjectSelect();
+	public List<FT_Subject> FT_SubjectAllSelect();
+	
+	// 계정과목 검색한 것 가져오기
+	public List<FT_Subject> FT_SubjectSelect(String srhval);
 	
 }
