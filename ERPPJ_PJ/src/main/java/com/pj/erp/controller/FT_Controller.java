@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Controller
@@ -47,13 +48,21 @@ public class FT_Controller {
 		
 		return "FT/FT_insertChit";
 	}
+	
+	// 분개 데이터 값 불러오기
+	@RequestMapping(value = "FT_chitMaxNumber")
+	public @ResponseBody int FT_chitMaxNumber(@RequestBody Map<String, Object> map) {
+		logger.info("url : FT_chitMaxNumber 호출중");
+		
+		return service.FT_chitMaxNumber(map);
+	}
 
 	// 분개 데이터 값 불러오기
 	@RequestMapping(value = "FT_chitDataLoad", produces = "application/text; charset=utf8")
-	public @ResponseBody List<FT_Account> FT_chitDataLoad(@RequestBody Map<String, Object> map, Model model) {
+	public @ResponseBody List<FT_Chit> FT_chitDataLoad(@RequestBody Map<String, Object> map, Model model) {
 		logger.info("url : FT_chitDataLoad 호출중");
 		
-		return null;
+		return service.FT_chitDataLoad(map, model);
 	}
 	
 	@RequestMapping("FT_insertTotal")
@@ -284,6 +293,13 @@ public class FT_Controller {
 		return key + "호출"; 
 	}
 	
+	@RequestMapping(value = "FT_chitInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_chitInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_chitInsert 호출중");
+		
+		return service.FT_chitInsert(map); 
+	}
+	
 	@RequestMapping(value = "FT_AccinputEx", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_AccinputEx(@RequestBody Map<String, Object> map) {
 		logger.info("url : FT_AccinputEx 호출중");
@@ -359,13 +375,4 @@ public class FT_Controller {
 		String PayCode = map.get("PayCode").toString();
 		return AccCode + " " + CardName + " "  + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose + " " + Owner + " " + PayCode; 
 	}
-	
-	// 단기차입금목록
-	@RequestMapping("FT_short_borrowings_list")
-	public String FT_short_borrowings_list(HttpServletRequest req, Model model) {
-		logger.info("log => FT_short_borrowings_list");
-		
-		return "FT/FT_short_borrowings_list";
-	}
-	
 }

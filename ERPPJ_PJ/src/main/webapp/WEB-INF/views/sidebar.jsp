@@ -401,6 +401,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
+	                          			<li><a href="ST_sale_plan_write_reg">판매계획 등록</a></li>
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
 										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_release">출고 등록</a></li>

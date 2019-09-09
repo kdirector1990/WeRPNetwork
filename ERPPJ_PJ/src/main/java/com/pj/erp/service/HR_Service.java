@@ -16,7 +16,7 @@ public interface HR_Service {
 	
 	// 인사정보등록
 	public void inputFoundation(HttpServletRequest req, Model model);
-	
+		
 	// 부서코드 가져오기
 	public void departmentList(HttpServletRequest req, Model model);
 	
@@ -24,10 +24,7 @@ public interface HR_Service {
 	public void positionList(HttpServletRequest req, Model model);
 	
 	// 직급 가져오기
-	public void rankList(HttpServletRequest req, Model model);
-	
-	// 인사정보등록2
-	public void inputPhysical(HttpServletRequest req, Model model);
+	public void rankList(HttpServletRequest req, Model model);	
 	
 	//호봉테이블 직급메서드
 	public void selectRank(HttpServletRequest req, Model model);
@@ -46,6 +43,13 @@ public interface HR_Service {
 	
 	// 사원정보 현황
 	public void selectFoundation(HttpServletRequest req, Model model);
-
+	
+	// 신체정보 현황
+	public void selectPhysical(HttpServletRequest req, Model model);
+	
+	/*
+	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
+	 */
+	
 	
 }

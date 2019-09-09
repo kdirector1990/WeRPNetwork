@@ -157,18 +157,15 @@
 										<div class="col-lg-12">
 											<div class="card">
 												<div class="table-responsive">
-													<table class="table mb-0">
+													<table class="table mb-0" style="table-layout: fixed;">
 														<thead class="thead-light">
 
 															<tr>
 																<th rowspan="2">품번</th>
 																<th rowspan="2">품명</th>
-																<th>규격</th>
 																<th>단위 (관리)</th>
-																<th rowspan="2">계획 수량</th>
-																<!-- ef_amount -->
 																<th>예상 금액</th>
-																<!-- ef_price -->
+																<th>예상 수량</th>
 																<th>기간 시작</th>
 																<th>기간 종료</th>
 																<th>비고</th>
@@ -178,18 +175,15 @@
 														<tbody>
 															<c:if test="${cnt > 0}">
 																<c:forEach var="dto" items="${dtos}">
-																	<tr>
-																		<td>${dto.saleplan_no}</td>
-																		<td><input type="button"
-																			value="${dto.saleplan_code}"
-																			onclick="salePlanWriteForm(${dto.saleplan_code});"></td>
+																	<tr onclick="salePlanWriteForm('${dto.saleplan_code}');">
+																		<td>${dto.saleplan_code}</td>
 																		<td></td>
-																		<td></td>
-																		<td></td>
+																		<td>${dto.sp_unit }</td>
 																		<td>${dto.ef_price}</td>
+																		<td>${dto.ef_amount }</td>
 																		<td>${dto.s_plan_start }</td>
 																		<td>${dto.s_plan_end }</td>
-																		<td></td>
+																		<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${dto.sp_note}</td>
 																	</tr>
 																</c:forEach>
 															</c:if>
@@ -208,7 +202,7 @@
 							<br>
 							<hr>
 							<br>
-							<div id="result" class="card-body">
+							<div id="result" class="card-body" style="width: 3200px;">
 								<!-- 상세 페이지 출력 위치 -->
 
 							</div>
