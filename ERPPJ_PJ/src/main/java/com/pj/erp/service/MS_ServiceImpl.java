@@ -56,6 +56,7 @@ public class MS_ServiceImpl implements MS_Service {
 		
 		List<MS_plan> dto = dao.getPlanList();
 		model.addAttribute("dto", dto);
+		model.addAttribute("cnt", cnt);
 	}
 
 	// 기획서 수정
@@ -106,13 +107,13 @@ public class MS_ServiceImpl implements MS_Service {
 		int cnt = dao.selectEname(e_name); 
 		
 		System.out.println("cnt: "+cnt);
+		
 		if(cnt > 0) {
 			List<HR_VO> dto = dao.getUsernameList(e_name);
 			model.addAttribute("dto", dto);
 		}
 
 		model.addAttribute("cnt", cnt);
-		System.out.println("e_name : " + e_name);
 	}
 
 }

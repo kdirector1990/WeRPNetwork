@@ -72,7 +72,9 @@ public class CT_ServiceImpl implements CT_Service{
 				vo.setCeq_durable(ceq_durable);
 				vo.setCeq_depreciation(ceq_depreciation);
 				vo.setCeq_depreciation_type(ceq_depreciation_type);
-
+				
+				insertCnt = dao.InsertCT(vo);
+				
 				System.out.println("다 돌아갔다.");
 				
 				i++;
@@ -111,7 +113,7 @@ public class CT_ServiceImpl implements CT_Service{
 		String type = req.getParameter("ceq_type");
 		List<CT_VO> vo = null;
 		vo = dao.SelectCT(type);
-		
+		System.out.println(vo.get(0).getCeq_code());
 		return vo;
 	}
 
@@ -214,13 +216,10 @@ public class CT_ServiceImpl implements CT_Service{
 
 	//AS 목록
 	@Override
-	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
+	public CT_AS_VO CT_select_as(HttpServletRequest req, Model model) {
 		int state = Integer.parseInt(req.getParameter("cas_state"));
 		
-		CT_AS_VO se = new CT_AS_VO();
-		se.setCas_state(state);
-		
-		List<CT_AS_VO> vo = dao.selectAS(se);
+		CT_AS_VO vo = dao.selectAS(state);
 		
 		return vo;
 	}
@@ -240,6 +239,48 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		return data;
 	}
+	
+	//AS목록 코드검색
+	@Override
+	public CT_AS_VO CT_select_asCode(HttpServletRequest req, Model model) {
+
+		String cas_code = req.getParameter("cas_code");
+		
+		System.out.println(cas_code);
+		
+		CT_AS_VO data = dao.selectAScode(cas_code);
+		
+		return data;
+	}
+	
+	//AS 시작(처리중)
+	@Override
+	public int CT_update_as(HttpServletRequest req, Model model) {
+		int updateCnt = 0;
+		String cas_code = req.getParameter("cas_code");
+		System.out.println(cas_code);
+		updateCnt= dao.updateAS(cas_code);
+		System.out.println(updateCnt);
+		return updateCnt;
+	}
+	
+	//AS 처리완료
+	@Override
+	public int CT_AS_complete(HttpServletRequest req, Model model) {
+		
+		Map<String, Object> map = new HashMap();
+		
+		String cas_code = req.getParameter("cas_code");
+		String cas_result = req.getParameter("cas_result");
+		
+		map.put("cas_code", cas_code);
+		map.put("cas_result", cas_result);
+		
+		int updateCnt = dao.completeAS(map);
+		
+		return updateCnt;
+	}
+	
 
 	//수리일지 부서검색
 	@Override
@@ -279,6 +320,10 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		model.addAttribute("insertCnt", InsertCnt);
 	}
+
+	
+
+	
 	
 	
 	

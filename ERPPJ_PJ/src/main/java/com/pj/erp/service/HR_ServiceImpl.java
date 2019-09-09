@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.persistence.HR_DAO;
 
 import com.pj.erp.vo.HR_PhysicalVO;
+import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
@@ -92,9 +93,9 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		*/		
 		
-		HR_VO vo = new HR_VO();
+		HR_VO vo = new HR_VO();		
 		
-		String username = req.getParameter("username");
+		String username = dao.getUsername();
 		String e_name = "1234";
 		// String e_picture = file.getOriginalFilename();
 		
@@ -136,10 +137,22 @@ public class HR_ServiceImpl implements HR_Service{
 		int enabled = 1;
 		vo.setEnabled(enabled);
 		
+		HR_FamilyVO vo2 = new HR_FamilyVO();
+		
+		String f_name = " ";
+		String f_type = " ";		
+		
+		vo2.setUsername(username);
+		vo2.setF_name(f_name);
+		vo2.setF_type(f_type);		
+		vo2.setF_born(new Timestamp(System.currentTimeMillis()));		
+		
 		int cnt = 0;		
 		
 		cnt = dao.insertMember(vo);		
 		dao.insertAuth();
+		dao.insertPhysical(username);
+		dao.insertFamily(vo2);
 		
 		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);		
@@ -176,44 +189,10 @@ public class HR_ServiceImpl implements HR_Service{
         /*} catch(IOException e) {
             e.printStackTrace();
         }	
-		*/
-		
-	}
+		*/		
+	}	
 	
-	@Override
-	public void inputPhysical(HttpServletRequest req, Model model) {
-		HR_PhysicalVO vo = new HR_PhysicalVO();
-		vo.setE_height(Integer.parseInt(req.getParameter("e_height")));
-		vo.setE_weight(Integer.parseInt(req.getParameter("e_weight")));
-		vo.setE_left_sight(Integer.parseInt(req.getParameter("e_left_sight")));
-		vo.setE_right_sight(Integer.parseInt(req.getParameter("e_right_sight")));
-		vo.setE_color_blind(req.getParameter("e_color_blind"));
-		vo.setE_blood_type(req.getParameter("e_blood_type"));
-		vo.setE_disability_type(req.getParameter("e_disability_type"));
-		vo.setE_disability_level(req.getParameter("e_disability_level"));
-		
-		String e_blood_presure = "";
-		String e_blood_presure1 = req.getParameter("e_blood_presure1");
-		String e_blood_presure2 = req.getParameter("e_blood_presure2");
-		e_blood_presure = e_blood_presure1 + "mmHg ~ " + e_blood_presure2 + "mmHg";
-		vo.setE_blood_presure(e_blood_presure);		
-		
-		int e_veteran_type = Integer.parseInt(req.getParameter("e_veteran_type"));
-		vo.setE_veteran_type(e_veteran_type);
-		vo.setE_veteran_info(req.getParameter("e_veteran_info"));
-		vo.setE_veteran_level(req.getParameter("e_veteran_level"));
-		
-		vo.setE_disability_type(req.getParameter("e_disability_type"));
-		vo.setE_disability_level(req.getParameter("e_disability_level"));		
-		
-		int cnt = 0;
-		
-		cnt = dao.insertPhysical(vo);
-		model.addAttribute("cnt", 1);
-		
-		model.addAttribute("insertCnt", cnt);
-		
-	}
+	
 
 	//호봉테이블(직급)
 	@Override
@@ -308,7 +287,8 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_GreetingVO> list = dao.getGreeting(map);
 		return list;
 	}
-		
+	
+	@Override
 	public void departmentList(HttpServletRequest req, Model model) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();		
@@ -339,12 +319,29 @@ public class HR_ServiceImpl implements HR_Service{
 	public void selectFoundation(HttpServletRequest req, Model model) {
 		List<HR_VO> vo = dao.foundation();
 		
-		model.addAttribute("vo", vo);
+		model.addAttribute("vo", vo);		
+	}
+
+	@Override
+	public void selectPhysical(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub		
+	}
+
+	/*
+	@Override
+	public void userChk(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");		
+		
+		int cnt = dao.userChk(username);
+		
+		System.out.println("cnt : " + cnt);
+		
+		model.addAttribute("selectCnt", cnt);
+		model.addAttribute("username",  username);
 		
 	}
+	*/
 	
-
 	
 	
-
 }
