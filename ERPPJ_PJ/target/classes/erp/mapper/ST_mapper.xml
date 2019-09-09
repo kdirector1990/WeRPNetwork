@@ -72,10 +72,13 @@
  	<delete id="deleteRelease" parameterType="String">
  		DELETE sar_list_tbl WHERE sar_code=#{sar_code}
  	</delete>
+<<<<<<< HEAD
  	
  	<insert id="insertRelease" parameterType="com.pj.erp.vo.ST.Release">
  		INSERT INTO sar_list_tbl(release_name, stored_name, unit_cost, release_count, stored_count, sar_code, release_date, detail_ac_code, sar_type, username)
  			VALUES(#{release_name}, #{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, #{sar_code}, sysdate, 'qa8', #{sar_type}, 10000)
  	</insert>
  	
+=======
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
  </mapper>

@@ -296,8 +296,8 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSar_type(req.getParameter("sar_type"));
 		vo.setDetail_ac_code("qa8");
-		/* vo.setUsername(req.getSession().getAttribute("username")); */
-		
+		vo.setUsername((String)req.getSession().getAttribute("username")); 
+		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
 		
 		model.addAttribute("releaseWritePro", releaseWritePro);
