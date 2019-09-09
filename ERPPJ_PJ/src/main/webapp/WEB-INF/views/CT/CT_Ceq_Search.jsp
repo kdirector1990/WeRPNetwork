@@ -43,6 +43,18 @@ function loadCode_callback() {
 		//result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 } 
+
+function setCeqSerial(code){
+	opener.document.getElementById("ceq_codeS").value = code;
+	
+	alert("작동");
+	
+	$("#ceq_codeS", opener.document).val(code);
+	$(opener.document).find("ceq_codeS").val(code);
+	self.close();
+}
+
+
 </script>
 
 </head>
