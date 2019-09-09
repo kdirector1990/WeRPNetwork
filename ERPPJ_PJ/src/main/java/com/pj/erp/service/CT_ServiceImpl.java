@@ -72,7 +72,9 @@ public class CT_ServiceImpl implements CT_Service{
 				vo.setCeq_durable(ceq_durable);
 				vo.setCeq_depreciation(ceq_depreciation);
 				vo.setCeq_depreciation_type(ceq_depreciation_type);
-
+				
+				insertCnt = dao.InsertCT(vo);
+				
 				System.out.println("다 돌아갔다.");
 				
 				i++;
@@ -111,7 +113,7 @@ public class CT_ServiceImpl implements CT_Service{
 		String type = req.getParameter("ceq_type");
 		List<CT_VO> vo = null;
 		vo = dao.SelectCT(type);
-		
+		System.out.println(vo.get(0).getCeq_code());
 		return vo;
 	}
 
