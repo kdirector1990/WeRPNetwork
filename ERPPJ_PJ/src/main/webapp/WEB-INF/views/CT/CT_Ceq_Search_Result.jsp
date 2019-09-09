@@ -13,14 +13,16 @@
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     </head>
 <body>
-
+				<div style="padding-top:10px;">
+				
+				</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
+								<div class="card-body">
+                                        <table id="datatable" class="table table-bordered">
                                             <thead>
-                                                <tr>
+                                                <tr class="table-info" style = "text-align: center;">
 													<th>전산설비코드</th>
 													<th>설비명</th>
                                          		</tr>
@@ -29,7 +31,7 @@
                                     		<!--  있으면 -->
 											<c:if test="${cnt != 0}">
                                           		<c:forEach var="list" items="${dto}">
-                                          			<tr>
+                                          			<tr onclick="setCeqSerial('${list.ceq_code}');">
                                           				<td>${list.ceq_code}</td>
                                           				<td>${list.ceq_name}</td>
                                           			</tr>

@@ -133,7 +133,7 @@ public class CT_Controller {
 		return insertCnt;
 	}
 	
-	//AS 요청 목록 가져오기
+	/*AS 요청 목록 가져오기
 	@RequestMapping("CT_select_as")
 	@ResponseBody
 	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
@@ -143,6 +143,7 @@ public class CT_Controller {
 		
 		return data;
 	}
+	*/
 	
 	//AS 요청 목록 가져오기(준선이형 버전)
 	@RequestMapping(value = "CT_select_as2", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
@@ -152,6 +153,39 @@ public class CT_Controller {
 		List<CT_AS_VO> data = CT.CT_select_as2(map, req, model);
 		logger.info("log => CT_select_as22");
 		return data;
+	}
+	
+	//AS 요청 목록 가져오기(코드)
+	@RequestMapping("CT_update_ASW")
+	@ResponseBody
+	public CT_AS_VO CT_update_ASW(HttpServletRequest req, Model model) {
+		logger.info("log => CT_update_ASW");
+		
+		CT_AS_VO data = CT.CT_select_asCode(req, model);
+		
+		return data;
+	}
+	
+	//AS 수리중으로 변경
+	@RequestMapping("CT_AS_Update")
+	@ResponseBody
+	public int CT_AS_Update(HttpServletRequest req, Model model) {
+		logger.info("log => CT_AS_Update");
+		
+		int updateCnt = CT.CT_update_as(req, model);
+		
+		return updateCnt;
+	}
+	
+	//AS 수리완료 변경
+	@RequestMapping("CT_AS_Complete")
+	@ResponseBody
+	public int CT_AS_Complete(HttpServletRequest req, Model model) {
+		logger.info("log => CT_AS_Complete");
+		
+		int updateCnt = CT.CT_AS_complete(req, model);
+		
+		return updateCnt;
 	}
 	
 	

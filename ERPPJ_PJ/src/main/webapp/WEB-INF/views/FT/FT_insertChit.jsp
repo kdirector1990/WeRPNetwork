@@ -74,6 +74,58 @@
         		});
         	}
         	
+        	function RLenter(cc, dd) {
+       			var swit = 0;
+       			var nowme = $("input[name=" + dd + "]").parent();
+       			if(window.event.which == 13){
+       				for(var i = 0; i < $("input[name=" + dd + "]").parent().nextAll().children().length; i++){
+       					nowme = nowme.next();
+       					if(!nowme.children().attr("readonly")){
+       						nowme.children().focus();
+       						return false;
+       					}
+       				}
+           		} else if(window.event.which == 9) {
+           			if($("*[name=" + dd + "]").parent().parent().parent().parent().attr("class") == "table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered"){
+               			frontcursor = dd;
+           				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
+           				$(".chitsub-table-bordered-primary tbody #firstsub").parent().prev().children().focus();
+           			} else if($("*[name=" + dd + "]").parent().parent().parent().parent().attr("class") == "table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered"){
+           				$("*[name=" + frontcursor + "]").focus();
+           				$("*[name=" + frontcursor + "]").parent().prev().children().focus();
+           			}
+           			$("*[name=" + dd + "]").parent().prev().children().focus();
+           			return false;	
+           		} else if(window.event.which == 37) {
+           			for(var i = 0; i < $("input[name=" + dd + "]").parent().prevAll().children().length; i++){
+       					nowme = nowme.prev();
+       					if(!nowme.children().attr("readonly")){
+       						nowme.children().focus();
+       						return false;
+       					}
+       				}
+					return false;
+           		} else if(window.event.which == 38) {
+           			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) - 1) + "]").focus();
+           		} else if(window.event.which == 39) {
+       				for(var i = 0; i < $("input[name=" + dd + "]").parent().nextAll().children().length; i++){
+       					nowme = nowme.next();
+       					if(!nowme.children().attr("readonly")){
+       						nowme.children().focus();
+       						return false;
+       					}
+       				}
+           		} else if(window.event.which == 40) {
+           			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) + 1) + "]").focus();
+           		} else if(window.event.which == 97) {
+           			$("input[name=" + dd + "]").val("차변");
+           		} else if(window.event.which == 98) {
+           			$("input[name=" + dd + "]").val("대변");
+           		} else {
+           			$("input[name=" + dd + "]").val("");
+           		}
+        	}
+        	
         	function enter(cc, dd) {
         		if(cc == "INPUT") {
         			var swit = 0;
@@ -372,7 +424,7 @@
         	function subjectlist(subjectcode) {
             	var popupX = Math.ceil((window.screen.width - 363)/2);
             	var popupY = Math.ceil((window.screen.height - 528)/2);
-        		var url = "FT_Subject_list?key=" + $("*[name=subjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
+        		var url = "FT_Subject_list?key=" + $("*[name=subjectcode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
         		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
         		
         	}
@@ -380,9 +432,38 @@
         	function accountlist(accountcode) {
             	var popupX = Math.ceil((window.screen.width - 363)/2);
             	var popupY = Math.ceil((window.screen.height - 528)/2);
-        		var url = "FT_account_list?key=" + $("*[name=accountCode" + accountcode + "]").val() + "&keyname=" + accountcode;
+        		var url = "FT_account_list?key=" + $("*[name=accountcode" + accountcode + "]").val() + "&keyname=" + accountcode;
         		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
         		
+        	}
+        	
+        	function ajaxload() {
+        		var obj = new Object();
+        		var jsonData;
+        		
+        		// 자바스크립트 객체 생성
+        		obj.year = $("#year").val();
+        		obj.month = $("#month").val();
+        		obj.day = $("#day").val();
+        		
+        		// json 객체를 String 객체로 변환 -- 
+        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+        		jsonData = JSON.stringify(obj);
+        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+        		alert((new Date( 년도입력, 월입력, 0)).getDate());
+        		$.ajax({
+                       type : "POST",
+                       url : "/erp/FT_chitDataLoad?${_csrf.parameterName }=${_csrf.token }",
+                       data : jsonData,
+                       contentType : 'application/json;charset=UTF-8',
+                       success : function(data) {
+                    	   
+                       },
+                       error : function(e) {
+                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                       }
+        		});
         	}
         </script>
         <!-- Table datatable css -->
@@ -450,9 +531,9 @@
                                                 	<input type="text" class="" readonly style = "width: 100px;"></td>
                                                
                                                 <td>년</td>
-                                            	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="0000" placeholder = "ex)2018" style = "width: 100px;"></td>
+                                            	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="0000" placeholder = "ex)2018" style = "width: 100px;" id = "year"></td>
                                             	<td>월</td>
-                                            	<td><select class="" style = "width:50px;">
+                                            	<td><select class="" style = "width:50px;" id = "month">
 			                                                <option value="1">1</option>
 			                                                <option value="2">2</option>
 			                                                <option value="3">3</option>
@@ -467,7 +548,9 @@
 			                                                <option value="12" selected="selected">12</option>
 			                                        </select></td>
                                             	<td>일</td>
-                                            	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="00" placeholder = "ex)29" style = "width: 100px;"></td>
+                                            	<td><input type="text" class="" id = "day" data-toggle="input-mask" data-mask-format="00" placeholder = "ex)29" style = "width: 100px;" onkeydown="ajaxload();"></td>
+                                            	<td><input type="number" class="" data-toggle="input-mask" style = "width: 100px;" maxlength="5" value = "5" onchange="change();"></td>
+                                            	
                                             </tr>
                                         </table>
                                         
@@ -476,10 +559,10 @@
                                                 <col style = "width:5%;">
                                                 <col style = "width:8%;">
                                                 <col style = "width:5%">
-                                                <col style = "width:5%;">
+                                                <col style = "width:8%;">
+                                                <col style = "width:6%;">
                                                 <col style = "width:10%;">
-                                                <col style = "width:5%;">
-                                                <col style = "width: 10%;">
+                                                <col style = "width: 6%;">
                                                 <col style = "width: 10%;">
                                                 <col style = "width: 10%;">
                                                 <col style = "width: 5%;">
@@ -491,12 +574,12 @@
 		                                                <th>일</th>
 		                                                <th>분개코드</th>
 		                                                <th>번호</th>
+		                                                <th>구분</th>
 		                                                <th>계정</th>
 		                                                <th>계정명</th>
 		                                                <th>거래처</th>
 		                                                <th>거래처명</th>
-		                                                <th>차변금액</th>
-		                                                <th>대변금액</th>
+		                                                <th>금액</th>
 		                                                <th>수량</th>
 		                                                <th>적요</th>
 		                                                <th>전표상태</th>
@@ -506,18 +589,18 @@
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <input type = "hidden" name = "writer0" value = "작성자">
+		                                                <input type = "hidden" name = "writer0" value = "${sessionScope.name}">
 		                                                <input type = "hidden" name = "formaler0" value = "승인자">
 		                                                <td>
 		                                                <input type="text" onfocus = "focuse(this.name);" name = "date0" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "key0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "number0" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first0" name = "RLstate0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "RLenter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectcode0" class="form-control" onclick = "subjectlist(0)" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subjectname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountcode0" class="form-control" onclick = "accountlist(0)" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "accountname0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "leftprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "rightprice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "price0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "count0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "text0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><select class="form-control" id = "enter0" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(0);">
