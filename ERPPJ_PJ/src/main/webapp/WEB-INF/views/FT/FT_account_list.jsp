@@ -11,27 +11,28 @@
     <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript">
 		//opener : window 객체의 open() 메소드로 열린 새창(=중복확인창)에서, 열어준 부모창(=회원가입창)에 접근할 때 사용
 		//self.close() : 메시지 없이 현재 창을 닫을 때 사용
 		//hiddenId : 중복확인 버튼 클릭 여부 체크(0: 클릭안함, 1: 클릭함)
     	function selectlist(searchvalue){
     		
-    		/* $.ajax({
+    		$.ajax({
                 type : "POST",
-                url : "/erp/FT_accountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + searchvalue,
+                url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + searchvalue,
                 success : function(data) {
                        alert(data);
                 },
                 error : function(e) {
                        alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
                 }
-           	}); */
+           	});
 		}
     
 		function setvalue(val){
-			opener.document.inputForm.id.value = $("#code" + val).html();
-			opener.document.inputForm.hiddenId.value = $("#name" + val).html();
+			$("input[name=accountcode${keyname}]", opener.document).val($("#code" + val).html());
+    		$("input[name=accountname${keyname}]", opener.document).val($("#name" + val).html());
 			self.close();
 		}
     </script>
