@@ -63,5 +63,29 @@
 		Select * from computer_as_tbl
 		Where cas_state = #{cas_state}
 	</select>
+	
+	<!-- AS 목록 준선이형 버전 -->
+	<select id="selectAS2" parameterType="java.util.Map" resultType="com.pj.erp.vo.CT.CT_AS_VO">
+		Select cas_code, department_code, username, cas_title, cas_date from computer_as_tbl
+		Where cas_state = #{cas_state}
+	</select>
+	
+	<!-- 부서코드를 통한 전산설비목록 갯수 -->
+	<select id="selectCEQ" resultType="int">
+		select Count(*) from computer_equipment_tbl
+		Where department_code = #{department_code}
+	</select>
+	
+	<!-- 부서코드를 통한 전산설비목록 가져오기 -->
+	<select id="selectCeqS" parameterType="String" resultType="com.pj.erp.vo.CT.CT_VO">
+		select ceq_code, ceq_name, department_code From computer_equipment_tbl
+		Where department_code = #{department_code}
+	</select>
+	
+	<!-- 수리일지등록 -->
+	<insert id="InsertRP" parameterType="com.pj.erp.vo.CT.CT_RP_VO">
+		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state)
+		Values(lpad(asnumber.nextval,6,'RP'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1)
+	</insert>
 
 </mapper>

@@ -16,6 +16,8 @@ import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
 
+import javafx.scene.chart.PieChart.Data;
+
 @Service
 public class ST_ServiceImpl implements ST_Service {
 
@@ -344,7 +346,47 @@ public class ST_ServiceImpl implements ST_Service {
 			model.addAttribute("curruentPage", currentPage); // 현재페이지
 		}
 	}
+	
+	// ST_release 상세 페이지
+	@Override
+	public void releaseWriteForm(HttpServletRequest req, Model model) {
+		String sar_code = req.getParameter("sar_code");
+		
+		Release vo = dao.getReleaseArticle(sar_code);
+		
+		model.addAttribute("rto", vo);
+		model.addAttribute("sar_code", sar_code);
+	}
+	
+	// ST_release 수정 상세 처리 페이지
+	@Override
+	public void releaseModifyPro(HttpServletRequest req, Model model) {
+		String sar_code = req.getParameter("sar_code");
+		
+		Release vo = new Release();
+		vo.setSar_code(sar_code);
+		vo.setRelease_name(req.getParameter("release_name"));
+		/* vo.setRelease_date(Date.valueOf(req.getParameter("release_date"))); */
+		vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
+		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
+		
+		int updateRelease = dao.updateRelease(vo);
+		
+		req.setAttribute("sar_code", sar_code);
+		req.setAttribute("updateRelease", updateRelease);
+	}
+	
+	//ST_release 출고 삭제 페이지 
+	@Override
+	public void releaseDeletePro(HttpServletRequest req, Model model) {
+		String sar_code = req.getParameter("sar_code");
 
+		int deleteRelease = dao.deleteRelease(sar_code);
+
+		model.addAttribute("deleteRelease", deleteRelease);
+		model.addAttribute("sar_code", sar_code);
+	}
+	
 	// tables-datatable (거래 명세서) 목록
 	@Override
 	public void transaction(HttpServletRequest req, Model model) {

@@ -1,12 +1,14 @@
 package com.pj.erp.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
@@ -69,6 +71,30 @@ public class CT_DAOImpl implements CT_DAO{
 	@Override
 	public List<CT_AS_VO> selectAS(CT_AS_VO vo) {
 		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectAS", vo);
+	}
+
+	//AS 목록 가져오기(준선이형 버전)
+	@Override
+	public List<CT_AS_VO> selectAS2(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectAS2", map);
+	}
+
+	//수리일지 부서코드를 통한 전산설비 갯수
+	@Override
+	public int selectCEQ(String part) {
+		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.selectCEQ", part);
+	}
+
+	//수리일지 부서코드를 통한 전산설비리스트 가져오기
+	@Override
+	public List<CT_VO> selectCeqS(String part) {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectCeqS", part);
+	}
+
+	//수리일지 등록
+	@Override
+	public int InsertRP(CT_RP_VO rp) {
+		return sqlSession.insert("com.pj.erp.persistence.CT_DAO.InsertRP", rp);
 	}
 
 	

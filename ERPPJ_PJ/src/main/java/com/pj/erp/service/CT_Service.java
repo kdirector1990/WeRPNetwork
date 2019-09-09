@@ -1,6 +1,7 @@
 package com.pj.erp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,5 +36,12 @@ public interface CT_Service {
 	//AS 목록
 	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model);
 	
+	//AS 목록(준선이형버전)
+	public List<CT_AS_VO> CT_select_as2(Map<String,Object> map, HttpServletRequest req, Model model);
 	
+	//수리일지 검색
+	public void SearchCode(HttpServletRequest req, Model model);
+	
+	//수리일지 등록
+	public void InsertRP(HttpServletRequest req, Model model);
 }
