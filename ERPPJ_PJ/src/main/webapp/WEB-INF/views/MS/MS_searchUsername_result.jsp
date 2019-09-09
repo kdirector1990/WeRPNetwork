@@ -29,7 +29,7 @@
                                       		</thead>
                                     		<tbody>
                                     		<!--  있으면 -->
-											<c:if test="${cnt > 0}">
+											<c:if test="${cnt != 0}">
                                           		<c:forEach var="list" items="${dto}">
                                           			<c:if test="${var eq param.username}">
                                           			<tr>
@@ -42,7 +42,7 @@
                                           		</c:forEach>
                                          	</c:if>
                                          	<!--  없으면 -->
-												<c:if test="${cnt < 0}">
+												<c:if test="${cnt == 0}">
 													<tr>
 														<td colspan="6" align="center">
 															조회결과 없음

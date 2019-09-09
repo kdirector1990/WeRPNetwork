@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.pj.erp.persistence.CT_DAO;
+import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
@@ -21,8 +24,6 @@ public class CT_ServiceImpl implements CT_Service{
 	@Autowired
 	CT_DAO dao;
 	
-	Map<String, Object> map = new HashMap<String, Object>();
-
 	//고정자산 입력
 	@Override
 	public int CT_insert(HttpServletRequest req, Model model) {
@@ -72,20 +73,6 @@ public class CT_ServiceImpl implements CT_Service{
 				vo.setCeq_depreciation(ceq_depreciation);
 				vo.setCeq_depreciation_type(ceq_depreciation_type);
 
-				
-				System.out.println(vo.getCeq_name());
-				System.out.println(vo.getCeq_type());
-				System.out.println(vo.getCeq_acquire_date());
-				System.out.println(vo.getDepartment_code());
-				System.out.println(vo.getCeq_location());
-				System.out.println(vo.getCeq_prime_cost());
-				System.out.println(vo.getCeq_durable());
-				System.out.println(vo.getCeq_depreciation());
-				System.out.println(vo.getCeq_depreciation_type());
-				System.out.println();
-				
-				insertCnt = dao.InsertCT(vo);
-				
 				System.out.println("다 돌아갔다.");
 				
 				i++;
@@ -128,13 +115,171 @@ public class CT_ServiceImpl implements CT_Service{
 		return vo;
 	}
 
+	//전산설비 목록 code 검색
 	@Override
-	public void CT_select_code(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
-		
+	public CT_VO CT_select_code(HttpServletRequest req, Model model) {
+		String code = req.getParameter("ceq_code");
+		CT_VO vo = dao.selectCode(code);
+		System.out.println(code);
+		System.out.println(vo.getCeq_code());
+		System.out.println(vo.getCeq_name());
+		System.out.println(vo.getCeq_type());
+		return vo;
 	}
+
 	
 	//전산설비 수정화면 입력폼
+	@Override
+	public int CT_update_ct(HttpServletRequest req, Model model) {
+		String ceq_code = req.getParameter("ceq_code");
+		String ceq_name = req.getParameter("ceq_name");
+		String ceq_type = req.getParameter("ceq_type");
+		String ceq_acquire_date = req.getParameter("ceq_acquire_date");
+		Date col = Date.valueOf(ceq_acquire_date);
+		String deparment_code = req.getParameter("department_code");
+		System.out.println("부서번호 : " + deparment_code);
+		String location = req.getParameter("ceq_location");
+		
+		//콤마제거(매입가, 예상연수내용)
+		String cost = req.getParameter("ceq_prime_cost");
+		int ceq_prime_cost = Integer.parseInt(cost.replace(",", ""));;
+		
+		String durable = req.getParameter("ceq_durable");
+		int ceq_durable = Integer.parseInt(durable.replace(",", ""));
+		
+		int ceq_depreciation = Integer.parseInt(req.getParameter("ceq_depreciation"));
+		String ceq_depreciation_type = req.getParameter("ceq_depreciation_type");
+		
+		CT_VO vo = new CT_VO();
+		
+		vo.setCeq_code(ceq_code);
+		vo.setCeq_name(ceq_name);
+		vo.setCeq_type(ceq_type);
+		vo.setCeq_acquire_date(col);
+		vo.setDepartment_code(deparment_code);
+		vo.setCeq_location(location);
+		vo.setCeq_prime_cost(ceq_prime_cost);
+		vo.setCeq_durable(ceq_durable);
+		vo.setCeq_depreciation(ceq_depreciation);
+		vo.setCeq_depreciation_type(ceq_depreciation_type);
+		
+		int updateCnt = dao.updateCT(vo);
+		
+		System.out.println(updateCnt);
+		return updateCnt;
+	}
+
+	//전산설비 폐기처리
+	@Override
+	public int CT_delete_ct(HttpServletRequest req, Model model) {
+		String ceq_code = req.getParameter("ceq_code");
+		
+		CT_VO vo = new CT_VO();
+		
+		vo.setCeq_code(ceq_code);
+		
+		int deleteCnt = dao.deleteCT(vo);
+		
+		return deleteCnt;
+	}
+
+	//AS 등록
+	@Override
+	public int AS_insert_ct(HttpServletRequest req, Model model) {
+		
+		String department_code = req.getParameter("department_code");
+		String username = req.getParameter("username");
+		String cas_title = req.getParameter("cas_title");
+		String cas_content = req.getParameter("cas_content");
+		String cas_url = req.getParameter("cas_url");
+		
+		CT_AS_VO vo = new CT_AS_VO();
+		
+		vo.setDepartment_code(department_code);
+		vo.setUsername(username);
+		vo.setCas_title(cas_title);
+		vo.setCas_content(cas_content);
+		vo.setCas_uri(cas_url);
+		
+		System.out.println(vo.getDepartment_code());
+		System.out.println(vo.getUsername());
+		System.out.println(vo.getCas_title());
+		System.out.println(vo.getCas_content());
+		System.out.println(vo.getCas_uri());
+		
+		int insertCnt = dao.insertAS(vo);
+		
+		return insertCnt;
+	}
+
+	//AS 목록
+	@Override
+	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
+		int state = Integer.parseInt(req.getParameter("cas_state"));
+		
+		CT_AS_VO se = new CT_AS_VO();
+		se.setCas_state(state);
+		
+		List<CT_AS_VO> vo = dao.selectAS(se);
+		
+		return vo;
+	}
+
+	//AS목록 준선이형 버전
+	@Override
+	public List<CT_AS_VO> CT_select_as2(Map<String, Object> map, HttpServletRequest req, Model model) {
+		
+		String cas_state = (String)map.get("cas_state");
+		
+		System.out.println(cas_state);
+		
+		map.put("cas_state", cas_state);
+		System.out.println(map.get("cas_state"));
+		
+		List<CT_AS_VO> data = dao.selectAS2(map);
+		
+		return data;
+	}
+
+	//수리일지 부서검색
+	@Override
+	public void SearchCode(HttpServletRequest req, Model model) {
+		
+		int cnt = 0;
+		String department_code = req.getParameter("department_code");
+		
+		System.out.println(department_code);
+		
+		cnt = dao.selectCEQ(department_code);
+		
+		if(cnt != 0) {
+			List<CT_VO> dto = dao.selectCeqS(department_code);
+			model.addAttribute("dto", dto);
+			System.out.println("if 작동");
+		}
+		
+		model.addAttribute("cnt", cnt);
+	}
+
+	//수리일지 등록
+	@Override
+	public void InsertRP(HttpServletRequest req, Model model) {
+		
+		String rr_title = req.getParameter("rr_title");
+		String ceq_code = req.getParameter("ceq_code");
+		String rr_content = req.getParameter("rr_content");
+		
+		CT_RP_VO rp = new CT_RP_VO();
+		rp.setRr_title(rr_title);
+		rp.setCeq_code(ceq_code);
+		rp.setRr_content(rr_content);
+		
+		
+		int InsertCnt = dao.InsertRP(rp);
+		
+		model.addAttribute("insertCnt", InsertCnt);
+	}
+	
 	
 	
 	

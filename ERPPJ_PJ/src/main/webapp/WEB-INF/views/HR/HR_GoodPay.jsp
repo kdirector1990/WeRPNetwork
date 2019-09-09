@@ -97,11 +97,7 @@
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>일괄등록</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>일괄인상</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light" disabled>호봉복사</button>
     								<button id="updatePA" onclick="payUpdate();" type="button" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
-    								<button type="button" class="btn btn-outline-primary waves-effect waves-light">코드설정</button>
 								</div>
 								<h4 class="page-title">호봉테이블 입력</h4>
 							</div>

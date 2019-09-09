@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
 
 public interface ST_DAO {
@@ -41,5 +42,21 @@ public interface ST_DAO {
 
 	// salePlan 게시물 삭제 처리
 	public int deletesalePlan(String saleplan_code);
+	
+	// ------ ST_release (출고 관리)
+	// release 게시글 갯수 구하기
+	public int getReleaseCnt();
+	
+	// release 게시글 목록 조회
+	public List<Release> getReleaseList(Map<String, Object> map);
+	
+	// release 게시글 상세 조회
+	public Release getReleaseArticle(String sar_code);
+	
+	// release 수정 처리 
+	public int updateRelease(Release vo);
+	
+	// release 삭제 처리
+	public int deleteRelease(String sar_code);
 
 }

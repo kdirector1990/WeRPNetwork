@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.pj.erp.service.ERPService;
 import com.pj.erp.service.ST_Service;
 
 @Controller
@@ -63,15 +62,50 @@ public class ST_Controller {
 		return "ST/ST_estimate_writePro";
 	}
 	
-	
-	// 異쒓퀬 愿�由�
+	// ST_release 출고 등록
 	@RequestMapping("ST_release")
-	public String release(Locale locale, Model model) {
-		logger.info("log => release");
+	public String ST_release(Locale locale, Model model) {
+		logger.info("log => ST_release");
 		
-		return "ST/release";
+		return "ST/ST_release";
 	}
 	
+	// ST_release 출고 관리
+	@RequestMapping("ST_release_manage")
+	public String ST_release_manage(HttpServletRequest req, Model model) {
+		logger.info("log => ST_release_manage");
+		service.release(req, model);
+		
+		return "ST/ST_release_manage";
+	}
+	
+	// ST_release 출고 관리 상세 페이지
+	@RequestMapping("ST_releaseDetail")
+	public String ST_releaseDetail(HttpServletRequest req, Model model) {
+		logger.info("log => ST_releaseDetail");
+		service.releaseWriteForm(req, model);
+		
+		return "ST/ST_releaseDetail";
+	}
+	 
+	//  ST_release 출고 수정 페이지
+	@RequestMapping("ST_release_modifyPro")
+	public String ST_release_modifyPro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_release_modifyPro");
+		service.releaseModifyPro(req, model);
+		
+		return "ST/ST_release_modifyPro";
+	}
+	
+	//  ST_release 출고 삭제 페이지
+	@RequestMapping("ST_release_deletePro")
+	public String ST_release_deletePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_release_deletePro");
+		service.releaseDeletePro(req, model);
+
+		return "ST/ST_release_deletePro";
+	}
+	     
 	// 諛섑뭹 愿�由�
 	@RequestMapping("ST_refund")
 	public String refund(Locale locale, Model model) {
@@ -116,11 +150,19 @@ public class ST_Controller {
 		return "ST/ST_sale_Plan_deletePro"; 
 	}     
 	          
+	@RequestMapping("ST_sale_plan_state2")
+	public String ST_sale_plan_state2(Locale locale, Model model) {
+		logger.info("log => ST_sale_plan_state2");
+		
+		return "ST/ST_sale_plan_state2";
+	
+	}	
 	@RequestMapping("ST_sale_plan_state")
 	public String ST_sale_plan_state(Locale locale, Model model) {
 		logger.info("log => ST_sale_plan_state");
 		
 		return "ST/ST_sale_plan_state";
+		
 	}@RequestMapping("ST_contrast_pp")
 	public String ST_contrast_pp(Locale locale, Model model) {
 		logger.info("log => ST_contrast_pp");

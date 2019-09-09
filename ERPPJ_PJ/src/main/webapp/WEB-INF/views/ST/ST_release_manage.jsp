@@ -6,6 +6,37 @@
         <!-- Responsive Table css -->
         <link href="/erp/resources/assets/libs/rwd-table/rwd-table.min.css" rel="stylesheet" type="text/css" />
     </head>
+    <script src="/erp/resources/assets/js/request.js"></script>
+	<script type="text/javascript">
+	    function ST_releaseDetailForm(url) {
+	    	sendRequest(callback, "ST_releaseDetail", "post", "${_csrf.parameterName }=${_csrf.token }&sar_code="+url);
+	    }
+	    
+	    function callback() {
+	    	var result = document.getElementById("result");
+	    	
+	    	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+	    		if(httpRequest.status == 200){	// 200 : 정상 종료
+	    		 	result.innerHTML = "정상종료";
+	    			
+	    			var datas = httpRequest.responseText; 
+	    			
+	    			var bookList = "";
+	    			
+	    			result.innerHTML = datas;
+	    		} else {
+	    			result.innerHTML = "에러발생";
+	    		}
+	    	} 
+	    	else {
+	    		result.innerHTML = "상태 : " + httpRequest.readyState;
+	    	}
+	    }
+
+    
+    
+    </script>
+    
 
     <body>
 
@@ -46,7 +77,6 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                    
                                      <div class="table-responsive">
                                          <table id="datatable" style="border-collapse:10px; border-spacing:10px; width: 100%; padding : 10px;">
                                             <tr>
@@ -121,33 +151,35 @@
                                                 <div class="table-responsive" data-pattern="priority-columns">
                                                     <table id="tech-companies-1" class="table table-striped">
                                                         <thead>
-                                                        <tr>
-                                                        	<th data-priority="1">구분</th>
-                                                            <th>출고 거래처명</th>
-                                                            <th data-priority="1">출고 일자</th>
-                                                            <th data-priority="3">출고 번호</th>
-                                                            <th data-priority="6">납품처</th>
-                                                            <th data-priority="3">담당자</th>
-                                                            <th data-priority="3">출고 수량</th>
-                                                            <th data-priority="3">단가</th>
-                                                             <th data-priority="3">합계액</th>
-                                                        </tr>
-                                                        </thead>
+														<tr>
+															<th>구분</th>
+															<th>출고 거래처명</th>
+															<th>출고 일자</th>
+															<th>출고 번호</th>
+															<th>납품처</th>
+															<th>담당자</th>
+															<th>출고 수량</th>
+															<th>단가</th>
+															<th>합계액</th>
+														</tr>
+													</thead>
                                                         <tbody>
-                                                        
-                                                          <tr>
-                                                            <th>1</th> <!-- 구분 -->
-                                                            <th> <span class="co-name">출고 회사 ^___^</span> </th> <!--거래처명 -->
-                                                            <td>2019-08-12</td>
-                                                            <td>190812001</td>
-                                                            <td>@@상사</td>
-                                                            <td>김@@</td>
-                                                            <td>100</td>
-                                                           	<td>1,300,000</td>
-                                                           	<td>130,000,000‬</td>
-                                                        </tr>
-                                                        
-                                                        </tbody>
+														<c:if test="${cnt > 0}">
+															<c:forEach var="rto" items="${rtos}">
+																<tr>
+																	<td></td> <!-- 구분 -->
+																	<td><input type ="button" value="${rto.release_name }" onclick="ST_releaseDetailForm(${rto.release_name });"></td><!-- 출고 거래처명 -->
+																	<td>${rto.release_date }</td> <!-- 출고 일자 -->
+																	<td><input type = "button" value = "${rto.sar_code }" onclick="ST_releaseDetailForm(${rto.sar_code });"></td><!-- 출고 번호 -->
+																	<td></td><!-- 납품처 -->
+																	<td></td><!--담당자  -->
+																	<td>${rto.release_count }</td><!-- 출고 수량 -->
+																	<td>${rto.unit_cost }</td><!-- 단가 -->
+																	<td></td><!-- 합계액 -->
+																</tr>
+															</c:forEach>
+														</c:if>
+													</tbody>
                                                     </table>
                                                 </div> <!-- end .table-responsive -->
         
@@ -155,6 +187,14 @@
                                         </div> <!-- end .responsive-table-plugin-->
                                     </div>
                                 </div> <!-- end card -->
+							<br>
+							
+							<hr>
+							<br>
+							<div id="result" class="card-body" style="width: 3500px;">
+							<!-- 상세 페이지 출력 위치 -->
+
+							</div>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->

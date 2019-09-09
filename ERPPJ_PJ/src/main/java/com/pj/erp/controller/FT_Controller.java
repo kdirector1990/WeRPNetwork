@@ -359,4 +359,13 @@ public class FT_Controller {
 		String PayCode = map.get("PayCode").toString();
 		return AccCode + " " + CardName + " "  + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose + " " + Owner + " " + PayCode; 
 	}
+	
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+		
+		return "FT/FT_short_borrowings_list";
+	}
+	
 }
