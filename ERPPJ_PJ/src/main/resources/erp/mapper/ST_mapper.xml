@@ -53,11 +53,23 @@
  	</delete>
 	
 	<!-- release (출고) --> 
- 	<select id="getRelease" resultType="int">
- 		select COUNT(*) as FROM estimate_price_tbl
+ 	<select id="getReleaseCnt" resultType="int">
+ 		select COUNT(*) as FROM sar_list_tbl
  	</select>
  	
  	<select id="getReleaseList" resultType="com.pj.erp.vo.ST.Release" parameterType="java.util.Map">
  		SELECT * FROM sar_list_tbl
  	</select>
+ 	
+ 	<select id="getReleaseArticle" resultType="com.pj.erp.vo.ST.Release">
+ 		SELECT * FROM sar_list_tbl WHERE sar_code=#{sar_code}
+ 	</select>
+ 	
+ 	<update id="updateRelease" parameterType="com.pj.erp.vo.ST.Release">
+ 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost} WHERE sar_code=#{sar_code}
+ 	</update>
+ 	
+ 	<delete id="deleteRelease" parameterType="String">
+ 		DELETE sar_list_tbl WHERE sar_code=#{sar_code}
+ 	</delete>
  </mapper>

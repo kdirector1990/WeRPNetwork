@@ -112,7 +112,13 @@ public class FT_DAOImpl implements FT_DAO{
 	
 	// 계정과목 가져오기
 	@Override
-	public List<FT_Subject> FT_SubjectSelect() {
+	public List<FT_Subject> FT_SubjectAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_SubjectAllSelect");
+	}
+	
+	// 계정과목 가져오기
+	@Override
+	public List<FT_Subject> FT_SubjectSelect(String srhval) {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_SubjectSelect");
 	}
 	
@@ -124,7 +130,8 @@ public class FT_DAOImpl implements FT_DAO{
 	
 	// 거래처 검색 한 것 개수 가져오기
 	public int FT_AccountCntSelect(String srhval) {
-		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_AccountCntSelect", srhval);
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_AccountCntSelect(srhval);
 	}
 	
 	// 거래처 검색한 것 가져오기

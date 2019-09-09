@@ -49,5 +49,14 @@ public interface ST_DAO {
 	
 	// release 게시글 목록 조회
 	public List<Release> getReleaseList(Map<String, Object> map);
+	
+	// release 게시글 상세 조회
+	public Release getReleaseArticle(String sar_code);
+	
+	// release 수정 처리 
+	public int updateRelease(Release vo);
+	
+	// release 삭제 처리
+	public int deleteRelease(String sar_code);
 
 }

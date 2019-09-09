@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Subject;
 
 @Controller
 public class FT_Controller {
@@ -46,6 +47,15 @@ public class FT_Controller {
 		
 		return "FT/FT_insertChit";
 	}
+
+	// 분개 데이터 값 불러오기
+	@RequestMapping(value = "FT_chitDataLoad", produces = "application/text; charset=utf8")
+	public @ResponseBody List<FT_Account> FT_chitDataLoad(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_chitDataLoad 호출중");
+		
+		return null;
+	}
+	
 	@RequestMapping("FT_insertTotal")
 	public String insertTotal(Locale locale, Model model) {
 		logger.info("log => FT_insertTotal");
@@ -252,7 +262,7 @@ public class FT_Controller {
 		logger.info("log => FT_account_list");
 		model.addAttribute("key", req.getParameter("key"));
 		model.addAttribute("keyname", req.getParameter("keyname"));
-		
+		service.FT_AccountAllSelect(req, model);
 		return "FT/FT_account_list";
 	}
 	
@@ -262,7 +272,7 @@ public class FT_Controller {
 		logger.info("log => FT_Subject_list");
 		model.addAttribute("key", req.getParameter("key"));
 		model.addAttribute("keyname", req.getParameter("keyname"));
-		
+		service.FT_SubjectAllSelect(req, model);
 		return "FT/FT_Subject_list";
 	}
 	
@@ -284,12 +294,21 @@ public class FT_Controller {
 	}
 	
 	// 거래처 검색 가져오기
-	@RequestMapping(value = "FT_accountSelect", produces = "application/text; charset=utf8")
-	public @ResponseBody List<FT_Account> FT_accountSelect(HttpServletRequest req) {
-		logger.info("url : FT_accountSelect 호출중");
+	@RequestMapping(value = "FT_AccountSelect", produces = "application/text; charset=utf8")
+	public @ResponseBody List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
+		logger.info("url : FT_AccountSelect 호출중");
 		System.out.println("value = " + req.getParameter("srhval"));
 		
 		return service.FT_AccountSelect(req);
+	}
+	
+	// 계정과목 검색 가져오기
+	@RequestMapping(value = "FT_SubjectSelect", produces = "application/text; charset=utf8")
+	public @ResponseBody List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
+		logger.info("url : FT_AccountSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+		
+		return service.FT_SubjectSelect(req, model);
 	}
 	
 	// 적금 추가
@@ -340,4 +359,13 @@ public class FT_Controller {
 		String PayCode = map.get("PayCode").toString();
 		return AccCode + " " + CardName + " "  + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose + " " + Owner + " " + PayCode; 
 	}
+	
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+		
+		return "FT/FT_short_borrowings_list";
+	}
+	
 }

@@ -97,6 +97,26 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getReleaseList", map);
 	}
 	
+	// release 게시글 상세 조회
+	@Override
+	public Release getReleaseArticle(String sar_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getReleaseArticle", sar_code);
+	}
+	
+	// release 수정 처리
+	@Override
+	public int updateRelease(Release vo) {
+		return sqlSession.update("com.pj.erp.persistence.ST_DAO.updateRelease", vo);
+	}
+	
+	// release 삭제 처리
+	@Override
+	public int deleteRelease(String sar_code) {
+		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteRelease", sar_code);
+				
+				
+	}
+	
 	
 
 }

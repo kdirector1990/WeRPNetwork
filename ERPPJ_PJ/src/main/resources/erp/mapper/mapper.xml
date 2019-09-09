@@ -5,9 +5,9 @@
     
 <mapper namespace = "com.pj.erp.persistence.ERPDAO">
 	<select id="loginCheck" resultType = "java.util.Map" parameterType = "String">
-		SELECT username, password, enabled, e_name
-		FROM users
-		WHERE username = #{username}	
+		select *
+		from userauth
+		where username = #{username}
 	</select>
 	
 	<select id="authCheck" resultType = "java.util.Map" parameterType = "String">

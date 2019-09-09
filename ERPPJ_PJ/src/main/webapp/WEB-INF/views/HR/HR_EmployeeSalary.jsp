@@ -52,53 +52,61 @@
 							<table class = "col-12" id="datatable"
 								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 								<tr class="form-group row">
-									<td class="col-md-1 col-form-label">부서</td>
+									<th class="col-md-1 col-form-label">부서</th>
 									<td class="col-md-2 input-group">
 											<input type="text" class="form-control" name="e_name" placeholder = "부서명">
-											</td>	
+											</td>
+									<td class="col-md-1 col-form-label">&nbsp;</td>			
 									<th class="col-md-1 col-form-label">사원검색</th>
 										<td class="col-md-2 input-group">
 											<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
 											</td>	
-										<th class="col-md-1 col-form-label">계약시작일</th>
-										<td><input class="form-control input-daterange-datepicker" type="text" name="daterange" /></td>
+									<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>		
 								</tr>
 							</table>
-							
-							<table id="datatable"
-								class="table table-striped table-bordered dt-responsive nowrap"
-								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-								<br>
-								<br>
-								<thead>
+							                    	</div>
+                             </div>
+		                   </div> 
+                         </div>
+                         
+                      <div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:15%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:10%;">
+                                            <col style = "width:15%;">
+                                            <col style = "width:15%;">
+                                            <col style = "width:15%;">
+                                 <thead>
 									<tr>
-										<th>NO</th>
-										<th>사원코드</th>
+										<th>사원번호</th>
 										<th>사원명</th>
 										<th>부서</th>
-										<th>직책</th>
+										<th>직급</th>
 										<th>입사일</th>
-										<th>직종</th>
-										<th>급여형태</th>
-										<th>계약시작월</th>
-										<th>연봉</th>
-										<th>월급</th>
-										<th>일급</th>
-										<th>시급</th>
+										<th>기본급</th>
+										<th>급호수당</th>
+										<th>연장수당</th>
 									</tr>
 								</thead>
+								<tbody id = "result"></tbody>
 
 							</table>
 
 						</div>
 					</div>
 				</div>
-			</div>
+			</div></div>
 
 
 
 			<%@ include file="../footer.jsp" %>
-		</div>
+		
 		</div>
 		</div>
 		<!-- ============================================================== -->
