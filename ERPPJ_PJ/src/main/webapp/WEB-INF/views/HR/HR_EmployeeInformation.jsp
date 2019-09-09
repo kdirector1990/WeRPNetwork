@@ -224,7 +224,7 @@
 															<tbody>
 																<c:forEach var="phy" items="${phy}">
 																	<tr color="red">
-																		<td onclick="window.location='HR_modifyPhysicaly'">${phy.username}</td>
+																		<td onclick="window.location='HR_modifyPhysicaly?username=${phy.username}'">${phy.username}</td>
 																		<td>${phy.e_height}</td>
 																		<td>${phy.e_weight}</td>
 																		<td>${phy.e_left_sight}</td>

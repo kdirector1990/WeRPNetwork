@@ -335,9 +335,9 @@ public class HR_ServiceImpl implements HR_Service{
 	public void modifyPhysicalyView(HttpServletRequest req, Model model) {
 		String username = req.getParameter("username");
 		
-		HR_PhysicalVO phy = dao.getPhysicaly(username);
-		model.addAttribute("phy", phy);
-		model.addAttribute("username", username);
+		HR_PhysicalVO pvo = dao.getPhysicaly(username);
+		
+		model.addAttribute("pvo", pvo);
 	}
 
 	/*

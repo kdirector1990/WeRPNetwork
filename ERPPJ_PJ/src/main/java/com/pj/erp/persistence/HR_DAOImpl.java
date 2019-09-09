@@ -126,8 +126,7 @@ public class HR_DAOImpl implements HR_DAO{
 
 	@Override
 	public HR_PhysicalVO getPhysicaly(String username) {
-		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
-		return dao.getPhysicaly(username);
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getPhysicaly", username);
 	}
 
 	

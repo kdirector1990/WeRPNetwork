@@ -41,7 +41,7 @@ public interface HR_DAO {
 	
 	// 사원정보 수정하기
 	
-	// 신체정보 수정하기
+	// 신체정보 수정페이지
 	public HR_PhysicalVO getPhysicaly(String username);
 	
 	// 부서 등록

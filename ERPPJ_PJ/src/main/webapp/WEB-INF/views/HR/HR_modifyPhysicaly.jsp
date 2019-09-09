@@ -41,7 +41,7 @@
 					<!-- end page title -->
 
 					<div class="col-sm-12">
-						<form action="HR_modifyPhysicalyPro" class="form-horizontal" id="physical" name="inputPhysicaly"
+						<form action="HR_modifyPhysicalyPro" class="form-horizontal" id="physical" name="modifyPhysicaly"
 							method="post">															
 								<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 								<input type="hidden" name="hiddenId" value="0">
@@ -53,7 +53,7 @@
 									<label class="col-md-1 col-form-label"
 										for="simpleinput">신장</label>
 									<div class="col-md-3">
-										<input type="text" class="form-control" name="e_height" placeholder="신장">
+										<input type="text" class="form-control" name="e_height" value="${pvo.e_height}">
 									</div>
 									<label class="col-md-1 col-form-label"
 										for="simpleinput">cm</label>

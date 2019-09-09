@@ -64,8 +64,8 @@
 	<!-- 사원 정보 수정 -->
 	
 	
-	<!-- 신체 정보 수정 -->
-	<select id="getPhysicaly" resultType="String">
+	<!-- 신체 정보 상세페이지 -->
+	<select id="getPhysicaly" parameterType="String" resultType="com.pj.erp.vo.HR_PhysicalVO">
 		SELECT * FROM physicaly_info_tbl WHERE username = #{username}
 	</select>
 	
