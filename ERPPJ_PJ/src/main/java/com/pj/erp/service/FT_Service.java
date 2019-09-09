@@ -3,6 +3,7 @@ package com.pj.erp.service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Subject;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 public interface FT_Service {
+	
+	// 계정과목 검색 가져오기
+	public List<FT_Subject> FT_chitDataLoad(Map<String, Object> map, Model model);
 	
 	// 거래처 추가
 	public int FT_ACCInsert(Map<String, Object> map);
@@ -40,7 +44,10 @@ public interface FT_Service {
 	public String FT_DepositUpdate(Map<String, Object> map);
 	
 	// 계정과목 가져오기
-	public void FT_SubjectSelect(HttpServletRequest req, Model model);
+	public void FT_SubjectAllSelect(HttpServletRequest req, Model model);
+	
+	// 계정과목 검색 가져오기
+	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model);
 	
 	//예산신청입력처리
 	public void FT_applyinput(HttpServletRequest req, Model model);

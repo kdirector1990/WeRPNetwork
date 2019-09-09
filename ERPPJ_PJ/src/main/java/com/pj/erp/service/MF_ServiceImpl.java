@@ -43,6 +43,8 @@ public class MF_ServiceImpl implements MF_Service {
 		System.out.println("cnt : "+ cnt);
 		
 		List<MF_material> dto = dao.getMaterialList();
+		System.out.println(dto.get(0).getMaterial_code());
+		
 		model.addAttribute("dto", dto);
 	}
 	

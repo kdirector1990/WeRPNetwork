@@ -34,11 +34,20 @@ public interface CT_DAO {
 	//AS 등록
 	public int insertAS(CT_AS_VO vo);
 	
-	//AS 목록 갯수
-	public List<CT_AS_VO> selectAS(CT_AS_VO vo);
+	//AS 목록 상태로 가져오기
+	public CT_AS_VO selectAS(int state);
 	
-	//AS 목록 갯수2
+	//AS 목록 가져오기(준선이형버전)
 	public List<CT_AS_VO> selectAS2(Map<String,Object> map);
+	
+	//AS 목록 코드로 가져오기
+	public CT_AS_VO selectAScode(String cas_code);
+	
+	//AS 수리시작
+	public int updateAS(String cas_code);
+	
+	//AS 처리완료
+	public int completeAS(Map<String, Object> map);
 	
 	//수리일지 부서 검색 갯수
 	public int selectCEQ(String part);

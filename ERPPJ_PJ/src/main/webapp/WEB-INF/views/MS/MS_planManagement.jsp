@@ -184,6 +184,7 @@
                     '<td><input type="text" name="plan_objective" value="' + tdArr[8]+'"></td>' +
                     '<td><input type="text" name="plan_proposal" value="' + tdArr[9]+'"></td>' +
            		'</tr>');
+   			
 		});
      
      function updatePlan(){

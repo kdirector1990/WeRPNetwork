@@ -23,16 +23,11 @@
 	var searchCount = 1;
 	
 	function sunyoungJoa(code){
-		if(code < 10){
-			code = "00"+code;
-		}else if(code < 100){
-			code = "0"+code;
-		}
-
+ 
+		alert(code);
 		$.ajax({
 			url: '/erp/CT_select_code?${_csrf.parameterName }=${_csrf.token }&ceq_code='+code,
 			type: 'POST',
-			data : {'ceq_code' : code},
 			dataTpye: 'json',
 			success: function(voC){
 				document.getElementById("update").style.display="block";
@@ -127,7 +122,9 @@
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
 					
-					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa('+ceq_code+')"><td>'+ceq_code+'</td><td>'+
+					alert("'"+ceq_code+"'");
+					
+					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa(\''+ceq_code+'\')"><td>'+ceq_code+'</td><td>'+
 						ceq_name + '</td><td>'+
 						ceq_type + '</td><td>'+
 						ceq_acquire_date + '</td><td>'+
@@ -222,7 +219,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">전산 설비 관리</h4>
+                                    <h4 class="page-title">전산 설비 관리12</h4>
                                 </div>
                             </div>
                         </div>     

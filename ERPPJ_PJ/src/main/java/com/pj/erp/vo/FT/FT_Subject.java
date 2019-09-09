@@ -1,6 +1,8 @@
 package com.pj.erp.vo.FT;
 
 public class FT_Subject {
+	private String detail_ac_code; // 계정상세코드
+	private String account_name; // 계정상세이름
 	private String accounts_code; // 계정코드
 	private String accounts_name; // 계정명
 	private String ag_code; // 계정그룹코드
@@ -8,7 +10,19 @@ public class FT_Subject {
 	private String lg_code; // 계정속성코드
 	private String lg_name; // 계정속성명
 	
-	
+
+	public String getDetail_ac_code() {
+		return detail_ac_code;
+	}
+	public void setDetail_ac_code(String detail_ac_code) {
+		this.detail_ac_code = detail_ac_code;
+	}
+	public String getAccount_name() {
+		return account_name;
+	}
+	public void setAccount_name(String account_name) {
+		this.account_name = account_name;
+	}
 	public String getAccounts_code() {
 		return accounts_code;
 	}
