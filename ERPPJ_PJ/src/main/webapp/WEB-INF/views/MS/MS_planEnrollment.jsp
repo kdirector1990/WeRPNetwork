@@ -5,7 +5,7 @@
         <%@ include file="../setting.jsp" %>
         <script type="text/javascript">
         function usernameList() {
-    		window.open("MS_searchUsername", "username_list", "menubar=no, width=430px, height = 528px location=no,status=no,scrollbars=yes");
+    		window.open("MS_searchUsername", "username_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
     	}
         </script>
     </head>

@@ -26,7 +26,7 @@
 						<th>직책코드</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody style="overflow:auto;">
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
 						<c:forEach var="list" items="${dto}">

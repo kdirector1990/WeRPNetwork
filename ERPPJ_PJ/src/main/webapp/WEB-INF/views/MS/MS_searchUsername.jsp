@@ -96,13 +96,13 @@ function setName(username) {
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body"
-									style="margin-bottom: 0px; padding-bottom: 50px;">
+									style="margin-bottom: 0px; padding-bottom: 0px;">
 									<form action="" name="searchName">
 										<table>
 											<tr>
 												<th style="text-align: center; padding-right: 10px;">Search</th>
 												<td><input type="text" name="e_name"
-													class="form-control"></td>
+													class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;"></td>
 											</tr>
 
 											<tr>

@@ -60,11 +60,11 @@ function setCeqSerial(code){
 </head>
 <body onload="searchNameFocus();">
 <!-- username 검색 -->
-<!-- ============================================================== -->
+<div id="wrapper">
+		<!-- ============================================================== -->
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-		<div class="content-page" style="margin-top: 10px;">
 			<div class="content">
 
 				<!-- Start Content-->
@@ -122,10 +122,9 @@ function setCeqSerial(code){
 			<%@ include file="../footer.jsp" %>
 
 		</div>
-		</div>
 		<!-- ============================================================== -->
 		<!-- End Page content -->
 		<!-- ============================================================== -->
-
+</div>
 </body>
 </html>
