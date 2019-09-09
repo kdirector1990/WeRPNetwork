@@ -65,7 +65,7 @@
    									</div>
 								</div>
 								<div class="card-body" style = "padding-bottom:0px;">
-                           			<table style = "width: 280px" id="datatable" class="table table-bordered dt-responsive nowrap subtables">
+                           			<table  id="datatable" class="table table-bordered dt-responsive nowrap subtables">
 	                                   <colgroup>
 	                            			<col style = "width:80px;">
 	                            			<col style = "width:200px;">

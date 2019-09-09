@@ -52,17 +52,27 @@ function loadCode_callback() {
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-		<div class="content-page">
+		<div class="content-page" style="margin-top: 10px;">
 			<div class="content">
 
 				<!-- Start Content-->
 				<div class="container-fluid">
+				
+				<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box" style = "text-align:center;">
+							<h4><b>전산설비코드</b></h4>
+						</div>
+					</div>
+				</div>
+				<!-- end page title -->
 
 				<div class="row">
 						<div class="col-sm-12">
-							<div class="card" style="margin-bottom: 0px;">
-								<div class="card-body table-responsive">
-									<form action="" name="searchCode" onsubmit="return searchNameCheck();">
+							<div class="card" style="margin-bottom: 5px;">
+								<div class="card-body">
+									<form action="" name="searchCode">
 										
 										<table>
 											<tr>

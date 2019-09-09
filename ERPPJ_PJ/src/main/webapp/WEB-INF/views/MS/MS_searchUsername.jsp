@@ -29,6 +29,13 @@ function loadBook_callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+		if(!document.searchName.e_name.value){
+			alert("사원이름을 입력하세요!");
+			location.reload();
+			document.searchName.e_name.focus();
+			return false;
+		}
+	
 		if(httpRequest.status == 200){	// 200 : 정상 종료
 			result.innerHTML = "정상종료";
 			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
@@ -36,18 +43,29 @@ function loadBook_callback() {
 			var datas = httpRequest.responseText;
 			
 			result.innerHTML = datas;
+			
 		} else {
-			if(!document.searchName.e_name.value){
-				alert("사원이름을 입력하세요!");
-				document.searchName.e_name.focus();
-				return false;
-			}
 			result.innerHTML = "에러발생";
+			
 		}
+	
 	} else {
 		//result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 } 
+
+
+function setName(username) {
+	opener.document.getElementById("usernameP").value = username;
+
+	//test alert
+	alert(username);
+	
+	$("#usernameP", opener.document).val(username); //jquery 이용
+	$(opener.document).find("#usernameP").val(username); //find를 이용한 jquery
+	self.close();
+	
+}
 </script>
 
 </head>
@@ -57,40 +75,55 @@ function loadBook_callback() {
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-		<div class="content-page">
+		<div class="content-page" style="margin-top: 10px;">
 			<div class="content">
 
 				<!-- Start Content-->
 				<div class="container-fluid">
 
+           		<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box" style = "text-align:center;">
+							<h4><b>계정목록</b></h4>
+						</div>
+					</div>
+				</div>
+				<!-- end page title -->
+				
 				<div class="row">
 						<div class="col-sm-12">
-							<div class="card" style="margin-bottom: 0px;">
-								<div class="card-body table-responsive">
-									<form action="" name="searchName" onsubmit="return searchNameCheck();">
-										
+							<div class="card" >
+								<div class="card-body" style="margin-bottom: 0px;">
+									<form action="" name="searchName">
 										<table>
 											<tr>
-												<th>사원명</th>
+												<th style = "text-align: center;">Search</th>
 												<td>
 													<input type="text" name="e_name" class="form-control">
 												</td>
-												
-												<td>
-													<button type=button class="btn btn-primary waves-effect waves-light" id = "search" onclick="load1();">검색</button>
+											</tr>
+											
+											<tr>
+												<td style="position: absolute; right: 30px;">
+													<button type=button class="btn-subpage" id ="search" onclick="load1();" >조회</button>
+													<button type="button" class="btn-subpage" onclick="self.close();">취소</button>
 												</td>
 											</tr>
 										</table>
 									</form>
                                	</div>
+                               	
+                              <div id = "result">
+		                      <!-- 출력결과위치 -->
+		                      </div>
+                              	
                              </div>
 		                   </div> 
                        </div>
                     </div> 
                       
-                      <div id = "result">
-                      <!-- 출력결과위치 -->
-                      </div>
+                     
                
                <!-- 페이지 내용 입력 공간 종료 -->
 

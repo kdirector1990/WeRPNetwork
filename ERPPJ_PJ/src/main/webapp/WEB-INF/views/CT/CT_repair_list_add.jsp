@@ -44,9 +44,8 @@
                                             <div class="form-group">
                                                 <label>전산설비코드</label>
                                                 <div>
-                                                    <input type="text" name="ceq_code" class="form-control" required
-                                                            />
-                                                    <button onclick="window.open('CT_Ceq_Search','window_name','width=430,height=300,location=no,status=no,scrollbars=yes');">검색</button>
+                                                    <input type="text" name="ceq_code" class="form-control" required placeholder="전산설비코드"
+                                                           onclick="window.open('CT_Ceq_Search','window_name','width=430px, height = 528px, location=no, status=no, scrollbars=yes');"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
