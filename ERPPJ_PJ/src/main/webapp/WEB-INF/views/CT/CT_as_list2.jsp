@@ -91,10 +91,10 @@
 		});
 	}
 	
-	  function changeSelect(value){
-		var param = $("#select1").serializeArray();
+	  function SelectAS(value){
+		var param = $("#selectAS").serializeArray();
 		$.ajax({
-			url: '/erp/CT_select_type',
+			url: '/erp/CT_select_as',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
@@ -103,60 +103,52 @@
 				$('#result').empty();
 				
 				for(var i = 0; i < vo.length; i++){
-					var ceq_code = vo[i].ceq_code; 
-					var ceq_name = vo[i].ceq_name; 
-					var ceq_type = vo[i].ceq_type; 
-					var acquire_date = vo[i].ceq_acquire_date; 
-					var pa = new Date(acquire_date);
-					var year = pa.getFullYear();
-					
-					var month = (1+pa.getMonth());
-					if(month < 10){
+					var cas_code = vo[i].cas_code;
+  					var department_code = vo[i].department_code;
+  					var username = vo[i].username;
+  					var cas_title = vo[i].cas_title; 
+  					var date = vo[i].cas_date;
+  					
+  					var pa = new Date(date);
+  					var year = pa.getFullYear();
+  					var month = (1+pa.getMonth());
+  					if(month < 10){
 						month = "0" +month;
 					}
 					var day = pa.getDate();
 					if(day < 10){
 						day = "0" +day;
 					}
-					var ceq_acquire_date = year + "-" + month + "-" +day; 
 					
-					var ceq_department_code = vo[i].department_code; 
-					var ceq_location = vo[i].ceq_location; 
-					var ceq_prime_cost = addComma(vo[i].ceq_prime_cost); 
-					var ceq_durable = vo[i].ceq_durable; 
-					var ceq_depreciation = vo[i].ceq_depreciation; 
-					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
-					
-					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa('+ceq_code+')"><td>'+ceq_code+'</td><td>'+
-						ceq_name + '</td><td>'+
-						ceq_type + '</td><td>'+
-						ceq_acquire_date + '</td><td>'+
-						ceq_department_code + '</td><td>'+
-						ceq_location  + '</td><td>'+
-						ceq_prime_cost  + '</td><td>'+
-						ceq_durable  + '</td><td>'+
-						ceq_depreciation  + '</td><td>'+
-						ceq_depreciation_type  + '</td></tr>');
-					 
-					 if(searchCount == 1){
+					var cas_date = year + "-" + month + "-" +day;
+  					
+					$('#result').append(
+							'<tr class="spoat" onclick="detail('+cas_code+')"><td>'+
+							cas_code+'</td><td>' +
+  							department_code + '</td><td>' +
+  							username + '</td><td>' +
+  							cas_title + '</td><td>' +
+  							cas_date + '</td><tr>'
+  						);
+					if(searchCount == 1){
 						 $('#bodyappend').append(
-					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+								'<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>' 	
 							);
 						 searchCount = searchCount + 1;
 					 }
@@ -235,21 +227,20 @@
 										<div class="form-group row">
 												<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
 												<div class="col-md-4 input-group">
-													<form id="select1" style="width:400px; text-align:center;">
+													<form id="selectAS" style="width:400px; text-align:center;">
 														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-														<select class=" form-control" name="ceq_type" onchange="changeSelect(this.value);">
+														<select class=" form-control" name="cas_state" onchange="SelectAS(this.value);">
 															<option value="" selected disabled></option>								
-															<option value="보유">보유</option>
-															<option value="대여">대여</option>
-															<option value="폐기">폐기</option>
+															<option value="1">미처리</option>
+															<option value="2">처리</option>
 														</select>
 													</form>
 												</div>
 												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 												<div id="ceq_button" class="col-md-4 input-group">
-												<button type="button" id="btnTCT" onclick = "updateCT();"class="btn btn-outline-dark waves-effect waves-light width-md">수정</button>&nbsp;
-    											<button type="button" onclick="deleteCT();" class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
+												<button type="button" onclick = "updateAS();"class="btn btn-outline-dark waves-effect waves-light width-md">처리</button>&nbsp;
+    											<button type="button" onclick="deleteAS();" class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
 												</div>
 										</div>
 									</div>
@@ -265,16 +256,11 @@
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
                                             <thead>
                                             <tr>
-                                            	<th>전산설비코드</th>
-			                                    <th>설비명</th>
-			                                    <th>보유구분</th>
-			                                    <th>구입/대여일</th>
-			                                    <th>사용부서</th>
-			                                    <th>위치</th>
-			                                    <th>매입가</th>
-			                                    <th>예상내용연수</th>
-			                                    <th>감가상각여부</th>
-			                                    <th>감가상각법</th>
+                                            	<th>AS코드</th>
+												<th>부서코드</th>
+												<th>사원명</th>
+												<th>제목</th>
+												<th>요청시간</th>
                                             </tr>
                                             </thead>
                                             <tbody id = "result">

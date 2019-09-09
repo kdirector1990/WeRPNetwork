@@ -109,9 +109,9 @@ public class MS_ServiceImpl implements MS_Service {
 		if(cnt > 0) {
 			List<HR_VO> dto = dao.getUsernameList(e_name);
 			model.addAttribute("dto", dto);
-			model.addAttribute("cnt", cnt);
 		}
-		
+
+		model.addAttribute("cnt", cnt);
 		System.out.println("e_name : " + e_name);
 	}
 

@@ -298,7 +298,9 @@
 							                                                <label class="custom-control-label" for="customRadioInline10">무</label>
 							                                            </div>
 							                                        </div>
-															</div>
+																</div>
+																
+																
 															<div class="form-group row">
 																<label class="col-md-1 col-form-label"
 																	for="simpleinput">혈액형</label>
@@ -336,8 +338,7 @@
 																			for="simpleinput">mmHg</label>
 																</div>
 																
-																<div class="form-group row">																
-																	
+																<div class="form-group row">																	
 																	<label class="col-md-1 col-form-label" for="simpleinput">장애 구분/등급<span class="text-danger">*</span></label> 
 																	<div class="col-md-3 col-form-label">
 																		<div>
@@ -357,25 +358,62 @@
 								                                                <input type="radio" id="customRadioInline6" name="e_disability_type" class="custom-control-input" value = "4">
 								                                                <label class="custom-control-label" for="customRadioInline6">중증</label>
 								                                            </div>
-								                                        </div>
+								                                        </div>								                                        
+								                                        
 																	</div>
 																	<div class="col-md-1">
 																			<input type="text" class="form-control" name="e_disability_level" placeholder="장애인 등급">
 																	</div>
+																	<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																	
+																	<label class="col-md-1 col-form-label" for="simpleinput">보훈구분<span class="text-danger">*</span></label>
+																	<div class="col-md-3 col-form-label">
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline9" name="e_veteran_type" class="custom-control-input" value="0" checked>
+							                                                <label class="custom-control-label" for="customRadioInline9">비해당</label>
+							                                            </div>
+							                                            <div class="custom-control custom-radio custom-control-inline mb-2">
+							                                                <input type="radio" id="customRadioInline10" name="e_veteran_type" class="custom-control-input" value="1">
+							                                                <label class="custom-control-label" for="customRadioInline10">해당</label>
+							                                            </div>
+							                                        </div>
 																</div>
+																
+																<div class="form-group row">
+																<label class="col-md-1 col-form-label" for="simpleinput">보훈관계<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<select class="form-control select2" name="e_veteran_info" onchange="">
+																		<option value="비해당">0. 비해당</option>
+																		<option value="할아버지">1. 할아버지</option>
+																		<option value="아버지">2. 아버지</option>
+																		<option value="본인">3. 본인</option>																																							
+																	</select>
+																</div>
+																<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+																<label class="col-md-1 col-form-label" for="simpleinput">보훈등급<span class="text-danger">*</span></label>
+																<div class="col-md-4">
+																	<select class="form-control select2" name="e_veteran_level" onchange="">
+																		<option value="비해당">0. 비해당</option>
+																		<option value="국가유공자">1. 국가유공자</option>
+																		<option value="고엽제후유증환자">2. 고엽제 후유증 및 고엽제 후유증 2세환자</option>
+																		<option value="5.18 민주유공자">3. 5.18 민주유공자</option>
+																		<option value="특수임무수행자">4. 특수임무수행자</option>
+																		<option value="중장기복무제대군인">5. 중장기복무제대군인</option>																							
+																	</select>
+																</div>																
+															</div>
 															
 															<div class="form-group text-right mb-0">
-		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-		                                                    Submit
-		                                                </button>
-		                                                <button type="reset" class="btn btn-secondary waves-effect">
-		                                                    Cancel
-		                                                </button>
-		                                            </div>
-															
-															
+				                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+				                                                    Submit
+				                                                </button>
+				                                                <button type="reset" class="btn btn-secondary waves-effect">
+				                                                    Cancel
+				                                                </button>
+				                                            </div>
 														</div>
 														</form>
+														
 														<div class="card-body table-responsive">
 														<h4 class="header-title">가족 정보</h4>
 													 	<h4 class="header-title">&nbsp;</h4>

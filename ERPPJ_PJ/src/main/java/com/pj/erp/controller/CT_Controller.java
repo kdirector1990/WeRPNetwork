@@ -1,22 +1,25 @@
 package com.pj.erp.controller;
 
+import java.text.ParseException;
 import java.util.List;
-import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
+import com.pj.erp.vo.CT.CT_AS_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 @Controller
@@ -58,11 +61,10 @@ public class CT_Controller {
 	  public String CT_equip_manage2(HttpServletRequest req, Model model) {
 		  logger.info("log => CT_equip_manage"); 
 	 
-		  return "CT/CT_equip_manage3"; 
+		  return "CT/CT_equip_manage"; 
 	 }
 	 
-	
-	/*
+	// 전산설비 관리 상태
 	  @RequestMapping("CT_select_type")
 	  @ResponseBody 
 	  public List<CT_VO> CT_select_type(HttpServletRequest req, Model model) { 
@@ -71,8 +73,10 @@ public class CT_Controller {
 	  
 		  return vo; 
 	  }
-	 */
-	
+	 
+
+	 /*
+	 // 전산설비 관리 상태검색
 	@RequestMapping("CT_select_type2")
 	public String CT_select_type2(HttpServletRequest req, Model model) {
 		logger.info("log => CT_select_type");
@@ -80,6 +84,76 @@ public class CT_Controller {
 		
 		return "CT/CT_Test";
 	}
+	*/
+	
+	//전산 설비 관리 수정폼
+	@RequestMapping("CT_select_code")
+	@ResponseBody
+	public CT_VO CT_select_code(HttpServletRequest req, Model model) {
+		logger.info("log => CT_select_code");
+		CT_VO voC = CT.CT_select_code(req, model);
+		return voC;
+	}
+	
+	
+	//전산설비 수정
+	@RequestMapping("CT_update_ct")
+	@ResponseBody
+	public int CT_update_ct(HttpServletRequest req, Model model) {
+		logger.info("log => CT_update_ct");
+		int updateCnt = CT.CT_update_ct(req, model);
+		
+		return updateCnt;
+	}
+	
+	//전산설비 폐기
+	@RequestMapping("CT_delete_ct")
+	@ResponseBody
+	public int CT_delete_ct(HttpServletRequest req, Model model) {
+		logger.info("log => CT_delete_ct");
+		int deleteCnt = CT.CT_delete_ct(req, model);
+		
+		return deleteCnt;
+	}
+	
+	//A/S 입력 폼
+	@RequestMapping("CT_write_AS")
+	public String CT_write_AS(HttpServletRequest req, Model model) {
+		logger.info("log => CT_write_AS");
+		
+		return "CT/CT_write_AS";
+	}
+	
+	//AS등록
+	@RequestMapping("CT_AS_add")
+	@ResponseBody
+	public int CT_AS_add(HttpServletRequest req, Model model) {
+		logger.info("log => CT_AS_add");
+		int insertCnt = CT.AS_insert_ct(req, model);
+		return insertCnt;
+	}
+	
+	//AS 요청 목록 가져오기
+	@RequestMapping("CT_select_as")
+	@ResponseBody
+	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
+		logger.info("log => CT_select_as");
+		
+		List<CT_AS_VO> data = CT.CT_select_as(req, model);
+		
+		return data;
+	}
+	
+	//AS 요청 목록 가져오기(준선이형 버전)
+	@RequestMapping(value = "CT_select_as2", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<CT_AS_VO> CT_select_as2(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => CT_select_as2");
+		List<CT_AS_VO> data = CT.CT_select_as2(map, req, model);
+		logger.info("log => CT_select_as22");
+		return data;
+	}
+	
 	
 	//전산 설비 목록
 	@RequestMapping("CT_equip_list")
@@ -89,12 +163,36 @@ public class CT_Controller {
 		return "CT/CT_equip_list";
 	}
 	
-	//수리 일자 등록
+	//수리 일지 등록
 	@RequestMapping("CT_repair_list_add")
 	public String CT_repair_list_add(HttpServletRequest req, Model model) {
 		logger.info("log => CT_repair_list_add");
 		
 		return "CT/CT_repair_list_add";
+	}
+	
+	//수리 일지 전산설비코드 조회 
+	@RequestMapping("CT_Ceq_Search")
+	public String CT_Ceq_Search(HttpServletRequest req, Model model) {
+		logger.info("log => CT_Ceq_Search");
+		
+		return "CT/CT_Ceq_Search";
+	}
+	
+	//수리 일자 전산설비 조회결과 
+	@RequestMapping("CT_Ceq_Search_Result")
+	public String CT_Ceq_Search_Result(HttpServletRequest req, Model model) {
+		logger.info("log => CT_Ceq_Search_Result");
+		CT.SearchCode(req, model);
+		return "CT/CT_Ceq_Search_Result";
+	}
+	
+	//수리 일지 등록
+	@RequestMapping("CT_repair_add")
+	public String CT_repair_add(HttpServletRequest req, Model model) {
+		logger.info("log => CT_repair_add");
+		CT.InsertRP(req, model);
+		return "CT/CT_repair_list_add_result";
 	}
 	
 	//외부업체 수리 등록

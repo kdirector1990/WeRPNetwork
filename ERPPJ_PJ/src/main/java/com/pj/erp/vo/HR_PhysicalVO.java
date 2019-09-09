@@ -9,7 +9,7 @@ public class HR_PhysicalVO {
 	private String e_color_blind;
 	private String e_blood_type;	
 	private String e_blood_presure;
-	private String e_veteran_type;
+	private int e_veteran_type;
 	private String e_veteran_info;
 	private String e_veteran_level;	
 	private String e_disability_type;
@@ -73,11 +73,11 @@ public class HR_PhysicalVO {
 		this.e_blood_presure = e_blood_presure;
 	}
 
-	public String getE_veteran_type() {
+	public int getE_veteran_type() {
 		return e_veteran_type;
 	}
 
-	public void setE_veteran_type(String e_veteran_type) {
+	public void setE_veteran_type(int e_veteran_type) {
 		this.e_veteran_type = e_veteran_type;
 	}
 

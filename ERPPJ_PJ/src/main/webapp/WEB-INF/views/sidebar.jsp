@@ -191,7 +191,7 @@
 
                         </div>
                     </li> -->
-					
+                    
                     <li class="dropdown notification-list">
                         <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
                             <i class="fe-settings noti-icon"></i>
@@ -403,6 +403,7 @@
 	                          		<ul>
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
 										<li><a href="ST_estimate">견적 등록</a></li>
+										<li><a href="ST_release">출고 등록</a></li>
 										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
 										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
 	                          		</ul>
@@ -417,7 +418,7 @@
 										<li><a href="ST_estimate_price">견적 현황</a></li>
 										<li><a href="ST_contrast_pPro">견적 대비 생산 현황</a></li>
 										<li><a href="ST_delay_state">출고 지연 현황</a></li>
-										<li><a href="ST_release">출고 관리</a></li>
+										<li><a href="ST_release_manage">출고 관리</a></li>
 										<li><a href="ST_refund">반품 관리</a></li>
 										<li><a href="ST_tex_invoice_list">세금계산서 발행 대장</a></li>
 										<li><a href="coming_soon">!수금 현황</a></li>																									
@@ -506,9 +507,9 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">단기 차입금 목록</a></li>
-	                          			<li><a href="#">장기 차입금 목록</a></li>
-	                          			<li><a href="#">지급 어음 목록</a></li>
+	                          			<li><a href="FT_short_borrowings_list">단기 차입금 목록</a></li>
+	                          			<li><a href="FT_long_borrowings_list">장기 차입금 목록</a></li>
+	                          			<li><a href="FT_note_payable_list">지급 어음 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -560,7 +561,7 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="CT_equip_add">전산 설비 등록</a></li>
-					                    <li><a href="CT_equip_manage3">전산 설비 관리</a></li>
+					                    <li><a href="CT_equip_manage">전산 설비 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -583,6 +584,7 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
+	                          			<li><a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">임시 as 입력폼</a></li>
 	                          			<li><a href="CT_as_list">A/S 요청 현황</a></li>
                     					<li><a href="CT_as_manage">A/S 요청 관리 </a></li>
 	                          		</ul>
