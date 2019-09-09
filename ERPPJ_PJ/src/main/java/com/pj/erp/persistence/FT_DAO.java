@@ -8,10 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Subject;
 
 public interface FT_DAO {
+	
+	// 날짜 검색 분개 갯수 가져오기
+	public int FT_DateChitCnt(Map<String, Object> map);
+	
+	// 날짜 검색 분개 갯수 가져오기
+	public int FT_ChitMaxNumber(Map<String, Object> map);
+	
+	// 날짜 검색 분개 갯수 가져오기
+	public int FT_chitDataCnt(Map<String, Object> map);
+	
+	// 계정과목 검색 가져오기
+	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map);
+	
+	// 전표입력
+	public int FT_chitInsert(Map<String, Object> map);
 	
 	//예산신청입력처리
 	public int FT_applyinput();
