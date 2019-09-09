@@ -3,6 +3,11 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+        <script type="text/javascript">
+        function usernameList() {
+    		window.open("MS_searchUsername", "username_list", "menubar=no, width=363px, height = 528px location=no,status=no,scrollbars=yes");
+    	}
+        </script>
     </head>
 
     <body>
@@ -41,6 +46,8 @@
                                         </p>
     
                                         <form action="MS_insertPlanPro" name="insertPlan">
+                                        <input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
+                                        <input type="hidden" name="hiddenId" value="0">
                                         	<div class="form-group">
                                                 <label>기획명</label>
                                                 <input type="text" name="plan_name" class="form-control" required
@@ -65,8 +72,7 @@
                                                 <label>기획제안자</label>
                                                 <div>
                                                     <input type="text" name="username" class="form-control" required
-                                                            placeholder="기획제안자" />
-                                                    <button onclick="window.open('MS_searchUsername','window_name','width=430,height=300,location=no,status=no,scrollbars=yes');">검색</button>
+                                                            placeholder="기획제안자" onclick="usernameList()"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">

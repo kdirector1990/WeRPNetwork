@@ -17,10 +17,11 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
+								<div class="card-body" style = "padding-bottom:0px;">
+									<form name="">
+                                        <table id="datetableList" class="table table-hover mb-0 table-bordered">
                                             <thead>
-                                                <tr>
+                                                <tr class="table-info">
 													<th>사원코드</th>
 													<th>사원명</th>
 													<th>부서코드</th>
@@ -29,31 +30,31 @@
                                       		</thead>
                                     		<tbody>
                                     		<!--  있으면 -->
-											<c:if test="${cnt > 0}">
+											<c:if test="${cnt != 0}">
                                           		<c:forEach var="list" items="${dto}">
-                                          			<c:if test="${var eq param.username}">
                                           			<tr>
-                                          				<td>${list.username}</td>
+                                          				<td onclick = "getname(this.value);">${list.username}</td>
                                           				<td>${list.e_name}</td>
                                           				<td>${list.department_code}</td>
                                           				<td>${list.position_code}</td>
                                           			</tr>
-                                          			</c:if>
                                           		</c:forEach>
                                          	</c:if>
                                          	<!--  없으면 -->
-												<c:if test="${cnt < 0}">
-													<tr>
-														<td colspan="6" align="center">
-															조회결과 없음
-													</tr>
-												</c:if>
+											<c:if test="${cnt == 0}">
+												<tr>
+													<td colspan="6" align="center">
+														조회결과 없음
+												</tr>
+											</c:if>
                                       		</tbody>
                                         </table>
+                                      </form>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="col-lg-12" id="ex1_Result2" ></div>
 <!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
         <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
@@ -75,7 +76,18 @@
         <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
 
         <script src="/erp/resources/assets/js/pages/datatables.init.js"></script> 
-         
+        
+		<script type="text/javascript">
+		/* 팝업창에서 값 넘기기 할거야 */
+	    /* 몰라 못해  */
+	    function getname(name){
+			
+			var username = this.name;
+			
+			alert(username);
+		}
+	    
+    	</script>
 </body>
 </html>
 

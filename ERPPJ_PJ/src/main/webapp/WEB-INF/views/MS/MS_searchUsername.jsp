@@ -43,11 +43,14 @@ function loadBook_callback() {
 				return false;
 			}
 			result.innerHTML = "에러발생";
+			
 		}
 	} else {
 		//result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 } 
+
+
 </script>
 
 </head>
@@ -57,27 +60,39 @@ function loadBook_callback() {
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-		<div class="content-page">
+		<div class="content-page" style="margin-top: 10px;">
 			<div class="content">
 
 				<!-- Start Content-->
 				<div class="container-fluid">
 
+           		<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box" style = "text-align:center;">
+							<h4><b>계정과목목록</b></h4>
+						</div>
+					</div>
+				</div>
+				<!-- end page title -->
+				
 				<div class="row">
 						<div class="col-sm-12">
-							<div class="card" style="margin-bottom: 0px;">
-								<div class="card-body table-responsive">
+							<div class="card" >
+								<div class="card-body" style="margin-bottom: 0px;">
 									<form action="" name="searchName" onsubmit="return searchNameCheck();">
-										
 										<table>
 											<tr>
-												<th>사원명</th>
+												<th style = "text-align: center;"><label>Search </label></th>
 												<td>
 													<input type="text" name="e_name" class="form-control">
 												</td>
-												
-												<td>
-													<button type=button class="btn btn-primary waves-effect waves-light" id = "search" onclick="load1();">검색</button>
+											</tr>
+											
+											<tr>
+												<td style="position: absolute; right: 30px;">
+													<button type=button class="btn-subpage" id ="search" onclick="load1();" >조회</button>
+													<button type="button" class="btn-subpage" onclick="self.close();">취소</button>
 												</td>
 											</tr>
 										</table>
