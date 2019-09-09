@@ -17,6 +17,13 @@ import com.pj.erp.vo.FT.FT_Subject;
 public class FT_ServiceImpl implements FT_Service{
 	@Autowired 
 	FT_DAO dao;
+
+	// 분개 데이터 가져오기
+	@Override
+	public List<FT_Subject> FT_chitDataLoad(Map<String, Object> map, Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	// 거래처 추가
 	@Override
@@ -101,11 +108,17 @@ public class FT_ServiceImpl implements FT_Service{
 
 	// 계정과목 가져오기
 	@Override
-	public void FT_SubjectSelect(HttpServletRequest req, Model model) {
-		List<FT_Subject> subject = dao.FT_SubjectSelect();
+	public void FT_SubjectAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Subject> subject = dao.FT_SubjectAllSelect();
 		System.out.println("AccountCode : " + subject.get(0).getAccounts_code());
 		model.addAttribute("subject", subject);
 		model.addAttribute("listsize", subject.size() + 1);
+	}
+	
+	// 거래처 검색한 것 가져오기
+	@Override
+	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
+		return dao.FT_SubjectSelect(req.getParameter("srhval"));
 	}
 	
 	@Override
