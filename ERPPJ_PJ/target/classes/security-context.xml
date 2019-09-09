@@ -5,16 +5,37 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
-		
+		<security:http pattern = "/resources/**" security = "none"/>
 		<security:http pattern = "/login" security = "none"/>
 		<security:http auto-config = "true" use-expressions="true" create-session="never">
+			
 			<security:intercept-url 
-				pattern = "/*_**"
-				access = "hasRole('ROLE_USER')" 
+				pattern = "/HR*"
+				access = "hasAnyRole('ROLE_HR','ROLE_ADMIN')" 
+			/>
+			<security:intercept-url 
+				pattern = "/CT*"
+				access = "hasAnyRole('ROLE_CT','ROLE_ADMIN')" 
+			/>
+			<security:intercept-url 
+				pattern = "/MF*"
+				access = "hasAnyRole('ROLE_MF','ROLE_ADMIN')" 
+			/>
+			<security:intercept-url 
+				pattern = "/MS*"
+				access = "hasAnyRole('ROLE_MS','ROLE_ADMIN')" 
+			/>
+			<security:intercept-url 
+				pattern = "/ST*"
+				access = "hasAnyRole('ROLE_ST','ROLE_ADMIN')" 
+			/>
+			<security:intercept-url 
+				pattern = "/FT*"
+				access = "hasAnyRole('ROLE_FT','ROLE_ADMIN')" 
 			/>
 			<security:intercept-url 
 				pattern = "/*"
-				access = "hasRole('ROLE_USER')" 
+				access = "hasRole('ROLE_ADMIN')" 
 			/>
 			<security:form-login 
 						login-page="/login"
