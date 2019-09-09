@@ -1,6 +1,6 @@
 package com.pj.erp.vo.ST;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Release {
 	
@@ -15,7 +15,10 @@ public class Release {
 	private String eas_code;	// 전결 라인 코드
 	private String e_approval_code;	// 전결 현황 코드
 	private int state;	// 상태
-	private Date release_date;	//출고 일자
+	private Timestamp release_date;	// 출고 등록일
+	private String username;	// 담당자
+	private String position_code; // 현재 결제자
+	private String customer_code;	// 거래처 코드
 	
 	// 생성자
 	public Release() {}
@@ -109,15 +112,36 @@ public class Release {
 		this.state = state;
 	}
 
-	public Date getRelease_date() {
+	public Timestamp getRelease_date() {
 		return release_date;
 	}
 
-	public void setRelease_date(Date release_date) {
+	public void setRelease_date(Timestamp release_date) {
 		this.release_date = release_date;
 	}
-	
-	
-	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPosition_code() {
+		return position_code;
+	}
+
+	public void setPosition_code(String position_code) {
+		this.position_code = position_code;
+	}
+
+	public String getCustomer_code() {
+		return customer_code;
+	}
+
+	public void setCustomer_code(String customer_code) {
+		this.customer_code = customer_code;
+	}
 	
 }

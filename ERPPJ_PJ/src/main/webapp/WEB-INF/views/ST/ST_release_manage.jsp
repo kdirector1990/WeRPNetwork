@@ -21,8 +21,6 @@
 	    			
 	    			var datas = httpRequest.responseText; 
 	    			
-	    			var bookList = "";
-	    			
 	    			result.innerHTML = datas;
 	    		} else {
 	    			result.innerHTML = "에러발생";
@@ -152,13 +150,14 @@
                                                     <table id="tech-companies-1" class="table table-striped">
                                                         <thead>
 														<tr>
-															<th>구분</th>
+															<th>입출고 코드</th>
 															<th>출고 거래처명</th>
-															<th>출고 일자</th>
-															<th>출고 번호</th>
-															<th>납품처</th>
-															<th>담당자</th>
+															<th>등록일</th>
 															<th>출고 수량</th>
+															<th>입고처</th>
+															<th>입고 수량</th>
+															<th>담당자</th>
+															<th>구분</th>
 															<th>단가</th>
 															<th>합계액</th>
 														</tr>
@@ -166,14 +165,15 @@
                                                         <tbody>
 														<c:if test="${cnt > 0}">
 															<c:forEach var="rto" items="${rtos}">
-																<tr>
-																	<td></td> <!-- 구분 -->
-																	<td><input type ="button" value="${rto.release_name }" onclick="ST_releaseDetailForm(${rto.release_name });"></td><!-- 출고 거래처명 -->
-																	<td>${rto.release_date }</td> <!-- 출고 일자 -->
-																	<td><input type = "button" value = "${rto.sar_code }" onclick="ST_releaseDetailForm(${rto.sar_code });"></td><!-- 출고 번호 -->
-																	<td></td><!-- 납품처 -->
-																	<td></td><!--담당자  -->
+																<tr onclick="ST_releaseDetailForm('${rto.sar_code }');">
+																	<td>${rto.sar_code }</td> <!-- 입출고 코드 -->
+																	<td>${rto.release_name }</td><!-- 출고처 -->
+																	<td>${rto.release_date }</td> <!-- 등록일 -->
 																	<td>${rto.release_count }</td><!-- 출고 수량 -->
+																	<td>${rto.stored_name }</td><!-- 입고처 -->
+																	<td>${rto.stored_count }</td>
+																	<td>${rto.username }</td><!--담당자  -->
+																	<td>${rto.sar_type }</td>
 																	<td>${rto.unit_cost }</td><!-- 단가 -->
 																	<td></td><!-- 합계액 -->
 																</tr>
@@ -191,7 +191,7 @@
 							
 							<hr>
 							<br>
-							<div id="result" class="card-body" style="width: 3500px;">
+							<div id="result" class="card-body" style="width: 3200px;">
 							<!-- 상세 페이지 출력 위치 -->
 
 							</div>

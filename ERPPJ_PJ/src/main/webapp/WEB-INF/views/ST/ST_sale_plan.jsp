@@ -178,11 +178,9 @@
 														<tbody>
 															<c:if test="${cnt > 0}">
 																<c:forEach var="dto" items="${dtos}">
-																	<tr>
+																	<tr onclick="salePlanWriteForm(${dto.saleplan_code});">
 																		<td>${dto.saleplan_no}</td>
-																		<td><input type="button"
-																			value="${dto.saleplan_code}"
-																			onclick="salePlanWriteForm(${dto.saleplan_code});"></td>
+																		<td>${dto.saleplan_code}</td>
 																		<td></td>
 																		<td></td>
 																		<td></td>

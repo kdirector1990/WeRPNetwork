@@ -39,7 +39,7 @@
 									<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
 									<table class="table table-striped mb-0">
 										<tr>
-											<th>출고 코드</th>
+											<td style="width: 215px;">출고 코드</td>
 											<td><input type="hidden" class="input" name="sar_code"
 												value="${rto.sar_code }">${rto.sar_code }</td>
 
@@ -47,20 +47,31 @@
 											<td><input class="input" type="text" name="release_name"
 												value="${rto.release_name }"></td>
 										</tr>
+										
+										<tr>
+											<th>입고처</th>
+											<td><input class = "input" type = "text" name = "stored_name"
+											value="${rto.stored_name }"></td>
+											
+											<th>입고 수량</th>
+											<td><input class = "input" type = "text" name = "stored_count"
+											value="${rto.stored_count }">
+											</td>
+										</tr>
 
 										<tr>
-											<th>출고 일자</th>
-											<td><input class="input" type="text" name="release_date"
-												value=""></td>
+											<th>등록일</th>
+											<td><input class="input" type="hidden" name="release_date"
+												value="${rto.release_date }">${rto.release_date }</td>
 
 											<th>출고처</th>
-											<td><input class="input" type="text" name="" value=""></td>
+											<td><input class="input" type="text" name="release_name" value="${rto.release_name }"></td>
 
 										</tr>
 
 										<tr>
 											<th>담당자</th>
-											<td><input class="input" type="text" name="" value=""></td>
+											<td><input class="input" type="text" name="username" value="${rto.username }"></td>
 
 											<th>출고 수량</th>
 											<td><input class="input" type="text"
@@ -71,8 +82,15 @@
 											<th>단가</th>
 											<td><input type="text" class="input" name="unit_cost"
 												value="${rto.unit_cost}"></td>
-
-
+												
+											<th>구분</th>
+											<td><select class="form-control" name="sar_type">
+												<option value="판매">2. 판매</option>
+												<option value="재입고">3. 재입고</option>
+											</select></td>
+										</tr>
+										
+										<tr>
 											<th>합계액</th>
 											<td><input type="text" class="input" name=" " value=""></td>
 										</tr>
@@ -82,9 +100,7 @@
 												formaction="ST_release_modifyPro"> <input
 												class="inputButton" type="submit" value="삭제"
 												formaction="ST_release_deletePro"> <input
-												class="inputButton" type="reset" value="수정 취소"> <input
-												class="inputButton" type="button" value="목록보기"
-												onClick="window.location.reload()">
+												class="inputButton" type="button" value="수정 취소" onClick="window.location.reload()"> 
 											<td></td>
 											<td></td>
 											<td></td>
