@@ -105,7 +105,7 @@ public class ST_Controller {
 		
 		return "ST/ST_release_modifyPro";
 	}
-	
+	 
 	//  ST_release 출고 삭제 페이지
 	@RequestMapping("ST_release_deletePro")
 	public String ST_release_deletePro(HttpServletRequest req, Model model) {
@@ -122,6 +122,15 @@ public class ST_Controller {
 		
 		return "ST/refund";  
 	}
+	
+	// ST_sale_plan 판매 계획 등록 폼
+	@RequestMapping("ST_sale_plan_write_reg")
+	public String ST_sale_plan_write_reg(HttpServletRequest req, Model model) {
+		logger.info("log => ST_sale_plan_write_reg");
+		
+		return "ST/ST_sale_plan_write_reg";
+	}       
+	
 	
 	// ST_sale_plan
 	@RequestMapping("ST_sale_plan")

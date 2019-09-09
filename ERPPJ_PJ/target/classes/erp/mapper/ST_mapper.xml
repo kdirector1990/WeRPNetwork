@@ -66,19 +66,16 @@
  	</select>
  	
  	<update id="updateRelease" parameterType="com.pj.erp.vo.ST.Release">
- 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost}, stored_name=${stored_name}, stored_count=#{stored_count} WHERE sar_code=#{sar_code}
+ 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost}, stored_name=${stored_name}, stored_count=#{stored_count}, sar_type=#{sar_type} WHERE sar_code=#{sar_code}
  	</update>
  	
  	<delete id="deleteRelease" parameterType="String">
  		DELETE sar_list_tbl WHERE sar_code=#{sar_code}
  	</delete>
-<<<<<<< HEAD
  	
  	<insert id="insertRelease" parameterType="com.pj.erp.vo.ST.Release">
  		INSERT INTO sar_list_tbl(release_name, stored_name, unit_cost, release_count, stored_count, sar_code, release_date, detail_ac_code, sar_type, username)
- 			VALUES(#{release_name}, #{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, #{sar_code}, sysdate, 'qa8', #{sar_type}, 10000)
+ 			VALUES(#{release_name}, #{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, #{sar_code}, sysdate, 'qa8', #{sar_type}, #{username})
  	</insert>
  	
-=======
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
  </mapper>

@@ -391,6 +391,7 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
 		vo.setStored_name(req.getParameter("stored_count"));
 		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
+		vo.setSar_type(req.getParameter("sar_type"));
 		
 		int updateRelease = dao.updateRelease(vo);
 		

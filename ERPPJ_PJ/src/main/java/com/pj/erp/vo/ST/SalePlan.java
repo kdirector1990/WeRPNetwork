@@ -13,11 +13,9 @@ public class SalePlan {
 	private int ef_amount;	// 예상 판매 수량
 	
 	private String saleplan_name;	// 품명
-	private String saleplan_no;
-	private String saleplan_standard; // 규격
-	private String saleplan_unit;	// 단위
+	private String sp_unit;	// 단위
 	private int saleplan_amount;	// 계획 수량
-	private String note;	// 비고
+	private String sp_note;	// 비고
 	
 	private String eas_code;	// 전결 라인 코드
 	private String e_approval_code;	// 전결 현황 코드
@@ -91,28 +89,12 @@ public class SalePlan {
 		this.saleplan_name = saleplan_name;
 	}
 	
-	public String getSaleplan_no() {
-		return saleplan_no;
+	public String getSp_unit() {
+		return sp_unit;
 	}
 
-	public void setSaleplan_no(String saleplan_no) {
-		this.saleplan_no = saleplan_no;
-	}
-
-	public String getSaleplan_standard() {
-		return saleplan_standard;
-	}
-
-	public void setSaleplan_standard(String saleplan_standard) {
-		this.saleplan_standard = saleplan_standard;
-	}
-
-	public String getSaleplan_unit() {
-		return saleplan_unit;
-	}
-
-	public void setSaleplan_unit(String saleplan_unit) {
-		this.saleplan_unit = saleplan_unit;
+	public void setSp_unit(String sp_unit) {
+		this.sp_unit = sp_unit;
 	}
 
 	public int getSaleplan_amount() {
@@ -122,13 +104,13 @@ public class SalePlan {
 	public void setSaleplan_amount(int saleplan_amount) {
 		this.saleplan_amount = saleplan_amount;
 	}
-
-	public String getNote() {
-		return note;
+	
+	public String getSp_note() {
+		return sp_note;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setSp_note(String sp_note) {
+		this.sp_note = sp_note;
 	}
 
 	public String getEas_code() {
