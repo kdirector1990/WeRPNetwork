@@ -23,12 +23,7 @@
 	var searchCount = 1;
 	
 	function sunyoungJoa(code){
-		alert(code);
-		if(code < 10){
-			code = "00"+code;
-		}else if(code < 100){
-			code = "0"+code;
-		}
+ 
 		alert(code);
 		$.ajax({
 			url: '/erp/CT_select_code?${_csrf.parameterName }=${_csrf.token }&ceq_code='+code,
@@ -127,9 +122,9 @@
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
 					
-					alert("1"+ceq_code+"1");
+					alert("'"+ceq_code+"'");
 					
-					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa('+ceq_code+')"><td>'+ceq_code+'</td><td>'+
+					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa(\''+ceq_code+'\')"><td>'+ceq_code+'</td><td>'+
 						ceq_name + '</td><td>'+
 						ceq_type + '</td><td>'+
 						ceq_acquire_date + '</td><td>'+
