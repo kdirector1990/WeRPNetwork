@@ -34,9 +34,10 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <div class="card-body table-responsive">
+                                    <div class="card-body">
                                     
                                         <h4 class="header-title">기획서 관리</h4>
+                                        
     									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
@@ -65,8 +66,8 @@
 	                                                <td>${list.plan_regdate}</td>
 	                                                <td>${list.plan_startdate}</td>
 	                                                <td>${list.plan_enddate}</td>
-	                                                <td>${list.plan_objective}</td>
 	                                                <td>${list.plan_state}</td>
+	                                                <td>${list.plan_objective}</td>
 	                                                <td>${list.plan_proposal}</td>
 	                                            </tr>
                                             </c:forEach>
@@ -75,29 +76,21 @@
                                         
                                         <div class="result">
                                         <br>
-                                        <form id="updatePlan">
-                                        	<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
-    									<br>
-                                        <table id="datatable2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0;">
-                                            <thead>
-                                            <tr>
-                                            	<th>기획서 코드</th>
-                                            	<th>기획명</th>
-                                                <th>기획제안자</th>
-                                                <th>책임자</th>
-                                                <th>기획등록일</th>
-                                                <th>시작예정일</th>
-                                                <th>종료예정일</th>
-                                                <th>기획상태</th>
-                                                <th>기획목표</th>
-                                                <th>상세 기획안 파일</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                        </form>
-                                        </div>
+									<form id="updatePlan">
+										<input type='hidden' name="${_csrf.parameterName }"
+											value="${_csrf.token }"> <br>
+										<table id="datatable2"
+											class="table table-striped dt-responsive nowrap"
+											style="border-collapse: collapse; border-spacing: 0;">
+											<thead>
+											</thead>
+											
+											<tbody>
+											</tbody>
+										</table>
+									</form>
+								</div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -126,8 +119,8 @@
     <script type="text/javascript">
      $("#datatable tr").click(function(){
     	 
-			if($(".plantr") != null){
-				$(".plantr").remove();
+			if($(".plandiv") != null){
+				$(".plandiv").remove();
 			}
 			
 			var tdArr = new Array();	// 배열 선언
@@ -166,20 +159,70 @@
    			
    			$('.result').show();
    			
-   			$('#datatable2 > tbody:last').append(
-				'<tr class="plantr"><td>'+tdArr[0] +'</td>'+
-					'<td>' +tdArr[1]+'</td>' +
-					'<td>' +tdArr[2]+'</td>' +
-					'<td>'+tdArr[3]+'</td>' +
-					'<td>' + tdArr[4] +'</td>' +
-					'<td>'  + tdArr[5] +'</td>' +
-                    '<td>' + tdArr[6] +'</td>' +
-                    '<td>' + tdArr[7] +'</td>' +
-                    '<td>' + tdArr[8]+'</td>' +
-                    '<td>' + tdArr[9]+'</td>' +
-           		'</tr>');
+   			$('#datatable2 > tbody:last').append('<div class="plandiv">'+'<input type="hidden" name="plan_code" value="'+tdArr[0]+'"><div class="form-group row">'
+ 					+ '<label class="col-md-2 col-form-label" for="example-email">기획서 코드</label>'        
+ 						+ '<div class="col-md-10">'
+ 				    		+ '<input type="text" name="plan_code" value="'+tdArr[0]+'" class="form-control" disabled>' 
+ 				        +'</div>'
+ 				    +'</div>'
+ 				    +'<div class="form-group row">'
+ 			        +'<label class="col-md-2 col-form-label" for="example-email">기획명</label>'
+ 			        	+ '<div class="col-md-10">'
+ 			            	+ '<input type="text" name="plan_name" value="'+tdArr[1]+'" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>'
+ 				    + '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="simpleinput">기획제안자</label>' 
+ 			        	+ '<div class="col-md-10">'
+ 			            	+ '<input type="text" name="username" value="'+tdArr[2]+'" id="simpleinput" class="form-control" disabled>' 
+ 			        	+ '</div>'
+ 			    	+'</div>'
+ 			    	+ '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="example-textarea">책임자</label>'
+ 			        	+ '<div class="col-md-10">'
+ 			        	+ '<input type="text" name="position_code" value="'+tdArr[3]+'" id="simpleinput" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>'
+ 			    	+ '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="simpleinput">기획등록일</label>'
+ 			        	+ '<div class="col-md-10">'
+ 			            	+ '<input type="text" name="plan_regdate" value="'+tdArr[4]+'" id="simpleinput" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>'
+ 			    	+  '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="example-textarea">시작예정일</label>'
+ 			        	+'<div class="col-md-10">'
+ 			            	+ '<input type="text" name="plan_startdate" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[5]+'" id="simpleinput" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>' 
+ 			    	+  '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="example-textarea">종료예정일</label>'
+ 			        	+'<div class="col-md-10">'
+ 			            	+ '<input type="text" name="plan_enddate" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[6]+'" id="simpleinput" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>' 
+ 			    	+  '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획상태</label>'
+ 			        	+'<div class="col-md-10">'
+ 			            	+ '<input type="text" name="plan_state" value="'+tdArr[7]+'" id="simpleinput" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>' 
+ 			    	+  '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획목표</label>'
+ 			        	+'<div class="col-md-10">'
+ 			        		+ '<textarea name="plan_objective" class="form-control" rows="5" id="example-textarea" disabled>'+tdArr[8]+'</textarea>'
+ 			        	+ '</div>'
+ 			    	+ '</div>' 
+ 			    	+  '<div class="form-group row">'
+ 			        + '<label class="col-md-2 col-form-label" for="example-textarea">상세 기획안 파일</label>'
+ 			        	+'<div class="col-md-10">'
+ 			            	+ '<input type="text" name="plan_proposal" value="'+tdArr[9]+'" id="simpleinput" class="form-control" disabled>'
+ 			        	+ '</div>'
+ 			    	+ '</div>' 
+ 					+'</div>'
+ 				    );
+ 			
 		});
-     	
     </script>
     </body>
 </html>
