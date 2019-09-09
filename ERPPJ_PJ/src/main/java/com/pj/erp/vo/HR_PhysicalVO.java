@@ -10,6 +10,7 @@ public class HR_PhysicalVO {
 	private String e_color_blind;
 	private String e_blood_type;	
 	private String e_blood_presure;
+	private String e_medical_info;
 	private int e_veteran_type;
 	private String e_veteran_info;
 	private String e_veteran_level;	
@@ -21,11 +22,11 @@ public class HR_PhysicalVO {
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public int getE_height() {
 		return e_height;
 	}
@@ -82,6 +83,14 @@ public class HR_PhysicalVO {
 		this.e_blood_presure = e_blood_presure;
 	}
 
+	public String getE_medical_info() {
+		return e_medical_info;
+	}
+
+	public void setE_medical_info(String e_medical_info) {
+		this.e_medical_info = e_medical_info;
+	}
+
 	public int getE_veteran_type() {
 		return e_veteran_type;
 	}
@@ -121,6 +130,8 @@ public class HR_PhysicalVO {
 	public void setE_disability_level(String e_disability_level) {
 		this.e_disability_level = e_disability_level;
 	}
+
+	
 
 	
 	

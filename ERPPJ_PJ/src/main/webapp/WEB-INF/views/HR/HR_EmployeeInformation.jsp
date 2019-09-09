@@ -5,7 +5,15 @@
 <%@ include file="../setting.jsp"%>
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
-	href="/erp/resources/assets/libs/c3/c3.min.css">
+	href="/erp/resources/assets/libs/c3/c3.min.css">	
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
+	function modifyPhysicaly(value) {
+		alert(value);  
+	}
+
+</script>
 </head>
 
 <body>
@@ -145,7 +153,7 @@
 															<tbody>
 																<c:forEach var="fd" items="${vo}">
 																	<tr color="red">
-																		<td>${fd.username}</td>
+																		<td onclick="modifyFoundation(${fd.username})">${fd.username}</td>
 																		<td>${fd.e_name}</td>
 																		<td>${fd.e_gender}</td>
 																		<td>${fd.e_code}</td>
@@ -163,10 +171,84 @@
 																</c:forEach>
 															</tbody>
 														</table>
+														
+														<div align="right">
+															<br>
+														</div>
+														
+														<div class="form-group text-right mb-0">
+		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick="">
+		                                                                                                    수정
+		                                                </button>
+		                                                <button type="reset" class="btn btn-secondary waves-effect" type="button" onclick="">
+		                                                                                                    삭제
+		                                                </button>
+		                                            </div>
 													</div>
 												</div>
 											</div>
 										</div>
+										
+										<div class="tab-pane" id="physicaly" role="tabpanel"
+											aria-labelledby="physicaly-tab">
+											<div class="col-sm-12">
+												<div class="card">
+													<div class="card-body table-responsive">
+														<div align="right">
+															<br>
+														</div>
+														<table id="datatable-buttons"
+															class="table table-striped table-bordered dt-responsive nowrap"
+															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+															<thead>
+																<tr>
+																	<th>사원번호</th>
+																	<th>신장</th>
+																	<th>체중</th>
+																	<th>시력(좌)</th>
+																	<th>시력(우)</th>
+																	<th>색약</th>
+																	<th>혈액형</th>
+																	<th>혈압</th>
+																	<th>병력</th>
+																	<th>장애구분/등급</th>																
+																	<th>장애인 등급</th>
+																	<th>보훈구분</th>
+																	<th>보훈관계</th>
+																	<th>보훈등급</th>
+																	
+																</tr>
+															</thead>
+
+															<tbody>
+																<c:forEach var="phy" items="${phy}">
+																	<tr color="red">
+																		<td onclick="window.location='HR_modifyPhysicaly'">${phy.username}</td>
+																		<td>${phy.e_height}</td>
+																		<td>${phy.e_weight}</td>
+																		<td>${phy.e_left_sight}</td>
+																		<td>${phy.e_right_sight}</td>
+																		<td>${phy.e_color_blind}</td>
+																		<td>${phy.e_blood_type}</td>
+																		<td>${phy.e_blood_presure}</td>
+																		<td>${phy.e_medical_info}</td>
+																		<td>${phy.e_veteran_type}</td>
+																		<td>${phy.e_veteran_info}</td>
+																		<td>${phy.e_veteran_level}</td>
+																		<td>${phy.e_disability_type}</td>
+																		<td>${phy.e_disability_level}</td>																		
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										
+										
 									</div>
 								</div>
 							</div>
@@ -186,6 +268,7 @@
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
+	
 
 </body>
 </html>
