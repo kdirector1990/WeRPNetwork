@@ -29,6 +29,13 @@ function loadBook_callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+		if(!document.searchName.e_name.value){
+			alert("사원이름을 입력하세요!");
+			location.reload();
+			document.searchName.e_name.focus();
+			return false;
+		}
+	
 		if(httpRequest.status == 200){	// 200 : 정상 종료
 			result.innerHTML = "정상종료";
 			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
@@ -36,21 +43,29 @@ function loadBook_callback() {
 			var datas = httpRequest.responseText;
 			
 			result.innerHTML = datas;
+			
 		} else {
-			if(!document.searchName.e_name.value){
-				alert("사원이름을 입력하세요!");
-				document.searchName.e_name.focus();
-				return false;
-			}
 			result.innerHTML = "에러발생";
 			
 		}
+	
 	} else {
 		//result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 } 
 
 
+function setName(username) {
+	opener.document.getElementById("usernameP").value = username;
+
+	//test alert
+	alert(username);
+	
+	$("#usernameP", opener.document).val(username); //jquery 이용
+	$(opener.document).find("#usernameP").val(username); //find를 이용한 jquery
+	self.close();
+	
+}
 </script>
 
 </head>
@@ -70,7 +85,7 @@ function loadBook_callback() {
 				<div class="row">
 					<div class="col-12">
 						<div class="page-title-box" style = "text-align:center;">
-							<h4><b>계정과목목록</b></h4>
+							<h4><b>계정목록</b></h4>
 						</div>
 					</div>
 				</div>
@@ -80,10 +95,10 @@ function loadBook_callback() {
 						<div class="col-sm-12">
 							<div class="card" >
 								<div class="card-body" style="margin-bottom: 0px;">
-									<form action="" name="searchName" onsubmit="return searchNameCheck();">
+									<form action="" name="searchName">
 										<table>
 											<tr>
-												<th style = "text-align: center;"><label>Search </label></th>
+												<th style = "text-align: center;">Search</th>
 												<td>
 													<input type="text" name="e_name" class="form-control">
 												</td>
@@ -98,14 +113,17 @@ function loadBook_callback() {
 										</table>
 									</form>
                                	</div>
+                               	
+                              <div id = "result">
+		                      <!-- 출력결과위치 -->
+		                      </div>
+                              	
                              </div>
 		                   </div> 
                        </div>
                     </div> 
                       
-                      <div id = "result">
-                      <!-- 출력결과위치 -->
-                      </div>
+                     
                
                <!-- 페이지 내용 입력 공간 종료 -->
 

@@ -5,7 +5,7 @@
         <%@ include file="../setting.jsp" %>
         <script type="text/javascript">
         function usernameList() {
-    		window.open("MS_searchUsername", "username_list", "menubar=no, width=363px, height = 528px location=no,status=no,scrollbars=yes");
+    		window.open("MS_searchUsername", "username_list", "menubar=no, width=430px, height = 528px location=no,status=no,scrollbars=yes");
     	}
         </script>
     </head>
@@ -71,7 +71,7 @@
                                             <div class="form-group">
                                                 <label>기획제안자</label>
                                                 <div>
-                                                    <input type="text" name="username" class="form-control" required
+                                                    <input type="text" name="username" id="usernameP" class="form-control" required
                                                             placeholder="기획제안자" onclick="usernameList()"/>
                                                 </div>
                                             </div>
