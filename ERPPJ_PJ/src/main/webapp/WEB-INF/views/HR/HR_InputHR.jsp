@@ -48,6 +48,23 @@
     
         	}
         	
+        	function HR_userChk() {
+        		// id값 미입력 후 중복확인 버튼 클릭시
+        		if(!document.inputPhysicaly.username.value) {
+        			alert("사원번호를 입력하세요 !");
+        			document.inputPhysicaly.username.focus();
+        			return false;
+        		}
+        		
+        		/*
+        		 * window.open("파일명", "윈도우명", "창속성");
+        		 * url="주소?속성=" + 속성값;  -> get방식
+        		 */
+        		
+        		var url = "HR_userChk?username=" + document.inputPhysicaly.username.value;
+        		window.open(url, "confirm", "menubar=no, width=300, height=200");
+        		// -> confirmId.do 서블릿 지정
+        	}
         </script>
 </head>
 
@@ -113,7 +130,7 @@
 											role="tabpanel" aria-labelledby="employee-tab">
 												<div class="col-sm-12">
 													<form action="HR_inputFoundation" class="form-horizontal" id="foundation" method="post">
-													<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">												
+													<input type = "hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}">												
 
 													<div class="card-body table-responsive">
 													 <h4 class="header-title">기초 정보</h4>
@@ -133,7 +150,7 @@
 																	</div>
 																	<div class="form-group row">	
 																		<label class="col-md-2 col-form-label"
-																			for="simpleinput	">성별<span class="text-danger">*</span></label>
+																			for="simpleinput">성별<span class="text-danger">*</span></label>
 																		<div class="col-md-3  col-form-label">
 																			<div>
 								                                        	    <div class="custom-control custom-radio custom-control-inline mb-2">
@@ -249,12 +266,14 @@
 														</div>
 														</form>
 														
-														<form action="HR_inputPhysical" class="form-horizontal" id="physical" 
-															method="post">
+														<form action="HR_inputPhysical" class="form-horizontal" id="physical" name="inputPhysicaly"
+															method="post">															
 															<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+															<input type="hidden" name="hiddenId" value="0">
 															<div class="card-body table-responsive">
 															<h4 class="header-title">신체 정보</h4>
-															<h4 class="header-title">&nbsp;</h4>
+															<h4 class="header-title">&nbsp;</h4>															
+															
 															<div class="form-group row">
 																<label class="col-md-1 col-form-label"
 																	for="simpleinput">신장</label>
@@ -333,7 +352,7 @@
 																			for="simpleinput">mmHg ~</label>
 																		<div class="col-md-1">
 																			<input type="text" class="form-control" name="e_blood_presure2" placeholder="최고">
-																		</div>
+																		</div>																		
 																		<label class="col-md-1 col-form-label"
 																			for="simpleinput">mmHg</label>
 																</div>
