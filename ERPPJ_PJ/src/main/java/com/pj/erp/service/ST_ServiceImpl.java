@@ -259,9 +259,10 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setEf_price(Integer.parseInt(req.getParameter("ef_price")));
 		vo.setS_plan_start(Date.valueOf(req.getParameter("s_plan_start")));
 		vo.setS_plan_end(Date.valueOf(req.getParameter("s_plan_end")));
-
-		System.out.println("code" + saleplan_code);
-		System.out.println("가격 : " + req.getParameter("ef_price"));
+		vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
+		vo.setSp_unit(req.getParameter("sp_unit"));
+		vo.setSp_note(req.getParameter("sp_note"));
+		
 
 		int saleplanCnt = dao.updatesalePlan(vo);
 		req.setAttribute("saleplan_code", saleplan_code);

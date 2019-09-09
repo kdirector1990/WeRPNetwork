@@ -11,12 +11,9 @@ public class SalePlan {
 	private Date s_plan_end;	// 기간 종료
 	private int ef_price;	//예상 판매 가격
 	private int ef_amount;	// 예상 판매 수량
-	
 	private String saleplan_name;	// 품명
 	private String sp_unit;	// 단위
-	private int saleplan_amount;	// 계획 수량
 	private String sp_note;	// 비고
-	
 	private String eas_code;	// 전결 라인 코드
 	private String e_approval_code;	// 전결 현황 코드
 	private int jr_state;	// 처리상태
@@ -97,14 +94,6 @@ public class SalePlan {
 		this.sp_unit = sp_unit;
 	}
 
-	public int getSaleplan_amount() {
-		return saleplan_amount;
-	}
-
-	public void setSaleplan_amount(int saleplan_amount) {
-		this.saleplan_amount = saleplan_amount;
-	}
-	
 	public String getSp_note() {
 		return sp_note;
 	}

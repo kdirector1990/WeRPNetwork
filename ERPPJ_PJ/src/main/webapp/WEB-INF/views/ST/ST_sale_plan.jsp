@@ -164,7 +164,6 @@
 																<th rowspan="2">품번</th>
 																<th rowspan="2">품명</th>
 																<th>단위 (관리)</th>
-																<th rowspan="2">계획 수량</th>
 																<th>예상 금액</th>
 																<th>예상 수량</th>
 																<th>기간 시작</th>
@@ -180,7 +179,6 @@
 																		<td>${dto.saleplan_code}</td>
 																		<td></td>
 																		<td>${dto.sp_unit }</td>
-																		<td>${dto.saleplan_amount }</td>
 																		<td>${dto.ef_price}</td>
 																		<td>${dto.ef_amount }</td>
 																		<td>${dto.s_plan_start }</td>

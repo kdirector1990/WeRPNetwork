@@ -18,7 +18,7 @@
  	</select>
  	
  	<update id="updatesalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
- 		UPDATE saleplan_tbl SET ef_price=#{ef_price}, s_plan_start =#{s_plan_start}, s_plan_end=#{s_plan_end} WHERE saleplan_code=#{saleplan_code}
+ 		UPDATE saleplan_tbl SET ef_price=#{ef_price}, s_plan_start =#{s_plan_start}, s_plan_end=#{s_plan_end}, ef_amount=#{ef_amount}, sp_unit=#{sp_unit}, sp_note=#{sp_note} WHERE saleplan_code=#{saleplan_code}
  	</update>
  	
  	<delete id="deletesalePlan" parameterType="String">

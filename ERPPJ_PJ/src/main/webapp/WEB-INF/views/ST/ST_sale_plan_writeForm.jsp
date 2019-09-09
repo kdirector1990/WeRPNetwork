@@ -48,42 +48,43 @@
 									</tr>
 
 									<tr>
-										<th>계획 수량</th>
-										<td><input class="input" type="text"
-											name="saleplan_amount" value="${dto.saleplan_amount }"></td>
-									
 									
 										<th>예상 수량</th>
 										<td><input class="input" type="text"
 											name="ef_amount" value="${dto.ef_amount }"></td>
 
+										<th>에상 금액</th>
+										<td><input class="input" type="text" name="ef_price"
+											value="${dto.ef_price}"></td>
 										
 
 									</tr>
 
 									<tr>
-										<th>에상 금액</th>
-										<td><input class="input" type="text" name="ef_price"
-											value="${dto.ef_price}"></td>
-
+										
 										<th>단위</th>
 										<td><input class="input" type="text" name="sp_unit" value="${dto.sp_unit }">
 										</td>
-									</tr>
-
-									<tr>
+										
 										<th>시작 기간</th>
 										<td><input class="input" type="date" name="s_plan_start"
 											value="${dto.s_plan_start }"></td>
+										
+										
+									</tr>
+
+									<tr>
+										
 
 										<th>종료 기간</th>
 										<td><input class="input" type="date" name="s_plan_end"
 											value="${dto.s_plan_end }"></td>
+										<td></td>
 									</tr>
 									
 									<tr>
 										<th>비고</th>
-										<td colspan="3"><textarea class="input" rows="7" cols="150"></textarea></td>
+										<td colspan="3"><textarea class="input" rows="7" cols="150" name = "sp_note" >${dto.sp_note }</textarea></td>
 									</tr>
 
 									<tr>
