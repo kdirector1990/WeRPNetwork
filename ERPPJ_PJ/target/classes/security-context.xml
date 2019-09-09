@@ -8,7 +8,10 @@
 		<security:http pattern = "/resources/**" security = "none"/>
 		<security:http pattern = "/login" security = "none"/>
 		<security:http auto-config = "true" use-expressions="true" create-session="never">
-			
+			<security:intercept-url 
+				pattern = "/index"
+				access = "hasAnyRole('ROLE_HR','ROLE_CT','ROLE_MF','ROLE_MS','ROLE_ST','ROLE_FT')" 
+			/>
 			<security:intercept-url 
 				pattern = "/HR*"
 				access = "hasAnyRole('ROLE_HR','ROLE_ADMIN')" 
@@ -37,10 +40,7 @@
 				pattern = "/*"
 				access = "hasRole('ROLE_ADMIN')" 
 			/>
-			<security:intercept-url 
-				pattern = "/index"
-				access = "isAuthenticated()" 
-			/>
+			
 			<security:form-login 
 						login-page="/login"
 						login-processing-url = "/login_check.do"
