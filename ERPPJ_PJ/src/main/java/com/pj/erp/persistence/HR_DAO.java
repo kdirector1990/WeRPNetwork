@@ -5,6 +5,7 @@ import java.util.Map;
 
 
 import com.pj.erp.vo.HR_PhysicalVO;
+import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
@@ -17,9 +18,11 @@ public interface HR_DAO {
 	
 	public int insertMember2(HR_VO vo);
 	
-	public int insertPhysical(HR_PhysicalVO vo);
+	public int insertPhysical(String username);
 	
 	public int insertAuth();
+	
+	public int insertFamily(HR_FamilyVO vo2);
 	
 	//호봉테이블 직급 가져오기
 	public List<HR_RankVO> rank();
@@ -47,4 +50,13 @@ public interface HR_DAO {
 	
 	// 직책 목록
 	public List<HR_VO> getRankList(Map<String, Object> map);
+	
+	// 사원번호 목록
+	public List<HR_VO> getUsernameList(Map<String, Object> map);
+	
+	// 사원번호 체크
+	public int userChk(String username);
+	
+	// 사원번호 생성 시퀀스
+	public String getUsername();
 }

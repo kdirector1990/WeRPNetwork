@@ -32,7 +32,8 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		request.getSession().setAttribute("dCode", department_code);
 		request.getSession().setAttribute("dName", department_name);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+		System.out.println("로긴성공 랜들러인디");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index");
 		dispatcher.forward(request, response);
 		
 	}

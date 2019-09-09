@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.FT_DAO;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Subject;
 
@@ -18,11 +19,37 @@ public class FT_ServiceImpl implements FT_Service{
 	@Autowired 
 	FT_DAO dao;
 
+	// 거래번호 최고값 가져오기
+	@Override
+	public int FT_chitMaxNumber(Map<String, Object> map) {
+		int number = dao.FT_DateChitCnt(map); 
+		if(number == 0) {
+			return 1;
+		} else {
+			return dao.FT_ChitMaxNumber(map) + 1;
+		}
+	}
+	
 	// 분개 데이터 가져오기
 	@Override
-	public List<FT_Subject> FT_chitDataLoad(Map<String, Object> map, Model model) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map, Model model) {
+		int number = dao.FT_chitDataCnt(map); 
+		if(number == 0) {
+			return null;
+		} else {
+			return dao.FT_chitDataLoad(map);
+		}
+	}
+	
+	// 전표입력
+	@Override
+	public String FT_chitInsert(Map<String, Object> map) {
+		int number = dao.FT_chitInsert(map); 
+		if(number == 0) {
+			return "실패";
+		} else {
+			return "성공";
+		}
 	}
 	
 	// 거래처 추가

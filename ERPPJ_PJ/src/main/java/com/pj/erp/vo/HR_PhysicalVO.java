@@ -1,7 +1,8 @@
 package com.pj.erp.vo;
 
-public class HR_PhysicalVO {
+public class HR_PhysicalVO {	
 	
+	private String username;
 	private int e_height;
 	private int e_weight;
 	private int e_left_sight;
@@ -17,6 +18,14 @@ public class HR_PhysicalVO {
 	
 	public HR_PhysicalVO() {}
 
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	public int getE_height() {
 		return e_height;
 	}
