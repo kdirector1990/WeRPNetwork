@@ -127,41 +127,20 @@
 			});
 			
 			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var plan_code = td.eq(1).text();
-   			var plan_name = td.eq(2).text();
-   			var username = td.eq(3).text();
-   			var position_code = td.eq(4).text();
-   			var plan_regdate = td.eq(5).text();
-   			var plan_startdate = td.eq(6).text();
-   			var plan_enddate = td.eq(7).text();
-   			var plan_state = td.eq(8).text();
-   			var plan_objective = td.eq(9).text();
-   			var plan_proposal = td.eq(10).text();
+			var material_code = td.eq(1).text();
+   			var material_name = td.eq(2).text();
+   			var material_unit = td.eq(3).text();
 			
-   			tdArr.push(plan_code);
-   			tdArr.push(plan_name);
-   			tdArr.push(username);
-   			tdArr.push(position_code);
-   			tdArr.push(plan_regdate);
-   			tdArr.push(plan_startdate);
-   			tdArr.push(plan_enddate);
-   			tdArr.push(plan_state);
-   			tdArr.push(plan_objective);
-   			tdArr.push(plan_proposal);
+   			tdArr.push(material_code);
+   			tdArr.push(material_name);
+   			tdArr.push(material_unit);
    			
    			$('.result').show();
    			
    			$('#datatable2 > tbody:last').append(
-				'<tr class="plantr">'+'<input type = "hidden" name = "plan_code" value = "'+tdArr[0]+'">'+'<td>' +tdArr[0] +'</td>'+
-					'<td><input type="text" name="plan_name" value="' +tdArr[1]+'"></td>' +
-					'<td><input type="text" name="username" value="' +tdArr[2]+'"</td>' +
-					'<td><input type="text" name="position_code" value="'+tdArr[3]+'"></td>' +
-					'<td><input type="text" name="plan_regdate" value="' + tdArr[4] +'"></td>' +
-					'<td><input type="date" name = "plan_startdate" value="'  + tdArr[5] +'"></td>' +
-                    '<td><input type="date" name="plan_enddate" value="' + tdArr[6] +'"></td>' +
-                    '<td><input type="text" name="plan_state" value="' + tdArr[7] +'"></td>' +
-                    '<td><input type="text" name="plan_objective" value="' + tdArr[8]+'"></td>' +
-                    '<td><input type="text" name="plan_proposal" value="' + tdArr[9]+'"></td>' +
+				'<tr class="plantr">'+'<input type = "hidden" name = "material_code" value = "'+tdArr[0]+'">'+'<td>' +tdArr[0] +'</td>'+
+					'<td><input type="text" name="material_name" value="' +tdArr[1]+'"></td>' +
+					'<td><input type="text" name="material_unit" value="' +tdArr[2]+'"</td>' +
            		'</tr>');
 		});
      
@@ -174,11 +153,11 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("기획서 수정 성공.");
+				alert("자재 수정 성공.");
 				location.reload();
 			},
 			error : function(){
-				alert("수정에 실패하였습니다.");
+				alert("자재목록 수정에 실패하였습니다.");
 			}
 			
 		});
@@ -193,11 +172,11 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("기획서 삭제 성공하였습니다.");
+				alert("자재 삭제 성공하였습니다.");
 				location.reload();
 			},
 			error : function(){
-				alert("기획서 삭제에 실패하였습니다.");
+				alert("자재 삭제에 실패하였습니다.");
 			}
 			
 		});

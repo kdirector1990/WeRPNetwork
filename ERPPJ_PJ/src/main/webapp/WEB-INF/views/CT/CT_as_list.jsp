@@ -61,17 +61,19 @@
     						day = "0" +day;
     					}
     					
+    					var hours = pa.getHours();
+    					var Minutes = pa.getMinutes();
+    					var Second = pa.getSeconds();
+    					
+    					var time = hours+":"+Minutes+":"+Second;
+    					alert(time);
+    					
     					var cas_date = year + "-" + month + "-" +day;
+    					
+    					var tr = '<tr><td>'+cas_code+'</td><td>'+department_code+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
       					
-    					$('#result').append('<tr>' +
-    							/* '<tr class="spoat" onclick="detail('+cas_code+')"> */
-    							'<td>'+
-    							cas_code+'</td><td>' +
-      							department_code + '</td><td>' +
-      							username + '</td><td>' +
-      							cas_title + '</td><td>' +
-      							cas_date + '</td></tr>'
-      						);
+    					$('#result').append(tr);
+    					
     					if(searchCount == 1){
     						$('#bodyappend').append(
     						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -150,7 +152,8 @@
 														<select class=" form-control" id="cas_state" name="cas_state" onchange="SelectAS(this.value);">
 															<option value="" selected disabled></option>								
 															<option value="1">미처리</option>
-															<option value="2">처리</option>
+															<option value="2">처리중</option>
+															<option value="3">완료</option>
 														</select>
 												</td>
 										</tr>

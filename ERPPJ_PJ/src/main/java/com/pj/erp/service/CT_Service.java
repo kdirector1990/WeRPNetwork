@@ -33,12 +33,22 @@ public interface CT_Service {
 	// AS등록
 	public int AS_insert_ct(HttpServletRequest req, Model model);
 	
-	//AS 목록
-	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model);
+	//AS 목록(상태검색)
+	public CT_AS_VO CT_select_as(HttpServletRequest req, Model model);
 	
 	//AS 목록(준선이형버전)
 	public List<CT_AS_VO> CT_select_as2(Map<String,Object> map, HttpServletRequest req, Model model);
+
+	//AS 목록(코드검색)
+	public CT_AS_VO CT_select_asCode(HttpServletRequest req, Model model);
 	
+	//AS 처리시작(수정)
+	public int CT_update_as(HttpServletRequest req, Model model);
+	
+	//AS 처리완료
+	public int CT_AS_complete(HttpServletRequest req, Model model);
+	
+
 	//수리일지 검색
 	public void SearchCode(HttpServletRequest req, Model model);
 	

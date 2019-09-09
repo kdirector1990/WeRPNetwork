@@ -3,35 +3,34 @@ package com.pj.erp.vo.MF;
 //자재관리
 public class MF_material {
 	
-	private String materials_code; //계정코드
-	private String materials_name;//자재명
-	private String materials_unit;//단위
+	private String material_code; //계정코드
+	private String material_name;//자재명
+	private String material_unit;//단위
 	
 	public MF_material() {}
 
-	public String getMaterials_code() {
-		return materials_code;
+	public String getMaterial_code() {
+		return material_code;
 	}
 
-	public void setMaterials_code(String materials_code) {
-		this.materials_code = materials_code;
+	public void setMaterial_code(String material_code) {
+		this.material_code = material_code;
 	}
 
-	public String getMaterials_name() {
-		return materials_name;
+	public String getMaterial_name() {
+		return material_name;
 	}
 
-	public void setMaterials_name(String materials_name) {
-		this.materials_name = materials_name;
+	public void setMaterial_name(String material_name) {
+		this.material_name = material_name;
 	}
 
-	public String getMaterials_unit() {
-		return materials_unit;
+	public String getMaterial_unit() {
+		return material_unit;
 	}
 
-	public void setMaterials_unit(String materials_unit) {
-		this.materials_unit = materials_unit;
+	public void setMaterial_unit(String material_unit) {
+		this.material_unit = material_unit;
 	}
-	
-	
+
 }
