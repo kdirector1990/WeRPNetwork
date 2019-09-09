@@ -112,9 +112,6 @@
 		}); 
 	 });
 	 
-	 
-	 
-console.log(searchCount);
 </script>
 
 </head>

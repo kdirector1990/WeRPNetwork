@@ -191,7 +191,7 @@
 
                         </div>
                     </li> -->
-					
+                    
                     <li class="dropdown notification-list">
                         <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
                             <i class="fe-settings noti-icon"></i>
@@ -507,9 +507,9 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">단기 차입금 목록</a></li>
-	                          			<li><a href="#">장기 차입금 목록</a></li>
-	                          			<li><a href="#">지급 어음 목록</a></li>
+	                          			<li><a href="FT_short_borrowings_list">단기 차입금 목록</a></li>
+	                          			<li><a href="FT_long_borrowings_list">장기 차입금 목록</a></li>
+	                          			<li><a href="FT_note_payable_list">지급 어음 목록</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -584,6 +584,7 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
+	                          			<li><a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">임시 as 입력폼</a></li>
 	                          			<li><a href="CT_as_list">A/S 요청 현황</a></li>
                     					<li><a href="CT_as_manage">A/S 요청 관리 </a></li>
 	                          		</ul>

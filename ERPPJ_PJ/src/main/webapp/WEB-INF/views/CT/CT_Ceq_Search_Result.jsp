@@ -21,30 +21,24 @@
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
                                             <thead>
                                                 <tr>
-													<th>사원코드</th>
-													<th>사원명</th>
-													<th>부서코드</th>
-													<th>직책코드</th>
+													<th>전산설비코드</th>
+													<th>설비명</th>
                                          		</tr>
                                       		</thead>
                                     		<tbody>
                                     		<!--  있으면 -->
 											<c:if test="${cnt != 0}">
                                           		<c:forEach var="list" items="${dto}">
-                                          			<c:if test="${var eq param.username}">
                                           			<tr>
-                                          				<td>${list.username}</td>
-                                          				<td>${list.e_name}</td>
-                                          				<td>${list.department_code}</td>
-                                          				<td>${list.position_code}</td>
+                                          				<td>${list.ceq_code}</td>
+                                          				<td>${list.ceq_name}</td>
                                           			</tr>
-                                          			</c:if>
                                           		</c:forEach>
                                          	</c:if>
                                          	<!--  없으면 -->
 												<c:if test="${cnt == 0}">
 													<tr>
-														<td colspan="6" align="center">
+														<td colspan="2" align="center">
 															조회결과 없음
 													</tr>
 												</c:if>

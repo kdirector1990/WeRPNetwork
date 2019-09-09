@@ -19,7 +19,8 @@
 	</insert>
 	
 	<insert id="insertPhysical" parameterType="com.pj.erp.vo.HR_PhysicalVO">
-	
+		insert into physicaly_info_tbl(e_height, e_weight, e_left_sight, e_right_sight, e_color_blind, e_blood_type, e_blood_presure, e_veteran_type, e_veteran_info, e_veteran_level, e_disability_type, e_disability_level)
+		values(#{e_height}, #{e_weight}, #{e_left_sight}, #{e_right_sight}, #{e_color_blind}, #{e_blood_type}, #{e_blood_presure}, #{e_veteran_type}, #{e_veteran_info}, #{e_veteran_level}, #{e_disability_type}, #{e_disability_level})
 	</insert>
 	
 	<!-- 부서 등록 -->

@@ -53,6 +53,7 @@
  	</delete>
 	
 	<!-- release (출고) --> 
+<<<<<<< HEAD
  	<select id="getReleaseCnt" resultType="int">
  		select COUNT(*) as FROM sar_list_tbl
  	</select>
@@ -72,4 +73,13 @@
  	<delete id="deleteRelease" parameterType="String">
  		DELETE sar_list_tbl WHERE sar_code=#{sar_code}
  	</delete>
+=======
+ 	<select id="getRelease" resultType="int">
+ 		select COUNT(*) as FROM estimate_price_tbl
+ 	</select>
+ 	
+ 	<select id="getReleaseList" resultType="com.pj.erp.vo.ST.Release" parameterType="java.util.Map">
+ 		SELECT * FROM sar_list_tbl
+ 	</select>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
  </mapper>
