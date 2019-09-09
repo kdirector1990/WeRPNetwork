@@ -36,7 +36,7 @@
 								<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
 								<table class="table table-striped mb-0">
 									<tr>
-										<th>품번</th>
+										<th style="width: 215px;">품번</th>
 										<td><input type="hidden" class="input"
 											name="saleplan_code" value="${dto.saleplan_code}">${dto.saleplan_code}
 											</td>
@@ -48,34 +48,43 @@
 									</tr>
 
 									<tr>
-										<th>규격</th>
+									
+										<th>예상 수량</th>
 										<td><input class="input" type="text"
-											name="saleplan_standard" value=""></td>
+											name="ef_amount" value="${dto.ef_amount }"></td>
 
-										<th>계획 수량</th>
-										<td><input class="input" type="text"
-											name="saleplan_amount" value=""></td>
-
-									</tr>
-
-									<tr>
 										<th>에상 금액</th>
 										<td><input class="input" type="text" name="ef_price"
 											value="${dto.ef_price}"></td>
+										
 
-										<th>비고</th>
-										<td><input class="input" type="text" name="note" value="">
-										</td>
 									</tr>
 
 									<tr>
+										
+										<th>단위</th>
+										<td><input class="input" type="text" name="sp_unit" value="${dto.sp_unit }">
+										</td>
+										
 										<th>시작 기간</th>
 										<td><input class="input" type="date" name="s_plan_start"
 											value="${dto.s_plan_start }"></td>
+										
+										
+									</tr>
+
+									<tr>
+										
 
 										<th>종료 기간</th>
 										<td><input class="input" type="date" name="s_plan_end"
 											value="${dto.s_plan_end }"></td>
+										<td></td>
+									</tr>
+									
+									<tr>
+										<th>비고</th>
+										<td colspan="3"><textarea class="input" rows="7" cols="150" name = "sp_note" >${dto.sp_note }</textarea></td>
 									</tr>
 
 									<tr>
@@ -83,9 +92,7 @@
 											formaction="ST_sale_Plan_modifyPro"> <input
 											class="inputButton" type="submit" value="삭제"
 											formaction="ST_sale_Plan_deletePro"> <input
-											class="inputButton" type="reset" value="수정 취소"> <input
-											class="inputButton" type="button" value="목록보기"
-											onClick="window.location.reload()">
+											class="inputButton" type="button" value="수정 취소" onClick="window.location.reload()">
 									</tr>
 
 								</table>
