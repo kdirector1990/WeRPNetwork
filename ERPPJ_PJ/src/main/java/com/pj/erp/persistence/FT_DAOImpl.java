@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Subject;
 
@@ -22,6 +23,41 @@ public class FT_DAOImpl implements FT_DAO{
 		return 0;
 	}
 
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_DateChitCnt(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_DateChitCnt(map);
+	}
+
+	// 거래번호 최고값
+	@Override
+	public int FT_ChitMaxNumber(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_ChitMaxNumber(map);
+	}
+	
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_chitDataCnt(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_chitDataCnt(map);
+	}
+	
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_chitInsert(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_chitInsert(map);
+	}
+
+	// 분개 데이터 가져오기
+	@Override
+	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_chitDataLoad(map);
+	}
+	
 	// 적금 가져오기
 	@Override
 	public List<FT_Savings> FT_SavingsSelect() {

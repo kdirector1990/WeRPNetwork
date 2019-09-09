@@ -4,6 +4,54 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "com.pj.erp.persistence.FT_DAO">
+	<!-- 날짜 검색 분개 가져오기 -->
+	<select id="FT_DateChitCnt" parameterType="java.util.Map" resultType="int">
+		select count(*) 
+		from journal_record_tbl
+		where to_date(journal_date) = #{year} || '-' || #{month} || '-' || #{day}
+	</select>
+	
+	<!-- 거래번호 최고값 -->
+	<select id="FT_ChitMaxNumber" parameterType="java.util.Map" resultType="int">
+		select journal_number 
+		from journal_record_tbl
+		where to_date(journal_date) = #{year} || '-' || #{month} || '-' || #{day}
+		and rownum = 1
+		order by 1 asc
+	</select>
+	
+	<!-- 분개 데이터 갯수 가져오기 -->
+	<select id="FT_chitDataCnt" parameterType="java.util.Map" resultType="int">
+		select count(*) 
+		from journal_record_tbl
+		where to_date(journal_date) = #{year} || '-' || #{month} || '-' || #{day}
+		and journal_number = #{chkno}
+	</select>
+	
+	<!-- 분개 데이터 가져오기 -->
+	<select id="FT_chitDataLoad" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Chit">
+		select j.journal_code, j.journal_number, j.journal_date, de.detail_ac_code, de.account_name,
+		c.customer_code, c.customer_name, j.debtor_value, j.creditor_value, j.count_value, j.journal_abstract,
+		j.jr_state, j.last_update, j.last_modi_user, writer.e_name wname, j.username, formaler.e_name fname
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, users writer, users formaler
+		where j.detail_ac_code = de.detail_ac_code
+		and j.customer_code = c.customer_code
+		and writer.username = j.last_modi_user
+		and formaler.username = j.username
+		and to_date(j.journal_date) = #{year} || '-' || #{month} || '-' || #{day}
+		and j.journal_number = #{chkno}
+	</select>
+	
+	<!-- 전표입력 -->
+	<insert id="FT_chitInsert" parameterType = "java.util.Map">
+		insert into journal_record_tbl(JOURNAL_CODE, JOURNAL_NUMBER, JOURNAL_DATE,
+		DETAIL_AC_CODE, CUSTOMER_CODE, DEBTOR_VALUE, CREDITOR_VALUE, COUNT_VALUE,
+		JOURNAL_ABSTRACT, JR_STATE, LAST_UPDATE, LAST_MODI_USER, USERNAME)
+		values(customer_seq.nextval, #{number}, #{date}, #{subjectcode}, #{accountcode},
+		#{leftprice}, #{rightprice}, #{leftcount}, #{rightcount}, #{text}, #{type},
+		#{updateday}, #{wname}, #{fname}) 
+	</insert>
+
 	<!-- 거래처 추가 -->
 	<insert id="FT_AccInsert" parameterType = "java.util.Map">
 		insert into customer_list_tbl(customer_code, customer_name, deal_state)
