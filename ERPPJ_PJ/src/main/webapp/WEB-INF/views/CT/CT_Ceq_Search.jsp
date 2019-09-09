@@ -91,14 +91,17 @@ function loadCode_callback() {
 										</table>
 									</form>
                                	</div>
+                               	
+                              <div id = "result">
+			                      <!-- 출력결과위치 -->
+		                      </div>
+		                      
                              </div>
 		                   </div> 
                        </div>
                     </div> 
                       
-                      <div id = "result">
-                      <!-- 출력결과위치 -->
-                      </div>
+                      
                
                <!-- 페이지 내용 입력 공간 종료 -->
 

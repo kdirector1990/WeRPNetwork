@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <div class="card-body table-responsive">
+                                    <div class="card-body">
                                     
                                         <h4 class="header-title">기획서 관리</h4>
     									<hr>
