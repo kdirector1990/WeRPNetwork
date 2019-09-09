@@ -37,6 +37,10 @@
 				pattern = "/*"
 				access = "hasRole('ROLE_ADMIN')" 
 			/>
+			<security:intercept-url 
+				pattern = "/index"
+				access = "isAuthenticated()" 
+			/>
 			<security:form-login 
 						login-page="/login"
 						login-processing-url = "/login_check.do"
