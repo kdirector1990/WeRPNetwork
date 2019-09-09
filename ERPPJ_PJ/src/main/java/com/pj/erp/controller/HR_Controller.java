@@ -48,20 +48,23 @@ public class HR_Controller {
 	@RequestMapping("HR_inputFoundation")
 	public String inputFoundation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
-		service.inputFoundation(req, model);
-		
+		service.inputFoundation(req, model);		
 		
 		return "index";
 		
-	}	
+	}		
 	
-	@RequestMapping("HR_inputPhysical")
-	public String HR_inputPhysical(HttpServletRequest req, Model model) {
-		logger.info("log => HR_inputPhysicalPro");
-		service.inputPhysical(req, model);
+	
+	/*
+	// 중복확인 페이지
+	@RequestMapping("HR_userChk")
+	public String HR_userChk(HttpServletRequest req, Model model) {
+		logger.info("url => HR_userChk");
+		service.userChk(req, model);
 		
-		return "index";
+		return "HR/HR_userChk";
 	}
+	*/
 	
 	@RequestMapping("HR_inputProHR3")
 	public String HR_inputProHR3(HttpServletRequest req, Model model) {

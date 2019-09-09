@@ -6,6 +6,49 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/pj/resources/assets/css/js/request.js"></script>
+        <script type="text/javascript">
+        	var count = 1;
+        	var subcount = 1;
+        	
+        	    	
+        	
+        	function enterinsert() {
+       			
+       			$(".chit-table-bordered-primary tbody").append('<tr>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "number'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_cord'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+                        
+                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                       '</tr>');
+                    count = count + 1;
+          		
+        	}
+        	
+        	function enterdelete() {       		
+        		
+       			$(".chit-table-bordered-primary tbody").empty('<tr>' +
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "number'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_cord'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+                        
+                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                       '</tr>');
+                    count = 0;          		
+    
+        	}
+        	
+        </script>
+        <!-- Table datatable css -->
+        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -44,53 +87,54 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body table-responsive">
-								<br>
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead>
-										<tr>
-											<th>NO</th>
-											<th>발령호수</th>
-											<th>제목</th>
-											<th>발령구분</th>
-											<th>발령일자</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<tr color="red">
-											<td>1</td>
-											<td>1</td>
-											<td>2009신입사원채용</td>
-											<td>채용</td>
-											<td>2009/12/09</td>
-										</tr>
-									</tbody>
-
-									<tbody>
-										<tr color="red">
-											<td>2</td>
-											<td>20080101</td>
-											<td>2008정기승진</td>
-											<td>승진</td>
-											<td>2008/01/01</td>
-										</tr>
-									</tbody>
-
-									<tbody>
-										<tr color="red">
-											<td>3</td>
-											<td>20081205</td>
-											<td>2008신입사원채용</td>
-											<td>채용</td>
-											<td>2008/12/15</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
+						 <form name = "HR_record_input" action = "HR_record_input_pro" method ="post">
+						 <input type ="hidden" name ="${_csrf.parameterName }" value="${_csrf.token }">
+							<div class="card-body">                                         
+								 <div class="form-group text-right mr-1">
+                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterinsert(0);">
+                                        		 추가
+                                     </button>
+                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterdelete(0);">
+                                        		 삭제
+                                     </button>
+                                    </div>
+	                                                
+                                      <div class="table-responsive" style = "margin: 15px 0px 50px">                                      
+                                           <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                               <col style = "width:5%;">
+                                               <col style = "width:25%">
+                                               <col style = "width:30%;">                                                
+                                               <col style = "width:25%;">
+                                               <col style = "width:20%;">
+                                               
+                                               <thead>
+                                                   <tr>
+	                                                <th>NO</th>
+	                                                <th>발령호수</th>
+	                                                <th>제목</th>		                                                
+	                                                <th>발령구분</th>
+	                                                <th>발령일자</th>		                                                
+	                                            </tr>
+	                                        </thead>
+	    
+	                                        <tbody>
+	                                            <tr>		                                                
+	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "number0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "record_cord0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "record_title0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>		                                                
+	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "record_division0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+	                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date0" data-provide="datepicker" data-date-autoclose="true"></td>
+	                                            </tr>	                                            
+	                                        </tbody>		                                       
+                                        </table>
+	                                </div>		                                    
+								</div>
+							<div class="form-group text-right mr-1">
+                                          <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">입력</button>
+                                          <button type="reset" class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
+                            </div>
+                        </form>
+                        </div> 
 					</div>
 				</div>
 			

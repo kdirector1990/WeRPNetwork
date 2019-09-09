@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.pj.erp.vo.HR_PhysicalVO;
+import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
@@ -33,8 +34,8 @@ public class HR_DAOImpl implements HR_DAO{
 	}
 	
 	@Override
-	public int insertPhysical(HR_PhysicalVO vo) {
-		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertPhysical", vo);
+	public int insertPhysical(String username) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertPhysical", username);
 	}
 	
 	@Override
@@ -101,7 +102,28 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.foundation");
 	}
 
-	
+	@Override
+	public List<HR_VO> getUsernameList(Map<String, Object> map) {
+		List<HR_VO> user = null;
+		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
+		user = dao.getUsernameList(map);
+		return user;
+	}
+
+	@Override
+	public int userChk(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.userChk", username);
+	}
+
+	@Override
+	public String getUsername() {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getUsername");
+	}
+
+	@Override
+	public int insertFamily(HR_FamilyVO vo2) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertFamily", vo2);
+	}
 
 	
 
