@@ -71,7 +71,9 @@
 	
 	
 	<!-- 사원 정보 수정 -->
-	
+	<update id="updateFoundation" parameterType="com.pj.erp.vo.HR_VO">
+		update users set e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode}, level_step=#{level_step}, e_nfcCodeNFC=#{e_nfcCodeNFC}, department_code=#{department_code}, position_code=#{position_code}, rank_code=#{rank_code} where username=#{username}
+	</update>
 	
 	<!-- 신체 정보 상세페이지 -->
 	<select id="getPhysicaly" parameterType="String" resultType="com.pj.erp.vo.HR_PhysicalVO">

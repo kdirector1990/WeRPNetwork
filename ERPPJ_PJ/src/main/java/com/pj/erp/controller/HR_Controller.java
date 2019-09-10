@@ -58,8 +58,19 @@ public class HR_Controller {
 	public String HR_modifyFoundation(HttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundation");
 		service.modifyFoundationView(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
 		
 		return "HR/HR_modifyFoundation";
+	}
+	
+	@RequestMapping("HR_modifyFoundationPro")
+	public String HR_modifyFoundationPro(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyFoundationPro");
+		service.modifyFoundationPro(req, model);
+				
+		return "index";
 	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
@@ -75,7 +86,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyPhysicalyPro");
 		service.modifyPhysicalyPro(req, model);
 		
-		return "HR/HR_EmployeeInformation";
+		return "index";
 	}
 	
 	/*

@@ -37,7 +37,7 @@
                 			<div class="col-sm-12">
 							<form action="HR_modifyFoundationPro" class="form-horizontal" id="foundation" method="post">
 							<input type = "hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}">												
-								<input type="text" name="username" value="${fd.username}">
+								<input type="text" name="username" value="${vo.username}">
 								<div class="card-body table-responsive">
 								 <h4 class="header-title">기초 정보</h4>
 								 <h4 class="header-title">&nbsp;</h4>
@@ -51,7 +51,7 @@
 												<div class="form-group row">
 													<label class="col-lg-2 col-form-label" for="simpleinput">성명<span class="text-danger">*</span></label>
 													<div class="col-lg-8">
-														<input type="text" class="form-control" name="e_name" value="${fd.e_name}">
+														<input type="text" class="form-control" name="e_name" value="${vo.e_name}" readonly>
 													</div>
 												</div>
 												<div class="form-group row">	
@@ -88,14 +88,14 @@
 													<label class="col-md-2 col-form-label"
 														for="simpleinput">주민등록번호<span class="text-danger">*</span></label>
 													<div class="col-md-8">
-														<input type="text" class="form-control" name="e_code" value="${fd.e_code}" size="13">
+														<input type="text" class="form-control" name="e_code" value="${vo.e_code}" size="13">
 													</div>
 												</div>
 												<div class="form-group row">	
 													<label class="col-md-2 col-form-label"
 														for="simpleinput">전화번호<span class="text-danger">*</span></label>
 													<div class="col-md-8">
-													<input type="text" class="form-control" name="e_hp" value="${fd.e_hp}" size="13">
+													<input type="text" class="form-control" name="e_hp" value="${vo.e_hp}" size="13">
 													</div>
 												</div>
 											</div>	
@@ -117,12 +117,12 @@
 											<label class="col-md-1 col-form-label"
 												for="simpleinput">우편번호<span class="text-danger">*</span></label>
 											<div class="col-md-4">
-												<input type="text" class="form-control" name="e_mailcode" value="${fd.e_mailcode}">
+												<input type="text" class="form-control" name="e_mailcode" value="${vo.e_mailcode}">
 											</div>
 											<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 											<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label> 
 											<div class="col-md-4">
-												<input type="text" class="form-control" name="e_nfcCodeNFC" value="${fd.e_nfcCodeNFC}">
+												<input type="text" class="form-control" name="e_nfcCodeNFC" value="${vo.e_nfcCodeNFC}">
 											</div>																
 										</div>
 										
@@ -158,14 +158,14 @@
 											<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 											<label class="col-md-1 col-form-label" for="simpleinput">호봉<span class="text-danger">*</span></label>
 											<div class="col-md-4">
-												<input type="text" class="form-control" name="level_step" value="${fd.level_step}">
+												<input type="text" class="form-control" name="level_step" value="${vo.level_step}">
 											</div>																
 										</div>															
 										<div class="form-group text-right mb-0">
 	                                        <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
 	                                                                                    수정
 	                                        </button>
-	                                        <button type="reset" class="btn btn-secondary waves-effect">
+	                                        <button type="reset" class="btn btn-secondary waves-effect" onclick="">
 	                                                                                     취소
 	                                        </button>
 	                                    </div>																

@@ -149,6 +149,11 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int updatePhysicaly(HR_PhysicalVO vo) {
 		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updatePhysicaly", vo);
+	}
+
+	@Override
+	public int updateFoundation(HR_VO vo) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updateFoundation", vo);
 	}	
 
 	

@@ -350,8 +350,41 @@ public class HR_ServiceImpl implements HR_Service{
 
 	@Override
 	public void modifyFoundationPro(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		HR_VO vo = new HR_VO();
+		String username = req.getParameter("username");
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
+		vo.setUsername(username);		
+		vo.setE_gender(e_gender);
+		vo.setE_type(req.getParameter("e_type"));
+		vo.setE_code(req.getParameter("e_code"));
+		vo.setE_hp(req.getParameter("e_hp"));
+		
+		String e_address = "";
+		String e_address1 = req.getParameter("e_address1");
+		String e_address2 = req.getParameter("e_address2");
+		
+		e_address = e_address1 + "/" + e_address2;
+		vo.setE_address(e_address);
+		
+		vo.setE_mailcode(req.getParameter("e_mailcode"));
+		
+		String level_step = "1";
+		vo.setLevel_step(level_step);		
+		
+		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
+		String department_code = req.getParameter("department_code");
+		String position_code = req.getParameter("position_code");
+		String rank_code = req.getParameter("rank_code");
+		
+		vo.setDepartment_code(department_code);
+		vo.setPosition_code(position_code);
+		vo.setRank_code(rank_code);
+		
+		int updateCnt = dao.updateFoundation(vo);           
+        
+        model.addAttribute("updateCnt", updateCnt);
+        model.addAttribute("username", username);
 	}
 
 

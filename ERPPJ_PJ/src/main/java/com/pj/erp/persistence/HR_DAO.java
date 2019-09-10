@@ -45,6 +45,9 @@ public interface HR_DAO {
 	// 사원정보 수정페이지
 	public HR_VO getFoundation(String username);
 	
+	// 사원정보 수정처리
+	public int updateFoundation(HR_VO vo);
+	
 	// 신체정보 수정페이지
 	public HR_PhysicalVO getPhysicaly(String username);
 	
