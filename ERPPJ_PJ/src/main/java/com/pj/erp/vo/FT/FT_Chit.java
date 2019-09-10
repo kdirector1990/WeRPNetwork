@@ -10,7 +10,8 @@ public class FT_Chit {
 	private String customer_name; // 거래처명
 	private String debtor_value; // 차변
 	private String creditor_value; // 대변
-	private String count_value; // 수량
+	private String l_count_value; // 차변수량
+	private String r_count_value; // 대변수량
 	private String journal_abstract; // 적요
 	private String jr_state; // 분개상태
 	private String last_update; // 최종수정일
@@ -74,11 +75,17 @@ public class FT_Chit {
 	public void setCreditor_value(String creditor_value) {
 		this.creditor_value = creditor_value;
 	}
-	public String getCount_value() {
-		return count_value;
+	public String getL_count_value() {
+		return l_count_value;
 	}
-	public void setCount_value(String count_value) {
-		this.count_value = count_value;
+	public void setL_count_value(String l_count_value) {
+		this.l_count_value = l_count_value;
+	}
+	public String getR_count_value() {
+		return r_count_value;
+	}
+	public void setR_count_value(String r_count_value) {
+		this.r_count_value = r_count_value;
 	}
 	public String getJournal_abstract() {
 		return journal_abstract;

@@ -53,8 +53,8 @@
 		}
     
 		function setvalue(val){
-			$("input[name=accountcode${keyname}]", opener.document).val(acode);
-    		$("input[name=accountname${keyname}]", opener.document).val(aname);
+			$("input[name=AccCode${keyname}]", opener.document).val(acode);
+    		$("input[name=AccName${keyname}]", opener.document).val(aname);
 			self.close();
 		}
 	    

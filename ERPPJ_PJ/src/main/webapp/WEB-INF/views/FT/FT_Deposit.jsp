@@ -276,6 +276,22 @@
 	                });
         		}
         	}
+        	
+        	function subjectlist(subjectcode) {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
+        		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
+        		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
+        		
+        	}
+        	
+        	function accountlist(accountcode) {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
+        		var url = "FT_account_list?key=" + $("*[name=AccCode" + accountcode + "]").val() + "&keyname=" + accountcode;
+        		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
+        		
+        	}
         </script>
         <!-- Table datatable css -->
         <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -356,9 +372,9 @@
 		                                        		<tr>																			
 			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "depositCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.depositCode}"></td>
 			                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first${cnt}" name = "depositName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.depositName}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accCode}"></td>
 			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.accName}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.subjectCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.subjectCode}"></td>
 			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.subjectName}"></td>
 			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accountNo}"></td>
 			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(this.name);" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accountHolder}"></td>
@@ -368,9 +384,9 @@
 		                                            <tr>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "depositCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first${cnt}" name = "depositName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(this.name);" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>

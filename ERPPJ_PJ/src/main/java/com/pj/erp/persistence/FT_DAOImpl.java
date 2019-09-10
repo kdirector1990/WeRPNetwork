@@ -44,11 +44,18 @@ public class FT_DAOImpl implements FT_DAO{
 		return dao.FT_chitDataCnt(map);
 	}
 	
-	// 날짜 검색 분개 가져오기
+	// 전표입력
 	@Override
 	public int FT_chitInsert(Map<String, Object> map) {
 		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
 		return dao.FT_chitInsert(map);
+	}
+	
+	// 전표수정
+	@Override
+	public int FT_chitupdate(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_chitupdate(map);
 	}
 
 	// 분개 데이터 가져오기

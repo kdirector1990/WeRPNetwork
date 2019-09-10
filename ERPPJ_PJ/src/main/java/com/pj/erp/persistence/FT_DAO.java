@@ -29,6 +29,9 @@ public interface FT_DAO {
 	// 전표입력
 	public int FT_chitInsert(Map<String, Object> map);
 	
+	// 전표수정
+	public int FT_chitupdate(Map<String, Object> map);
+	
 	//예산신청입력처리
 	public int FT_applyinput();
 	
