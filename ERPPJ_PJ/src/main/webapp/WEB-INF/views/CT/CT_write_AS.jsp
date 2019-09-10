@@ -69,7 +69,7 @@
 							                                 <select name="department_code" class="form-controll">
 							                                 	<option value="">선택</option>
 							                                 	<option value="인사">인사</option>
-							                                 	<option value="기획">기획</option>
+							                                 	<option value="plan_depart">기획</option>
 							                                 	<option value="영업">영업</option>
 							                                 	<option value="재무">재무</option>
 							                                 	<option value="전산">전산</option>

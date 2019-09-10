@@ -1,6 +1,7 @@
 package com.pj.erp.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,6 +115,7 @@ public class CT_ServiceImpl implements CT_Service{
 		List<CT_VO> vo = null;
 		vo = dao.SelectCT(type);
 		System.out.println(vo.get(0).getCeq_code());
+		System.out.println(vo.get(0).getDepartment_name());
 		return vo;
 	}
 
@@ -336,6 +338,52 @@ public class CT_ServiceImpl implements CT_Service{
 		List<CT_RP_VO> vo = dao.selectRPC(rr_repair_type);
 		
 		return vo;
+	}
+
+	//수리일지 수정폼
+	@Override
+	public CT_RP_VO updateFormRP(HttpServletRequest req, Model model) {
+
+		String rr_code = req.getParameter("rr_code");
+		
+		CT_RP_VO vo = dao.updateFormRP(rr_code);
+		
+		return vo;
+	}
+
+	//수리일지 수리완료
+	@Override
+	public int updateRP(HttpServletRequest req, Model model) {
+		
+		String rr_code = req.getParameter("rr_code");
+		String rr_title = req.getParameter("rr_title");
+		String rr_content = req.getParameter("rr_content");
+		String rr_repair_type = req.getParameter("rr_repair_type");
+		
+		//콤마제거
+		String cost = req.getParameter("rr_cost");
+		int rr_cost = Integer.parseInt(cost.replace(",", ""));;
+		
+		CT_RP_VO vo = new CT_RP_VO();
+		vo.setRr_code(rr_code);
+		vo.setRr_title(rr_title);
+		vo.setRr_content(rr_content);
+		vo.setRr_repair_type(rr_repair_type);
+		vo.setRr_cost(rr_cost);
+		
+		int updateCnt = dao.updateRP(vo);
+		
+		return updateCnt;
+	}
+
+	@Override
+	public int deleteRP(HttpServletRequest req, Model model) {
+		
+		String rr_code = req.getParameter("rr_code");
+		
+		int deleteCnt = dao.deleteRP(rr_code);
+		
+		return deleteCnt;
 	}
 
 	

@@ -122,6 +122,23 @@ public class CT_DAOImpl implements CT_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectRPC", type);
 	}
 
+	//수리일지 수정폼 select(code)
+	@Override
+	public CT_RP_VO updateFormRP(String code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.updateFormRP", code);
+	}
+
+	//수리완료
+	@Override
+	public int updateRP(CT_RP_VO vo) {
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.updateRP", vo);
+	}
+
+	@Override
+	public int deleteRP(String code) {
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.deleteRP", code);
+	}
+	
 
 	
 
