@@ -129,6 +129,11 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getPhysicaly", username);
 	}
 
+	@Override
+	public int updatePhysicaly(HR_PhysicalVO vo) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updatePhysicaly", vo);
+	}
+
 	
 
 }

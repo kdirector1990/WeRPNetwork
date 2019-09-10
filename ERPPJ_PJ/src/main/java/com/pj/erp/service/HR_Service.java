@@ -50,8 +50,12 @@ public interface HR_Service {
 	// 사원정보 수정
 	
 	
-	// 신체정보 수정
+	// 신체정보 상세페이지
 	public void modifyPhysicalyView(HttpServletRequest req, Model model);
+	
+	// 신체정보 수정처리
+	public void modifyPhysicalyPro(HttpServletRequest req, Model model);
+	
 	
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);

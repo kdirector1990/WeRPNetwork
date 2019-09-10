@@ -121,7 +121,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
-		String level_step = "920";
+		String level_step = "1";
 		vo.setLevel_step(level_step);		
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
@@ -338,6 +338,39 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_PhysicalVO pvo = dao.getPhysicaly(username);
 		
 		model.addAttribute("pvo", pvo);
+	}
+
+	@Override
+	public void modifyPhysicalyPro(HttpServletRequest req, Model model) {
+		
+		HR_PhysicalVO vo = new HR_PhysicalVO();
+		String username = req.getParameter("username");
+		
+		vo.setUsername(username);
+		vo.setE_height(Integer.parseInt(req.getParameter("e_height")));
+		vo.setE_weight(Integer.parseInt(req.getParameter("e_weight")));
+		vo.setE_left_sight(Integer.parseInt(req.getParameter("e_left_sight")));
+		vo.setE_right_sight(Integer.parseInt(req.getParameter("e_right_sight")));
+		vo.setE_color_blind(req.getParameter("e_color_blind"));
+		vo.setE_blood_type(req.getParameter("e_blood_type"));
+		String e_blood_presure = "";
+		String e_blood_presure1 = req.getParameter("e_blood_presure1");
+		String e_blood_presure2 = req.getParameter("e_blood_presure2");
+		e_blood_presure = e_blood_presure1 + "/" + e_blood_presure2 + "mmHg";
+		
+		vo.setE_blood_presure(e_blood_presure);
+		vo.setE_medical_info(req.getParameter("e_medical_info"));
+		vo.setE_veteran_type(Integer.parseInt(req.getParameter("e_veteran_type")));
+		vo.setE_veteran_info(req.getParameter("e_veteran_info"));
+		vo.setE_veteran_level(req.getParameter("e_veteran_level"));
+		vo.setE_disability_type(req.getParameter("e_disability_type"));
+		vo.setE_disability_level(req.getParameter("e_disability_level"));
+		
+		int updateCnt = dao.updatePhysicaly(vo);           
+        
+        model.addAttribute("updateCnt", updateCnt);
+        model.addAttribute("username", username);
+		
 	}
 
 	/*

@@ -61,7 +61,7 @@
 									<label class="col-md-1 col-form-label"
 										for="simpleinput">체중</label>
 									<div class="col-md-3">
-										<input type="text" class="form-control" name="e_weight" placeholder="체중">
+										<input type="text" class="form-control" name="e_weight" value="${pvo.e_weight}">
 									</div>
 									<label class="col-md-1 col-form-label"
 										for="simpleinput">kg</label>
@@ -70,13 +70,13 @@
 									<label class="col-md-1 col-form-label"
 										for="simpleinput">시력(좌)</label>
 									<div class="col-md-1">
-										<input type="text" class="form-control" name="e_left_sight" placeholder="시력(좌)">
+										<input type="text" class="form-control" name="e_left_sight" value="${pvo.e_left_sight}">
 									</div>
 									<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 									<label class="col-md-1 col-form-label"
 										for="simpleinput">시력(우)</label>
 									<div class="col-md-1">
-										<input type="text" class="form-control" name="e_right_sight" placeholder="시력(우)">
+										<input type="text" class="form-control" name="e_right_sight" value="${pvo.e_right_sight}">
 									</div>
 									
 									<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
@@ -130,6 +130,15 @@
 											</div>																		
 											<label class="col-md-1 col-form-label"
 												for="simpleinput">mmHg</label>
+									</div>
+									
+									<div class="form-group row">																	
+										<label class="col-md-1 col-form-label"
+										for="simpleinput">병력</label>
+										<div class="col-md-5">
+											<input type="text" class="form-control" name="e_medical_info" value="${pvo.e_medical_info}">
+										</div>	
+											
 									</div>
 									
 									<div class="form-group row">																	
@@ -198,32 +207,20 @@
 								</div>
 								
 								<div class="form-group text-right mb-0">
-	                                            <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-	                                                Submit
-	                                            </button>
-	                                            <button type="reset" class="btn btn-secondary waves-effect">
-	                                                Cancel
-	                                            </button>
-	                                        </div>
+                                    <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                        Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-secondary waves-effect">
+                                        Cancel
+                                    </button>
+                                </div>
 							</div>
 							</form>
-						
-							<div class="form-group text-right mb-0">
-								<button class="btn btn-primary waves-effect waves-light mr-1"
-									type="button" onclick="enterinsert(0);">추가</button>
-								<button class="btn btn-primary waves-effect waves-light mr-1"
-									type="button" onclick="enterdelete(0);">삭제</button>
-							</div>
-
 						</div>
 					</div>
-
-
-
 					<!-- 페이지 내용 입력 공간 종료 -->
-
 					<%@ include file="../footer.jsp"%>
-
+					</div>
 				</div>
 
 				<!-- ============================================================== -->
