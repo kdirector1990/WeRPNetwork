@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 public interface CT_Service {
@@ -47,11 +48,13 @@ public interface CT_Service {
 	
 	//AS 처리완료
 	public int CT_AS_complete(HttpServletRequest req, Model model);
-	
 
 	//수리일지 검색
 	public void SearchCode(HttpServletRequest req, Model model);
 	
 	//수리일지 등록
 	public void InsertRP(HttpServletRequest req, Model model);
+	
+	//수리일지 가져오기(수리타입으로 : 내부수리, 외부수리)
+	public List<CT_RP_VO> selectRPC(HttpServletRequest req, Model model);
 }

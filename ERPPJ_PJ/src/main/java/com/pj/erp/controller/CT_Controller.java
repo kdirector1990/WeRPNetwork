@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 @Controller
@@ -228,6 +229,16 @@ public class CT_Controller {
 		CT.InsertRP(req, model);
 		return "CT/CT_repair_list_add_result";
 	}
+	
+	//외부업체 수리 등록
+	@RequestMapping("CT_Select_RP")
+	@ResponseBody
+	public List<CT_RP_VO> CT_Select_RP(HttpServletRequest req, Model model) {
+		logger.info("log => CT_Select_RP");
+		List<CT_RP_VO> vo = CT.selectRPC(req, model);
+		return vo;
+	}
+	
 	
 	//외부업체 수리 등록
 	@RequestMapping("CT_ComInsertForm")
