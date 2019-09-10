@@ -70,7 +70,9 @@ public class FT_ServiceImpl implements FT_Service{
 	// 거래처 검색한 것 가져오기
 	@Override
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
-		return dao.FT_AccountSelect(req.getParameter("srhval"));
+		List<FT_Account> ac = dao.FT_AccountSelect(req.getParameter("srhval"));
+		System.out.println(ac);
+		return ac;
 	}
 	
 	// 적금가져오기
@@ -142,10 +144,13 @@ public class FT_ServiceImpl implements FT_Service{
 		model.addAttribute("listsize", subject.size() + 1);
 	}
 	
-	// 거래처 검색한 것 가져오기
+	// 계정과목 검색한 것 가져오기
 	@Override
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
-		return dao.FT_SubjectSelect(req.getParameter("srhval"));
+		List<FT_Subject> tf = dao.FT_SubjectSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
 	}
 	
 	@Override
