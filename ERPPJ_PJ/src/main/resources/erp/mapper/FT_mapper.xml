@@ -161,10 +161,11 @@
 	<select id="FT_AccountCntSelect" parameterType="String" resultType="int">
 		SELECT
 	    count(c.customer_code)
+	    FROM customer_list_tbl c, b_license_tbl b
 		where c.license_number = b.license_number
-		and (c.customer_code like '%'||#{srhval}||'%'
-		or c.customer_name like '%'||#{srhval}||'%'
-		or c.license_number like '%'||#{srhval}||'%')
+		and (c.customer_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or c.customer_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or c.license_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
 	<!-- 거래처 가져오기 -->
@@ -176,9 +177,9 @@
 	    b.bs_address2, b.bs_condition, b.bs_line, b.license_scanfile
 		FROM customer_list_tbl c, b_license_tbl b
 		where c.license_number = b.license_number
-		and (c.customer_code like '%' || upper(#{srhval}) || '%' or c.customer_code like '%' || lower(#{srhval}) || '%'
-		or c.customer_name like '%' || upper(#{srhval}) || '%' or c.customer_name like '%' || lower(#{srhval}) || '%'
-		or c.license_number like '%' || upper(#{srhval}) || '%' or c.license_number like '%' || lower(#{srhval}) || '%')
+		and (c.customer_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or c.customer_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or c.license_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
 	<!-- 계정과목 가져오기 -->
@@ -190,6 +191,17 @@
         and ac.accounts_code = de.accounts_code
 	</select>
 	
+	<!-- 계정과목 개수 가져오기 -->
+	<select id="FT_SubjectCntSelect" parameterType="String" resultType="int">
+		select count(de.detail_ac_code)
+		from ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac, detail_ac_tbl de
+		where l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+		and (de.detail_ac_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or de.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
 	<!-- 계정과목 검색한 것 가져오기 -->
 	<select id="FT_SubjectSelect" resultType="com.pj.erp.vo.FT.FT_Subject">
 		select de.detail_ac_code, de.account_name, de.di_table, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name, l.lg_code, l.lg_name
@@ -197,8 +209,8 @@
 		where l.lg_code = a.lg_code
 		and a.ag_code = ac.ag_code2
         and ac.accounts_code = de.accounts_code
-		and (ac.detail_ac_code like '%' || upper(#{srhval}) || '%' or ac.detail_ac_code like '%' || lower(#{srhval}) || '%'
-		or ac.account_name like '%' || upper(#{srhval}) || '%' or ac.account_name like '%' || lower(#{srhval}) || '%')
+		and (de.detail_ac_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or de.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
 </mapper>

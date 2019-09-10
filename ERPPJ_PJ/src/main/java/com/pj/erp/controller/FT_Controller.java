@@ -310,7 +310,7 @@ public class FT_Controller {
 	}
 	
 	// 거래처 검색 가져오기
-	@RequestMapping(value = "FT_AccountSelect", produces = "application/text; charset=utf8")
+	@RequestMapping(value = "FT_AccountSelect")
 	public @ResponseBody List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
 		logger.info("url : FT_AccountSelect 호출중");
 		System.out.println("value = " + req.getParameter("srhval"));
@@ -319,10 +319,9 @@ public class FT_Controller {
 	}
 	
 	// 계정과목 검색 가져오기
-	@RequestMapping(value = "FT_SubjectSelect", produces = "application/text; charset=utf8")
+	@RequestMapping(value = "FT_SubjectSelect")
 	public @ResponseBody List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
 		logger.info("url : FT_AccountSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
 		
 		return service.FT_SubjectSelect(req, model);
 	}

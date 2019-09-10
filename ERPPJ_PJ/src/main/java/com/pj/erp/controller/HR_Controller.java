@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
+import com.pj.erp.vo.HR_SalaryVO;
 
 @Controller
 public class HR_Controller {
@@ -113,7 +114,7 @@ public class HR_Controller {
 		
 		return "HR/HR_EmployeeInformation";
 	}
-	
+	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")
 	public String HR_EmployeeSalary(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeSalary");
@@ -121,6 +122,16 @@ public class HR_Controller {
 		return "HR/HR_EmployeeSalary";
 	}
 	
+	//책정임금현황 검색결과
+	@RequestMapping(value = "HR_EmployeeSalary_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_SalaryVO> HR_EmployeeSalary_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_EmployeeSalary_result");
+		List<HR_SalaryVO> list = service.getSalary(map, req, model);
+		return list;
+	}
+	
+	//인사고과/상벌현황
 	@RequestMapping("HR_GreetingPunishment")
 	public String HR_GreetingPunishment(HttpServletRequest req, Model model) {
 		logger.info("log => HR_GreetingPunishment");
@@ -128,6 +139,7 @@ public class HR_Controller {
 		return "HR/HR_GreetingPunishment";
 	}
 	
+	//인사고과/상벌현황 검색결과
 	@RequestMapping(value = "HR_GreetingPunishment_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public  List<HR_GreetingVO> HR_GreetingPunishment_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {

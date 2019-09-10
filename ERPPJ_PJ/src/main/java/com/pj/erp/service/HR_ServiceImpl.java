@@ -29,6 +29,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_VO;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -285,6 +286,14 @@ public class HR_ServiceImpl implements HR_Service{
 		map.put("epa_date", epa_date);
 		
 		List<HR_GreetingVO> list = dao.getGreeting(map);
+		return list;
+	}
+	
+	@Override
+	public List<HR_SalaryVO> getSalary(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		
+		List<HR_SalaryVO> list = dao.getSalary(map);
+		
 		return list;
 	}
 	

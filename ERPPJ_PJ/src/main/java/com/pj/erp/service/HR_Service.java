@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
+import com.pj.erp.vo.HR_SalaryVO;
 
 public interface HR_Service {
 	
@@ -40,6 +41,9 @@ public interface HR_Service {
 	
 	//인사고과/상벌현황 검색
 	public List<HR_GreetingVO> getGreeting(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+
+	//책정임금현황 검색
+	public List<HR_SalaryVO> getSalary(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;	
 	
 	// 사원정보 현황
 	public void selectFoundation(HttpServletRequest req, Model model);
