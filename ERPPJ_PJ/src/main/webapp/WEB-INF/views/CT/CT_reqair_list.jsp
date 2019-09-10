@@ -48,7 +48,7 @@
   					}else if(cas_state == 2){
   						as_state = "처리중";
   					}else if(cas_state == 3){
-  						as_state = "처리완료";
+  						as_state = "완료";
   					}
   					
   					var reg_date = vo[i].rr_reg_date;
