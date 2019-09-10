@@ -87,7 +87,7 @@ public class HR_Controller {
 		service.modifyPhysicalyPro(req, model);
 		
 		return "index";
-	}
+	}	
 	
 	/*
 	// 중복확인 페이지
@@ -124,7 +124,20 @@ public class HR_Controller {
 		service.rankList(req, model);
 		
 		return "HR/HR_EmployeeInformation";
+	}	
+	
+	
+	@RequestMapping("HR_EmployeeInformation_result")
+	public String HR_EmployeeInformation_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_EmployeeInformation_result");
+		service.selectFoundation(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		
+		return "HR/HR_EmployeeInformation_result";
 	}
+	
 	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")
 	public String HR_EmployeeSalary(HttpServletRequest req, Model model) {

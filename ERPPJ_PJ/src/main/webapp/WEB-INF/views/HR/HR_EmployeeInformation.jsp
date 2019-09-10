@@ -8,20 +8,97 @@
 	href="/erp/resources/assets/libs/c3/c3.min.css">	
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 <script src="/erp/resources/assets/css/js/request.js"></script>
+
 <script type="text/javascript">
-	function modifyPhysicaly(value) {
-		alert(value);  
+	
+//검색창 포커스	 
+function searchNameFocus(){
+	document.searchName.username.focus();
+}
+
+// 결과
+function load1() {
+	var url = document.searchName.username.value;	
+	var url2 = document.searchName.e_name.value;
+	var url3 = document.searchName.department_code.value;
+	var url4 = document.searchName.position_code.value;
+	var url5 = document.searchName.rank_code.value;
+	
+	sendRequest(loadFoundation_callback, "HR_EmployeeInformation_result", "post", "username="+url+"&e_name="+url2+"&department_code="+url3+"&position_code="+url4+"&rank_code"+url5);
+	
+}
+
+function loadFoundation_callback() {
+	var result = document.getElementById("result");
+	
+	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+		if(!document.searchName.e_name.value){
+			alert("사원이름을 입력하세요!");
+			location.reload();
+			document.searchName.e_name.focus();
+			return false;
+		}
+	
+		if(!document.searchName.username.value){			
+			location.reload();
+			document.searchName.username.focus();
+			return false;
+		}
+		
+		if(!document.searchName.department_code.value){			
+			location.reload();
+			document.searchName.department_code.focus();
+			return false;
+		}
+		
+		if(!document.searchName.position_code.value){			
+			location.reload();
+			document.searchName.position_code.focus();
+			return false;
+		}
+		
+		if(!document.searchName.rank_code.value){			
+			location.reload();
+			document.searchName.rank_code.focus();
+			return false;
+		}
+	
+		if(httpRequest.status == 200){	// 200 : 정상 종료
+			result.innerHTML = "정상종료";
+			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
+			
+			var datas = httpRequest.responseText;
+			
+			result.innerHTML = datas;
+			
+		} else {
+			result.innerHTML = "에러발생";
+			
+		}
+	
+	} else {
+		//result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
+} 
+
+function setName(username) {
+	opener.document.getElementById("usernameP").value = username;
+
+	//test alert
+	alert(username);
+	
+	$("#usernameP", opener.document).val(username); //jquery 이용
+	$(opener.document).find("#usernameP").val(username); //find를 이용한 jquery
+	self.close();
+	
+} 	
 
 </script>
 </head>
 
 <body>
-
 	<!-- Begin page -->
 	<div id="wrapper">
-
-
 		<%@ include file="../sidebar.jsp"%>
 
 		<!-- ============================================================== -->
@@ -51,23 +128,19 @@
 					</div>
 					<!-- end page title -->
 
-
-
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="card">
 									<div class="card-body table-responsive">
+										<form action="" name="searchName">
 										<table id="datatable"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<tr class="form-group row">
 												<td class="col-md-1 col-form-label">사원번호</td>
 												<td class="col-md-2 input-group">
 													<input type="text" class="form-control" name="username">
-												<div class="input-group-append">
-													<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"><i class="fas fa-search"></i>
-													</button>
-												</div></td>
+												</td>
 												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
 												
@@ -85,7 +158,8 @@
 														<option value="${dep.department_code}">${dep.department_name}</option>	
 														</c:forEach>																																							
 													</select>
-												</td>
+												</td>								
+												
 											</tr>
 											
 											<tr class="form-group row">									
@@ -109,8 +183,15 @@
 														</c:forEach>																							
 													</select>
 												</td>
+												
+												<th class="col-md-1 col-form-label"></th>
+												<td class="col-md-2 input-group">
+													<button type=button class="btn-subpage" id="search"
+														onclick="load1();">조회</button>
+												</td>
 											</tr>
 										</table>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -145,6 +226,9 @@
 										<!-- 잔액 -->
 										<div class="tab-pane show active" id="foundation" role="tabpanel"
 											aria-labelledby="foundation-tab">
+											<div id=result>
+												<!-- 사원정보 출력결과 위치 -->
+											</div>
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-body table-responsive">

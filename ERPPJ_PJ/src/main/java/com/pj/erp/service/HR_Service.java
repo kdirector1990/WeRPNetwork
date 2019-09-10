@@ -63,6 +63,9 @@ public interface HR_Service {
 	// 신체정보 수정처리
 	public void modifyPhysicalyPro(HttpServletRequest req, Model model);
 	
+	// 사원정보 조회
+	public void searchUsername(HttpServletRequest req, Model model);
+	
 	
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
