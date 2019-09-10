@@ -44,4 +44,22 @@ public class MF_Controller {
 		
 		return "MF/MF_materialsManagement";
 	}
+	
+	//생산계획 등록
+	@RequestMapping("MF_production_plan_enrollment")
+	public String MF_production_plan_enrollment(HttpServletRequest req, Model model) {
+		logger.info("log => MF_production_plan_enrollment");
+		
+		return "MF/MF_production_plan_enrollment";
+	}
+	
+	//생산계획 관리
+	@RequestMapping("MF_production_plan_management")
+	public String MF_production_plan_management(HttpServletRequest req, Model model) {
+		logger.info("log => MF_production_plan_management");
+		
+		return "MF/MF_production_plan_management";
+	}
+	
+	
 }

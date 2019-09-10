@@ -36,8 +36,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                     
-                                        <h4 class="header-title">기획서 관리</h4>
-                                        
+                                        <h4 class="header-title">기획서</h4>
+                                        <p class="sub-header">관리</p>
     									<hr>
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>

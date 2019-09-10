@@ -39,7 +39,7 @@
                                     <div class="card-body">
                                         <h4 class="header-title">등록</h4>
                                         <p class="sub-header">
-                                       		 아 뭐더라 그거 자재등록페이지
+                                       		 자재등록
                                         </p>
     
                                         <form class="" action="MF_materialsInsertPro">

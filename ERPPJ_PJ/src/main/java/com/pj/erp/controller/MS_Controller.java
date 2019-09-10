@@ -74,7 +74,6 @@ public class MS_Controller {
 		
 		return deleteCnt;
 	}
-	
 	//기획서 등록 - username 검색창
 	@RequestMapping("MS_searchUsername")
 	public String MS_searchUsername(HttpServletRequest req, Model model) {
@@ -91,5 +90,5 @@ public class MS_Controller {
 		
 		return "MS/MS_searchUsername_result";
 	}
-	
+		
 }

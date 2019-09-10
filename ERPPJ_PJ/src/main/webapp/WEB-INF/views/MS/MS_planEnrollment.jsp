@@ -41,7 +41,7 @@
 						<div class="card">
 							<div class="card-body">
 								<h4 class="header-title">등록</h4>
-								<p class="sub-header">기획서 등록페이지 ++ 추가될 예정</p>
+								<p class="sub-header">기획서 등록</p>
 
 								<form action="MS_insertPlanPro" name="insertPlan">
 									<input type='hidden' name="${_csrf.parameterName }"
@@ -74,7 +74,16 @@
 										<div>
 											<input type="text" name="username" id="usernameP"
 												class="form-control" required placeholder="기획제안자"
-												onclick="usernameList()" />
+												onclick="usernameList()" style="width:200px;" />
+											<input type="text" name="e_name"
+											class="form-control" required placeholder="사원명" 
+												style="width:200px;" disabled/>
+											<input type="text" name="position_code"
+											class="form-control" required placeholder="부서코드" 
+												style="width:200px;" disabled/>
+											<input type="text" name="position_code"
+											class="form-control" required placeholder="직책코드" 
+												style="width:200px;" disabled/>
 										</div>
 									</div>
 									<div class="form-group">
