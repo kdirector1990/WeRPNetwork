@@ -64,8 +64,8 @@
 	                                            	<td>${list.username}</td>
 	                                                <td>${list.position_code}</td>
 	                                                <td>${list.plan_regdate}</td>
-	                                                <td>${list.plan_startdate}</td>
-	                                                <td>${list.plan_enddate}</td>
+	                                                <td>${list.plan_startdate}<%-- <fmt:formatDate value="${list.plan_startdate}" type ="both" pattern="yyyy/MM/dd"/> --%></td>
+	                                                <td>${list.plan_enddate}<%-- <fmt:formatDate value="${list.plan_enddate}" type ="both" pattern="yyyy/MM/dd"/> --%></td>
 	                                                <td>${list.plan_state}</td>
 	                                                <td>${list.plan_objective}</td>
 	                                                <td>${list.plan_proposal}</td>
@@ -117,7 +117,7 @@
     <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
         
     <script type="text/javascript">
-     $("#datatable tr").click(function(){
+     $("#datatable tbody tr").click(function(){
     	 
 			if($(".plandiv") != null){
 				$(".plandiv").remove();
@@ -204,7 +204,16 @@
 	  			    	+  '<div class="form-group row">'
 	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획상태</label>'
 	  			        	+'<div class="col-md-10">'
-	  			            	+ '<input type="text" name="plan_state" value="'+tdArr[7]+'" id="simpleinput" class="form-control" >'
+	  			        		+ '<select name="plan_state" class="form-control" required>'
+	  			        			+ '<option value="'+tdArr[7]+'">'+tdArr[7]+'</option>'
+	  			        			+ '<option disabled>-------------------------</option>'
+									+ '<option value="기획단계">기획단계</option>'
+									+ '<option value="준비중">준비중</option>'
+									+ '<option value="진행중">진행중</option>'
+									+ '<option value="완료">완료</option>'
+									+ '<option value="페기">페기</option>'
+								+ '</select>'
+								
 	  			        	+ '</div>'
 	  			    	+ '</div>' 
 	  			    	+  '<div class="form-group row">'

@@ -5,8 +5,10 @@
         <%@ include file="../setting.jsp" %>
         <script type="text/javascript">
         function usernameList() {
-    		window.open("MS_searchUsername", "username_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
+    		window.open("MS_searchUsername", "username_list", "menubar=no, width=450px, height = 600px location=no,status=no,scrollbars=yes");
     	}
+        
+        
         </script>
     </head>
 
@@ -53,35 +55,42 @@
 									</div>
 									<div class="form-group">
 										<label>시작예정일</label>
-										<!-- <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"> -->
+										 <!-- <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"> --> 
 										<input type="text" name="plan_startdate" class="form-control"
 											placeholder="yyyy/mm/dd" data-provide="datepicker"
-											data-date-autoclose="true">
+											data-date-autoclose="true"> 
 									</div>
 									<div class="form-group">
 										<label>종료목표일</label>
-										<!-- <input type="date" id="datepicker2" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" data-date-autoclose="true"> -->
+										<!--  <input type="date" id="datepicker2" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" data-date-autoclose="true"> -->
 										<input type="text" name="plan_enddate" class="form-control"
 											placeholder="yyyy/mm/dd" data-provide="datepicker"
-											data-date-autoclose="true">
+											data-date-autoclose="true"> 
 									</div>
 									<div class="form-group">
-										<label>기획상태</label> <input type="text" name="plan_state"
-											class="form-control" required placeholder="기획상태" />
+										<label>기획상태</label> 
+										<select name="plan_state" class="form-control" required>
+											<option>선택</option>
+											<option value="기획단계">기획단계</option>
+											<option value="준비중">준비중</option>
+											<option value="진행중">진행중</option>
+											<option value="완료">완료</option>
+											<option value="페기">페기</option>
+										</select>
 									</div>
 									<div class="form-group">
 										<label>기획제안자</label>
 										<div>
-											<input type="text" name="username" id="usernameP"
+											<input type="text" name="username" id="username"
 												class="form-control" required placeholder="기획제안자"
 												onclick="usernameList()" style="width:200px;" />
-											<input type="text" name="e_name"
+											<input type="text" name="e_name" id="e_name"
 											class="form-control" required placeholder="사원명" 
 												style="width:200px;" disabled/>
-											<input type="text" name="position_code"
+											<input type="text" name="department_code" id="department_code"
 											class="form-control" required placeholder="부서코드" 
 												style="width:200px;" disabled/>
-											<input type="text" name="position_code"
+											<input type="text" name="position_code" id="position_code"
 											class="form-control" required placeholder="직책코드" 
 												style="width:200px;" disabled/>
 										</div>

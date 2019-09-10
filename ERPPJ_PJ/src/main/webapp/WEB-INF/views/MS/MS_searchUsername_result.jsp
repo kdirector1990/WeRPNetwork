@@ -30,7 +30,7 @@
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
 						<c:forEach var="list" items="${dto}">
-							<tr onclick="setName(${list.username});">
+							<tr onclick="setName(${list.username},'${list.e_name}','${list.department_code}','${list.position_code}');">
 								<td>${list.username}</td>
 								<td>${list.e_name}</td>
 								<td>${list.department_code}</td>

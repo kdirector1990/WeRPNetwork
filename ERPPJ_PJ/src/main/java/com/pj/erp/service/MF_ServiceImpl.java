@@ -48,5 +48,17 @@ public class MF_ServiceImpl implements MF_Service {
 		model.addAttribute("dto", dto);
 	}
 	
+	//생산계획 등록
+	@Override
+	public void insertMF_plan(HttpServletRequest req, Model model) {
+		
+	}
+	
+	//생산계획 목록 가져오기
+	@Override
+	public void selectMF_plan(HttpServletRequest req, Model model) {
+		
+	}
+	
 	
 }

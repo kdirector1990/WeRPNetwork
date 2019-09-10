@@ -63,14 +63,26 @@ function loadBook_callback() {
 } 
 
 
-function setName(username) {
-	opener.document.getElementById("usernameP").value = username;
-
+function setName(username,e_name,department_code,position_code) {
+	opener.document.getElementById("username").value = username;
+	opener.document.getElementById("e_name").value = e_name;
+	opener.document.getElementById("department_code").value = department_code;
+	opener.document.getElementById("position_code").value = position_code;
 	//test alert
 	alert(username);
 	
-	$("#usernameP", opener.document).val(username); //jquery 이용
-	$(opener.document).find("#usernameP").val(username); //find를 이용한 jquery
+	$("#username", opener.document).val(username); //jquery 이용
+	$(opener.document).find("#username").val(username); //find를 이용한 jquery
+	
+	$("#e_name", opener.document).val(e_name); //jquery 이용
+	$(opener.document).find("#e_name").val(e_name); //find를 이용한 jquery
+	
+	$("#department_code", opener.document).val(department_code); //jquery 이용
+	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
+	
+	$("#position_code", opener.document).val(position_code); //jquery 이용
+	$(opener.document).find("#position_code").val(position_code); //find를 이용한 jquery
+	
 	self.close();
 	
 }
