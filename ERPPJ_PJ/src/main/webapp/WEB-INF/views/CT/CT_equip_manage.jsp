@@ -46,6 +46,7 @@
 					day = "0" +day;
 				}
 				var ceq_acquire_date = year + "-" + month + "-" +day;
+				var department_name = voC.department_name;
 				
 				$('#update1').append('<tr><input type="hidden" name="ceq_code" value="'+voC.ceq_code+'"><td>' + voC.ceq_code + '</td><td>'
 					+'<input type="text" name="ceq_name" value="'+voC.ceq_name+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" autofocus></td><td>'+
@@ -56,9 +57,9 @@
 					 '</select></td><td>' +
 					 '<input type="date" name="ceq_acquire_date" value="'+ceq_acquire_date+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td><td>' +
 					 '<select name = "department_code" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;">' +
-					 	'<option value="'+voC.department_code+'">선택</option>' +
+					 	'<option value="'+voC.department_name+'">선택</option>' +
 					 	'<option value="인사">인사</option>' +
-					 	'<option value="기획">기획</option>' +
+					 	'<option value="plan_depart">기획</option>' +
 					 	'<option value="영업">영업</option>' +
 					 	'<option value="재무">재무</option>' +
 					 	'<option value="전산">전산</option>' +
@@ -121,6 +122,7 @@
 					var ceq_durable = vo[i].ceq_durable; 
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
+					var department_name = vo[i].department_name;
 					
 					alert("'"+ceq_code+"'");
 					
@@ -128,7 +130,7 @@
 						ceq_name + '</td><td>'+
 						ceq_type + '</td><td>'+
 						ceq_acquire_date + '</td><td>'+
-						ceq_department_code + '</td><td>'+
+						department_name + '</td><td>'+
 						ceq_location  + '</td><td>'+
 						ceq_prime_cost  + '</td><td>'+
 						ceq_durable  + '</td><td>'+

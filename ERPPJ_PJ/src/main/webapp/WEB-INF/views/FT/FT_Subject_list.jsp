@@ -51,8 +51,8 @@
     	}
     	
 	    function setvalue(val){
-			$("input[name=subjectcode${keyname}]", opener.document).val(scode);
-    		$("input[name=subjectname${keyname}]", opener.document).val(sname);
+			$("input[name=SubjectCode${keyname}]", opener.document).val(scode);
+    		$("input[name=SubjectName${keyname}]", opener.document).val(sname);
     		
    			self.close();
 		}

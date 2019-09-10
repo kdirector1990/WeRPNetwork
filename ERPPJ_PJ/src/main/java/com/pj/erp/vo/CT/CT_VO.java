@@ -10,6 +10,7 @@ public class CT_VO {
 	private String ceq_type;			//보유구분(1: 보유 2: 대여 3: 폐기))
 	private Date ceq_acquire_date; 		//구입일
 	private String department_code;		//사용부서
+	private String department_name;
 	private String ceq_location;		//위치
 	private int ceq_prime_cost;			//매입가
 	private int ceq_durable;			//예상연수내용
@@ -100,6 +101,16 @@ public class CT_VO {
 	public void setCeq_depreciation_type(String ceq_depreciation_type) {
 		this.ceq_depreciation_type = ceq_depreciation_type;
 	}
+
+	public String getDepartment_name() {
+		return department_name;
+	}
+
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+	
+	
 	
 	
 	

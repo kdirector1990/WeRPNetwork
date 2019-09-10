@@ -64,7 +64,7 @@
 			<security:logout logout-url="/logout"
 					  success-handler-ref="logoutSuccessHandler"
 					  delete-cookies="JSESSIONID"
-					  invalidate-session="true"/>
+					  invalidate-session="false"/>
 			
 			<security:session-management>
 				<security:concurrency-control
