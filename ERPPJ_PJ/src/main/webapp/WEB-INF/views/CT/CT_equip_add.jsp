@@ -119,7 +119,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
                             '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
 	                            '<option value="null">선택</option>' +
 	                            '<option value="인사">인사</option>' +
-	                            '<option value="기획">기획</option>' +
+	                            '<option value="plan_depart">기획</option>' +
 	                            '<option value="영업">영업</option>' +
 	                            '<option value="재무">재무</option>' +
 	                            '<option value="전산">전산</option>' +
@@ -159,7 +159,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
                 '<td><select class="form-control" onfocus = "focuse();" name = "deparment_code' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">' +
                 '<option value="null">선택</option>' +
                 '<option value="인사">인사</option>' +
-                '<option value="기획">기획</option>' +
+                '<option value="plan_depart">기획</option>' +
                 '<option value="영업">영업</option>' +
                 '<option value="재무">재무</option>' +
                 '<option value="전산">전산</option>' +
@@ -276,7 +276,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                                            <tr>
 		                                            	<td><select name="ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>
 		                                            			<option value="">선택
-		                                            			<option value="022">장비
+		                                            			<option value="025">장비
 		                                            		</select></td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;"></td>
 		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" required onchange="enter(this.tagName,this.name);">
@@ -288,7 +288,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
 			                                                <option value="null">선택</option>
 			                                                <option value="인사">인사</option>
-			                                                <option value="기획">기획</option>
+			                                                <option value="plan_depart">기획</option>
 			                                                <option value="영업">영업</option>
 			                                                <option value="재무">재무</option>
 			                                                <option value="전산">전산</option>

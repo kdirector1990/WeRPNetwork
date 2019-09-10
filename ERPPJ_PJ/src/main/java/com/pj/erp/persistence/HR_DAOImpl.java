@@ -14,6 +14,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_VO;
 
 @Repository
@@ -72,6 +73,12 @@ public class HR_DAOImpl implements HR_DAO{
 	public List<HR_GreetingVO> getGreeting(Map<String, Object> map) {
 		
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getGreeting", map);
+	}
+	
+	@Override
+	public List<HR_SalaryVO> getSalary(Map<String, Object> map) {
+		
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getSalary", map);
 	}
 	
 	public List<HR_VO> getDepartmentList(Map<String, Object> map) {

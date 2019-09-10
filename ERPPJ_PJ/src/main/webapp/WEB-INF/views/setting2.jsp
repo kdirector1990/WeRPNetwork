@@ -61,7 +61,6 @@
         <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
         <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
         <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
 
         <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
         <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
