@@ -16,9 +16,6 @@
 				<div style="padding-top:10px;">
 				
 				</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
 								<div class="card-body">
                                         <table id="datatable" class="table table-bordered">
                                             <thead>
@@ -47,9 +44,6 @@
                                       		</tbody>
                                         </table>
 									</div>
-								</div>
-							</div>
-						</div>
 <!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
         <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>

@@ -3,6 +3,7 @@ package com.pj.erp.service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Subject;
 
 import java.util.List;
@@ -13,8 +14,14 @@ import org.springframework.ui.Model;
 
 public interface FT_Service {
 	
-	// 계정과목 검색 가져오기
-	public List<FT_Subject> FT_chitDataLoad(Map<String, Object> map, Model model);
+	// 거래번호 최고값 가져오기
+	public int FT_chitMaxNumber(Map<String, Object> map);
+	
+	// 분개 데이터 가져오기
+	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map, Model model);
+	
+	// 거래번호 최고값 가져오기
+	public String FT_chitInsert(Map<String, Object> map);
 	
 	// 거래처 추가
 	public int FT_ACCInsert(Map<String, Object> map);

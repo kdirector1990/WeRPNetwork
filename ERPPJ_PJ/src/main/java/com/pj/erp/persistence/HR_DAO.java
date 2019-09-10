@@ -36,6 +36,14 @@ public interface HR_DAO {
 	// 사원정보 가져오기
 	public List<HR_VO> foundation();
 	
+	// 신체정보 가져오기
+	public List<HR_PhysicalVO> physicaly();
+	
+	// 사원정보 수정하기
+	
+	// 신체정보 수정페이지
+	public HR_PhysicalVO getPhysicaly(String username);
+	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);
 
@@ -49,13 +57,10 @@ public interface HR_DAO {
 	public List<HR_VO> getPositionList(Map<String, Object> map);
 	
 	// 직책 목록
-	public List<HR_VO> getRankList(Map<String, Object> map);
-	
-	// 사원번호 목록
-	public List<HR_VO> getUsernameList(Map<String, Object> map);
+	public List<HR_VO> getRankList(Map<String, Object> map);	
 	
 	// 사원번호 체크
-	public int userChk(String username);
+	// public int userChk(String username);
 	
 	// 사원번호 생성 시퀀스
 	public String getUsername();

@@ -1,6 +1,7 @@
 package com.pj.erp.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,6 @@ import com.pj.erp.persistence.ST_DAO;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
-
-import javafx.scene.chart.PieChart.Data;
 
 @Service
 public class ST_ServiceImpl implements ST_Service {
@@ -260,9 +259,10 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setEf_price(Integer.parseInt(req.getParameter("ef_price")));
 		vo.setS_plan_start(Date.valueOf(req.getParameter("s_plan_start")));
 		vo.setS_plan_end(Date.valueOf(req.getParameter("s_plan_end")));
-
-		System.out.println("code" + saleplan_code);
-		System.out.println("가격 : " + req.getParameter("ef_price"));
+		vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
+		vo.setSp_unit(req.getParameter("sp_unit"));
+		vo.setSp_note(req.getParameter("sp_note"));
+		
 
 		int saleplanCnt = dao.updatesalePlan(vo);
 		req.setAttribute("saleplan_code", saleplan_code);
@@ -284,6 +284,27 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("saleplan_code", saleplan_code);
 
 	}
+	
+	//ST_release 출고 등록 페이지
+	@Override
+	public void releaseWritePro(HttpServletRequest req, Model model) {
+		Release vo = new Release();
+		vo.setSar_code(req.getParameter("sar_code"));
+		vo.setRelease_name(req.getParameter("release_name"));
+		vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
+		vo.setStored_name(req.getParameter("stored_name"));
+		vo.setStored_count(Integer.parseInt(req.getParameter("release_count")));
+		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
+		vo.setSar_type(req.getParameter("sar_type"));
+		vo.setDetail_ac_code("qa8");
+		vo.setUsername((String)req.getSession().getAttribute("username")); 
+		System.out.println("username : " + vo.getUsername());
+		int releaseWritePro = dao.insertRelease(vo);
+		
+		model.addAttribute("releaseWritePro", releaseWritePro);
+		
+	}
+		
 	
 	// ST_release 목록
 	@Override
@@ -366,9 +387,12 @@ public class ST_ServiceImpl implements ST_Service {
 		Release vo = new Release();
 		vo.setSar_code(sar_code);
 		vo.setRelease_name(req.getParameter("release_name"));
-		/* vo.setRelease_date(Date.valueOf(req.getParameter("release_date"))); */
+		vo.setRelease_date(Timestamp.valueOf(req.getParameter("release_date"))); 
 		vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
+		vo.setStored_name(req.getParameter("stored_count"));
+		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
+		vo.setSar_type(req.getParameter("sar_type"));
 		
 		int updateRelease = dao.updateRelease(vo);
 		
@@ -386,6 +410,7 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("deleteRelease", deleteRelease);
 		model.addAttribute("sar_code", sar_code);
 	}
+	
 	
 	// tables-datatable (거래 명세서) 목록
 	@Override

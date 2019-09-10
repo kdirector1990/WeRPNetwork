@@ -45,6 +45,9 @@ public interface ST_Service {
 	// ST_release 삭제 처리 페이지
 	public void releaseDeletePro(HttpServletRequest req, Model model);
 	
+	// ST_release 재고 등록
+	public void releaseWritePro(HttpServletRequest req, Model model);
+	
 	
 	
 	

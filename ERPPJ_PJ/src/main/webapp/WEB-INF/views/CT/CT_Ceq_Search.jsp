@@ -60,11 +60,11 @@ function setCeqSerial(code){
 </head>
 <body onload="searchNameFocus();">
 <!-- username 검색 -->
-<!-- ============================================================== -->
+<div id="wrapper">
+		<!-- ============================================================== -->
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-		<div class="content-page" style="margin-top: 10px;">
 			<div class="content">
 
 				<!-- Start Content-->
@@ -103,14 +103,17 @@ function setCeqSerial(code){
 										</table>
 									</form>
                                	</div>
+                               	
+                              <div id = "result">
+			                      <!-- 출력결과위치 -->
+		                      </div>
+		                      
                              </div>
 		                   </div> 
                        </div>
                     </div> 
                       
-                      <div id = "result">
-                      <!-- 출력결과위치 -->
-                      </div>
+                      
                
                <!-- 페이지 내용 입력 공간 종료 -->
 
@@ -119,10 +122,9 @@ function setCeqSerial(code){
 			<%@ include file="../footer.jsp" %>
 
 		</div>
-		</div>
 		<!-- ============================================================== -->
 		<!-- End Page content -->
 		<!-- ============================================================== -->
-
+</div>
 </body>
 </html>

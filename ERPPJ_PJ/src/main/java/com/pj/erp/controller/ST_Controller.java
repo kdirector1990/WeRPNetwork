@@ -61,7 +61,7 @@ public class ST_Controller {
 		
 		return "ST/ST_estimate_writePro";
 	}
-	
+	  
 	// ST_release 출고 등록
 	@RequestMapping("ST_release")
 	public String ST_release(Locale locale, Model model) {
@@ -77,6 +77,15 @@ public class ST_Controller {
 		service.release(req, model);
 		
 		return "ST/ST_release_manage";
+	} 
+	
+	// ST_release 출고 등록
+	@RequestMapping("ST_release_writePro")
+	public String ST_release_writePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_release_writePro");
+		service.releaseWritePro(req, model);
+		
+		return "ST/ST_release_writePro";
 	}
 	
 	// ST_release 출고 관리 상세 페이지
@@ -86,7 +95,7 @@ public class ST_Controller {
 		service.releaseWriteForm(req, model);
 		
 		return "ST/ST_releaseDetail";
-	}
+	} 
 	 
 	//  ST_release 출고 수정 페이지
 	@RequestMapping("ST_release_modifyPro")
@@ -96,7 +105,7 @@ public class ST_Controller {
 		
 		return "ST/ST_release_modifyPro";
 	}
-	
+	 
 	//  ST_release 출고 삭제 페이지
 	@RequestMapping("ST_release_deletePro")
 	public String ST_release_deletePro(HttpServletRequest req, Model model) {
@@ -106,13 +115,22 @@ public class ST_Controller {
 		return "ST/ST_release_deletePro";
 	}
 	     
-	// 諛섑뭹 愿�由�
+	// 諛섑뭹 愿�由� 
 	@RequestMapping("ST_refund")
 	public String refund(Locale locale, Model model) {
 		logger.info("log => refund");
 		
 		return "ST/refund";  
 	}
+	
+	// ST_sale_plan 판매 계획 등록 폼
+	@RequestMapping("ST_sale_plan_write_reg")
+	public String ST_sale_plan_write_reg(HttpServletRequest req, Model model) {
+		logger.info("log => ST_sale_plan_write_reg");
+		
+		return "ST/ST_sale_plan_write_reg";
+	}       
+	
 	
 	// ST_sale_plan
 	@RequestMapping("ST_sale_plan")

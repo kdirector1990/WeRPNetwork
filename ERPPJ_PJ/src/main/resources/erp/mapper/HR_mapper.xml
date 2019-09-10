@@ -53,6 +53,22 @@
 		select * from users
 	</select>
 	
+	<!-- 신체 정보 -->
+	<select id="physicaly" resultType="com.pj.erp.vo.HR_PhysicalVO">
+		select * from physicaly_info_tbl
+	</select>
+	
+	<!-- 가족 정보 -->
+	
+	
+	<!-- 사원 정보 수정 -->
+	
+	
+	<!-- 신체 정보 상세페이지 -->
+	<select id="getPhysicaly" parameterType="String" resultType="com.pj.erp.vo.HR_PhysicalVO">
+		SELECT * FROM physicaly_info_tbl WHERE username = #{username}
+	</select>
+	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
 		select department_code, department_name from department_tbl	 
