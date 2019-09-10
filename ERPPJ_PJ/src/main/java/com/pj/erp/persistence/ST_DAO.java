@@ -58,5 +58,8 @@ public interface ST_DAO {
 	
 	// release 삭제 처리
 	public int deleteRelease(String sar_code);
+	
+	// release 등록 처리
+	public int insertRelease(Release vo);
 
 }

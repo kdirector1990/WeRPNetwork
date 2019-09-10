@@ -14,6 +14,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_VO;
 
 @Repository
@@ -74,6 +75,12 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getGreeting", map);
 	}
 	
+	@Override
+	public List<HR_SalaryVO> getSalary(Map<String, Object> map) {
+		
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getSalary", map);
+	}
+	
 	public List<HR_VO> getDepartmentList(Map<String, Object> map) {
 		List<HR_VO> dep = null;
 		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
@@ -100,21 +107,15 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public List<HR_VO> foundation() {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.foundation");
-	}
-
-	@Override
-	public List<HR_VO> getUsernameList(Map<String, Object> map) {
-		List<HR_VO> user = null;
-		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
-		user = dao.getUsernameList(map);
-		return user;
-	}
-
+	}	
+	
+	/*
 	@Override
 	public int userChk(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.userChk", username);
 	}
-
+	*/
+	
 	@Override
 	public String getUsername() {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getUsername");
@@ -123,6 +124,16 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int insertFamily(HR_FamilyVO vo2) {
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertFamily", vo2);
+	}
+
+	@Override
+	public List<HR_PhysicalVO> physicaly() {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.physicaly");
+	}
+
+	@Override
+	public HR_PhysicalVO getPhysicaly(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getPhysicaly", username);
 	}
 
 	

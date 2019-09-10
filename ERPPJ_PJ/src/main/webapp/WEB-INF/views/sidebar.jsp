@@ -401,6 +401,7 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
+	                          			<li><a href="ST_sale_plan_write_reg">판매계획 등록</a></li>
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
 										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_release">출고 등록</a></li>
@@ -522,7 +523,7 @@
 	                          			<li><a href="FT_facility_list">설비 목록</a></li>
 	                          			<li><a href="#">제품 목록</a></li>
 	                          			<li><a href="#">제공품 목록</a></li>
-                    					<li><a href="#">자재 목록</a></li>
+                    					<li><a href="FT_material_list">자재 목록</a></li>
                     					<li><a href="#">전산설비 목록</a></li>
                     					<li><a href="#">감가상각 현황</a></li>
 	                          		</ul>
@@ -603,8 +604,8 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="#">생산계획등록</a></li>
-					                    <li><a href="#">생산계획관리</a></li>
+	                          			<li><a href="CT_production_plan_enrollment">생산계획등록</a></li>
+					                    <li><a href="CT_production_plan_management">생산계획관리</a></li>
 										<li><a href="#">작업지시등록</a></li>
 					                    <li><a href="#">작업지시확정</a></li>
 					                    <li><a href="#">생산자재출고</a></li>

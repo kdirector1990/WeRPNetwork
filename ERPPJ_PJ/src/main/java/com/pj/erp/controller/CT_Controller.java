@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 @Controller
@@ -230,6 +231,16 @@ public class CT_Controller {
 	}
 	
 	//외부업체 수리 등록
+	@RequestMapping("CT_Select_RP")
+	@ResponseBody
+	public List<CT_RP_VO> CT_Select_RP(HttpServletRequest req, Model model) {
+		logger.info("log => CT_Select_RP");
+		List<CT_RP_VO> vo = CT.selectRPC(req, model);
+		return vo;
+	}
+	
+	
+	//외부업체 수리 등록
 	@RequestMapping("CT_ComInsertForm")
 	public String CT_insertForm(HttpServletRequest req, Model model) {
 		logger.info("log => CT_CominsertForm");
@@ -277,5 +288,20 @@ public class CT_Controller {
 		return "CT/CT_as_manage";
 	}
 	
+	//생산계획 등록
+	@RequestMapping("CT_production_plan_enrollment")
+	public String CT_production_plan_enrollment(HttpServletRequest req, Model model) {
+		logger.info("log => CT_production_plan_enrollment");
+		
+		return "CT/CT_production_plan_enrollment";
+	}
+	
+	//생산계획 관리
+	@RequestMapping("CT_production_plan_management")
+	public String CT_production_plan_management(HttpServletRequest req, Model model) {
+		logger.info("log => CT_production_plan_management");
+		
+		return "CT/CT_production_plan_management";
+	}
 	
 }

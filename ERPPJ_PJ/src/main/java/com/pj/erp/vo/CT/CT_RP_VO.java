@@ -11,7 +11,8 @@ public class CT_RP_VO {
 	String rr_content;			//내용
 	String ceq_code;			//전산설비코드
 	int cas_state;				//처리상태
-	
+	String rr_repair_type;		//수리방법
+	int rr_cost;				//금액
 	//생성자
 	public void CT_RP_VO() {}
 
@@ -62,6 +63,22 @@ public class CT_RP_VO {
 
 	public void setCas_state(int cas_state) {
 		this.cas_state = cas_state;
+	}
+
+	public String getRr_repair_type() {
+		return rr_repair_type;
+	}
+
+	public void setRr_repair_type(String rr_repair_type) {
+		this.rr_repair_type = rr_repair_type;
+	}
+
+	public int getRr_cost() {
+		return rr_cost;
+	}
+
+	public void setRr_cost(int rr_cost) {
+		this.rr_cost = rr_cost;
 	}
 	
 	

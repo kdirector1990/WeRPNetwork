@@ -125,7 +125,7 @@
 	                                        	<th>계정과목명</th>
 	                                        </tr>
 	                              		</thead>
-	                            		<tbody>
+	                            		<tbody style="overflow:auto;">
 	                                  		<c:set var="count" value="0"/>
 	                                  		<c:if test="${subject != null}">
 	                                   		<c:forEach var = "sub" items="${subject}">

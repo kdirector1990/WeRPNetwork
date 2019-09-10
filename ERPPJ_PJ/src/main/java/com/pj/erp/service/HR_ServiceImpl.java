@@ -29,6 +29,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_VO;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -289,6 +290,14 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 	
 	@Override
+	public List<HR_SalaryVO> getSalary(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		
+		List<HR_SalaryVO> list = dao.getSalary(map);
+		
+		return list;
+	}
+	
+	@Override
 	public void departmentList(HttpServletRequest req, Model model) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();		
@@ -324,7 +333,20 @@ public class HR_ServiceImpl implements HR_Service{
 
 	@Override
 	public void selectPhysical(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub		
+		List<HR_PhysicalVO> phy = dao.physicaly();
+		
+		model.addAttribute("phy", phy);
+	}
+
+
+
+	@Override
+	public void modifyPhysicalyView(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_PhysicalVO pvo = dao.getPhysicaly(username);
+		
+		model.addAttribute("pvo", pvo);
 	}
 
 	/*

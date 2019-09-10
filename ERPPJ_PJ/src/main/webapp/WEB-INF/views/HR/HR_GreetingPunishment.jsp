@@ -29,10 +29,7 @@
 			param.pa_date = $("#pa_date").val();
 					
 			jsonData = JSON.stringify(param);
-			/* alert(param.pa_name);
-			alert(param.username);
-			alert(param.e_name);
-			alert(param.pa_date); */
+			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_GreetingPunishment_result?${_csrf.parameterName}=${_csrf.token }',
 				type : 'POST',

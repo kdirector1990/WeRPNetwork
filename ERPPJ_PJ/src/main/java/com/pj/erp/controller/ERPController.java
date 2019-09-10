@@ -39,8 +39,8 @@ public class ERPController {
 		
 		model.addAttribute("serverTime", formattedDate ); 
 		 
-		return "index";
-	} 
+		return "login";
+	}    
 	
  
 	@RequestMapping("index")
@@ -563,7 +563,7 @@ public class ERPController {
 	public String uivideo(Locale locale, Model model) {
 		logger.info("log => ui-video");
 		
-		return "ui-video";
+		return "ui-video"; 
 	}
 	
 	//관리자 및 공통
@@ -573,8 +573,16 @@ public class ERPController {
 	public String login(Locale locale, Model model) {
 		logger.info("log => login");
 		
-		return "login";
+		return "login"; 
 	}
+	
+	// 권한 없을 경우
+		@RequestMapping("denied")
+		public String denied(Locale locale, Model model) {
+			logger.info("log => denied");
+			
+			return "denied"; 
+		}
 	
 	/*
 	 * //로그아웃

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8" http-equiv = "refresh" content ="3; url = 'index'">
 <head>
     <%@ include file="setting.jsp" %>
 </head>
@@ -26,10 +27,10 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
-                                            <li class="breadcrumb-item active">Log In</li>
+                                            <li class="breadcrumb-item active">403 Error</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Log In</h4>
+                                    <h4 class="page-title">403 Error</h4>
                                 </div>
                             </div>
                         </div>     
@@ -54,22 +55,8 @@
 						                </div>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="header-title">Log In</h4>
-	                                        <form name = "logIn" action = "login_check.do" method="post">
-                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Account</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name = "username" placeholder="Account">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" name = "password" placeholder="Password">
-                                            </div>
-                                            <div class="row">
-    										<div class="col-5"></div>
-                                            <button type="submit" class="btn btn-purple waves-effect waves-light mt-3">Log In</button>
-                                            </div>
-                                        </form>
+                                    	<img src = "/erp/resources/assets/images/images.jpg" style = "width:750px; height:auto;">
+                                    	<h4 class="text-primary" align = "center">권한이 없습니다. 잠시후 DASHBOARD로 이동합니다.</h4>
                                     </div>
                                 </div>
                             </div>
@@ -81,12 +68,12 @@
                 
                 </div>
 
-            </div></div>
+            </div>
 
             <!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
-
+		</div>
         </div>
         <!-- END wrapper -->
 

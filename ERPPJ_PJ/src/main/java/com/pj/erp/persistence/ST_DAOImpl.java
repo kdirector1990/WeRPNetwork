@@ -113,8 +113,12 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public int deleteRelease(String sar_code) {
 		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteRelease", sar_code);
-				
-				
+	}
+	
+	// release 등록 처리
+	@Override
+	public int insertRelease(Release vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.insertRelease", vo);
 	}
 	
 	

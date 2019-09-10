@@ -53,6 +53,22 @@
 		select * from users
 	</select>
 	
+	<!-- 신체 정보 -->
+	<select id="physicaly" resultType="com.pj.erp.vo.HR_PhysicalVO">
+		select * from physicaly_info_tbl
+	</select>
+	
+	<!-- 가족 정보 -->
+	
+	
+	<!-- 사원 정보 수정 -->
+	
+	
+	<!-- 신체 정보 상세페이지 -->
+	<select id="getPhysicaly" parameterType="String" resultType="com.pj.erp.vo.HR_PhysicalVO">
+		SELECT * FROM physicaly_info_tbl WHERE username = #{username}
+	</select>
+	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
 		select department_code, department_name from department_tbl	 
@@ -96,6 +112,19 @@
 		and pa_date >= #{spa_date} and pa_date <= #{epa_date}
 		]]>
 	</select>
-	<!-- and pa_date >= #{spa_date} and pa_date <= #{epa_date} -->
+	
+	<!-- 임금현황조회 -->
+	<select id = "getSalary" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_SalaryVO">
+	<![CDATA[
+		select u.username, u.e_name, d.department_name, r.rank_name, u.start_date, p.base_payment, p.add_payment, p.extension_payment
+		from users u ,department_tbl d ,rank_tbl r ,paystep_tbl p
+		where u.department_code = d.department_code 
+		and u.rank_code = r.rank_code
+		and r.rank_code = p.rank_code
+		and u.level_step = p.paystep_code
+		and department_name like '%'||#{d_name}||'%'
+		and e_name like '%'||#{e_name}||'%'
+		]]>
+	</select>
 	
 </mapper>

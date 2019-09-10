@@ -5,12 +5,23 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
-		<security:http pattern = "/resources/**" security = "none"/>
-		<security:http pattern = "/login" security = "none"/>
+		<security:http pattern = "/resources/**" security = "none"/> 
 		<security:http auto-config = "true" use-expressions="true" create-session="never">
 			<security:intercept-url 
 				pattern = "/index"
-				access = "hasAnyRole('ROLE_HR','ROLE_CT','ROLE_MF','ROLE_MS','ROLE_ST','ROLE_FT')" 
+				access = "hasAnyRole('ROLE_HR','ROLE_CT','ROLE_MF','ROLE_MS','ROLE_ST','ROLE_FT','ROLE_ADMIN')" 
+			/>
+			<security:intercept-url 
+				pattern = "/"  
+				access = "permitAll" 
+			/>
+			<security:intercept-url 
+				pattern = "/login"  
+				access = "permitAll" 
+			/>
+			<security:intercept-url 
+				pattern = "/denied"
+				access = "permitAll" 
 			/>
 			<security:intercept-url 
 				pattern = "/HR*"
@@ -58,7 +69,7 @@
 			<security:session-management>
 				<security:concurrency-control
 					max-sessions = "10"
-					expired-url="/index"
+					expired-url="/login"
 					error-if-maximum-exceeded="true"
 				/>
 			</security:session-management>
