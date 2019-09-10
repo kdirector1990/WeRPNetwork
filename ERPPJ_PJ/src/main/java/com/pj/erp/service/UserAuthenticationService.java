@@ -1,6 +1,8 @@
 package com.pj.erp.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +34,7 @@ public class UserAuthenticationService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				Map<String, Object> user = sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.loginCheck", username);
-				Map<String, Object> auth = sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.authCheck", username);
+				List<Map<String, Object>> auth = sqlSession.selectList("com.pj.erp.persistence.ERPDAO.authCheck", username);
 				if(user == null) throw new UsernameNotFoundException(username);
 				String e_name = user.get("E_NAME").toString();
 				String position_code = user.get("POSITION_CODE").toString();
@@ -40,7 +42,11 @@ public class UserAuthenticationService implements UserDetailsService{
 				String department_code = user.get("DEPARTMENT_CODE").toString();
 				String department_name = user.get("DEPARTMENT_NAME").toString();
 				List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
-				authority.add(new SimpleGrantedAuthority(auth.get("AUTHORITY").toString()));
+				//authority.add(new SimpleGrantedAuthority(auth.get("AUTHORITY").toString()));
+				for (int i = 0 ; i < auth.size() ; i++) {
+					authority.add(new SimpleGrantedAuthority(auth.get(i).get("AUTHORITY").toString()));
+				}
+				System.out.println(authority);
 				return new UserVO(user.get("USERNAME").toString(),
 						user.get("PASSWORD").toString(),
 						(Integer)Integer.valueOf(user.get("ENABLED").toString()) == 1,
