@@ -324,11 +324,26 @@ public class HR_ServiceImpl implements HR_Service{
 
 	@Override
 	public void selectPhysical(HttpServletRequest req, Model model) {
-		List<HR_PhysicalVO> phy = dao.physicaly();
+		List<HR_PhysicalVO> phy = dao.physicalyList();
 		
 		model.addAttribute("phy", phy);
 	}
+	
+	@Override
+	public void modifyFoundationView(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_VO vo = dao.getFoundation(username);
+		
+		model.addAttribute("vo", vo);
+	}
 
+
+	@Override
+	public void modifyFoundationPro(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	@Override
@@ -345,7 +360,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		HR_PhysicalVO vo = new HR_PhysicalVO();
 		String username = req.getParameter("username");
-		
+		System.out.println(username);
 		vo.setUsername(username);
 		vo.setE_height(Integer.parseInt(req.getParameter("e_height")));
 		vo.setE_weight(Integer.parseInt(req.getParameter("e_weight")));
@@ -372,6 +387,7 @@ public class HR_ServiceImpl implements HR_Service{
         model.addAttribute("username", username);
 		
 	}
+	
 
 	/*
 	@Override

@@ -61,30 +61,31 @@
 										<table id="datatable"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<tr class="form-group row">
-												<td class="col-md-1 col-form-label">조회조건</td>
-												<td class="col-md-2 input-group"><input type="text"
-													class="form-control" name="">
-													<div class="input-group-append">
-														<button type="button"
-															class="btn btn-icon waves-effect waves-light btn-primary">
-															<i class="fas fa-search"></i>
-														</button>
-													</div></td>
+												<td class="col-md-1 col-form-label">사원번호</td>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="username">
+												<div class="input-group-append">
+													<button type="button" class="btn btn-icon waves-effect waves-light btn-primary"><i class="fas fa-search"></i>
+													</button>
+												</div></td>
+												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
-												<th class="col-md-1 col-form-label">재직구분</th>
-												<td class="col-md-2 input-group"><select
-													class="form-control select2" name="" onchange="">
-														<option value="">-- --</option>
-														<option value=""></option>
-														<option value=""></option>
-												</select></td>
+												
+												<th class="col-md-1 col-form-label">사원명</th>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="e_name">
+												</td>
+												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
+												
 												<th class="col-md-1 col-form-label">직급</th>
-												<td class="col-md-2 input-group"><select
-													class="form-control select2" name="" onchange="">
-														<option value="">--  --</option>
-														
-												</select></td>
+												<td class="col-md-2 input-group">
+													<select class="form-control select2" name="department_code" onchange="">
+														<c:forEach var="dep" items="${dep}">
+														<option value="${dep.department_code}">${dep.department_name}</option>	
+														</c:forEach>																																							
+													</select>
+												</td>
 											</tr>
 										</table>
 									</div>
@@ -153,7 +154,7 @@
 															<tbody>
 																<c:forEach var="fd" items="${vo}">
 																	<tr color="red">
-																		<td onclick="modifyFoundation(${fd.username})">${fd.username}</td>
+																		<td onclick="window.location='HR_modifyFoundation?username=${fd.username}'">${fd.username}</td>
 																		<td>${fd.e_name}</td>
 																		<td>${fd.e_gender}</td>
 																		<td>${fd.e_code}</td>

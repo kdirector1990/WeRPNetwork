@@ -44,7 +44,7 @@
 						<form action="HR_modifyPhysicalyPro" class="form-horizontal" id="physical" name="modifyPhysicaly"
 							method="post">															
 								<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-								<input type="hidden" name="hiddenId" value="0">
+								<input type="text" name="username" value="${pvo.username}">
 								<div class="card-body table-responsive">
 								<h4 class="header-title">신체 정보</h4>
 								<h4 class="header-title">&nbsp;</h4>															

@@ -95,12 +95,7 @@ public class HR_DAOImpl implements HR_DAO{
 		HR_DAO dao = sqlSession.getMapper(HR_DAO.class);
 		rank = dao.getRankList(map);
 		return rank;
-	}
-
-	@Override
-	public List<HR_VO> foundation() {
-		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.foundation");
-	}	
+	}		
 	
 	/*
 	@Override
@@ -120,8 +115,23 @@ public class HR_DAOImpl implements HR_DAO{
 	}
 
 	@Override
-	public List<HR_PhysicalVO> physicaly() {
-		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.physicaly");
+	public List<HR_VO> foundation() {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.foundation");
+	}
+	
+	@Override
+	public HR_VO getFoundation(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFoundation", username);
+	}
+	
+	@Override
+	public List<HR_PhysicalVO> physicalyList() {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.physicalyList");
+	}
+	
+	@Override
+	public HR_PhysicalVO physicaly(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.physicaly");
 	}
 
 	@Override
@@ -132,7 +142,7 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int updatePhysicaly(HR_PhysicalVO vo) {
 		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updatePhysicaly", vo);
-	}
+	}	
 
 	
 

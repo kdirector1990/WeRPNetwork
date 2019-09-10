@@ -37,9 +37,12 @@ public interface HR_DAO {
 	public List<HR_VO> foundation();
 	
 	// 신체정보 가져오기
-	public List<HR_PhysicalVO> physicaly();
+	public List<HR_PhysicalVO> physicalyList();
 	
-	// 사원정보 수정하기
+	public HR_PhysicalVO physicaly(String username);
+	
+	// 사원정보 수정페이지
+	public HR_VO getFoundation(String username);
 	
 	// 신체정보 수정페이지
 	public HR_PhysicalVO getPhysicaly(String username);

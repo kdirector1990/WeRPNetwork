@@ -47,8 +47,11 @@ public interface HR_Service {
 	// 신체정보 현황
 	public void selectPhysical(HttpServletRequest req, Model model);
 	
-	// 사원정보 수정
+	// 사원정보 상세페이지
+	public void modifyFoundationView(HttpServletRequest req, Model model);
 	
+	// 사웑어보 수정처리
+	public void modifyFoundationPro(HttpServletRequest req, Model model);
 	
 	// 신체정보 상세페이지
 	public void modifyPhysicalyView(HttpServletRequest req, Model model);
