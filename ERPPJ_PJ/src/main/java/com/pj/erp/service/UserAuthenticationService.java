@@ -1,8 +1,6 @@
 package com.pj.erp.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -42,11 +40,9 @@ public class UserAuthenticationService implements UserDetailsService{
 				String department_code = user.get("DEPARTMENT_CODE").toString();
 				String department_name = user.get("DEPARTMENT_NAME").toString();
 				List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
-				//authority.add(new SimpleGrantedAuthority(auth.get("AUTHORITY").toString()));
 				for (int i = 0 ; i < auth.size() ; i++) {
 					authority.add(new SimpleGrantedAuthority(auth.get(i).get("AUTHORITY").toString()));
 				}
-				System.out.println(authority);
 				return new UserVO(user.get("USERNAME").toString(),
 						user.get("PASSWORD").toString(),
 						(Integer)Integer.valueOf(user.get("ENABLED").toString()) == 1,
