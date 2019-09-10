@@ -37,7 +37,7 @@
                 			<div class="col-sm-12">
 							<form action="HR_modifyFoundationPro" class="form-horizontal" id="foundation" method="post">
 							<input type = "hidden" name ="${_csrf.parameterName}" value = "${_csrf.token}">												
-
+								<input type="text" name="username" value="${fd.username}">
 								<div class="card-body table-responsive">
 								 <h4 class="header-title">기초 정보</h4>
 								 <h4 class="header-title">&nbsp;</h4>

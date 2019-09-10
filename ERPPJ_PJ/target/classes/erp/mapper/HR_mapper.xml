@@ -45,12 +45,16 @@
 	<insert id="insertDepartment" parameterType="java.util.Map">
 		insert into department_tbl(department_code, department_name)
 		values(#{department_code}, #{department_name})
-	</insert>
-	
+	</insert>	
 	
 	<!-- 사원 정보 -->
 	<select id="foundation" resultType="com.pj.erp.vo.HR_VO">
 		select * from users
+	</select>
+	
+	<!-- 사원 정보 한건 -->
+	<select id="getFoundation" parameterType="String" resultType="com.pj.erp.vo.HR_VO">
+		select * from users where username = #{username}
 	</select>
 	
 	<!-- 신체 정보 리스트 -->

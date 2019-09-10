@@ -78,12 +78,35 @@
 												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
 												
-												<th class="col-md-1 col-form-label">직급</th>
+												<th class="col-md-1 col-form-label">부서</th>
 												<td class="col-md-2 input-group">
 													<select class="form-control select2" name="department_code" onchange="">
 														<c:forEach var="dep" items="${dep}">
 														<option value="${dep.department_code}">${dep.department_name}</option>	
 														</c:forEach>																																							
+													</select>
+												</td>
+											</tr>
+											
+											<tr class="form-group row">									
+												
+												<th class="col-md-1 col-form-label">직책</th>
+												<td class="col-md-2 input-group">
+													<select class="form-control select2" name="position_code" onchange="">
+														<c:forEach var="poi" items="${poi}">
+														<option value="${poi.position_code}">${poi.position_code}</option>	
+														</c:forEach>																							
+													</select>
+												</td>
+												
+												<th class="col-md-1 col-form-label">&nbsp;</th>
+												
+												<th class="col-md-1 col-form-label">직급</th>
+												<td class="col-md-2 input-group">
+													<select class="form-control select2" name="rank_code" onchange="">
+														<c:forEach var="rank" items="${rank}">
+														<option value="${rank.rank_code}">${rank.rank_code}</option>	
+														</c:forEach>																							
 													</select>
 												</td>
 											</tr>
@@ -120,7 +143,7 @@
 									</ul>
 									<div class="tab-content">
 										<!-- 잔액 -->
-										<div class="tab-pane" id="foundation" role="tabpanel"
+										<div class="tab-pane show active" id="foundation" role="tabpanel"
 											aria-labelledby="foundation-tab">
 											<div class="col-sm-12">
 												<div class="card">
