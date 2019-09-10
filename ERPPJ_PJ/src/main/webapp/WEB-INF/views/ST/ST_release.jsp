@@ -44,11 +44,113 @@
 						</div>
 					</div>
 					<!-- end page title -->
-					
-					출고 등록 폼 제작
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="header-title">출고 등록</h4>
+									<p class="sub-header">
+										<br>
+									</p>
+
+									<form class="form-horizontal" action="ST_release_writePro"
+										method="post">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+										<div class="row">
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label" for="simpleinput">출고처</label>
+													<div class="col-md-10">
+														<input type="text" name="release_name"
+															class="form-control" value="">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label" for="example-email">입고처</label>
+													<div class="col-md-10">
+														<input type="text" name="stored_name" class="form-control">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label"
+														for="example-password">단가</label>
+													<div class="col-md-10">
+														<input type="text" name="unit_cost" class="form-control">
+													</div>
+												</div>
+
+											</div>
+
+											<div class="col-xl-6">
+
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label" for="example-static">출고
+														수량</label>
+													<div class="col-md-10">
+														<input type="text" name="release_count"
+															class="form-control" value="">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label"
+														for="example-helping">입고 수량</label>
+													<div class="col-md-10">
+														<input type="text" class="form-control"
+															name="stored_count">
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">구분</label>
+													<div class="col-md-10">
+														<select class="form-control" name = "sar_type">
+															<option value = "판매">2. 판매</option>
+															<option value="재입고">3. 재입고</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label" for="example-static">(임시)
+														입출고 코드</label>
+													<div class="col-md-10">
+														<input type="text" name="sar_code" class="form-control"
+															value="">
+													</div>
+												</div>
+											</div>
+											<!-- end col -->
 
 
-					<!-- end row -->
+											<div class="form-group mb-0">
+												<div>
+													<button type="submit"
+														class="btn btn-primary waves-effect waves-light mr-1">
+														Submit</button>
+													<button type="reset"
+														class="btn btn-secondary waves-effect waves-light">
+														Cancel</button>
+												</div>
+											</div>
+											<!-- end row -->
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- end col -->
+				</div>
+				<!-- end row -->
+
+
+
+
+
+
+
+				<!-- end row -->
 
 				</div>
 				<!-- end container-fluid -->

@@ -71,71 +71,71 @@ function setName(username) {
 </head>
 <body onload="searchNameFocus();">
 <!-- username 검색 -->
-<!-- ============================================================== -->
+<div id="wrapper">
+		<!-- ============================================================== -->
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
-
-		<div class="content-page" style="margin-top: 10px;">
 			<div class="content">
 
 				<!-- Start Content-->
 				<div class="container-fluid">
 
-           		<!-- start page title -->
-				<div class="row">
-					<div class="col-12">
-						<div class="page-title-box" style = "text-align:center;">
-							<h4><b>계정목록</b></h4>
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box" style="text-align: center;">
+								<h4>
+									<b>계정목록</b>
+								</h4>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- end page title -->
-				
-				<div class="row">
+					<!-- end page title -->
+
+					<div class="row">
 						<div class="col-sm-12">
-							<div class="card" >
-								<div class="card-body" style="margin-bottom: 0px;">
+							<div class="card">
+								<div class="card-body"
+									style="margin-bottom: 0px; padding-bottom: 0px;">
 									<form action="" name="searchName">
 										<table>
 											<tr>
-												<th style = "text-align: center;">Search</th>
-												<td>
-													<input type="text" name="e_name" class="form-control">
-												</td>
+												<th style="text-align: center; padding-right: 10px;">Search</th>
+												<td><input type="text" name="e_name"
+													class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;"></td>
 											</tr>
-											
+
 											<tr>
-												<td style="position: absolute; right: 30px;">
-													<button type=button class="btn-subpage" id ="search" onclick="load1();" >조회</button>
-													<button type="button" class="btn-subpage" onclick="self.close();">취소</button>
+												<td
+													style="position: absolute; right: 30px; margin-top: 10px;">
+													<button type=button class="btn-subpage" id="search"
+														onclick="load1();">조회</button>
+													<button type="button" class="btn-subpage"
+														onclick="self.close();">취소</button>
 												</td>
 											</tr>
 										</table>
 									</form>
-                               	</div>
-                               	
-                              <div id = "result">
-		                      <!-- 출력결과위치 -->
-		                      </div>
-                              	
-                             </div>
-		                   </div> 
-                       </div>
-                    </div> 
-                      
-                     
-               
-               <!-- 페이지 내용 입력 공간 종료 -->
+								</div>
+
+								<div id="result">
+									<!-- 출력결과위치 -->
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 페이지 내용 입력 공간 종료 -->
 
 
+				<%@ include file="../footer.jsp"%>
 
-			<%@ include file="../footer.jsp" %>
-
-		</div>
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Page content -->
 		<!-- ============================================================== -->
-
+</div>
 </body>
 </html>

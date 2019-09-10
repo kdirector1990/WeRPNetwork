@@ -54,6 +54,13 @@ public class HR_Controller {
 		
 	}		
 	
+	@RequestMapping("HR_modifyPhysicaly")
+	public String HR_modifyPhysicaly(HttpServletRequest req, Model model) {
+		logger.info("log => HR_modifyPhysicaly");
+		service.modifyPhysicalyView(req, model);
+		
+		return "HR/HR_modifyPhysicaly";
+	}
 	
 	/*
 	// 중복확인 페이지
@@ -84,6 +91,7 @@ public class HR_Controller {
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeInformation");
 		service.selectFoundation(req, model);
+		service.selectPhysical(req, model);
 		
 		return "HR/HR_EmployeeInformation";
 	}
