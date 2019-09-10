@@ -78,4 +78,14 @@
  			VALUES(#{release_name}, #{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, #{sar_code}, sysdate, 'qa8', #{sar_type}, #{username})
  	</insert>
  	
+ 	
+ 	<!-- Product 검색 -->
+	<select id="selectProduct" resultType="int" parameterType="String" >
+		select COUNT(*) from product_list_tbl where product_name like '%'||#{product_name}||'%'
+	</select>
+	
+	<!-- 검색 목록 가져오기 -->
+	<select id="getProductList" resultType="com.pj.erp.vo.ST.ProductList" parameterType="String">
+		select product_code, bom_code, product_name from product_list_tbl where product_name like '%'||#{product_name}||'%'
+	</select> 	
  </mapper>
