@@ -309,16 +309,33 @@ public class CT_ServiceImpl implements CT_Service{
 		String rr_title = req.getParameter("rr_title");
 		String ceq_code = req.getParameter("ceq_code");
 		String rr_content = req.getParameter("rr_content");
+		String rr_repair_type = req.getParameter("rr_repair_type");
+		
+		//콤마제거
+		String cost = req.getParameter("rr_cost");
+		int rr_cost = Integer.parseInt(cost.replace(",", ""));;
 		
 		CT_RP_VO rp = new CT_RP_VO();
 		rp.setRr_title(rr_title);
 		rp.setCeq_code(ceq_code);
 		rp.setRr_content(rr_content);
-		
+		rp.setRr_repair_type(rr_repair_type);
+		rp.setRr_cost(rr_cost);
 		
 		int InsertCnt = dao.InsertRP(rp);
 		
 		model.addAttribute("insertCnt", InsertCnt);
+	}
+
+	//수리일지 조회하기(수리타입 : 내부수리, 외부수리)
+	@Override
+	public List<CT_RP_VO> selectRPC(HttpServletRequest req, Model model) {
+		
+		String rr_repair_type = req.getParameter("rr_repair_type");
+		
+		List<CT_RP_VO> vo = dao.selectRPC(rr_repair_type);
+		
+		return vo;
 	}
 
 	
