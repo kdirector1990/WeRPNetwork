@@ -105,8 +105,14 @@
 	
 	<!-- 수리일지등록 -->
 	<insert id="InsertRP" parameterType="com.pj.erp.vo.CT.CT_RP_VO">
-		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state)
-		Values(lpad(asnumber.nextval,7,'RP_'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1)
+		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state, rr_repair_type, rr_cost)
+		Values(lpad(asnumber.nextval,7,'RP_'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1, #{rr_repair_type}, #{rr_cost})
 	</insert>
+	
+	<!-- 수리타입으로 수리일지 조회 -->
+	<select id="selectRPC" resultType="com.pj.erp.vo.CT.CT_RP_VO">
+		Select * from repair_record_tbl
+		Where rr_repair_type = #{rr_repair_type}
+	</select>
 
 </mapper>

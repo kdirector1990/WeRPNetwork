@@ -58,4 +58,7 @@ public interface CT_DAO {
 	//수리일지 등록
 	public int InsertRP(CT_RP_VO rp);
 	
+	//수리일지 타입으로 select
+	public List<CT_RP_VO> selectRPC(String type);
+	
 }

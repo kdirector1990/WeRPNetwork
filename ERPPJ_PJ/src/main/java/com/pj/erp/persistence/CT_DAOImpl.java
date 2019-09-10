@@ -116,6 +116,12 @@ public class CT_DAOImpl implements CT_DAO{
 		return sqlSession.insert("com.pj.erp.persistence.CT_DAO.InsertRP", rp);
 	}
 
+	//수리일지 타입으로 select
+	@Override
+	public List<CT_RP_VO> selectRPC(String type) {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectRPC", type);
+	}
+
 
 	
 

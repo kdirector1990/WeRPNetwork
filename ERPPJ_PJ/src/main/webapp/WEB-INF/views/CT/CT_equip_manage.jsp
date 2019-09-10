@@ -244,10 +244,6 @@
 												</div>
 												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 												<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-												<div id="ceq_button" class="col-md-4 input-group">
-												<button type="button" id="btnTCT" onclick = "updateCT();"class="btn btn-outline-dark waves-effect waves-light width-md">수정</button>&nbsp;
-    											<button type="button" onclick="deleteCT();" class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
-												</div>
 										</div>
 									</div>
 								</div>
@@ -287,10 +283,10 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
 										<div class="table-responsive" style = "margin: 15px 0px 50px">
+										<form id="updateCTS" method="post" class="form-horizontal">
+											<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 											<div id="result2" class="card-body">
 												<!-- 상세 페이지 출력 위치 -->
-												<form id="updateCTS" method="post" class="form-horizontal">
-												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 												<table class="table table-striped table-bordered dt-responsive nowrap">
 													<col style = "width:12%">
 		                                            <col style = "width:13%;">
@@ -320,8 +316,12 @@
 													<tbody id ="update1">
 													</tbody>
 												</table>
-												</form>
-											</div>
+												</div>	
+											</form>
+												<div id="ceq_button" class="col-md-4 input-group">
+														<button type="button" id="btnTCT" onclick = "updateCT();"class="btn btn-outline-dark waves-effect waves-light width-md">수정</button>&nbsp;
+    													<button type="button" onclick="deleteCT();" class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
+												</div>											
 										</div>
 									</div>
 								</div>
