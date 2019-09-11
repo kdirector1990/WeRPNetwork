@@ -146,13 +146,13 @@ public class HR_Controller {
 	}
 	
 	//책정임금현황 검색결과
-		@RequestMapping(value = "HR_EmployeePhysicaly_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-		@ResponseBody
-		public  List<HR_PhysicalVO> HR_EmployeePhysicaly(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
-			logger.info("log => HR_EmployeePhysicaly");
-			List<HR_PhysicalVO> list = service.getPhysical(map, req, model);
-			return list;
-		}
+	@RequestMapping(value = "HR_EmployeePhysicaly_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_PhysicalVO> HR_EmployeePhysicaly(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_EmployeePhysicaly");
+		List<HR_PhysicalVO> list = service.getPhysical(map, req, model);
+		return list;
+	}
 	
 	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")
