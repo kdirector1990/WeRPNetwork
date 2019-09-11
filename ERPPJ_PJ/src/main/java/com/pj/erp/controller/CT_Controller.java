@@ -1,6 +1,7 @@
 package com.pj.erp.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +43,11 @@ public class CT_Controller {
 	@RequestMapping("CT_equip_add")
 	public String CT_equip_add(HttpServletRequest req, Model model) {
 		logger.info("log => CT_equip_add");
+		List<String> testitems = new ArrayList<String>();
+		testitems.add("테스트1");
+		testitems.add("테스트2");
+		testitems.add("테스트3");
+		model.addAttribute("testitems",testitems);
 		
 		return "CT/CT_equip_add";
 	}
