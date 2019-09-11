@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -216,5 +217,10 @@ public class FT_DAOImpl implements FT_DAO{
 	@Override
 	public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getLBorrowList", map);
+	}
+
+	@Override
+	public List<FT_Bill_payment_VO> getBillPaymentList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getBillPaymentList", map);
 	}
 }

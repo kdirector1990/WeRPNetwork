@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -273,6 +274,15 @@ public class FT_Controller {
 		logger.info("log => FT_note_payable_list");
 
 		return "FT/FT_note_payable_list";
+	}
+	
+	//지급어음목록 검색결과
+	@RequestMapping(value = "FT_note_payable_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_Bill_payment_VO> FT_note_payable_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_note_payable_list_result");
+		List<FT_Bill_payment_VO> list = service.getBillPaymentList(map, req, model);
+		return list;
 	}
 
 	// 건물목록

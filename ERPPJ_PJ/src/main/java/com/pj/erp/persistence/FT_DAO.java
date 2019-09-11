@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -95,5 +96,8 @@ public interface FT_DAO {
 	 
 	//장기차입금 검색결과
 	 public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map);
+	 
+	//지급어음목록 검색결과
+	 public List<FT_Bill_payment_VO> getBillPaymentList(Map<String, Object> map);
 	
 }
