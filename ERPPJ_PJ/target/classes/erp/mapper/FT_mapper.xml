@@ -77,10 +77,12 @@
 		where JOURNAL_CODE = #{key}
 	</delete>
 
-	<!-- 거래처 추가 -->
-	<insert id="FT_AccInsert" parameterType = "java.util.Map">
-		insert into customer_list_tbl(customer_code, customer_name, deal_state)
-		values(customer_seq.nextval, #{AccName}, #{type}) 
+	<!-- 사업자 번호 추가 -->
+	<insert id="FT_AccountInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
+		insert into b_license_tbl(license_number, bs_name, bs_master, bs_startdate,
+		bs_number, bs_address, bs_address2, bs_condition, bs_line, license_scanfile)
+		values(license_seq.nextval, #{bs_name}, #{bs_master}, #{bs_startdate},
+		#{bs_number}, #{bs_address}, #{bs_address2}, #{bs_condition}, #{bs_line}, #{license_scanfile})
 	</insert>
 	
 	<!-- 적금 가져오기 -->
