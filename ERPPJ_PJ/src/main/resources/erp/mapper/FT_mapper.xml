@@ -223,4 +223,44 @@
 		or de.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
+	<!-- 단기차입금 목록 검색결과 -->
+	<select id="getSBorrowList" resultType="com.pj.erp.vo.FT.FT_Short_Borrow_List" parameterType = "java.util.Map">
+		select * from shortterm_debt_tbl 
+		<if test = "customer_code != null">
+			<if test = "username != null">
+				where customer_code = '%'||#{customer_code}||'%' and username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+				where customer_code = '%'||#{customer_code}||'%' 
+			</if>
+		</if>
+		<if test = "customer_code == null">
+			<if test = "username != null">
+				where username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+			</if>
+		</if>
+	</select>
+	
+	<!-- 장기차입금 목록 검색결과 -->
+	<select id="getLBorrowList" resultType="com.pj.erp.vo.FT.FT_Long_Borrow_List" parameterType = "java.util.Map">
+		select * from longterm_debt_tbl 
+		<if test = "customer_code != null">
+			<if test = "username != null">
+				where customer_code = '%'||#{customer_code}||'%' and username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+				where customer_code = '%'||#{customer_code}||'%' 
+			</if>
+		</if>
+		<if test = "customer_code == null">
+			<if test = "username != null">
+				where username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+			</if>
+		</if>
+	</select>
+	
 </mapper>

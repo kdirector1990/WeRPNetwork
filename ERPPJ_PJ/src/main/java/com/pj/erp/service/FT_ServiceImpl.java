@@ -1,5 +1,6 @@
 package com.pj.erp.service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,9 @@ import org.springframework.ui.Model;
 import com.pj.erp.persistence.FT_DAO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Service
@@ -168,4 +171,23 @@ public class FT_ServiceImpl implements FT_Service{
 		dao.FT_applyinput();
 	}
 
+	//단기차입금목록검색결과
+	@Override
+	public List<FT_Short_Borrow_List> getSBorrowList(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+			
+		List<FT_Short_Borrow_List> list = dao.getSBorrowList(map);
+		
+		return list;
+	}
+
+	//장기차입금목록검색결과
+	@Override
+	public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+			
+		List<FT_Long_Borrow_List> list = dao.getLBorrowList(map);
+		
+		return list;
+	}	
 }
