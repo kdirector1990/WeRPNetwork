@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
+import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_VO;
 
 public interface HR_Service {
 	
@@ -64,8 +66,10 @@ public interface HR_Service {
 	public void modifyPhysicalyPro(HttpServletRequest req, Model model);
 	
 	// 사원정보 조회
-	public void searchUsername(HttpServletRequest req, Model model);
+	public List<HR_VO> getUsers(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 신체정보 조회
+	public List<HR_PhysicalVO> getPhysical(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);

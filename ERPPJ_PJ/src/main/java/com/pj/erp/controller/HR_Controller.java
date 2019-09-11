@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
+import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_VO;
 
 @Controller
 public class HR_Controller {
@@ -124,19 +126,33 @@ public class HR_Controller {
 		service.rankList(req, model);
 		
 		return "HR/HR_EmployeeInformation";
-	}	
-	
-	
-	@RequestMapping("HR_EmployeeInformation_result")
-	public String HR_EmployeeInformation_result(HttpServletRequest req, Model model) {
-		logger.info("log => HR_EmployeeInformation_result");
-		service.selectFoundation(req, model);
-		service.departmentList(req, model);
-		service.positionList(req, model);
-		service.rankList(req, model);
-		
-		return "HR/HR_EmployeeInformation_result";
 	}
+	
+	//인사고과/상벌현황 검색결과
+	@RequestMapping(value = "HR_EmployeeInformation_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_VO> HR_EmployeeInformation_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_EmployeeInformation_result");
+		List<HR_VO> list = service.getUsers(map, req, model);
+		return list;
+	}
+	
+	// 신체정보현황
+	@RequestMapping("HR_EmployeePhysicaly")
+	public String HR_EmployeePhysicaly(HttpServletRequest req, Model model) {
+		logger.info("log => HR_EmployeePhysicaly");
+		
+		return "HR/HR_EmployeePhysicaly";
+	}
+	
+	//책정임금현황 검색결과
+		@RequestMapping(value = "HR_EmployeePhysicaly_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public  List<HR_PhysicalVO> HR_EmployeePhysicaly(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => HR_EmployeePhysicaly");
+			List<HR_PhysicalVO> list = service.getPhysical(map, req, model);
+			return list;
+		}
 	
 	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")

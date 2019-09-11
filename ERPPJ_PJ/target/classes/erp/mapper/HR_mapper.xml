@@ -85,9 +85,28 @@
 		UPDATE physicaly_info_tbl SET e_height=#{e_height}, e_weight=#{e_weight}, e_left_sight=#{e_left_sight}, e_right_sight=#{e_right_sight}, e_color_blind=#{e_color_blind}, e_blood_type=#{e_blood_type}, e_blood_presure=#{e_blood_presure}, e_medical_info=#{e_medical_info}, e_veteran_type=#{e_veteran_type}, e_veteran_info=#{e_veteran_info}, e_veteran_level=#{e_veteran_level}, e_disability_type=#{e_disability_type}, e_disability_level=#{e_disability_level} WHERE username=#{username}
 	</update>
 	
-	<!-- e_name(사원명)검색  -->
-	<select id="selectEname" resultType="int" parameterType="String" >
-		select COUNT(*) from users where e_name like '%'||#{e_name}||'%'
+	<!-- 사원정보 조회  -->
+	<select id ="getUsers" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_VO">
+	<![CDATA[
+		select username, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date from users 
+		where username like '%'||#{username}||'%' 
+		and e_name like '%'||#{e_name}||'%' 
+		and department_code like '%'||#{department_code}||'%' 
+		and position_code like '%'||#{position_code}||'%'
+		and rank_code like '%'||#{position_code}||'%'
+		]]>
+	</select>
+	
+	<!-- 사원신체정보 조회  -->
+	<select id ="getPhysicaly" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_PhysicalVO">
+	<![CDATA[
+		select username, e_height, e_weight, e_left_sight, e_right_sight, e_color_blind, e_blood_type, e_blood_presure, e_medical_info, e_veteran_type, e_veteran_info, e_veteran_level, e_disability_type, e_disability_level from physicaly_info_tbl 
+		where username like '%'||#{username}||'%' 
+		and e_name like '%'||#{e_name}||'%' 
+		and department_code like '%'||#{department_code}||'%' 
+		and position_code like '%'||#{position_code}||'%'
+		and rank_code like '%'||#{position_code}||'%'
+		]]>
 	</select>
 	
 	<!-- 검색 목록 가져오기 -->
@@ -128,7 +147,7 @@
 		Where paystep_code = #{paystep_code} And rank_code = #{rank_code}
 	</update>
 	
-	<!-- 인사고과조회 -->
+	<!-- 인사고과조회 -->	
 	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_GreetingVO">
 	<![CDATA[
 		select pa_code, username, pa_date, pa_type, pa_name, department_Code, pa_details, detail_ac_code, pa_value, pa_other, jr_state  from getgreeting_view 

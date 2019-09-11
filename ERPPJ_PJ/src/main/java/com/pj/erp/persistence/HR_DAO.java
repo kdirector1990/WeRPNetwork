@@ -77,4 +77,10 @@ public interface HR_DAO {
 	
 	// 사원번호 생성 시퀀스
 	public String getUsername();
+	
+	// 사원정보 검색 폼
+	public List<HR_VO> getUsers(Map<String, Object> map);
+	
+	// 사원정보 검색 폼
+	public List<HR_PhysicalVO> getPhysicaly(Map<String, Object> map);
 }

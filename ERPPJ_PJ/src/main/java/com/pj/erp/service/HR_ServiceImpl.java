@@ -122,8 +122,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
-		String level_step = "1";
-		vo.setLevel_step(level_step);		
+		vo.setLevel_step(Integer.parseInt(req.getParameter("level_step")));		
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
@@ -369,8 +368,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
-		String level_step = "";
-		vo.setLevel_step(level_step);		
+		vo.setLevel_step(Integer.parseInt(req.getParameter("level_step")));		
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		String department_code = req.getParameter("department_code");
@@ -431,24 +429,20 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 
 	@Override
-	public void searchUsername(HttpServletRequest req, Model model) {
-		String e_name = req.getParameter("e_name");
-		String username = req.getParameter("username");
-		String department_code = req.getParameter("department_code");
-		String position_code = req.getParameter("position_code");
-		String rank_code = req.getParameter("rank_code");
-				
-		System.out.println("e_name : " + e_name); 
-		int cnt = dao.selectEname(e_name); 
+	public List<HR_VO> getUsers(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException {
 		
-		System.out.println("cnt: "+cnt);
 		
-		if(cnt > 0) {
-			List<HR_VO> dto = dao.getUsernameList(e_name);
-			model.addAttribute("dto", dto);
-		}
+		List<HR_VO> list = dao.getUsers(map); 
+		return list;
+					
+	}
 
-		model.addAttribute("cnt", cnt);		
+
+
+	@Override
+	public List<HR_PhysicalVO> getPhysical(Map<String, Object> map, HttpServletRequest req, Model model) {
+		List<HR_PhysicalVO> list = dao.getPhysicaly(map);
+		return list;
 	}
 	
 

@@ -154,6 +154,16 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int updateFoundation(HR_VO vo) {
 		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updateFoundation", vo);
+	}
+
+	@Override
+	public List<HR_VO> getUsers(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getUsers", map);
+	}
+
+	@Override
+	public List<HR_PhysicalVO> getPhysicaly(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getPhysicaly", map);
 	}	
 
 	

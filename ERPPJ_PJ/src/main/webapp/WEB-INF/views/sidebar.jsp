@@ -293,6 +293,7 @@
 	                          		<ul>	                          			
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
+										<li><a href="HR_EmployeePhysicaly">신체정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
 										<li><a href="HR_EmployeeSalary">책정임금 현황</a></li>
 										<li><a href="HR_Yearsofservice">근속년수현황</a></li>
