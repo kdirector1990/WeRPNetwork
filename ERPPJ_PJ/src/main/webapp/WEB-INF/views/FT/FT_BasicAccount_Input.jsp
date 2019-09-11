@@ -24,93 +24,31 @@
         	var updatekey = 0;
         	var selectval;
         	
-        	function focuse(s) {
-        		$(".chit-table-bordered-primary tbody *").focus(function() {
-        			$(".chit-table-bordered-primary tbody *").css("background-color", "");
-        			$(this).parent().parent().children().children().css("background-color", "#D6EAF8");
-        			$(this).parent().parent().children().css("background-color", "#D6EAF8");
-        		});
-        	}
-        	
-        	function enter(cc, dd) {
-        		if(cc == "INPUT") {
-        			var swit = 0;
-        			var nowme = $("*[name=" + dd + "]").parent();
-        			if(window.event.which == 13){
-    					nowme.next().children().focus();
-    					return false;
-            		} else if(window.event.which == 9) {
-            			$("*[name=" + dd + "]").parent().prev().children().focus();
-            		} else if(window.event.which == 37) {
-            			for(var i = 0; i < $("*[name=" + dd + "]").parent().prevAll().children().length; i++){
-        					nowme.prev().children().focus();
-        					return false;
-        				}
-            		} else if(window.event.which == 38) {
-            			$("*[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) - 1) + "]").focus();
-            		} else if(window.event.which == 39) {
-        				for(var i = 0; i < $("*[name=" + dd + "]").parent().nextAll().children().length; i++){
-        					nowme.next().children().focus();
-        					return false;
-        				}
-            		} else if(window.event.which == 40) {
-            			$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) + 1) + "]").focus();
-            		}
-        		} else if(cc == "SELECT"){
-        			if(window.event.which == 9) {
-            			$("select[name=" + dd + "]").parent().prev().children().focus();
-            		}
-        		}
-        	}
+        	function focuse(cc) {
+    			$("tbody *").css("background-color", "");
+    			$("#code" + cc).parent().css("background-color", "#D6EAF8");
+    			$("#code" + cc).css("background-color", "#D6EAF8");
+    			$("#name" + cc).parent().css("background-color", "#D6EAF8");
+    			$("#name" + cc).css("background-color", "#D6EAF8");
+    			
+    			$.ajax({
+                    type : "POST",
+                    url : "/erp/FT_AccountUpdate?${_csrf.parameterName }=${_csrf.token }",
+                    data : jsonData,
+                    contentType : 'application/json;charset=UTF-8',
+                    success : function(data) {
+                 	   
+                           alert(data);
+                    },
+                    error : function(e) {
+                           alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                    }
+            	});
+    		}
         	
         	function enterupdate(vv) {
         		var obj = new Object();
         		var jsonData;
-        		frontcursor = $(".chit-table-bordered-primary tbody #enter" + vv).attr("name");
-        		if(window.event.which == 9) {
-        			$(".chit-table-bordered-primary tbody #enter" + vv).parent().prev().children().focus();
-        		}
-        		var nowme = $("#enter" + vv).parent();
-				
-                if(window.event.which == 37) {
-                	updatekey = 1;
-                	selectval = $("#enter" + vv).val();
-          			for(var i = 0; i < $("#enter" + vv).parent().prevAll().children().length; i++){
-    					nowme = nowme.prev();
-    					if(!nowme.children().attr("readonly")){
-    						nowme.children().focus();
-    						return false;
-    					}
-    				}
-        		} else if(window.event.which == 38) {
-                	updatekey = 1;
-                	selectval = $("#enter" + vv).val();
-                	$("#enter" + (vv-1)).focus();
-					return false;
-        		} else if(window.event.which == 39) {
-        			updatekey = 1;
-                	selectval = $("#enter" + vv).val();
-    				for(var i = 0; i < $("#enter" + vv).parent().nextAll().children().length; i++){
-    					nowme = nowme.next();
-    					if(!nowme.children().attr("readonly")){
-    						nowme.children().focus();
-    						return false;
-    					}
-    				}
-                	$("#first" + (vv+1)).focus();
-					return false;
-        		} else if(window.event.which == 40) {
-                	updatekey = 1;
-                	selectval = $("#enter" + vv).val();
-                	if($("#enter" + (vv+1)).attr("onchange") != "enterinsert(" + (vv+1) + ");"){
-                    	$("#enter" + (vv+1)).focus();
-                	}
-					return false;
-        		} else if(window.event.which == 13) {
-                	updatekey = 2;
-        			$(".chit-table-bordered-primary tbody #enter" + vv).onclick();
-					return false;
-        		}
         		
         		// 자바스크립트 객체 생성
         		obj.checkbox = $("*[name=checkbox" + vv + "]").val();
@@ -126,101 +64,17 @@
         		
         		$.ajax({
                        type : "POST",
-                       url : "/erp/FT_AccinputEx?${_csrf.parameterName }=${_csrf.token }",
+                       url : "/erp/FT_AccountUpdate?${_csrf.parameterName }=${_csrf.token }",
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
-                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-                             /*  if (data.answer == 'success') {
-                                      alert(data.name + '님 환영합니다.');
-                                      var map = new MapArray();
-                                      postData('/News/index.do', map);
-                              } else if (data.answer == 'fail') {
-                                      alert('아이디와 비번이 일치하지 않습니다.');
-                              } else if (data.answer == 'error') {
-                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-                              } */
+                    	   
                               alert(data);
-                              if(updatekey == 0){
-                    				
-                                } else {
-                              	 if(updatekey == 1){
-                               	 	$("#enter" + vv).val(selectval);
-                              	 } else if(updatekey == 2){
-                                   	$("#first" + (vv+1)).focus();
-                              	 }
-                              	 updatekey = 0;
-                                }
                        },
                        error : function(e) {
                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
                        }
                });
-        	}
-        	
-        	function enterinsert(cc) {
-				var nowme = $("#enter" + cc).parent();
-				
-                if(window.event.which == 37) {
-                	updatekey = 1;
-                	selectval = $("#enter" + cc).val();
-          			for(var i = 0; i < $("#enter" + cc).parent().prevAll().children().length; i++){
-    					nowme = nowme.prev();
-    					if(!nowme.children().attr("readonly")){
-    						nowme.children().focus();
-    						return false;
-    					}
-    				}
-        		} else if(window.event.which == 38) {
-                	updatekey = 1;
-                	selectval = $("#enter" + cc).val();
-                	alert("#enter" + (cc-1));
-                	$("#enter" + (cc-1)).focus();
-					return false;
-        		} else if(window.event.which == 39) {
-        			updatekey = 1;
-                	selectval = $("#enter" + cc).val();
-    				for(var i = 0; i < $("#enter" + cc).parent().nextAll().children().length; i++){
-    					nowme = nowme.next();
-    					if(!nowme.children().attr("readonly")){
-    						nowme.children().focus();
-    						return false;
-    					}
-    				}
-                	$("#first" + (cc+1)).focus();
-					return false;
-        		}
-       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onchange", "enterupdate(" + cc + ");");
-       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
-       			$(".chit-table-bordered-primary tbody").append('<tr>' +
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "code' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-                        '<td><select class="form-control" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
-                        '<option value="">== 선택 ==</option>' +
-                        '<option value="일반">일반</option>' +
-                        '<option value="매입">매입</option>' +
-                        '<option value="매출">매출</option>' +
-                   		'</select></td>' +
-                       '</tr>');
-                    count = count + 1;
-       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
-       			 /* $.ajax({
-            			url : '${pageContext.request.contextPath}/FT_chitupdate?data=' + vv, 
-            			type : 'GET',
-            			success : function(data) { // 콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
-            				// 변수명이 반드시 . html(result)일 필요는 없으나 위 콜백함수의 변수명 result와 일치해야 한다.
-            				var text = "";
-            				alert(data.length);
-            				for(var i = 0; i<data.length; i++){
-            					alert(data[i].name);
-            					text += "<option value = " + data[i].price + ">" + data[i].name + "</option>";
-            				}
-            				$('input[name=key' + vv + ']').val(text);
-            			},
-            			error : function() {
-            				alert('오류');
-            			}
-            		}); */
         	}
         	
         	function allCheck(dd) {
@@ -297,9 +151,19 @@
 		                                        </thead>
 		    
 		                                        <tbody>
+		                                            <c:set var="count" value="0"/>
+				                                  	<c:if test="${account != null}">
+				                                   		<c:forEach var = "sub" items="${account}">
+				                                    		<tr>
+				                                    			<td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_code}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_name}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<c:set var="count" value="${count+1}"/>
+				                                    		</tr>
+				                                   		</c:forEach>
+				                                  	</c:if>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+		                                                <td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    	<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
@@ -311,7 +175,8 @@
 							<div class="card">
 								<div class="card-body">
 									<!-- 인적정보 -->
-									<form action="HR_inputProHR1" class="form-horizontal" method="post">
+									<form action="FT_AccountInsert" class="form-horizontal" method="post">
+										<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 										<div class="col-sm-12">
 											<div class="card-body table-responsive">
 												<h4 class="header-title">거래처 추가</h4>
@@ -328,7 +193,7 @@
 														<div class="form-group row">
 															<label class="col-lg-4 col-form-label" for="simpleinput">사업자명<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="bsName" placeholder = "거래처명">
+																<input type="text" class="form-control" name="bsName" placeholder = "사업자명">
 															</div>
 														</div>
 														
@@ -343,7 +208,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">대표자성명<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="bsMaster" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsMaster" placeholder = "대표자성명">
 															</div>
 														</div>
 														
@@ -351,7 +216,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">업태<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="bsCondition" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsCondition" placeholder = "업태">
 															</div>
 														</div>
 														
@@ -359,7 +224,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">종목<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="bsLine" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsLine" placeholder = "종목">
 															</div>
 														</div>
 														
@@ -367,7 +232,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">신용도<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="customerCredit" placeholder = "한글이름">
+																<input type="text" class="form-control" name="customerCredit" placeholder = "신용도">
 															</div>
 														</div>
 														
@@ -375,7 +240,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">개업년월일<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="date" class="form-control" name="bsStartdate" placeholder = "한글이름">
+																<input type="date" class="form-control" name="bsStartdate" placeholder = "개업년월일">
 															</div>
 														</div>
 													</div>
@@ -384,7 +249,7 @@
 															<div class="form-group row">
 																<label class="col-lg-4 col-form-label" for="simpleinput">지점명<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="text" class="form-control" name="branchName" placeholder = "한글이름">
+																	<input type="text" class="form-control" name="branchName" placeholder = "지점명">
 																</div>
 															</div>
 															
@@ -407,7 +272,7 @@
 																<label class="col-lg-4 col-form-label"
 																	for="simpleinput">사업장소재지<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="text" class="form-control" name="bsAddress" placeholder = "한글이름">
+																	<input type="text" class="form-control" name="bsAddress" placeholder = "사업장소재지">
 																</div>
 															</div>
 															
@@ -415,7 +280,7 @@
 																<label class="col-lg-4 col-form-label"
 																	for="simpleinput">본점소재지<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="text" class="form-control" name="bsAddress2" placeholder = "한글이름">
+																	<input type="text" class="form-control" name="bsAddress2" placeholder = "본점소재지">
 																</div>
 															</div>
 															

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -169,9 +170,10 @@ public class FT_Controller {
 
 	// 거래처 관리
 	@RequestMapping("FT_BasicAccount_Input")
-	public String FT_BasicAccount_Input(Locale locale, Model model) {
+	public String FT_BasicAccount_Input(HttpServletRequest req, Model model) {
 		logger.info("log => FT_BasicAccount_Input");
 
+		service.FT_AccountAllSelect(req, model);
 		return "FT/FT_BasicAccount_Input";
 	}
 
@@ -276,6 +278,15 @@ public class FT_Controller {
 
 		return "FT/FT_note_payable_list";
 	}
+	
+	//지급어음목록 검색결과
+	@RequestMapping(value = "FT_note_payable_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_Bill_payment_VO> FT_note_payable_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_note_payable_list_result");
+		List<FT_Bill_payment_VO> list = service.getBillPaymentList(map, req, model);
+		return list;
+	}
 
 	// 건물목록
 	@RequestMapping("FT_building_management")
@@ -363,7 +374,7 @@ public class FT_Controller {
 	}
 
 	// 거래처 추가    
-    @RequestMapping(value="FT_AccountInsert", method=RequestMethod.POST)
+    @RequestMapping(value="FT_AccountInsert")
     public String FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
     	logger.info("url : FT_AccountInsert 호출중");
         
@@ -379,6 +390,15 @@ public class FT_Controller {
 		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_AccountSelect(req);
+	}
+	
+	// 거래처 검색 가져오기
+	@RequestMapping(value = "FT_AccountOneSelect")
+	public @ResponseBody FT_Account FT_AccountOneSelect(HttpServletRequest req) {
+		logger.info("url : FT_AccountSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_AccountOneSelect(req);
 	}
 
 	// 계정과목 검색 가져오기

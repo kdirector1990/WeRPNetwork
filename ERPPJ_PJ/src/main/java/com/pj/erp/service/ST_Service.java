@@ -45,13 +45,24 @@ public interface ST_Service {
 	// ST_release 삭제 처리 페이지
 	public void releaseDeletePro(HttpServletRequest req, Model model);
 	
-	
-	
 	// ST_release 재고 등록
 	public void releaseWritePro(HttpServletRequest req, Model model);
 	
+	// ST_saleList 입력
+	public void saleListWritePro(HttpServletRequest req, Model model);
+	
+	// ST_saleList 목록 조회
+	public void saleList(HttpServletRequest req, Model model);
+	
+	
+	
+	
+	
 	// Product 검색
 	public void searchProduct(HttpServletRequest req, Model model);
+	
+	// Customer 검색
+	public void searchCustomer(HttpServletRequest req, Model model);
 	
 	
 	
