@@ -17,7 +17,7 @@
 		Values(#{ceq_code}, #{ceq_name}, #{ceq_type}, #{ceq_acquire_date}, #{department_code}, #{ceq_location}, #{ceq_prime_cost}, #{ceq_durable}, #{ceq_depreciation}, #{ceq_depreciation_type})
 	</insert>
 	
-	<!-- 고정자산 목록 구하기 -->
+	<!-- 고정자산 목록 갯수 구하기 -->
 	<select id="selectCTcnt" resultType="int">
 		Select Count(*) From computer_equipment_tbl
 		Where ceq_type = #{cep_type}
@@ -25,13 +25,13 @@
 	
 	<!-- 고정자산 목록  type-->
 	<select id="SelectCT" resultType="com.pj.erp.vo.CT.CT_VO">
-		select * from computer_equipment_tbl
+		select * from computer_equirpment_view
 		Where ceq_type = #{ceq_type}
 	</select>
 
 	<!-- 고정자산 목록 code-->
 	<select id="SelectCode" resultType="com.pj.erp.vo.CT.CT_VO">
-		select * from computer_equipment_tbl
+		select * from computer_equirpment_view
 		Where ceq_code = #{ceq_code}
 	</select>
 	
@@ -105,8 +105,8 @@
 	
 	<!-- 수리일지등록 -->
 	<insert id="InsertRP" parameterType="com.pj.erp.vo.CT.CT_RP_VO">
-		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state, rr_repair_type, rr_cost)
-		Values(lpad(asnumber.nextval,7,'RP_'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1, #{rr_repair_type}, #{rr_cost})
+		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state, rr_repair_type, rr_cost, rr_state)
+		Values(lpad(asnumber.nextval,7,'RP_'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1, #{rr_repair_type}, #{rr_cost}, rr_state = 1)
 	</insert>
 	
 	<!-- 수리타입으로 수리일지 조회 -->
@@ -114,5 +114,25 @@
 		Select * from repair_record_tbl
 		Where rr_repair_type = #{rr_repair_type}
 	</select>
-
+	
+	<!-- 수리코드로 수리일지 조회 -->
+	<select id="updateFormRP" resultType="com.pj.erp.vo.CT.CT_RP_VO">
+		Select * from repair_record_tbl
+		Where rr_code = #{rr_code}
+	</select>
+	
+	<!-- 수리일지 수리완료(수정완료) -->
+	<update id="updateRP" parameterType="com.pj.erp.vo.CT.CT_RP_VO">
+		Update repair_record_tbl
+		Set rr_title = #{rr_title}, rr_content = #{rr_content}, rr_repair_type = #{rr_repair_type},
+			rr_cost = #{rr_cost}, rr_state = 2
+		Where rr_code = #{rr_code}
+	</update>
+	
+	<!-- 수리일지 삭제 -->
+	<update id="deleteRP" parameterType="String">
+		Update repair_record_tbl
+		Set rr_state = 3
+		Where rr_code = #{rr_code}
+	</update>
 </mapper>

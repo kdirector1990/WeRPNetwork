@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ST_DAO;
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -409,6 +410,25 @@ public class ST_ServiceImpl implements ST_Service {
 
 		model.addAttribute("deleteRelease", deleteRelease);
 		model.addAttribute("sar_code", sar_code);
+	}
+	
+	
+	// Product 검색
+	@Override
+	public void searchProduct(HttpServletRequest req, Model model) {
+		String product_name = req.getParameter("product_name");
+
+		System.out.println("product_name : " + product_name);
+		int cnt = dao.selectProduct(product_name);
+
+		System.out.println("cnt: " + cnt);
+
+		if (cnt > 0) {
+			List<ProductList> ptos = dao.getProductList(product_name);
+			model.addAttribute("ptos", ptos);
+		}
+
+		model.addAttribute("cnt", cnt);
 	}
 	
 	

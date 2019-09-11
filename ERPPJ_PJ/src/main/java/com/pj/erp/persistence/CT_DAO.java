@@ -60,5 +60,14 @@ public interface CT_DAO {
 	
 	//수리일지 타입으로 select
 	public List<CT_RP_VO> selectRPC(String type);
+
+	//수리일지 가져오기
+	public CT_RP_VO updateFormRP(String code);
+	
+	//수리완료
+	public int updateRP(CT_RP_VO vo);
+	
+	//수리일지 폐기
+	public int deleteRP(String code);
 	
 }
