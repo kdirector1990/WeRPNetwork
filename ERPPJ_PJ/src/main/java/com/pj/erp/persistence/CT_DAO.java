@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_Depart_VO;
 import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
 public interface CT_DAO {
+	
+	//부서코드 부서이름 가져오기
+	public List<CT_Depart_VO> selectDP();
 
 	//상세계정 테이블 입력
 	public int InsertAC(FT_Detail_ac ac);

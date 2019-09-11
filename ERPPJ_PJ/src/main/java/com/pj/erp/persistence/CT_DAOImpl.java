@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_Depart_VO;
 import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
@@ -17,6 +18,12 @@ public class CT_DAOImpl implements CT_DAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//부서코드 부서이름 가져오기
+	@Override
+	public List<CT_Depart_VO> selectDP() {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectDP");
+	}
 	
 	//상세계정 등록
 	@Override
@@ -134,10 +141,13 @@ public class CT_DAOImpl implements CT_DAO{
 		return sqlSession.update("com.pj.erp.persistence.CT_DAO.updateRP", vo);
 	}
 
+	//수리폐기
 	@Override
 	public int deleteRP(String code) {
 		return sqlSession.update("com.pj.erp.persistence.CT_DAO.deleteRP", code);
 	}
+
+	
 	
 
 	

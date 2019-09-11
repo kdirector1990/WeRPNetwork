@@ -12,6 +12,9 @@ import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 public interface CT_Service {
+	
+	//부서코드 가져오기
+	public void select_DEP(HttpServletRequest req, Model model);
 
 	//전산설비 등록
 	public int CT_insert(HttpServletRequest req, Model model);

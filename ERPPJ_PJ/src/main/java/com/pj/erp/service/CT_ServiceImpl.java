@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pj.erp.persistence.CT_DAO;
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_Depart_VO;
 import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
@@ -24,6 +25,14 @@ public class CT_ServiceImpl implements CT_Service{
 	
 	@Autowired
 	CT_DAO dao;
+	
+	//부서코드, 부서이름 가져오기
+	@Override
+	public void select_DEP(HttpServletRequest req, Model model) {
+		List<CT_Depart_VO> dto = null; 
+		dto = dao.selectDP();
+		model.addAttribute(dto);
+	}
 	
 	//고정자산 입력
 	@Override
@@ -385,13 +394,5 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		return deleteCnt;
 	}
-
-	
-
-	
-	
-	
-	
-	
 
 }

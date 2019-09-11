@@ -42,7 +42,7 @@ public class CT_Controller {
 	@RequestMapping("CT_equip_add")
 	public String CT_equip_add(HttpServletRequest req, Model model) {
 		logger.info("log => CT_equip_add");
-		
+		CT.select_DEP(req, model);
 		return "CT/CT_equip_add";
 	}
 	
