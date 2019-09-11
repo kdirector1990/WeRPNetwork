@@ -147,6 +147,18 @@ public class CT_DAOImpl implements CT_DAO{
 		return sqlSession.update("com.pj.erp.persistence.CT_DAO.deleteRP", code);
 	}
 
+	//수리일지 폐기목록 가져오기
+	@Override
+	public List<CT_RP_VO> delRpList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.delRpList", map);
+	}
+
+	//수리일지 폐기취소
+	@Override
+	public int RPdeleteRemove(String code) {
+		return sqlSession.update("com.pj.erp.persistence.CT_DAO.RPdeleteRemove", code);
+	}
+
 	
 	
 

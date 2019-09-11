@@ -1,5 +1,6 @@
 package com.pj.erp.service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -69,4 +70,10 @@ public interface CT_Service {
 	
 	//수리일지 폐기
 	public int deleteRP(HttpServletRequest req, Model model);
+	
+	//수리일지 폐기 목록 가져오기
+	public List<CT_RP_VO> deleteRpList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	//수리일지 폐기처리 하기
+	public int RpDelUpdate(HttpServletRequest req, Model model);
 }

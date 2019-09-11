@@ -25,14 +25,26 @@
     
     var searchCount = 1;
     
-    function SelectRR(type){
-    	alert(type);
-    	$.ajax({
-  			url: '/erp/CT_Select_RP?${_csrf.parameterName }=${_csrf.token }',
+    
+    function search(){
+    	var param = new Object();
+		var jsonData;
+		
+		param.rr_code = $("#rr_code").val();
+		param.department_name = $("#department_name").val();
+		param.rr_title = $("#rr_title").val();
+		
+		jsonData = JSON.stringify(param);
+		alert(jsonData);
+		$.ajax({
+  			url: '/erp/CT_repairDelete_list?${_csrf.parameterName}=${_csrf.token }',
   			type: 'POST',
-  			data : {'rr_repair_type' : type},
+  			data : jsonData,
   			dataTpye: 'json',
+  			contentType:"application/json;charset=UTF-8",
   			success: function(vo){
+  				
+  				$('#result').empty();
   				document.getElementById("firstR").style.display="block";
   				var as_state = "";
   				for(var i = 0; i < vo.length; i++){
@@ -44,13 +56,13 @@
   					var	rr_cost = vo[i].rr_cost;
 
   					
-  					var cas_state = vo[i].cas_state;
-  					if(cas_state == 1){
+  					var rr_state = vo[i].rr_state;
+  					if(rr_state == 1){
   						as_state = "미처리";
-  					}else if(cas_state == 2){
-  						as_state = "처리중";
-  					}else if(cas_state == 3){
+  					}else if(rr_state == 2){
   						as_state = "완료";
+  					}else if(rr_state == 3){
+  						as_state = "삭제";
   					}
   					
   					var reg_date = vo[i].rr_reg_date;
@@ -67,10 +79,13 @@
   						day = "0" +day;
   					}
   					
-  					var rr_reg_date = year + "-" + month + "-" + day; 
+  					var rr_reg_date = year + "-" + month + "-" + day;
+  					var department_name = vo[i].department_name;
   					
-  					$("#result").append('<tr onclick="RepairUp(\''+rr_code+'\')"><td>'
+  					$("#result").append('<tr><td>'
+  							+ "<input type='checkbox' class='checklist' name='rr_code"+i+"' value='"+rr_code+"'></td><td>"
   							+ rr_code + "</td><td>"
+  							+ department_name + "</td><td>"
   							+ rr_reg_date + "</td><td>"
   							+ rr_title + "</td><td>"
   							+ as_state + "</td><td>"
@@ -101,148 +116,41 @@
 						searchCount = searchCount + 1;
   					}
   				}	
-  			},
+  				},
   			error : function(){
-  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
+  				alert("수리일지 삭제목록이 존재하지 않습니다.");
   			}
   		});
+		
     }
     
-    function RepairUp(code){
-    	alert(code);
-    	$.ajax({
-  			url: '/erp/CT_update_RPW?${_csrf.parameterName}=${_csrf.token }&rr_code='+code,
-  			type: 'POST',
-  			dataTpye: 'json',
-  			success: function(vo){
-  				alert("작동");
-  				
-  				$('#result2').empty();
-  				document.getElementById("seoncdR").style.display="block";
-  				
-  					var rr_code = vo.rr_code;
-					var rr_title = vo.rr_title;
-					var rr_content = vo.rr_content;
-					var ceq_code = vo.ceq_code;
-					var rr_repair_type = vo.rr_repair_type;
-					var	rr_cost = vo.rr_cost;
-
-					
-					var cas_state = vo.cas_state;
-					if(cas_state == 1){
-						as_state = "미처리";
-					}else if(cas_state == 2){
-						as_state = "처리중";
-					}else if(cas_state == 3){
-						as_state = "완료";
-					}
-					
-					var reg_date = vo.rr_reg_date;
-
-					var pa = new Date(reg_date);
-					var year = pa.getFullYear();
-					
-					var month = (1+pa.getMonth());
-					if(month < 10){
-						month = "0" +month;
-					}
-					var day = pa.getDate();
-					if(day < 10){
-						day = "0" +day;
-					}
-					
-					var rr_reg_date = year + "-" + month + "-" + day;
-  				
-  				if(isNaN != true){
-  					$('#result2').append('<input type="hidden" name="rr_code" value="'+rr_code+'">'
-  							+ '<div class="form-group row">'
-  		  					+ '<label class="col-md-2 col-form-label" for="example-email">작성날짜</label>'        
-  		  						+ '<div class="col-md-10">'
-  		  				    		+ '<input type="date" name="rr_reg_date" value="'+rr_reg_date+'" class="form-control" disabled>' 
-  		  				        +'</div>'
-  		  				    +'</div>'
-  		  					+ '<div class="form-group row">'
-		  					+ '<label class="col-md-2 col-form-label" for="example-email">제목</label>'        
-		  						+ '<div class="col-md-10">'
-		  				    		+ '<input type="text" name="rr_title" value="'+rr_title+'" class="form-control">' 
-		  				        +'</div>'
-		  				    +'</div>'
-		  				  	+ '<div class="form-group row">'
-		  			        + '<label class="col-md-2 col-form-label" for="example-textarea">내용</label>'
-		  			        	+ '<div class="col-md-10">'
-		  			            	+ '<textarea name="rr_content" class="form-control" rows="5" id="example-textarea">'+rr_content+'</textarea>'
-		  			        	+ '</div>'
-		  			    	+ '</div>'
-		  			    	+ '<div class="form-group row">'
-								+ '<label class="col-md-2 col-form-label" for="example-email">수리방법</label>'
-								+ '<div class="col-md-10">'
-									+ '<select name="rr_repair_type" class="form-control">'
-										+ '<option value="">선택</option>'
-										+ '<option value="내부수리">내부수리</option>'
-										+ '<option value="외부수리">외부수리</option>>'
-									+ '</select>'
-								+ '</div>'
-							+ '</div>'
-							+ '<div class="form-group row">'
-	                           + '<label class="col-md-2 col-form-label" for="example-email">금액</label>'
-	                           + '<div class="col-md-10">'
-	                          	 + '<input type="text" name="rr_cost" value="'+rr_cost+'" class="form-control" onkeyup="removeChar(event); inputNumberFormat(this);" />'
-	                           + '</div>'
-	                       	+ '</div>'
-  		  			    	+ '<div class="form-group text-right mb-0">'
-  		  						+ '<button onclick="updateRP();" type="button" class="btn btn-outline-primary waves-effect waves-light">수리완료</button>'
-  		  						+ '<button onclick="trashRP();" type="button" class="btn btn-outline-primary waves-effect waves-light">삭제</button>'
-  		  					+ '</div>'
-  		  				    );
-
-  				}
-  					  				
-  			},
-  			error : function(){
-  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
-  			}
-  		});
+    function allcheck(){
+    	if($("#allChecked").prop("checked")){
+    		$(".checklist").prop("checked", true);
+    	}
+    	else{
+    		$(".checklist").prop("checked", false);
+    	}
     }
     
-    function updateRP(){
-    	var param = $("#RPWirteForm").serializeArray();
+    function delRpX(){
+    	var param = $("#DelUpdate").serializeArray();
     	$.ajax({
-  			url: '/erp/CT_Update_RP',
-  			type: 'POST',
-  			data : param,
-  			dataTpye: 'json',
-  			success: function(updateCnt){
-  				
-  				if(updateCnt == 1){
-  					document.getElementById("seoncdR").style.display="none";
-  	  				alert("수리일지를 수정하였습니다.");  					
-  				}
-  			},
-  			error : function(){
-  				alert("전산 오류로 인하여 일지 수정에 실패하였습니다.");
-  			}
-  		});
+			url: '/erp/CT_RP_Rewind',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(updateCnt){
+				if(updateCnt == 1){
+					alert("폐기처리를 수정하였습니다.")
+				}
+			},
+			error : function(){
+				alert("전산 오류로 인하여 완료처리 수정에 실패하였습니다.");
+			}
+		});
     }
     
-    function trashRP(){
-    	var param = $("#RPWirteForm").serializeArray();
-    	$.ajax({
-  			url: '/erp/CT_Delete_RP',
-  			type: 'POST',
-  			data : param,
-  			dataTpye: 'json',
-  			success: function(deleteCnt){
-  				
-  				if(deleteCnt == 1){
-  					document.getElementById("seoncdR").style.display="none";
-  	  				alert("수리일지를 폐기하였습니다.");  					
-  				}
-  			},
-  			error : function(){
-  				alert("전산 오류로 인하여 일지 폐기에 실패하였습니다.");
-  			}
-  		});
-    }
     
     </script>
 </head>
@@ -278,28 +186,38 @@
                             </div>
                         </div>
                         
-                        <!-- start page title -->
                         <div class="row">
-							<div class="col-sm-12">
-								<div class="card">
-									<div class="card-body table-responsive">
-										<div class="form-group row">
-											<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
-											<div class="col-md-4 input-group">
-												<form id="select1" style="width:400px; text-align:center;">														
-												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-													<select class=" form-control" name="rr_repair_type" onchange="SelectRR(this.value);">
-														<option value="" selected disabled></option>								
-														<option value="내부수리">내부수리</option>
-														<option value="외부수리">외부수리</option>
-													</select>
-												</form>
-											</div>	
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-body table-responsive">
+							<table class = "col-12" >
+								<tr class="form-group row" >
+									<th class="col-md-1 col-form-label">수리코드</th>
+										<td class="col-md-2 input-group">
+												<input type="text" class="form-control" name="rr_code" id = "rr_code" placeholder = "RP_">
+										</td>
+									<td class="col-md-1 col-form-label">&nbsp;</td>			
+									<th class="col-md-1 col-form-label">부서명</th>
+										<td class="col-md-2 input-group">
+											<input type="text" class="form-control" name="department_name" id="department_name" placeholder = "부서명">
+										</td>
+									<td class="col-md-1 col-form-label">&nbsp;</td>			
+									<th class="col-md-1 col-form-label">수리제목</th>
+										<td class="col-md-2 input-group">
+											<input type="text" class="form-control" name="rr_title" id="rr_title" placeholder = "수리제목">
+										</td>	
+									
+									<td><button type="button" class="btn btn-primary waves-effect waves-light" onclick = "search();">검색</button></td>
+								</tr>
+							</table>
+		                    	</div>
+                             </div>
+		                   </div> 
+                         </div>
+                        
+                        
+                        <!-- start page title -->
+                        
                         <!-- end page title --> 
 						
 					<div id="firstR">	
@@ -307,11 +225,14 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        
+                                        <form id="DelUpdate">
+                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
+                                            	<th><input type="checkbox" id="allChecked" onclick="allcheck();"></th>
                                             	<th>수리코드</th>
+                                            	<th>사용부서</th>
                                                 <th>등록일</th>
                                                 <th>제목</th>
                                                 <th>처리상태</th>
@@ -322,30 +243,17 @@
     
                                             <tbody id="result">
                                             </tbody>
-                                            
                                         </table>
+                                        </form>
                                     </div>
+                                    <div class="form-group text-right mr-1">
+                                          <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick="delRpX();">폐기취소</button>
+                            		</div>
                                 </div>
                             </div>
                         </div>
                      </div>
-                     
-                     <div id="seoncdR">	
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-										<form id = "RPWirteForm">
-										<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-											<div id="result2">
-											</div>
-										</form>                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-                       
+                    
                     </div> <!-- end container-fluid -->
                     
 

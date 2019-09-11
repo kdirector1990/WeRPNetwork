@@ -31,7 +31,11 @@ public class CT_ServiceImpl implements CT_Service{
 	public void select_DEP(HttpServletRequest req, Model model) {
 		List<CT_Depart_VO> dto = null; 
 		dto = dao.selectDP();
-		model.addAttribute(dto);
+		
+		System.out.println(dto.get(0).getDepartment_name());
+		System.out.println(dto.get(0).getDepartment_code());
+		
+		model.addAttribute("dto", dto);
 	}
 	
 	//고정자산 입력
@@ -306,7 +310,7 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		if(cnt != 0) {
 			List<CT_VO> dto = dao.selectCeqS(department_code);
-			model.addAttribute("dto", dto);
+			model.addAttribute("dtos", dto);
 			System.out.println("if 작동");
 		}
 		
@@ -385,6 +389,7 @@ public class CT_ServiceImpl implements CT_Service{
 		return updateCnt;
 	}
 
+	//수리일지 폐기하기
 	@Override
 	public int deleteRP(HttpServletRequest req, Model model) {
 		
@@ -393,6 +398,36 @@ public class CT_ServiceImpl implements CT_Service{
 		int deleteCnt = dao.deleteRP(rr_code);
 		
 		return deleteCnt;
+	}
+
+	//수리일지 폐기 목록 가져오기 
+	@Override
+	public List<CT_RP_VO> deleteRpList(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		
+		List<CT_RP_VO> vo = dao.delRpList(map);
+		
+		System.out.println(vo.get(0).getCeq_code());
+		
+		return vo;
+	}
+
+	//수리일지 폐기취소
+	@Override
+	public int RpDelUpdate(HttpServletRequest req, Model model) {
+		
+		int i = 0;
+		int updateCnt = 0;
+		
+		do{
+			String rr_code = req.getParameter("rr_code" + i);
+			System.out.println(rr_code);
+			updateCnt = dao.RPdeleteRemove(rr_code);
+			System.out.println("Ok");
+			
+			i++;
+		}
+		while(req.getParameter("rr_code"+i) != null);
+		return updateCnt;
 	}
 
 }

@@ -74,4 +74,10 @@ public interface CT_DAO {
 	//수리일지 폐기
 	public int deleteRP(String code);
 	
+	//수리일지 폐기목록 가져오기
+	public List<CT_RP_VO> delRpList(Map<String, Object> map) throws java.text.ParseException;
+	
+	//수리일지 폐기취소
+	public int RPdeleteRemove(String code);
+	
 }

@@ -1,6 +1,7 @@
 package com.pj.erp.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,7 @@ public class CT_Controller {
 	public String CT_equip_add(HttpServletRequest req, Model model) {
 		logger.info("log => CT_equip_add");
 		CT.select_DEP(req, model);
+
 		return "CT/CT_equip_add";
 	}
 	
@@ -210,7 +212,7 @@ public class CT_Controller {
 	@RequestMapping("CT_Ceq_Search")
 	public String CT_Ceq_Search(HttpServletRequest req, Model model) {
 		logger.info("log => CT_Ceq_Search");
-		
+		CT.select_DEP(req, model);
 		return "CT/CT_Ceq_Search";
 	}
 	
@@ -270,12 +272,34 @@ public class CT_Controller {
 		return deleteCnt;
 	}
 	
-	//수리 일지 등록
+	//수리 일지 삭제 페이지
 	@RequestMapping("CT_repair_trash")
 	public String CT_repair_trash(HttpServletRequest req, Model model) {
 		logger.info("log => CT_repair_trash");
+		
 		return "CT/CT_repair_trash";
 	}
+	
+	//수리 삭제 목록 가져오기
+	@RequestMapping(value = "CT_repairDelete_list", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<CT_RP_VO> CT_repairDelete_list(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => CT_repairDelete_list");
+		List<CT_RP_VO> vo = CT.deleteRpList(map, req, model);
+		return vo;
+	}
+	
+	//수리폐기 취소하기
+	@RequestMapping("CT_RP_Rewind")
+	@ResponseBody
+	public int CT_RP_Rewind(HttpServletRequest req, Model model) {
+		logger.info("log => CT_RP_Rewind");
+		
+		int updateCnt = CT.RpDelUpdate(req, model);
+		
+		return updateCnt;
+	}
+	
 	
 	
 	//외부업체 수리 등록

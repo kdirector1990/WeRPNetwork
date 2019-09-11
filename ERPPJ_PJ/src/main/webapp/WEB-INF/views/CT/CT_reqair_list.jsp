@@ -33,6 +33,8 @@
   			data : {'rr_repair_type' : type},
   			dataTpye: 'json',
   			success: function(vo){
+  				$('#result').empty();
+  				document.getElementById("seoncdR").style.display="none";
   				document.getElementById("firstR").style.display="block";
   				var as_state = "";
   				for(var i = 0; i < vo.length; i++){
@@ -42,15 +44,14 @@
   					var ceq_code = vo[i].ceq_code;
   					var rr_repair_type = vo[i].rr_repair_type;
   					var	rr_cost = vo[i].rr_cost;
-
+  					var rr_state = vo[i].rr_state;
   					
-  					var cas_state = vo[i].cas_state;
-  					if(cas_state == 1){
+  					if(rr_state == 1){
   						as_state = "미처리";
-  					}else if(cas_state == 2){
-  						as_state = "처리중";
-  					}else if(cas_state == 3){
+  					}else if(rr_state == 2){
   						as_state = "완료";
+  					}else if(rr_state == 3){
+  						as_state = "삭제";
   					}
   					
   					var reg_date = vo[i].rr_reg_date;
@@ -67,7 +68,8 @@
   						day = "0" +day;
   					}
   					
-  					var rr_reg_date = year + "-" + month + "-" + day; 
+  					var rr_reg_date = year + "-" + month + "-" + day;
+  					
   					
   					$("#result").append('<tr onclick="RepairUp(\''+rr_code+'\')"><td>'
   							+ rr_code + "</td><td>"
@@ -128,13 +130,13 @@
 					var	rr_cost = vo.rr_cost;
 
 					
-					var cas_state = vo.cas_state;
-					if(cas_state == 1){
+					var rr_state = vo.rr_state;
+					if(rr_state == 1){
 						as_state = "미처리";
-					}else if(cas_state == 2){
-						as_state = "처리중";
-					}else if(cas_state == 3){
+					}else if(rr_state == 2){
 						as_state = "완료";
+					}else if(rr_state == 3){
+						as_state = "삭제";
 					}
 					
 					var reg_date = vo.rr_reg_date;
@@ -177,7 +179,7 @@
 								+ '<label class="col-md-2 col-form-label" for="example-email">수리방법</label>'
 								+ '<div class="col-md-10">'
 									+ '<select name="rr_repair_type" class="form-control">'
-										+ '<option value="">선택</option>'
+										+ '<option value="'+rr_repair_type+'" disabled>선택</option>'
 										+ '<option value="내부수리">내부수리</option>'
 										+ '<option value="외부수리">외부수리</option>>'
 									+ '</select>'
@@ -261,7 +263,6 @@
                 <!-- Start Content-->
                     <div class="container-fluid">
                     
-                        
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
