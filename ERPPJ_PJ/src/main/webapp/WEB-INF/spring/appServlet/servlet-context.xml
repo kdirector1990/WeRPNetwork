@@ -52,11 +52,9 @@
 	
 		<beans:constructor-arg ref="sqlSessionFactory"/>
 	
-	</beans:bean>
+	</beans:bean> 
 	
-	<context:annotation-config/> 
-
-
+	<context:annotation-config/>
 	
 	
 </beans:beans>

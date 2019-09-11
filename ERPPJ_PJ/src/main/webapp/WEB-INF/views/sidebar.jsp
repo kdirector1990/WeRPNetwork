@@ -573,6 +573,7 @@
 	                          		<ul>
 	                          			<li><a href="CT_repair_list_add">수리 일지 등록</a></li>
                     					<li><a href="CT_reqair_list">수리 현황</a></li>
+                    					<li><a href="CT_repair_trash">수리 폐기</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
