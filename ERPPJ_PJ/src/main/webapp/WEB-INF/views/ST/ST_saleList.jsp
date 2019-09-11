@@ -142,9 +142,15 @@
 												</select></td>
 												<td><input type="text" class=""></td>
 											</tr>
+											
+											
 										</table>
+										
 										<br>
 										<div class="col-lg-12">
+										<div align="right">
+											 <a onclick="window.open('ST_saleList_write', '_blank', 'width=1500 height=600')"><button type="button" class="btn btn-success waves-effect waves-light">추가</button></a>
+										</div>	 
 											<div class="card">
 												<div class="table-responsive">
 													<table class="table mb-0" style="table-layout: fixed;">

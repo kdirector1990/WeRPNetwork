@@ -4,7 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.pj.erp.persistence.CT_DAO">
+
+
+	<!-- 부서코드 및 부서정보 가져오기 -->
+	<select id="selectDP" resultType="com.pj.erp.vo.CT.CT_Depart_VO">
+		select department_code, department_name 
+		from department_tbl
+	</select>
 	
+	<!-- 상세계정테이블에 등록하기 -->
 	<insert id="InsertAC" parameterType="com.pj.erp.vo.FT.FT_Detail_ac">
 		Insert Into detail_ac_tbl(accounts_code, detail_ac_code, account_name)
 		Values(#{accounts_code}, #{detail_ac_code}, #{account_name})
@@ -105,19 +113,20 @@
 	
 	<!-- 수리일지등록 -->
 	<insert id="InsertRP" parameterType="com.pj.erp.vo.CT.CT_RP_VO">
-		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, cas_state, rr_repair_type, rr_cost, rr_state)
-		Values(lpad(asnumber.nextval,7,'RP_'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, 1, #{rr_repair_type}, #{rr_cost}, rr_state = 1)
+		Insert Into repair_record_tbl(rr_code, rr_reg_date, rr_title, rr_content, ceq_code, rr_repair_type, rr_cost, rr_state)
+		Values(lpad(asnumber.nextval,7,'RP_'), sysdate, #{rr_title}, #{rr_content}, #{ceq_code}, #{rr_repair_type}, #{rr_cost}, 1)
 	</insert>
 	
 	<!-- 수리타입으로 수리일지 조회 -->
 	<select id="selectRPC" resultType="com.pj.erp.vo.CT.CT_RP_VO">
-		Select * from repair_record_tbl
+		Select * from repair_view
 		Where rr_repair_type = #{rr_repair_type}
+		And rr_state != 3
 	</select>
 	
 	<!-- 수리코드로 수리일지 조회 -->
 	<select id="updateFormRP" resultType="com.pj.erp.vo.CT.CT_RP_VO">
-		Select * from repair_record_tbl
+		Select * from repair_view
 		Where rr_code = #{rr_code}
 	</select>
 	
@@ -133,6 +142,22 @@
 	<update id="deleteRP" parameterType="String">
 		Update repair_record_tbl
 		Set rr_state = 3
+		Where rr_code = #{rr_code}
+	</update>
+	
+	<!-- 수리일지 폐기목록 가져오기 -->
+	<select id="delRpList" parameterType="java.util.Map" resultType="com.pj.erp.vo.CT.CT_RP_VO">
+		Select * From repair_view
+		Where department_name like '%'||#{department_name}||'%'
+		And rr_code like '%'||#{rr_code}||'%'
+		And rr_title like '%'||#{rr_title}||'%'
+		And rr_state = 3
+	</select>
+	
+	<!-- 수리일지 폐기취소 -->
+	<update id="RPdeleteRemove" parameterType="String">
+		Update repair_record_tbl
+		Set rr_state = 2
 		Where rr_code = #{rr_code}
 	</update>
 </mapper>
