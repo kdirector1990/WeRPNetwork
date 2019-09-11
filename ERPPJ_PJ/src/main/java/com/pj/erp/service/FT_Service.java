@@ -1,7 +1,9 @@
 package com.pj.erp.service;
 
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -21,14 +23,23 @@ public interface FT_Service {
 	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map, Model model);
 	
 	// 전표입력
-	public String FT_chitupdate(Map<String, Object> map);
-	
-	// 전표입력
 	public String FT_chitInsert(Map<String, Object> map);
 	
-	// 거래처 추가
-	public int FT_ACCInsert(Map<String, Object> map);
+	// 전표수정
+	public String FT_chitupdate(Map<String, Object> map);
 
+	// 전표삭제
+	public String FT_chitDelete(Map<String, Object> map);
+	
+	// 거래처 추가
+	public void FT_AccountInsert(MultipartHttpServletRequest req, Model model);
+
+	// 사원 모두 가져오기
+	public void FT_UsersAllSelect(HttpServletRequest req, Model model);
+	
+	// 사원 검색한 것 가져오기
+	public List<HR_VO> FT_UsersSelect(HttpServletRequest req);
+	
 	// 거래처 모두 가져오기
 	public void FT_AccountAllSelect(HttpServletRequest req, Model model);
 	

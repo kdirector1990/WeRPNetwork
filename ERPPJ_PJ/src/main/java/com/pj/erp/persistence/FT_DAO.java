@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -26,11 +27,17 @@ public interface FT_DAO {
 	// 분개 데이터 가져오기
 	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map);
 	
+	// 전표 최근 입력 key 가져오기
+	public String FT_chitKeySelect();
+	
 	// 전표입력
 	public int FT_chitInsert(Map<String, Object> map);
 	
 	// 전표수정
 	public int FT_chitupdate(Map<String, Object> map);
+	
+	// 전표삭제
+	public int FT_chitDelete(Map<String, Object> map);
 	
 	//예산신청입력처리
 	public int FT_applyinput();
@@ -87,5 +94,14 @@ public interface FT_DAO {
 	
 	// 계정과목 검색한 것 가져오기
 	public List<FT_Subject> FT_SubjectSelect(String srhval);
+	
+	// 사원 가져오기
+	public List<HR_VO> FT_UsersAllSelect();
+	
+	// 사원 검색 한 것 개수 가져오기
+	public int FT_UsersCntSelect(String srhval);
+	
+	// 사원 검색한 것 가져오기
+	public List<HR_VO> FT_UsersSelect(String srhval);
 	
 }
