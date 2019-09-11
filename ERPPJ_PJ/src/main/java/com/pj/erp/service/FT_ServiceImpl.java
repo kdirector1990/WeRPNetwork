@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.persistence.FT_DAO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -278,6 +279,14 @@ public class FT_ServiceImpl implements FT_Service{
 			throws ParseException {
 			
 		List<FT_Long_Borrow_List> list = dao.getLBorrowList(map);
+		
+		return list;
+	}
+
+	@Override
+	public List<FT_Bill_payment_VO> getBillPaymentList(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+			List<FT_Bill_payment_VO> list = dao.getBillPaymentList(map);
 		
 		return list;
 	}	

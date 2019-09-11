@@ -11,6 +11,96 @@
     <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<script type = "text/javascript">
+    var searchCount = 1;
+	 $(function(){
+		$('#search').click(function(){
+			var param = new Object();
+			var jsonData;
+			
+			
+			param.customer_code = $("#customer_code").val();
+					
+			jsonData = JSON.stringify(param);
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/FT_note_payable_list_result?${_csrf.parameterName}=${_csrf.token }',
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){
+					
+					$('#result').empty();
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var bill_p_codes = list[i].bill_p_code;
+						var customer_codes = list[i].customer_code;
+						var payment_prices = list[i].payment_price;
+						//대여일
+						var debt_l_dates = list[i].payment_date;
+						var pa = new Date(debt_l_dates);
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var payment_dates = year + "/" + month +"/"+day;
+						//만기일
+						var debt_l_exprirations = list[i].payment_expriration;
+						var pas = new Date(debt_l_exprirations);
+						var years = pas.getFullYear();
+						var months = (1+pas.getMonth());
+						var days = pas.getDate(); 
+						var payment_exprirations = years + "/" + months +"/"+days;
+						
+						var payment_interests = list[i].payment_interest;
+						
+					$('#result').append('<tr>'+
+                         	'<td>'+ bill_p_codes +'</td>'+
+							'<td>'+ customer_codes +'</td>'+
+							'<td>'+ payment_prices +'</td>'+
+							'<td>'+ payment_dates +'</td>'+
+							'<td>'+ payment_exprirations +'</td>'+
+							'<td>'+ payment_interests +'</td>'+
+                 		'</tr>');
+					}
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
+					
+					
+					
+				},
+				error : function(){
+					alert("에러");
+				}
+			});
+		}); 
+	 });
+	 
+</script>
     </head>
 	<body>
      	 <!-- Begin page -->
@@ -40,7 +130,25 @@
 						</div>
 					</div>
 					<!-- end page title -->
-                
+                	<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+								<table class="col-12">
+									<tr class="form-group row">
+										<th class="col-md-1 col-form-label">거래처 코드 검색</th>
+										<td class="col-md-1 input-group">
+											<input type="text" class="form-control" name="customer_code" id = "customer_code ">
+											</td>
+										<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
+									</tr>									
+								</table>
+								
+                                        
+                                  	</div>
+                             </div>
+		                   </div> 
+                         </div>
                 	<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
@@ -62,71 +170,8 @@
 	                                              <th>이자율</th>
                                          		</tr>
                                       		</thead>
-                                    		<tbody>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-	                                              <td>2</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-	                                              <td>3</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-	                                              <td>4</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-	                                              <td>5</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-	                                              <td>6</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-	                                              <td>7</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-	                                              <td>8</td>
-                                          		</tr>
+                                    		<tbody id = "result">
+                                          		
                                       		</tbody>
                                         </table>
                                   	</div>
@@ -150,30 +195,23 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
-        <!-- Datatable plugin js -->
-        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+       <!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-        <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
-
-        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id = "bodyappend">
+	</div>
         
     </body>
 </html>

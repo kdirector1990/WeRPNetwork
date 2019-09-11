@@ -320,4 +320,14 @@
 		</if>
 	</select>
 	
+	<!-- 지급어음 목록 검색결과 -->
+	<select id="getBillPaymentList" resultType="com.pj.erp.vo.FT.FT_Bill_payment_VO" parameterType = "java.util.Map">
+		select * from bill_payment_tbl
+		<if test = "customer_code != null">
+				where customer_code = '%'||#{customer_code}||'%' 
+		</if>
+		<if test = "customer_code == null">
+		</if>
+	</select>
+	
 </mapper>
