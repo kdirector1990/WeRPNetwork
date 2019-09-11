@@ -244,7 +244,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
                                         
                                        <div class="table-responsive" style = "margin: 15px 0px 50px">
                                        <form id="CTinsert" action="CT_subject_add" method="post" class="form-horizontal">
-                                       <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+                                        
                                             <table class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
 	                                            <col style = "width:12%">
 	                                            <col style = "width:13%;">

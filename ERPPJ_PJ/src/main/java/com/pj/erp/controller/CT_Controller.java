@@ -270,6 +270,13 @@ public class CT_Controller {
 		return deleteCnt;
 	}
 	
+	//수리 일지 등록
+	@RequestMapping("CT_repair_trash")
+	public String CT_repair_trash(HttpServletRequest req, Model model) {
+		logger.info("log => CT_repair_trash");
+		return "CT/CT_repair_trash";
+	}
+	
 	
 	//외부업체 수리 등록
 	@RequestMapping("CT_ComInsertForm")

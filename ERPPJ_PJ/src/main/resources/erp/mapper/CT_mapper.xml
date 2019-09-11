@@ -113,6 +113,7 @@
 	<select id="selectRPC" resultType="com.pj.erp.vo.CT.CT_RP_VO">
 		Select * from repair_record_tbl
 		Where rr_repair_type = #{rr_repair_type}
+		And rr_state != 3
 	</select>
 	
 	<!-- 수리코드로 수리일지 조회 -->
