@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
+<style type="text/css">
+	#payAll{
+		display : none;
+	}
+</style>
+
 <%@ include file="../setting.jsp"%>
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
@@ -20,6 +26,8 @@
 			contentType : 'application/json',
 			dataType : "json",
 			success : function(vo){
+				
+				document.getElementById("payAll").style.display="block";
 				if($(".payRank") != null){
 					$(".payRank").remove();
 				}				
@@ -96,9 +104,6 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box">
-								<div class="page-title-right">
-    								<button id="updatePA" onclick="payUpdate();" type="button" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
-								</div>
 								<h4 class="page-title">호봉테이블 입력</h4>
 							</div>
 						</div>
@@ -152,6 +157,7 @@
 
 			
 				<div class="col-lg-6">
+				<div id="payAll">
 					<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
@@ -173,10 +179,13 @@
 								<div class="page-title-center">
 									</div>								
 							</div>
+							<div class="page-title-center">
+    								<button id="updatePA" onclick="payUpdate();" type="button" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
+							</div>
 						</div>
 					</div>
 				</div>
-				
+				</div>
 			</div>
 			 <%@ include file="../footer.jsp" %>
 			</div>
