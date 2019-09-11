@@ -115,7 +115,6 @@ public class FT_ServiceImpl implements FT_Service{
                     
             FT_Account vo = new FT_Account();
             vo.setCustomer_name(req.getParameter("customerName"));
-            vo.setLicense_number(req.getParameter("licenseNumber"));
             vo.setBranch_name(req.getParameter("branchName"));
             vo.setCustomer_credit(req.getParameter("customerCredit"));
             vo.setDeal_state(req.getParameter("state"));
@@ -129,7 +128,9 @@ public class FT_ServiceImpl implements FT_Service{
             vo.setBs_line(req.getParameter("bsLine"));
             vo.setLicense_scanfile(file.getOriginalFilename());
             
-            dao.FT_AccountInsert(vo);
+            int insertCnt = dao.FT_AccountInsert(vo);
+            
+            model.addAttribute("cnt", insertCnt);
             
         } catch(IOException e) {
             e.printStackTrace();
@@ -144,6 +145,14 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println("customerCode : " + account.get(0).getCustomer_code());
 		model.addAttribute("account", account);
 		model.addAttribute("listsize", account.size() + 1);
+	}
+	
+	// 거래처 검색한 것 가져오기
+	@Override
+	public FT_Account FT_AccountOneSelect(HttpServletRequest req) {
+		FT_Account ac = dao.FT_AccountOneSelect(req.getParameter("key"));
+		System.out.println(ac);
+		return ac;
 	}
 
 	// 거래처 검색한 것 가져오기

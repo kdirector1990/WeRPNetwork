@@ -169,9 +169,10 @@ public class FT_Controller {
 
 	// 거래처 관리
 	@RequestMapping("FT_BasicAccount_Input")
-	public String FT_BasicAccount_Input(Locale locale, Model model) {
+	public String FT_BasicAccount_Input(HttpServletRequest req, Model model) {
 		logger.info("log => FT_BasicAccount_Input");
 
+		service.FT_AccountAllSelect(req, model);
 		return "FT/FT_BasicAccount_Input";
 	}
 
@@ -363,7 +364,7 @@ public class FT_Controller {
 	}
 
 	// 거래처 추가    
-    @RequestMapping(value="FT_AccountInsert", method=RequestMethod.POST)
+    @RequestMapping(value="FT_AccountInsert")
     public String FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
     	logger.info("url : FT_AccountInsert 호출중");
         
@@ -379,6 +380,15 @@ public class FT_Controller {
 		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_AccountSelect(req);
+	}
+	
+	// 거래처 검색 가져오기
+	@RequestMapping(value = "FT_AccountOneSelect")
+	public @ResponseBody FT_Account FT_AccountOneSelect(HttpServletRequest req) {
+		logger.info("url : FT_AccountSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_AccountOneSelect(req);
 	}
 
 	// 계정과목 검색 가져오기

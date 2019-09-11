@@ -47,6 +47,9 @@ public interface FT_Service {
 	public void FT_AccountAllSelect(HttpServletRequest req, Model model);
 	
 	// 거래처 검색한 것 가져오기
+	public FT_Account FT_AccountOneSelect(HttpServletRequest req);
+	
+	// 거래처 검색한 것 가져오기
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req);
 	
 	// 적금 가져오기

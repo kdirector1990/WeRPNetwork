@@ -192,16 +192,33 @@ public class FT_DAOImpl implements FT_DAO{
 		}
 	}
 	
+	// 사업자번호 추가
+	@Override
+	public int FT_LicenseInsert(FT_Account vo) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LicenseInsert",vo);
+	}
+	
 	// 거래처 추가
 	@Override
 	public int FT_AccountInsert(FT_Account vo) {
-		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccountInsert",vo);
+		int cnt = FT_LicenseInsert(vo);
+		if(cnt == 0) {
+			return 0;
+		} else {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccountInsert",vo);
+		}
 	}
 	
 	// 거래처 검색 한 것 개수 가져오기
 	public int FT_AccountCntSelect(String srhval) {
 		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
 		return dao.FT_AccountCntSelect(srhval);
+	}
+	
+	// 거래처 검색한 것 가져오기
+	@Override
+	public FT_Account FT_AccountOneSelect(String srhval) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_AccountOneSelect", srhval);
 	}
 	
 	// 거래처 검색한 것 가져오기
