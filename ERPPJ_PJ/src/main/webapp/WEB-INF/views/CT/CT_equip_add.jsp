@@ -124,6 +124,9 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 	                            '<option value="재무">재무</option>' +
 	                            '<option value="전산">전산</option>' +
 	                            '<option value="제조">제조</option>' +
+	                            '<c:forEach var="item" items="${testitems}">' +
+	                            	'<option value="${item}">${item}</option>' +
+	                            '</c:forEach>' +
                        		'</select></td>' +
                        		'<td><input type="text" onfocus = "focuse();" name = "ceq_location' + count +'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);"></td>' +
                             '<td><input type="text" class="form-control" onfocus = "focuse();" name = "ceq_prime_cost' + count +'" onkeyup="removeChar(event); inputNumberFormat(this);" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName,this.name);" required></td>' +
@@ -293,7 +296,17 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 			                                                <option value="재무">재무</option>
 			                                                <option value="전산">전산</option>
 			                                                <option value="제조">제조</option>
-			                                       		</select></td>
+			                                       		</select>
+			                                       		
+			                                       		<select class="form-control" onfocus = "focuse(this.name);" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
+			                                                <c:forEach var="item" items="${testitems}">
+			                                       				<option value="${item}">${item}</option>
+			                                       			</c:forEach>
+			                                            
+			                                       		</select>
+			                                       		 
+			                                       		
+			                                       		</td>
 		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_location0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" class="form-control" name = "ceq_prime_cost0" onfocus = "focuse();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onchange="enter(this.tagName,this.name);" required></td>
 			                                       		<td><input type="text" onfocus = "focuse(this.name);" name = "ceq_durable0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onkeyup="enter(this.tagName, this.name);"></td>
