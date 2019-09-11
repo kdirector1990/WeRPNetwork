@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -61,5 +62,11 @@ public interface ST_DAO {
 	
 	// release 등록 처리
 	public int insertRelease(Release vo);
+	
+	// 제품명 검색 확인
+	public int selectProduct(String product_name);
+	
+	// 검색 목록 가져오기
+	public List<ProductList> getProductList(String product_name);
 
 }

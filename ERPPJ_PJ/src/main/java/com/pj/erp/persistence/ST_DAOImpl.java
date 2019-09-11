@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -119,6 +120,19 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public int insertRelease(Release vo) {
 		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.insertRelease", vo);
+	}
+	
+	
+	// 제품명 검색
+	@Override
+	public int selectProduct(String product_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectProduct", product_name);
+	}
+	
+	// 검색 목록
+	@Override
+	public List<ProductList> getProductList(String product_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getProductList", product_name);
 	}
 	
 	

@@ -405,6 +405,7 @@
 	                          			<li><a href="ST_sale_plan">판매계획 관리</a></li>
 										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_release">출고 등록</a></li>
+										<li><a href="ST_saleList">판매 관리</a></li>
 										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
 										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
 	                          		</ul>
@@ -571,6 +572,7 @@
 	                          		<ul>
 	                          			<li><a href="CT_repair_list_add">수리 일지 등록</a></li>
                     					<li><a href="CT_reqair_list">수리 현황</a></li>
+                    					<li><a href="CT_repair_trash">수리 폐기</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	

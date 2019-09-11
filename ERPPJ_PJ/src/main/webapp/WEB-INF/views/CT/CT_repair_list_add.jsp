@@ -36,6 +36,8 @@
                                         <h4 class="header-title">수리일지</h4>
     									<br>
                                          <form action="CT_repair_add" name="insertRP">
+                                         <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+                                         <input type = "hidden" name = "cas_statee" value="">
                                         	<div class="form-group">
                                                 <label>제목</label>
                                                 <input type="text" name="rr_title" class="form-control" required

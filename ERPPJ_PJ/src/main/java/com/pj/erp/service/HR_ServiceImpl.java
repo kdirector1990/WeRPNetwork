@@ -122,7 +122,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
-		String level_step = "920";
+		String level_step = "1";
 		vo.setLevel_step(level_step);		
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
@@ -333,11 +333,59 @@ public class HR_ServiceImpl implements HR_Service{
 
 	@Override
 	public void selectPhysical(HttpServletRequest req, Model model) {
-		List<HR_PhysicalVO> phy = dao.physicaly();
+		List<HR_PhysicalVO> phy = dao.physicalyList();
 		
 		model.addAttribute("phy", phy);
 	}
+	
+	@Override
+	public void modifyFoundationView(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_VO vo = dao.getFoundation(username);
+		
+		model.addAttribute("vo", vo);
+	}
 
+
+	@Override
+	public void modifyFoundationPro(HttpServletRequest req, Model model) {
+		HR_VO vo = new HR_VO();
+		String username = req.getParameter("username");
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
+		
+		vo.setUsername(username);		
+		vo.setE_gender(e_gender);
+		vo.setE_type(req.getParameter("e_type"));
+		vo.setE_code(req.getParameter("e_code"));
+		vo.setE_hp(req.getParameter("e_hp"));
+		
+		String e_address = "";
+		String e_address1 = req.getParameter("e_address1");
+		String e_address2 = req.getParameter("e_address2");
+		
+		e_address = e_address1 + "/" + e_address2;
+		vo.setE_address(e_address);
+		
+		vo.setE_mailcode(req.getParameter("e_mailcode"));
+		
+		String level_step = "";
+		vo.setLevel_step(level_step);		
+		
+		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
+		String department_code = req.getParameter("department_code");
+		String position_code = req.getParameter("position_code");
+		String rank_code = req.getParameter("rank_code");
+		
+		vo.setDepartment_code(department_code);
+		vo.setPosition_code(position_code);
+		vo.setRank_code(rank_code);
+		
+		int updateCnt = dao.updateFoundation(vo);           
+        
+        model.addAttribute("updateCnt", updateCnt);
+        model.addAttribute("username", username);
+	}
 
 
 	@Override
@@ -348,6 +396,61 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("pvo", pvo);
 	}
+
+	@Override
+	public void modifyPhysicalyPro(HttpServletRequest req, Model model) {
+		
+		HR_PhysicalVO vo = new HR_PhysicalVO();
+		String username = req.getParameter("username");
+		System.out.println(username);
+		vo.setUsername(username);
+		vo.setE_height(Integer.parseInt(req.getParameter("e_height")));
+		vo.setE_weight(Integer.parseInt(req.getParameter("e_weight")));
+		vo.setE_left_sight(Integer.parseInt(req.getParameter("e_left_sight")));
+		vo.setE_right_sight(Integer.parseInt(req.getParameter("e_right_sight")));
+		vo.setE_color_blind(req.getParameter("e_color_blind"));
+		vo.setE_blood_type(req.getParameter("e_blood_type"));
+		String e_blood_presure = "";
+		String e_blood_presure1 = req.getParameter("e_blood_presure1");
+		String e_blood_presure2 = req.getParameter("e_blood_presure2");
+		e_blood_presure = e_blood_presure1 + "/" + e_blood_presure2 + "mmHg";
+		
+		vo.setE_blood_presure(e_blood_presure);
+		vo.setE_medical_info(req.getParameter("e_medical_info"));
+		vo.setE_veteran_type(Integer.parseInt(req.getParameter("e_veteran_type")));
+		vo.setE_veteran_info(req.getParameter("e_veteran_info"));
+		vo.setE_veteran_level(req.getParameter("e_veteran_level"));
+		vo.setE_disability_type(req.getParameter("e_disability_type"));
+		vo.setE_disability_level(req.getParameter("e_disability_level"));
+		
+		int updateCnt = dao.updatePhysicaly(vo);           
+        
+        model.addAttribute("updateCnt", updateCnt);
+        model.addAttribute("username", username);
+		
+	}
+
+	@Override
+	public void searchUsername(HttpServletRequest req, Model model) {
+		String e_name = req.getParameter("e_name");
+		String username = req.getParameter("username");
+		String department_code = req.getParameter("department_code");
+		String position_code = req.getParameter("position_code");
+		String rank_code = req.getParameter("rank_code");
+				
+		System.out.println("e_name : " + e_name); 
+		int cnt = dao.selectEname(e_name); 
+		
+		System.out.println("cnt: "+cnt);
+		
+		if(cnt > 0) {
+			List<HR_VO> dto = dao.getUsernameList(e_name);
+			model.addAttribute("dto", dto);
+		}
+
+		model.addAttribute("cnt", cnt);		
+	}
+	
 
 	/*
 	@Override

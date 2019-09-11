@@ -36,12 +36,9 @@
                                         </ol>
                                     </div>
                                     <sec:authorize access="isAuthenticated()">
-                                    	<h4 class="page-title">${name }&nbsp;님 환영합니다.</h4><hr>
-                                    	<h4 class="page-title">${pCode }&nbsp; : 직책코드</h4><hr>
-                                    	<h4 class="page-title">${pName }&nbsp; : 직책명</h4><hr>
-                                    	<h4 class="page-title">${dCode }&nbsp; : 부서코드</h4><hr>
-                                    	<h4 class="page-title">${dName }&nbsp; : 부서명</h4><hr>
-                                    	<h4 class="page-title">${username }&nbsp; : 사번</h4><hr>
+                                    	<h4 class="page-title">${name }&nbsp; : 사원명 &nbsp;,&nbsp;${pCode }&nbsp; : 직책코드&nbsp;,&nbsp;${pName }&nbsp; : 직책명&nbsp;</h4>
+                                    	<h4 class="page-title">${dCode }&nbsp; : 부서코드&nbsp;,&nbsp;${dName }&nbsp; : 부서명&nbsp;,&nbsp;${username }&nbsp; : 사번&nbsp;</h4>
+                                    	<h4 class="page-title">${auth }&nbsp; : 권한</h4>&nbsp;
                                     </sec:authorize>
                                     <sec:authorize access="isAnonymous()">
                                  	   <h4 class="page-title">Welcome! 방문해 주셔서 감사합니다.</h4>
@@ -344,7 +341,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                                2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
+                                2019 &copy; WeRP by <a href="">Kosmo 50기 4팀</a>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-right footer-links d-none d-sm-block">

@@ -166,7 +166,27 @@ public class ST_Controller {
 		service.salePlandeletePro(req, model);
 		    
 		return "ST/ST_sale_Plan_deletePro"; 
-	}     
+	}  
+	
+	// ST_saleList 판매 관리
+	@RequestMapping("ST_saleList")
+	public String ST_saleList(HttpServletRequest req, Model model) {
+		logger.info("log => ST_saleList");
+		    
+		return "ST/ST_saleList"; 
+	}
+	
+	// ST_saleList 판매 관리 상세 페이지
+	@RequestMapping("ST_saleList_Form")
+	public String ST_saleList_Form(HttpServletRequest req, Model model) {
+		logger.info("log => ST_saleList_Form");
+		    
+		return "ST/ST_saleList_Form"; 
+	}
+	
+	
+	
+	
 	          
 	@RequestMapping("ST_sale_plan_state2")
 	public String ST_sale_plan_state2(Locale locale, Model model) {
@@ -274,12 +294,29 @@ public class ST_Controller {
 		
 		return "ST/ST_salesTotal2";
 	}
-	
+	 
 	@RequestMapping("ST_unpaidOrders")
 	public String ST_unpaidOrders(Locale locale, Model model) {
 		logger.info("log => ST_unpaidOrders");
 		
 		return "ST/ST_unpaidOrders";
+	} 
+	
+	// ProductName 검색
+	@RequestMapping("ST_searchProductname")
+	public String ST_searchProductname(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchProductname");
+		
+		return "ST/ST_searchProductname";
+	}
+	
+	// ProductName 검색 결과
+	@RequestMapping("ST_searchProductname_result")
+	public String ST_searchProductname_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchProductname_result");
+		service.searchProduct(req, model);
+		
+		return "ST/ST_searchProductname_result";
 	}
 		
 	

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,9 @@ import com.pj.erp.persistence.FT_DAO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Service
@@ -113,20 +116,20 @@ public class FT_ServiceImpl implements FT_Service{
             FT_Account vo = new FT_Account();
             vo.setCustomer_name(req.getParameter("customerName"));
             vo.setLicense_number(req.getParameter("licenseNumber"));
-            vo.setBranch_name(req.getParameter("title"));
-            vo.setCustomer_credit(req.getParameter("title"));
-            vo.setDeal_state(req.getParameter("title"));
-            vo.setBs_name(req.getParameter("title"));
-            vo.setBs_master(req.getParameter("title"));
-            vo.setBs_startdate(req.getParameter("title"));
-            vo.setBs_number(req.getParameter("title"));
-            vo.setBs_address(req.getParameter("title"));
-            vo.setBs_address2(req.getParameter("title"));
-            vo.setBs_condition(req.getParameter("title"));
-            vo.setBs_line(req.getParameter("title"));
+            vo.setBranch_name(req.getParameter("branchName"));
+            vo.setCustomer_credit(req.getParameter("customerCredit"));
+            vo.setDeal_state(req.getParameter("state"));
+            vo.setBs_name(req.getParameter("bsName"));
+            vo.setBs_master(req.getParameter("bsMaster"));
+            vo.setBs_startdate(req.getParameter("bsStartdate"));
+            vo.setBs_number(req.getParameter("bsNumber"));
+            vo.setBs_address(req.getParameter("bsAddress"));
+            vo.setBs_address2(req.getParameter("bsAddress2"));
+            vo.setBs_condition(req.getParameter("bsCondition"));
+            vo.setBs_line(req.getParameter("bsLine"));
             vo.setLicense_scanfile(file.getOriginalFilename());
             
-            
+            dao.FT_AccountInsert(vo);
             
         } catch(IOException e) {
             e.printStackTrace();
@@ -250,4 +253,23 @@ public class FT_ServiceImpl implements FT_Service{
 		dao.FT_applyinput();
 	}
 
+	//단기차입금목록검색결과
+	@Override
+	public List<FT_Short_Borrow_List> getSBorrowList(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+			
+		List<FT_Short_Borrow_List> list = dao.getSBorrowList(map);
+		
+		return list;
+	}
+
+	//장기차입금목록검색결과
+	@Override
+	public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+			
+		List<FT_Long_Borrow_List> list = dao.getLBorrowList(map);
+		
+		return list;
+	}	
 }

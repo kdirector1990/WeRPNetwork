@@ -1,5 +1,6 @@
 package com.pj.erp.controller;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +23,8 @@ import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Controller
@@ -231,12 +235,38 @@ public class FT_Controller {
 		return "FT/FT_Note_list";
 	}
 
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+
+		return "FT/FT_short_borrowings_list";
+	}
+	
+	//단기차입금목록 검색결과
+	@RequestMapping(value = "FT_short_borrowings_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_Short_Borrow_List> FT_short_borrowings_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_short_borrowings_list_result");
+		List<FT_Short_Borrow_List> list = service.getSBorrowList(map, req, model);
+		return list;
+	}
+	
 	// 장기차입금목록
 	@RequestMapping("FT_long_borrowings_list")
 	public String FT_long_borrowings_list(Locale locale, Model model) {
 		logger.info("log => FT_long_borrowings_list");
 
 		return "FT/FT_long_borrowings_list";
+	}
+	
+	//장기차입금목록 검색결과
+	@RequestMapping(value = "FT_long_borrowings_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_Long_Borrow_List> FT_long_borrowings_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_long_borrowings_list_result");
+		List<FT_Long_Borrow_List> list = service.getLBorrowList(map, req, model);
+		return list;
 	}
 
 	// 지급어음 목록

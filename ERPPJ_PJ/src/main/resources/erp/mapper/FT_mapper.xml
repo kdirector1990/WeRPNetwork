@@ -238,6 +238,7 @@
 		or de.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
+<<<<<<< HEAD
 	<!-- 사원 가져오기 -->
 	<select id="FT_UsersAllSelect" resultType="com.pj.erp.vo.HR_VO">
 		select * from users
@@ -256,6 +257,46 @@
 		select * from users
 		where (username like '%' || #{srhval, jdbcType=VARCHAR} || '%'
 		or e_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+=======
+	<!-- 단기차입금 목록 검색결과 -->
+	<select id="getSBorrowList" resultType="com.pj.erp.vo.FT.FT_Short_Borrow_List" parameterType = "java.util.Map">
+		select * from shortterm_debt_tbl 
+		<if test = "customer_code != null">
+			<if test = "username != null">
+				where customer_code = '%'||#{customer_code}||'%' and username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+				where customer_code = '%'||#{customer_code}||'%' 
+			</if>
+		</if>
+		<if test = "customer_code == null">
+			<if test = "username != null">
+				where username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+			</if>
+		</if>
+	</select>
+	
+	<!-- 장기차입금 목록 검색결과 -->
+	<select id="getLBorrowList" resultType="com.pj.erp.vo.FT.FT_Long_Borrow_List" parameterType = "java.util.Map">
+		select * from longterm_debt_tbl 
+		<if test = "customer_code != null">
+			<if test = "username != null">
+				where customer_code = '%'||#{customer_code}||'%' and username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+				where customer_code = '%'||#{customer_code}||'%' 
+			</if>
+		</if>
+		<if test = "customer_code == null">
+			<if test = "username != null">
+				where username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+			</if>
+		</if>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	</select>
 	
 </mapper>

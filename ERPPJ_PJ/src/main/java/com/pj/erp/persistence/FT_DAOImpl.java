@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Repository
@@ -192,8 +194,8 @@ public class FT_DAOImpl implements FT_DAO{
 	
 	// 거래처 추가
 	@Override
-	public int FT_AccInsert(Map<String, Object> map) {
-		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccInsert",map);
+	public int FT_AccountInsert(FT_Account vo) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccountInsert",vo);
 	}
 	
 	// 거래처 검색 한 것 개수 가져오기
@@ -239,5 +241,17 @@ public class FT_DAOImpl implements FT_DAO{
 		} else {
 			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_UsersSelect", srhval);
 		}
+	}	
+	
+	//단기차입금 검색
+	@Override
+	public List<FT_Short_Borrow_List> getSBorrowList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getSBorrowList", map);
+	}
+	
+	//장기차입금 검색
+	@Override
+	public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getLBorrowList", map);
 	}
 }

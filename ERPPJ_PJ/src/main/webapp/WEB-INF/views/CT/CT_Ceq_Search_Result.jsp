@@ -27,7 +27,7 @@
                                     		<tbody>
                                     		<!--  있으면 -->
 											<c:if test="${cnt != 0}">
-                                          		<c:forEach var="list" items="${dto}">
+                                          		<c:forEach var="list" items="${dtos}">
                                           			<tr onclick="setCeqSerial('${list.ceq_code}');">
                                           				<td>${list.ceq_code}</td>
                                           				<td>${list.ceq_name}</td>

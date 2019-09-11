@@ -47,8 +47,6 @@ function loadCode_callback() {
 function setCeqSerial(code){
 	opener.document.getElementById("ceq_codeS").value = code;
 	
-	alert("작동");
-	
 	$("#ceq_codeS", opener.document).val(code);
 	$(opener.document).find("ceq_codeS").val(code);
 	self.close();
@@ -91,12 +89,10 @@ function setCeqSerial(code){
 												<th>사용 부서</th>
 												<td>
 													<select name="department_code"  class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="load1();">
-		                                                <option value="인사">인사</option>
-		                                                <option value="plan_depart">기획</option>
-		                                                <option value="영업">영업</option>
-		                                                <option value="재무">재무</option>
-		                                                <option value="전산">전산</option>
-		                                                <option value="제조">제조</option>
+															<option value="" selected disabled>선택</option>
+														<c:forEach var="vo" items="${dto}">
+		                                                		<option value="${vo.department_code }">${vo.department_name }</option>
+		                                                </c:forEach>
 													</select>
 												</td>
 											</tr>

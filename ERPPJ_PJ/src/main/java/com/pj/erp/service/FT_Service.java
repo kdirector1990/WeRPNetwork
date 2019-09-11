@@ -6,8 +6,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -72,4 +75,10 @@ public interface FT_Service {
 	
 	//예산신청입력처리
 	public void FT_applyinput(HttpServletRequest req, Model model);
+	
+	//단기차입금목록 검색결과
+	public List<FT_Short_Borrow_List> getSBorrowList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	//장기차입금목록 검색결과
+	public List<FT_Long_Borrow_List> getLBorrowList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 }
