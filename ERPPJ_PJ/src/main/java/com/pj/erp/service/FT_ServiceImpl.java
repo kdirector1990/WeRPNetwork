@@ -44,7 +44,19 @@ public class FT_ServiceImpl implements FT_Service{
 	// 전표입력
 	@Override
 	public String FT_chitInsert(Map<String, Object> map) {
+		System.out.println(map.get("type"));
 		int number = dao.FT_chitInsert(map); 
+		if(number == 0) {
+			return "실패";
+		} else {
+			return "성공";
+		}
+	}
+	
+	// 전표입력
+	@Override
+	public String FT_chitupdate(Map<String, Object> map) {
+		int number = dao.FT_chitupdate(map); 
 		if(number == 0) {
 			return "실패";
 		} else {
@@ -70,14 +82,15 @@ public class FT_ServiceImpl implements FT_Service{
 	// 거래처 검색한 것 가져오기
 	@Override
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
-		return dao.FT_AccountSelect(req.getParameter("srhval"));
+		List<FT_Account> ac = dao.FT_AccountSelect(req.getParameter("srhval"));
+		System.out.println(ac);
+		return ac;
 	}
 	
 	// 적금가져오기
 	@Override
 	public void FT_SavingsSelect(HttpServletRequest req, Model model) {
 		List<FT_Savings> savings = dao.FT_SavingsSelect();
-		System.out.println("ACCCode : " + savings.get(0).getAccCode());
 		model.addAttribute("saving", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
@@ -107,7 +120,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_DepositSelect(HttpServletRequest req, Model model) {
 		List<FT_Savings> savings = dao.FT_DepositSelect();
-		System.out.println("ACCCode : " + savings.get(0).getAccCode());
 		model.addAttribute("saving", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
@@ -142,10 +154,13 @@ public class FT_ServiceImpl implements FT_Service{
 		model.addAttribute("listsize", subject.size() + 1);
 	}
 	
-	// 거래처 검색한 것 가져오기
+	// 계정과목 검색한 것 가져오기
 	@Override
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
-		return dao.FT_SubjectSelect(req.getParameter("srhval"));
+		List<FT_Subject> tf = dao.FT_SubjectSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
 	}
 	
 	@Override

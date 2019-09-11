@@ -20,7 +20,10 @@ public interface FT_Service {
 	// 분개 데이터 가져오기
 	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map, Model model);
 	
-	// 거래번호 최고값 가져오기
+	// 전표입력
+	public String FT_chitupdate(Map<String, Object> map);
+	
+	// 전표입력
 	public String FT_chitInsert(Map<String, Object> map);
 	
 	// 거래처 추가

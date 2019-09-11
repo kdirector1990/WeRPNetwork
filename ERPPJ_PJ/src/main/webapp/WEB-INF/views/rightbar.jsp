@@ -77,12 +77,6 @@
                             <p class="inbox-item-text">I've finished it! See you so...</p>
                             <p class="inbox-item-date">13:34 PM</p>
                         </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                            <p class="inbox-item-date">13:17 PM</p>
-                        </div>
 
                         <div class="inbox-item">
                             <div class="inbox-item-img"><img src="/erp/resources/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>

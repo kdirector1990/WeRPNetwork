@@ -236,13 +236,44 @@ public class CT_Controller {
 		return "CT/CT_repair_list_add_result";
 	}
 	
-	//외부업체 수리 등록
+	//수리 일지 목록(내부수리, 외부수리 구분)
 	@RequestMapping("CT_Select_RP")
 	@ResponseBody
 	public List<CT_RP_VO> CT_Select_RP(HttpServletRequest req, Model model) {
 		logger.info("log => CT_Select_RP");
 		List<CT_RP_VO> vo = CT.selectRPC(req, model);
 		return vo;
+	}
+	
+	//수리 일지 수정폼
+	@RequestMapping("CT_update_RPW")
+	@ResponseBody
+	public CT_RP_VO CT_update_RPW(HttpServletRequest req, Model model) {
+		logger.info("log => CT_update_RPW");
+		CT_RP_VO vo = CT.updateFormRP(req, model);
+		return vo;
+	}
+	
+	//수리 일지 수정
+	@RequestMapping("CT_Update_RP")
+	@ResponseBody
+	public int CT_Update_RP(HttpServletRequest req, Model model) {
+		logger.info("log => CT_Update_RP");
+		
+		int updateCnt = CT.updateRP(req, model);
+		
+		return updateCnt;
+	}
+	
+	//수리 일지 폐기
+	@RequestMapping("CT_Delete_RP")
+	@ResponseBody
+	public int CT_Delete_RP(HttpServletRequest req, Model model) {
+		logger.info("log => CT_Delete_RP");
+		
+		int deleteCnt = CT.deleteRP(req, model);
+		
+		return deleteCnt;
 	}
 	
 	

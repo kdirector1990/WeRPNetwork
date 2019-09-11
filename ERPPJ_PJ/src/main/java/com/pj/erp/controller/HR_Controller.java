@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
+import com.pj.erp.vo.HR_SalaryVO;
 
 @Controller
 public class HR_Controller {
@@ -50,9 +51,27 @@ public class HR_Controller {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
 		
-		return "index";
-		
+		return "index";		
 	}		
+	
+	@RequestMapping("HR_modifyFoundation")
+	public String HR_modifyFoundation(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyFoundation");
+		service.modifyFoundationView(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		
+		return "HR/HR_modifyFoundation";
+	}
+	
+	@RequestMapping("HR_modifyFoundationPro")
+	public String HR_modifyFoundationPro(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyFoundationPro");
+		service.modifyFoundationPro(req, model);
+				
+		return "index";
+	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
 	public String HR_modifyPhysicaly(HttpServletRequest req, Model model) {
@@ -61,6 +80,14 @@ public class HR_Controller {
 		
 		return "HR/HR_modifyPhysicaly";
 	}
+	
+	@RequestMapping("HR_modifyPhysicalyPro")
+	public String HR_modifyPhysicalyPro(HttpServletRequest req, Model model) {
+		logger.info("log => HR_modifyPhysicalyPro");
+		service.modifyPhysicalyPro(req, model);
+		
+		return "index";
+	}	
 	
 	/*
 	// 중복확인 페이지
@@ -92,10 +119,26 @@ public class HR_Controller {
 		logger.info("log => HR_EmployeeInformation");
 		service.selectFoundation(req, model);
 		service.selectPhysical(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
 		
 		return "HR/HR_EmployeeInformation";
+	}	
+	
+	
+	@RequestMapping("HR_EmployeeInformation_result")
+	public String HR_EmployeeInformation_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_EmployeeInformation_result");
+		service.selectFoundation(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		
+		return "HR/HR_EmployeeInformation_result";
 	}
 	
+	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")
 	public String HR_EmployeeSalary(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeSalary");
@@ -103,6 +146,16 @@ public class HR_Controller {
 		return "HR/HR_EmployeeSalary";
 	}
 	
+	//책정임금현황 검색결과
+	@RequestMapping(value = "HR_EmployeeSalary_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_SalaryVO> HR_EmployeeSalary_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_EmployeeSalary_result");
+		List<HR_SalaryVO> list = service.getSalary(map, req, model);
+		return list;
+	}
+	
+	//인사고과/상벌현황
 	@RequestMapping("HR_GreetingPunishment")
 	public String HR_GreetingPunishment(HttpServletRequest req, Model model) {
 		logger.info("log => HR_GreetingPunishment");
@@ -110,6 +163,7 @@ public class HR_Controller {
 		return "HR/HR_GreetingPunishment";
 	}
 	
+	//인사고과/상벌현황 검색결과
 	@RequestMapping(value = "HR_GreetingPunishment_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public  List<HR_GreetingVO> HR_GreetingPunishment_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {

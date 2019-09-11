@@ -57,4 +57,13 @@ public interface CT_Service {
 	
 	//수리일지 가져오기(수리타입으로 : 내부수리, 외부수리)
 	public List<CT_RP_VO> selectRPC(HttpServletRequest req, Model model);
+	
+	//수리일지 수정폼(코드로 가져온다)
+	public CT_RP_VO updateFormRP(HttpServletRequest req, Model model);
+	
+	//수리완료
+	public int updateRP(HttpServletRequest req, Model model);
+	
+	//수리일지 폐기
+	public int deleteRP(HttpServletRequest req, Model model);
 }

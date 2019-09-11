@@ -23,11 +23,14 @@ public interface FT_DAO {
 	// 날짜 검색 분개 갯수 가져오기
 	public int FT_chitDataCnt(Map<String, Object> map);
 	
-	// 계정과목 검색 가져오기
+	// 분개 데이터 가져오기
 	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map);
 	
 	// 전표입력
 	public int FT_chitInsert(Map<String, Object> map);
+	
+	// 전표수정
+	public int FT_chitupdate(Map<String, Object> map);
 	
 	//예산신청입력처리
 	public int FT_applyinput();
@@ -78,6 +81,9 @@ public interface FT_DAO {
 	
 	// 계정과목가져오기
 	public List<FT_Subject> FT_SubjectAllSelect();
+	
+	// 계정과목 검색 한 것 개수 가져오기
+	public int FT_SubjectCntSelect(String srhval);
 	
 	// 계정과목 검색한 것 가져오기
 	public List<FT_Subject> FT_SubjectSelect(String srhval);

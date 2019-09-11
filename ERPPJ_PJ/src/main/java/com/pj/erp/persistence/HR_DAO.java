@@ -10,6 +10,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_VO;
 
 public interface HR_DAO {
@@ -37,18 +38,30 @@ public interface HR_DAO {
 	public List<HR_VO> foundation();
 	
 	// 신체정보 가져오기
-	public List<HR_PhysicalVO> physicaly();
+	public List<HR_PhysicalVO> physicalyList();
 	
-	// 사원정보 수정하기
+	public HR_PhysicalVO physicaly(String username);
+	
+	// 사원정보 수정페이지
+	public HR_VO getFoundation(String username);
+	
+	// 사원정보 수정처리
+	public int updateFoundation(HR_VO vo);
 	
 	// 신체정보 수정페이지
 	public HR_PhysicalVO getPhysicaly(String username);
+	
+	// 신체정보 수정처리
+	public int updatePhysicaly(HR_PhysicalVO vo);
 	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);
 
 	//인사고과/상벌현황 검색결과
 	public List<HR_GreetingVO> getGreeting(Map<String, Object> map);
+	
+	//책정임금현황 검색결과
+	public List<HR_SalaryVO> getSalary(Map<String, Object> map);
 	
 	// 부서 목록
 	public List<HR_VO> getDepartmentList(Map<String, Object> map);
