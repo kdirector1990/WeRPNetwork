@@ -1,5 +1,9 @@
 package com.pj.erp.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.persistence.FT_DAO;
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
@@ -53,14 +60,30 @@ public class FT_ServiceImpl implements FT_Service{
 		if(number == 0) {
 			return "실패";
 		} else {
+			return dao.FT_chitKeySelect();
+		}
+	}
+	
+	// 전표수정
+	@Override
+	public String FT_chitupdate(Map<String, Object> map) {
+		System.out.println("map = " + map.get("fname"));
+		if(map.get("fname").equals("null")) {
+			System.out.println("map = " + map.get("fname"));
+			map.replace("fname", null);
+		}
+		int number = dao.FT_chitupdate(map); 
+		if(number == 0) {
+			return "실패";
+		} else {
 			return "성공";
 		}
 	}
 	
-	// 전표입력
+	// 전표삭제
 	@Override
-	public String FT_chitupdate(Map<String, Object> map) {
-		int number = dao.FT_chitupdate(map); 
+	public String FT_chitDelete(Map<String, Object> map) {
+		int number = dao.FT_chitDelete(map); 
 		if(number == 0) {
 			return "실패";
 		} else {
@@ -70,9 +93,50 @@ public class FT_ServiceImpl implements FT_Service{
 	
 	// 거래처 추가
 	@Override
-	public int FT_ACCInsert(Map<String, Object> map) {
-		return dao.FT_AccInsert(map);
-	}
+    public void FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
+        MultipartFile file = req.getFile("scanfile");
+        
+        String saveDir = req.getRealPath("/resources/images/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
+        
+        String realDir="C:\\Dev\\workspace\\ERPPJ_PJ\\src\\main\\webapp\\resources\\images\\"; // 저장 경로
+        
+        try {
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));
+            
+            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            
+            int data = 0;
+            
+            while((data = fis.read()) != -1) {
+                fos.write(data);
+            }
+            fis.close();
+            fos.close();
+                    
+            FT_Account vo = new FT_Account();
+            vo.setCustomer_name(req.getParameter("customerName"));
+            vo.setLicense_number(req.getParameter("licenseNumber"));
+            vo.setBranch_name(req.getParameter("branchName"));
+            vo.setCustomer_credit(req.getParameter("customerCredit"));
+            vo.setDeal_state(req.getParameter("state"));
+            vo.setBs_name(req.getParameter("bsName"));
+            vo.setBs_master(req.getParameter("bsMaster"));
+            vo.setBs_startdate(req.getParameter("bsStartdate"));
+            vo.setBs_number(req.getParameter("bsNumber"));
+            vo.setBs_address(req.getParameter("bsAddress"));
+            vo.setBs_address2(req.getParameter("bsAddress2"));
+            vo.setBs_condition(req.getParameter("bsCondition"));
+            vo.setBs_line(req.getParameter("bsLine"));
+            vo.setLicense_scanfile(file.getOriginalFilename());
+            
+            dao.FT_AccountInsert(vo);
+            
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 
 	// 거래처 가져오기
 	@Override
@@ -162,6 +226,24 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> tf = dao.FT_SubjectSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
+	}
+	
+	// 사원 가져오기
+	@Override
+	public void FT_UsersAllSelect(HttpServletRequest req, Model model) {
+		List<HR_VO> users = dao.FT_UsersAllSelect();
+		System.out.println("username : " + users.get(0).getUsername());
+		model.addAttribute("users", users);
+		model.addAttribute("listsize", users.size() + 1);
+	}
+	
+	// 사원 검색한 것 가져오기
+	@Override
+	public List<HR_VO> FT_UsersSelect(HttpServletRequest req) {
+		List<HR_VO> tf = dao.FT_UsersSelect(req.getParameter("srhval"));
 		System.out.println(tf);
 		System.out.println(req.getParameter("srhval"));
 		return tf;
