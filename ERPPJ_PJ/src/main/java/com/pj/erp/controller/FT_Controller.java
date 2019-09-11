@@ -228,6 +228,14 @@ public class FT_Controller {
 		return "FT/FT_Note_list";
 	}
 
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+
+		return "FT/FT_short_borrowings_list";
+	}
+	
 	// 장기차입금목록
 	@RequestMapping("FT_long_borrowings_list")
 	public String FT_long_borrowings_list(Locale locale, Model model) {
