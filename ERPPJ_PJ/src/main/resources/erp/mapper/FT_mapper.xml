@@ -32,14 +32,20 @@
 	<select id="FT_chitDataLoad" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Chit">
 		select j.journal_code, j.journal_number, j.journal_date, de.detail_ac_code, de.account_name,
 		c.customer_code, c.customer_name, j.debtor_value, j.creditor_value, j.l_count_value, j.r_count_value, j.journal_abstract,
-		j.jr_state, j.last_update, j.last_modi_user, writer.e_name wname, j.username, formaler.e_name fname
-		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, users writer, users formaler
+		j.jr_state, j.last_update, j.last_modi_user, writer.e_name wname, j.username
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, users writer
 		where j.detail_ac_code = de.detail_ac_code
 		and j.customer_code = c.customer_code
 		and writer.username = j.last_modi_user
-		and formaler.username = j.username
-		and to_char(journal_date, 'yyyy-MM-dd') = #{year} || '-' || #{month} || '-' || #{day}
+		and to_char(j.journal_date, 'yyyy-MM-dd') = #{year} || '-' || #{month} || '-' || #{day}
 		and j.journal_number = #{chkno}
+	</select>
+	
+	<!-- 분개 key 가져오기 -->
+	<select id="FT_chitKeySelect" resultType="String">
+		select JOURNAL_CODE from journal_record_tbl
+		where ROWNUM = 1
+		ORDER BY JOURNAL_CODE desc
 	</select>
 	
 	<!-- 전표입력 -->
@@ -58,14 +64,25 @@
 		set JOURNAL_NUMBER = #{number}, JOURNAL_DATE = #{date}, DETAIL_AC_CODE = #{subjectcode},
 		CUSTOMER_CODE = #{accountcode}, DEBTOR_VALUE = #{leftprice}, CREDITOR_VALUE = #{rightprice},
 		L_COUNT_VALUE = #{leftcount}, R_COUNT_VALUE = #{rightcount}, JOURNAL_ABSTRACT = #{text},
-		JR_STATE = #{type}, LAST_UPDATE = #{updateday}, LAST_MODI_USER = #{wname}, USERNAME = #{fname}
+		JR_STATE = #{type}, LAST_UPDATE = #{updateday}, LAST_MODI_USER = #{wname}
+		<if test="fname != null">
+			, USERNAME = #{fname}
+		</if>
 		where JOURNAL_CODE = #{key}
 	</update>
+	
+	<!-- 전표삭제 -->
+	<delete id="FT_chitDelete" parameterType = "java.util.Map">
+		delete from journal_record_tbl
+		where JOURNAL_CODE = #{key}
+	</delete>
 
-	<!-- 거래처 추가 -->
-	<insert id="FT_AccInsert" parameterType = "java.util.Map">
-		insert into customer_list_tbl(customer_code, customer_name, deal_state)
-		values(customer_seq.nextval, #{AccName}, #{type}) 
+	<!-- 사업자 번호 추가 -->
+	<insert id="FT_AccountInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
+		insert into b_license_tbl(license_number, bs_name, bs_master, bs_startdate,
+		bs_number, bs_address, bs_address2, bs_condition, bs_line, license_scanfile)
+		values(license_seq.nextval, #{bs_name}, #{bs_master}, #{bs_startdate},
+		#{bs_number}, #{bs_address}, #{bs_address2}, #{bs_condition}, #{bs_line}, #{license_scanfile})
 	</insert>
 	
 	<!-- 적금 가져오기 -->
@@ -221,6 +238,66 @@
         and ac.accounts_code = de.accounts_code
 		and (de.detail_ac_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
 		or de.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 사원 가져오기 -->
+	<select id="FT_UsersAllSelect" resultType="com.pj.erp.vo.HR_VO">
+		select * from users
+		order by TO_NUMBER(username)
+	</select>
+	
+	<!-- 사원 개수 가져오기 -->
+	<select id="FT_UsersCntSelect" parameterType="String" resultType="int">
+		select count(username) from users
+		where (username like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or e_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 사원 검색한 것 가져오기 -->
+	<select id="FT_UsersSelect" resultType="com.pj.erp.vo.HR_VO">
+		select * from users
+		where (username like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or e_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 단기차입금 목록 검색결과 -->
+	<select id="getSBorrowList" resultType="com.pj.erp.vo.FT.FT_Short_Borrow_List" parameterType = "java.util.Map">
+		select * from shortterm_debt_tbl 
+		<if test = "customer_code != null">
+			<if test = "username != null">
+				where customer_code = '%'||#{customer_code}||'%' and username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+				where customer_code = '%'||#{customer_code}||'%' 
+			</if>
+		</if>
+		<if test = "customer_code == null">
+			<if test = "username != null">
+				where username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+			</if>
+		</if>
+	</select>
+	
+	<!-- 장기차입금 목록 검색결과 -->
+	<select id="getLBorrowList" resultType="com.pj.erp.vo.FT.FT_Long_Borrow_List" parameterType = "java.util.Map">
+		select * from longterm_debt_tbl 
+		<if test = "customer_code != null">
+			<if test = "username != null">
+				where customer_code = '%'||#{customer_code}||'%' and username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+				where customer_code = '%'||#{customer_code}||'%' 
+			</if>
+		</if>
+		<if test = "customer_code == null">
+			<if test = "username != null">
+				where username = '%'||#{username}||'%'
+			</if>
+			<if test = "username == null">
+			</if>
+		</if>
 	</select>
 	
 </mapper>

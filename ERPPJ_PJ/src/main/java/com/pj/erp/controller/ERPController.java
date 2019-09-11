@@ -21,9 +21,9 @@ import com.pj.erp.service.HR_Service;
 public class ERPController {
 	
 	@Autowired
-	ERPService service;
+	ERPService service; 
 	
-	@Autowired
+	@Autowired 
 	HR_Service service2;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
@@ -45,7 +45,7 @@ public class ERPController {
  
 	@RequestMapping("index")
 	public String index(Locale locale, Model model) {
-		logger.info("log => index"); 
+		logger.info("log => index");  
 		return "index";
 	}
 	@RequestMapping("index2")
@@ -576,7 +576,7 @@ public class ERPController {
 		return "login"; 
 	}
 	
-	// 권한 없을 경우
+	// 권한 없을 경우 
 		@RequestMapping("denied")
 		public String denied(Locale locale, Model model) {
 			logger.info("log => denied");

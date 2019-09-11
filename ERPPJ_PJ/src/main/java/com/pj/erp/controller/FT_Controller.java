@@ -1,5 +1,6 @@
 package com.pj.erp.controller;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -9,15 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.FT_Service;
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Controller
@@ -228,12 +235,38 @@ public class FT_Controller {
 		return "FT/FT_Note_list";
 	}
 
+	// 단기차입금목록
+	@RequestMapping("FT_short_borrowings_list")
+	public String FT_short_borrowings_list(Locale locale, Model model) {
+		logger.info("log => FT_short_borrowings_list");
+
+		return "FT/FT_short_borrowings_list";
+	}
+	
+	//단기차입금목록 검색결과
+	@RequestMapping(value = "FT_short_borrowings_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_Short_Borrow_List> FT_short_borrowings_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_short_borrowings_list_result");
+		List<FT_Short_Borrow_List> list = service.getSBorrowList(map, req, model);
+		return list;
+	}
+	
 	// 장기차입금목록
 	@RequestMapping("FT_long_borrowings_list")
 	public String FT_long_borrowings_list(Locale locale, Model model) {
 		logger.info("log => FT_long_borrowings_list");
 
 		return "FT/FT_long_borrowings_list";
+	}
+	
+	//장기차입금목록 검색결과
+	@RequestMapping(value = "FT_long_borrowings_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_Long_Borrow_List> FT_long_borrowings_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_long_borrowings_list_result");
+		List<FT_Long_Borrow_List> list = service.getLBorrowList(map, req, model);
+		return list;
 	}
 
 	// 지급어음 목록
@@ -287,14 +320,25 @@ public class FT_Controller {
 		service.FT_SubjectAllSelect(req, model);
 		return "FT/FT_Subject_list";
 	}
-
-	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
-	public @ResponseBody String FT_chitupdate(@RequestBody Map<String, Object> map) throws Exception {
-		logger.info("url : FT_chitupdate 호출중");
-
-		return service.FT_chitupdate(map);
+	
+	// 사원 목록
+	@RequestMapping("FT_users_list")
+	public String FT_users_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_users_list");
+		model.addAttribute("key", req.getParameter("key"));
+		service.FT_UsersAllSelect(req, model);
+		return "FT/FT_users_list";
 	}
 
+	// 사원 검색 가져오기
+	@RequestMapping(value = "FT_UsersSelect")
+	public @ResponseBody List<HR_VO> FT_UsersSelect(HttpServletRequest req, Model model) {
+		logger.info("url : FT_UsersSelect 호출중");
+
+		return service.FT_UsersSelect(req);
+	}
+	
+	// 전표 입력
 	@RequestMapping(value = "FT_chitInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_chitInsert(@RequestBody Map<String, Object> map, HttpServletRequest req) throws Exception {
 		logger.info("url : FT_chitInsert 호출중");
@@ -302,14 +346,31 @@ public class FT_Controller {
 		return service.FT_chitInsert(map);
 	}
 
-	@RequestMapping(value = "FT_AccinputEx", produces = "application/text; charset=utf8")
-	public @ResponseBody String FT_AccinputEx(@RequestBody Map<String, Object> map) {
-		logger.info("url : FT_AccinputEx 호출중");
+	// 전표수정
+	@RequestMapping(value = "FT_chitupdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_chitupdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_chitupdate 호출중");
 
-		service.FT_ACCInsert(map);
-
-		return "완료";
+		return service.FT_chitupdate(map);
 	}
+	
+	// 전표삭제
+	@RequestMapping(value = "FT_chitDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_chitDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_chitDelete 호출중");
+
+		return service.FT_chitDelete(map);
+	}
+
+	// 거래처 추가    
+    @RequestMapping(value="FT_AccountInsert", method=RequestMethod.POST)
+    public String FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
+    	logger.info("url : FT_AccountInsert 호출중");
+        
+        service.FT_AccountInsert(req, model);
+        
+        return "FT/FT_AccountComplete";
+    }
 
 	// 거래처 검색 가져오기
 	@RequestMapping(value = "FT_AccountSelect")

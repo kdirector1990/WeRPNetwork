@@ -29,9 +29,6 @@
         			$(".chit-table-bordered-primary tbody *").css("background-color", "");
         			$(this).parent().parent().children().children().css("background-color", "#D6EAF8");
         			$(this).parent().parent().children().css("background-color", "#D6EAF8");
-        			$(this).css("background-color", "");
-        			$(this).parent().css("background-color", "");
-
         		});
         	}
         	
@@ -196,7 +193,6 @@
        			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onchange", "enterupdate(" + cc + ");");
        			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
        			$(".chit-table-bordered-primary tbody").append('<tr>' +
-       					'<td align = "center"><input type="checkbox" id = "first' + count + '" onfocus = "focuse(this.name);" name = "checkbox' + count + '" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                         '<td><input type="text" onfocus = "focuse(this.name);" name = "code' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                         '<td><input type="text" onfocus = "focuse(this.name);" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                         '<td><select class="form-control" id = "enter' + count + '" onfocus = "focuse(this.name);" name = "type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(' + count + ');">' +
@@ -291,32 +287,19 @@
 	                                    <div class="card-body">
 	                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-                                                <col style = "width:5%;">
-                                                <col>
                                                 <col>
                                                 <col>
                                                 <thead>
                                                     <tr>
-		                                                <th style = "text-align: center;"><img src = "/erp/resources/img/checked.png" width = "20px" height = "20px" name = "all_Check" style = "align: center;" onclick = "allCheck(this.name);"></th>
 		                                                <th>코드</th>
 		                                                <th>거래처명</th>
-		                                                <th>구분</th>
 		                                            </tr>
 		                                        </thead>
 		    
 		                                        <tbody>
 		                                            <tr>
-		                                                <td align = "center"><input type="checkbox" id = "first0" onfocus = "focuse(this.name);" name = "checkbox0" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" value = "30" readonly onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><select class="form-control" id = "enter0" onfocus = "focuse(this.name);" name = "type0" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(0);">
-		                                                <option value="선택">== 선택 ==</option>
-		                                                <option value="일반">일반</option>
-		                                                <option value="매입">매입</option>
-		                                                <option value="매출">매출</option>
-		                                                <option value="금융기관">금융기관</option>
-		                                                <option value="카드사">카드사</option>
-			                                       		</select></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
+		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
@@ -328,25 +311,31 @@
 							<div class="card">
 								<div class="card-body">
 									<!-- 인적정보 -->
-									<form action="HR_inputProHR1" class="form-horizontal"
-										method="post">
+									<form action="HR_inputProHR1" class="form-horizontal" method="post">
 										<div class="col-sm-12">
 											<div class="card-body table-responsive">
-												<h4 class="header-title">기초 정보</h4>
+												<h4 class="header-title">거래처 추가</h4>
 												<h4 class="header-title">&nbsp;</h4>
 												<div class="form-group row">
 													<div class="col-md-5">
 														<div class="form-group row">
+															<label class="col-lg-4 col-form-label" for="simpleinput">거래처명<span class="text-danger">*</span></label>
+															<div class="col-lg-8">
+																<input type="text" class="form-control" name="customerName" placeholder = "거래처명">
+															</div>
+														</div>
+													
+														<div class="form-group row">
 															<label class="col-lg-4 col-form-label" for="simpleinput">사업자명<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsName" placeholder = "거래처명">
 															</div>
 														</div>
 														
 														<div class="form-group row">
 															<label class="col-lg-4 col-form-label" for="simpleinput">사업자등록번호<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsNumber" placeholder = "사업자등록번호">
 															</div>
 														</div>
 														
@@ -354,7 +343,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">대표자성명<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsMaster" placeholder = "한글이름">
 															</div>
 														</div>
 														
@@ -362,7 +351,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">업태<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsCondition" placeholder = "한글이름">
 															</div>
 														</div>
 														
@@ -370,7 +359,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">종목<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="text" class="form-control" name="bsLine" placeholder = "한글이름">
 															</div>
 														</div>
 														
@@ -378,7 +367,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">신용도<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="text" class="form-control" name="customerCredit" placeholder = "한글이름">
 															</div>
 														</div>
 														
@@ -386,7 +375,7 @@
 															<label class="col-lg-4 col-form-label"
 																for="simpleinput">개업년월일<span class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																<input type="date" class="form-control" name="bsStartdate" placeholder = "한글이름">
 															</div>
 														</div>
 													</div>
@@ -395,7 +384,22 @@
 															<div class="form-group row">
 																<label class="col-lg-4 col-form-label" for="simpleinput">지점명<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																	<input type="text" class="form-control" name="branchName" placeholder = "한글이름">
+																</div>
+															</div>
+															
+															<div class="form-group row">	
+																<label class="col-lg-4 col-form-label"
+																	for="simpleinput">거래상태<span class="text-danger">*</span></label>
+																<div class="col-lg-8">
+																	<select class="form-control" name = "state">
+						                                                <option value="0">== 선택 ==</option>
+						                                                <option value="1">일반</option>
+						                                                <option value="2">매입</option>
+						                                                <option value="3">매출</option>
+						                                                <option value="4">금융기관</option>
+						                                                <option value="5">카드사</option>
+							                                       	</select>
 																</div>
 															</div>
 															
@@ -403,7 +407,7 @@
 																<label class="col-lg-4 col-form-label"
 																	for="simpleinput">사업장소재지<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																	<input type="text" class="form-control" name="bsAddress" placeholder = "한글이름">
 																</div>
 															</div>
 															
@@ -411,7 +415,7 @@
 																<label class="col-lg-4 col-form-label"
 																	for="simpleinput">본점소재지<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="text" class="form-control" name="e_name" placeholder = "한글이름">
+																	<input type="text" class="form-control" name="bsAddress2" placeholder = "한글이름">
 																</div>
 															</div>
 															
@@ -419,7 +423,7 @@
 																<label class="col-lg-4 col-form-label"
 																	for="simpleinput">스캔파일명<span class="text-danger">*</span></label>
 																<div class="col-lg-8">
-																	<input type="file" class="dropify" name="e_picture"/>
+																	<input type="file" class="dropify" name="scanfile"/>
 																</div>
 															</div>
 														</div>	

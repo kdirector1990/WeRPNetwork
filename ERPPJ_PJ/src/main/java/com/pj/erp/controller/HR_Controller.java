@@ -51,9 +51,27 @@ public class HR_Controller {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
 		
-		return "index";
-		
+		return "index";		
 	}		
+	
+	@RequestMapping("HR_modifyFoundation")
+	public String HR_modifyFoundation(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyFoundation");
+		service.modifyFoundationView(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		
+		return "HR/HR_modifyFoundation";
+	}
+	
+	@RequestMapping("HR_modifyFoundationPro")
+	public String HR_modifyFoundationPro(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyFoundationPro");
+		service.modifyFoundationPro(req, model);
+				
+		return "index";
+	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
 	public String HR_modifyPhysicaly(HttpServletRequest req, Model model) {
@@ -62,6 +80,14 @@ public class HR_Controller {
 		
 		return "HR/HR_modifyPhysicaly";
 	}
+	
+	@RequestMapping("HR_modifyPhysicalyPro")
+	public String HR_modifyPhysicalyPro(HttpServletRequest req, Model model) {
+		logger.info("log => HR_modifyPhysicalyPro");
+		service.modifyPhysicalyPro(req, model);
+		
+		return "index";
+	}	
 	
 	/*
 	// 중복확인 페이지
@@ -93,9 +119,25 @@ public class HR_Controller {
 		logger.info("log => HR_EmployeeInformation");
 		service.selectFoundation(req, model);
 		service.selectPhysical(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
 		
 		return "HR/HR_EmployeeInformation";
+	}	
+	
+	
+	@RequestMapping("HR_EmployeeInformation_result")
+	public String HR_EmployeeInformation_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_EmployeeInformation_result");
+		service.selectFoundation(req, model);
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		
+		return "HR/HR_EmployeeInformation_result";
 	}
+	
 	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")
 	public String HR_EmployeeSalary(HttpServletRequest req, Model model) {
