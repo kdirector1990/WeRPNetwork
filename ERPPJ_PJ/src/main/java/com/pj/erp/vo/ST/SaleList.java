@@ -1,5 +1,6 @@
 package com.pj.erp.vo.ST;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class SaleList {
@@ -17,7 +18,7 @@ public class SaleList {
 	private String e_approval_code;	// 전결 현황 코드
 	private int jr_state;	// 처리 상태
 	private String ep_code;	// 견적 코드
-	
+	private Date release_o_date;	// 출고 요청일
 	private String salelist_name; // 판매명
 	
 	// 생성자
@@ -143,7 +144,14 @@ public class SaleList {
 	public void setSalelist_name(String salelist_name) {
 		this.salelist_name = salelist_name;
 	}
-	
+
+	public Date getRelease_o_date() {
+		return release_o_date;
+	}
+
+	public void setRelease_o_date(Date release_o_date) {
+		this.release_o_date = release_o_date;
+	}
 	
 	
 
