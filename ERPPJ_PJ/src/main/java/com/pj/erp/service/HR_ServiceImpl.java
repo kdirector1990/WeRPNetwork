@@ -437,7 +437,7 @@ public class HR_ServiceImpl implements HR_Service{
 		String department_code = req.getParameter("department_code");
 		String position_code = req.getParameter("position_code");
 		String rank_code = req.getParameter("rank_code");
-				
+		/*
 		System.out.println("e_name : " + e_name); 
 		int cnt = dao.selectEname(e_name); 
 		
@@ -448,7 +448,8 @@ public class HR_ServiceImpl implements HR_Service{
 			model.addAttribute("dto", dto);
 		}
 
-		model.addAttribute("cnt", cnt);		
+		model.addAttribute("cnt", cnt);
+		*/		
 	}
 	
 

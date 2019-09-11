@@ -7,8 +7,6 @@
         function usernameList() {
     		window.open("MS_searchUsername", "username_list", "menubar=no, width=450px, height = 600px location=no,status=no,scrollbars=yes");
     	}
-        
-        
         </script>
     </head>
 

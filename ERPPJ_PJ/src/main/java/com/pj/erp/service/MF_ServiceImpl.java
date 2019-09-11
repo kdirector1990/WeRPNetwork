@@ -1,5 +1,6 @@
 package com.pj.erp.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.MF_DAO;
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.MF.MF_material;
+import com.pj.erp.vo.MF.MF_plan;
+import com.pj.erp.vo.MF.MF_product_list;
 import com.pj.erp.vo.MS.MS_plan;
 
 @Service
@@ -48,16 +52,53 @@ public class MF_ServiceImpl implements MF_Service {
 		model.addAttribute("dto", dto);
 	}
 	
-	//생산계획 등록
+	//생산계획등록처리
 	@Override
-	public void insertMF_plan(HttpServletRequest req, Model model) {
+	public void insertMFPlan(HttpServletRequest req, Model model) {
 		
+		MF_plan vo = new MF_plan();
+		vo.setP_pp_code(req.getParameter("p_pp_code"));
+		vo.setBom_code(req.getParameter("bom_code"));
+		vo.setProduct_code(req.getParameter("product_code"));
+		
+		String start_date = req.getParameter("start_date");
+		start_date = start_date.replace("/", "-");
+		
+		String end_date = req.getParameter("end_date");
+		end_date = end_date.replace("/", "-");
+		
+		vo.setStart_date(Date.valueOf(start_date));
+		vo.setEnd_date(Date.valueOf(end_date));
+		
+		vo.setEf_cost(Integer.parseInt(req.getParameter("ef_cost")));
+		vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
+		
+		int insertCnt = dao.insertMFplan(vo);
+		
+		model.addAttribute("cnt", insertCnt);
 	}
-	
-	//생산계획 목록 가져오기
+
+	// 생산계획목록가져오기
 	@Override
-	public void selectMF_plan(HttpServletRequest req, Model model) {
+	public void getMFplanList(HttpServletRequest req, Model model) {
 		
+		List<MF_plan> dto = dao.getMFplanList();
+		model.addAttribute("dto", dto);
+	}
+
+	//제품명검색
+	@Override
+	public void searchProName(HttpServletRequest req, Model model) {
+		String product_name = req.getParameter("product_name");
+		
+		int cnt = dao.selectProName(product_name); 
+		
+		if(cnt > 0) {
+			List<MF_product_list> dto = dao.getProductList(product_name);
+			model.addAttribute("dto", dto);
+		}
+
+		model.addAttribute("cnt", cnt);
 	}
 	
 	

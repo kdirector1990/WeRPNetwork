@@ -9,12 +9,15 @@ public interface MF_Service {
 	// 자재등록
 	//public void insertMF(HttpServletRequest req, Model model);
 	
-	//자재목록가져오기
+	// 자재목록가져오기
 	public void selectMF(HttpServletRequest req, Model model);
 	
-	//생산계획 등록
-	public void insertMF_plan(HttpServletRequest req, Model model);
+	// 생산계획등록처리
+	public void insertMFPlan(HttpServletRequest req, Model model);
 	
-	//생산계횐 목록 가져오기
-	public void selectMF_plan(HttpServletRequest req, Model model);
+	// 생산계획목록가져오기
+	public void getMFplanList(HttpServletRequest req, Model model);
+	
+	//제품명검색 | 제품테이블 : 제품계정코드, BOM코드, 제품명
+	public void searchProName(HttpServletRequest req, Model model);
 }

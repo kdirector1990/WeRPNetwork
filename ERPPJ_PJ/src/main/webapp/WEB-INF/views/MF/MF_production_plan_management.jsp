@@ -38,14 +38,24 @@
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body">
-
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">관리</p>
-
 								<hr>
+							<div class="form-horizontal">
+                               	<form id="manageMF_plan" action="" method="post" >
 								<table id="datatable"
 									class="table m-0 table-bordered"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									<col style = "width:12%">
+                                    <col style = "width:13%;">
+                                    <col style = "width:10%">
+                                    <col style = "width:10%;">
+                                    <col style = "width:10%;">
+                                    <col style = "width:11%;">
+                                    <col style = "width:11%;">
+                                    <col style = "width:13%;">
+                                    <col style = "width:10%;">
+									
 									<thead class="bg-primary text-white table-hover">
 										<tr>
 											<th>생산계획코드</th>
@@ -59,7 +69,6 @@
 											<th>전결현황코드</th>
 										</tr>
 									</thead>
-
 
 									<tbody>
 										<c:forEach var="list" items="${dto}">
@@ -77,22 +86,11 @@
 										</c:forEach>
 									</tbody>
 								</table>
+								</form>
+								</div>
 
 								<div class="result">
-									<br>
-									<form id="updatePlan">
-										<input type='hidden' name="${_csrf.parameterName }"
-											value="${_csrf.token }"> <br>
-										<table id="datatable2"
-											class="table table-striped dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0;">
-											<thead>
-											</thead>
-
-											<tbody>
-											</tbody>
-										</table>
-									</form>
+									
 								</div>
 
 							</div>

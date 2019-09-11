@@ -53,13 +53,39 @@ public class MF_Controller {
 		return "MF/MF_production_plan_enrollment";
 	}
 	
+	// 생산계획등록처리
+	@RequestMapping("MF_production_plan_enrollmentPro")
+	public String MF_production_plan_enrollmentPro(HttpServletRequest req, Model model) {
+		logger.info("log => MF_production_plan_enrollmentPro");
+		service.insertMFPlan(req, model);
+		
+		return "MF/MF_production_plan_enrollment";
+	}
+	
 	//생산계획 관리
 	@RequestMapping("MF_production_plan_management")
 	public String MF_production_plan_management(HttpServletRequest req, Model model) {
 		logger.info("log => MF_production_plan_management");
+		service.getMFplanList(req, model);
 		
 		return "MF/MF_production_plan_management";
 	}
 	
+	//제품계정 code search
+	@RequestMapping("MF_searchProCode")
+	public String MF_searchProCode(HttpServletRequest req, Model model) {
+		logger.info("log => MF_searchProCode");
+		
+		return "MF/MF_searchProCode";
+	}
+	
+	//제품계정 code search
+	@RequestMapping("MF_searchProCode_result")
+	public String MF_searchProCode_result(HttpServletRequest req, Model model) {
+		logger.info("log => MF_searchProCode_result");
+		service.searchProName(req, model);
+		
+		return "MF/MF_searchProCode_result";
+	}
 	
 }

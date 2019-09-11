@@ -41,8 +41,4 @@
 		select username, e_name, department_code, position_code from users where e_name like '%'||#{e_name}||'%'
 	</select>
 	
-	<!-- 생산계획등록 -->
-	
-	
-	<!-- 생산계획목록 -->
 </mapper>

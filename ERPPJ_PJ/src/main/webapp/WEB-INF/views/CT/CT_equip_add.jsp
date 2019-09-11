@@ -312,12 +312,12 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                                            </tr>
 		                                        </tbody>
                                             </table>
+                                          </form>   
 										  </div>
 										  <div class="form-group text-right mb-0">
 		    										<button onclick="add();" type="button" class="btn btn-outline-primary waves-effect waves-light">추가</button>
 		    										<button onclick="del();" type="button" class="btn btn-outline-primary waves-effect waves-light">삭제</button>
 											</div>
-									  </form>                                      
                                     </div>
                                 </div>
                             </div>

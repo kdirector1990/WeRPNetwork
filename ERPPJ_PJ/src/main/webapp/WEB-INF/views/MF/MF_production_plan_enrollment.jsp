@@ -3,6 +3,12 @@
 <html lang="en">
 <head>
     <%@ include file="../setting.jsp" %>
+    <script type="text/javascript">
+        
+        function searchProCode() {
+    		window.open("MF_searchProCode", "searchBomCode", "menubar=no, width=380px, height = 520px location=no,status=no,scrollbars=yes");
+    	}
+    </script>
 </head>
 	<body>
      	 <!-- Begin page -->
@@ -41,45 +47,41 @@
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">등록</p>
 
-								<form action="MF_production_plan_enrollmentPro" name="insertPlan">
+								<form action="MF_production_plan_enrollmentPro" name="insertMFPlan">
 									<input type='hidden' name="${_csrf.parameterName }"
 										value="${_csrf.token }"> <input type="hidden"
 										name="hiddenId" value="0">
 									<div class="form-group">
-										<label>BOM코드</label> <input type="text" name="bom_code"
-											class="form-control" required placeholder="BOM코드" />
+										<label>제품계정코드</label> <input type="text" name="product_code" id="product_code"
+											class="form-control" required placeholder="제품계정코드" onclick="searchProCode();" />
 									</div>
 									<div class="form-group">
-										<label>제품계정코드</label> <input type="text" name="product_code"
-											class="form-control" required placeholder="제품계정코드" />
+										<label>BOM코드</label> <input type="text" name="bom_code" id="bom_code"
+											class="form-control" required placeholder="BOM코드" onclick="searchProCode();"/>
+									</div>
+									<div class="form-group">
+										<label>제품명</label> <input type="text" name="product_name" id="product_name"
+											class="form-control" placeholder="제품명" disabled/>
 									</div>
 									<div class="form-group">
 										<label>기간시작</label>
 										<input type="text" name="start_date" class="form-control"
-											placeholder="yyyy-mm-dd" data-provide="datepicker"
+											placeholder="yyyy/mm/dd" data-provide="datepicker"
 											data-date-autoclose="true">
 									</div>
 									<div class="form-group">
 										<label>기간종료</label>
 										<input type="text" name="end_date" class="form-control"
-											placeholder="yyyy-mm-dd" data-provide="datepicker"
+											placeholder="yyyy/mm/dd" data-provide="datepicker"
 											data-date-autoclose="true">
 									</div>
 									<div class="form-group">
-										<label>예상 생산 원가</label> <input type="text" name="ef_cost"
+										<label>예상 생산 원가</label> <input type="number" name="ef_cost"
 											class="form-control" required placeholder="예상 생산 원가" />
 									</div>
 									<div class="form-group">
-										<label>목표 생산 원가</label> <input type="text" name="ef_amount"
+										<label>목표 생산 원가</label> <input type="number" name="ef_amount"
 											class="form-control" required placeholder="목표 생산 원가" />
-									</div>
-									<div class="form-group">
-										<label>전결라인코드</label> <input type="text" name="eas_code"
-											class="form-control" required placeholder="전결라인코드" />
-									</div>
-									<div class="form-group">
-										<label>전결현황코드</label> <input type="text" name="e_approval_code"
-										class="form-control" required placeholder="전결현황코드" />
 									</div>
 									<div class="form-group mb-0">
 										<div>
@@ -122,6 +124,5 @@
     <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
     <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
         
-  
     </body>
 </html>
