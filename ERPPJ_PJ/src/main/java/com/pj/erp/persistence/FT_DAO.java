@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 public interface FT_DAO {
@@ -87,5 +89,11 @@ public interface FT_DAO {
 	
 	// 계정과목 검색한 것 가져오기
 	public List<FT_Subject> FT_SubjectSelect(String srhval);
+	
+	//단기차입금 검색결과
+	 public List<FT_Short_Borrow_List> getSBorrowList(Map<String, Object> map);
+	 
+	//장기차입금 검색결과
+	 public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map);
 	
 }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 
 @Repository
@@ -202,5 +204,17 @@ public class FT_DAOImpl implements FT_DAO{
 	@Override
 	public List<FT_Account> FT_AccountAllSelect() {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_AccountAllSelect");
+	}
+
+	//단기차입금 검색
+	@Override
+	public List<FT_Short_Borrow_List> getSBorrowList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getSBorrowList", map);
+	}
+	
+	//장기차입금 검색
+	@Override
+	public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getLBorrowList", map);
 	}
 }
