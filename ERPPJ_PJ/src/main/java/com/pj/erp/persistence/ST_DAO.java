@@ -3,9 +3,11 @@ package com.pj.erp.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
 public interface ST_DAO {
@@ -63,10 +65,30 @@ public interface ST_DAO {
 	// release 등록 처리
 	public int insertRelease(Release vo);
 	
+	// saleList 등록
+	public int insertsaleList(SaleList vo);
+	
+	// saleList 게시글 조회
+	public int getSaleListCnt();
+	
+	// saleList 게시글 목록 조회
+	public List<SaleList> getSaleListArticle(Map<String, Object> map);
+	
+	
+	
+	
+	
+	
 	// 제품명 검색 확인
 	public int selectProduct(String product_name);
 	
 	// 검색 목록 가져오기
 	public List<ProductList> getProductList(String product_name);
+	
+	// 거래처명 검색 확인
+	public int selectCustomer(String customer_name);
+	
+	// 거래처명 검색 목록 가져오기
+	public List<CustomerList> getCustomerList(String customer_name);
 
 }
