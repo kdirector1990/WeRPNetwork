@@ -176,4 +176,20 @@
 		]]>
 	</select>
 	
+	<!-- 근태(사원정보 검색) -->
+	<select id = "selectUserTime" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_Time_VO">
+		select username, e_name, department_code, RowNum 
+		From users
+		where department_code like '%'||#{department_code}||'%' 
+		and username like '%'||#{username}||'%' 
+		and e_name like '%'||#{e_name}||'%' 
+		Order by RowNum asc
+	</select>
+	
+	<!-- 근태(출근입력) -->
+	<insert id="StartWork" parameterType="String">
+		Insert Into time_card_tbl(tc_code, username, tc_come_time)
+		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate)
+	</insert>
+	
 </mapper>

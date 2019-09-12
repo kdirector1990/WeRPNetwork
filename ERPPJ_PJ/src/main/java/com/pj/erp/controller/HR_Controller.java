@@ -20,12 +20,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 
 @Controller
@@ -33,6 +34,9 @@ public class HR_Controller {
 
 	@Autowired
 	HR_Service service;
+	
+	@Autowired
+	CT_Service CT;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HR_Controller.class);
 	
@@ -228,6 +232,8 @@ public class HR_Controller {
 	public String HR_work_record(HttpServletRequest req, Model model) {
 		logger.info("log => HR_work_record");
 		
+		CT.select_DEP(req, model);
+		
 		return "HR/HR_work_record";
 	}
 	
@@ -320,4 +326,37 @@ public class HR_Controller {
 		return "HR/HR_InputHR_ex";
 	}
 	 */
+	
+	//근태(사원정보 가져오기)
+	@RequestMapping("HR_User_Time")
+	@ResponseBody
+	public List<HR_Time_VO> HR_User_Time(HttpServletRequest req, Model model) {
+		logger.info("log => HR_User_Time");
+		
+		List<HR_Time_VO> vo = service.selectUserHR(req, model);
+		
+		return vo;
+	}
+	
+	//근태(사원 출근 입력)
+	@RequestMapping("HR_Start_Work")
+	@ResponseBody
+	public int HR_Start_Work(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Start_Work");
+		
+		int insertCnt = service.InsertStartWork(req, model);
+		
+		return insertCnt;
+	}
+		
+	//근태(사원 퇴근 입력)
+	@RequestMapping("HR_End_Work")
+	@ResponseBody
+	public List<HR_Time_VO> HR_End_Work(HttpServletRequest req, Model model) {
+		logger.info("log => HR_End_Work");
+		
+		List<HR_Time_VO> vo = service.selectUserHR(req, model);
+		
+		return vo;
+	}
 }

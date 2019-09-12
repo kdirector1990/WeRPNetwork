@@ -13,6 +13,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 
 public interface HR_Service {
@@ -75,5 +76,13 @@ public interface HR_Service {
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */
 	
+	//근태(사원목록 가져오기)
+	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model);
+	
+	//근태(출근 입력)
+	public int InsertStartWork(HttpServletRequest req, Model model);
+	
+	//근태(퇴근 입력)
+	public int InsertEndWork(HttpServletRequest req, Model model);
 	
 }

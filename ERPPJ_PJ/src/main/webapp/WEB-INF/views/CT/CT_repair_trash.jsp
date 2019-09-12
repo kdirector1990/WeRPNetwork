@@ -83,7 +83,7 @@
   					var department_name = vo[i].department_name;
   					
   					$("#result").append('<tr><td>'
-  							+ "<input type='checkbox' class='checklist' name='rr_code"+i+"' value='"+rr_code+"'></td><td>"
+  							+ "<input type='checkbox' class='checklist' name='rr_code' value='"+rr_code+"'></td><td>"
   							+ rr_code + "</td><td>"
   							+ department_name + "</td><td>"
   							+ rr_reg_date + "</td><td>"

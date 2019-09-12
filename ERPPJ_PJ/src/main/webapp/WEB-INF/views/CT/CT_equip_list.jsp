@@ -68,7 +68,7 @@
                                             		<td>${vo.ceq_code }</td>
                                             		<td>${vo.ceq_name }</td>
                                             		<td>${vo.ceq_type }</td>
-                                            		<td>${vo.ceq_acquire_date }</td>
+                                            		<td><fmt:formatDate value="${vo.ceq_acquire_date }" pattern="YYYY년 MM월 dd일"/></td>
                                             		<td>${vo.department_name }</td>
                                             		<td>${vo.ceq_location }</td>
                                             		<td><fmt:formatNumber value="${vo.ceq_prime_cost }" pattern="#,###" /></td>
