@@ -131,6 +131,15 @@ public class CT_ServiceImpl implements CT_Service{
 		System.out.println(vo.get(0).getDepartment_name());
 		return vo;
 	}
+	
+	//전산설비 목록(전부)
+	@Override
+	public void CT_All_List(HttpServletRequest req, Model model) {
+		List<CT_VO> vo = dao.selectAllCT();
+		
+		model.addAttribute("dto", vo);
+	
+	}
 
 	//전산설비 목록 code 검색
 	@Override
@@ -429,5 +438,6 @@ public class CT_ServiceImpl implements CT_Service{
 		while(req.getParameter("rr_code"+i) != null);
 		return updateCnt;
 	}
+
 
 }

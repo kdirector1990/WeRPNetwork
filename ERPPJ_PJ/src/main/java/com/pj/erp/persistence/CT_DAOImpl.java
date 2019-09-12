@@ -55,6 +55,12 @@ public class CT_DAOImpl implements CT_DAO{
 	public CT_VO selectCode(String code) {
 		return sqlSession.selectOne("com.pj.erp.persistence.CT_DAO.SelectCode", code);
 	}
+	
+	//고정자산 목록(전부)
+	@Override
+	public List<CT_VO> selectAllCT() {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectAllCT");
+	}
 
 	//고정자산 수정
 	@Override
@@ -158,6 +164,7 @@ public class CT_DAOImpl implements CT_DAO{
 	public int RPdeleteRemove(String code) {
 		return sqlSession.update("com.pj.erp.persistence.CT_DAO.RPdeleteRemove", code);
 	}
+
 
 	
 	

@@ -196,7 +196,7 @@ public class CT_Controller {
 	@RequestMapping("CT_equip_list")
 	public String CT_equip_list(HttpServletRequest req, Model model) {
 		logger.info("log => CT_equip_list");
-		
+		CT.CT_All_List(req, model);
 		return "CT/CT_equip_list";
 	}
 	
