@@ -10,6 +10,8 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_facility_list_VO;
+import com.pj.erp.vo.FT.FT_land_list_VO;
 
 import java.text.ParseException;
 import java.util.List;
@@ -88,4 +90,10 @@ public interface FT_Service {
 	
 	//지급어음목록 검색결과
 	public List<FT_Bill_payment_VO> getBillPaymentList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	//토지목록 검색결과
+	public List<FT_land_list_VO> getLandList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	//토지목록 검색결과
+	public List<FT_facility_list_VO> getFacilityList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 }

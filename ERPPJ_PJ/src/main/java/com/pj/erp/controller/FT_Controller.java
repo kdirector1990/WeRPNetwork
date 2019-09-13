@@ -27,6 +27,8 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_facility_list_VO;
+import com.pj.erp.vo.FT.FT_land_list_VO;
 
 @Controller
 public class FT_Controller {
@@ -303,6 +305,15 @@ public class FT_Controller {
 
 		return "FT/FT_land_list";
 	}
+	
+	//토지목록 검색결과
+	@RequestMapping(value = "FT_land_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_land_list_VO> FT_land_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_land_list_result");
+		List<FT_land_list_VO> list = service.getLandList(map, req, model);
+		return list;
+	}
 
 	// 설비 목록
 	@RequestMapping("FT_facility_list")
@@ -311,6 +322,15 @@ public class FT_Controller {
 
 		return "FT/FT_facility_list";
 	}
+
+	//설비목록 검색결과
+	@RequestMapping(value = "FT_facility_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_facility_list_VO> FT_facility_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_facility_list_result");
+		List<FT_facility_list_VO> list = service.getFacilityList(map, req, model);
+		return list;
+	}	
 
 	// 거래처 목록
 	@RequestMapping("FT_account_list")

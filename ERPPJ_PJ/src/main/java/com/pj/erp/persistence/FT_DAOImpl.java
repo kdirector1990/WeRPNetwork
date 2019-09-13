@@ -15,6 +15,8 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_facility_list_VO;
+import com.pj.erp.vo.FT.FT_land_list_VO;
 
 @Repository
 public class FT_DAOImpl implements FT_DAO{
@@ -276,5 +278,15 @@ public class FT_DAOImpl implements FT_DAO{
 	@Override
 	public List<FT_Bill_payment_VO> getBillPaymentList(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getBillPaymentList", map);
+	}
+
+	@Override
+	public List<FT_land_list_VO> getLandList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getLandList", map);
+	}
+
+	@Override
+	public List<FT_facility_list_VO> getFacilityList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getFacilityList", map);
 	}
 }
