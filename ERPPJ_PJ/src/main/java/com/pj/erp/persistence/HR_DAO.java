@@ -55,6 +55,9 @@ public interface HR_DAO {
 	// 신체정보 수정처리
 	public int updatePhysicaly(HR_PhysicalVO vo);
 	
+	// 가족정보 수정페이지
+	public HR_FamilyVO getFamily(String username);
+	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);
 

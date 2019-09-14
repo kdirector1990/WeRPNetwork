@@ -184,6 +184,12 @@ public class HR_DAOImpl implements HR_DAO{
 	public int EndWork(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	// 가족정보 가져오기
+	@Override
+	public HR_FamilyVO getFamily(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
 	}	
 
 	

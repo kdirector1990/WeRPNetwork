@@ -57,7 +57,7 @@ public interface HR_Service {
 	// 사원정보 상세페이지
 	public void modifyFoundationView(HttpServletRequest req, Model model);
 	
-	// 사웑어보 수정처리
+	// 사원정보 수정처리
 	public void modifyFoundationPro(HttpServletRequest req, Model model);
 	
 	// 신체정보 상세페이지
@@ -65,6 +65,12 @@ public interface HR_Service {
 	
 	// 신체정보 수정처리
 	public void modifyPhysicalyPro(HttpServletRequest req, Model model);
+	
+	// 가족정보 상세페이지
+	public void modifyFamilyView(HttpServletRequest req, Model model);
+	
+	// 가족정보 수정처리
+	public void modifyFamilyPro(HttpServletRequest req, Model model);
 	
 	// 사원정보 조회
 	public List<HR_VO> getUsers(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;

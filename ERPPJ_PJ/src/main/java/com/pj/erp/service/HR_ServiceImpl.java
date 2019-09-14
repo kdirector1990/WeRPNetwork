@@ -428,7 +428,31 @@ public class HR_ServiceImpl implements HR_Service{
         model.addAttribute("username", username);
 		
 	}
-
+	
+	// 가족정보 상세페이지
+	@Override
+	public void modifyFamilyView(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_FamilyVO vo = dao.getFamily(username);
+		
+		model.addAttribute("vo", vo);
+		
+	}
+	
+	// 가족정보 수정 처리
+	@Override
+	public void modifyFamilyPro(HttpServletRequest req, Model model) {
+		HR_FamilyVO vo = new HR_FamilyVO();
+		String username = req.getParameter("username");
+		
+		vo.setUsername(username);
+		vo.setF_name(req.getParameter("f_name"));
+		vo.setF_type(req.getParameter("f_type"));
+		vo.setF_cohabitation(req.getParameter("f_cohabitation"));		
+		vo.setF_born_type(req.getParameter("f_born_type"));
+	}
+	
 	@Override
 	public List<HR_VO> getUsers(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException {
 		
@@ -441,7 +465,7 @@ public class HR_ServiceImpl implements HR_Service{
 
 
 	@Override
-	public List<HR_PhysicalVO> getPhysical(Map<String, Object> map, HttpServletRequest req, Model model) {
+	public List<HR_PhysicalVO> getPhysical(Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		List<HR_PhysicalVO> list = dao.getPhysicaly(map);
 		return list;
 	}
@@ -486,6 +510,10 @@ public class HR_ServiceImpl implements HR_Service{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+
+	
 	
 
 	/*
