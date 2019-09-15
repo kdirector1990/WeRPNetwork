@@ -23,20 +23,18 @@ public class MF_ServiceImpl implements MF_Service {
 	@Autowired
 	MF_DAO dao;
 	// 자재등록
-	/*
 	@Override
 	public void insertMF(HttpServletRequest req, Model model) {
 		
 		MF_material vo = new MF_material();
-		vo.setMaterials_code(req.getParameter("materials_code"));
-		vo.setMaterials_name(req.getParameter("materials_name"));
-		vo.setMaterials_unit(req.getParameter("materials_unit"));
+		vo.setMaterial_name(req.getParameter("material_name"));
+		vo.setMaterial_unit(req.getParameter("material_unit"));
 		
 		int insertCnt = dao.insertMF(vo);
 		
 		model.addAttribute("insertCnt", insertCnt);
 	}
-	*/
+
 	//자재목록가져오기
 	@Override
 	public void selectMF(HttpServletRequest req, Model model) {
@@ -52,6 +50,28 @@ public class MF_ServiceImpl implements MF_Service {
 		model.addAttribute("dto", dto);
 	}
 	
+	//자재목록 수정
+	@Override
+	public void updateMF(HttpServletRequest req, Model model) {
+		MF_material vo = new MF_material();
+		vo.setMaterial_code(req.getParameter("material_code"));
+		vo.setMaterial_name(req.getParameter("material_name"));
+		vo.setMaterial_unit(req.getParameter("material_unit"));
+		
+		int updateCnt = dao.updateMF(vo);
+		
+		model.addAttribute("cnt", updateCnt);
+	}
+
+	//자재목록삭제
+	@Override
+	public void deleteMF(HttpServletRequest req, Model model) {
+		String material_code = req.getParameter("material_code");
+		
+		int deleteCnt = dao.deleteMaterial(material_code);
+		
+		model.addAttribute("cnt", deleteCnt);
+	}
 	//생산계획등록처리
 	@Override
 	public void insertMFPlan(HttpServletRequest req, Model model) {
@@ -100,6 +120,6 @@ public class MF_ServiceImpl implements MF_Service {
 
 		model.addAttribute("cnt", cnt);
 	}
-	
+
 	
 }

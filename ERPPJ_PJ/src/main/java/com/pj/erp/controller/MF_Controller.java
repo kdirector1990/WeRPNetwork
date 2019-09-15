@@ -24,19 +24,20 @@ public class MF_Controller {
 	public String MF_materialsInput(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsInput");
 		
+		
 		return "MF/MF_materialsInput";
 	}
 	
 	//자재등록처리
 	@RequestMapping("MF_materialsInsertPro")
 	public String MF_materialsInsertPro(HttpServletRequest req, Model model) {
-		logger.info("log => MF_materialsInsertPro");
-		//service.insertMF(req, model);
+		logger.info("log => MF_materialsInput");
+		service.insertMF(req, model);
 		
-		return "MF/MF_materialsInsertPro";
+		return "MF/MF_materialsInput";
 	}
 	
-	//자재관리
+	//자재목록 가져오기
 	@RequestMapping("MF_materialsManagement")
 	public String MF_materialsManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsManagement");
@@ -45,6 +46,23 @@ public class MF_Controller {
 		return "MF/MF_materialsManagement";
 	}
 	
+	//자재 수정처리
+	@RequestMapping("MF_materialUpdate")
+	public String MF_materialUpdate(HttpServletRequest req, Model model) {
+		logger.info("log => MF_materialUpdate");
+		service.updateMF(req, model);
+		
+		return "MF/MF_materialUpdate";
+	}
+	
+	//자재 삭제 처리
+	@RequestMapping("MF_materialDelete")
+	public String MF_materialDelete(HttpServletRequest req, Model model) {
+		logger.info("log => MF_materialDelete");
+		service.deleteMF(req, model);
+		
+		return "MF/MF_materialDelete";
+	}
 	//생산계획 등록
 	@RequestMapping("MF_production_plan_enrollment")
 	public String MF_production_plan_enrollment(HttpServletRequest req, Model model) {

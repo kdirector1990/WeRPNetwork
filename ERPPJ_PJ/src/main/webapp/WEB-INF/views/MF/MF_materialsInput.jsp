@@ -3,6 +3,26 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+<script type="text/javascript">
+
+	function Insert(){
+		var param = $("#MF_materialsInput").serializeArray();
+		alert(JSON.stringify(param));
+		$.ajax({
+			url: '/erp/MF_production_plan_enrollmentPro',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("자재등록성공");
+			},
+			error : function(){
+				alert("자재 등록 실패");
+			}
+		});
+	}
+
+</script>
     </head>
 
     <body>
@@ -42,12 +62,7 @@
                                        		 자재등록
                                         </p>
     
-                                        <form class="" action="MF_materialsInsertPro">
-                                            <div class="form-group">
-                                                <label>계정코드</label>
-                                                <input type="text" name="account_code" class="form-control" required
-                                                            placeholder="계정코드"/>
-                                            </div>
+                                        <form id="MF_materialsInput">
                                             <div class="form-group">
                                                 <label>자재명</label>
                                                 <div>
@@ -62,7 +77,7 @@
                                             </div>
                                             <div class="form-group mb-0">
                                                 <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                    <button type="button" onclick="Insert();" class="btn btn-primary waves-effect waves-light mr-1">
                                                         Submit
                                                     </button>
                                                     <button type="reset" class="btn btn-secondary waves-effect waves-light">
@@ -94,6 +109,5 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
-        
     </body>
 </html>

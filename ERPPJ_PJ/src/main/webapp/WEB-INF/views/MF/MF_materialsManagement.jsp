@@ -77,8 +77,8 @@
                                             </tbody>
                                         </table>
                                         <div align="right">
-	    									<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>
-	    									<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>
+	    									<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updateMaterial();">수정</button>
+	    									<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deleteMaterial();">폐기</button>
     									</div>
                                         </form>
                                         </div>
@@ -144,11 +144,11 @@
            		'</tr>');
 		});
      
-     function updatePlan(){
-		 var param = $("#updatePlan").serializeArray();
+     function updateMaterial(){
+		 var param = $("#updateMaterial").serializeArray();
 		 alert(JSON.stringify(param));
 		$.ajax({
-			url: '/erp/MS_updatePlanPro',
+			url: '/erp/MF_materialUpdate',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
@@ -163,16 +163,16 @@
 		});
 	}
      
-     function deletePlan(){
-		 var param = $("#updatePlan").serializeArray();
+     function deleteMaterial(){
+		 var param = $("#updateMaterial").serializeArray();
 		 alert(JSON.stringify(param));
 		$.ajax({
-			url: '/erp/MS_deletePlanPro',
+			url: '/erp/MF_materialDelete',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("자재 삭제 성공하였습니다.");
+				alert("자재 삭제 성공.");
 				location.reload();
 			},
 			error : function(){

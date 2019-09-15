@@ -15,13 +15,12 @@ public class MF_DAOImpl implements MF_DAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	/*
 	//자재등록
 	@Override
 	public int insertMF(MF_material vo) {
 		return sqlSession.insert("com.pj.erp.persistence.MF_DAO.insertMF", vo);
 	}
-	*/
+
 	//자재목록가져오기
 	@Override
 	public List<MF_material> getMaterialList() {
@@ -57,6 +56,17 @@ public class MF_DAOImpl implements MF_DAO {
 	public List<MF_product_list> getProductList(String product_name) {
 		return sqlSession.selectList("com.pj.erp.persistence.MF_DAO.getProductList", product_name);
 	}
-	
+
+	//자재목록수정
+	@Override
+	public int updateMF(MF_material vo) {
+		return sqlSession.update("com.pj.erp.persistence.MF_DAO.updateMF", vo);
+	}
+
+	//자재목록삭제
+	@Override
+	public int deleteMaterial(String material_code) {
+		return sqlSession.delete("com.pj.erp.persistence.MF_DAO.deleteMaterial", material_code);
+	}
 	
 }

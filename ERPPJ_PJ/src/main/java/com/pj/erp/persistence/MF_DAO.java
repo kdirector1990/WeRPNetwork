@@ -9,13 +9,19 @@ import com.pj.erp.vo.MF.MF_product_list;
 public interface MF_DAO {
 	
 	//자재등록
-	//public int insertMF(MF_material vo);
+	public int insertMF(MF_material vo);
 	
 	//자재목록가져오기
 	public List<MF_material> getMaterialList();
 	
 	//자재목록갯수
 	public int getMaterialListCnt();
+	
+	//자재목록수정
+	public int updateMF(MF_material vo);
+	
+	//자재목록삭제
+	public int deleteMaterial(String material_code);
 	
 	//생산계획등록
 	public int insertMFplan(MF_plan vo);

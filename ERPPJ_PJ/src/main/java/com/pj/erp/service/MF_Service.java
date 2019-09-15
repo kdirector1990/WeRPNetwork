@@ -7,10 +7,16 @@ import org.springframework.ui.Model;
 public interface MF_Service {
 	
 	// 자재등록
-	//public void insertMF(HttpServletRequest req, Model model);
+	public void insertMF(HttpServletRequest req, Model model);
 	
 	// 자재목록가져오기
 	public void selectMF(HttpServletRequest req, Model model);
+	
+	//자재목록 수정
+	public void updateMF(HttpServletRequest req, Model model);
+	
+	//자재목록삭제
+	public void deleteMF(HttpServletRequest req, Model model);
 	
 	// 생산계획등록처리
 	public void insertMFPlan(HttpServletRequest req, Model model);

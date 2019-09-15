@@ -5,12 +5,22 @@
 <mapper namespace="com.pj.erp.persistence.MF_DAO">
 
 	<!-- 자재등록 -->
-<!--  	
 	<insert id="insertMF" parameterType = "com.pj.erp.vo.MF.MF_material">
-		insert into material_tbl(material_code, material_name, material_unit)
-		values(#{material_code}, #{material_name} ,#{material_unit}') 
+		insert into material_tbl(material_name, material_unit)
+		values(#{material_name} ,#{material_unit}) 
 	</insert>
- -->	
+
+	<!-- 자재목록 수정 -->
+	<update id="updateMF" parameterType="com.pj.erp.vo.MF.MF_material">
+		update material_tbl 
+			set material_name=#{material_name}, material_unit=#{material_unit}
+			where material_code=#{material_code}
+	</update>
+	<!-- 자재목록 삭제 -->
+	<delete id="deleteMaterial" parameterType="String">
+		delete from material_tbl where material_code=#{material_code}
+	</delete>
+	
 	<!-- 기획서 목록 가져오기 -->
 	<select id="getMaterialList" resultType="com.pj.erp.vo.MF.MF_material">
 		SELECT * FROM material_tbl
@@ -20,13 +30,14 @@
 	<select id="getMaterialListCnt" resultType="int">
 		SELECT COUNT(*) FROM material_tbl 
 	</select>
+	
 	<!-- 생산계획 등록 -->
-<!-- 
+	<!--
  	<insert id="insertMFplan" parameterType = "com.pj.erp.vo.MF.MF_plan">
 		insert into mf_plan_tbl(p_pp_code, bom_code, product_code, start_date, end_date, ef_cost, ef_amount)
 		values(#{p_pp_code}, #{bom_code}, #{product_code} ,#{start_date} , #{end_date}, #{ef_cost}, #{ef_amount}) 
 	</insert>
- -->
+  -->
 	 <!-- 생산계획목록 -->
 	 <select id="getMFplanList" resultType="com.pj.erp.vo.MF.MF_plan">
 		SELECT * FROM mf_plan_tbl

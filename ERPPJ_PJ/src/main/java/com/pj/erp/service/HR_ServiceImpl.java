@@ -477,33 +477,16 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String username = req.getParameter("username");
 		String department_code = req.getParameter("department_code");
-<<<<<<< HEAD
-		String position_code = req.getParameter("position_code");
-		String rank_code = req.getParameter("rank_code");
 
-		System.out.println("e_name : " + e_name); 
-		int cnt = dao.selectEname(e_name); 
-=======
 		String e_name = req.getParameter("e_name");
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("department_code", department_code);
 		map.put("e_name", e_name);
 		map.put("username", username);
-		
-<<<<<<< HEAD
-		if(cnt > 0) {
-			List<HR_VO> dto = dao.getUsernameList(e_name);
-			model.addAttribute("dto", dto);
-		}
 
-		model.addAttribute("cnt", cnt);
-=======
 		List<HR_Time_VO> vo = dao.selectUserTime(map);
 		
 		return vo;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	}
 
 	//근태(출근 입력)

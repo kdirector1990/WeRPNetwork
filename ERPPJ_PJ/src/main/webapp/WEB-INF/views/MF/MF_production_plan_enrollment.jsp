@@ -8,6 +8,23 @@
         function searchProCode() {
     		window.open("MF_searchProCode", "searchBomCode", "menubar=no, width=380px, height = 520px location=no,status=no,scrollbars=yes");
     	}
+        
+        function planInsert(){
+    		var param = $("#MF_production_plan_inseret").serializeArray();
+    		alert(JSON.stringify(param));
+    		$.ajax({
+    			url: '/erp/MF_production_plan_inseret',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(param){
+    				alert("자재등록성공testtest");
+    			},
+    			error : function(){
+    				alert("자재 등록 실패");
+    			}
+    		});
+    	}
     </script>
 </head>
 	<body>
@@ -47,7 +64,7 @@
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">등록</p>
 
-								<form action="MF_production_plan_enrollmentPro" name="insertMFPlan">
+								<form id="MF_production_plan_inseret" name="insertMFPlan">
 									<input type='hidden' name="${_csrf.parameterName }"
 										value="${_csrf.token }"> <input type="hidden"
 										name="hiddenId" value="0">
@@ -85,7 +102,7 @@
 									</div>
 									<div class="form-group mb-0">
 										<div>
-											<button type="submit"
+											<button type="button" onclick="planInsert"
 												class="btn btn-primary waves-effect waves-light mr-1">
 												Submit</button>
 											<button type="reset"
