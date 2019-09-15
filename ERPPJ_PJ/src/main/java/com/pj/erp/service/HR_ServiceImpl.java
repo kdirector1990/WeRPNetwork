@@ -30,6 +30,7 @@ import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -122,8 +123,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
-		String level_step = "1";
-		vo.setLevel_step(level_step);		
+		vo.setLevel_step(Integer.parseInt(req.getParameter("level_step")));		
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
@@ -369,8 +369,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
 		
-		String level_step = "";
-		vo.setLevel_step(level_step);		
+		vo.setLevel_step(Integer.parseInt(req.getParameter("level_step")));		
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		String department_code = req.getParameter("department_code");
@@ -429,27 +428,109 @@ public class HR_ServiceImpl implements HR_Service{
         model.addAttribute("username", username);
 		
 	}
+	
+	// 가족정보 상세페이지
+	@Override
+	public void modifyFamilyView(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_FamilyVO vo = dao.getFamily(username);
+		
+		model.addAttribute("vo", vo);
+		
+	}
+	
+	// 가족정보 수정 처리
+	@Override
+	public void modifyFamilyPro(HttpServletRequest req, Model model) {
+		HR_FamilyVO vo = new HR_FamilyVO();
+		String username = req.getParameter("username");
+		
+		vo.setUsername(username);
+		vo.setF_name(req.getParameter("f_name"));
+		vo.setF_type(req.getParameter("f_type"));
+		vo.setF_cohabitation(req.getParameter("f_cohabitation"));		
+		vo.setF_born_type(req.getParameter("f_born_type"));
+	}
+	
+	@Override
+	public List<HR_VO> getUsers(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException {
+		
+		
+		List<HR_VO> list = dao.getUsers(map); 
+		return list;
+					
+	}
+
+
 
 	@Override
-	public void searchUsername(HttpServletRequest req, Model model) {
-		String e_name = req.getParameter("e_name");
+	public List<HR_PhysicalVO> getPhysical(Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		List<HR_PhysicalVO> list = dao.getPhysicaly(map);
+		return list;
+	}
+
+
+	//근태(사원목록 가져오기)
+	@Override
+	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model) {
+		
 		String username = req.getParameter("username");
 		String department_code = req.getParameter("department_code");
+<<<<<<< HEAD
 		String position_code = req.getParameter("position_code");
 		String rank_code = req.getParameter("rank_code");
 
 		System.out.println("e_name : " + e_name); 
 		int cnt = dao.selectEname(e_name); 
+=======
+		String e_name = req.getParameter("e_name");
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		
-		System.out.println("cnt: "+cnt);
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_code", department_code);
+		map.put("e_name", e_name);
+		map.put("username", username);
 		
+<<<<<<< HEAD
 		if(cnt > 0) {
 			List<HR_VO> dto = dao.getUsernameList(e_name);
 			model.addAttribute("dto", dto);
 		}
 
 		model.addAttribute("cnt", cnt);
+=======
+		List<HR_Time_VO> vo = dao.selectUserTime(map);
+		
+		return vo;
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	}
+
+	//근태(출근 입력)
+	@Override
+	public int InsertStartWork(HttpServletRequest req, Model model) {
+		int i = 1;
+		int insertCnt = 0;
+		
+		String [] username = req.getParameterValues("username");
+		
+		for(int k = 0; k < username.length; k ++) {
+			insertCnt = dao.StartWork(username[k]);
+		}
+		
+		return insertCnt;
+	}
+
+	//근태(퇴근 입력)
+	@Override
+	public int InsertEndWork(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	
 	
 
 	/*

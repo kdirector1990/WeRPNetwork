@@ -208,9 +208,10 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">전산</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">설비관리</a></li>
-                                            <li class="breadcrumb-item active">전산 설비 등록</li>
+                                            <li class="breadcrumb-item active">전산설비 등록</li>
                                         </ol>
                                     </div>
                                     <h4 class="page-title">전산설비 등록</h4>

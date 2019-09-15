@@ -293,6 +293,7 @@
 	                          		<ul>	                          			
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
+										<li><a href="HR_EmployeePhysicaly">신체정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
 										<li><a href="HR_EmployeeSalary">책정임금 현황</a></li>
 										<li><a href="HR_Yearsofservice">근속년수현황</a></li>
@@ -525,7 +526,7 @@
 	                          			<li><a href="#">제품 목록</a></li>
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="FT_material_list">자재 목록</a></li>
-                    					<li><a href="#">전산설비 목록</a></li>
+                    					<li><a href="CT_equip_list">전산설비 목록</a></li>
                     					<li><a href="#">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>

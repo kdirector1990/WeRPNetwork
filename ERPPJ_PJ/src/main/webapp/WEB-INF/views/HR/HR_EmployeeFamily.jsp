@@ -1,33 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
-    <%@ include file="../setting.jsp" %>
-    <!-- Table datatable css -->
-    <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<%@ include file="../setting.jsp"%>
+<!-- c3 plugin css -->
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-	<script src="/erp/resources/assets/css/js/request.js"></script>
-	<script type = "text/javascript">
+    <script type = "text/javascript">
     var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			var param = new Object();
-			var jsonData;
+			var jsonData;			
 			
-			
+			param.username = $("#username").val();
+			param.e_name = $("#e_name").val();
 			param.department_code = $("#department_code").val();
-			param.land_name = $('#land_name').val();
+			param.position_code = $("#position_code").val();
+			param.rank_code = $("#rank_code").val();
 					
 			jsonData = JSON.stringify(param);
 			
 			$.ajax({
-				url : '${pageContext.request.contextPath}/FT_land_list_result?${_csrf.parameterName}=${_csrf.token }',
+				url : '${pageContext.request.contextPath}/HR_EmployeePhysicaly_result?${_csrf.parameterName}=${_csrf.token }',
 				type : 'POST',
 				data : jsonData, 
 				dataType : "json",
@@ -36,31 +40,42 @@
 					
 					$('#result').empty();
 					
+					
+					
 					for(var i = 0 ; i < list.length; i++){
 					
-						var land_codes = list[i].land_code;
-						var department_codes = list[i].department_code;
-						var land_names = list[i].land_name;
-						var land_addresss = list[i].land_address;
-						//대여일
-						var debt_l_dates = list[i].land_regdate;
-						var pa = new Date(debt_l_dates);
-						var year = pa.getFullYear();
-						var month = (1+pa.getMonth());
-						var day = pa.getDate(); 
-						var land_regdates = year + "/" + month +"/"+day;
+						var usernames = list[i].username;
+						var e_heights = list[i].e_height;
+						var e_weights = list[i].e_weight;
+						var e_left_sights = list[i].e_left_sight;
+						var e_right_sights = list[i].e_right_sight;
+						var e_color_blinds = list[i].e_color_blind;
+						var e_blood_types = list[i].e_blood_type;
+						var e_blood_presures = list[i].e_blood_presure;
+						var e_medical_infos = list[i].e_medical_info;
+						var e_veteran_types = list[i].e_veteran_type;
+						var e_veteran_infos = list[i].e_veteran_info;
+						var e_veteran_levels = list[i].e_veteran_level;
+						var e_disability_types = list[i].e_disability_type;
+						var e_disability_levels = list[i].e_disability_level;
 						
-						var land_costs = list[i].land_cost;
-						
-					$('#result').append('<tr>'+
-                         	'<td>'+ land_codes +'</td>'+
-							'<td>'+ department_codes +'</td>'+
-							'<td>'+ land_names +'</td>'+
-							'<td>'+ land_addresss +'</td>'+
-							'<td>'+ land_regdates +'</td>'+
-							'<td>'+ land_costs +'</td>'+
+					$('#result').append('<tr>'+                         	
+							'<td>'+ usernames +'</td>'+
+							'<td>'+ e_heights +'</td>'+
+							'<td>'+ e_weights +'</td>'+
+							'<td>'+ e_left_sights +'</td>'+
+							'<td>'+ e_right_sights +'</td>'+
+							'<td>'+ e_color_blinds +'</td>'+
+							'<td>'+ e_blood_types +'</td>'+
+							'<td>'+ e_blood_presures +'</td>'+
+							'<td>'+ e_medical_infos +'</td>'+
+							'<td>'+ e_veteran_types +'</td>'+
+							'<td>'+ e_veteran_infos +'</td>'+
+							'<td>'+ e_veteran_levels +'</td>'+
+							'<td>'+ e_disability_types +'</td>'+
+							'<td>'+ e_disability_levels +'</td>'+
                  		'</tr>');
-					}
+					
 					if(searchCount == 1){
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -85,7 +100,7 @@
 					}
 					
 					
-					
+					}
 					
 				},
 				error : function(){
@@ -96,52 +111,87 @@
 	 });
 	 
 </script>
-    </head>
-	<body>
-     	 <!-- Begin page -->
-    	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
-            <div class="content-page">
-			<!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->           
-            
-                <!-- 페이지 내용 입력 공간 -->
-                <div class = "containerfluid">
-            		<!-- start page title -->
+
+</head>
+
+<body>
+
+	<!-- Begin page -->
+	<div id="wrapper">
+		<%@ include file="../sidebar.jsp"%>
+
+		<!-- ============================================================== -->
+		<!-- Start Page Content here -->
+		<!-- ============================================================== -->
+
+		<div class="content-page">
+			<div class="content">
+
+				<!-- Start Content-->
+				<div class="container-fluid">
+
+					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">재무</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">유형자산(고정자산)</a></li>
-                                            <li class="breadcrumb-item active">토지 목록</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사정보</a></li>
+                                            <li class="breadcrumb-item active">사원가족정보현황</li>
                                         </ol>
 								</div>
-								<h4 class="page-title">토지 목록</h4>
+								<h4 class="page-title">사원가족정보</h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
-					
-					<div class="row">
+
+				<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
 								<table class="col-12">
 									<tr class="form-group row">
-											<th class="col-md-1 col-form-label">사용부서</th>
-										<td class="col-md-1 input-group">
-											<input type="text" class="form-control" name="department_code" id = "department_code ">
-											</td>
-											<th class="col-md-1 col-form-label">토지명</th>
-										<td class="col-md-1 input-group">
-											<input type="text" class="form-control" name="land_name" id = "land_name ">
-											</td>
-										<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
-									</tr>									
+												<td class="col-md-1 col-form-label">사원번호</td>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="username" id="username">
+												</td>
+												
+												<th class="col-md-1 col-form-label">&nbsp;</th>
+												
+												<th class="col-md-1 col-form-label">사원명</th>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="e_name" id="e_name">
+												</td>
+												
+												<th class="col-md-1 col-form-label">&nbsp;</th>
+												
+												<th class="col-md-1 col-form-label">부서</th>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="department_code" id="department_code">
+												</td>								
+												
+											</tr>
+											
+											<tr class="form-group row">									
+												
+												<th class="col-md-1 col-form-label">직책</th>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="position_code" id="position_code">
+												</td>
+												
+												<th class="col-md-1 col-form-label">&nbsp;</th>
+												
+												<th class="col-md-1 col-form-label">직급</th>
+												<td class="col-md-2 input-group">
+													<input type="text" class="form-control" name="rank_code" id="e_name">
+												</td>
+												
+												<th class="col-md-1 col-form-label"></th>
+												<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
+											</tr>									
 								</table>
 								
                                         
@@ -149,54 +199,50 @@
                              </div>
 		                   </div> 
                          </div>
-                
-                	<div class="row">
+                         
+                      <div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-                                            <col style = "width:15%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:20%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:20%;">
+                                            
                                             <thead>
                                                 <tr>
-	                                              <th>토지관리코드</th>
-	                                              <th>사용부서</th>
-	                                              <th>토지명</th>
-	                                              <th>토지주소</th>
-	                                              <th>구입일</th>
-	                                              <th>구입가</th>
+	                                             	<th>성명</th>
+													<th>가족관계</th>
+													<th>동거여부</th>
+													<th>생년원일</th>
+													<th>음력/양력</th>	
+													
                                          		</tr>
                                       		</thead>
                                     		<tbody id = "result">
-                                          		
+                                    		
                                       		</tbody>
                                         </table>
-                                  	</div>
-                             </div>
-		                   </div> 
-                         </div>
-                      </div> 
+</div></div></div></div></div>
                
                <!-- 페이지 내용 입력 공간 종료 -->
-               
-                <%@ include file="../footer.jsp" %>
 
-            </div>
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
 
-        </div>
-        <!-- END wrapper -->
+			<%@ include file="../footer.jsp" %>
 
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-       <!-- plugins -->
+		</div>
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp" %>
+	
+    <%@ include file="../setting2.jsp" %>
+
+
+	<!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
 	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
 	<!-- plugins -->
@@ -211,7 +257,7 @@
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
         <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-	<div id = "bodyappend">
-	</div>
-    </body>
+	<div id = "bodyappend"></div>
+
+</body>
 </html>

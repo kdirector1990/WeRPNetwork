@@ -2,10 +2,89 @@
 	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="../setting.jsp"%>
-<!-- c3 plugin css -->
-<link rel="stylesheet" type="text/css"
-	href="/erp/resources/assets/libs/c3/c3.min.css">
+	<style type="text/css">
+		#timeButton{
+			display : none;
+		}
+	</style>
+	<%@ include file="../setting.jsp"%>
+	<!-- c3 plugin css -->
+	<link rel="stylesheet" type="text/css" href="/erp/resources/assets/libs/c3/c3.min.css">
+	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+	<link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+	<link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+	<link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+	<link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+	<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+	<link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript">
+		function searchWork(){
+			var param = $("#select_user_time").serializeArray();
+			alert(JSON.stringify(param));
+			$.ajax({
+    			url: '/erp/HR_User_Time',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(vo){
+    				
+    				$('#result').empty();
+    				document.getElementById("timeButton").style.display="block";
+    				
+    				for(var i = 0; i < vo.length; i++){
+    					var rownum = vo[i].rownum;
+    					var username = vo[i].username;
+    					var e_name = vo[i].e_name;
+    					
+    					$("#result").append('<tr>' +
+    							'<td><input type="checkbox" name="username" value="'+username+'" class="checklist"></td>' +
+    							'<td>'+ rownum+ '</td>' +
+    							'<td>'+ username+ '</td>' +
+    							'<td>' + e_name + '</td></tr>'
+    					)
+    				}
+    				
+    				alert("사원목록을 가져왔습니다.");
+    			},
+    			error : function(){
+    				alert("전산 오류로 인하여 사원목록을 실패하였습니다.");
+    			}
+    		});
+		}
+		
+		function startWork(){
+			var param = $("#timeRecordTbl").serializeArray();
+			alert(JSON.stringify(param));
+			$.ajax({
+    			url: '/erp/HR_Start_Work',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(insertCnt){
+    				if(insertCnt == 1){
+    					alert("사원출근을 기록하였습니다.");    					
+    				}
+    			},
+    			error : function(){
+    				alert("전산 오류로 인하여 사원의 출근 기록을 실패하였습니다.");
+    			}
+    		});
+		}
+		
+		
+		function allcheck(){
+			if($("#allChecked").prop("checked")){
+	    		$(".checklist").prop("checked", true);
+	    	}
+	    	else{
+	    		$(".checklist").prop("checked", false);
+	    	}
+		}
+	</script>
+	
 </head>
 
 <body>
@@ -51,54 +130,32 @@
 							<div align="right">
 								<br>
 							</div>
-							<table id="datatable"
-								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-								<tr>
-									<td>귀속연월</td>
-									<td><input type="text" class="" value=""> 년&nbsp;
-										<select class="" name="" onchange="">
-											<option></option>
-											<option value="">1월</option>
-											<option value="">2월</option>
-											<option value="">3월</option>
-											<option value="">4월</option>
-											<option value="">5월</option>
-											<option value="">6월</option>
-											<option value="">7월</option>
-											<option value="">8월</option>
-											<option value="">9월</option>
-											<option value="">10월</option>
-											<option value="">11월</option>
-											<option value="">12월</option>
-									</select> &nbsp;월 &nbsp;</td>
-
-									<td>지급일</td>
-									<td><input type="text" class="">&nbsp;<a href="#"><i
-											class="dripicons-zoom-in"></i></a> <input type="text" class=""
-										disabled></td>
-								</tr>
-
-								<tr>
-									<td>조회조건</td>
-									<td><select class="" name="" onchange="">
-											<option></option>
-											<option value="">1. 사업장</option>
-											<option value="">2. 부서</option>
-											<option value="">3. 근무조</option>
-											<option value="">4. 프로젝트</option>
-									</select></td>
-
-									<td>사업장</td>
-									<td><select class="" name="" onchange="">
-											<option></option>
-											<option value="">1. 사업장</option>
-											<option value="">2. 부서</option>
-											<option value="">3. 근무조</option>
-											<option value="">4. 프로젝트</option>
-									</select>&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-								</tr>
-							</table>
-
+							<form id="select_user_time">
+							<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+							<table class="col-12">
+									<tr class="form-group row">
+										<th class="col-md-1 col-form-label">사번</th>
+											<td class="col-md-2 input-group">
+												<input type="text" name="username" class="form-control">
+											</td>
+									
+										<th class="col-md-1 col-form-label">부서</th>
+											<td class="col-md-2 input-group">
+												<select name="department_code" class="form-control">
+													<option value="">전체</option>
+													<c:forEach var="dto" items="${dto }">
+														<option value="${dto.department_code }">${dto.department_name }</option>
+													</c:forEach>
+												</select>
+											</td>
+										<th class="col-md-1 col-form-label">사원 이름</th>
+											<td class="col-md-2 input-group">
+												<input type="text" name="e_name" class="form-control">
+											</td>
+										<td class="col-md-2 input-group"><button type="button" class="btn btn-primary waves-effect waves-light" onclick = "searchWork();">검색</button></td>
+									</tr>									
+								</table>
+								</form>
 						</div>
 					</div>
 				</div>
@@ -109,18 +166,27 @@
 					<div class="col-xl-6">
 						<div class="card">
 							<div class="card-body">
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead>										
-										<tr>
-											<th>N O</th>
-											<th><input type="checkbox" name=""></th>
-											<th>사 원 코 드</th>
-											<th>성 명</th>
-										</tr>
-									</thead>
-								</table>
+								<form id="timeRecordTbl">
+								<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+									<table id="datatable"
+										class="table table-striped table-bordered dt-responsive nowrap"
+										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<thead>										
+											<tr>
+												<th><input type="checkbox" id="allChecked" onclick="allcheck();"></th>
+												<th>N O</th>
+												<th>사 원 코 드</th>
+												<th>성 명</th>
+											</tr>
+										</thead>
+										<tbody id="result">
+										</tbody>
+									</table>
+								</form>
+								<div id="timeButton">
+									<button type="button" class="btn btn-primary waves-effect waves-light" onclick = "startWork();">출근</button>
+									<button type="button" class="btn btn-primary waves-effect waves-light" onclick = "endWork();">퇴근</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -130,8 +196,9 @@
 						<div class="card">
 							<div class="card-body">
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+									style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid"
+									aria-describedby="datatable-fixed-col_info">
 									<thead>
 										<tr>											
 											<th colspan="3">근무일별 근태집계</th>
@@ -145,8 +212,9 @@
 								</table>
 								
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+									style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid"
+									aria-describedby="datatable-fixed-col_info">
 									<thead>
 										<tr>											
 											<th colspan="3">총 근태일수/시간</th>
@@ -166,8 +234,9 @@
 						<div class="card">
 							<div class="card-body">
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+									style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid"
+									aria-describedby="datatable-fixed-col_info">
 									<thead>
 										<tr>											
 											<th colspan="3">근태결과일 근태집계</th>
@@ -223,7 +292,23 @@
 	<!-- END wrapper -->
 
 	<%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
+    <%@ include file="../setting2.jsp" %>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+    <div id = "bodyappend"></div>
 
 </body>
 </html>

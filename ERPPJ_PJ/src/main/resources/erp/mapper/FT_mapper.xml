@@ -78,11 +78,19 @@
 	</delete>
 
 	<!-- 사업자 번호 추가 -->
-	<insert id="FT_AccountInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
+	<insert id="FT_LicenseInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
 		insert into b_license_tbl(license_number, bs_name, bs_master, bs_startdate,
 		bs_number, bs_address, bs_address2, bs_condition, bs_line, license_scanfile)
 		values(license_seq.nextval, #{bs_name}, #{bs_master}, #{bs_startdate},
 		#{bs_number}, #{bs_address}, #{bs_address2}, #{bs_condition}, #{bs_line}, #{license_scanfile})
+	</insert>
+	
+	<!-- 거래처 추가 -->
+	<insert id="FT_AccountInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
+		insert into customer_list_tbl(customer_code, license_number, customer_name, branch_name,
+		customer_credit, deal_state)
+		values(customer_seq.nextval, license_seq.currval, #{customer_name}, #{branch_name},
+		#{customer_credit}, #{deal_state})
 	</insert>
 	
 	<!-- 적금 가져오기 -->
@@ -193,6 +201,18 @@
 		and (c.customer_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
 		or c.customer_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
 		or c.license_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 거래처 한개 가져오기 -->
+	<select id="FT_AccountOneSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Account">
+		SELECT
+	    c.customer_code, c.license_number, c.customer_name,
+	    c.branch_name, c.customer_credit, c.deal_state,
+	    b.bs_name, b.bs_master, b.bs_startdate, b.bs_number, b.bs_address,
+	    b.bs_address2, b.bs_condition, b.bs_line, b.license_scanfile
+		FROM customer_list_tbl c, b_license_tbl b
+		where c.license_number = b.license_number
+		and c.customer_code = #{srhval, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 거래처 가져오기 -->
@@ -307,6 +327,46 @@
 				where customer_code = '%'||#{customer_code}||'%' 
 		</if>
 		<if test = "customer_code == null">
+		</if>
+	</select>
+	
+	<!-- 토지목록 검색결과 -->
+	<select id="getLandList" resultType="com.pj.erp.vo.FT.FT_land_list_VO" parameterType = "java.util.Map">
+		select * from land_tbl
+		<if test = "department_code != null">
+			<if test = "land_name != null">
+				where department_code = '%'||#{department_code}||'%' and land_name = '%'||#{land_name}||'%'
+			</if>
+			<if test = "land_name == null">
+				where department_code = '%'||#{department_code}||'%' 
+			</if>
+		</if>
+		<if test = "department_code == null">
+			<if test = "land_name != null">
+				where land_name = '%'||#{land_name}||'%'
+			</if>
+			<if test = "land_name == null">
+			</if>
+		</if>
+	</select>
+	
+	<!-- 설비목록 검색결과 -->
+	<select id="getFacilityList" resultType="com.pj.erp.vo.FT.FT_facility_list_VO" parameterType = "java.util.Map">
+		select * from equipment_tbl
+		<if test = "department_code != null">
+			<if test = "eq_name != null">
+				where department_code = '%'||#{department_code}||'%' and eq_name = '%'||#{eq_name}||'%'
+			</if>
+			<if test = "eq_name == null">
+				where department_code = '%'||#{department_code}||'%' 
+			</if>
+		</if>
+		<if test = "department_code == null">
+			<if test = "eq_name != null">
+				where eq_name = '%'||#{eq_name}||'%'
+			</if>
+			<if test = "eq_name == null">
+			</if>
 		</if>
 	</select>
 	
