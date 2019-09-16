@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_Depart_VO;
 import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
 
 public interface CT_DAO {
+	
+	//부서코드 부서이름 가져오기
+	public List<CT_Depart_VO> selectDP();
 
 	//상세계정 테이블 입력
 	public int InsertAC(FT_Detail_ac ac);
@@ -24,6 +28,9 @@ public interface CT_DAO {
 	
 	//고정자산 select(code)
 	public CT_VO selectCode(String code);
+	
+	//고정자산 목록(전부)
+	public List<CT_VO> selectAllCT();
 	
 	//고정자산 update
 	public int updateCT(CT_VO vo);
@@ -69,5 +76,11 @@ public interface CT_DAO {
 	
 	//수리일지 폐기
 	public int deleteRP(String code);
+	
+	//수리일지 폐기목록 가져오기
+	public List<CT_RP_VO> delRpList(Map<String, Object> map) throws java.text.ParseException;
+	
+	//수리일지 폐기취소
+	public int RPdeleteRemove(String code);
 	
 }

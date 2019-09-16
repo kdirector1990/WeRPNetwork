@@ -172,6 +172,7 @@ public class ST_Controller {
 	@RequestMapping("ST_saleList")
 	public String ST_saleList(HttpServletRequest req, Model model) {
 		logger.info("log => ST_saleList");
+		service.saleList(req, model);
 		    
 		return "ST/ST_saleList"; 
 	}
@@ -184,8 +185,22 @@ public class ST_Controller {
 		return "ST/ST_saleList_Form"; 
 	}
 	
+	// ST_saleList 판매 추가
+	@RequestMapping("ST_saleList_write")
+	public String ST_saleList_write(HttpServletRequest req, Model model) {
+		logger.info("log => ST_saleList_write");
+		    
+		return "ST/ST_saleList_write"; 
+	}
 	
-	
+	// ST_saleList 판매 추가
+	@RequestMapping("ST_saleList_writePro")
+	public String ST_saleList_writePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_saleList_writePro");
+		service.saleListWritePro(req, model);
+		    
+		return "ST/ST_saleList_writePro"; 
+	}
 	
 	          
 	@RequestMapping("ST_sale_plan_state2")
@@ -318,6 +333,22 @@ public class ST_Controller {
 		
 		return "ST/ST_searchProductname_result";
 	}
-		
 	
+	// CustomerName 검색
+	@RequestMapping("ST_searchCustomername")
+	public String ST_searchCustomername(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomername");
+		
+		return "ST/ST_searchCustomername";
+	}
+	
+	// CustomerName 결과
+	@RequestMapping("ST_searchCustomername_result")
+	public String ST_searchCustomername_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomername_result");
+		service.searchCustomer(req, model);
+		
+		return "ST/ST_searchCustomername_result";
+	}
+
 }

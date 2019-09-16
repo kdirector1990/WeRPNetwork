@@ -7,9 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
 @Repository
@@ -122,6 +124,29 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.insertRelease", vo);
 	}
 	
+	// saleList 등록
+	@Override
+	public int insertsaleList(SaleList vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.insertsaleList", vo);
+	}
+	
+	// saleList 게시글 갯수
+	@Override
+	public int getSaleListCnt() {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getSaleListCnt");
+	}
+	
+	// saleList 게시글 목록 조회
+	@Override
+	public List<SaleList> getSaleListArticle(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getSaleListArticle", map);
+	}
+	
+	
+	
+	
+	
+	
 	
 	// 제품명 검색
 	@Override
@@ -135,6 +160,17 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getProductList", product_name);
 	}
 	
+	// 거래처명 검색 확인
+	@Override
+	public int selectCustomer(String customer_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectCustomer", customer_name);
+	}
+	
+	// 검색 목록
+	@Override
+	public List<CustomerList> getCustomerList(String customer_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getCustomerList", customer_name);
+	}
 	
 
 }

@@ -78,6 +78,20 @@
  			VALUES(#{release_name}, #{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, #{sar_code}, sysdate, 'qa8', #{sar_type}, #{username})
  	</insert>
  	
+ 	<!-- saleList -->
+ 	<insert id="insertsaleList" parameterType="com.pj.erp.vo.ST.SaleList">
+ 		INSERT INTO salelist_tbl(SALELIST_CODE, USERNAME, REG_DATE, RELEASE_O_DATE, UNIT, AMOUNT, PRICE, NOTE)
+ 			VALUES(#{SALELIST_CODE}, #{USERNAME}, sysdate, #{RELEASE_O_DATE}, #{UNIT}, #{AMOUNT}, #{PRICE}, #{NOTE})
+ 	</insert>
+ 	
+ 	<select id="getSaleListCnt" resultType="int">
+ 		SELECT COUNT(*) as FROM salelist_tbl
+ 	</select>
+ 	
+ 	<select id="getSaleListArticle" resultType="com.pj.erp.vo.ST.SaleList" parameterType="java.util.Map">
+ 		SELECT * FROM salelist_tbl
+ 	</select>
+ 	
  	
  	<!-- Product 검색 -->
 	<select id="selectProduct" resultType="int" parameterType="String" >
@@ -88,4 +102,14 @@
 	<select id="getProductList" resultType="com.pj.erp.vo.ST.ProductList" parameterType="String">
 		select product_code, bom_code, product_name from product_list_tbl where product_name like '%'||#{product_name}||'%'
 	</select> 	
+	
+	<!-- Customer 검색 -->
+	<select id="selectCustomer" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM customer_list_tbl WHERE customer_name like '%'||#{customer_name}||'%'
+	</select>
+	
+	<!-- 검색 목록 가져오기 -->
+	<select id="getCustomerList" resultType="com.pj.erp.vo.ST.CustomerList" parameterType="String">
+		select customer_code, license_number, customer_name, branch_name, customer_credit, deal_state from customer_list_tbl where customer_name like '%'||#{customer_name}||'%'
+	</select>
  </mapper>

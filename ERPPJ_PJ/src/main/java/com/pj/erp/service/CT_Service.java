@@ -1,5 +1,6 @@
 package com.pj.erp.service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,9 @@ import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
 public interface CT_Service {
+	
+	//부서코드 가져오기
+	public void select_DEP(HttpServletRequest req, Model model);
 
 	//전산설비 등록
 	public int CT_insert(HttpServletRequest req, Model model);
@@ -21,6 +25,9 @@ public interface CT_Service {
 	
 	//전산설비 목록(ajax)
 	public List<CT_VO> CT_select_A(HttpServletRequest req, Model model);
+	
+	//전산설비 목록(전부)
+	public void CT_All_List(HttpServletRequest req, Model model);
 	
 	//전산설비 수정(개인) 입력폼.
 	public CT_VO CT_select_code(HttpServletRequest req, Model model);
@@ -66,4 +73,10 @@ public interface CT_Service {
 	
 	//수리일지 폐기
 	public int deleteRP(HttpServletRequest req, Model model);
+	
+	//수리일지 폐기 목록 가져오기
+	public List<CT_RP_VO> deleteRpList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	//수리일지 폐기처리 하기
+	public int RpDelUpdate(HttpServletRequest req, Model model);
 }

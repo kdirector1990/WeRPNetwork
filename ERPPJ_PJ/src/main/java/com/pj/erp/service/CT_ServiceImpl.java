@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pj.erp.persistence.CT_DAO;
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_Depart_VO;
 import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 import com.pj.erp.vo.FT.FT_Detail_ac;
@@ -24,6 +25,18 @@ public class CT_ServiceImpl implements CT_Service{
 	
 	@Autowired
 	CT_DAO dao;
+	
+	//부서코드, 부서이름 가져오기
+	@Override
+	public void select_DEP(HttpServletRequest req, Model model) {
+		List<CT_Depart_VO> dto = null; 
+		dto = dao.selectDP();
+		
+		System.out.println(dto.get(0).getDepartment_name());
+		System.out.println(dto.get(0).getDepartment_code());
+		
+		model.addAttribute("dto", dto);
+	}
 	
 	//고정자산 입력
 	@Override
@@ -117,6 +130,15 @@ public class CT_ServiceImpl implements CT_Service{
 		System.out.println(vo.get(0).getCeq_code());
 		System.out.println(vo.get(0).getDepartment_name());
 		return vo;
+	}
+	
+	//전산설비 목록(전부)
+	@Override
+	public void CT_All_List(HttpServletRequest req, Model model) {
+		List<CT_VO> vo = dao.selectAllCT();
+		
+		model.addAttribute("dto", vo);
+	
 	}
 
 	//전산설비 목록 code 검색
@@ -297,7 +319,7 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		if(cnt != 0) {
 			List<CT_VO> dto = dao.selectCeqS(department_code);
-			model.addAttribute("dto", dto);
+			model.addAttribute("dtos", dto);
 			System.out.println("if 작동");
 		}
 		
@@ -376,6 +398,7 @@ public class CT_ServiceImpl implements CT_Service{
 		return updateCnt;
 	}
 
+	//수리일지 폐기하기
 	@Override
 	public int deleteRP(HttpServletRequest req, Model model) {
 		
@@ -386,12 +409,30 @@ public class CT_ServiceImpl implements CT_Service{
 		return deleteCnt;
 	}
 
-	
+	//수리일지 폐기 목록 가져오기 
+	@Override
+	public List<CT_RP_VO> deleteRpList(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		
+		List<CT_RP_VO> vo = dao.delRpList(map);
+		
+		System.out.println(vo.get(0).getCeq_code());
+		
+		return vo;
+	}
 
-	
-	
-	
-	
-	
+	//수리일지 폐기취소
+	@Override
+	public int RpDelUpdate(HttpServletRequest req, Model model) {
+		
+		int updateCnt = 0;
+		
+		String[] code = req.getParameterValues("rr_code");
+		
+		for(int i = 0; i < code.length; i++) {
+			updateCnt = dao.RPdeleteRemove(code[i]);
+		}
+		return updateCnt;
+	}
+
 
 }

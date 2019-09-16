@@ -11,6 +11,7 @@ import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 
 public interface HR_DAO {
@@ -54,6 +55,9 @@ public interface HR_DAO {
 	// 신체정보 수정처리
 	public int updatePhysicaly(HR_PhysicalVO vo);
 	
+	// 가족정보 수정페이지
+	public HR_FamilyVO getFamily(String username);
+	
 	// 부서 등록
 	public int insertDepartment(Map<String, Object> map);
 
@@ -77,4 +81,19 @@ public interface HR_DAO {
 	
 	// 사원번호 생성 시퀀스
 	public String getUsername();
+	
+	// 사원정보 검색 폼
+	public List<HR_VO> getUsers(Map<String, Object> map);
+	
+	// 사원정보 검색 폼
+	public List<HR_PhysicalVO> getPhysicaly(Map<String, Object> map);
+	
+	//근태(사원정보 검색)
+	public List<HR_Time_VO> selectUserTime(Map<String, Object> map);
+	
+	//근태(출근입력)
+	public int StartWork(String username);
+	
+	//근태(퇴근입력)
+	public int EndWork(String username);
 }

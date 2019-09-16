@@ -33,6 +33,8 @@
   			data : {'rr_repair_type' : type},
   			dataTpye: 'json',
   			success: function(vo){
+  				$('#result').empty();
+  				document.getElementById("seoncdR").style.display="none";
   				document.getElementById("firstR").style.display="block";
   				var as_state = "";
   				for(var i = 0; i < vo.length; i++){
@@ -42,15 +44,14 @@
   					var ceq_code = vo[i].ceq_code;
   					var rr_repair_type = vo[i].rr_repair_type;
   					var	rr_cost = vo[i].rr_cost;
-
+  					var rr_state = vo[i].rr_state;
   					
-  					var cas_state = vo[i].cas_state;
-  					if(cas_state == 1){
+  					if(rr_state == 1){
   						as_state = "미처리";
-  					}else if(cas_state == 2){
-  						as_state = "처리중";
-  					}else if(cas_state == 3){
+  					}else if(rr_state == 2){
   						as_state = "완료";
+  					}else if(rr_state == 3){
+  						as_state = "삭제";
   					}
   					
   					var reg_date = vo[i].rr_reg_date;
@@ -67,7 +68,8 @@
   						day = "0" +day;
   					}
   					
-  					var rr_reg_date = year + "-" + month + "-" + day; 
+  					var rr_reg_date = year + "-" + month + "-" + day;
+  					
   					
   					$("#result").append('<tr onclick="RepairUp(\''+rr_code+'\')"><td>'
   							+ rr_code + "</td><td>"
@@ -128,13 +130,13 @@
 					var	rr_cost = vo.rr_cost;
 
 					
-					var cas_state = vo.cas_state;
-					if(cas_state == 1){
+					var rr_state = vo.rr_state;
+					if(rr_state == 1){
 						as_state = "미처리";
-					}else if(cas_state == 2){
-						as_state = "처리중";
-					}else if(cas_state == 3){
+					}else if(rr_state == 2){
 						as_state = "완료";
+					}else if(rr_state == 3){
+						as_state = "삭제";
 					}
 					
 					var reg_date = vo.rr_reg_date;
@@ -173,19 +175,21 @@
 		  			            	+ '<textarea name="rr_content" class="form-control" rows="5" id="example-textarea">'+rr_content+'</textarea>'
 		  			        	+ '</div>'
 		  			    	+ '</div>'
-		  			    	+ '<div class="form-group">'
-								+ '<label>수리방법</label><br>'
-								+ '<div>'
+		  			    	+ '<div class="form-group row">'
+								+ '<label class="col-md-2 col-form-label" for="example-email">수리방법</label>'
+								+ '<div class="col-md-10">'
 									+ '<select name="rr_repair_type" class="form-control">'
-										+ '<option value="">선택</option>'
+										+ '<option value="'+rr_repair_type+'" disabled>선택</option>'
 										+ '<option value="내부수리">내부수리</option>'
 										+ '<option value="외부수리">외부수리</option>>'
 									+ '</select>'
 								+ '</div>'
 							+ '</div>'
-							+ '<div class="form-group">'
-	                           + '<label>금액</label>'
-	                           + '<input type="text" name="rr_cost" value="'+rr_cost+'" class="form-control" onkeyup="removeChar(event); inputNumberFormat(this);" />'
+							+ '<div class="form-group row">'
+	                           + '<label class="col-md-2 col-form-label" for="example-email">금액</label>'
+	                           + '<div class="col-md-10">'
+	                          	 + '<input type="text" name="rr_cost" value="'+rr_cost+'" class="form-control" onkeyup="removeChar(event); inputNumberFormat(this);" />'
+	                           + '</div>'
 	                       	+ '</div>'
   		  			    	+ '<div class="form-group text-right mb-0">'
   		  						+ '<button onclick="updateRP();" type="button" class="btn btn-outline-primary waves-effect waves-light">수리완료</button>'
@@ -259,19 +263,19 @@
                 <!-- Start Content-->
                     <div class="container-fluid">
                     
-                        
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">전산</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">설비유지</a></li>
-                                            <li class="breadcrumb-item active">수리 현황</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">설비유지비</a></li>
+                                            <li class="breadcrumb-item active">수리현황</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">수리 현황</h4>
+                                    <h4 class="page-title">수리현황</h4>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +288,8 @@
 										<div class="form-group row">
 											<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
 											<div class="col-md-4 input-group">
-												<form id="select1" style="width:400px; text-align:center;">														<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+												<form id="select1" style="width:400px; text-align:center;">														
+												<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 													<select class=" form-control" name="rr_repair_type" onchange="SelectRR(this.value);">
 														<option value="" selected disabled></option>								
 														<option value="내부수리">내부수리</option>
@@ -333,6 +338,7 @@
                                 <div class="card">
                                     <div class="card-body table-responsive">
 										<form id = "RPWirteForm">
+										<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 											<div id="result2">
 											</div>
 										</form>                                        

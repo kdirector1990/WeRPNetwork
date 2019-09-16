@@ -142,9 +142,15 @@
 												</select></td>
 												<td><input type="text" class=""></td>
 											</tr>
+											
+											
 										</table>
+										
 										<br>
 										<div class="col-lg-12">
+										<div align="right">
+											 <a onclick="window.open('ST_saleList_write', '_blank', 'width=1500 height=600')"><button type="button" class="btn btn-success waves-effect waves-light">추가</button></a>
+										</div>	 
 											<div class="card">
 												<div class="table-responsive">
 													<table class="table mb-0" style="table-layout: fixed;">
@@ -167,18 +173,21 @@
 														</thead>
 														<tbody>
 															<c:if test="${cnt > 0}">
-																<c:forEach var="dto" items="${dtos}">
+																<c:forEach var="sto" items="${stos}">
 																	<tr
-																		onclick="salePlanWriteForm('${dto.saleplan_code}');">
-																		<td>${dto.saleplan_code}</td>
-																		<td></td>
-																		<td>${dto.sp_unit }</td>
-																		<td>${dto.ef_price}</td>
-																		<td>${dto.ef_amount }</td>
-																		<td>${dto.s_plan_start }</td>
-																		<td>${dto.s_plan_end }</td>
+																		onclick="salePlanWriteForm('');">
+																		<td>${sto.salelist_code}</td>
+																		<td></td><!-- 제품명 -->
+																		<td></td><!-- 담당자 -->
+																		<td>${sto.reg_date }</td>
+																		<td>${sto.release_o_date }</td>
+																		<td>${sto.unit }</td>
+																		<td>${sto.amount }</td>
+																		<td>${sto.price }</td>
+																		<td>${sto.customer_code }</td>
+																		<td>${sto.release_state }</td>
 																		<td
-																			style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${dto.sp_note}</td>
+																			style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${sto.note}</td>
 																	</tr>
 																</c:forEach>
 															</c:if>
