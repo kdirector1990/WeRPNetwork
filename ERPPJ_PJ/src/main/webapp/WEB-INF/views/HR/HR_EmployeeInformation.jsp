@@ -7,91 +7,114 @@
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">	
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-<script src="/erp/resources/assets/css/js/request.js"></script>
-
-<script type="text/javascript">
-	
-//검색창 포커스	 
-function searchNameFocus(){
-	document.searchName.username.focus();
-}
-
-// 결과
-function load1() {
-	var url = document.searchName.username.value;	
-	var url2 = document.searchName.e_name.value;
-	var url3 = document.searchName.department_code.value;
-	var url4 = document.searchName.position_code.value;
-	var url5 = document.searchName.rank_code.value;
-	
-	sendRequest(loadFoundation_callback, "HR_EmployeeInformation_result", "post", "username="+url+"&e_name="+url2+"&department_code="+url3+"&position_code="+url4+"&rank_code"+url5);
-	
-}
-
-function loadFoundation_callback() {
-	var result = document.getElementById("result");
-	
-	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.e_name.value){
-			alert("사원이름을 입력하세요!");
-			location.reload();
-			document.searchName.e_name.focus();
-			return false;
-		}
-	
-		if(!document.searchName.username.value){			
-			location.reload();
-			document.searchName.username.focus();
-			return false;
-		}
-		
-		if(!document.searchName.department_code.value){			
-			location.reload();
-			document.searchName.department_code.focus();
-			return false;
-		}
-		
-		if(!document.searchName.position_code.value){			
-			location.reload();
-			document.searchName.position_code.focus();
-			return false;
-		}
-		
-		if(!document.searchName.rank_code.value){			
-			location.reload();
-			document.searchName.rank_code.focus();
-			return false;
-		}
-	
-		if(httpRequest.status == 200){	// 200 : 정상 종료
-			result.innerHTML = "정상종료";
-			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <script type = "text/javascript">
+    var searchCount = 1;
+	 $(function(){
+		$('#search').click(function(){
+			var param = new Object();
+			var jsonData;
 			
-			var datas = httpRequest.responseText;
+						
+			param.username = $("#username").val();
+			param.e_name = $("#e_name").val();
+			param.department_code = $("#department_code").val();
+			param.position_code = $("#position_code").val();
+			param.rank_code = $("#rank_code").val();
+					
+			jsonData = JSON.stringify(param);
 			
-			result.innerHTML = datas;
-			
-		} else {
-			result.innerHTML = "에러발생";
-			
-		}
-	
-	} else {
-		//result.innerHTML = "상태 : " + httpRequest.readyState;
-	}
-} 
-
-function setName(username) {
-	opener.document.getElementById("usernameP").value = username;
-
-	//test alert
-	alert(username);
-	
-	$("#usernameP", opener.document).val(username); //jquery 이용
-	$(opener.document).find("#usernameP").val(username); //find를 이용한 jquery
-	self.close();
-	
-} 	
+			$.ajax({
+				url : '${pageContext.request.contextPath}/HR_EmployeeInformation_result?${_csrf.parameterName}=${_csrf.token }',
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){
+					
+					$('#result').empty();
+					
+					
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var usernames = list[i].username;
+						var e_names = list[i].e_name;
+						var e_genders = list[i].e_gender;						
+						var e_codes = list[i].e_code;
+						var e_hps = list[i].e_hp;
+						var e_mailcodes = list[i].e_mailcode;
+						var e_addresse = list[i].e_address;
+						var e_types = list[i].e_type;
+						var e_nfcCodeNFC = list[i].e_nfcCodeNFC;
+						var department_codes = list[i].department_code;
+						var position_codes = list[i].position_code;
+						var rank_codes = list[i].rank_code;
+						var level_steps = list[i].level_step;
+						var start_dates = list[i].start_date;
+						var pa = new Date(start_dates);
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var start_datess = year + "/" + month +"/"+day;
+						
+					$('#result').append('<tr>'+                         	
+							'<td onclick=window.location=HR_modifyFoundation?username='+ usernames +'>'+ usernames +'</td>'+
+							'<td>'+ e_names +'</td>'+
+							'<td>'+ e_genders +'</td>'+
+							'<td>'+ e_codes +'</td>'+
+							'<td>'+ e_hps +'</td>'+
+							'<td>'+ e_mailcodes +'</td>'+
+							'<td>'+ e_addresse +'</td>'+
+							'<td>'+ e_types +'</td>'+
+							'<td>'+ e_nfcCodeNFC +'</td>'+
+							'<td>'+ department_codes +'</td>'+
+							'<td>'+ position_codes +'</td>'+
+							'<td>'+ rank_codes +'</td>'+
+							'<td>'+ level_steps +'</td>'+
+							'<td>'+ start_datess +'</td>'+							
+                 		'</tr>');
+					
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
+					
+					}
+					
+				},
+				error : function(){
+					alert("에러");
+				}
+			});			
+		}); 
+	 });	
 
 </script>
 </head>
@@ -128,36 +151,30 @@ function setName(username) {
 					</div>
 					<!-- end page title -->
 
-					<div class="container-fluid">
+					
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="card">
-									<div class="card-body table-responsive">
-										<form action="" name="searchName">
-										<table id="datatable"
-											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									<div class="card-body table-responsive">										
+										<table class="col-12">
 											<tr class="form-group row">
 												<td class="col-md-1 col-form-label">사원번호</td>
 												<td class="col-md-2 input-group">
-													<input type="text" class="form-control" name="username">
+													<input type="text" class="form-control" name="username" id="username">
 												</td>
 												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
 												
 												<th class="col-md-1 col-form-label">사원명</th>
 												<td class="col-md-2 input-group">
-													<input type="text" class="form-control" name="e_name">
+													<input type="text" class="form-control" name="e_name" id="e_name">
 												</td>
 												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
 												
 												<th class="col-md-1 col-form-label">부서</th>
 												<td class="col-md-2 input-group">
-													<select class="form-control select2" name="department_code" onchange="">
-														<c:forEach var="dep" items="${dep}">
-														<option value="${dep.department_code}">${dep.department_name}</option>	
-														</c:forEach>																																							
-													</select>
+													<input type="text" class="form-control" name="department_code" id="department_code">
 												</td>								
 												
 											</tr>
@@ -166,37 +183,25 @@ function setName(username) {
 												
 												<th class="col-md-1 col-form-label">직책</th>
 												<td class="col-md-2 input-group">
-													<select class="form-control select2" name="position_code" onchange="">
-														<c:forEach var="poi" items="${poi}">
-														<option value="${poi.position_code}">${poi.position_code}</option>	
-														</c:forEach>																							
-													</select>
+													<input type="text" class="form-control" name="position_code" id="position_code">
 												</td>
 												
 												<th class="col-md-1 col-form-label">&nbsp;</th>
 												
 												<th class="col-md-1 col-form-label">직급</th>
 												<td class="col-md-2 input-group">
-													<select class="form-control select2" name="rank_code" onchange="">
-														<c:forEach var="rank" items="${rank}">
-														<option value="${rank.rank_code}">${rank.rank_code}</option>	
-														</c:forEach>																							
-													</select>
+													<input type="text" class="form-control" name="rank_code" id="e_name">
 												</td>
 												
 												<th class="col-md-1 col-form-label"></th>
-												<td class="col-md-2 input-group">
-													<button type=button class="btn-subpage" id="search"
-														onclick="load1();">조회</button>
-												</td>
+												<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
 											</tr>
-										</table>
-										</form>
+										</table>										
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					
 
 					<div class="row">
 						<div class="col-sm-12">
@@ -226,18 +231,10 @@ function setName(username) {
 										<!-- 잔액 -->
 										<div class="tab-pane show active" id="foundation" role="tabpanel"
 											aria-labelledby="foundation-tab">
-											<div id=result>
-												<!-- 사원정보 출력결과 위치 -->
-											</div>
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-body table-responsive">
-														<div align="right">
-															<br>
-														</div>
-														<table id="datatable-buttons"
-															class="table table-striped table-bordered dt-responsive nowrap"
-															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        				<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
 
 															<thead>
 																<tr>
@@ -258,25 +255,8 @@ function setName(username) {
 																</tr>
 															</thead>
 
-															<tbody>
-																<c:forEach var="fd" items="${vo}">
-																	<tr color="red">
-																		<td onclick="window.location='HR_modifyFoundation?username=${fd.username}'">${fd.username}</td>
-																		<td>${fd.e_name}</td>
-																		<td>${fd.e_gender}</td>
-																		<td>${fd.e_code}</td>
-																		<td>${fd.e_hp}</td>
-																		<td>${fd.e_mailcode}</td>
-																		<td>${fd.e_address}</td>
-																		<td>${fd.e_type}</td>
-																		<td>${fd.e_nfcCodeNFC}</td>
-																		<td>${fd.department_code}</td>
-																		<td>${fd.rank_code}</td>
-																		<td>${fd.position_code}</td>
-																		<td>${fd.level_step}</td>
-																		<td>${fd.start_date}</td>
-																	</tr>
-																</c:forEach>
+															<tbody id="result">
+																
 															</tbody>
 														</table>
 														
@@ -377,6 +357,22 @@ function setName(username) {
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
 	
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+    <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+    <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+    <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id = "bodyappend"></div>
 
 </body>
 </html>

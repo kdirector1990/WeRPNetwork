@@ -26,6 +26,9 @@ public interface CT_Service {
 	//전산설비 목록(ajax)
 	public List<CT_VO> CT_select_A(HttpServletRequest req, Model model);
 	
+	//전산설비 목록(전부)
+	public void CT_All_List(HttpServletRequest req, Model model);
+	
 	//전산설비 수정(개인) 입력폼.
 	public CT_VO CT_select_code(HttpServletRequest req, Model model);
 	

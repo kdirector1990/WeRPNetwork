@@ -29,6 +29,9 @@ public interface CT_DAO {
 	//고정자산 select(code)
 	public CT_VO selectCode(String code);
 	
+	//고정자산 목록(전부)
+	public List<CT_VO> selectAllCT();
+	
 	//고정자산 update
 	public int updateCT(CT_VO vo);
 	

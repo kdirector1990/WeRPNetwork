@@ -9,11 +9,14 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
+import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_facility_list_VO;
+import com.pj.erp.vo.FT.FT_land_list_VO;
 
 public interface FT_DAO {
 	
@@ -76,11 +79,17 @@ public interface FT_DAO {
 	
 	public int FT_DepositUpdate(Map<String, Object> map);
 	
+	// 사업자번호 추가
+	public int FT_LicenseInsert(FT_Account vo);
+	
 	// 거래처 추가
 	public int FT_AccountInsert(FT_Account vo);
 	
 	// 거래처 검색 한 것 개수 가져오기
 	public int FT_AccountCntSelect(String srhval);
+	
+	// 거래처 검색 한 것 하나 가져오기
+	public FT_Account FT_AccountOneSelect(String srhval);
 	
 	// 거래처 검색 한 것 가져오기
 	public List<FT_Account> FT_AccountSelect(String srhval);
@@ -111,5 +120,13 @@ public interface FT_DAO {
 	 
 	//장기차입금 검색결과
 	 public List<FT_Long_Borrow_List> getLBorrowList(Map<String, Object> map);
+	 
+	//지급어음목록 검색결과
+	 public List<FT_Bill_payment_VO> getBillPaymentList(Map<String, Object> map);
 	
+	//지급어음목록 검색결과
+	 public List<FT_land_list_VO> getLandList(Map<String, Object> map);
+	 
+	//지급어음목록 검색결과
+	 public List<FT_facility_list_VO> getFacilityList(Map<String, Object> map); 
 }
