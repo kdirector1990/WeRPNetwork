@@ -27,8 +27,15 @@ public class MF_ServiceImpl implements MF_Service {
 	public void insertMF(HttpServletRequest req, Model model) {
 		
 		MF_material vo = new MF_material();
+		vo.setAccounts_code("qa_02200");
+		vo.setAccount_name("자재_"+req.getParameter("material_name"));
+		vo.setDi_table("MATERIAL_TBL");
+		vo.setDetail_ac_code("qa");
+		dao.insertDetailAc(vo);
+		
 		vo.setMaterial_name(req.getParameter("material_name"));
 		vo.setMaterial_unit(req.getParameter("material_unit"));
+		System.out.println(vo.getMaterial_name());
 		
 		int insertCnt = dao.insertMF(vo);
 		
@@ -77,7 +84,6 @@ public class MF_ServiceImpl implements MF_Service {
 	public void insertMFPlan(HttpServletRequest req, Model model) {
 		
 		MF_plan vo = new MF_plan();
-		vo.setP_pp_code(req.getParameter("p_pp_code"));
 		vo.setBom_code(req.getParameter("bom_code"));
 		vo.setProduct_code(req.getParameter("product_code"));
 		

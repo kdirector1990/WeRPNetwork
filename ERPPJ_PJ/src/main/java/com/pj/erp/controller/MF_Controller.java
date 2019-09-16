@@ -24,12 +24,11 @@ public class MF_Controller {
 	public String MF_materialsInput(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsInput");
 		
-		
 		return "MF/MF_materialsInput";
 	}
 	
 	//자재등록처리
-	@RequestMapping("MF_materialsInsertPro")
+	@RequestMapping("MF_materialsInputPro")
 	public String MF_materialsInsertPro(HttpServletRequest req, Model model) {
 		logger.info("log => MF_materialsInput");
 		service.insertMF(req, model);

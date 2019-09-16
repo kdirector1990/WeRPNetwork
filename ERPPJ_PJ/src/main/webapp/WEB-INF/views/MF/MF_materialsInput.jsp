@@ -9,7 +9,7 @@
 		var param = $("#MF_materialsInput").serializeArray();
 		alert(JSON.stringify(param));
 		$.ajax({
-			url: '/erp/MF_production_plan_enrollmentPro',
+			url: '/erp/MF_materialsInputPro',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
@@ -63,16 +63,17 @@
                                         </p>
     
                                         <form id="MF_materialsInput">
+                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
                                             <div class="form-group">
                                                 <label>자재명</label>
                                                 <div>
-                                                    <input type="text" name="materials_name" class="form-control" required
+                                                    <input type="text" name="material_name" class="form-control" required
                                                             placeholder="자재명"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>단위</label>
-                                                <input type="text" name="materials_unit" class="form-control" required
+                                                <input type="text" name="material_unit" class="form-control" required
                                                             placeholder="단위"/>
                                             </div>
                                             <div class="form-group mb-0">

@@ -68,5 +68,11 @@ public class MF_DAOImpl implements MF_DAO {
 	public int deleteMaterial(String material_code) {
 		return sqlSession.delete("com.pj.erp.persistence.MF_DAO.deleteMaterial", material_code);
 	}
+
+	//상세계정테이블
+	@Override
+	public int insertDetailAc(MF_material vo) {
+		return sqlSession.insert("com.pj.erp.persistence.MF_DAO.insertDetailAc", vo);
+	}
 	
 }

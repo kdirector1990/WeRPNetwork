@@ -8,6 +8,9 @@ import com.pj.erp.vo.MF.MF_product_list;
 
 public interface MF_DAO {
 	
+	//상세계정테이블
+	public int insertDetailAc(MF_material vo);
+	
 	//자재등록
 	public int insertMF(MF_material vo);
 	

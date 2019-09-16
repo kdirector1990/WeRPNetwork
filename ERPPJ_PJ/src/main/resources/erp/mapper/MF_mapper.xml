@@ -4,10 +4,17 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pj.erp.persistence.MF_DAO">
 
+
+	<!-- 자재상세계정등록 -->
+	<insert id="insertDetailAc" parameterType = "com.pj.erp.vo.MF.MF_material">
+		insert into detail_ac_tbl(accounts_code, detail_ac_code, account_name, di_table)
+		values(#{accounts_code},#{detail_ac_code}||detail_ac_seq.nextval, #{account_name},#{di_table})
+	</insert>
+	
 	<!-- 자재등록 -->
 	<insert id="insertMF" parameterType = "com.pj.erp.vo.MF.MF_material">
-		insert into material_tbl(material_name, material_unit)
-		values(#{material_name} ,#{material_unit}) 
+		insert into material_tbl(material_code, material_name, material_unit)
+		values(#{detail_ac_code}||detail_ac_seq.currval ,#{material_name} ,#{material_unit}) 
 	</insert>
 
 	<!-- 자재목록 수정 -->
@@ -32,12 +39,11 @@
 	</select>
 	
 	<!-- 생산계획 등록 -->
-	<!--
  	<insert id="insertMFplan" parameterType = "com.pj.erp.vo.MF.MF_plan">
 		insert into mf_plan_tbl(p_pp_code, bom_code, product_code, start_date, end_date, ef_cost, ef_amount)
-		values(#{p_pp_code}, #{bom_code}, #{product_code} ,#{start_date} , #{end_date}, #{ef_cost}, #{ef_amount}) 
+		values(mf_plan_seq.nextval, #{bom_code}, #{product_code} ,#{start_date} , #{end_date}, #{ef_cost}, #{ef_amount}) 
 	</insert>
-  -->
+
 	 <!-- 생산계획목록 -->
 	 <select id="getMFplanList" resultType="com.pj.erp.vo.MF.MF_plan">
 		SELECT * FROM mf_plan_tbl

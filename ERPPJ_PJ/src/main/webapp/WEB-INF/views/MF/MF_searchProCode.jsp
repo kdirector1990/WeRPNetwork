@@ -67,15 +67,11 @@ function setName(product_code,bom_code,product_name) {
 	opener.document.getElementById("product_code").value = product_code;
 	opener.document.getElementById("bom_code").value = bom_code;
 	opener.document.getElementById("product_name").value = product_name;
-	//test alert
-	alert(username);
 	
 	$("#product_code", opener.document).val(product_code); //jquery 이용
 	$(opener.document).find("#product_code").val(product_code); //find를 이용한 jquery
-	
 	$("#bom_code", opener.document).val(bom_code); //jquery 이용
 	$(opener.document).find("#bom_code").val(bom_code); //find를 이용한 jquery
-	
 	$("#product_name", opener.document).val(product_name); //jquery 이용
 	$(opener.document).find("#product_name").val(product_name); //find를 이용한 jquery
 	
@@ -101,7 +97,7 @@ function setName(product_code,bom_code,product_name) {
 						<div class="col-12">
 							<div class="page-title-box" style="text-align: center; margin: 40px 0;">
 								<h3>
-									<b>제품검색</b>
+									<b>제품검색1</b>
 								</h3>
 							</div>
 						</div>

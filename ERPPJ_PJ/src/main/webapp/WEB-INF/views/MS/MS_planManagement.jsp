@@ -75,21 +75,21 @@
                                         </table>
                                         
                                         <div class="result">
-                                        <br>
-									<form id="updatePlan">
-										<input type='hidden' name="${_csrf.parameterName }"
-											value="${_csrf.token }"> <br>
-										<table id="datatable2"
-											class="table table-striped dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0;">
-											<thead>
-											</thead>
-											
-											<tbody>
-											</tbody>
-										</table>
-									</form>
-								</div>
+	                                        <br>
+											<form id="updatePlan">
+												<input type='hidden' name="${_csrf.parameterName }"
+													value="${_csrf.token }">
+												<table id="datatable2"
+													class="table table-striped dt-responsive nowrap"
+													style="border-collapse: collapse; border-spacing: 0;">
+													<thead>
+													</thead>
+													
+													<tbody>
+													</tbody>
+												</table>
+											</form>				
+										</div>
                                     
                                     </div>
                                 </div>

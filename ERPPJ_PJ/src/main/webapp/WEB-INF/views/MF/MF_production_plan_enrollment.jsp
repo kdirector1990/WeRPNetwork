@@ -10,18 +10,19 @@
     	}
         
         function planInsert(){
-    		var param = $("#MF_production_plan_inseret").serializeArray();
+    		var param = $("#MF_production_plan_enrollment").serializeArray();
     		alert(JSON.stringify(param));
     		$.ajax({
-    			url: '/erp/MF_production_plan_inseret',
+    			url: '/erp/MF_production_plan_enrollmentPro',
     			type: 'POST',
     			data : param,
     			dataTpye: 'json',
     			success: function(param){
-    				alert("자재등록성공testtest");
+    				alert("생산계획등록 성공");
+    				
     			},
     			error : function(){
-    				alert("자재 등록 실패");
+    				alert("생산계획등록 실패");
     			}
     		});
     	}
@@ -64,10 +65,8 @@
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">등록</p>
 
-								<form id="MF_production_plan_inseret" name="insertMFPlan">
-									<input type='hidden' name="${_csrf.parameterName }"
-										value="${_csrf.token }"> <input type="hidden"
-										name="hiddenId" value="0">
+								<form id="MF_production_plan_enrollment" name="insertMFPlan">
+									<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 									<div class="form-group">
 										<label>제품계정코드</label> <input type="text" name="product_code" id="product_code"
 											class="form-control" required placeholder="제품계정코드" onclick="searchProCode();" />
@@ -102,7 +101,7 @@
 									</div>
 									<div class="form-group mb-0">
 										<div>
-											<button type="button" onclick="planInsert"
+											<button type="button" onclick="planInsert();"
 												class="btn btn-primary waves-effect waves-light mr-1">
 												Submit</button>
 											<button type="reset"
