@@ -492,13 +492,12 @@ public class HR_ServiceImpl implements HR_Service{
 	//근태(출근 입력)
 	@Override
 	public int InsertStartWork(HttpServletRequest req, Model model) {
-		int i = 1;
 		int insertCnt = 0;
 		
 		String [] username = req.getParameterValues("username");
 		
-		for(int k = 0; k < username.length; k ++) {
-			insertCnt = dao.StartWork(username[k]);
+		for(int i = 0; i < username.length; i ++) {
+			insertCnt = dao.StartWork(username[i]);
 		}
 		
 		return insertCnt;
@@ -507,8 +506,16 @@ public class HR_ServiceImpl implements HR_Service{
 	//근태(퇴근 입력)
 	@Override
 	public int InsertEndWork(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int updateCnt = 0;
+		
+		String [] username = req.getParameterValues("username");
+		
+		for(int i = 0; i < username.length; i++) {
+			updateCnt = dao.EndWork(username[i]);
+		}
+		
+		return updateCnt;
 	}
 
 

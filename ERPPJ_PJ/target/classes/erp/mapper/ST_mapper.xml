@@ -88,6 +88,10 @@
  		SELECT COUNT(*) as FROM salelist_tbl
  	</select>
  	
+ 	<select id="getSaleListArticle" resultType="com.pj.erp.vo.ST.SaleList" parameterType="java.util.Map">
+ 		SELECT * FROM salelist_tbl
+ 	</select>
+ 	
  	
  	<!-- Product 검색 -->
 	<select id="selectProduct" resultType="int" parameterType="String" >

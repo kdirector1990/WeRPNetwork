@@ -95,5 +95,5 @@ public interface HR_DAO {
 	public int StartWork(String username);
 	
 	//근태(퇴근입력)
-	public int EndWork(Map<String, Object> map);
+	public int EndWork(String username);
 }

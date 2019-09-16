@@ -172,6 +172,7 @@ public class ST_Controller {
 	@RequestMapping("ST_saleList")
 	public String ST_saleList(HttpServletRequest req, Model model) {
 		logger.info("log => ST_saleList");
+		service.saleList(req, model);
 		    
 		return "ST/ST_saleList"; 
 	}

@@ -74,6 +74,25 @@
     		});
 		}
 		
+		function endWork(){
+			var param = $("#timeRecordTbl").serializeArray();
+			alert(JSON.stringify(param));
+			$.ajax({
+    			url: '/erp/HR_End_Work',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(updateCnt){
+    				if(updateCnt == 1){
+    					alert("사원의 퇴근을 기록하였습니다.");    					
+    				}
+    			},
+    			error : function(){
+    				alert("전산 오류로 인하여 사원의 퇴근 기록에 실패하였습니다.");
+    			}
+    		});
+		}
+		
 		
 		function allcheck(){
 			if($("#allChecked").prop("checked")){
