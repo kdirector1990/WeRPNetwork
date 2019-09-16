@@ -57,8 +57,7 @@ public class ERPController {
 	
 	@RequestMapping("admin-grid")
 	public String admingrid(Locale locale, Model model) {
-		logger.info("log => admin-grid");
-		
+		logger.info("log => admin-grid"); 
 		return "admin-grid";  
 	}
 	
