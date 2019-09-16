@@ -202,4 +202,12 @@
 		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate)
 	</insert>
 	
+	<!-- 근태(퇴근입력) -->
+	<update id="EndWork" parameterType="String">
+		Update time_card_tbl
+		Set tc_leave_time = sysdate
+		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+		And username = #{username}
+	</update>
+	
 </mapper>

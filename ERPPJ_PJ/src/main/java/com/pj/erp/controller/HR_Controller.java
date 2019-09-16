@@ -352,11 +352,11 @@ public class HR_Controller {
 	//근태(사원 퇴근 입력)
 	@RequestMapping("HR_End_Work")
 	@ResponseBody
-	public List<HR_Time_VO> HR_End_Work(HttpServletRequest req, Model model) {
+	public int HR_End_Work(HttpServletRequest req, Model model) {
 		logger.info("log => HR_End_Work");
 		
-		List<HR_Time_VO> vo = service.selectUserHR(req, model);
+		int updateCnt = service.InsertEndWork(req, model);
 		
-		return vo;
+		return updateCnt;
 	}
 }

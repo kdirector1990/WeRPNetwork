@@ -181,9 +181,8 @@ public class HR_DAOImpl implements HR_DAO{
 
 	//근태(퇴근입력)
 	@Override
-	public int EndWork(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int EndWork(String username) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.EndWork", username);
 	}
 	
 	// 가족정보 가져오기
