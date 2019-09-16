@@ -139,10 +139,8 @@ public class ST_DAOImpl implements ST_DAO {
 	// saleList 게시글 목록 조회
 	@Override
 	public List<SaleList> getSaleListArticle(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getSaleListArticle", map);
 	}
-	
 	
 	
 	
