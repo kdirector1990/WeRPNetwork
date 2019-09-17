@@ -142,7 +142,18 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getSaleListArticle", map);
 	}
 	
+	// saleList 게시글 상세 조회
+	@Override
+	public SaleList getsaleListForm(String salelist_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getsaleListForm", salelist_code);
+	}
 	
+	// saleList 수정 처리
+	@Override
+	public int updateSaleList(SaleList vo) {
+		return sqlSession.update("com.pj.erp.persistence.ST_DAO.updateSaleList", vo);
+	}
+
 	
 	
 	

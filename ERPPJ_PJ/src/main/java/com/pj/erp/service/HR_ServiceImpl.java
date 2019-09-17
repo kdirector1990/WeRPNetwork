@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -493,11 +494,18 @@ public class HR_ServiceImpl implements HR_Service{
 	@Override
 	public int InsertStartWork(HttpServletRequest req, Model model) {
 		int insertCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i ++) {
-			insertCnt = dao.StartWork(username[i]);
+			map.put("username", username[i]);
+			int users = dao.selectWork(map);
+			System.out.println("작동");
+			if(users == 0) {
+				System.out.println("작동2");
+				insertCnt = dao.StartWork(username[i]);
+			}
 		}
 		
 		return insertCnt;
@@ -512,32 +520,53 @@ public class HR_ServiceImpl implements HR_Service{
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i++) {
-			updateCnt = dao.EndWork(username[i]);
+			int users = dao.selectEndWork(username[i]);
+			
+			if(users == 0) {
+				updateCnt = dao.EndWork(username[i]);
+			}
 		}
 		
+		System.out.println(updateCnt);
 		return updateCnt;
 	}
 
 
-
-	
-	
-
-	/*
+	//근태(근무일별 목록 가져오기)
 	@Override
-	public void userChk(HttpServletRequest req, Model model) {
-		String username = req.getParameter("username");		
+	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model) {
+		int cnt = 0;
+		String month;
+		List<HR_Time_VO> dto = null;
+		String username = req.getParameter("username");
 		
-		int cnt = dao.userChk(username);
+		Calendar c = Calendar.getInstance();
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		System.out.println(year);
+		String years= year.substring(2);
 		
-		System.out.println("cnt : " + cnt);
+		HR_Time_VO vo = new HR_Time_VO();
+		vo.setUsername(username);
+		vo.setYear(years);
+		System.out.println(years);
+		System.out.println(username);
 		
-		model.addAttribute("selectCnt", cnt);
-		model.addAttribute("username",  username);
+		for(int i = 1; i < 13; i++) {
+			if(i < 10) {
+				month = "0"+i;
+			}
+			else {
+				month = ""+i;
+			}
+			vo.setMonth(month);
+			System.out.println(month);
+			cnt = dao.DetailWork(vo);
+			if(cnt != 0) {
+				dto = dao.SelectDetailWork(vo);
+			}
+		}
 		
+		return dto;
 	}
-	*/
-	
-	
-	
+
 }

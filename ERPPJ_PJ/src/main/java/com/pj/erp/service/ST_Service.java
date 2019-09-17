@@ -54,6 +54,12 @@ public interface ST_Service {
 	// ST_saleList 목록 조회
 	public void saleList(HttpServletRequest req, Model model);
 	
+	// ST_saleList 상세 페이지
+	public void saleListWriteForm(HttpServletRequest req, Model model);
+	
+	// ST_saleList 상세 페이지 수정
+	public void saleListModifyPro(HttpServletRequest req, Model model);
+	
 	
 	
 	

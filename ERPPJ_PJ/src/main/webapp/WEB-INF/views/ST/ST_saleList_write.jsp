@@ -80,7 +80,7 @@
 													<label class="col-md-2 col-form-label"
 														for="example-textarea">비고</label>
 													<div class="col-md-10">
-														<textarea class="" rows="7" cols="200" id="note"></textarea>
+														<textarea class="" rows="7" cols="200" name="note"></textarea>
 													</div>
 												</div>
 
@@ -92,7 +92,7 @@
 													<label class="col-md-2 col-form-label">출고 요청일</label>
 													<div class="col-md-10">
 														<input type="date" name="release_o_date"
-															class="form-control" id="product_nameP" value=""
+															class="form-control" value=""
 															style="width: 350px;">
 													</div>
 												</div>

@@ -80,8 +80,8 @@
  	
  	<!-- saleList -->
  	<insert id="insertsaleList" parameterType="com.pj.erp.vo.ST.SaleList">
- 		INSERT INTO salelist_tbl(SALELIST_CODE, USERNAME, REG_DATE, RELEASE_O_DATE, UNIT, AMOUNT, PRICE, NOTE)
- 			VALUES(#{SALELIST_CODE}, #{USERNAME}, sysdate, #{RELEASE_O_DATE}, #{UNIT}, #{AMOUNT}, #{PRICE}, #{NOTE})
+ 		INSERT INTO salelist_tbl(salelist_code, username, reg_date, release_o_date, unit, amount, price, note)
+ 			VALUES(salelist_seq.nextval, #{username}, sysdate, #{release_o_date}, #{unit}, #{amount}, #{price}, #{note})
  	</insert>
  	
  	<select id="getSaleListCnt" resultType="int">
@@ -91,6 +91,14 @@
  	<select id="getSaleListArticle" resultType="com.pj.erp.vo.ST.SaleList" parameterType="java.util.Map">
  		SELECT * FROM salelist_tbl
  	</select>
+ 	
+ 	<select id="getsaleListForm" resultType="com.pj.erp.vo.ST.SaleList">
+ 		SELECT * FROM salelist_tbl WHERE salelist_code = #{salelist_code}
+ 	</select>
+ 	
+ 	<update id="updateSaleList" parameterType="com.pj.erp.vo.ST.SaleList">
+ 		UPDATE salelist_tbl SET release_o_date=#{release_o_date}, unit=#{unit}, price=#{price}, note=#{note} WHERE salelist_code=#{salelist_code}
+ 	</update>
  	
  	
  	<!-- Product 검색 -->

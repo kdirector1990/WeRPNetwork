@@ -196,11 +196,25 @@
 		Order by RowNum asc
 	</select>
 	
+	<!-- 출근자 있는지 확인 -->
+	<select id="selectWork" parameterType="java.util.Map" resultType="int">
+		Select Count(*) From time_card_tbl
+		Where username = #{username}
+		And to_char(tc_come_time, 'YYYY/MM/DD') =  to_char(sysdate, 'YYYY/MM/DD')
+	</select>
+	
 	<!-- 근태(출근입력) -->
 	<insert id="StartWork" parameterType="String">
 		Insert Into time_card_tbl(tc_code, username, tc_come_time)
 		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate)
 	</insert>
+	
+	<!-- 퇴근자 확인 -->
+	<select id="selectEndWork" resultType="int">
+		Select Count(*) from time_card_tbl
+		Where username = #{username}
+		And to_char(tc_leave_time, 'YYYY/MM/DD') = to_char(sysdate, 'YYYY/MM/DD')
+	</select>
 	
 	<!-- 근태(퇴근입력) -->
 	<update id="EndWork" parameterType="String">
@@ -209,5 +223,25 @@
 		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
 		And username = #{username}
 	</update>
+	
+	<!-- 근태(근무월별 있는가) -->
+	<select id="DetailWork" resultType="int">
+		Select Count(*)
+		From time_card_tbl
+		Where tc_come_time Like '%'||#{year}||'/'||#{month}||'%'
+		And username = #{username}
+	</select>
+	
+	<!-- 근태 기록가져오기 -->
+	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR_Time_VO" resultType="com.pj.erp.vo.HR_Time_VO">
+		SELECT
+    		To_char(tc_come_time, 'mm') as month,
+    		tc_leave_time - tc_come_time as time,
+    		Count(*) as count
+		From time_card_tbl
+		Where tc_come_time Like #{year}||'/'||#{month}||'%'
+		And username = #{username}
+		Group by To_char(tc_come_time, 'mm'), tc_leave_time - tc_come_time
+	</select>
 	
 </mapper>

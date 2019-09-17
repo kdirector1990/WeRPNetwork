@@ -5,9 +5,10 @@ import java.sql.Timestamp;
 
 public class SaleList {
 	private String salelist_code;	// 판매대장코드
-	private String username;	// 판매 사원
+	private String username;	// 담당자
 	private String detail_ac_code;	// 상세 계정 코드
 	private String customer_code;	// 거래처 코드
+	private String customer_name;	// 거래처명
 	private Timestamp reg_date;	// 등록일
 	private String unit;	// 단위
 	private int amount; // 수량
@@ -19,7 +20,7 @@ public class SaleList {
 	private int jr_state;	// 처리 상태
 	private String ep_code;	// 견적 코드
 	private Date release_o_date;	// 출고 요청일
-	private String salelist_name; // 판매명
+	private String salelist_name; // 제품명
 	
 	// 생성자
 	public SaleList() {}
@@ -152,6 +153,15 @@ public class SaleList {
 	public void setRelease_o_date(Date release_o_date) {
 		this.release_o_date = release_o_date;
 	}
+
+	public String getCustomer_name() {
+		return customer_name;
+	}
+
+	public void setCustomer_name(String customer_name) {
+		this.customer_name = customer_name;
+	}
+	
 	
 	
 

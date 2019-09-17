@@ -65,6 +65,8 @@ public interface ST_DAO {
 	// release 등록 처리
 	public int insertRelease(Release vo);
 	
+	
+	// ST_saleList (판매 관리)
 	// saleList 등록
 	public int insertsaleList(SaleList vo);
 	
@@ -74,7 +76,11 @@ public interface ST_DAO {
 	// saleList 게시글 목록 조회
 	public List<SaleList> getSaleListArticle(Map<String, Object> map);
 	
+	// saleList 게시글 상세 조회 
+	public SaleList getsaleListForm(String salelist_code);
 	
+	// saleList 게시글 수정
+	public int updateSaleList(SaleList vo);
 	
 	
 	
