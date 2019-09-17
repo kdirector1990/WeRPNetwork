@@ -224,4 +224,24 @@
 		And username = #{username}
 	</update>
 	
+	<!-- 근태(근무월별 있는가) -->
+	<select id="DetailWork" resultType="int">
+		Select Count(*)
+		From time_card_tbl
+		Where tc_come_time Like '%'||#{year}||'/'||#{month}||'%'
+		And username = #{username}
+	</select>
+	
+	<!-- 근태 기록가져오기 -->
+	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR_Time_VO" resultType="com.pj.erp.vo.HR_Time_VO">
+		SELECT
+    		To_char(tc_come_time, 'mm') as month,
+    		tc_leave_time - tc_come_time as time,
+    		Count(*) as count
+		From time_card_tbl
+		Where tc_come_time Like #{year}||'/'||#{month}||'%'
+		And username = #{username}
+		Group by To_char(tc_come_time, 'mm'), tc_leave_time - tc_come_time
+	</select>
+	
 </mapper>

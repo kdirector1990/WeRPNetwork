@@ -203,5 +203,18 @@ public class HR_DAOImpl implements HR_DAO{
 	public HR_FamilyVO getFamily(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
 	}
+	
+	//근태(근무월별 있는가)
+	@Override
+	public int DetailWork(HR_Time_VO vo) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.DetailWork", vo);
+	}
+
+	// 근태(기록 가져오기)
+	@Override
+	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.SelectDetailWork", vo);
+	}
+
 
 }
