@@ -41,8 +41,9 @@
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">관리</p>
 								<hr>
-							<div class="form-horizontal">
+							<div class="form-horizontal"  style="overflow-y:auto;">
                                	<form id="manageMF_plan" action="" method="post" >
+                               	<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 								<table id="datatable"
 									class="table m-0 table-bordered"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -91,7 +92,7 @@
 
 								<div class="result">
 									 <br>
-									<form id="updatePlan">
+									<form id="MF_production_plan_enrollment">
 										<input type='hidden' name="${_csrf.parameterName }"
 											value="${_csrf.token }"> <br>
 										<table id="datatable2"
@@ -105,7 +106,6 @@
 										</table>
 									</form>		
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -134,6 +134,11 @@
     <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
     <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
+    
+    function searchProCode() {
+		window.open("MF_searchProCode", "searchBomCode", "menubar=no, width=380px, height = 520px location=no,status=no,scrollbars=yes");
+	}
+    
      $("#datatable tbody tr").click(function(){
     	 
 			if($(".plandiv") != null){
@@ -160,8 +165,6 @@
    			var end_date = td.eq(5).text();
    			var ef_cost = td.eq(6).text();
    			var ef_amount = td.eq(7).text();
-   			var eas_code = td.eq(8).text();
-   			var e_approval_code = td.eq(9).text();
 			
    			tdArr.push(p_pp_code);
    			tdArr.push(bom_code);
@@ -170,8 +173,6 @@
    			tdArr.push(end_date);
    			tdArr.push(ef_cost);
    			tdArr.push(ef_amount);
-   			tdArr.push(eas_code);
-   			tdArr.push(e_approval_code);
    			
    			$('.result').show();
    			
@@ -184,49 +185,38 @@
   				    +'<div class="form-group row">'
   			        +'<label class="col-md-2 col-form-label" for="example-email">BOM코드</label>'
   			        	+ '<div class="col-md-10">'
-  			            	+ '<input type="text" name="bom_code" value="'+tdArr[1]+'" class="form-control" >'
+  			            	+ '<input type="text" name="bom_code" id="bom_code" value="'+tdArr[1]+'" class="form-control">'
   			        	+ '</div>'
   			    	+ '</div>'
   				    + '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="simpleinput">제품계정코드</label>' 
   			        	+ '<div class="col-md-10">'
-  			            	+ '<input type="text" name="product_code" value="'+tdArr[2]+'" id="simpleinput" class="form-control">' 
+  			            	+ '<input type="text" name="product_code" id="product_code" value="'+tdArr[2]+'" id="simpleinput" class="form-control" onclick="searchProCode();">'
+  			            	+ '<input type="text" name="product_name" id="product_name" id="simpleinput" class="form-control" disabled>' 
   			        	+ '</div>'
   			    	+'</div>'
   			    	+ '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">기간시작</label>'
   			        	+ '<div class="col-md-10">'
-  			        	+ '<input type="text" name="start_date" value="'+tdArr[3]+'" id="simpleinput" class="form-control" >'
+  			        	+ '<input type="text" name="start_date" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[3]+'" id="simpleinput" class="form-control" >'
   			        	+ '</div>'
   			    	+ '</div>'
   			    	+ '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="simpleinput">기간종료</label>'
   			        	+ '<div class="col-md-10">'
-  			            	+ '<input type="text" name="end_date" value="'+tdArr[4]+'" id="simpleinput" class="form-control" disabled>'
+  			            	+ '<input type="text" name="end_date" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[4]+'" id="simpleinput" class="form-control">'
   			        	+ '</div>'
   			    	+ '</div>'
   			    	+  '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">예상 생산 원가</label>'
   			        	+'<div class="col-md-10">'
-  			            	+ '<input type="text" name="ef_cost" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[5]+'" id="simpleinput" class="form-control" >'
+  			            	+ '<input type="text" name="ef_cost" value="'+tdArr[5]+'" id="simpleinput" class="form-control" >'
   			        	+ '</div>'
   			    	+ '</div>' 
   			    	+  '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">목표 생산 수량</label>'
   			        	+'<div class="col-md-10">'
-  			            	+ '<input type="text" name="ef_amount" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[6]+'" id="simpleinput" class="form-control" >'
-  			        	+ '</div>'
-  			    	+ '</div>' 
-  			    	+  '<div class="form-group row">'
-  			        + '<label class="col-md-2 col-form-label" for="example-textarea">전결라인코드</label>'
-  			        	+'<div class="col-md-10">'
-  			        		+ '<textarea name="eas_code" class="form-control" rows="5" id="example-textarea">'+tdArr[7]+'</textarea>'
-  			        	+ '</div>'
-  			    	+ '</div>' 
-  			    	+  '<div class="form-group row">'
-  			        + '<label class="col-md-2 col-form-label" for="example-textarea">전결현황코드</label>'
-  			        	+'<div class="col-md-10">'
-  			            	+ '<input type="text" name="e_approval_code" value="'+tdArr[8]+'" id="simpleinput" class="form-control" >'
+  			            	+ '<input type="text" name="ef_amount" value="'+tdArr[6]+'" id="simpleinput" class="form-control" >'
   			        	+ '</div>'
   			    	+ '</div>' 
   			    	+ '<div class="form-group text-right mb-0">'
@@ -239,15 +229,15 @@
 		});
      
      function updatePlan(){
-		 var param = $("#updatePlan").serializeArray();
+		 var param = $("#MF_production_plan_enrollment").serializeArray();
 		 alert(JSON.stringify(param));
 		$.ajax({
-			url: '/erp/MS_updatePlanPro',
+			url: '/erp/MF_updateProductionPlanPro',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("기획서 수정 성공.");
+				alert("수정되었습니다.");
 				location.reload();
 			},
 			error : function(){
@@ -258,19 +248,19 @@
 	}
      
      function deletePlan(){
-		 var param = $("#updatePlan").serializeArray();
+		 var param = $("#MF_production_plan_enrollment").serializeArray();
 		 alert(JSON.stringify(param));
 		$.ajax({
-			url: '/erp/MS_deletePlanPro',
+			url: '/erp/MF_deleteProductionPlanPro',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("기획서 삭제 성공하였습니다.");
+				alert("삭제되었습니다.");
 				location.reload();
 			},
 			error : function(){
-				alert("기획서 삭제에 실패하였습니다.");
+				alert("삭제에 실패하였습니다.");
 			}
 			
 		});

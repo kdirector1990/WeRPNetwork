@@ -11,6 +11,11 @@ public class HR_Time_VO {
 	String tc_code;
 	Timestamp tc_come_time;
 	Timestamp tc_leave_time;
+	String month;
+	String year;
+	String day;
+	String time;
+	String count;
 	
 	//생성자
 	public HR_Time_VO() {}
@@ -63,5 +68,47 @@ public class HR_Time_VO {
 	public void setTc_leave_time(Timestamp tc_leave_time) {
 		this.tc_leave_time = tc_leave_time;
 	}
+	
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+	
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+	
+	
 	
 }

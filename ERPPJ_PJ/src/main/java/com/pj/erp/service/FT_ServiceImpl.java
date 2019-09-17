@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +56,33 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 	
+	// 전표페이지
+	@Override
+	public void FT_insertChit(HttpServletRequest req, Model model) {
+		String keycode = req.getParameter("keynum"); 
+		if(keycode != null) {
+			String date = req.getParameter("date" + keycode);
+			String no = req.getParameter("no" + keycode);
+			String year = date.substring(0, 3);
+			String month = date.substring(5,6);
+			String day = date.substring(8, 9);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("chkno", no);
+			map.put("year", year);
+			map.put("month", month);
+			map.put("day", day);
+			
+			List<FT_Chit> list = dao.FT_chitDataLoad(map);
+			
+			model.addAttribute("chkno", no);
+			model.addAttribute("year", year);
+			model.addAttribute("month", month);
+			model.addAttribute("day", day);
+			model.addAttribute("list", list);
+			model.addAttribute("listsize", list.size());
+		}
+	}
+	
 	// 전표입력
 	@Override
 	public String FT_chitInsert(Map<String, Object> map) {
@@ -98,9 +127,9 @@ public class FT_ServiceImpl implements FT_Service{
     public void FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
         MultipartFile file = req.getFile("scanfile");
         
-        String saveDir = req.getRealPath("/resources/images/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
+        String saveDir = req.getRealPath("/resources/img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
         
-        String realDir="C:\\Dev\\workspace\\ERPPJ_PJ\\src\\main\\webapp\\resources\\images\\"; // 저장 경로
+        String realDir="C:\\dev50\\git2\\WeRPNetwork123\\ERPPJ_PJ\\src\\main\\webapp\\resources\\img"; // 저장 경로
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -115,7 +144,7 @@ public class FT_ServiceImpl implements FT_Service{
             }
             fis.close();
             fos.close();
-                    
+            
             FT_Account vo = new FT_Account();
             vo.setCustomer_name(req.getParameter("customerName"));
             vo.setBranch_name(req.getParameter("branchName"));
@@ -305,5 +334,28 @@ public class FT_ServiceImpl implements FT_Service{
 			throws ParseException {
 		List<FT_facility_list_VO> list = dao.getFacilityList(map);
 		return list;
-	}	
+	}
+
+	@Override
+	public List<FT_Chit> FT_chitSelect(Map<String, Object> map, Model model) {
+		List<FT_Chit> list = dao.FT_ChitDistinct(map);
+		return list;
+	}
+	
+	@Override
+	public String FT_CheckFormal(Map<String, Object> map, Model model) {
+		String[] datelist = map.get("dates").toString().split("/");
+		String[] nolist = map.get("nos").toString().split("/");
+		for(int i = 0; i<datelist.length; i++) {
+			System.out.println("리스트 : " + datelist[i]);
+			System.out.println("number리스트 : " + nolist[i]);
+			System.out.println("username : " + map.get("username"));
+			map.put("dates", datelist[i]);
+			map.put("nos", nolist[i]);
+			if(dao.FT_CheckFormal(map) == 0) {
+				return "실패";
+			}
+		}
+		return "성공";
+	}
 }
