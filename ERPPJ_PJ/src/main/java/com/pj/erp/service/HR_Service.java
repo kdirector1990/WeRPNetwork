@@ -93,4 +93,7 @@ public interface HR_Service {
 	//근태(퇴근 입력)
 	public int InsertEndWork(HttpServletRequest req, Model model);
 	
+	//근태(근무일별 목록 가져오기)
+	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model);
+	
 }

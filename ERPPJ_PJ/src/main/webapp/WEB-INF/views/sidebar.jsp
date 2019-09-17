@@ -141,6 +141,7 @@
                             </sec:authorize>
                             <!-- item-->
                             <sec:authorize access="isAuthenticated()">
+                            	
                             <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                                 <form id="logout-form" action="logout" method="POST">
    									<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
