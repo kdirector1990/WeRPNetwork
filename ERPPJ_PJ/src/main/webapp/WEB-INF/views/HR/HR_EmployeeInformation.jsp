@@ -116,10 +116,10 @@
 		}); 
 	 });
 	 
-	 function updateAS(code){
+	 /* function updateINFO(code){
      	alert(code);
 	         $.ajax({
-	  			url: '/erp/CT_update_ASW?${_csrf.parameterName}=${_csrf.token }&cas_code='+code,
+	  			url: '/erp/HR_update_Fou?${_csrf.parameterName}=${_csrf.token }&username='+code,
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
@@ -129,11 +129,15 @@
 	  				
 	  				var username = data.username;	  					  				
 	  				var e_name = data.e_name;
+	  				var e_gender = data.e_gender;
+	  				var e_type = data.e_type;
+	  				var e_code = data.e_code;
+	  				var e_hp = data.e_hp;
+	  				var e_nfcCodeNFC = data.e_nfcCodeNFC
 	  				var department_code = data.department_code;
-	  				var cas_content = data.cas_content;
-	  				var cas_uri = data.cas_uri;
-	  				var cas_result = data.cas_result;
-	  				var cas_state = data.cas_state;
+	  				var position_code = data.position_code;
+	  				var rank_code = data.rank_code;
+	  				var level_step = data.level_step;
 	  				
 	  				if(isNaN != true){
 	  					$('#result2').append('<input type="hidden" name="username" value="'+username+'"><div class="form-group row">'
@@ -173,13 +177,13 @@
 							+'<div class="form-group row">'
 								+'<label class="col-md-2 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
 								+'<div class="col-md-8">'
-									+'<input type="text" class="form-control" name="e_code" value="${vo.e_code}" size="13">'
+									+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
 								+'</div>'
 							+'</div>'
 							+'<div class="form-group row">'	
 								+'<label class="col-md-2 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
 								+'<div class="col-md-8">'
-								+'<input type="text" class="form-control" name="e_hp" value="${vo.e_hp}" size="13">'
+								+'<input type="text" class="form-control" name="e_hp" value="'+e_hp+'" size="13">'
 								+'</div>'
 							+'</div>'
 						+'</div>'	
@@ -198,12 +202,12 @@
 					+'<div class="form-group row">'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span class="text-danger">*</span></label>'
 						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="e_mailcode" value="${vo.e_mailcode}">'
+							+'<input type="text" class="form-control" name="e_mailcode" value="'+e_mailcode+'">'
 						+'</div>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label>' 
 						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="${vo.e_nfcCodeNFC}">'
+							+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="'+e_nfcCodeNFC'">'
 						+'</div>'																
 					+'</div>'					
 					+'<div class="form-group row">'
@@ -237,14 +241,14 @@
 						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">호봉<span class="text-danger">*</span></label>'
 						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="level_step" value="${vo.level_step}">'
+							+'<input type="text" class="form-control" name="level_step" value="'+level_step+''">'
 						+'</div>'																
 					+'</div>' 
-	  		  			    	+ '<div class="form-group text-right mb-0">'
-	  		  						+ '<button onclick="updateState();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
-	  		  						+ '<button onclick="completeFoundation();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리완료</button>'
-	  		  					+ '</div>'
-	  		  				    );
+					+ '<div class="form-group text-right mb-0">'
+						+ '<button onclick="updateState();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+						+ '<button onclick="completeAS();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리완료</button>'
+					+ '</div>'
+  				    );
 	
 	  					
 	  				}
@@ -254,7 +258,7 @@
 	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
 	  			}
 	  		});
-     }
+     } */
 	 
 
 </script>
@@ -413,6 +417,23 @@
 		                                                                                                    삭제
 		                                                </button>
 		                                            </div>
+													</div>
+												</div>
+											</div>
+											
+											<div id="update">
+						                       <div class="col-sm-12">
+						                               <div class="card">
+						                                   <div class="card-body table-responsive">
+															<div class="table-responsive" style = "margin: 15px 0px 50px">
+																<form id="updateAST" method="post" class="form-horizontal">
+																<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+																	<div id="result2" class="card-body">
+																		<!-- 상세 페이지 출력 위치 -->
+																	</div> 
+																</form>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>

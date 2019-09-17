@@ -15,6 +15,7 @@ import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.CT.CT_AS_VO;
 
 public interface HR_Service {
 	
@@ -83,6 +84,8 @@ public interface HR_Service {
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */
+	// 사원코드 가져오기
+	public HR_VO HR_select_username(HttpServletRequest req, Model model);
 	
 	//근태(사원목록 가져오기)
 	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model);
