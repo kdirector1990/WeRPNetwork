@@ -17,21 +17,16 @@
                                             <table class="table m-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>주문번호</th>
-                                                        <th>No.</th>
-                                                        <th>주문일자</th>
-                                                        <th>납기일</th>
-                                                        <th>출하예정일</th>
-                                                        <th>과세부분</th>
-                                                        <th>납품처</th>
-                                                        <th>담당자</th>
-                                                        <th>품번</th>
-                                                        <th>품명</th>
-                                                        <th>규격</th>
+                                                        <th>판매대장코드</th>
+                                                        <th>등록일</th>
+                                                        <th>거래처 코드</th>
+                                                        <th>거래처명</th>
+                                                        <th>제품명</th>
+                                                        <th>수량</th>
                                                         <th>단위</th>
-                                                        <th>미납수량</th>
-                                                        <th>단가</th>
-                                                        <th>공급가</th>
+                                                        <th>가격</th>
+                                                        <th>담당자</th>
+                                                        <th>비고</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -42,8 +37,6 @@
                                           				<td>${var }</td>
                                           				<td>김${var }</td>
                                           				<td>2018 상반기</td>
-                                          				<td>${var }</td>
-                                          				<td>${var }</td>
                                           				<td>${var }</td>
                                           				<td>${var }</td>
                                           				<td>${var }</td>

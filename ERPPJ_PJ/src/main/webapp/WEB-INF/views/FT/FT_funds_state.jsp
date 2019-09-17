@@ -85,7 +85,7 @@
                                            	<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                      			<div class="col-sm-12">
 					                                <div class="card">
-					                                    <div class="card-body table-responsive">
+					                                    <div class="card-body">
 					                                   		<form>
 					                                    	<div class="form-group mb-3">
 						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -203,7 +203,7 @@
                                             <div class="tab-pane show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                             	<div class="col-sm-12">
 					                                <div class="card">
-					                                    <div class="card-body table-responsive">
+					                                    <div class="card-body">
 				                                        		<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 						                                             <tr class="form-group row">
 																		<th class="col-md-1 col-form-label">회계단위</th>
@@ -224,9 +224,9 @@
 		                                       			 	<!-- 받을어음 -->
 				                                                <div class="col-lg-6">
 									                                <div class="card">
-									                                    <div class="card-body table-responsive">
+									                                    <div class="card-body">
 									                                        <div class="table-responsive">
-									                                            <table class="table mb-0">
+									                                            <table class="table table-bordered mb-0">
 									                                                <thead class="thead-light">
 									                                                    <tr>
 											                                                <th colspan="2">받을어음 </th>
@@ -256,11 +256,12 @@
 									                                </div>
 									                            </div><!-- end col-lg-6  -->
 				                                                
+				                                                <!-- 지급어음 -->
 				                                                <div class="col-lg-6">
 									                                <div class="card">
-									                                    <div class="card-body table-responsive">
+									                                    <div class="card-body">
 									                                        <div class="table-responsive">
-									                                            <table class="table mb-0">
+									                                            <table class="table table-bordered mb-0">
 									                                                <thead class="thead-light">
 									                                                    <tr>
 											                                                <th colspan="2">지급어음 </th>
@@ -299,7 +300,7 @@
                                             <div class="tab-pane" id="message" role="tabpanel" aria-labelledby="message-tab">
                                                 <div class="col-sm-12">
 					                                <div class="card">
-					                                    <div class="card-body table-responsive">
+					                                    <div class="card-body">
 					                                    	<div class="form-group mb-3">
 						    										<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 						                                             <tr class="form-group row">
@@ -395,9 +396,9 @@
 		                                        </table>
 		                                        <hr>
                                                
-                                                <div class="col-sm-12">
+                                                <div class="col-lg-6">
 					                                <div class="card">
-					                                    <div class="card-body table-responsive">
+					                                    <div class="card-body">
 					                                        <div class="table-responsive">
 					                                            <table class="table mb-0">
 					                                                <thead class="thead-light">
@@ -443,9 +444,9 @@
 					                                </div>
 					                              </div>
 					                              
-					                              <div class="col-sm-12">
+					                              <div class="col-lg-6">
 					                                <div class="card">
-					                                    <div class="card-body table-responsive">
+					                                    <div class="card-body">
 					                                        <div class="table-responsive">
 					                                            <table class="table mb-0">
 					                                                <thead class="thead-light">

@@ -46,6 +46,9 @@ public interface ST_DAO {
 	// salePlan 게시물 삭제 처리
 	public int deletesalePlan(String saleplan_code);
 	
+	// salePlan 게시물 등록 
+	public int writeSalePlan(SalePlan vo);
+	
 	// ------ ST_release (출고 관리)
 	// release 게시글 갯수 구하기
 	public int getReleaseCnt();
@@ -81,6 +84,9 @@ public interface ST_DAO {
 	
 	// saleList 게시글 수정
 	public int updateSaleList(SaleList vo);
+	
+	// saleList 게시글 삭제
+	public int deleteSaleList(String salelist_code);
 	
 	
 	

@@ -14,13 +14,13 @@ function ProductName() {
 <body>
 
 	<!-- end page title -->
-	<c:if test="${selectCnt == 0}">
+	<c:if test="${updateSaleList == 0}">
 		<script type="text/javascript">
 			alert("안 됨");
 		</script>
 	</c:if>
 
-	<c:if test="${deletesale == 0}">
+	<c:if test="${deletesaleList == 0}">
 		<script type="text/javascript">
 			alert("삭제 안 됨");
 		</script>
@@ -32,7 +32,7 @@ function ProductName() {
 		<div class="card">
 			<div class="card-body" style="width: 1500px;">
 				<div class="table-responsive">
-					<c:if test="${deletesale !=0 }">
+					<c:if test="${deletesaleList !=0 }">
 						<c:if test="${updateSaleList != 0 }">
 							<form method="post">
 								<input type="hidden" name="${_csrf.parameterName }"
@@ -99,7 +99,7 @@ function ProductName() {
 										<th><input class="inputButton" type="submit" value="수정"
 											formaction="ST_saleList_modifyPro"> <input
 											class="inputButton" type="submit" value="삭제"
-											formaction="ST_sale_Plan_deletePro"> <input
+											formaction="ST_saleList_deletePro"> <input
 											class="inputButton" type="button" value="수정 취소" onClick="window.location.reload()">
 									</tr>
 

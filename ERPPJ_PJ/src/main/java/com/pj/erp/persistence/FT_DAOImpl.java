@@ -289,4 +289,24 @@ public class FT_DAOImpl implements FT_DAO{
 	public List<FT_facility_list_VO> getFacilityList(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getFacilityList", map);
 	}
+	
+	@Override
+	public int FT_chitDistinctCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_chitDistinctCnt", map);
+	}
+	
+	// 승인처리 할 리스트
+	@Override
+	public List<FT_Chit> FT_ChitDistinct(Map<String, Object> map) {
+		if(FT_chitDistinctCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_ChitDistinct", map);
+		}
+	}
+	
+	// 전표승인처리
+	public int FT_CheckFormal(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_CheckFormal", map);
+	}
 }

@@ -417,7 +417,6 @@
 			                          	<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="ST_sale_plan_state">판매계획 현황</a></li>
 										<li><a href="ST_contrast_pp">판매계획 대비 출고 현황</a></li>
 										<li><a href="ST_estimate_price">견적 현황</a></li>
 										<li><a href="ST_contrast_pPro">견적 대비 생산 현황</a></li>
@@ -425,7 +424,6 @@
 										<li><a href="ST_release_manage">출고 관리</a></li>
 										<li><a href="ST_refund">반품 관리</a></li>
 										<li><a href="ST_tex_invoice_list">세금계산서 발행 대장</a></li>
-										<li><a href="coming_soon">!수금 현황</a></li>																									
 										<li><a href="coming_soon">!받을 어음 현황</a></li>
 										<li><a href="coming_soon">!미수 채권 집계</a></li>
 										<li><a href="coming_soon">!미수 채권 상세 현황</a></li>	
@@ -437,9 +435,8 @@
 	                          		</a>
 	                          		<ul>
 	                          				<li><a href="ST_unpaidOrders">!출고 지연 집계</a></li>						                   
-						                    <li><a href="ST_salesStatus">!매출 현황</a></li>
-						                    <li><a href="ST_salesTotal">!매출 집계표(월별)</a></li>
-						                    <li><a href="ST_salesTotal2">!매출 집계표(관리분류별)</a></li>
+						                    <li><a href="ST_salesStatus">매출 현황</a></li>
+						                    <li><a href="ST_salesTotal">매출 집계표(월별)</a></li>
 						                    <li><a href="coming_soon">!매출 순위표</a></li>
 											<li><a href="coming_soon">!추정 매출원가</a></li>
 	                          		</ul>

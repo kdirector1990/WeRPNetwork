@@ -153,11 +153,11 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("자재 수정 성공.");
+				alert("수정 성공하였습니다.");
 				location.reload();
 			},
 			error : function(){
-				alert("자재목록 수정에 실패하였습니다.");
+				alert("수정에 실패하였습니다.");
 			}
 			
 		});
@@ -172,11 +172,11 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(param){
-				alert("자재 삭제 성공.");
+				alert("삭제 성공하였습니다.");
 				location.reload();
 			},
 			error : function(){
-				alert("자재 삭제에 실패하였습니다.");
+				alert("삭제에 실패하였습니다.");
 			}
 			
 		});

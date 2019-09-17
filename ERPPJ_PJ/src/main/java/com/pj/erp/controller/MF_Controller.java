@@ -51,7 +51,7 @@ public class MF_Controller {
 		logger.info("log => MF_materialUpdate");
 		service.updateMF(req, model);
 		
-		return "MF/MF_materialUpdate";
+		return "MF/MF_materialsManagement";
 	}
 	
 	//자재 삭제 처리
@@ -60,7 +60,7 @@ public class MF_Controller {
 		logger.info("log => MF_materialDelete");
 		service.deleteMF(req, model);
 		
-		return "MF/MF_materialDelete";
+		return "MF/MF_materialsManagement";
 	}
 	//생산계획 등록
 	@RequestMapping("MF_production_plan_enrollment")
@@ -79,11 +79,29 @@ public class MF_Controller {
 		return "MF/MF_production_plan_enrollment";
 	}
 	
-	//생산계획 관리
+	//생산계획 목록
 	@RequestMapping("MF_production_plan_management")
 	public String MF_production_plan_management(HttpServletRequest req, Model model) {
 		logger.info("log => MF_production_plan_management");
 		service.getMFplanList(req, model);
+		
+		return "MF/MF_production_plan_management";
+	}
+	
+	//생산계획 수정
+	@RequestMapping("MF_updateProductionPlanPro")
+	public String MF_updateProductionPlanPro(HttpServletRequest req, Model model) {
+		logger.info("log => MF_updateProductionPlanPro");
+		service.updateMFplan(req, model);
+		
+		return "MF/MF_production_plan_management";
+	}
+	
+	//생산계획삭제
+	@RequestMapping("MF_deleteProductionPlanPro")
+	public String MF_deleteProductionPlanPro(HttpServletRequest req, Model model) {
+		logger.info("log => MF_deleteProductionPlanPro");
+		service.deleteMFplan(req, model);
 		
 		return "MF/MF_production_plan_management";
 	}

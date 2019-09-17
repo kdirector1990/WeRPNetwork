@@ -23,6 +23,7 @@
         	var frontcursor;
         	var updatekey = 0;
         	var selectval;
+        	var focusval;
         	
         	function focuse(cc) {
     			$("tbody *").css("background-color", "");
@@ -30,12 +31,15 @@
     			$("#code" + cc).css("background-color", "#D6EAF8");
     			$("#name" + cc).parent().css("background-color", "#D6EAF8");
     			$("#name" + cc).css("background-color", "#D6EAF8");
+    			if(!$("#code" + cc).val()){
+    				focusval = "";
+    			} else {
+    				focusval = cc;
+    			}
     			
     			$.ajax({
                     type : "POST",
-                    url : "/erp/FT_AccountUpdate?${_csrf.parameterName }=${_csrf.token }",
-                    data : jsonData,
-                    contentType : 'application/json;charset=UTF-8',
+                    url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&code=" + $("#code" + cc).val(),
                     success : function(data) {
                  	   
                            alert(data);
