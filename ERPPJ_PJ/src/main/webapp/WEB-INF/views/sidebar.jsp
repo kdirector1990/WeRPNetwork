@@ -141,6 +141,7 @@
                             </sec:authorize>
                             <!-- item-->
                             <sec:authorize access="isAuthenticated()">
+                            	
                             <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                                 <form id="logout-form" action="logout" method="POST">
    									<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
@@ -293,6 +294,7 @@
 	                          		<ul>	                          			
 	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
+										<li><a href="HR_EmployeePhysicaly">신체정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
 										<li><a href="HR_EmployeeSalary">책정임금 현황</a></li>
 										<li><a href="HR_Yearsofservice">근속년수현황</a></li>
@@ -525,7 +527,7 @@
 	                          			<li><a href="#">제품 목록</a></li>
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="FT_material_list">자재 목록</a></li>
-                    					<li><a href="#">전산설비 목록</a></li>
+                    					<li><a href="CT_equip_list">전산설비 목록</a></li>
                     					<li><a href="#">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>
@@ -606,8 +608,8 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="CT_production_plan_enrollment">생산계획등록</a></li>
-					                    <li><a href="CT_production_plan_management">생산계획관리</a></li>
+	                          			<li><a href="MF_production_plan_enrollment">생산계획등록</a></li>
+					                    <li><a href="MF_production_plan_management">생산계획관리</a></li>
 										<li><a href="#">작업지시등록</a></li>
 					                    <li><a href="#">작업지시확정</a></li>
 					                    <li><a href="#">생산자재출고</a></li>

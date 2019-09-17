@@ -6,40 +6,30 @@
 <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 		<script src="/pj/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
-        	var count = 1;
-        	var subcount = 1;
+        	var count = 0;
         	
         	    	
         	
         	function enterinsert() {
        			
-       			$(".chit-table-bordered-primary tbody").append('<tr>' +
+       			$(".chit-table-bordered-primary tbody").append('<tr id = "tr'+count+'">' +
        					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
                         '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "subject'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "money'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "dept'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "cf'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
+                        '<td><input type="text"   name = "code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                        '<td><input type="text"   name = "subject'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                        '<td><input type="text"   name = "money'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                        '<td><input type="text"   name = "dept'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                        '<td><input type="text"   name = "cf'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
                        '</tr>');
                     count = count + 1;
+                    
           		
         	}
         	
         	function enterdelete() {
-       		
+        		count = count - 1;
         		
-       			$(".chit-table-bordered-primary tbody").empty('<tr>' +
-       					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "subject'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "money'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "dept'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "cf'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                       '</tr>');
-                    count = 0;
-          		
+       			$("#tr"+count).remove();
     
         	}
         	
@@ -56,8 +46,8 @@
 	<body>
      	 <!-- Begin page -->
     	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
-            <div class="content-page">
+    		 <%@ include file="../sidebar.jsp" %>
+          	 <div class="content-page">
 			<!-- ============================================================== -->
             <!-- Start Page Content here -->
             <!-- ============================================================== -->           
@@ -85,39 +75,15 @@
                 	<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-							 <form name = "FT_apply_input" action = "FT_apply_input_pro" method = "post">
-							 <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-								<div class="card-body">
-                                         <!-- 기간 달력 여기 넣고 -->
-                                         <!--  <label class="col-md-1 col-form-label" for="simpleinput">기간</label> 
-									      <div class="col-md-2 input-group">
-										  	<input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
-                                          	<div class="input-group-append"><span class="input-group-text bg-primary text-white b-0"><i class="mdi mdi-calendar"></i></span></div>
-										  </div>
-										  <label>~</label>
-										  <div class="col-md-2 input-group">
-											 <input type="text" class="form-control" placeholder="mm/dd/yyyy" data-provide="datepicker" data-date-autoclose="true">
-                                             <div class="input-group-append"><span class="input-group-text bg-primary text-white b-0"><i class="mdi mdi-calendar"></i></span></div>
-										  </div>	
-                                       	<input type="button" class="" value = "검색">
-                                       	<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-                                       	<label class="col-md-1 col-form-label" for="simpleinput">부서</label>
-                                       		<div class="col-md-2">
-												<input type="text" class="form-control" name="e_name" placeholder = "부서명">
-											</div>
-										<input type="button" class="" value = "검색">
-										<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label> -->
+							 	<form name = "FT_apply_input" action = "FT_apply_input_pro" method = "post">
+									 <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+									 <div class="card-body">
 										 <div class="form-group text-right mr-1">
-		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterinsert(0);">
-		                                                   		 추가
-		                                                </button>
-		                                                <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterdelete(0);">
-		                                                   		 삭제
-		                                                </button>
-		                                                </div>
+		                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterinsert();">추가</button>
+		                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterdelete();">삭제</button>
+		                                 </div>
 		                                                
-                                       <div class="table-responsive" style = "margin: 15px 0px 50px">
-                                      
+                                         <div class="table-responsive" style = "margin: 15px 0px 50px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
                                                 <col style = "width:10%;">
                                                 <col style = "width:10%">
@@ -137,36 +103,20 @@
 		                                                <th>전결라인코드</th>
 		                                            </tr>
 		                                        </thead>
-		    
-		                                        <tbody>
-		                                            <tr>
-		                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate0" data-provide="datepicker" data-date-autoclose="true"></td>
-		                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate0" data-provide="datepicker" data-date-autoclose="true"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "subject0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "money0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "dept0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "cf0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                            </tr>
-		                                            
+		                                        <tbody id = "result">
 		                                        </tbody>
-		                                       
                                             </table>
-		                                    </div>
-		                                    
+	                                    </div>
 									</div>
 									<div class="form-group text-right mr-1">
-                                            <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">입력</button>
-                                            <button type="reset" class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
+                                        <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">입력</button>
+                                        <button type="reset" class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
                                     </div>
-                                    </form>
-		                        </div> 
-							</div>
-						</div>		
-					</div>
-                
-               
-               </div>
+                                </form>
+	                        </div> 
+						</div>
+					</div>		
+				</div>
                <!-- 페이지 내용 입력 공간 종료 -->
                
                 <%@ include file="../footer.jsp" %>

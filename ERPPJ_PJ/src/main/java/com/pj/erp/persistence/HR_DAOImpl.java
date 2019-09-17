@@ -15,6 +15,7 @@ import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 
 @Repository
@@ -154,6 +155,40 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int updateFoundation(HR_VO vo) {
 		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updateFoundation", vo);
+	}
+
+	@Override
+	public List<HR_VO> getUsers(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getUsers", map);
+	}
+
+	@Override
+	public List<HR_PhysicalVO> getPhysicaly(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getPhysicaly", map);
+	}
+
+	//근태(사원정보 검색)
+	@Override
+	public List<HR_Time_VO> selectUserTime(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.selectUserTime", map);
+	}
+
+	//근태(출근입력)
+	@Override
+	public int StartWork(String username) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.StartWork", username);
+	}
+
+	//근태(퇴근입력)
+	@Override
+	public int EndWork(String username) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.EndWork", username);
+	}
+	
+	// 가족정보 가져오기
+	@Override
+	public HR_FamilyVO getFamily(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
 	}	
 
 	

@@ -11,7 +11,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
+import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
+import com.pj.erp.vo.HR_Time_VO;
+import com.pj.erp.vo.HR_VO;
 
 public interface HR_Service {
 	
@@ -54,7 +57,7 @@ public interface HR_Service {
 	// 사원정보 상세페이지
 	public void modifyFoundationView(HttpServletRequest req, Model model);
 	
-	// 사웑어보 수정처리
+	// 사원정보 수정처리
 	public void modifyFoundationPro(HttpServletRequest req, Model model);
 	
 	// 신체정보 상세페이지
@@ -63,13 +66,29 @@ public interface HR_Service {
 	// 신체정보 수정처리
 	public void modifyPhysicalyPro(HttpServletRequest req, Model model);
 	
-	// 사원정보 조회
-	public void searchUsername(HttpServletRequest req, Model model);
+	// 가족정보 상세페이지
+	public void modifyFamilyView(HttpServletRequest req, Model model);
 	
+	// 가족정보 수정처리
+	public void modifyFamilyPro(HttpServletRequest req, Model model);
+	
+	// 사원정보 조회
+	public List<HR_VO> getUsers(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	// 신체정보 조회
+	public List<HR_PhysicalVO> getPhysical(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */
 	
+	//근태(사원목록 가져오기)
+	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model);
+	
+	//근태(출근 입력)
+	public int InsertStartWork(HttpServletRequest req, Model model);
+	
+	//근태(퇴근 입력)
+	public int InsertEndWork(HttpServletRequest req, Model model);
 	
 }

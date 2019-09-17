@@ -196,7 +196,7 @@ public class CT_Controller {
 	@RequestMapping("CT_equip_list")
 	public String CT_equip_list(HttpServletRequest req, Model model) {
 		logger.info("log => CT_equip_list");
-		
+		CT.CT_All_List(req, model);
 		return "CT/CT_equip_list";
 	}
 	
@@ -350,20 +350,5 @@ public class CT_Controller {
 		return "CT/CT_as_manage";
 	}
 	
-	//생산계획 등록
-	@RequestMapping("CT_production_plan_enrollment")
-	public String CT_production_plan_enrollment(HttpServletRequest req, Model model) {
-		logger.info("log => CT_production_plan_enrollment");
-		
-		return "CT/CT_production_plan_enrollment";
-	}
-	
-	//생산계획 관리
-	@RequestMapping("CT_production_plan_management")
-	public String CT_production_plan_management(HttpServletRequest req, Model model) {
-		logger.info("log => CT_production_plan_management");
-		
-		return "CT/CT_production_plan_management";
-	}
 	
 }

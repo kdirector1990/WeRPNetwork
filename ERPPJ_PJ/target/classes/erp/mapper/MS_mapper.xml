@@ -40,4 +40,5 @@
 	<select id="getUsernameList" resultType="com.pj.erp.vo.HR_VO" parameterType="String">
 		select username, e_name, department_code, position_code from users where e_name like '%'||#{e_name}||'%'
 	</select>
+	
 </mapper>

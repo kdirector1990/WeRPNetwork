@@ -18,6 +18,14 @@ function searchNameFocus(){
 	document.searchName.e_name.focus();
 }
 
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 실행할 내용
+         load1();
+    }
+}
+
+
 // 결과
 function load1(e_name) {
 	var url = document.searchName.e_name.value;
@@ -55,14 +63,26 @@ function loadBook_callback() {
 } 
 
 
-function setName(username) {
-	opener.document.getElementById("usernameP").value = username;
-
+function setName(username,e_name,department_code,position_code) {
+	opener.document.getElementById("username").value = username;
+	opener.document.getElementById("e_name").value = e_name;
+	opener.document.getElementById("department_code").value = department_code;
+	opener.document.getElementById("position_code").value = position_code;
 	//test alert
 	alert(username);
 	
-	$("#usernameP", opener.document).val(username); //jquery 이용
-	$(opener.document).find("#usernameP").val(username); //find를 이용한 jquery
+	$("#username", opener.document).val(username); //jquery 이용
+	$(opener.document).find("#username").val(username); //find를 이용한 jquery
+	
+	$("#e_name", opener.document).val(e_name); //jquery 이용
+	$(opener.document).find("#e_name").val(e_name); //find를 이용한 jquery
+	
+	$("#department_code", opener.document).val(department_code); //jquery 이용
+	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
+	
+	$("#position_code", opener.document).val(position_code); //jquery 이용
+	$(opener.document).find("#position_code").val(position_code); //find를 이용한 jquery
+	
 	self.close();
 	
 }
@@ -96,12 +116,12 @@ function setName(username) {
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body"
-									style="margin-bottom: 0px; padding-bottom: 0px;">
-									<form action="" name="searchName">
+									style="margin-bottom: 0px; padding-bottom: 44px;">
+									<form name="searchName" onsubmit="return false">
 										<table>
 											<tr>
 												<th style="text-align: center; padding-right: 10px;">Search</th>
-												<td><input type="text" name="e_name"
+												<td><input onkeyup="enterkey();" type="text" name="e_name"
 													class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;"></td>
 											</tr>
 
@@ -118,7 +138,7 @@ function setName(username) {
 									</form>
 								</div>
 
-								<div id="result">
+								<div id="result" style="overflow:auto;">
 									<!-- 출력결과위치 -->
 								</div>
 

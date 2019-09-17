@@ -330,4 +330,44 @@
 		</if>
 	</select>
 	
+	<!-- 토지목록 검색결과 -->
+	<select id="getLandList" resultType="com.pj.erp.vo.FT.FT_land_list_VO" parameterType = "java.util.Map">
+		select * from land_tbl
+		<if test = "department_code != null">
+			<if test = "land_name != null">
+				where department_code = '%'||#{department_code}||'%' and land_name = '%'||#{land_name}||'%'
+			</if>
+			<if test = "land_name == null">
+				where department_code = '%'||#{department_code}||'%' 
+			</if>
+		</if>
+		<if test = "department_code == null">
+			<if test = "land_name != null">
+				where land_name = '%'||#{land_name}||'%'
+			</if>
+			<if test = "land_name == null">
+			</if>
+		</if>
+	</select>
+	
+	<!-- 설비목록 검색결과 -->
+	<select id="getFacilityList" resultType="com.pj.erp.vo.FT.FT_facility_list_VO" parameterType = "java.util.Map">
+		select * from equipment_tbl
+		<if test = "department_code != null">
+			<if test = "eq_name != null">
+				where department_code = '%'||#{department_code}||'%' and eq_name = '%'||#{eq_name}||'%'
+			</if>
+			<if test = "eq_name == null">
+				where department_code = '%'||#{department_code}||'%' 
+			</if>
+		</if>
+		<if test = "department_code == null">
+			<if test = "eq_name != null">
+				where eq_name = '%'||#{eq_name}||'%'
+			</if>
+			<if test = "eq_name == null">
+			</if>
+		</if>
+	</select>
+	
 </mapper>

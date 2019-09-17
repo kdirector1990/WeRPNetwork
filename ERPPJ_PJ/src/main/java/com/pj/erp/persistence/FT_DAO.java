@@ -15,6 +15,8 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_facility_list_VO;
+import com.pj.erp.vo.FT.FT_land_list_VO;
 
 public interface FT_DAO {
 	
@@ -122,4 +124,9 @@ public interface FT_DAO {
 	//지급어음목록 검색결과
 	 public List<FT_Bill_payment_VO> getBillPaymentList(Map<String, Object> map);
 	
+	//지급어음목록 검색결과
+	 public List<FT_land_list_VO> getLandList(Map<String, Object> map);
+	 
+	//지급어음목록 검색결과
+	 public List<FT_facility_list_VO> getFacilityList(Map<String, Object> map); 
 }

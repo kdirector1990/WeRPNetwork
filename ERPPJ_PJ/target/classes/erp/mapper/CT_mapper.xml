@@ -43,6 +43,11 @@
 		Where ceq_code = #{ceq_code}
 	</select>
 	
+	<!-- 고정자산 전체목록 -->
+	<select id="selectAllCT" resultType="com.pj.erp.vo.CT.CT_VO">
+		Select * from computer_equirpment_view
+	</select>
+	
 	<!-- 고정자산 수정 -->
 	<update id="updateCT" parameterType="com.pj.erp.vo.CT.CT_VO">
 		Update computer_equipment_tbl

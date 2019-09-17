@@ -11,6 +11,91 @@
     <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
     <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+	<script type = "text/javascript">
+    var searchCount = 1;
+	 $(function(){
+		$('#search').click(function(){
+			var param = new Object();
+			var jsonData;
+			
+			
+			param.department_code = $("#department_code").val();
+			param.land_name = $('#land_name').val();
+					
+			jsonData = JSON.stringify(param);
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/FT_land_list_result?${_csrf.parameterName}=${_csrf.token }',
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){
+					
+					$('#result').empty();
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var land_codes = list[i].land_code;
+						var department_codes = list[i].department_code;
+						var land_names = list[i].land_name;
+						var land_addresss = list[i].land_address;
+						//대여일
+						var debt_l_dates = list[i].land_regdate;
+						var pa = new Date(debt_l_dates);
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var land_regdates = year + "/" + month +"/"+day;
+						
+						var land_costs = list[i].land_cost;
+						
+					$('#result').append('<tr>'+
+                         	'<td>'+ land_codes +'</td>'+
+							'<td>'+ department_codes +'</td>'+
+							'<td>'+ land_names +'</td>'+
+							'<td>'+ land_addresss +'</td>'+
+							'<td>'+ land_regdates +'</td>'+
+							'<td>'+ land_costs +'</td>'+
+                 		'</tr>');
+					}
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
+					
+					
+					
+				},
+				error : function(){
+					alert("에러");
+				}
+			});
+		}); 
+	 });
+	 
+</script>
     </head>
 	<body>
      	 <!-- Begin page -->
@@ -40,23 +125,45 @@
 						</div>
 					</div>
 					<!-- end page title -->
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+								<table class="col-12">
+									<tr class="form-group row">
+											<th class="col-md-1 col-form-label">사용부서</th>
+										<td class="col-md-1 input-group">
+											<input type="text" class="form-control" name="department_code" id = "department_code ">
+											</td>
+											<th class="col-md-1 col-form-label">토지명</th>
+										<td class="col-md-1 input-group">
+											<input type="text" class="form-control" name="land_name" id = "land_name ">
+											</td>
+										<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
+									</tr>									
+								</table>
+								
+                                        
+                                  	</div>
+                             </div>
+		                   </div> 
+                         </div>
                 
                 	<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
                                         <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-                                            <col style = "width:10%;">
-                                            <col style = "width:10%">
+                                            <col style = "width:15%;">
                                             <col style = "width:15%;">
                                             <col style = "width:20%;">
                                             <col style = "width:15%;">
                                             <col style = "width:15%;">
-                                            <col style = "width:15%;">
+                                            <col style = "width:20%;">
                                             <thead>
                                                 <tr>
 	                                              <th>토지관리코드</th>
-	                                              <th>계정코드</th>
 	                                              <th>사용부서</th>
 	                                              <th>토지명</th>
 	                                              <th>토지주소</th>
@@ -64,79 +171,8 @@
 	                                              <th>구입가</th>
                                          		</tr>
                                       		</thead>
-                                    		<tbody>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
-                                          		<tr>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-	                                              <td>1</td>
-                                          		</tr>
+                                    		<tbody id = "result">
+                                          		
                                       		</tbody>
                                         </table>
                                   	</div>
@@ -160,30 +196,22 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
-        <!-- Datatable plugin js -->
-        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+       <!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-        <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
-
-        <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
-
-        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
-        
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id = "bodyappend">
+	</div>
     </body>
 </html>
