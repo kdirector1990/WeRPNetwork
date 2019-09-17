@@ -46,7 +46,6 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-3">Default Tabs</h4>
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
@@ -76,7 +75,7 @@
 					                                                </td>
 					                                                
 					                                                <td>기표기간</td>
-					                                                <td><input type="date" class=""></td>
+					                                                <td><input type="date" class=""> ~ <input type="date" class=""></td>
 					                                                
 					                                            	<td>거래처</td>
 					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
@@ -137,26 +136,18 @@
                                                 <div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
-					                                        <div align="right">
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-					    									<br>
-					    									</div>
 						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
-					                                            
 					                                            	<td>계정과목</td>
 					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
 					                                                	<input type="text" class="" readonly>
 					                                                </td>
-					                                            </tr>
-					                                            
-					                                            <tr>
 					                                            	<td>거래처</td>
 					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
 					                                                	<input type="text" class="" readonly>
 					                                                </td>
 					                                            </tr>
+					                                            
 						                                        </table>
 					    
 					                                        <div class="table-responsive">

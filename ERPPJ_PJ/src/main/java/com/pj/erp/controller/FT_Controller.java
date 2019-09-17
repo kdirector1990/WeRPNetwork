@@ -53,9 +53,10 @@ public class FT_Controller {
 	}
 
 	@RequestMapping("FT_insertChit")
-	public String insertChit(Locale locale, Model model) {
+	public String insertChit(HttpServletRequest req, Model model) {
 		logger.info("log => FT_insertChit");
-
+		service.FT_insertChit(req, model);
+		
 		return "FT/FT_insertChit";
 	}
 
@@ -464,6 +465,23 @@ public class FT_Controller {
 		String result = service.FT_DepositInsert(map);
 		return result;
 	}
+	
+	
+	// 분개 데이터 값 불러오기
+	@RequestMapping(value = "FT_chitSelect")
+	public @ResponseBody List<FT_Chit> FT_chitSelect(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_chitSelect 호출중");
+
+		return service.FT_chitSelect(map, model);
+	}
+	
+	// 전표승인처리
+	@RequestMapping(value = "FT_CheckFormal", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_CheckFormal(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_CheckFormal 호출중");
+
+		return service.FT_CheckFormal(map, model);
+	}
 
 	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_CardManagementInsert(@RequestBody Map<String, Object> map) throws Exception {
@@ -478,4 +496,6 @@ public class FT_Controller {
 		return AccCode + " " + CardName + " " + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose
 				+ " " + Owner + " " + PayCode;
 	}
+	
+	
 }

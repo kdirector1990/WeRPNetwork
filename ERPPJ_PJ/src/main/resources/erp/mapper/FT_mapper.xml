@@ -370,4 +370,38 @@
 		</if>
 	</select>
 	
+	<!-- 분개 데이터 갯수 가져오기 -->
+	<select id="FT_chitDistinctCnt" parameterType="java.util.Map" resultType="int">
+		select count(journal_number) 
+		from journal_record_tbl
+		where journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		<if test="state == 1">
+			and username is null
+		</if>
+		<if test="state == 2">
+			and username is not null
+		</if>
+	</select>
+	
+	<!-- 분개 데이터 가져오기 -->
+	<select id="FT_ChitDistinct" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Chit">
+		select DISTINCT journal_number, journal_date, username
+		from journal_record_tbl
+		where journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		<if test="state == 1">
+			and username is null
+		</if>
+		<if test="state == 2">
+			and username is not null
+		</if>
+	</select>
+	
+	<!-- 전표승인처리 -->
+	<update id="FT_CheckFormal" parameterType="java.util.Map">
+		update journal_record_tbl
+		set username = #{username}
+		where journal_date = #{dates}
+		and journal_number = #{nos}
+	</update>
+	
 </mapper>
