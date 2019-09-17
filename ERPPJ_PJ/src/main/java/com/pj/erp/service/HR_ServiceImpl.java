@@ -493,11 +493,18 @@ public class HR_ServiceImpl implements HR_Service{
 	@Override
 	public int InsertStartWork(HttpServletRequest req, Model model) {
 		int insertCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i ++) {
-			insertCnt = dao.StartWork(username[i]);
+			map.put("username", username[i]);
+			int users = dao.selectWork(map);
+			System.out.println("작동");
+			if(users == 0) {
+				System.out.println("작동2");
+				insertCnt = dao.StartWork(username[i]);
+			}
 		}
 		
 		return insertCnt;
@@ -512,9 +519,14 @@ public class HR_ServiceImpl implements HR_Service{
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i++) {
-			updateCnt = dao.EndWork(username[i]);
+			int users = dao.selectEndWork(username[i]);
+			
+			if(users == 0) {
+				updateCnt = dao.EndWork(username[i]);
+			}
 		}
 		
+		System.out.println(updateCnt);
 		return updateCnt;
 	}
 
