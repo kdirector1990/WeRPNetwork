@@ -520,6 +520,14 @@ public class HR_ServiceImpl implements HR_Service{
 
 
 
+	@Override
+	public void HR_recordinput(HttpServletRequest req, Model model) {
+		dao.HR_recordinput();
+		
+	}
+
+
+
 	
 	
 

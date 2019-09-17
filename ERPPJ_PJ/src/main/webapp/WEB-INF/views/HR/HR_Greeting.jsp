@@ -9,46 +9,40 @@
 <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 		<script src="/pj/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
-        	var count = 1;
-        	var subcount = 1;
-        	
-        	    	
-        	
-        	function enterinsert() {
-       			
-       			$(".chit-table-bordered-primary tbody").append('<tr>' +
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "number'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_cord'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+                        
-                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                       '</tr>');
-                    count = count + 1;
-          		
-        	}
-        	
-        	function enterdelete() {       		
-        		
-       			$(".chit-table-bordered-primary tbody").empty('<tr>' +
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "number'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_cord'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+
-                        '<td><input type="text" onfocus = "focuse(this.name);" name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>'+                        
-                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                       '</tr>');
-                    count = 0;          		
-    
-        	}
-        	
-        </script>
-        <!-- Table datatable css -->
-        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        var count = 0;
+    	
+    	
+    	
+    	function enterinsert() {
+   			
+   			$(".chit-table-bordered-primary tbody").append('<tr id = "tr'+count+'">' +   					
+                    '<td><input type="text"   name = "number'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text"   name = "record_cord'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text"   name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text"   name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                   '</tr>');
+                count = count + 1;
+                
+      		
+    	}
+    	
+    	function enterdelete() {
+    		count = count - 1;
+    		
+   			$("#tr"+count).remove();
+
+    	}
+    	
+    </script>
+    <!-- Table datatable css -->
+    <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+    <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -85,19 +79,15 @@
 
 			
 				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-						 <form name = "HR_record_input" action = "HR_record_input_pro" method ="post">
-						 <input type ="hidden" name ="${_csrf.parameterName }" value="${_csrf.token }">
-							<div class="card-body">                                         
-								 <div class="form-group text-right mr-1">
-                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterinsert(0);">
-                                        		 추가
-                                     </button>
-                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterdelete(0);">
-                                        		 삭제
-                                     </button>
-                                    </div>
+						<div class="col-sm-12">
+							<div class="card">
+							 	<form name = "HR_record_input" action = "HR_record_input_pro" method = "post">
+									 <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
+									 <div class="card-body">
+										 <div class="form-group text-right mr-1">
+		                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterinsert();">추가</button>
+		                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick = "enterdelete();">삭제</button>
+		                                 </div>
 	                                                
                                       <div class="table-responsive" style = "margin: 15px 0px 50px">                                      
                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
@@ -117,14 +107,7 @@
 	                                            </tr>
 	                                        </thead>
 	    
-	                                        <tbody>
-	                                            <tr>		                                                
-	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "number0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "record_cord0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "record_title0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>		                                                
-	                                                <td><input type="text" onfocus = "focuse(this.name);" name = "record_division0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-	                                                <td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date0" data-provide="datepicker" data-date-autoclose="true"></td>
-	                                            </tr>	                                            
+	                                        <tbody id = "result">	                                            	                                            
 	                                        </tbody>		                                       
                                         </table>
 	                                </div>		                                    

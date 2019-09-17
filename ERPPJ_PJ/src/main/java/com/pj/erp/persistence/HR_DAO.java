@@ -96,4 +96,7 @@ public interface HR_DAO {
 	
 	//근태(퇴근입력)
 	public int EndWork(String username);
+	
+	// 인사발령등록 처리
+	public int HR_recordinput();
 }

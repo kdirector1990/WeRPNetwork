@@ -214,6 +214,13 @@ public class HR_Controller {
 		return "HR/HR_Greeting";
 	}
 	
+	@RequestMapping("HR_record_input_pro")
+	public String HR_record_input_pro(HttpServletRequest req, Model model) {
+		logger.info("log => HR_record_input_pro");
+		service.HR_recordinput(req, model);
+		return "HR/HR_record_input_pro";
+	}
+	
 	@RequestMapping("HR_appointment_notice")
 	public String HT_appointment_notice(HttpServletRequest req, Model model) {
 		logger.info("log => HR_appointment_notice");

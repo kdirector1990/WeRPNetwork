@@ -78,6 +78,8 @@ public interface HR_Service {
 	// 신체정보 조회
 	public List<HR_PhysicalVO> getPhysical(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 인사발령등록
+	public void HR_recordinput(HttpServletRequest req, Model model); 
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */

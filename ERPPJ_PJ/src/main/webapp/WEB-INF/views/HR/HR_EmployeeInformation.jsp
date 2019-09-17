@@ -114,7 +114,148 @@
 				}
 			});			
 		}); 
-	 });	
+	 });
+	 
+	 function updateAS(code){
+     	alert(code);
+	         $.ajax({
+	  			url: '/erp/CT_update_ASW?${_csrf.parameterName}=${_csrf.token }&cas_code='+code,
+	  			type: 'POST',
+	  			dataTpye: 'json',
+	  			success: function(data){
+	  				alert("작동");
+	  				$('#result2').empty();
+	  				document.getElementById("update").style.display="block";
+	  				
+	  				var username = data.username;	  					  				
+	  				var e_name = data.e_name;
+	  				var department_code = data.department_code;
+	  				var cas_content = data.cas_content;
+	  				var cas_uri = data.cas_uri;
+	  				var cas_result = data.cas_result;
+	  				var cas_state = data.cas_state;
+	  				
+	  				if(isNaN != true){
+	  					$('#result2').append('<input type="hidden" name="username" value="'+username+'"><div class="form-group row">'
+	  		  					+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
+	  		  						+ '<div class="col-lg-8">'
+	  		  				    		+ '<input type="text" name="e_name" value="'+e_name+'" class="form-control" readonly>' 
+	  		  				        +'</div>'
+	  		  				    +'</div>'
+	  		  				    +'<div class="form-group row">'	
+								+'<label class="col-md-2 col-form-label" for="simpleinput">성별<span class="text-danger">*</span></label>'
+								+'<div class="col-md-3  col-form-label">'
+									+'<div>'
+                                	    +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                               	        	+'<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>'
+                              	         	+'<label class="custom-control-label" for="customRadioInline1">남성</label>'
+                                   		+'</div>'
+                                        +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                                            +'<input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">'
+                                            +'<label class="custom-control-label" for="customRadioInline2">여성</label>'
+                                        +'</div>'
+                                	+'</div>'
+								+'</div>'
+								+'<label class="col-md-2 col-form-label" for="simpleinput">내/외국인<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4  col-form-label">'
+									+'<div>'
+                                        +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                                            +'<input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>'
+                                            +'<label class="custom-control-label" for="customRadioInline7">내국인</label>'
+                                        +'</div>'
+                                        +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                                            +'<input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">'
+                                            +'<label class="custom-control-label" for="customRadioInline8">외국인</label>'                                            
+                                        +'</div>'
+                                    +'</div>'
+								+'</div>'
+							+'</div>'	
+							+'<div class="form-group row">'
+								+'<label class="col-md-2 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+								+'<div class="col-md-8">'
+									+'<input type="text" class="form-control" name="e_code" value="${vo.e_code}" size="13">'
+								+'</div>'
+							+'</div>'
+							+'<div class="form-group row">'	
+								+'<label class="col-md-2 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
+								+'<div class="col-md-8">'
+								+'<input type="text" class="form-control" name="e_hp" value="${vo.e_hp}" size="13">'
+								+'</div>'
+							+'</div>'
+						+'</div>'	
+					+'</div>'
+					+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">'
+						+'</div>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">'
+						+'</div>'
+					+'</div>'
+					+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<input type="text" class="form-control" name="e_mailcode" value="${vo.e_mailcode}">'
+						+'</div>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label>' 
+						+'<div class="col-md-4">'
+							+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="${vo.e_nfcCodeNFC}">'
+						+'</div>'																
+					+'</div>'					
+					+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">부서<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<select class="form-control select2" name="department_code" onchange="">'
+								+'<c:forEach var="dep" items="${dep}">'
+								+'<option value="${dep.department_code}">${dep.department_name}</option>'	
+								+'</c:forEach>'																																							
+							+'</select>'
+						+'</div>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">직책<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<select class="form-control select2" name="position_code" onchange="">'
+								+'<c:forEach var="poi" items="${poi}">'
+								+'<option value="${poi.position_code}">${poi.position_code}</option>'	
+								+'</c:forEach>'																							
+							+'</select>'
+						+'</div>'																
+					+'</div>'					
+					+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<select class="form-control select2" name="rank_code" onchange="">'
+								+'<c:forEach var="rank" items="${rank}">'
+								+'<option value="${rank.rank_code}">${rank.rank_code}</option>'	
+								+'</c:forEach>'																							
+							+'</select>'
+						+'</div>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">호봉<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<input type="text" class="form-control" name="level_step" value="${vo.level_step}">'
+						+'</div>'																
+					+'</div>' 
+	  		  			    	+ '<div class="form-group text-right mb-0">'
+	  		  						+ '<button onclick="updateState();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+	  		  						+ '<button onclick="completeFoundation();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리완료</button>'
+	  		  					+ '</div>'
+	  		  				    );
+	
+	  					
+	  				}
+	  					  				
+	  			},
+	  			error : function(){
+	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
+	  			}
+	  		});
+     }
+	 
 
 </script>
 </head>

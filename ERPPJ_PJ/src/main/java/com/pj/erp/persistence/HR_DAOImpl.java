@@ -189,6 +189,12 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public HR_FamilyVO getFamily(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
+	}
+
+	@Override
+	public int HR_recordinput() {
+		// TODO Auto-generated method stub
+		return 0;
 	}	
 
 	
