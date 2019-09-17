@@ -302,72 +302,6 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 		                                            </tr>
 		                                        </tbody>
                                             </table>
-<<<<<<< HEAD
-                                          </form>   
-										  </div>
-										  <div class="form-group text-right mb-0">
-		    										<button onclick="add();" type="button" class="btn btn-outline-primary waves-effect waves-light">추가</button>
-		    										<button onclick="del();" type="button" class="btn btn-outline-primary waves-effect waves-light">삭제</button>
-											</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end container-fluid -->
-
-                </div> <!-- end content -->
-          
-                <%@ include file="../footer.jsp" %>
-
-            
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
-       
-        <!-- END wrapper -->
-
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-        
-        <script type="text/javascript">
-        
-        //문자 지우기
-        function removeChar(event) {
-       	    event = event || window.event;
-       	    var keyID = (event.which) ? event.which : event.keyCode;
-       	    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
-       	        return;
-       	    else
-       	    	 event.target.value = event.target.value.replace(/[^-\.0-9]/g, "");
-       }
-       
-      //콤마 찍기
-        function comma(obj) {
-            var regx = new RegExp(/(-?\d+)(\d{3})/);
-            var bExists = obj.indexOf(".", 0);//0번째부터 .을 찾는다.
-            var strArr = obj.split('.');
-            while (regx.test(strArr[0])) {//문자열에 정규식 특수문자가 포함되어 있는지 체크
-                //정수 부분에만 콤마 달기 
-                strArr[0] = strArr[0].replace(regx, "$1,$2");//콤마추가하기
-            }
-            if (bExists > -1) {
-                //. 소수점 문자열이 발견되지 않을 경우 -1 반환
-                obj = strArr[0] + "." + strArr[1];
-            } else { //정수만 있을경우 //소수점 문자열 존재하면 양수 반환 
-                obj = strArr[0];
-            }
-            return obj;//문자열 반환
-        }
-      
-      //input 태그 콤마 달기
-        function inputNumberFormat(obj) {
-       	    obj.value = comma(obj.value);
-       	}
-        
-        </script>
-=======
                                             </form>
 										  </div>
 										  <div class="form-group text-right mb-0">
@@ -432,6 +366,5 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
        	}
         
         </script>
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
     </body>
     </html>
