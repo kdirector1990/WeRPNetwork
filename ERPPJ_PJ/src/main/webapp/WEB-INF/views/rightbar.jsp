@@ -2,17 +2,26 @@
     pageEncoding="UTF-8"%>
 <!-- Right Sidebar -->
         <div class="right-bar">
+        
             <div class="rightbar-title">
                 <a href="javascript:void(0);" class="right-bar-toggle float-right">
                     <i class="mdi mdi-close"></i>
                 </a>
                 <h5 class="m-0 text-white">Settings</h5>
             </div>
+            
             <div class="slimscroll-menu">
-                <hr class="mt-0">
-                <h5 class="pl-3">Basic Settings</h5>
+            	
+            	<hr class="mt-0">
+            	<a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">
+            		<h5 class="pl-3">A/S요청</h5>
+                </a>
                 <hr class="mb-0" />
-
+            
+                <hr class="mt-0">
+                	<h5 class="pl-3">Basic Settings</h5>
+                <hr class="mb-0" />
+			
 
                 <div class="p-3">
                     <div class="custom-control custom-checkbox mb-2">

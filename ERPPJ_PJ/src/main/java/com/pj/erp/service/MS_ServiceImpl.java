@@ -2,6 +2,7 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,14 +28,19 @@ public class MS_ServiceImpl implements MS_Service {
 	@Override
 	public void insertPlan(HttpServletRequest req, Model model) {
 		
-		System.out.println(req.getParameter("plan_startdate"));
-		System.out.println(req.getParameter("plan_enddate"));
-		
 		MS_plan vo = new MS_plan();
 		vo.setPlan_name(req.getParameter("plan_name"));
 		vo.setPlan_regdate(new Timestamp(System.currentTimeMillis()));
-		vo.setPlan_startdate(req.getParameter("plan_startdate"));
-		vo.setPlan_enddate(req.getParameter("plan_enddate"));
+		
+		String sDate = req.getParameter("plan_startdate");
+		sDate = sDate.replace("/", "-");
+		
+		String eDate = req.getParameter("plan_enddate");
+		eDate = eDate.replace("/", "-");
+		
+		vo.setPlan_startdate(Date.valueOf(sDate));
+		vo.setPlan_enddate(Date.valueOf(eDate));
+		
 		vo.setPlan_state(req.getParameter("plan_state"));
 		vo.setUsername(req.getParameter("username"));
 		vo.setPosition_code(req.getParameter("position_code"));
@@ -68,8 +74,16 @@ public class MS_ServiceImpl implements MS_Service {
 		vo.setPlan_name(req.getParameter("plan_name"));
 		vo.setUsername(req.getParameter("username"));
 		vo.setPosition_code(req.getParameter("position_code"));
-		vo.setPlan_startdate(req.getParameter("plan_startdate"));
-		vo.setPlan_enddate(req.getParameter("plan_enddate"));
+		
+		String sDate = req.getParameter("plan_startdate");
+		sDate = sDate.replace("/", "-");
+		
+		String eDate = req.getParameter("plan_enddate");
+		eDate = eDate.replace("/", "-");
+		
+		vo.setPlan_startdate(Date.valueOf(sDate));
+		vo.setPlan_enddate(Date.valueOf(eDate));
+		
 		vo.setPlan_state(req.getParameter("plan_state"));
 		vo.setPlan_objective(req.getParameter("plan_objective"));
 		vo.setPlan_proposal(req.getParameter("plan_proposal"));

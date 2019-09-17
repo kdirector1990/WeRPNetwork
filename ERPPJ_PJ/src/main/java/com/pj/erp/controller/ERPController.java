@@ -568,20 +568,20 @@ public class ERPController {
 	//관리자 및 공통
 	
 	//로그인 페이지
-	@RequestMapping("login")
+	@RequestMapping("login") 
 	public String login(Locale locale, Model model) {
 		logger.info("log => login");
 		
 		return "login"; 
 	}
-	
+	 
 	// 권한 없을 경우 
-		@RequestMapping("denied")
-		public String denied(Locale locale, Model model) {
-			logger.info("log => denied");
-			
-			return "denied"; 
-		}
+	@RequestMapping("denied")
+	public String denied(Locale locale, Model model) {
+		logger.info("log => denied");
+		
+		return "denied"; 
+	}
 	
 	/*
 	 * //로그아웃

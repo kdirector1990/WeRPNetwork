@@ -141,6 +141,7 @@
                             </sec:authorize>
                             <!-- item-->
                             <sec:authorize access="isAuthenticated()">
+                            	
                             <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                                 <form id="logout-form" action="logout" method="POST">
    									<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
@@ -607,8 +608,8 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          			<li><a href="CT_production_plan_enrollment">생산계획등록</a></li>
-					                    <li><a href="CT_production_plan_management">생산계획관리</a></li>
+	                          			<li><a href="MF_production_plan_enrollment">생산계획등록</a></li>
+					                    <li><a href="MF_production_plan_management">생산계획관리</a></li>
 										<li><a href="#">작업지시등록</a></li>
 					                    <li><a href="#">작업지시확정</a></li>
 					                    <li><a href="#">생산자재출고</a></li>

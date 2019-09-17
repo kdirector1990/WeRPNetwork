@@ -20,21 +20,19 @@
 			<table id="datatable" class="table table-bordered table-hover">
 				<thead>
 					<tr class="table-info" style="text-align: center;">
-						<th>사원코드</th>
-						<th>사원명</th>
-						<th>부서코드</th>
-						<th>직책코드</th>
+						<th>제품계정코드</th>
+						<th>BOM코드</th>
+						<th>제품명</th>
 					</tr>
 				</thead>
 				<tbody>
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
 						<c:forEach var="list" items="${dto}">
-							<tr onclick="setName(${list.username},'${list.e_name}','${list.department_code}','${list.position_code}');">
-								<td>${list.username}</td>
-								<td>${list.e_name}</td>
-								<td>${list.department_code}</td>
-								<td>${list.position_code}</td>
+							<tr onclick="setName('${list.product_code}','${list.bom_code}','${list.product_name}');">
+								<td>${list.product_code}</td>
+								<td>${list.bom_code}</td>
+								<td>${list.product_name}</td>
 							</tr>
 						</c:forEach>
 					</c:if>

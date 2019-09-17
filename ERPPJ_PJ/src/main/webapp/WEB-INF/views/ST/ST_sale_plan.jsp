@@ -247,7 +247,7 @@
 
 	</div>
 	<!-- END wrapper -->
-
+	
 	<!-- Right Sidebar -->
 	<div class="right-bar">
 		<div class="rightbar-title">

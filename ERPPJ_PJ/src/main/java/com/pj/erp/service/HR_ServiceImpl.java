@@ -477,13 +477,13 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String username = req.getParameter("username");
 		String department_code = req.getParameter("department_code");
+
 		String e_name = req.getParameter("e_name");
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("department_code", department_code);
 		map.put("e_name", e_name);
 		map.put("username", username);
-		
+
 		List<HR_Time_VO> vo = dao.selectUserTime(map);
 		
 		return vo;

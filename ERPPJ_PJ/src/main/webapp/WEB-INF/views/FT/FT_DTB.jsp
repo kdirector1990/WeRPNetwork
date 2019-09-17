@@ -28,38 +28,173 @@
                             <div class="col-12">
                                 <div class="page-title-box">
                                     <div class="page-title-right">
-                                       <!--  <ol class="breadcrumb m-0">
+                                        <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UI Kit</a></li>
-                                            <li class="breadcrumb-item active">Images</li>
-                                        </ol> -->
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                                            <li class="breadcrumb-item active">Datatables</li>
+                                        </ol>
                                     </div>
-                                    <h2 class="page-title">판매계획 대비 출고 현황</h2>
+                                    <h4 class="page-title">거래처원장</h4>
                                 </div>
                             </div>
                         </div>     
                         <!-- end page title --> 
- 
-                        <!-- end row-->
-
-                        <!-- ===== MEDIA ==== -->
 
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title"></h4>
-                                         <img src="/erp/resources/img/FT_DTB.jpg" style="width: 100%;">
+                                        <h4 class="header-title mb-3">Default Tabs</h4>
+    
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                    <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">일계</span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
+                                                    <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
+                                                    <span class="d-none d-sm-block">월계</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                        	<!-- 잔액 -->
+                                           	<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                     			<div class="col-sm-12">
+					                                <div class="card">
+					                                    <div class="card-body table-responsive">
+					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+					                                            <tr>
+					                                            	<td>계정과목</td>
+					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+					                                                	<input type="text" class="" readonly>
+					                                                </td>
+					                                                
+					                                                <td>기표기간</td>
+					                                                <td><input type="date" class="">~<input type="date" class=""></td>
+					                                                
+					                                            	<td>거래처</td>
+					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+					                                                	<input type="text" class="" readonly>
+					                                                </td>
+					                                            </tr>
+					                                        </table>
+				    
+				                                        <div class="table-responsive">
+				                                            <table class="table mb-0">
+				                                                <thead class="thead-light">
+				                                                    <!-- <tr>
+				                                                    <th scope="col">#</th>
+				                                                    <th scope="col">First</th>
+				                                                    <th scope="col">Last</th>
+				                                                    <th scope="col">Handle</th>
+				                                                    </tr> -->
+				                                                    <tr>
+						                                                <th colspan = "3">차변</th>
+						                                                <th rowspan = "2">계정과목</th>
+						                                                <th colspan = "3">대변</th>
+						                                            </tr>
+						                                            
+				                                                    <tr>
+						                                                <th>계</th>
+						                                                <th>현금</th>
+						                                                <th>대체</th>
+						                                                <th>대체</th>
+						                                                <th>현금</th>
+						                                                <th>계</th>
+						                                            </tr>
+						                                            
+				                                                </thead>
+				                                                <tbody>
+				                                                	<c:forEach var="item" items="${chitList}">
+				                                                		<tr>
+						                                                    <td>${item.customer_code}<</td>
+						                                                    <td>${item.customer_name}</td>
+						                                                    <td>${item.license_number}</td>
+						                                                    <td>${item.BeforePrice}</td>
+						                                                    <td>${item.debtor_value}</td>
+						                                                    <td>${item.creditor_value}</td>
+						                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
+					                                                    </tr>
+				                                                	</c:forEach>
+				                                                </tbody>
+				                                            </table>
+				                                        </div>
+				                                    </div>
+				                                </div>
+				                            </div>
+                                          </div>
+                                          
+                                          <!-- 원장 -->
+                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="col-sm-12">
+					                                <div class="card">
+					                                    <div class="card-body table-responsive">
+						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+					                                            <tr>
+					                                            
+					                                            	<td>계정과목</td>
+					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+					                                                	<input type="text" class="" readonly>
+					                                                </td>
+					                                                
+					                                                <td>기표기간</td>
+					                                                <td><input type="date" class="">~<input type="date" class=""></td>
+					                                            	
+					                                            	<td>거래처</td>
+					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+					                                                	<input type="text" class="" readonly>
+					                                                </td>
+					                                            </tr>
+						                                        </table>
+					    
+					                                        <div class="table-responsive">
+					                                            <table class="table mb-0">
+					                                                <thead class="thead-light">
+					                                                    <tr>
+							                                                <th colspan = "3">차변</th>
+							                                                <th rowspan = "2">계정과목</th>
+							                                                <th colspan = "3">대변</th>
+							                                            </tr>
+							                                            
+					                                                    <tr>
+							                                                <th>계</th>
+							                                                <th>현금</th>
+							                                                <th>대체</th>
+							                                                <th>대체</th>
+							                                                <th>현금</th>
+							                                                <th>계</th>
+							                                            </tr>
+							                                            
+					                                                </thead>
+					                                                <tbody>
+					                                                    <c:forEach var="item" items="${chitList}">
+					                                                		<tr>
+							                                                    <td>${item.customer_code}<</td>
+							                                                    <td>${item.customer_name}</td>
+							                                                    <td>${item.license_number}</td>
+							                                                    <td>${item.BeforePrice}</td>
+							                                                    <td>${item.debtor_value}</td>
+							                                                    <td>${item.creditor_value}</td>
+							                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
+						                                                    </tr>
+					                                                	</c:forEach>
+					                                                </tbody>
+					                                            </table>
+					                                        </div>
+					                                    </div>
+					                                </div>
+					                            </div>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                </div> <!-- end card -->
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
-
-                        <!-- Media alignment -->
-
-                         
-                        
+                                    <!--  -->
+                              </div>       
+                           </div>   
+                        </div>
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->

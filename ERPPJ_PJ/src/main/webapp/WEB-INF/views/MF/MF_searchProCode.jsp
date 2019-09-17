@@ -14,8 +14,8 @@
     <script type = "text/javascript">
 
 // 검색창 포커스	 
-function searchNameFocus(){
-	document.searchName.e_name.focus();
+function searchFocus(){
+	document.searchProName.product_code.focus();
 }
 
 function enterkey() {
@@ -27,20 +27,20 @@ function enterkey() {
 
 
 // 결과
-function load1(e_name) {
-	var url = document.searchName.e_name.value;
+function load1(product_name) {
+	var url = document.searchProName.product_code.value;
 	
-	sendRequest(loadBook_callback, "MS_searchUsername_result", "post", "e_name="+url);
+	sendRequest(loadBook_callback, "MF_searchProCode_result", "post", "product_name="+url);
 }
 
 function loadBook_callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.e_name.value){
-			alert("사원이름을 입력하세요!");
+		if(!document.searchProName.product_code.value){
+			alert("제품명을 입력하세요!");
 			location.reload();
-			document.searchName.e_name.focus();
+			document.searchProName.product_code.focus();
 			return false;
 		}
 	
@@ -63,25 +63,17 @@ function loadBook_callback() {
 } 
 
 
-function setName(username,e_name,department_code,position_code) {
-	opener.document.getElementById("username").value = username;
-	opener.document.getElementById("e_name").value = e_name;
-	opener.document.getElementById("department_code").value = department_code;
-	opener.document.getElementById("position_code").value = position_code;
-	//test alert
-	alert(username);
+function setName(product_code,bom_code,product_name) {
+	opener.document.getElementById("product_code").value = product_code;
+	opener.document.getElementById("bom_code").value = bom_code;
+	opener.document.getElementById("product_name").value = product_name;
 	
-	$("#username", opener.document).val(username); //jquery 이용
-	$(opener.document).find("#username").val(username); //find를 이용한 jquery
-	
-	$("#e_name", opener.document).val(e_name); //jquery 이용
-	$(opener.document).find("#e_name").val(e_name); //find를 이용한 jquery
-	
-	$("#department_code", opener.document).val(department_code); //jquery 이용
-	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
-	
-	$("#position_code", opener.document).val(position_code); //jquery 이용
-	$(opener.document).find("#position_code").val(position_code); //find를 이용한 jquery
+	$("#product_code", opener.document).val(product_code); //jquery 이용
+	$(opener.document).find("#product_code").val(product_code); //find를 이용한 jquery
+	$("#bom_code", opener.document).val(bom_code); //jquery 이용
+	$(opener.document).find("#bom_code").val(bom_code); //find를 이용한 jquery
+	$("#product_name", opener.document).val(product_name); //jquery 이용
+	$(opener.document).find("#product_name").val(product_name); //find를 이용한 jquery
 	
 	self.close();
 	
@@ -89,7 +81,7 @@ function setName(username,e_name,department_code,position_code) {
 </script>
 
 </head>
-<body onload="searchNameFocus();">
+<body onload="searchFocus();">
 <!-- username 검색 -->
 <div id="wrapper">
 		<!-- ============================================================== -->
@@ -103,10 +95,10 @@ function setName(username,e_name,department_code,position_code) {
 					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
-							<div class="page-title-box" style="text-align: center;">
-								<h4>
-									<b>계정목록</b>
-								</h4>
+							<div class="page-title-box" style="text-align: center; margin: 40px 0;">
+								<h3>
+									<b>제품검색1</b>
+								</h3>
 							</div>
 						</div>
 					</div>
@@ -117,12 +109,12 @@ function setName(username,e_name,department_code,position_code) {
 							<div class="card">
 								<div class="card-body"
 									style="margin-bottom: 0px; padding-bottom: 44px;">
-									<form name="searchName" onsubmit="return false">
+									<form name="searchProName" onsubmit="return false">
 										<table>
 											<tr>
 												<th style="text-align: center; padding-right: 10px;">Search</th>
-												<td><input onkeyup="enterkey();" type="text" name="e_name"
-													class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;"></td>
+												<td><input onkeyup="enterkey();" type="text" name="product_code"
+													class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block;"></td>
 											</tr>
 
 											<tr>
