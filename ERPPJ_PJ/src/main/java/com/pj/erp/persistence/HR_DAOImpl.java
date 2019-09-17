@@ -1,5 +1,6 @@
 package com.pj.erp.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -172,11 +173,23 @@ public class HR_DAOImpl implements HR_DAO{
 	public List<HR_Time_VO> selectUserTime(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.selectUserTime", map);
 	}
+	
+	//근태(출근확인)
+	@Override
+	public int selectWork(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectWork", map);
+	}
 
 	//근태(출근입력)
 	@Override
 	public int StartWork(String username) {
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.StartWork", username);
+	}
+	
+	//근태(퇴근확인)
+	@Override
+	public int selectEndWork(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectEndWork", username);
 	}
 
 	//근태(퇴근입력)
@@ -189,8 +202,19 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public HR_FamilyVO getFamily(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
-	}	
-
+	}
 	
+	//근태(근무월별 있는가)
+	@Override
+	public int DetailWork(HR_Time_VO vo) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.DetailWork", vo);
+	}
+
+	// 근태(기록 가져오기)
+	@Override
+	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.SelectDetailWork", vo);
+	}
+
 
 }

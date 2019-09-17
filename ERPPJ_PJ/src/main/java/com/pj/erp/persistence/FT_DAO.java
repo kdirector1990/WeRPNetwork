@@ -129,4 +129,13 @@ public interface FT_DAO {
 	 
 	//지급어음목록 검색결과
 	 public List<FT_facility_list_VO> getFacilityList(Map<String, Object> map); 
+	 
+	// 분개 가지고 와라
+	 public int FT_chitDistinctCnt(Map<String, Object> map);
+	 
+	 // 분개 가지고 와라
+	 public List<FT_Chit> FT_ChitDistinct(Map<String, Object> map);
+	 
+	 // 전표승인처리
+	 public int FT_CheckFormal(Map<String, Object> map);
 }

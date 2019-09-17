@@ -123,47 +123,21 @@
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
                                                 <td>기표기간</td>
-                                                <td>
-                                                <!-- 기간 달력 여기 넣고 -->
-                                                </td>
-                                                <td>결의부서</td>
-                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                	<input type="text" class="" readonly>
-                                                </td>
-                                                	
-                                               	<td>
-                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                                	<input type="text" class="" readonly>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            
-                                            <tr>
-                                            	<td>전표구분</td>
-                                            	<td>
-	                                            	<select class="form-control select2">
-			                                            <option>전체선택</option>
-			                                                <option value="">1.출 금</option>
-			                                                <option value="">2.입 금</option>
-			                                                <option value="">3.대 체</option>
-			                                        </select>
-                                            	</td>
+                                                <td><input type="date" class=""> ~ <input type="date" class=""></td>
                                             	
                                             	<td>전표유형</td>
                                             	<td>
 	                                            	<select class="form-control select2">
 			                                            <option>전체선택</option>
-			                                                <option value="">1.일 반</option>
-			                                                <option value="">2.매 입</option>
-			                                                <option value="">3.매 출</option>
-			                                                <option value="">4.수 정</option>
-			                                                <option value="">5.결 산</option>
+			                                                <option value="1">1.일 반</option>
+			                                                <option value="2">2.매 입</option>
+			                                                <option value="3">3.매 출</option>
+			                                                <option value="4">4.결 산</option>
 			                                        </select>
                                             	</td>
                                             	
-                                            	<td>작성자&emsp;<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a></td>
-                                            	<td></td>
+                                            	<td>작성자&emsp;<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+                                            	<input type="text" class=""></td>
                                             </tr>
                                         </table>
                                         
