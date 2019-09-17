@@ -40,7 +40,7 @@ public class ERPController {
 		model.addAttribute("serverTime", formattedDate ); 
 		 
 		return "login";
-	}    
+	}
 	
  
 	@RequestMapping("index")
