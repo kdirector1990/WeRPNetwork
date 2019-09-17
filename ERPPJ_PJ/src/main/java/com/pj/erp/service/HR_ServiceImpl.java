@@ -569,23 +569,4 @@ public class HR_ServiceImpl implements HR_Service{
 		return dto;
 	}
 
-	
-
-	/*
-	@Override
-	public void userChk(HttpServletRequest req, Model model) {
-		String username = req.getParameter("username");		
-		
-		int cnt = dao.userChk(username);
-		
-		System.out.println("cnt : " + cnt);
-		
-		model.addAttribute("selectCnt", cnt);
-		model.addAttribute("username",  username);
-		
-	}
-	*/
-	
-	
-	
 }
