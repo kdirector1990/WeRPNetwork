@@ -49,6 +49,18 @@
 		SELECT * FROM mf_plan_tbl
 	</select>
 	
+	<!-- 생산계획수정 -->
+	<update id="updateMFplan" parameterType="com.pj.erp.vo.MF.MF_plan">
+		update mf_plan_tbl 
+			set bom_code=#{bom_code}, product_code=#{product_code}, start_date = #{start_date}, end_date = #{end_date}, ef_cost = #{ef_cost}, ef_amount = #{ef_amount}
+			where p_pp_code=#{p_pp_code}
+	</update>
+	
+	<!-- 생산계횐삭제 -->
+	<delete id="delateMFplan" parameterType="String">
+		delete from mf_plan_tbl where p_pp_code=#{p_pp_code}
+	</delete>
+	
 	<!-- 제품검색 -->
 	<select id="selectProName" resultType="int" parameterType="String">
 		SELECT COUNT(*) FROM product_list_tbl where product_name like '%'||#{product_name}||'%'

@@ -32,10 +32,15 @@ public interface MF_DAO {
 	//생산계획목록가져오기
 	public List<MF_plan> getMFplanList(); 
 	
+	//생산계획수정
+	public int updateMFplan(MF_plan vo);
+	
+	//생산계획삭제
+	public int deleteMFplan(String p_pp_code);
+	
 	//제품검색
 	public int selectProName(String product_name);
 	
 	//제품목록
 	public List<MF_product_list> getProductList(String product_name);
-	
 }
