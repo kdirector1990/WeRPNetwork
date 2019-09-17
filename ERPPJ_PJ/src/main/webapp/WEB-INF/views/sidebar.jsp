@@ -141,6 +141,10 @@
                             </sec:authorize>
                             <!-- item-->
                             <sec:authorize access="isAuthenticated()">
+                            	<a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');" class="dropdown-item notify-item">
+	                            	<i class="fe-check-circle"></i>
+	                            	<span>A/S요청</span>
+                            	</a>
                             <a href="#" onclick="document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                                 <form id="logout-form" action="logout" method="POST">
    									<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
