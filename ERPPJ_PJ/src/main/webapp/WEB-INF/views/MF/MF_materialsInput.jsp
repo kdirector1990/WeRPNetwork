@@ -3,6 +3,26 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+<script type="text/javascript">
+
+	function Insert(){
+		var param = $("#MF_materialsInput").serializeArray();
+		alert(JSON.stringify(param));
+		$.ajax({
+			url: '/erp/MF_materialsInputPro',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(param){
+				alert("자재등록성공");
+			},
+			error : function(){
+				alert("자재 등록 실패");
+			}
+		});
+	}
+
+</script>
     </head>
 
     <body>
@@ -39,30 +59,26 @@
                                     <div class="card-body">
                                         <h4 class="header-title">등록</h4>
                                         <p class="sub-header">
-                                       		 아 뭐더라 그거 자재등록페이지
+                                       		 자재등록
                                         </p>
     
-                                        <form class="" action="MF_materialsInsertPro">
-                                            <div class="form-group">
-                                                <label>계정코드</label>
-                                                <input type="text" name="account_code" class="form-control" required
-                                                            placeholder="계정코드"/>
-                                            </div>
+                                        <form id="MF_materialsInput">
+                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
                                             <div class="form-group">
                                                 <label>자재명</label>
                                                 <div>
-                                                    <input type="text" name="materials_name" class="form-control" required
+                                                    <input type="text" name="material_name" class="form-control" required
                                                             placeholder="자재명"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>단위</label>
-                                                <input type="text" name="materials_unit" class="form-control" required
+                                                <input type="text" name="material_unit" class="form-control" required
                                                             placeholder="단위"/>
                                             </div>
                                             <div class="form-group mb-0">
                                                 <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                    <button type="button" onclick="Insert();" class="btn btn-primary waves-effect waves-light mr-1">
                                                         Submit
                                                     </button>
                                                     <button type="reset" class="btn btn-secondary waves-effect waves-light">
@@ -94,6 +110,5 @@
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
-        
     </body>
 </html>

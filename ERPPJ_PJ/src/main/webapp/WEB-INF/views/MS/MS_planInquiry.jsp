@@ -117,7 +117,7 @@
     <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
         
     <script type="text/javascript">
-     $("#datatable tr").click(function(){
+     $("#datatable tbody tr").click(function(){
     	 
 			if($(".plandiv") != null){
 				$(".plandiv").remove();
