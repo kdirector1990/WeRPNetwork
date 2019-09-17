@@ -10,7 +10,7 @@
 <script src="/erp/resources/assets/js/request.js"></script>
 <script type="text/javascript">
     function salePlanWriteForm(url) {
-    	sendRequest(callback, "ST_saleList_Form", "post", "${_csrf.parameterName }=${_csrf.token }&saleplan_code="+url);
+    	sendRequest(callback, "ST_saleList_Form", "post", "${_csrf.parameterName }=${_csrf.token }&salelist_code="+url);
     }
     
     function callback() {
@@ -175,7 +175,7 @@
 															<c:if test="${cnt > 0}">
 																<c:forEach var="sto" items="${stos}">
 																	<tr
-																		onclick="salePlanWriteForm('');">
+																		onclick="salePlanWriteForm('${sto.salelist_code}');">
 																		<td>${sto.salelist_code}</td>
 																		<td></td><!-- 제품명 -->
 																		<td></td><!-- 담당자 -->
