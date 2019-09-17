@@ -4,9 +4,7 @@ import java.sql.Date;
 
 public class SalePlan {
 	
-	private String position_code;	// 현재 결제자
 	private String saleplan_code;	// 판매 계획 코드
-	private String account_code;	// 계정 코드
 	private Date s_plan_start;	// 기간 시작
 	private Date s_plan_end;	// 기간 종료
 	private int ef_price;	//예상 판매 가격
@@ -17,33 +15,18 @@ public class SalePlan {
 	private String eas_code;	// 전결 라인 코드
 	private String e_approval_code;	// 전결 현황 코드
 	private int jr_state;	// 처리상태
+	private String detail_ac_code;	// 상세 계정 코드
 	
 	// 생성자
 	public SalePlan() {}
 	
 	// getter, setter
-	public String getPosition_code() {
-		return position_code;
-	}
-
-	public void setPosition_code(String position_code) {
-		this.position_code = position_code;
-	}
-
 	public String getSaleplan_code() {
 		return saleplan_code;
 	}
 
 	public void setSaleplan_code(String saleplan_code) {
 		this.saleplan_code = saleplan_code;
-	}
-
-	public String getAccount_code() {
-		return account_code;
-	}
-
-	public void setAccount_code(String account_code) {
-		this.account_code = account_code;
 	}
 
 	public Date getS_plan_start() {
@@ -125,6 +108,16 @@ public class SalePlan {
 	public void setJr_state(int jr_state) {
 		this.jr_state = jr_state;
 	}
+
+	public String getDetail_ac_code() {
+		return detail_ac_code;
+	}
+
+	public void setDetail_ac_code(String detail_ac_code) {
+		this.detail_ac_code = detail_ac_code;
+	}
+	
+	
 	
 	
 	
