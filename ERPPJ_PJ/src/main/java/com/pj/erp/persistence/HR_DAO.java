@@ -1,5 +1,6 @@
 package com.pj.erp.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -91,9 +92,16 @@ public interface HR_DAO {
 	//근태(사원정보 검색)
 	public List<HR_Time_VO> selectUserTime(Map<String, Object> map);
 	
+	//근태(출근 날짜 있는지)
+	public int selectWork(Map<String, Object> map);
+	
 	//근태(출근입력)
 	public int StartWork(String username);
 	
+	//근태(퇴근 날짜 있는지
+	public int selectEndWork(String username);
+	
 	//근태(퇴근입력)
 	public int EndWork(String username);
+
 }

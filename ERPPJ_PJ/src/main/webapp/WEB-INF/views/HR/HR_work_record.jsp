@@ -67,6 +67,9 @@
     				if(insertCnt == 1){
     					alert("사원출근을 기록하였습니다.");    					
     				}
+    				else if(insertCnt == 0){
+    					alert("이미 출근을 기록한 사원입니다.")
+    				}
     			},
     			error : function(){
     				alert("전산 오류로 인하여 사원의 출근 기록을 실패하였습니다.");
@@ -83,8 +86,12 @@
     			data : param,
     			dataTpye: 'json',
     			success: function(updateCnt){
+    				alert(updateCnt);
     				if(updateCnt == 1){
     					alert("사원의 퇴근을 기록하였습니다.");    					
+    				}
+    				else if(updateCnt == 0){
+    					alert("이미 퇴근을 기록한 사원입니다.");
     				}
     			},
     			error : function(){
