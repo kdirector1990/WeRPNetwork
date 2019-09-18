@@ -8,13 +8,16 @@ public class Estimate {
 	private String customer_code;	// 거래처코드
 	private String account_code;	// 계정코드
 	private int ep_amount;	// 수량
-	private int ep_price;	// 견적 단가
+	private int ep_price;	// 공급가
 	private Date ep_deliver_date; // 납품 예정일
 	private Date ep_reg_date;	// 견적 등록일
 	private String username;	// 담당자
 	private String e_approval_code;	// 전결 현황 코드
 	private String eas_code;	// 전결 라인 코드
 	private String position_code;	// 현재 결제자
+	private String product_name;	// 품명
+	private String customer_name;	// 거래처명
+	private String detail_ac_code;	// 제품 코드
 	
 	// 생성자
 	public Estimate() {}
@@ -112,8 +115,36 @@ public class Estimate {
 	public void setPosition_code(String position_code) {
 		this.position_code = position_code;
 	}
-	
-	
+
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+
+	public String getCustomer_name() {
+		return customer_name;
+	}
+
+
+	public void setCustomer_name(String customer_name) {
+		this.customer_name = customer_name;
+	}
+
+
+	public String getDetail_ac_code() {
+		return detail_ac_code;
+	}
+
+
+	public void setDetail_ac_code(String detail_ac_code) {
+		this.detail_ac_code = detail_ac_code;
+	}
 	
 	
 	
