@@ -33,7 +33,7 @@ public class MS_Controller {
 		logger.info("log => MS_insertPlanPro");
 		service.insertPlan(req, model);
 		
-		return "MS/MS_insertPlanPro";
+		return "MS/MS_planEnrollment";
 	}
 	
 	//기획서 조회
@@ -45,7 +45,7 @@ public class MS_Controller {
 		return "MS/MS_planInquiry";
 	}
 	
-	//기획서 관리
+	//기획서 목록 가져오기
 	@RequestMapping("MS_planManagement")
 	public String planManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planManagement");
@@ -89,6 +89,23 @@ public class MS_Controller {
 		service.searchUsername(req, model);
 		
 		return "MS/MS_searchUsername_result";
+	}
+	
+	//등록 - 책임자 코드 검색 MS_positionCode
+	@RequestMapping("MS_positionCode")
+	public String MS_positionCode(HttpServletRequest req, Model model) {
+		logger.info("log => MS_positionCode");
+		
+		return "MS/MS_positionCode";
+	}
+	
+	//등록 - 책임자 코드 검색 MS_positionCode
+	@RequestMapping("MS_positionCode_result")
+	public String MS_positionCode_result(HttpServletRequest req, Model model) {
+		logger.info("log => MS_positionCode_result");
+		service.searchUsername(req, model);
+		
+		return "MS/MS_positionCode_result";
 	}
 	
 }

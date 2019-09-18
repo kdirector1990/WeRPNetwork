@@ -15,6 +15,7 @@
 			dataTpye: 'json',
 			success: function(param){
 				alert("자재등록성공");
+				location.reload();
 			},
 			error : function(){
 				alert("자재 등록 실패");

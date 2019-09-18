@@ -80,8 +80,8 @@ public class MF_ServiceImpl implements MF_Service {
 	public void insertMFPlan(HttpServletRequest req, Model model) {
 		
 		MF_plan vo = new MF_plan();
-		vo.setBom_code(req.getParameter("bom_code"));
 		vo.setProduct_code(req.getParameter("product_code"));
+		vo.setBom_code(req.getParameter("bom_code"));
 		
 		String start_date = req.getParameter("start_date");
 		start_date = start_date.replace("/", "-");

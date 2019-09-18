@@ -7,6 +7,45 @@
 		display: none;
 	}
 </style>
+
+<script type="text/javascript">
+        function updatePlan(){
+    		var param = $("#datatable2").serializeArray();
+    		alert(JSON.stringify(param));
+    		$.ajax({
+    			url: '/erp/MS_updatePlanPro',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(param){
+    				alert("수정되었습니다.");
+    				location.reload();
+    			},
+    			error : function(){
+    				alert("수정에 실패하였습니다.");
+    			}
+    		});
+    	}
+        
+        function deletePlan(){
+    		var param = $("#datatable2").serializeArray();
+    		alert(JSON.stringify(param));
+    		$.ajax({
+    			url: '/erp/MS_deletePlanPro',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(param){
+    				alert("삭제되었습니다.");
+    				location.reload();
+    			},
+    			error : function(){
+    				alert("삭제 실패하였습니다.");
+    			}
+    		});
+    	}
+    </script>
+    
     <%@ include file="../setting.jsp" %>
 </head>
 	<body>
@@ -39,8 +78,8 @@
                                         <h4 class="header-title">기획서</h4>
                                         <p class="sub-header">관리</p>
     									<hr>
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
+                                        <table id="datatable" class="table m-0 table-bordered table-hover" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead class="bg-primary text-white">
                                             <tr>
                                             	<th>기획서 코드</th>
                                             	<th>기획명</th>
@@ -234,6 +273,8 @@
 	  					+ '</div>'
 	  					+'</div>'
 	  				    );
+   			
+   			$('.plandiv').focus();
    			
 		});
      

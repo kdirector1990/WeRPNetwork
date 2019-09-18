@@ -1,17 +1,25 @@
 package com.pj.erp.controller;
 
+import java.text.ParseException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ST_Service;
+import com.pj.erp.vo.ST.SalePlan;
 
 @Controller
 public class ST_Controller {
@@ -148,7 +156,16 @@ public class ST_Controller {
 		service.salePlan(req, model);
 		
 		return "ST/ST_sale_plan";
-	}       
+	}   
+	
+	// ST_sale_plan_result
+	@RequestMapping(value = "ST_sale_plan_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<SalePlan> ST_sale_plan_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_sale_plan_result");
+		List<SalePlan> list = service.getsalePlan(map, req, model);
+		return list;
+	}
 	
 	// ST_sale_plan 상세 정보
 	@RequestMapping("ST_sale_plan_writeForm")
