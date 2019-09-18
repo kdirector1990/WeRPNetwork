@@ -7,6 +7,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -93,6 +94,9 @@ public interface FT_Service {
 	
 	// 검색된 분개 모두 가져오기
 	public List<FT_Chit> FT_journalList(Map<String, Object> map, Model model);
+	
+	// 검색된 분개 모두 가져오기
+	public List<FT_Ledger> FT_ledgerList(Map<String, Object> map, Model model);
 	
 	//단기차입금목록 검색결과
 	public List<FT_Short_Borrow_List> getSBorrowList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;

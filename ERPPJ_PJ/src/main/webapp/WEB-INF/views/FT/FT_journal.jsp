@@ -67,63 +67,69 @@
         	}
         	
         	function ajaxload() {
-        		var obj = new Object();
-        		var jsonData;
-        		
-        		if(!$(".chitState").val()) {
-        			$(".chitState").focus();
-        			return false;
-        		} else if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
-        			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate").focus();
-        			return false;
-        		} else if(window.event.which == 13){
-	        		// 자바스크립트 객체 생성
-	        		obj.usercode = $("#usercode").val();
-	        		obj.firstday = $(".firstdate").val();
-	        		obj.lastday = $(".lastdate").val();
+        		if(window.event.which == 13){
+        			alert("메롱");
+	        		var obj = new Object();
+	        		var jsonData;
 	        		
-	        		// json 객체를 String 객체로 변환 -- 
-	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
-	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
-	        		jsonData = JSON.stringify(obj);
-	        		$(".chit-table-bordered-primary tbody").html("");
-	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
-	        		$.ajax({
-	                       type : "POST",
-	                       url : "/erp/FT_journalList?${_csrf.parameterName }=${_csrf.token }",
-	                       data : jsonData,
-	                       contentType : 'application/json;charset=UTF-8',
-	                       success : function(data) {
-	                    	   if(data != null){
-	                    		   var rightacc;
-	                    		   var leftacc;
-									for(i = 0; i < data.length; i++){
-		                    		   if(data[i].debtor_value == 0){
-		                    			   rightacc = data[i].account_name;
-		                    			   leftacc = "";
-		                    		   } else {
-		                    			   rightacc = "";
-		                    			   leftacc = data[i].account_name;
-		                    		   }
-										$(".chit-table-bordered-primary tbody").append('<tr>' +
-                                        		'<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_date + '" name = "WriteDate' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_code + '" name = "WriteNo' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].debtor_value + '" name = "LeftPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftacc + '" name = "LeftSubject' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + rightacc + '" name = "RightSubejct' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].creditor_value + '" name = "RightPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_abstract + '" name = "Briefs' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_code + '" name = "AccCode' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_name + '" name = "AccName' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + parseInt(i) + '\'; chitManager.submit();"></td>' +
-                                            '</tr>');
-									}
-		                    	   }
-	                       },
-	                       error : function(e) {
-	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
-	                       }
-	        		});
+	        		if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
+	        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+	        			$(".firstdate").focus();
+	        			return false;
+	        		} else if(window.event.which == 13){
+		        		// 자바스크립트 객체 생성
+		        		obj.usercode = $("#usercode").val();
+		        		obj.firstday = $(".firstdate").val();
+		        		obj.lastday = $(".lastdate").val();
+		        		
+		        		// json 객체를 String 객체로 변환 -- 
+		        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+		        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+		        		jsonData = JSON.stringify(obj);
+		        		$(".chit-table-bordered-primary tbody").html("");
+		        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+		        		$.ajax({
+		                       type : "POST",
+		                       url : "/erp/FT_journalList?${_csrf.parameterName }=${_csrf.token }",
+		                       data : jsonData,
+		                       contentType : 'application/json;charset=UTF-8',
+		                       success : function(data) {
+		                    	   if(data != null){
+		                    		   var rightacc;
+		                    		   var leftacc;
+		                    		   var rightprice;
+		                    		   var leftprice;
+										for(i = 0; i < data.length; i++){
+			                    		   if(data[i].debtor_value == 0){
+			                    			   rightacc = data[i].account_name;
+			                    			   leftacc = "";
+			                    			   rightprice = data[i].creditor_value;
+			                    			   leftprice = "";
+			                    		   } else {
+			                    			   rightacc = "";
+			                    			   leftacc = data[i].account_name;
+			                    			   rightprice = "";
+			                    			   leftprice = data[i].debtor_value;
+			                    		   }
+											$(".chit-table-bordered-primary tbody").append('<tr>' +
+	                                        		'<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_date + '" name = "WriteDate' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_number + '" name = "WriteNo' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftprice + '" name = "LeftPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftacc + '" name = "LeftSubject' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + rightacc + '" name = "RightSubejct' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + rightprice + '" name = "RightPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_abstract + '" name = "Briefs' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_code + '" name = "AccCode' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_name + '" name = "AccName' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                            '</tr>');
+										}
+			                    	   }
+		                       },
+		                       error : function(e) {
+		                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+		                       }
+		        		});
+	        		}
         		}
         	}
         	
@@ -179,21 +185,18 @@
                         </div>     
                         <!-- end page title --> 
 						
+                        <form name = "chitManager" method="post">
+                        <input type = "hidden" name = "${_csrf.parameterName }" value="${_csrf.token }">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        <div align="right">
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">정렬순서</button>
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">조건검색</button>
-    									<br>
-    									</div>
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
                                                 <td>기표기간</td>
                                                 <td><input type="date" class="firstdate" value = "2011-01-01"> ~ <input type="date" class="lastdate" value = "2011-12-31"></td>
                                             	<td>작성자</td>
-                                                <td><input type="text" class="" id = "usercode" readonly style = "width: 100px;">&nbsp;<a href = "#" onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
+                                                <td><input type="text" class="" id = "usercode" style = "width: 100px;" onkeyup = "ajaxload();">&nbsp;<a href = "#" onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
                                                 	<input type="text" class="" id = "username" readonly style = "width: 100px;"></td>
                                             </tr>
                                         </table>
@@ -241,6 +244,7 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->
