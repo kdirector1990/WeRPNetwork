@@ -7,6 +7,29 @@
         function usernameList() {
     		window.open("MS_searchUsername", "username_list", "menubar=no, width=450px, height = 600px location=no,status=no,scrollbars=yes");
     	}
+        
+        function positionCode() {
+    		window.open("MS_positionCode", "positionCode", "menubar=no, width=450px, height = 600px location=no,status=no");
+    	}
+        
+        function insertPlan(){
+    		var param = $("#insertPlan").serializeArray();
+    		alert(JSON.stringify(param));
+    		$.ajax({
+    			url: '/erp/MS_insertPlanPro',
+    			type: 'POST',
+    			data : param,
+    			dataTpye: 'json',
+    			success: function(param){
+    				alert("기획서가 등록되었습니다.");
+    				location.reload();
+    			},
+    			error : function(){
+    				alert("기획서 등록에 실패하였습니다.");
+    			}
+    		});
+    	}
+        
         </script>
     </head>
 
@@ -43,7 +66,7 @@
 								<h4 class="header-title">등록</h4>
 								<p class="sub-header">기획서 등록</p>
 
-								<form action="MS_insertPlanPro" name="insertPlan">
+								<form action="MS_insertPlanPro" id="insertPlan">
 									<input type='hidden' name="${_csrf.parameterName }"
 										value="${_csrf.token }"> <input type="hidden"
 										name="hiddenId" value="0">
@@ -77,26 +100,43 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<label>기획제안자</label>
-										<br>
-										<div  style="display: inline-flex;">
+										<div  style="display: -webkit-inline-box;">
+											<label class="col-md-1 col-form-label">기획제안자</label>
 											<input type="text" name="username" id="username"
-												class="form-control" required placeholder="기획제안자"
-												onclick="usernameList()" style="width:200px; margin-right: 30px;" />
+												class="form-control" required placeholder="기획제안자코드"
+												onclick="usernameList()"/>
+											<label class="col-md-1 col-form-label">사원명</label>
 											<input type="text" name="e_name" id="e_name"
 											class="form-control" required placeholder="사원명" 
-												style="width:200px; margin-right: 30px;" disabled/>
+												disabled/>
+											<label class="col-md-1 col-form-label">부서코드</label>
 											<input type="text" name="department_code" id="department_code"
 											class="form-control" required placeholder="부서코드" 
-												style="width:200px; margin-right: 30px;" disabled/>
+												disabled/>
+											<label class="col-md-1 col-form-label">직책코드</label>
 											<input type="text" name="position_code" id="position_code"
 											class="form-control" required placeholder="직책코드" 
-												style="width:200px; margin-right: 30px;" disabled/>
+												 disabled/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label>책임자</label> <input type="text" name="position_code"
-											class="form-control" required placeholder="책임자" />
+										<div style="display: -webkit-inline-box;">
+											<label>책임자</label>
+											<input type="text" name="position_code" id="position_code2" onclick="positionCode();"
+												class="form-control" required placeholder="책임자코드"/>
+											<label>사원명</label>
+											<input type="text" name="e_name" id="e_name2"
+												class="form-control" required placeholder="사원명" 
+													 disabled/>
+											<label>부서코드</label>
+											<input type="text" name="department_code" id="department_code2"
+											class="form-control" required placeholder="부서코드" 
+												 disabled/>
+											<label>사원코드</label>
+											<input type="text" name="username" id="username2"
+												class="form-control" required placeholder="사원코드" 
+													disabled/>	
+										</div>
 									</div>
 									<div class="form-group">
 										<label>기획목표</label>
@@ -107,7 +147,7 @@
 									</div>
 									<div class="form-group mb-0">
 										<div>
-											<button type="submit"
+											<button type="submit" onclick="insertPlan();"
 												class="btn btn-primary waves-effect waves-light mr-1">
 												Submit</button>
 											<button type="reset"
@@ -118,27 +158,18 @@
 								</form>
 							</div>
 						</div>
-					</div>
-					<!-- end col -->
 				</div>
-				<!-- end row -->
-
-			</div>
-			<!-- end container-fluid -->
-
-		</div>
-		<!-- end content -->
-
+			</div><!-- end row -->
+		</div><!-- end container-fluid -->
 		<%@ include file="../footer.jsp"%>
 
 	</div>
-
-	<!-- ============================================================== -->
+			<!-- ============================================================== -->
             <!-- End Page content -->
             <!-- ============================================================== -->
 
-        </div>
-        <!-- END wrapper -->
+ </div>  <!-- END wrapper -->
+       
 
         <%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>

@@ -28,7 +28,7 @@
 		delete from material_tbl where material_code=#{material_code}
 	</delete>
 	
-	<!-- 기획서 목록 가져오기 -->
+	<!-- 기획서 목록  -->
 	<select id="getMaterialList" resultType="com.pj.erp.vo.MF.MF_material">
 		SELECT * FROM material_tbl
 	</select>

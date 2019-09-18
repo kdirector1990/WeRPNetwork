@@ -120,6 +120,13 @@ public class ST_ServiceImpl implements ST_Service {
 		}
 
 	}
+	
+	// ST_estimate 검색
+	@Override
+	public List<Estimate> getEstimate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<Estimate> list = dao.getEstimateresult(map);
+		return list;
+	}
 
 	// ST_estimate_price -> ST_estimate_Form 상세 페이지
 	@Override
@@ -251,6 +258,7 @@ public class ST_ServiceImpl implements ST_Service {
 	 vo.setS_plan_end(Date.valueOf(req.getParameter("s_plan_end")));
 	 vo.setEf_price(Integer.parseInt(req.getParameter("ef_price")));
 	 vo.setSp_note(req.getParameter("sp_note"));
+	 vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
 	 
 	 int salePlanWrite = dao.writeSalePlan(vo);
 	 model.addAttribute("salePlanWrite", salePlanWrite);
@@ -264,7 +272,7 @@ public class ST_ServiceImpl implements ST_Service {
 
 		SalePlan vo = dao.getSaleplanArticle(saleplan_code);
 
-		model.addAttribute("dto", vo);
+		model.addAttribute("dto", vo); 
 		model.addAttribute("saleplan_code", saleplan_code);
 
 	}
@@ -283,6 +291,8 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
 		vo.setSp_unit(req.getParameter("sp_unit"));
 		vo.setSp_note(req.getParameter("sp_note"));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setProduct_name(req.getParameter("product_name"));
 		
 
 		int saleplanCnt = dao.updatesalePlan(vo);
@@ -304,6 +314,14 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("deletesale", deletesale);
 		model.addAttribute("saleplan_code", saleplan_code);
 
+	}
+		
+	// ST_sale_plan 검색
+	@Override
+	public List<SalePlan> getsalePlan(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		System.out.println(map.get("productName"));
+		List<SalePlan> list = dao.getSalePlanResult(map);
+		return list;
 	}
 	
 	//ST_release 출고 등록 페이지

@@ -37,6 +37,12 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getestimate", map);
 	}
 	
+	// estimate 검색 결과
+	@Override
+	public List<Estimate> getEstimateresult(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getEstimateresult", map);
+	}
+	
 	// estimate_price (상세 페이지)
 	@Override
 	public Estimate getEstimateArticle(String ep_code) {
@@ -91,6 +97,12 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public int writeSalePlan(SalePlan vo) {
 		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.writeSalePlan", vo);
+	}
+	
+	// salePlan 검색
+	@Override
+	public List<SalePlan> getSalePlanResult(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getSalePlanResult", map);
 	}
 	
 	// ------ ST_release 출고 관리 

@@ -4,7 +4,91 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
-        
+        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
+        <script type="text/javascript">
+	        function subjectlist(subjectcode) {
+	           	var popupX = Math.ceil((window.screen.width - 363)/2);
+	           	var popupY = Math.ceil((window.screen.height - 528)/2);
+	       		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
+	       		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
+	       		
+	       	}
+	       	
+	       	function accountlist(accountcode) {
+	           	var popupX = Math.ceil((window.screen.width - 363)/2);
+	           	var popupY = Math.ceil((window.screen.height - 528)/2);
+	       		var url = "FT_account_list?key=" + $("*[name=AccCode" + accountcode + "]").val() + "&keyname=" + accountcode;
+	       		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
+	       		
+	       	}
+	       	
+	       	function ajaxload() {
+        		var obj = new Object();
+        		var jsonData;
+        		
+        		if(!$(".chitState").val()) {
+        			$(".chitState").focus();
+        			return false;
+        		} else if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
+        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+        			$(".firstdate").focus();
+        			return false;
+        		} else if(window.event.which == 13){
+	        		// 자바스크립트 객체 생성
+	        		obj.scode = $("#SubjectCode").val();
+	        		obj.acode = $("#AccCode").val();
+	        		obj.firstday = $(".firstdate").val();
+	        		obj.lastday = $(".lastdate").val();
+	        		
+	        		// json 객체를 String 객체로 변환 -- 
+	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+	        		jsonData = JSON.stringify(obj);
+	        		$(".chit-table-bordered-primary tbody").html("");
+	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+	        		$.ajax({
+	                       type : "POST",
+	                       url : "/erp/FT_ledgerList?${_csrf.parameterName }=${_csrf.token }",
+	                       data : jsonData,
+	                       contentType : 'application/json;charset=UTF-8',
+	                       success : function(data) {
+	                    	   if(data != null){
+									for(i = 0; i < data.length; i++){
+                                        var statename = "";
+                                        if(data[i].deal_state == "1") {
+                                        	statename = "일반"
+                                        } else if(data[i].deal_state == "2") {
+                                        	statename = "매입"
+                                        } else if(data[i].deal_state == "3") {
+                                        	statename = "매출"
+                                        } else if(data[i].deal_state == "4") {
+                                        	statename = "금융기관"
+                                        } else if(data[i].deal_state == "5") {
+                                        	statename = "카드사"
+                                        }
+										$(".chit-table-bordered-primary tbody").append('<tr>' +
+	                                        '<td scope="row">' + data[i].customer_code + '</td>' +
+	                                        '<td>' + data[i].customer_name + '</td>' +
+	                                        '<td>' + data[i].license_number + '</td>' +
+	                                        '<td>' + data[i].before_value + '</td>' +
+	                                        '<td>' + data[i].debtor_value + '</td>' +
+	                                        '<td>' + data[i].creditor_value + '</td>' +
+	                                        '<td>' + (parseInt(data[i].before_value) + parseInt(data[i].debtor_value) - parseInt(data[i].creditor_value)) + '</td>' +
+	                                        '<td>' + data[i].deal_state + '</td>' +
+	                                        '<td>' + statename + '</td>' +
+	                                        '<td>' + data[i].bs_master + '</td>' +
+		                                '</tr>');
+									}
+		                    	   }
+	                       },
+	                       error : function(e) {
+	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+	                       }
+	        		});
+        		}
+        	}
+       	</script>
     </head>
 
     <body>
@@ -49,13 +133,13 @@
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
                                                     <span class="d-none d-sm-block">잔액</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                                                     <span class="d-none d-sm-block">원장</span>
                                                 </a>
@@ -63,37 +147,28 @@
                                         </ul>
                                         <div class="tab-content">
                                         	<!-- 잔액 -->
-                                           	<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                           	<div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
 					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
 					                                            	<td>계정과목</td>
-					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
+					                                                <td><input type="text" class="" id = "SubjectCode" style = "width: 100px;">&nbsp;<a href = "#" onclick="subjectlist('');"><i class="dripicons-zoom-in"></i></a>
+                                                					<input type="text" class="" id = "SubjectName" readonly style = "width: 100px;"></td>
 					                                                
 					                                                <td>기표기간</td>
-					                                                <td><input type="date" class=""> ~ <input type="date" class=""></td>
+					                                                <td><input type="date" class="firstdate" value = "2011-01-01"> ~ <input type="date" class="lastdate" value = "2011-12-31"></td>
 					                                                
 					                                            	<td>거래처</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
+					                                            	<td><input type="text" class="" id = "AccCode" style = "width: 100px;" onkeydown = "ajaxload();">&nbsp;<a href = "#" onclick="accountlist('');"><i class="dripicons-zoom-in"></i></a>
+                                                					<input type="text" class="" id = "AccName" readonly style = "width: 100px;"></td>
 					                                            </tr>
 					                                        </table>
 				    
 				                                        <div class="table-responsive">
 				                                            <table class="table mb-0">
 				                                                <thead class="thead-light">
-				                                                    <!-- <tr>
-				                                                    <th scope="col">#</th>
-				                                                    <th scope="col">First</th>
-				                                                    <th scope="col">Last</th>
-				                                                    <th scope="col">Handle</th>
-				                                                    </tr> -->
-				                                                    
 				                                                    <tr>
 						                                                <th>코드</th>
 						                                                <th>거래처명</th>
@@ -111,7 +186,7 @@
 				                                                <tbody>
 				                                                	<c:forEach var="item" items="${AccountBook}">
 				                                                		<tr>
-						                                                    <td scope="row">${item.customer_code}<</td>
+						                                                    <td scope="row">${item.customer_code}</td>
 						                                                    <td>${item.customer_name}</td>
 						                                                    <td>${item.license_number}</td>
 						                                                    <td>${item.BeforePrice}</td>
@@ -132,7 +207,7 @@
                                           </div>
                                           
                                           <!-- 원장 -->
-                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                 <div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
