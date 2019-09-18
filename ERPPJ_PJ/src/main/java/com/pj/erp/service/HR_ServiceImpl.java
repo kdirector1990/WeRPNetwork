@@ -34,7 +34,7 @@ import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
@@ -533,6 +533,19 @@ public class HR_ServiceImpl implements HR_Service{
 		return updateCnt;
 	}
 
+
+
+	@Override
+	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws java.text.ParseException {
+		List<HR_YearService_VO> list = dao.getYearofservice(map);
+		return list;
+	}
+
+
+
+	
+	
 
 	//근태(근무일별 목록 가져오기)
 	@Override

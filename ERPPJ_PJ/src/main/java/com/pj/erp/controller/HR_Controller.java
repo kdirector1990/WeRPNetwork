@@ -28,7 +28,7 @@ import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 @Controller
 public class HR_Controller {
@@ -211,6 +211,15 @@ public class HR_Controller {
 		
 		return "HR/HR_Yearsofservice";
 	}
+	
+	//근속년수 검색결과
+	@RequestMapping(value = "HR_Yearsofservice_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_YearService_VO> HR_Yearsofservice_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_Yearsofservice_result");
+		List<HR_YearService_VO> list = service.getYearofservice(map, req, model);
+		return list;
+	}	
 	
 	@RequestMapping("HR_LeaveStandard")
 	public String HR_LeaveStandard(HttpServletRequest req, Model model) {
