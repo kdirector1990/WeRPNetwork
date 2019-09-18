@@ -18,6 +18,7 @@ public class HR_VO {
 	private String department_name;
 	private String rank_code;
 	private String position_code;
+	private String position_name;
 	private int level_step;
 	private String e_nfcCodeNFC;	
 	private Timestamp start_date;
@@ -135,6 +136,14 @@ public class HR_VO {
 
 	public void setPosition_code(String position_code) {
 		this.position_code = position_code;
+	}
+	
+	public String getPosition_name() {
+		return position_name;
+	}
+	
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
 	}
 
 	public int getLevel_step() {

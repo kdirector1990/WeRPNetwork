@@ -32,8 +32,6 @@
     		result.innerHTML = "상태 : " + httpRequest.readyState;
     	}
     }
-
-    
     
     </script>
 <body>
@@ -76,84 +74,26 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body">
-									<h4 class="header-title mb-3">Default Tabs</h4>
+								<div class="card-body table-responsive">
+									<table id="col-12">
+										<tr class="form-group row">
+											<td class="col-md-1 col-form-label">품명</td>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="username" id="username">
+											</td>
 
-									<div class="table-responsive">
-										<table id="datatable"
-											style="border-collapse: 10px; border-spacing: 10px; width: 100%; padding: 10px;">
-											<tr>
-												<td>사원</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-
-												<td>부서</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class="">
-												<td>사업장 <input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class="">
-												</td>
+											<th class="col-md-1 col-form-label">계획년도</th>
+											<td class="col-md-2 input-group"><input type="month"
+												class="form-control" name="userdate" id="userdate">
+											</td>
+											
 											</tr>
-
-											<tr>
-												<td>계획년도</td>
-												<td><input type="date" id="userdate" name="userdate"
-													value="sysdate">&nbsp; <select class="" name="">
-														<option>월</option>
-														<option value="">1</option>
-														<option value="">2</option>
-														<option value="">3</option>
-														<option value="">4</option>
-														<option value="">5</option>
-														<option value="">6</option>
-														<option value="">7</option>
-														<option value="">8</option>
-														<option value="">9</option>
-														<option value="">10</option>
-														<option value="">11</option>
-														<option value="">12</option>
-												</select></td>
-												<td>품목군</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-
-												<td>수정 계획 반영 <select class="form-control select2">
-														<option></option>
-														<option value="">0. 모두 반영하지 않음</option>
-														<option value="">1. 수정 계획 수량 반영</option>
-														<option value="">2. 수정 계획 단가 반영</option>
-														<option value="">3. 수정 계획 수량 및 단가 반영</option>
-												</select>
-												</td>
-											</tr>
-											<tr>
-												<td>대분류</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-												<td>중분류</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-												<td>소분류 <input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-											</tr>
-
-											<tr>
-												<td><select class="" name="">
-														<option>0. 품번</option>
-														<option value="">1. 품명</option>
-														<option value="">2. 규격</option>
-												</select></td>
-												<td><input type="text" class=""></td>
-											</tr>
-										</table>
-										<br>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+								<div class="row">
 										<div class="col-lg-12">
 											<div class="card">
 												<div class="table-responsive">
@@ -210,9 +150,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
 	<!-- end container-fluid -->
 
 	<!-- end content -->
@@ -239,13 +176,12 @@
 	</footer>
 	<!-- end Footer -->
 
-	</div>
+	
 
 	<!-- ============================================================== -->
 	<!-- End Page content -->
 	<!-- ============================================================== -->
 
-	</div>
 	<!-- END wrapper -->
 	
 	<!-- Right Sidebar -->

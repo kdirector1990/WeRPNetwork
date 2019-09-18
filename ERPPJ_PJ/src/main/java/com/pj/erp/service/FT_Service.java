@@ -37,6 +37,9 @@ public interface FT_Service {
 	// 전표삭제
 	public String FT_chitDelete(Map<String, Object> map);
 	
+	// 전표페이지
+	public void FT_insertChit(HttpServletRequest req, Model model);
+	
 	// 거래처 추가
 	public void FT_AccountInsert(MultipartHttpServletRequest req, Model model);
 
@@ -81,6 +84,12 @@ public interface FT_Service {
 	
 	//예산신청입력처리
 	public void FT_applyinput(HttpServletRequest req, Model model);
+	
+	// 분개 데이터 가져오기
+	public List<FT_Chit> FT_chitSelect(Map<String, Object> map, Model model);
+	
+	// 전표 승인처리
+	public String FT_CheckFormal(Map<String, Object> map, Model model);
 	
 	//단기차입금목록 검색결과
 	public List<FT_Short_Borrow_List> getSBorrowList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;

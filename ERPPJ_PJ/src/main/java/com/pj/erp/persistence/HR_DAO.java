@@ -103,5 +103,15 @@ public interface HR_DAO {
 	
 	//근태(퇴근입력)
 	public int EndWork(String username);
+	
+
+	// 인사발령등록 처리
+	public int HR_recordinput();
+
+	//근태(근무일별 있는가)
+	public int DetailWork(HR_Time_VO vo);
+	
+	//근태(근무일별 목록 가져오기)
+	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo);
 
 }
