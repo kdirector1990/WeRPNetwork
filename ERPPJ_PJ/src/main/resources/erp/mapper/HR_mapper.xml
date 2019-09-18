@@ -103,7 +103,7 @@
 		and e_name like '%'||#{e_name}||'%' 
 		and department_code like '%'||#{department_code}||'%' 
 		and position_code like '%'||#{position_code}||'%'
-		and rank_code like '%'||#{position_code}||'%'
+		and rank_code like '%'||#{rank_code}||'%'
 		]]>
 	</select>
 	
@@ -112,8 +112,10 @@
 	<![CDATA[
 		select u.username, p.e_height, p.e_weight, p.e_left_sight, p.e_right_sight, p.e_color_blind, p.e_blood_type, p.e_blood_presure, p.e_medical_info, p.e_veteran_type, p.e_veteran_info, p.e_veteran_level, p.e_disability_type, p.e_disability_level, p.username 
 		from users u ,department_tbl d ,rank_tbl r , position_tbl o, physicaly_info_tbl p
-		where u.position_code = o.position_code
-		and u.rank_code = r.rank_code 
+		where u.username = p.username
+		and u.department_code = d.department_code
+		and u.rank_code = r.rank_code
+		and u.position_code = o.position_code
 		and username like '%'||#{username}||'%' 
 		and e_name like '%'||#{e_name}||'%' 
 		and department_code like '%'||#{department_code}||'%' 

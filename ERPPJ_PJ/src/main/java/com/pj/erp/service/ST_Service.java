@@ -1,8 +1,14 @@
 package com.pj.erp.service;
 
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+
+import com.pj.erp.vo.ST.SalePlan;
 
 public interface ST_Service {
 	
@@ -35,6 +41,9 @@ public interface ST_Service {
 	
 	// ST_sale_plan 삭제 처리 페이지
 	public void salePlandeletePro(HttpServletRequest req, Model model);
+	
+	// ST_sale_plan 검색 기능
+	public List<SalePlan> getsalePlan(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
 	// ST_release 목록 페이지
 	public void release(HttpServletRequest req, Model model);

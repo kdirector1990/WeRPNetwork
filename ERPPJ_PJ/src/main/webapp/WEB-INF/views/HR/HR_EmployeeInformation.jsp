@@ -335,7 +335,7 @@
 												
 												<th class="col-md-1 col-form-label">직급</th>
 												<td class="col-md-2 input-group">
-													<input type="text" class="form-control" name="rank_code" id="e_name">
+													<input type="text" class="form-control" name="rank_code" id="rank_code">
 												</td>
 												
 												<th class="col-md-1 col-form-label"></th>
