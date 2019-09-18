@@ -213,7 +213,7 @@ $(function(){
 										<div class="table-rep-plugin">
 											<div class="" data-pattern="priority-columns">
 												<table id="tech-companies-1" class="table table-hover">
-													<thead>
+													<thead class="bg-primary text-white">
 														<tr>
 															<th>견적 코드</th>
 															<th>거래처</th>
