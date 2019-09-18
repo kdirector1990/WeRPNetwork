@@ -21,6 +21,12 @@
 	<link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
 	<script type="text/javascript">
+	
+	var year;
+	var day;
+	var worktime;
+	var count;
+	
 		function searchWork(){
 			var param = $("#select_user_time").serializeArray();
 			alert(JSON.stringify(param));
@@ -39,7 +45,7 @@
     					var username = vo[i].username;
     					var e_name = vo[i].e_name;
     					
-    					$("#result").append('<tr onclick="selectUsersWork('+username+');">' +
+    					$("#result").append('<tr onclick="selectUsersWork('+username+'); selectCount('+username+')">' +
     							'<td><input type="checkbox" name="username" value="'+username+'" class="checklist"></td>' +
     							'<td>'+ rownum+ '</td>' +
     							'<td>'+ username+ '</td>' +
@@ -100,6 +106,31 @@
     		});
 		}
 		
+	function selectCount(code){
+		var param = {"username" : code};
+		$.ajax({
+			url: '/erp/HR_select_count?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(vo){
+				$('#result3').empty();
+				for(var i = 0; i < vo.length; i++){
+					var count  = vo[i].count;
+					var month = i + 1;
+					
+					$("#result3").append("<tr><td>" 
+							+ month + "월</td><td>"
+							+ count + "일</td></tr>"
+					)
+				}
+			},
+			error : function(){
+				alert("전산 오류로 인하여 사원의 기록을 가져오지 못했습니다.");
+			}
+		});
+	}
+		
 	function selectUsersWork(code){
 		var param = {"username" : code};
 		$.ajax({
@@ -108,7 +139,85 @@
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
-				alert("작동");
+				$('#result2').empty();
+				alert(vo.length);
+				
+				var resultHr = 0;
+				var resultMM = 0;
+				var resultHour = 0;
+				var resultMin = 0;
+				
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					alert("작동");
+					
+					var cmMonth = (1+cm.getMonth());
+					alert(cmMonth);
+					
+					if(cmMonth == 9){
+						var count = vo[i].count;
+						var cmHour = cm.getHours();
+						var cmMm = cm.getMinutes();
+						alert("작동2");
+						
+						var edHour = ed.getHours();
+						var edMm = ed.getMinutes();
+						alert("작동3");
+						
+						resultHr = edHour - cmHour;
+						resultMM = edMm - cmMm;
+						
+						resultHour += resultHr;
+						resultMin += resultMM;
+						
+						if(resultMin > 60) {
+							resultHour = resultHour + 1;
+							resultMin = resultMin - 60;
+						}
+						alert(resultHr + ":" + resultMM);
+						
+					}
+					else if(cmMonth == 10){
+						resultHour  = 0;
+						resultMin = 0;
+						var count = vo[i].count;
+						
+						var cmHour = cm.getHours();
+						var cmMm = cm.getMinutes();
+						alert("작동4");
+						
+						var edHour = ed.getHours();
+						var edMm = ed.getMinutes();
+						alert("작동5");
+						
+						resultHr = edHour - cmHour;
+						resultMM = edMm - cmMm;
+						
+						resultHour += resultHr;
+						resultMin += resultMM;
+						
+						if(resultMin > 60) {
+							resultHour = resultHour + 1;
+							resultMin = resultMin - 60;
+						}
+						
+					}
+				}
+				if(resultHour< 10)
+					resultHour = "0"+resultHour;
+				if(resultMin < 10)
+					resultMin = "0"+resultMin;				
+				$("#result2").append("<tr><td>" 
+						+ cmMonth + "월</td><td>"
+						+ count + "일</td><td>"
+						+ resultHour + "시간" + resultMin + "분</td></tr>"
+				) 
+				
 			},
 			error : function(){
 				alert("전산 오류로 인하여 사원의 기록을 못 가져왔습니다.");
@@ -252,6 +361,10 @@
 											<th>시 간</th>											
 										</tr>
 									</thead>
+									
+									<tbody id="result2">
+									
+									</tbody>
 								</table>
 								
 							</div>
@@ -274,8 +387,11 @@
 											<th>일 수</th>																						
 										</tr>
 									</thead>
+									
+									<tbody id="result3">
+									
+									</tbody>
 								</table>							
-								
 							</div>
 						</div>					
 					</div>

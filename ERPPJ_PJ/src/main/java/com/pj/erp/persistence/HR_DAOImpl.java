@@ -211,7 +211,6 @@ public class HR_DAOImpl implements HR_DAO{
 		return 0;
 	}
 
-	
 	//근태(근무월별 있는가)
 	@Override
 	public int DetailWork(HR_Time_VO vo) {
@@ -222,6 +221,17 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.SelectDetailWork", vo);
+	}
+
+	@Override
+	public List<HR_Time_VO> SelectDetailWork2(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.SelectDetailWork2", map);
+	}
+
+	//근태(근무월별 있는가)
+	@Override
+	public HR_Time_VO DetailWork2(HR_Time_VO vo) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.DetailWork2", vo);
 	}
 
 
