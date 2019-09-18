@@ -24,6 +24,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -483,6 +484,22 @@ public class FT_Controller {
 		return service.FT_CheckFormal(map, model);
 	}
 
+	// 전표승인처리
+	@RequestMapping(value = "FT_journalList")
+	public @ResponseBody List<FT_Chit> FT_journalList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_journalList 호출중");
+
+		return service.FT_journalList(map, model);
+	}
+	
+	// 거래처 원장 리스트 출력
+	@RequestMapping(value = "FT_ledgerList")
+	public @ResponseBody List<FT_Ledger> FT_ledgerList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_ledgerList 호출중");
+
+		return service.FT_ledgerList(map, model);
+	}
+	
 	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_CardManagementInsert(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_CardManagementInsert 호출중");
