@@ -130,7 +130,18 @@ public class HR_Controller {
 		HR_VO data = service.HR_select_username(req, model);
 		
 		return data;
-	}	
+	}
+	
+	// 신체정보
+	@RequestMapping("HR_update_Phy")
+	@ResponseBody
+	public HR_PhysicalVO HR_update_Phy(HttpServletRequest req, Model model) {
+		logger.info("log => HR_update_Phy");
+		
+		HR_PhysicalVO data = service.HR_select_physical(req, model);
+		
+		return data;
+	}
 
 
 	@RequestMapping("HR_EmployeeInformation")
