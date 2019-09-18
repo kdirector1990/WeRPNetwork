@@ -47,7 +47,7 @@
                                                 <div class="form-group row">
                                                  <label class="col-md-2 col-form-label">품번</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="saleplan_code" class="form-control" id="product_codeP" value="" style="width: 350px;" onclick="ProductName()">
+                                                            <input type="text" name="detail_ac_code" class="form-control" id="product_codeP"  style="width: 350px;" onclick="ProductName();">
                                                         </div>
                                                     </div>
                                                     
@@ -93,7 +93,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">품명</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="saleplan_name" class="form-control" id="product_nameP" value="" style="width: 350px;">
+                                                            <input type="text" name="product_name" class="form-control" id="product_nameP" value="" style="width: 350px;">
                                                         </div>
                                                     </div>
                                                     

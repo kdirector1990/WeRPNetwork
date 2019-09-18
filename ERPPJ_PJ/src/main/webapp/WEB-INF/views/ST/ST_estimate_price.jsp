@@ -4,12 +4,20 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <!-- Responsive Table css -->
-<link href="/erp/resources/assets/libs/rwd-table/rwd-table.min.css"
-	rel="stylesheet" type="text/css" />
-</head>
-
-<script src="/erp/resources/assets/js/request.js"></script>
-<script type="text/javascript">
+  <link rel="stylesheet" type="text/css"
+    	href="/erp/resources/assets/libs/c3/c3.min.css">	
+    <script src="/erp/resources/assets/js/request.js"></script>
+    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+    	<script src="/erp/resources/assets/css/js/request.js"></script>
+    	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+        <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <script type = "text/javascript">
+        
 function ST_estimate_Form(url) {
 	sendRequest(callback, "ST_estimate_Form", "post", "${_csrf.parameterName }=${_csrf.token }&ep_code="+url);
 }
@@ -21,9 +29,7 @@ function callback() {
 		if(httpRequest.status == 200){	// 200 : 정상 종료
 		 	result.innerHTML = "정상종료";
 			
-			var datas = httpRequest.responseText; 
-			
-			var bookList = "";
+			var datas = httpRequest.responseText;  
 			
 			result.innerHTML = datas;
 		} else {
@@ -34,6 +40,107 @@ function callback() {
 		result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 }
+
+var searchCount = 1;
+$(function(){
+	$('#search').click(function(){
+		var param = new Object();
+		var jsonData;
+		
+					
+		param.customer_name = $("#customerName").val();
+		param.username = $("#username").val();
+		param.product_name = $("#ProductName").val();
+				
+		jsonData = JSON.stringify(param); 
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/ST_estimate_result?${_csrf.parameterName}=${_csrf.token }',
+			type : 'POST',
+			data : jsonData, 
+			dataType : "json",
+			contentType:"application/json;charset=UTF-8", 
+			success : function(list){
+				
+				$('#result_2').empty();
+				
+				
+				alert("dds: "+list.length);
+				for(var i = 0 ; i < list.length; i++){
+					 
+					var ep_code = list[i].ep_code;
+					var ep_amount = list[i].ep_amount;
+					var ep_price = list[i].ep_price;						
+					var sp_unit = list[i].sp_unit;
+					var sp_note = list[i].sp_note;
+					var product_code = list[i].product_code;
+					var product_name = list[i].product_name;
+					
+					var customer_name = list[i].customer_name;
+					var username = list[i].username;
+					
+					var ep_deliver_date = list[i].ep_deliver_date;
+					var pa = new Date(ep_deliver_date);
+					var year = pa.getFullYear();
+					var month = (1+pa.getMonth());
+					var day = pa.getDate(); 
+					var ep_deliver = year + "/" + month +"/"+day;
+					
+					var s_plan_end = list[i].ep_reg_date;
+					var pa = new Date(s_plan_end);
+					var year = pa.getFullYear();
+					var month = (1+pa.getMonth());
+					var day = pa.getDate(); 
+					var s_plan = year + "/" + month +"/"+day;
+					
+					$('#result_2').append('<tr onclick="ST_estimate_Form(\''+ep_code+'\')">'+
+							'<td>'+ ep_code +'</td>'+ 
+                        	'<td>'+ customer_name +'</td>'+ 
+                        	'<td>'+ username +'</td>'+
+                        	'<td>'+ product_code +'</td>'+ 
+							'<td>'+ product_name +'</td>'+ 
+							'<td>'+ ep_amount +'</td>'+
+							'<td>'+ ep_deliver +'</td>'+
+							'<td>'+ s_plan + '</td>'+
+							'<td>'+ ep_price +'</td>'+
+							'<td>'+ ep_price*0.1 +'</td>'+
+                		'</tr>');
+				
+				if(searchCount == 1){
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+				searchCount = searchCount + 1;
+				}
+				
+				
+				}
+				
+			},
+			error : function(){
+				alert("에러");
+			}
+		});
+		
+		alert("스크립트 종료");
+	}); 
+});
 
 </script>
 <body>
@@ -77,27 +184,24 @@ function callback() {
 						<div class="col-12">
 							<div class="card">
 								<div class="card-body">
-										<form id="select_user_time">
-											<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 											<table class="col-12">
 													<tr class="form-group row">
 														<th class="col-md-1 col-form-label">거래처</th>
 															<td class="col-md-2 input-group">
-																<input type="text" name="" class="form-control">
+																<input type="text" name="customerName" id="customerName" class="form-control">
 															</td>
 													
 														<th class="col-md-1 col-form-label">담당자</th>
 															<td class="col-md-2 input-group">
-																<input type="text" name="" class="form-control">
+																<input type="text" name="username" id="username" class="form-control">
 															</td>
 														<th class="col-md-1 col-form-label">품명</th>
 															<td class="col-md-2 input-group">
-																<input type="text" name="" class="form-control">
+																<input type="text" name="ProductName" id ="ProductName" class="form-control">
 															</td>
-														<td class="col-md-2 input-group"><button type="button" class="btn btn-primary waves-effect waves-light" onclick = "searchWork();">검색</button></td>
+														<td class="col-md-2 input-group"><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">조회</button></td>
 													</tr>	
 												</table>
-											</form>
 										</div>
 									</div>
 								<!-- end card -->
@@ -113,7 +217,7 @@ function callback() {
 										<div class="table-rep-plugin">
 											<div class="" data-pattern="priority-columns">
 												<table id="tech-companies-1" class="table table-hover">
-													<thead>
+													<thead class="bg-primary text-white">
 														<tr>
 															<th>견적 코드</th>
 															<th>거래처</th>
@@ -124,12 +228,11 @@ function callback() {
 															<th>납품 예정일</th>
 															<th>견적 등록일</th>
 															<th>단가</th>
-															<th>공급가</th>
 															<th>부가세</th>
 														</tr>
 													</thead>
-													<tbody>
-														<c:if test="${cnt > 0}">
+													<tbody id="result_2">
+														<%-- <c:if test="${cnt > 0}">
 															<c:forEach var="eto" items="${etos}">
 																<tr  onclick="ST_estimate_Form('${eto.ep_code}');">
 																	<td>${eto.ep_code}</td> <!-- 견적 코드  -->
@@ -145,7 +248,7 @@ function callback() {
 																	<td></td> <!-- 부가세 -->
 																</tr>
 															</c:forEach>
-														</c:if>
+														</c:if> --%>
 													</tbody>
 												</table>
 											</div>
@@ -178,9 +281,24 @@ function callback() {
 
 	</div>
 	<!-- END wrapper -->
+<%@ include file="../rightbar.jsp" %>
+        <%@ include file="../setting2.jsp" %>
+        <!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-	<%@ include file="../rightbar.jsp" %>
-    <%@ include file="../setting2.jsp" %>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id = "bodyappend"></div>
 	
 </body>
 </html>

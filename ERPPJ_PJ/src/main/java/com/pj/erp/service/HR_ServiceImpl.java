@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -551,9 +553,14 @@ public class HR_ServiceImpl implements HR_Service{
 	//근태(근무일별 목록 가져오기)
 	@Override
 	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model) {
+		
 		int cnt = 0;
+		int i = 1;
+		
 		String month;
-		List<HR_Time_VO> dto = null;
+		List<HR_Time_VO> dto = new ArrayList<>();
+		List<HR_Time_VO> dtos = null;
+		
 		String username = req.getParameter("username");
 		
 		Calendar c = Calendar.getInstance();
@@ -561,26 +568,46 @@ public class HR_ServiceImpl implements HR_Service{
 		System.out.println(year);
 		String years= year.substring(2);
 		
-		HR_Time_VO vo = new HR_Time_VO();
-		vo.setUsername(username);
-		vo.setYear(years);
-		System.out.println(years);
-		System.out.println(username);
 		
-		for(int i = 1; i < 13; i++) {
+		do {
 			if(i < 10) {
 				month = "0"+i;
 			}
 			else {
 				month = ""+i;
 			}
+			HR_Time_VO vo = new HR_Time_VO();
+			vo.setUsername(username);
+			vo.setYear(years);
 			vo.setMonth(month);
 			System.out.println(month);
 			cnt = dao.DetailWork(vo);
 			if(cnt != 0) {
-				dto = dao.SelectDetailWork(vo);
+				System.out.println();
+				System.out.println("갯수 : " + cnt);
+				System.out.println("년도 : " + vo.getYear());
+				System.out.println("사원번호 : " + vo.getUsername());
+				System.out.println("월 : " + vo.getMonth());
+				dtos = dao.SelectDetailWork(vo);
+				
+				System.out.println(" -------------------- 구분선 ----------------------");
+				System.out.println(" dtos.size() : " + dtos.size());
+				System.out.println(" -------------------- 구분선 ---------- ------------");
+				
+				
+				for (int j = 0; j < dtos.size(); j++) {
+					HR_Time_VO temp = dtos.get(j);
+					
+					System.out.println("temp.toString() : " + temp.toString());
+					
+					dto.add(temp);
+				}
+				
+				System.out.println("작동");
+				cnt = 0;
 			}
-		}
+			i++;
+		}while(i < 13);
 		
 		return dto;
 	}
@@ -628,6 +655,49 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO data = dao.getFoundation(username);
 		
 		return data;
+	}
+
+
+	//근태(월별 카운트)
+	@Override
+	public List<HR_Time_VO> selectCountMonth(HttpServletRequest req, Model model) {
+		
+		String username = req.getParameter("username");
+		
+		List<HR_Time_VO> dto = new ArrayList<>();
+		HR_Time_VO sel = new HR_Time_VO();
+		
+		//올해 년, 월 입력부분.
+		Calendar c = Calendar.getInstance();
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		System.out.println(year);
+		String years= year.substring(2);
+		String month;
+		
+		//월 카운트를 위한 변수
+		int i = 1;
+		int cnt = 0;
+		
+		do {
+			if(i < 10) {
+				month = "0"+i;
+			}
+			else {
+				month = ""+i;
+			}
+			HR_Time_VO vo = new HR_Time_VO();
+			vo.setUsername(username);
+			vo.setYear(years);
+			vo.setMonth(month);
+			
+			sel = dao.DetailWork2(vo);
+			dto.add(sel);
+			
+			i++;
+		}
+		while(i < 13);
+		
+		return dto;
 	}
 
 

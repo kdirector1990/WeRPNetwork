@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.SalePlan;
 
 public interface ST_Service {
 	
 	// ST_estimate 견적 등록
 	public void estimatewritePro(HttpServletRequest req, Model model);
+	
+	// ST_estimate 검색
+	public List<Estimate> getEstimate(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;	
 	
 	// 글 목록 (견적 관리)
 	public void estimateTBL(HttpServletRequest req, Model model);

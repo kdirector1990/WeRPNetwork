@@ -139,6 +139,11 @@
     	 });	
     
     </script>
+          <script type="text/javascript">
+      function ProductName() {
+  		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
+  	}
+        </script>
 <body>
 
 	<!-- Begin page -->
@@ -196,7 +201,7 @@
 											</td>
 											
 											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
+											<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">조회</button></td>
 											</tr>
 									</table>
 								</div>

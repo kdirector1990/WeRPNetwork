@@ -83,7 +83,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-md-2 col-form-label">견적 단가</label>
+                                                        <label class="col-md-2 col-form-label">공급가</label>
                                                         <div class="col-md-10">
                                                            <input type="text" name="ep_price" class="form-control" value="" style="width: 350px;">
                                                         </div>
