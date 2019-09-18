@@ -87,6 +87,9 @@ public interface HR_Service {
 	// 사원코드 가져오기
 	public HR_VO HR_select_username(HttpServletRequest req, Model model);
 	
+	// 신체정보 가져오기
+	public HR_PhysicalVO HR_select_physical(HttpServletRequest req, Model model);
+	
 	//근태(사원목록 가져오기)
 	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model);
 	
