@@ -147,76 +147,50 @@
 				var resultHour = 0;
 				var resultMin = 0;
 				
-				for(var i = 0; i < vo.length; i++){
-					
-					var come = vo[i].tc_come_time;
-					var end = vo[i].tc_leave_time;
-					
-					var cm = new Date(come);
-					var ed = new Date(end);
-					alert("작동");
-					
-					var cmMonth = (1+cm.getMonth());
-					alert(cmMonth);
-					
-					if(cmMonth == 9){
-						var count = vo[i].count;
-						var cmHour = cm.getHours();
-						var cmMm = cm.getMinutes();
-						alert("작동2");
+					for(var i = 0; i < vo.length; i++){
 						
-						var edHour = ed.getHours();
-						var edMm = ed.getMinutes();
-						alert("작동3");
+						var come = vo[i].tc_come_time;
+						var end = vo[i].tc_leave_time;
 						
-						resultHr = edHour - cmHour;
-						resultMM = edMm - cmMm;
+						var cm = new Date(come);
+						var ed = new Date(end);
 						
-						resultHour += resultHr;
-						resultMin += resultMM;
+						var cmMonth = (1+cm.getMonth());
 						
-						if(resultMin > 60) {
-							resultHour = resultHour + 1;
-							resultMin = resultMin - 60;
+						if(cmMonth == 9){
+							alert("9월");
+							var count = vo[i].count;
+							
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							alert(resultHour + " 9월 시간");
+							alert(resultMin + " 9월 분");
+							
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
 						}
-						alert(resultHr + ":" + resultMM);
-						
+						var s = 9;
+						if(s == 9){
+							if(cmMonth == 9){
+								$("#result2").append("<tr><td>" 
+										+ s + "월</td><td>"
+										+ count + "일</td><td>"
+										+ resultHour + "시간" + resultMin + "분</td></tr>" 
+								);								
+							}
+						}				
 					}
-					else if(cmMonth == 10){
-						resultHour  = 0;
-						resultMin = 0;
-						var count = vo[i].count;
-						
-						var cmHour = cm.getHours();
-						var cmMm = cm.getMinutes();
-						alert("작동4");
-						
-						var edHour = ed.getHours();
-						var edMm = ed.getMinutes();
-						alert("작동5");
-						
-						resultHr = edHour - cmHour;
-						resultMM = edMm - cmMm;
-						
-						resultHour += resultHr;
-						resultMin += resultMM;
-						
-						if(resultMin > 60) {
-							resultHour = resultHour + 1;
-							resultMin = resultMin - 60;
-						}
-						
-					}
-				}
-				if(resultHour< 10)
-					resultHour = "0"+resultHour;
-				if(resultMin < 10)
-					resultMin = "0"+resultMin;				
-				$("#result2").append("<tr><td>" 
-						+ cmMonth + "월</td><td>"
-						+ count + "일</td><td>"
-						+ resultHour + "시간" + resultMin + "분</td></tr>"
-				) 
 				
 			},
 			error : function(){
@@ -322,7 +296,7 @@
 								<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 									<table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										style="border-collapse: collapse; border-spacing: 0; width: 100%; overflow:auto">
 										<thead>										
 											<tr>
 												<th><input type="checkbox" id="allChecked" onclick="allcheck();"></th>
