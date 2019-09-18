@@ -65,6 +65,80 @@
             		}
         		}
         	}
+        	
+        	function ajaxload() {
+        		if(window.event.which == 13){
+        			alert("메롱");
+	        		var obj = new Object();
+	        		var jsonData;
+	        		
+	        		if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
+	        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+	        			$(".firstdate").focus();
+	        			return false;
+	        		} else if(window.event.which == 13){
+		        		// 자바스크립트 객체 생성
+		        		obj.usercode = $("#usercode").val();
+		        		obj.firstday = $(".firstdate").val();
+		        		obj.lastday = $(".lastdate").val();
+		        		
+		        		// json 객체를 String 객체로 변환 -- 
+		        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+		        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+		        		jsonData = JSON.stringify(obj);
+		        		$(".chit-table-bordered-primary tbody").html("");
+		        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+		        		$.ajax({
+		                       type : "POST",
+		                       url : "/erp/FT_journalList?${_csrf.parameterName }=${_csrf.token }",
+		                       data : jsonData,
+		                       contentType : 'application/json;charset=UTF-8',
+		                       success : function(data) {
+		                    	   if(data != null){
+		                    		   var rightacc;
+		                    		   var leftacc;
+		                    		   var rightprice;
+		                    		   var leftprice;
+										for(i = 0; i < data.length; i++){
+			                    		   if(data[i].debtor_value == 0){
+			                    			   rightacc = data[i].account_name;
+			                    			   leftacc = "";
+			                    			   rightprice = data[i].creditor_value;
+			                    			   leftprice = "";
+			                    		   } else {
+			                    			   rightacc = "";
+			                    			   leftacc = data[i].account_name;
+			                    			   rightprice = "";
+			                    			   leftprice = data[i].debtor_value;
+			                    		   }
+											$(".chit-table-bordered-primary tbody").append('<tr>' +
+	                                        		'<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_date + '" name = "WriteDate' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_number + '" name = "WriteNo' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftprice + '" name = "LeftPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftacc + '" name = "LeftSubject' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + rightacc + '" name = "RightSubejct' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + rightprice + '" name = "RightPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_abstract + '" name = "Briefs' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_code + '" name = "AccCode' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_name + '" name = "AccName' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"></td>' +
+	                                            '</tr>');
+										}
+			                    	   }
+		                       },
+		                       error : function(e) {
+		                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+		                       }
+		        		});
+	        		}
+        		}
+        	}
+        	
+        	function userslist() {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
+        		var url = "FT_users_list?key=" + $("#usercode").val();
+        		window.open(url, "users_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
+        	}
         </script>
         <!-- Table datatable css -->
         <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -111,33 +185,19 @@
                         </div>     
                         <!-- end page title --> 
 						
+                        <form name = "chitManager" method="post">
+                        <input type = "hidden" name = "${_csrf.parameterName }" value="${_csrf.token }">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body table-responsive">
-                                        <div align="right">
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">정렬순서</button>
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light">조건검색</button>
-    									<br>
-    									</div>
     									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
                                                 <td>기표기간</td>
-                                                <td><input type="date" class=""> ~ <input type="date" class=""></td>
-                                            	
-                                            	<td>전표유형</td>
-                                            	<td>
-	                                            	<select class="form-control select2">
-			                                            <option>전체선택</option>
-			                                                <option value="1">1.일 반</option>
-			                                                <option value="2">2.매 입</option>
-			                                                <option value="3">3.매 출</option>
-			                                                <option value="4">4.결 산</option>
-			                                        </select>
-                                            	</td>
-                                            	
-                                            	<td>작성자&emsp;<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-                                            	<input type="text" class=""></td>
+                                                <td><input type="date" class="firstdate" value = "2011-01-01"> ~ <input type="date" class="lastdate" value = "2011-12-31"></td>
+                                            	<td>작성자</td>
+                                                <td><input type="text" class="" id = "usercode" style = "width: 100px;" onkeyup = "ajaxload();">&nbsp;<a href = "#" onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
+                                                	<input type="text" class="" id = "username" readonly style = "width: 100px;"></td>
                                             </tr>
                                         </table>
                                         
@@ -161,7 +221,6 @@
 	                                                <th colspan="2">대변</th>
 	                                                <th rowspan="2">적요</th>
 	                                                <th colspan="2">거래처</th>
-	                                                <th colspan="2">구분[결의]</th>
 	                                            </tr>
 	                                            <tr>
 	                                            	<th>년/월/일</th>
@@ -172,26 +231,11 @@
 	                                                <th>금액</th>
 	                                                <th>코드</th>
 	                                                <th>거래처명</th>
-	                                                <th>년/월/일</th>
-	                                                <th>번호</th>
 	                                            </tr>
 	                                            </thead>
 	    		
 	    
 	                                            <tbody>
-	                                            	<tr>
-	                                            		<td><input type="text" onfocus = "focuse(this.name);" name = "WriteDate0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit'; chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "WriteNo0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick="javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "LeftPrice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "LeftSubject0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "RightSubejct0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "RightPrice0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "Briefs0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ResolutionDate0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit'; chitManager.submit();"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ResolutionNo0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = 'FT_insertChit' chitManager.submit();"></td>
-		                                            </tr>
 	                                            
 	                                            </tbody>
 	                                        </table>
@@ -200,6 +244,7 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div> <!-- end container-fluid -->
 
                 </div> <!-- end content -->

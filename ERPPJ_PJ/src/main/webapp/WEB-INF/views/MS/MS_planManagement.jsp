@@ -74,7 +74,6 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                    
                                         <h4 class="header-title">기획서</h4>
                                         <p class="sub-header">관리</p>
     									<hr>
@@ -274,6 +273,12 @@
 	  					+'</div>'
 	  				    );
    			
+<<<<<<< HEAD
+=======
+   		 var offset = $(".plandiv").offset();
+         $('html, body').animate({scrollTop : offset.top}, 200);
+
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		});
      
      function updatePlan(){

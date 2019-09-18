@@ -2,6 +2,7 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -304,6 +305,14 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("deletesale", deletesale);
 		model.addAttribute("saleplan_code", saleplan_code);
 
+	}
+		
+	// ST_sale_plan 검색
+	@Override
+	public List<SalePlan> getsalePlan(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		System.out.println(map.get("productName"));
+		List<SalePlan> list = dao.getSalePlanResult(map);
+		return list;
 	}
 	
 	//ST_release 출고 등록 페이지
