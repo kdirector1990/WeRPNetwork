@@ -31,7 +31,7 @@
 							<form method="post">
 								<input type="hidden" name="${_csrf.parameterName }"
 									value="${_csrf.token }">
-								<table class="table m-0">
+								<table class="table m-0 table-bordered">
 									<tr>
 										<th>견적 코드</th>
 										<td><input type="hidden" class="input" name="ep_code"
@@ -81,13 +81,13 @@
 										<td></td>
 									</tr>
 								</table>
-								<input class="inputButton" type="submit" value="수정"
-									formaction="ST_estimate_modifyPro"> <input
-									class="inputButton" type="submit" value="삭제"
-									formaction="ST_estimate_deletePro"> <input
-									class="inputButton" type="reset" value="수정 취소"> <input
-									class="inputButton" type="button" value="목록보기"
-									onClick="window.location.reload()">
+									<input class="inputButton" type="submit" value="수정"
+										formaction="ST_estimate_modifyPro"> 
+									<input class="inputButton" type="submit" value="삭제"
+										formaction="ST_estimate_deletePro"> 
+									<input class="inputButton" type="reset" value="수정 취소"> 
+									<input class="inputButton" type="button" value="목록보기"
+										onClick="window.location.reload()">
 							</form>
 						</c:if>
 						</c:if>
