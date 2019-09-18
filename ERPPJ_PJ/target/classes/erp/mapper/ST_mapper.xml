@@ -14,14 +14,14 @@
  	</select>
  	
  	<select id="getSaleplanArticle" resultType="com.pj.erp.vo.ST.SalePlan">
- 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code
+ 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, s.detail_ac_code
  		from saleplan_tbl s, product_list_tbl p
  		where s.detail_ac_code = p.product_code
  		and saleplan_code =#{saleplan_code}
  	</select>
  	
  	<update id="updatesalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
- 		UPDATE saleplan_tbl SET ef_price=#{ef_price}, s_plan_start =#{s_plan_start}, s_plan_end=#{s_plan_end}, ef_amount=#{ef_amount}, sp_unit=#{sp_unit}, sp_note=#{sp_note} WHERE saleplan_code=#{saleplan_code}
+ 		UPDATE saleplan_tbl SET ef_price=#{ef_price}, s_plan_start =#{s_plan_start}, s_plan_end=#{s_plan_end}, ef_amount=#{ef_amount}, sp_unit=#{sp_unit}, sp_note=#{sp_note}, detail_ac_code=#{detail_ac_code} WHERE saleplan_code=#{saleplan_code}
  	</update>
  	
  	<delete id="deletesalePlan" parameterType="String">
@@ -29,13 +29,13 @@
  	</delete>
  	
  	<insert id="writeSalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
- 		INSERT INTO saleplan_tbl(saleplan_code, ef_amount, sp_unit, s_plan_start, s_plan_end, ef_price, sp_note)
- 			VALUES('sal_'||sale_plan_seq.nextval, #{ef_amount}, #{sp_unit}, #{s_plan_start}, #{s_plan_end}, #{ef_price}, #{sp_note})
+ 		INSERT INTO saleplan_tbl(saleplan_code, ef_amount, sp_unit, s_plan_start, s_plan_end, ef_price, sp_note, detail_ac_code)
+ 			VALUES('sal_'||sale_plan_seq.nextval, #{ef_amount}, #{sp_unit}, #{s_plan_start}, #{s_plan_end}, #{ef_price}, #{sp_note}, #{detail_ac_code})
  	</insert>
  	
  	<select id="getSalePlanResult" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.ST.SalePlan">
  		<![CDATA[
- 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code
+ 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code, s.detail_ac_code
  		from saleplan_tbl s, product_list_tbl p
  		where s.detail_ac_code = p.product_code
  		and product_name like '%'||#{productName}||'%'
