@@ -562,6 +562,7 @@ public class HR_ServiceImpl implements HR_Service{
 			System.out.println(month);
 			cnt = dao.DetailWork(vo);
 			if(cnt != 0) {
+				System.out.println(cnt);
 				dto = dao.SelectDetailWork(vo);
 			}
 		}
