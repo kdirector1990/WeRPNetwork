@@ -36,14 +36,19 @@
 								<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
 								<table class="table table-striped mb-0">
 									<tr>
-										<th style="width: 215px;">품번</th>
-										<td><input type="hidden" class="input"
-											name="saleplan_code" value="${dto.saleplan_code}">${dto.saleplan_code}
-											</td>
-
+										
+											
+										<th>품번</th>
+										<td><input class="input" type="text" name="product_code"
+											value="${dto.product_code}"></td>	
+										
 										<th>품명</th>
-										<td><input class="input" type="text" name="saleplan_name"
-											value=""></td>
+										<td><input class="input" type="text" name="product_name"
+											value="${dto.product_name}"></td>
+											
+											<td class="display:none;"><input type="hidden"
+											name="saleplan_code" value="${dto.saleplan_code}"></td>
+										
 
 									</tr>
 

@@ -93,6 +93,12 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.insert("com.pj.erp.persistence.ST_DAO.writeSalePlan", vo);
 	}
 	
+	// salePlan 검색
+	@Override
+	public List<SalePlan> getSalePlanResult(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getSalePlanResult", map);
+	}
+	
 	// ------ ST_release 출고 관리 
 	// release 게시글 갯수
 	@Override
