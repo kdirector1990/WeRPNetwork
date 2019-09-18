@@ -22,6 +22,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -60,12 +61,15 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_insertChit(HttpServletRequest req, Model model) {
 		String keycode = req.getParameter("keynum"); 
+		System.out.println("keycode : " + req.getParameter("keynum"));
 		if(keycode != null) {
 			String date = req.getParameter("date" + keycode);
 			String no = req.getParameter("no" + keycode);
-			String year = date.substring(0, 3);
-			String month = date.substring(5,6);
-			String day = date.substring(8, 9);
+			String year = date.substring(0, 4);
+			String month = date.substring(5,7);
+			String day = date.substring(8, 10);
+			System.out.println("no : " + no);
+			System.out.println("date : " + year + "-" + month + "-" + day);
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("chkno", no);
 			map.put("year", year);
@@ -73,6 +77,7 @@ public class FT_ServiceImpl implements FT_Service{
 			map.put("day", day);
 			
 			List<FT_Chit> list = dao.FT_chitDataLoad(map);
+			System.out.println("size : " + list.size());
 			
 			model.addAttribute("chkno", no);
 			model.addAttribute("year", year);
@@ -336,12 +341,41 @@ public class FT_ServiceImpl implements FT_Service{
 		return list;
 	}
 
+	// 분개 그룹 가져오기
 	@Override
 	public List<FT_Chit> FT_chitSelect(Map<String, Object> map, Model model) {
 		List<FT_Chit> list = dao.FT_ChitDistinct(map);
 		return list;
 	}
 	
+	// 검색된 모든 분개를 가져온다.
+	@Override
+	public List<FT_Chit> FT_journalList(Map<String, Object> map, Model model) {
+		List<FT_Chit> list = dao.FT_journalList(map);
+		return list;
+	}
+	
+	// 거래처원장 리스트
+	public List<FT_Ledger> FT_ledgerList(Map<String, Object> map, Model model) {
+		int year = Integer.parseInt(map.get("firstday").toString().substring(0, 4));
+		String month = map.get("firstday").toString().substring(5,7);
+		if(month == "01") {
+			map.put("year", year-1);
+			map.put("month", "12");
+		} else {
+			map.put("year", year);
+			if(Integer.parseInt(month) < 11) {
+				map.put("month", "0" + String.valueOf(Integer.parseInt(month)-1));
+			} else {
+				map.put("month", String.valueOf(Integer.parseInt(month)-1));
+			}
+			
+		}
+		List<FT_Ledger> list = dao.FT_ledgerList(map);
+		return list;
+	}
+	
+	// 승인처리
 	@Override
 	public String FT_CheckFormal(Map<String, Object> map, Model model) {
 		String[] datelist = map.get("dates").toString().split("/");

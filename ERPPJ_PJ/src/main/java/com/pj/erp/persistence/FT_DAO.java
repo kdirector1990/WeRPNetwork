@@ -11,6 +11,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -138,4 +139,16 @@ public interface FT_DAO {
 	 
 	 // 전표승인처리
 	 public int FT_CheckFormal(Map<String, Object> map);
+	 
+	// 검색된 모든 분개 가져오기
+	 public int FT_journalListCnt(Map<String, Object> map);
+	 
+	 // 검색된 모든 분개 가져오기
+	 public List<FT_Chit> FT_journalList(Map<String, Object> map);
+	 
+	 // 거래처 원장 리스트 갯수 가져오기
+	 public int FT_ledgerListCnt(Map<String, Object> map);
+	 
+	 // 거래처 원장 리스트 가져오기
+	 public List<FT_Ledger> FT_ledgerList(Map<String, Object> map);
 }

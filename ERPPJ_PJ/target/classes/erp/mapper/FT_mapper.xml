@@ -396,6 +396,83 @@
 		</if>
 	</select>
 	
+	<!-- 검색된 모든 분개 갯수 가져오기 -->
+	<select id="FT_journalListCnt" parameterType="java.util.Map" resultType="int">
+		select count(journal_number) 
+		from journal_record_tbl
+		where journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		<if test="usercode != null">
+			and username like '%' || #{usercode} || '%'
+		</if>
+	</select>
+	
+	<!-- 검색된 모든 분개 가져오기 -->
+	<select id="FT_journalList" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Chit">
+		select j.journal_code, j.journal_number, j.journal_date, de.detail_ac_code, de.account_name,
+		c.customer_code, c.customer_name, j.debtor_value, j.creditor_value, j.l_count_value, j.r_count_value, j.journal_abstract,
+		j.jr_state, j.last_update, j.last_modi_user, writer.e_name wname, j.username
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, users writer
+		where j.detail_ac_code = de.detail_ac_code
+		and j.customer_code = c.customer_code
+		and writer.username = j.last_modi_user
+		and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		<if test="usercode != null and usercode != ''">
+			and j.last_modi_user like '%' || #{usercode} || '%'
+		</if>
+		order by 3 asc, 2 asc
+	</select>
+	
+	<!-- 거래처 원장 리스트 갯수 가져오기 -->
+	<!-- <select id="FT_journalListCnt" parameterType="java.util.Map" resultType="int">
+		<![CDATA[
+		select count(c.customer_code)
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, b_license_tbl b, (select distinct CASE WHEN count(customer_code) = 0 THEN null
+        ELSE customer_code END as customer_code, CASE WHEN count(customer_code) = 0 THEN 0
+         WHEN (sum(debtor_value)-sum(creditor_value)) <= 0 THEN 0
+        ELSE (sum(debtor_value)-sum(creditor_value)) END as debtor_value
+		from journal_record_tbl j, detail_ac_tbl de
+		where j.detail_ac_code = de.detail_ac_code
+		and to_char(j.journal_date,'yyyy-MM') = #{year} || '-' || #{month}
+		and de.detail_ac_code = #{scode}
+		group by j.customer_code) bval
+        where j.customer_code = c.customer_code
+        and c.license_number = b.license_number
+        and j.detail_ac_code = de.detail_ac_code
+        and bval.customer_code(+) = j.customer_code
+        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+        and de.detail_ac_code = #{scode}
+        and c.customer_code = #{acode}
+        group by c.customer_code
+    	]]>
+	</select> -->
+	
+	<!-- 거래처 원장 리스트 가져오기 -->
+	<!-- <select id="FT_journalList" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Ledger">
+	<![CDATA[
+		select c.customer_code, c.customer_name, c.license_number, CASE WHEN bval.debtor_value is null THEN 0
+        ELSE bval.debtor_value END as before_value, 
+		sum(j.debtor_value) debtor_value, sum(j.creditor_value) creditor_value, sum(j.l_count_value) l_count_value, sum(j.r_count_value) r_count_value,
+    	c.deal_state, b.bs_master
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, b_license_tbl b, (select distinct CASE WHEN count(customer_code) = 0 THEN null
+        ELSE customer_code END as customer_code, CASE WHEN count(customer_code) = 0 THEN 0
+         WHEN (sum(debtor_value)-sum(creditor_value)) <= 0 THEN 0
+        ELSE (sum(debtor_value)-sum(creditor_value)) END as debtor_value
+		from journal_record_tbl j, detail_ac_tbl de
+		where j.detail_ac_code = de.detail_ac_code
+		and to_char(j.journal_date,'yyyy-MM') = #{year} || '-' || #{month}
+		and de.detail_ac_code = #{scode}
+		group by j.customer_code) bval
+        where j.customer_code = c.customer_code
+        and c.license_number = b.license_number
+        and j.detail_ac_code = de.detail_ac_code
+        and bval.customer_code(+) = j.customer_code
+        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+        and de.detail_ac_code = #{scode}
+        and c.customer_code = #{acode}
+        group by c.customer_code, c.customer_name, c.license_number, bval.debtor_value, c.deal_state, b.bs_master
+    	]]>
+	</select> -->
+	
 	<!-- 전표승인처리 -->
 	<update id="FT_CheckFormal" parameterType="java.util.Map">
 		update journal_record_tbl

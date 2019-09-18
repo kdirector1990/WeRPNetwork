@@ -20,6 +20,9 @@ public interface ST_DAO {
 
 	// estimate_price (견적 글 목록)
 	public List<Estimate> getestimate(Map<String, Object> map);
+	
+	// estimate 검색 결과
+	public List<Estimate> getEstimateresult(Map<String, Object> map);
 
 	// estimate_price (상세 페이지)
 	public Estimate getEstimateArticle(String ep_code);
@@ -48,6 +51,9 @@ public interface ST_DAO {
 	
 	// salePlan 게시물 등록 
 	public int writeSalePlan(SalePlan vo);
+	
+	// salePlan 검색
+	public List<SalePlan> getSalePlanResult(Map<String, Object> map);
 	
 	// ------ ST_release (출고 관리)
 	// release 게시글 갯수 구하기

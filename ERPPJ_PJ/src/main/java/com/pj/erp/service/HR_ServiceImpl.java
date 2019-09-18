@@ -30,6 +30,7 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_RecordInfoVO;
 import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
@@ -590,16 +591,29 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		HR_RecordVO vo = new HR_RecordVO();		
 		
-		String record_title = req.getParameter("record_title");
-		String record_division = req.getParameter("record_division");
+		String username = req.getParameter("username");
+		String position_record_code = dao.getPositionRecord();
 		String record_date = req.getParameter("record_date");
 		Date col = Date.valueOf(record_date);		
 		
-		vo.setRecord_title(record_title);
-		vo.setRecord_division(record_division);
+		vo.setUsername(username);
+		vo.setPosition_record_cord(position_record_code);
 		vo.setRecord_date(col);
 		
-		dao.HR_recordinput();
+		HR_RecordInfoVO vo2 = new HR_RecordInfoVO();
+		
+		String record_title = req.getParameter("record_title");
+		String record_division = req.getParameter("record_division");
+		
+		vo2.setRecord_title(record_title);
+		vo2.setRecord_division(record_division);
+		
+		int cnt = 0;
+		
+		cnt = dao.recordInput(vo);
+		
+		model.addAttribute("cnt", 1);		
+		model.addAttribute("insertCnt", cnt);
 		
 	}
 

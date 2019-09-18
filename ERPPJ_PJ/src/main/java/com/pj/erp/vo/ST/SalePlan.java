@@ -9,13 +9,13 @@ public class SalePlan {
 	private Date s_plan_end;	// 기간 종료
 	private int ef_price;	//예상 판매 가격
 	private int ef_amount;	// 예상 판매 수량
-	private String saleplan_name;	// 품명
 	private String sp_unit;	// 단위
 	private String sp_note;	// 비고
 	private String eas_code;	// 전결 라인 코드
 	private String e_approval_code;	// 전결 현황 코드
 	private int jr_state;	// 처리상태
 	private String detail_ac_code;	// 상세 계정 코드
+	private String product_name;	// 제품명
 	
 	// 생성자
 	public SalePlan() {}
@@ -61,14 +61,6 @@ public class SalePlan {
 		this.ef_amount = ef_amount;
 	}
 
-	public String getSaleplan_name() {
-		return saleplan_name;
-	}
-
-	public void setSaleplan_name(String saleplan_name) {
-		this.saleplan_name = saleplan_name;
-	}
-	
 	public String getSp_unit() {
 		return sp_unit;
 	}
@@ -116,10 +108,14 @@ public class SalePlan {
 	public void setDetail_ac_code(String detail_ac_code) {
 		this.detail_ac_code = detail_ac_code;
 	}
-	
-	
-	
-	
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
 	
 	
 }

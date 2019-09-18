@@ -103,20 +103,24 @@
 		and e_name like '%'||#{e_name}||'%' 
 		and department_code like '%'||#{department_code}||'%' 
 		and position_code like '%'||#{position_code}||'%'
-		and rank_code like '%'||#{position_code}||'%'
+		and rank_code like '%'||#{rank_code}||'%'
 		]]>
 	</select>
 	
 	<!-- 사원신체정보 조회  -->
 	<select id ="getPhysicaly" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_PhysicalVO">
 	<![CDATA[
-		select u.username, p.e_height, p.e_weight, p.e_left_sight, p.e_right_sight, p.e_color_blind, p.e_blood_type, p.e_blood_presure, p.e_medical_info, p.e_veteran_type, p.e_veteran_info, p.e_veteran_level, p.e_disability_type, p.e_disability_level, p.username 
+		select u.username AS username, p.e_height as e_height, p.e_weight as e_weight, p.e_left_sight as e_left_sight, p.e_right_sight as e_right_sight, p.e_color_blind as e_color_blind, p.e_blood_type as e_blood_type, p.e_blood_presure as e_blood_presure, p.e_medical_info as e_medical_info, p.e_veteran_type as e_veteran_type, p.e_veteran_info as e_veteran_info , p.e_veteran_level as e_veteran_level, p.e_disability_type as e_disability_type, p.e_disability_level as e_disability_level 
 		from users u ,department_tbl d ,rank_tbl r , position_tbl o, physicaly_info_tbl p
-		where username like '%'||#{username}||'%' 
-		and e_name like '%'||#{e_name}||'%' 
-		and department_code like '%'||#{department_code}||'%' 
-		and position_code like '%'||#{position_code}||'%'
-		and rank_code like '%'||#{rank_code}||'%'
+		where u.username = p.username
+		and u.department_code = d.department_code
+		and u.rank_code = r.rank_code
+		and u.position_code = o.position_code
+		and u.username like '%'||#{username}||'%' 
+		and u.e_name like '%'||#{e_name}||'%' 
+		and d.department_code like '%'||#{department_code}||'%' 
+		and o.position_code like '%'||#{position_code}||'%'
+		and r.rank_code like '%'||#{rank_code}||'%'
 	]]>
 	</select>
 	
@@ -252,5 +256,14 @@
 		And username = #{username}
 		Group by To_char(tc_come_time, 'mm'), tc_leave_time - tc_come_time
 	</select>
+	
+	<!-- 직책변경코드 시퀀스 -->
+	<select id="getPositionRecord" resultType="String">
+		select hr_jr_seq.nextval from dual
+	</select>
+	
+	<insert id="recordInput" parameterType="com.pj.erp.vo.HR_RecordVO">
+		insert into position_record_tbl(position_record_code, )
+	</insert>
 	
 </mapper>

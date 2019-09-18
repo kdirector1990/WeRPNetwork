@@ -2,14 +2,13 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<%@ include file="../setting.jsp"%>
-<!-- Table datatable css -->
-</head>
+ <head>
+	<%@ include file="../setting.jsp" %>
+    </head>
 
 <body>
 
-	<!-- end page title -->
+<%-- 	<!-- end page title -->
 	<c:if test="${selectCnt == 0}">
 		<script type="text/javascript">
 			alert("안 됨");
@@ -21,7 +20,7 @@
 			alert("삭제 안 됨");
 		</script>
 	</c:if>
-
+ --%>
 
 
 	<div class="col-lg-6">
@@ -36,14 +35,19 @@
 								<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
 								<table class="table table-striped mb-0">
 									<tr>
-										<th style="width: 215px;">품번</th>
-										<td><input type="hidden" class="input"
-											name="saleplan_code" value="${dto.saleplan_code}">${dto.saleplan_code}
-											</td>
-
+										
+											
+										<th>품번</th>
+										<td><input class="input" type="text" name="detail_ac_code"
+											value="${dto.detail_ac_code}" id="product_codeP" onclick="ProductName();" ></td>	
+										
 										<th>품명</th>
-										<td><input class="input" type="text" name="saleplan_name"
-											value=""></td>
+										<td><input class="input" type="text" name="product_name"
+											value="${dto.product_name}" id="product_nameP" ></td>
+											
+											<td class="display:none;"><input type="hidden"
+											name="saleplan_code" value="${dto.saleplan_code}"></td>
+										
 
 									</tr>
 
