@@ -45,7 +45,7 @@
                                	<form id="manageMF_plan" action="" method="post" >
                                	<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 								<table id="datatable"
-									class="table m-0 table-bordered"
+									class="table m-0 table-bordered table-hover"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 									<col style = "width:12%">
                                     <col style = "width:13%;">
@@ -57,7 +57,7 @@
                                     <col style = "width:13%;">
                                     <col style = "width:10%;">
 									
-									<thead class="bg-primary text-white table-hover">
+									<thead class="bg-primary text-white">
 										<tr>
 											<th>생산계획코드</th>
 											<th>BOM코드</th>
