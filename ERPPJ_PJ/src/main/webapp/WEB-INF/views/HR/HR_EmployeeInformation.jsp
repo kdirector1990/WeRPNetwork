@@ -358,19 +358,7 @@
 											role="tab" aria-controls="foundation" aria-selected="true">
 												<span class="d-block d-sm-none"><i
 													class="fa fa-study"></i></span> <span class="d-none d-sm-block">사원정보</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link"
-											id="physicaly-tab" data-toggle="tab" href="#physicaly"
-											role="tab" aria-controls="physicaly" aria-selected="true">
-												<span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-												<span class="d-none d-sm-block">신체정보</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" id="message-tab"
-											data-toggle="tab" href="#Passport/Visa" role="tab"
-											aria-controls="Passport/Visa" aria-selected="false"> <span
-												class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
-												<span class="d-none d-sm-block">-보류-</span>
-										</a></li>
+										</a></li>										
 									</ul>
 									<div class="tab-content">
 										<!-- 잔액 -->
@@ -437,65 +425,8 @@
 													</div>
 												</div>
 											</div>
-										</div>
+										</div>							
 										
-										<div class="tab-pane" id="physicaly" role="tabpanel"
-											aria-labelledby="physicaly-tab">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body table-responsive">
-														<div align="right">
-															<br>
-														</div>
-														<table id="datatable-buttons"
-															class="table table-striped table-bordered dt-responsive nowrap"
-															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-															<thead>
-																<tr>
-																	<th>사원번호</th>
-																	<th>신장</th>
-																	<th>체중</th>
-																	<th>시력(좌)</th>
-																	<th>시력(우)</th>
-																	<th>색약</th>
-																	<th>혈액형</th>
-																	<th>혈압</th>
-																	<th>병력</th>
-																	<th>장애구분/등급</th>																
-																	<th>장애인 등급</th>
-																	<th>보훈구분</th>
-																	<th>보훈관계</th>
-																	<th>보훈등급</th>
-																	
-																</tr>
-															</thead>
-
-															<tbody>
-																<c:forEach var="phy" items="${phy}">
-																	<tr color="red">
-																		<td onclick="window.location='HR_modifyPhysicaly?username=${phy.username}'">${phy.username}</td>
-																		<td>${phy.e_height}</td>
-																		<td>${phy.e_weight}</td>
-																		<td>${phy.e_left_sight}</td>
-																		<td>${phy.e_right_sight}</td>
-																		<td>${phy.e_color_blind}</td>
-																		<td>${phy.e_blood_type}</td>
-																		<td>${phy.e_blood_presure}</td>
-																		<td>${phy.e_medical_info}</td>
-																		<td>${phy.e_veteran_type}</td>
-																		<td>${phy.e_veteran_info}</td>
-																		<td>${phy.e_veteran_level}</td>
-																		<td>${phy.e_disability_type}</td>
-																		<td>${phy.e_disability_level}</td>																		
-																	</tr>
-																</c:forEach>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
 										
 										
 										

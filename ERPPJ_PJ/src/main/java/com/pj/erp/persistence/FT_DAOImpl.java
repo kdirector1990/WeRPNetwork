@@ -11,6 +11,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -302,6 +303,36 @@ public class FT_DAOImpl implements FT_DAO{
 			return null;
 		} else {
 			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_ChitDistinct", map);
+		}
+	}
+	
+	@Override
+	public int FT_journalListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_journalListCnt", map);
+	}
+	
+	// 검색된 모든 분개를 가져온다.
+	@Override
+	public List<FT_Chit> FT_journalList(Map<String, Object> map) {
+		if(FT_journalListCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_journalList", map);
+		}
+	}
+
+	// 거래처 원장 리스트를 가져온다.
+	@Override
+	public int FT_ledgerListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_ledgerListCnt", map);
+	}
+	
+	@Override
+	public List<FT_Ledger> FT_ledgerList(Map<String, Object> map) {
+		if(FT_ledgerListCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_ledgerList", map);
 		}
 	}
 	
