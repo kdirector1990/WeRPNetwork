@@ -81,7 +81,7 @@
 				<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-							 	<form name = "HR_record_input" action = "HR_record_input_pro" method = "post">
+							 	<form name = "HR_record_input" action = "HR_recordinput" method = "post">
 									 <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 									 <div class="card-body">
 										 <div class="form-group text-right mr-1">
