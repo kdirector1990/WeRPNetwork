@@ -28,6 +28,7 @@ import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.CT.CT_AS_VO;
 
 @Controller
 public class HR_Controller {
@@ -120,6 +121,17 @@ public class HR_Controller {
 		return "index";
 	}*/
 	
+	@RequestMapping("HR_update_Fou")
+	@ResponseBody
+	public HR_VO HR_update_Fou(HttpServletRequest req, Model model) {
+		logger.info("log => HR_update_Fou");
+		
+		HR_VO data = service.HR_select_username(req, model);
+		
+		return data;
+	}	
+
+
 	@RequestMapping("HR_EmployeeInformation")
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeInformation");
@@ -132,7 +144,7 @@ public class HR_Controller {
 		return "HR/HR_EmployeeInformation";
 	}
 	
-	//인사고과/상벌현황 검색결과
+	//사원정보현황
 	@RequestMapping(value = "HR_EmployeeInformation_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public List<HR_VO> HR_EmployeeInformation_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
@@ -212,6 +224,13 @@ public class HR_Controller {
 		logger.info("log => HR_Greeting");
 		
 		return "HR/HR_Greeting";
+	}
+	
+	@RequestMapping("HR_record_input_pro")
+	public String HR_record_input_pro(HttpServletRequest req, Model model) {
+		logger.info("log => HR_record_input_pro");
+		service.HR_recordinput(req, model);
+		return "HR/HR_record_input_pro";
 	}
 	
 	@RequestMapping("HR_appointment_notice")

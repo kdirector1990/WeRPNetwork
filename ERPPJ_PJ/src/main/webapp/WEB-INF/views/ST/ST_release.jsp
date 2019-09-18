@@ -111,15 +111,6 @@
 														</select>
 													</div>
 												</div>
-
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label" for="example-static">(임시)
-														입출고 코드</label>
-													<div class="col-md-10">
-														<input type="text" name="sar_code" class="form-control"
-															value="">
-													</div>
-												</div>
 											</div>
 											<!-- end col -->
 

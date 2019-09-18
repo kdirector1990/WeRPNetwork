@@ -35,11 +35,11 @@
                             <div class="col-sm-12" style = "padding: 20px 0px 0px 0px;">
                                 <div class="card">
                                     <div class="card-body" >
-                                        <h4 class="header-title">견적 등록</h4>
+                                        <h4 class="header-title">판매계획 등록</h4>
                                         <p class="sub-header">
                                         </p>
     									
-    								<form class="form-horizontal" action = "ST_estimate_writePro" method="post">
+    								<form class="form-horizontal" action = "ST_sale_plan_writePro" method="post">
     								<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                         <div class="row">
                                             <div class="col-xl-6" style="height: 400px;">
@@ -80,7 +80,7 @@
 														for="example-textarea">비고</label>
 													<div class="col-md-10">
 														<textarea class="" rows="7" cols="200"
-															id="sp_note"></textarea>
+															name="sp_note"></textarea>
 													</div>
 												</div>
 
