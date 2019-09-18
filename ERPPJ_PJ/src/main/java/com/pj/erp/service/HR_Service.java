@@ -15,6 +15,7 @@ import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 public interface HR_Service {
 	
@@ -78,9 +79,13 @@ public interface HR_Service {
 	// 신체정보 조회
 	public List<HR_PhysicalVO> getPhysical(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 인사발령등록
+	public void HR_recordinput(HttpServletRequest req, Model model); 
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */
+	// 사원코드 가져오기
+	public HR_VO HR_select_username(HttpServletRequest req, Model model);
 	
 	//근태(사원목록 가져오기)
 	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model);
@@ -90,6 +95,9 @@ public interface HR_Service {
 	
 	//근태(퇴근 입력)
 	public int InsertEndWork(HttpServletRequest req, Model model);
+	
+	//근속년수 검색
+	public List<HR_YearService_VO> getYearofservice(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;	
 	
 	//근태(근무일별 목록 가져오기)
 	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model);

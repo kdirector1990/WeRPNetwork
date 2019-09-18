@@ -171,8 +171,8 @@ function callback() {
 													<tbody>
 														<c:if test="${cnt > 0}">
 															<c:forEach var="eto" items="${etos}">
-																<tr>
-																	<td><input type = "button" value = "${eto.ep_code}" onclick="ST_estimate_Form(${eto.ep_code});"></td> <!-- 견적 코드  -->
+																<tr  onclick="ST_estimate_Form('${eto.ep_code}');">
+																	<td>${eto.ep_code}</td> <!-- 견적 코드  -->
 																	<td></td> <!-- 거래처 -->
 																	<td></td> <!-- 담당자 -->
 																	<td></td> <!-- 품번 -->
@@ -180,7 +180,7 @@ function callback() {
 																	<td>${eto.ep_amount }</td> <!-- 견적 수량 -->
 																	<td>${eto.ep_deliver_date }</td> <!-- 납품 예정일 -->
 																	<td>${eto.ep_reg_date }</td> <!-- 견적 등록일 -->
-																	<td></td> <!-- 단가 -->
+																	<td>${eto.ep_price }</td> <!-- 단가 -->
 																	<td></td> <!-- 공급가 -->
 																	<td></td> <!-- 부가세 -->
 																</tr>
