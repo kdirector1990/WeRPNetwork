@@ -274,8 +274,9 @@
 	  					+'</div>'
 	  				    );
    			
-   			$('.plandiv').focus();
-   			
+   		 var offset = $(".plandiv").offset();
+         $('html, body').animate({scrollTop : offset.top}, 200);
+
 		});
      
      function updatePlan(){
