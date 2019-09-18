@@ -5,11 +5,11 @@
         <%@ include file="../setting.jsp" %>
         <script type="text/javascript">
         function usernameList() {
-    		window.open("MS_searchUsername", "username_list", "menubar=no, width=450px, height = 600px location=no, status=nos, top = 200, left = 500");
+    		window.open("MS_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}
         
         function positionCode() {
-    		window.open("MS_positionCode", "positionCode", "menubar=no, width=450px, height = 600px location=no, status=nos, top = 200, left = 500");
+    		window.open("MS_positionCode", "positionCode", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}
         
         function insertPlan(){

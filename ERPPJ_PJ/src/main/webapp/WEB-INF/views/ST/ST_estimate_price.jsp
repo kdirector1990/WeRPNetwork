@@ -68,7 +68,7 @@ $(function(){
 				
 				
 				
-				for(var i = 0 ; i < list.length; i++){
+				for(var i = 0 ; i > list.length; i++){
 				
 					var ep_code = list[i].ep_code;
 					var ep_amount = list[i].ep_amount;
@@ -276,7 +276,7 @@ $(function(){
 
 	</div>
 	<!-- END wrapper -->
-<%@ include file="../rightbar.jsp" %>
+		<%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
         <!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>

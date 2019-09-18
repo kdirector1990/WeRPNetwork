@@ -16,18 +16,19 @@
 <body>
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
-		<div style="width: 100%; height: 200px; overflow: auto">
-			<form name="selectTable">
-				<table id="datatable" class="table mb-0 table-bordered table-hover"
+		<div style="width: 100%; height: 310px; overflow: auto">
+			<form>
+				<table id="datatable" class="table table-bordered table-hover"
 					style="height: 550px;">
-					<thead>
-						<tr style="text-align: center;">
+					<thead class="table-info">
+						<tr style="text-align: center; pointer-events: none;">
 							<th>사원코드</th>
 							<th>사원명</th>
 							<th>부서코드</th>
 							<th>직책코드</th>
 						</tr>
 					</thead>
+
 					<tbody>
 						<!--  있으면 -->
 						<c:if test="${cnt != 0}">
