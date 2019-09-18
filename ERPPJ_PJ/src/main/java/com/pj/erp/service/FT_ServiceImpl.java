@@ -357,6 +357,20 @@ public class FT_ServiceImpl implements FT_Service{
 	
 	// 거래처원장 리스트
 	public List<FT_Ledger> FT_ledgerList(Map<String, Object> map, Model model) {
+		int year = Integer.parseInt(map.get("firstday").toString().substring(0, 4));
+		String month = map.get("firstday").toString().substring(5,7);
+		if(month == "01") {
+			map.put("year", year-1);
+			map.put("month", "12");
+		} else {
+			map.put("year", year);
+			if(Integer.parseInt(month) < 11) {
+				map.put("month", "0" + String.valueOf(Integer.parseInt(month)-1));
+			} else {
+				map.put("month", String.valueOf(Integer.parseInt(month)-1));
+			}
+			
+		}
 		List<FT_Ledger> list = dao.FT_ledgerList(map);
 		return list;
 	}
