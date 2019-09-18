@@ -220,7 +220,7 @@
 	<!-- 근태(퇴근입력) -->
 	<update id="EndWork" parameterType="String">
 		Update time_card_tbl
-		Set tc_leave_time = sysdate
+		Set tc_leave_time = sysdate, tc_state = 2
 		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
 		And username = #{username}
 	</update>
@@ -241,20 +241,63 @@
 	<select id="DetailWork" resultType="int">
 		Select Count(*)
 		From time_card_tbl
-		Where tc_come_time Like '%'||#{year}||'/'||#{month}||'%'
+		Where tc_come_time Like #{year}||'/'||#{month}||'%'
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time is not null
+        And tc_leave_time is not null
+		And username = #{username}
+	</select>
+	
+	<!-- 근태(근무월별 있는가)2 -->
+	<select id="DetailWork2" resultType="com.pj.erp.vo.HR_Time_VO">
+		Select Count(*) as count
+		From time_card_tbl
+		Where tc_come_time Like #{year}||'/'||#{month}||'%'
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time is not null
+        And tc_leave_time is not null
 		And username = #{username}
 	</select>
 	
 	<!-- 근태 기록가져오기 -->
 	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR_Time_VO" resultType="com.pj.erp.vo.HR_Time_VO">
 		SELECT
-    		To_char(tc_come_time, 'mm') as month,
-    		tc_leave_time - tc_come_time as time,
-    		Count(*) as count
-		From time_card_tbl
-		Where tc_come_time Like #{year}||'/'||#{month}||'%'
-		And username = #{username}
-		Group by To_char(tc_come_time, 'mm'), tc_leave_time - tc_come_time
+    		a.username as username,
+		    count(a.username) as count,
+		    To_char(a.tc_come_time, 'mm') as month,
+		    To_char(a.tc_come_time, 'yyyy') as year,
+		    b.tc_leave_time as tc_leave_time,
+		    b.tc_come_time as tc_come_time
+		From time_card_tbl a, time_card_tbl b
+		Where b.tc_come_time Like #{year}||'/'||#{month}||'%'
+		And b.tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And a.tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And a.tc_come_time Like #{year}||'/'||#{month}||'%'
+		And a.tc_leave_time is not null
+		And a.tc_come_time is not null
+		And b.tc_come_time is not null
+		And b.tc_leave_time is not null
+		And a.username = #{username}
+		Group by To_char(a.tc_come_time, 'mm'), b.tc_leave_time - b.tc_come_time
+    	, b.tc_leave_time, b.tc_come_time, To_char(a.tc_come_time, 'yyyy'),
+    	a.username
+	</select>
+	
+	<!-- 근태 기록가져오기 -->
+	<select id="SelectDetailWork2" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_Time_VO">
+		SELECT
+    		count(a.username) as count,
+    		To_char(a.tc_come_time, 'mm') as month,
+    		b.tc_leave_time, b.tc_come_time
+		From time_card_tbl a, time_card_tbl b
+		Where b.tc_come_time Like #{year}||'/'||#{month}||'%'
+		And b.tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And a.tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And a.tc_come_time Like #{year}||'/'||#{month}||'%'
+		And a.tc_leave_time is not null
+		And a.tc_come_time is not null
+		And a.username = #{username}
+		Group by To_char(a.tc_come_time, 'mm'), b.tc_leave_time, b.tc_come_time
 	</select>
 	
 	<!-- 직책변경코드 시퀀스 -->
