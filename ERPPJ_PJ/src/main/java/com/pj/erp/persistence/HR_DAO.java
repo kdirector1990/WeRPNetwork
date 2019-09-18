@@ -11,9 +11,11 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 public interface HR_DAO {
 
@@ -104,14 +106,20 @@ public interface HR_DAO {
 	//근태(퇴근입력)
 	public int EndWork(String username);
 	
+	//근속년수 검색결과
+	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map);
+	
 
 	// 인사발령등록 처리
-	public int HR_recordinput();
+	public int recordInput(HR_RecordVO vo);
 
 	//근태(근무일별 있는가)
 	public int DetailWork(HR_Time_VO vo);
 	
 	//근태(근무일별 목록 가져오기)
 	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo);
+	
+	// 직책변경코드 가져오기
+	public String getPositionRecord();
 
 }

@@ -221,6 +221,18 @@
 		And username = #{username}
 	</update>
 	
+	
+	<!-- 근속년수 검색 -->
+	<select id = "getYearofservice" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_YearService_VO">
+		select username, e_name, department_name, position_name , start_date, e_code
+    		, trunc(trunc(months_between(to_date(#{day}),start_date),0)/12,0) as service_year
+   			, mod(trunc(months_between(to_date(#{day}),start_date),0),12) as service_month
+		from getyearsofservice_view 
+		where username like '%'||#{username}||'%' 
+		and department_name like '%'||#{department_name}||'%'
+		<!-- and e_state_code like '%'||#{e_state_code}||'%' -->
+	</select>
+	
 	<!-- 근태(근무월별 있는가) -->
 	<select id="DetailWork" resultType="int">
 		Select Count(*)
@@ -240,5 +252,14 @@
 		And username = #{username}
 		Group by To_char(tc_come_time, 'mm'), tc_leave_time - tc_come_time
 	</select>
+	
+	<!-- 직책변경코드 시퀀스 -->
+	<select id="getPositionRecord" resultType="String">
+		select hr_jr_seq.nextval from dual
+	</select>
+	
+	<insert id="recordInput" parameterType="com.pj.erp.vo.HR_RecordVO">
+		insert into position_record_tbl(position_record_code, )
+	</insert>
 	
 </mapper>

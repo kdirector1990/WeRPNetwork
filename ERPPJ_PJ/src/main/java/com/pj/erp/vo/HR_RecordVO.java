@@ -3,7 +3,8 @@ package com.pj.erp.vo;
 import java.sql.Date;
 
 public class HR_RecordVO {
-
+	
+	private String username;
 	private String position_record_cord;
 	private String record_title;
 	private String record_division;
@@ -12,7 +13,15 @@ public class HR_RecordVO {
 	private String old_recordInfo;
 	private String new_recordInfo;
 	
-	public HR_RecordVO() {}
+	public HR_RecordVO() {}	
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public String getPosition_record_cord() {
 		return position_record_cord;
