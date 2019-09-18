@@ -108,7 +108,6 @@ public interface HR_DAO {
 	
 	//근속년수 검색결과
 	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map);
-	
 
 	// 인사발령등록 처리
 	public int recordInput(HR_RecordVO vo);
@@ -116,10 +115,15 @@ public interface HR_DAO {
 	//근태(근무일별 있는가)
 	public int DetailWork(HR_Time_VO vo);
 	
+	public HR_Time_VO DetailWork2 (HR_Time_VO vo);
+	
 	//근태(근무일별 목록 가져오기)
 	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo);
 	
+	public List<HR_Time_VO> SelectDetailWork2(Map<String,Object> map);
+
 	// 직책변경코드 가져오기
 	public String getPositionRecord();
+
 
 }

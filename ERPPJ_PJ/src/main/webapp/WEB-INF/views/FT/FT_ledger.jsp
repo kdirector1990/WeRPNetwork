@@ -55,17 +55,29 @@
 	                       success : function(data) {
 	                    	   if(data != null){
 									for(i = 0; i < data.length; i++){
+                                        var statename = "";
+                                        if(data[i].deal_state == "1") {
+                                        	statename = "일반"
+                                        } else if(data[i].deal_state == "2") {
+                                        	statename = "매입"
+                                        } else if(data[i].deal_state == "3") {
+                                        	statename = "매출"
+                                        } else if(data[i].deal_state == "4") {
+                                        	statename = "금융기관"
+                                        } else if(data[i].deal_state == "5") {
+                                        	statename = "카드사"
+                                        }
 										$(".chit-table-bordered-primary tbody").append('<tr>' +
-	                                        '<td scope="row">${item.customer_code}</td>' +
-	                                        '<td>${item.customer_name}</td>' +
-	                                        '<td>${item.license_number}</td>' +
-	                                        '<td>${item.BeforePrice}</td>' +
-	                                        '<td>${item.debtor_value}</td>' +
-	                                        '<td>${item.creditor_value}</td>' +
-	                                        '<td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>' +
-	                                        '<td>${item.deal_state}</td>' +
-	                                        '<td>${item.deal_name}</td>' +
-	                                        '<td>${item.bs_master}</td>' +
+	                                        '<td scope="row">' + data[i].customer_code + '</td>' +
+	                                        '<td>' + data[i].customer_name + '</td>' +
+	                                        '<td>' + data[i].license_number + '</td>' +
+	                                        '<td>' + data[i].before_value + '</td>' +
+	                                        '<td>' + data[i].debtor_value + '</td>' +
+	                                        '<td>' + data[i].creditor_value + '</td>' +
+	                                        '<td>' + (parseInt(data[i].before_value) + parseInt(data[i].debtor_value) - parseInt(data[i].creditor_value)) + '</td>' +
+	                                        '<td>' + data[i].deal_state + '</td>' +
+	                                        '<td>' + statename + '</td>' +
+	                                        '<td>' + data[i].bs_master + '</td>' +
 		                                '</tr>');
 									}
 		                    	   }

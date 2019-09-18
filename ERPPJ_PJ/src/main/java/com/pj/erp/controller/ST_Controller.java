@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ST_Service;
+import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.SalePlan;
 
 @Controller
@@ -306,6 +307,15 @@ public class ST_Controller {
 		return "ST/ST_estimate_price";
 	}
 	
+	// 견적 현황 검색
+	@RequestMapping(value = "ST_estimate_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<Estimate> ST_estimate_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_estimate_result");
+		List<Estimate> list = service.getEstimate(map, req, model);
+		return list;
+	}  
+	      
 	// 견적 현황 상세 페이지
 	@RequestMapping("ST_estimate_Form")
 	public String ST_estimate_Form(HttpServletRequest req, Model model) {
