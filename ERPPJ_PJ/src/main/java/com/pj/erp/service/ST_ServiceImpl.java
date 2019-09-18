@@ -2,7 +2,6 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,6 +119,13 @@ public class ST_ServiceImpl implements ST_Service {
 			model.addAttribute("curruentPage", currentPage); // 현재페이지
 		}
 
+	}
+	
+	// ST_estimate 검색
+	@Override
+	public List<Estimate> getEstimate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<Estimate> list = dao.getEstimateresult(map);
+		return list;
 	}
 
 	// ST_estimate_price -> ST_estimate_Form 상세 페이지

@@ -20,6 +20,9 @@ public interface ST_DAO {
 
 	// estimate_price (견적 글 목록)
 	public List<Estimate> getestimate(Map<String, Object> map);
+	
+	// estimate 검색 결과
+	public List<Estimate> getEstimateresult(Map<String, Object> map);
 
 	// estimate_price (상세 페이지)
 	public Estimate getEstimateArticle(String ep_code);
