@@ -305,6 +305,21 @@ public class FT_DAOImpl implements FT_DAO{
 		}
 	}
 	
+	@Override
+	public int FT_journalListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_journalListCnt", map);
+	}
+	
+	// 검색된 모든 분개를 가져온다.
+	@Override
+	public List<FT_Chit> FT_journalList(Map<String, Object> map) {
+		if(FT_journalListCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_journalList", map);
+		}
+	}
+	
 	// 전표승인처리
 	public int FT_CheckFormal(Map<String, Object> map) {
 		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_CheckFormal", map);

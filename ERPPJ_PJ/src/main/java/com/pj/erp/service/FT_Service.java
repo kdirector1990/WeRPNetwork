@@ -91,6 +91,9 @@ public interface FT_Service {
 	// 전표 승인처리
 	public String FT_CheckFormal(Map<String, Object> map, Model model);
 	
+	// 검색된 분개 모두 가져오기
+	public List<FT_Chit> FT_journalList(Map<String, Object> map, Model model);
+	
 	//단기차입금목록 검색결과
 	public List<FT_Short_Borrow_List> getSBorrowList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	

@@ -336,9 +336,17 @@ public class FT_ServiceImpl implements FT_Service{
 		return list;
 	}
 
+	// 분개 그룹 가져오기
 	@Override
 	public List<FT_Chit> FT_chitSelect(Map<String, Object> map, Model model) {
 		List<FT_Chit> list = dao.FT_ChitDistinct(map);
+		return list;
+	}
+	
+	// 검색된 모든 분개를 가져온다.
+	@Override
+	public List<FT_Chit> FT_journalList(Map<String, Object> map, Model model) {
+		List<FT_Chit> list = dao.FT_journalList(map);
 		return list;
 	}
 	

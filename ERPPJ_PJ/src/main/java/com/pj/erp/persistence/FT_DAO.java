@@ -138,4 +138,10 @@ public interface FT_DAO {
 	 
 	 // 전표승인처리
 	 public int FT_CheckFormal(Map<String, Object> map);
+	 
+	// 검색된 모든 분개 가져오기
+	 public int FT_journalListCnt(Map<String, Object> map);
+	 
+	 // 검색된 모든 분개 가져오기
+	 public List<FT_Chit> FT_journalList(Map<String, Object> map);
 }

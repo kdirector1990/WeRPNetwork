@@ -586,7 +586,7 @@
         <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     </head>
 
-    <body>
+    <body onload="onload();">
 
         <!-- Begin page -->
         <div id="wrapper">
@@ -654,6 +654,7 @@
 			                                        </select></td>
                                             	<td>일</td>
                                             	<td><input type="text" class="" id = "day" data-toggle="input-mask" data-mask-format="00" placeholder = "ex)29" style = "width: 100px;" onkeydown="ajaxload();"></td>
+												<td>거래번호</td>
                                             	<td><input type="number" class="" id = "journalNum" data-toggle="input-mask" style = "width: 100px;" min = "0" max="0" value = "0" onkeydown="change();"></td>
                                             	
                                             </tr>
@@ -707,10 +708,20 @@
 							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "SubjectName${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.account_name}"></td>
 							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "AccCode${cnt + 1}" class="form-control" onclick = "accountlist(${cnt + 1})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.customer_code}"></td>
 							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "AccName${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.customer_name}"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "price${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "' + price + '"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "count${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "' + count + '"></td>
+							                                    <c:if test="${lists.debtor_value == 0}">
+							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "price${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.creditor_value}"></td>
+							                                    </c:if>
+							                                    <c:if test="${lists.debtor_value != 0}">
+							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "price${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.debtor_value}"></td>
+							                                    </c:if>
+							                                    <c:if test="${lists.l_count_value == 0}">
+							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "count${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.r_count_value}"></td>
+							                                    </c:if>
+							                                    <c:if test="${lists.l_count_value != 0}">
+							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "count${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.l_count_value}"></td>
+							                                    </c:if>
 							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "text${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.journal_abstract}"></td>
-							                                    <td><select class="form-control" id = "enter${cnt + 1}" onfocus = "focuse(${cnt + 1});" name = "type${cnt + 1}" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enterupdate(${cnt + 1});" onchange="enterupdate(${cnt + 1});">
+							                                    <td><select class="form-control" id = "enter${cnt + 1}" onfocus = "focuse(${cnt + 1});" name = "type${cnt + 1}" style = "width:100%; -webkit-appearance:none; border:0px;" onkeydown = "enterupdate(${cnt + 1});" onchange="enterupdate(${cnt + 1});">
 							                                    <c:if test="${lists.jr_state == 0}">
 							                                    <option value="0" selected="selected">== 선택 ==</option>
 							                                    <option value="1">일반</option>

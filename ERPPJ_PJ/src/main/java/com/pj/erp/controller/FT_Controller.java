@@ -483,6 +483,13 @@ public class FT_Controller {
 		return service.FT_CheckFormal(map, model);
 	}
 
+	// 전표승인처리
+	@RequestMapping(value = "FT_journalList")
+	public @ResponseBody List<FT_Chit> FT_journalList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_journalList 호출중");
+
+		return service.FT_journalList(map, model);
+	}
 	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_CardManagementInsert(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_CardManagementInsert 호출중");
