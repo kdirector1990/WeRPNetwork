@@ -24,6 +24,9 @@ public interface ST_Service {
 	// ST_sale_plan (판매 계획) 목록
 	public void salePlan(HttpServletRequest req, Model model);
 	
+	// ST_sale_plan (판매 계획 등록)
+	public void salePlanWrite(HttpServletRequest req, Model model);
+	
 	// ST_sale_plan 상세 페이지 (수정 목록)
 	public void salePlanWriteForm(HttpServletRequest req, Model model);
 	
@@ -53,6 +56,15 @@ public interface ST_Service {
 	
 	// ST_saleList 목록 조회
 	public void saleList(HttpServletRequest req, Model model);
+	
+	// ST_saleList 상세 페이지
+	public void saleListWriteForm(HttpServletRequest req, Model model);
+	
+	// ST_saleList 상세 페이지 수정
+	public void saleListModifyPro(HttpServletRequest req, Model model);
+	
+	// ST_saleList 상세 페이지 삭제
+	public void saleListDeletePro(HttpServletRequest req, Model model);
 	
 	
 	

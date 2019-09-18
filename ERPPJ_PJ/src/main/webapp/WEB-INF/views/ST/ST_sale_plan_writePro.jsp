@@ -8,17 +8,16 @@
     </head>
 
     <body>
-	<c:if test="${saleListWrite == 0}">
+	<c:if test="${salePlanWrite == 0}">
 		<script type="text/javascript">
 			alert("글 써짐");
 		</script>
 	</c:if>
 	
-	<c:if test="${saleListWrite != 0}">
+	<c:if test="${salePlanWrite != 0}">
 		<script type="text/javascript">
 			alert("글 쓰기 완료");
-			opener.location.reload();
-			close();
+			window.location='ST_sale_plan';
 		</script>
 	</c:if>
           

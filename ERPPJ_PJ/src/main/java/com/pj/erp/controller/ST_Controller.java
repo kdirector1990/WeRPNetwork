@@ -129,8 +129,17 @@ public class ST_Controller {
 		logger.info("log => ST_sale_plan_write_reg");
 		
 		return "ST/ST_sale_plan_write_reg";
-	}       
+	}
 	
+	// ST_sale_plan 판매 계획 등록 
+	@RequestMapping("ST_sale_plan_writePro")
+	public String ST_sale_plan_writePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_sale_plan_writePro");
+		service.salePlanWrite(req, model);
+		
+		return "ST/ST_sale_plan_writePro";
+	}     
+
 	
 	// ST_sale_plan
 	@RequestMapping("ST_sale_plan")
@@ -157,7 +166,7 @@ public class ST_Controller {
 		service.salePlanmodifyPro(req, model);
 		    
 		return "ST/ST_sale_Plan_modifyPro"; 
-	}           
+	}            
 	
 	// ST_sale_Plan_modifyPro 삭제 처리 페이지
 	@RequestMapping("ST_sale_Plan_deletePro")
@@ -181,6 +190,7 @@ public class ST_Controller {
 	@RequestMapping("ST_saleList_Form")
 	public String ST_saleList_Form(HttpServletRequest req, Model model) {
 		logger.info("log => ST_saleList_Form");
+		service.saleListWriteForm(req, model);
 		    
 		return "ST/ST_saleList_Form"; 
 	}
@@ -200,6 +210,24 @@ public class ST_Controller {
 		service.saleListWritePro(req, model);
 		    
 		return "ST/ST_saleList_writePro"; 
+	}
+	
+	// ST_saleList 판매 수정
+	@RequestMapping("ST_saleList_modifyPro")
+	public String ST_saleList_modifyPro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_saleList_modifyPro");
+		service.saleListModifyPro(req, model);
+		    
+		return "ST/ST_saleList_modifyPro"; 
+	}
+	
+	// ST_saleList 판매 삭제
+	@RequestMapping("ST_saleList_deletePro")
+	public String ST_saleList_deletePro(HttpServletRequest req, Model model) {
+		logger.info("log => ST_saleList_deletePro");
+		service.saleListDeletePro(req, model);
+		    
+		return "ST/ST_saleList_deletePro"; 
 	}
 	
 	          

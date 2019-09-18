@@ -66,7 +66,8 @@
 											value="${eto.ep_reg_date }"></td>
 
 										<th>단가</th>
-										<td></td>
+										<td><input class="input" type="text" name="ep_price"
+											value="${eto.ep_price }"></td>
 									</tr>
 
 									<tr>

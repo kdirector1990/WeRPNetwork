@@ -15,7 +15,7 @@
     </head>
 <body>
 	<div class="card-body"
-		style="padding-bottom: 0px; padding-bottom: 24px;">
+		style="padding-bottom: 0px; padding-bottom: 24px; overflow-x:auto;">
 		<form name="selectTable">
 			<table id="datatable" class="table table-bordered table-hover">
 				<thead>

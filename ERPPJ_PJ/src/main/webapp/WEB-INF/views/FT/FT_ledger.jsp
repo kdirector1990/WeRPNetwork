@@ -46,7 +46,6 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-3">Default Tabs</h4>
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
@@ -61,18 +60,6 @@
                                                     <span class="d-none d-sm-block">원장</span>
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false">
-                                                    <span class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
-                                                    <span class="d-none d-sm-block">총괄잔액</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="setting-tab" data-toggle="tab" href="#setting" role="tab" aria-controls="setting" aria-selected="false">
-                                                    <span class="d-block d-sm-none"><i class="fa fa-cog"></i></span>
-                                                    <span class="d-none d-sm-block">총괄내용</span>
-                                                </a>
-                                            </li>
                                         </ul>
                                         <div class="tab-content">
                                         	<!-- 잔액 -->
@@ -80,83 +67,20 @@
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
-					                                        <div align="right">
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-					    										<br>
-					    									</div>
 					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
-					                                                <td>회계단위</td>
-					                                                <td>
-					                                                <select class="form-control select2">
-							                                            <option>전체선택</option>
-							                                                <option value="">본점</option>
-							                                        </select>
-					                                                </td>
-					                                                <td>계정과목조회구분</td>
-					                                                <td>
-						                                                <input type="radio">범위
-						                                                <input type="radio">개별
-					                                                </td>
-					                                                
-					                                                <td>출력기준</td>
-					                                                <td>
-					                                                <select class="form-control select2">
-							                                            <option>선택</option>
-							                                                <option value="">1. 발생기준</option>
-							                                                <option value="">2. 잔액기준</option>
-							                                        </select>
-					                                                </td>
-					                                            </tr>
-					                                            
-					                                            <tr>
-					                                            
 					                                            	<td>계정과목</td>
-					                                            	<td>
-					                                            	<select class="form-control select2">
-							                                            <option>선택</option>
-							                                                <option value="">계정별</option>
-							                                                <option value="">세목별</option>
-							                                        </select>
-					                                            	</td>
 					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
 					                                                	<input type="text" class="" readonly>
 					                                                </td>
 					                                                
 					                                                <td>기표기간</td>
-					                                                <td>../../.. ~ ../../..</td>
-					                                            </tr>
-					                                            
-					                                            <tr>
+					                                                <td><input type="date" class=""> ~ <input type="date" class=""></td>
+					                                                
 					                                            	<td>거래처</td>
-					                                            	<td>
-						                                            	<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">거래처</option>
-								                                                <option value="">거래처분류</option>
-								                                        </select>
-					                                            	</td>
 					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+					                                                	<input type="text" class="" readonly>
 					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                            	
-					                                            	<td> <<
-					                                            		<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">-</option>
-								                                                <option value="">-</option>
-								                                        </select>
-								                                        >>
-					                                            	</td>
 					                                            </tr>
 					                                        </table>
 				    
@@ -180,27 +104,25 @@
 						                                                <th>잔액</th>
 						                                                <th>거래처분류코드</th>
 						                                                <th>거래처분류명</th>
-						                                                <th>국가코드</th>
-						                                                <th>국가명</th>
 						                                                <th>대표자성명</th>
 						                                            </tr>
 						                                            
 				                                                </thead>
 				                                                <tbody>
-				                                                    <tr>
-				                                                    <th scope="row">0001</th>
-				                                                    <td>신안은행</td>
-				                                                    <td>000000</td>
-				                                                    <td>0101010</td>
-				                                                    <td>21,600,000</td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td>21,000,000</td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    </tr>
+				                                                	<c:forEach var="item" items="${AccountBook}">
+				                                                		<tr>
+						                                                    <td scope="row">${item.customer_code}<</td>
+						                                                    <td>${item.customer_name}</td>
+						                                                    <td>${item.license_number}</td>
+						                                                    <td>${item.BeforePrice}</td>
+						                                                    <td>${item.debtor_value}</td>
+						                                                    <td>${item.creditor_value}</td>
+						                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
+						                                                    <td>${item.deal_state}</td>
+						                                                    <td>${item.deal_name}</td>
+						                                                    <td>${item.bs_master}</td>
+					                                                    </tr>
+				                                                	</c:forEach>
 				                                                </tbody>
 				                                            </table>
 				                                        </div>
@@ -214,84 +136,18 @@
                                                 <div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
-					                                        <div align="right">
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-					    									<br>
-					    									</div>
 						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-						                                            <tr>
-					                                                <td>회계단위</td>
-					                                                <td>
-					                                                <select class="form-control select2">
-							                                            <option>전체선택</option>
-							                                                <option value="">본점</option>
-							                                        </select>
-					                                                </td>
-					                                                <td>계정과목조회구분</td>
-					                                                <td>
-						                                                <input type="radio">범위
-						                                                <input type="radio">개별
-					                                                </td>
-					                                                
-					                                                <td>기표기간</td>
-					                                                <td>../../.. ~ ../../..</td>
-					                                            </tr>
-					                                            
 					                                            <tr>
-					                                            
 					                                            	<td>계정과목</td>
-					                                            	<td>
-					                                            	<select class="form-control select2">
-							                                            <option>선택</option>
-							                                                <option value="">계정별</option>
-							                                                <option value="">세목별</option>
-							                                        </select>
-					                                            	</td>
 					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
 					                                                	<input type="text" class="" readonly>
 					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
+					                                            	<td>거래처</td>
+					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
 					                                                	<input type="text" class="" readonly>
 					                                                </td>
-					                                                
-					                                                <td> <<
-					                                            		<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">-</option>
-								                                                <option value="">-</option>
-								                                        </select>
-								                                        >>
-					                                            	</td>
 					                                            </tr>
 					                                            
-					                                            <tr>
-					                                            	<td>거래처</td>
-					                                            	<td>
-						                                            	<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">거래처</option>
-								                                                <option value="">거래처분류</option>
-								                                        </select>
-					                                            	</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                            	
-					                                            	<td> <<
-					                                            		<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">-</option>
-								                                                <option value="">-</option>
-								                                        </select>
-								                                        >>
-					                                            	</td>
-					                                            </tr>
 						                                        </table>
 					    
 					                                        <div class="table-responsive">
@@ -314,45 +170,15 @@
 							                                            
 					                                                </thead>
 					                                                <tbody>
-					                                                    <tr>
-					                                                    <th scope="row">2018/12/20</th>
-					                                                    <td>[전이월]</td>
-					                                                    <td>2,390,167,000</td>
-					                                                    <td>1,939,534,000</td>
-					                                                    <td>450,633,000</td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th scope="row">2018/12/20</th>
-					                                                    <td>판관비_복리후생비</td>
-					                                                    <td></td>
-					                                                    <td>1,900,000</td>
-					                                                    <td></td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th scope="row">2018/12/20</th>
-					                                                    <td>판관비_복리후생비</td>
-					                                                    <td></td>
-					                                                    <td>1,900,000</td>
-					                                                    <td></td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th></th>
-					                                                    <td>[월계]</td>
-					                                                    <td></td>
-					                                                    <td>1,000,000</td>
-					                                                    <td></td>
-					                                                    </tr>
-					                                                    
-					                                                    <tr>
-					                                                    <th></th>
-					                                                    <td>[누계]</td>
-					                                                    <td>2,930,000,000</td>
-					                                                    <td>100,000,000</td>
-					                                                    <td></td>
-					                                                    </tr>
+					                                                    <c:forEach var="item" items="${AccountBook}">
+					                                                		<tr>
+							                                                    <td scope="row">${item.journal_date}<</td>
+							                                                    <td>${item.journal_abstract}</td>
+							                                                    <td>${item.debtor_value}</td>
+							                                                    <td>${item.creditor_value}</td>
+							                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
+						                                                    </tr>
+					                                                	</c:forEach>
 					                                                </tbody>
 					                                            </table>
 					                                        </div>
@@ -360,238 +186,11 @@
 					                                </div>
 					                            </div>
                                             </div>
-                                            
-                                            <!-- 총괄잔액 -->
-                                            <div class="tab-pane" id="message" role="tabpanel" aria-labelledby="message-tab">
-                                                <div class="col-sm-12">
-					                                <div class="card">
-					                                    <div class="card-body table-responsive">
-					                                        <div align="right">
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-					    										<br>
-					    									</div>
-					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-					                                             <tr>
-					                                                <td>회계단위</td>
-					                                                <td>
-					                                                <select class="form-control select2">
-							                                            <option>전체선택</option>
-							                                                <option value="">본점</option>
-							                                        </select>
-					                                                </td>
-					                                                <td>계정과목조회구분</td>
-					                                                <td>
-						                                                <input type="radio">범위
-						                                                <input type="radio">개별
-					                                                </td>
-					                                                
-					                                                <td>출력기준</td>
-					                                                <td>
-					                                                <select class="form-control select2">
-							                                            <option>선택</option>
-							                                                <option value="">1. 발생기준</option>
-							                                                <option value="">2. 잔액기준</option>
-							                                        </select>
-					                                                </td>
-					                                            </tr>
-					                                            
-					                                            <tr>
-					                                            
-					                                            	<td>계정과목</td>
-					                                            	<td>
-					                                            	<select class="form-control select2">
-							                                            <option>선택</option>
-							                                                <option value="">계정별</option>
-							                                                <option value="">세목별</option>
-							                                        </select>
-					                                            	</td>
-					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                
-					                                                <td>기표기간</td>
-					                                                <td>../../.. ~ ../../..</td>
-					                                            </tr>
-					                                            
-					                                            <tr>
-					                                            	<td>거래처</td>
-					                                            	<td>
-						                                            	<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">거래처</option>
-								                                                <option value="">거래처분류</option>
-								                                        </select>
-					                                            	</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                            	
-					                                            	<td> <<
-					                                            		<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">-</option>
-								                                                <option value="">-</option>
-								                                        </select>
-								                                        >>
-					                                            	</td>
-					                                            </tr>
-					                                        </table>
-				    
-				                                        <div class="table-responsive">
-				                                            <table class="table mb-0">
-				                                                <thead class="thead-light">
-				                                                    <tr>
-						                                                <th>코드</th>
-						                                                <th>계정과목</th>
-						                                                <th>전기(월)이월</th>
-						                                                <th>증가</th>
-						                                                <th>감소</th>
-						                                                <th>잔액</th>
-						                                                <th>거래처분류코드</th>
-						                                                <th>거래처분류명</th>
-						                                                <th>대표자성명</th>
-						                                            </tr>
-						                                            
-				                                                </thead>
-				                                                <tbody>
-				                                                    <tr>
-				                                                    <td>10000</td>
-				                                                    <td>외상금매출</td>
-				                                                    <td>5,000,000</td>
-				                                                    <td>88,000,000</td>
-				                                                    <td></td>
-				                                                    <td>93,000,000</td>
-				                                                    <td>1000</td>
-				                                                    <td>강남구</td>
-				                                                    <td>권순용</td>
-				                                                    </tr>
-				                                                </tbody>
-				                                            </table>
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                            </div>
-                                            </div>
-                                            
-                                            <!-- 총괄내용 -->
-                                            <div class="tab-pane" id="setting" role="tabpanel" aria-labelledby="setting-tab">
-                                                <div class="col-sm-12">
-					                                <div class="card">
-					                                    <div class="card-body table-responsive">
-					                                        <div align="right">
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">환경설정</button>
-						    									<button type="button" class="btn btn-outline-dark waves-effect waves-light">원장조회</button>
-					    										<br>
-					    									</div>
-					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-					                                            <tr>
-					                                                <td>회계단위</td>
-					                                                <td>
-					                                                <select class="form-control select2">
-							                                            <option>전체선택</option>
-							                                                <option value="">본점</option>
-							                                        </select>
-					                                                </td>
-					                                                <td>계정과목조회구분</td>
-					                                                <td>
-						                                                <input type="radio">범위
-						                                                <input type="radio">개별
-					                                                </td>
-					                                                
-					                                            </tr>
-					                                            
-					                                            <tr>
-					                                            
-					                                            	<td>계정과목</td>
-					                                            	<td>
-					                                            	<select class="form-control select2">
-							                                            <option>선택</option>
-							                                                <option value="">계정별</option>
-							                                                <option value="">세목별</option>
-							                                        </select>
-					                                            	</td>
-					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                
-					                                                <td>기표기간</td>
-					                                                <td>../../.. ~ ../../..</td>
-					                                            </tr>
-					                                            
-					                                            <tr>
-					                                            	<td>거래처</td>
-					                                            	<td>
-						                                            	<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">거래처</option>
-								                                                <option value="">거래처분류</option>
-								                                        </select>
-					                                            	</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                                	
-					                                               	<td>
-					                                                	<input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                </td>
-					                                            	
-					                                            	<td> <<
-					                                            		<select class="form-control select2">
-								                                            <option>선택</option>
-								                                                <option value="">-</option>
-								                                                <option value="">-</option>
-								                                        </select>
-								                                        >>
-					                                            	</td>
-					                                            </tr>
-					                                        </table>
-				    
-				                                        <div class="table-responsive">
-				                                            <table class="table mb-0">
-				                                                <thead class="thead-light">
-				                                                    <tr>
-						                                                <th>날짜</th>
-						                                                <th>코드</th>
-						                                                <th>계정과목</th>
-						                                                <th>적요</th>
-						                                                <th>차변</th>
-						                                                <th>대변</th>
-						                                            </tr>
-						                                            
-				                                                </thead>
-				                                                <tbody>
-				                                                    <tr>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td></td>
-				                                                    <td>[전원이월]</td>
-				                                                    <td>21,600,000</td>
-				                                                    <td></td>
-				                                                    </tr>
-				                                                </tbody>
-				                                            </table>
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                              </div>
-                                            </div><!-- 총괄내용 끝 -->
                                         </div>
-                                    
+                                    </div>
                                     <!--  -->
-                                        
+                              </div>       
+                           </div>   
                         </div>
                     </div> <!-- end container-fluid -->
 

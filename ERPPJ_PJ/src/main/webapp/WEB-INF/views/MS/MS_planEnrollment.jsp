@@ -78,19 +78,20 @@
 									</div>
 									<div class="form-group">
 										<label>기획제안자</label>
-										<div>
+										<br>
+										<div  style="display: inline-flex;">
 											<input type="text" name="username" id="username"
 												class="form-control" required placeholder="기획제안자"
-												onclick="usernameList()" style="width:200px;" />
+												onclick="usernameList()" style="width:200px; margin-right: 30px;" />
 											<input type="text" name="e_name" id="e_name"
 											class="form-control" required placeholder="사원명" 
-												style="width:200px;" disabled/>
+												style="width:200px; margin-right: 30px;" disabled/>
 											<input type="text" name="department_code" id="department_code"
 											class="form-control" required placeholder="부서코드" 
-												style="width:200px;" disabled/>
+												style="width:200px; margin-right: 30px;" disabled/>
 											<input type="text" name="position_code" id="position_code"
 											class="form-control" required placeholder="직책코드" 
-												style="width:200px;" disabled/>
+												style="width:200px; margin-right: 30px;" disabled/>
 										</div>
 									</div>
 									<div class="form-group">

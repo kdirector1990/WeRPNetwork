@@ -39,7 +39,7 @@
     					var username = vo[i].username;
     					var e_name = vo[i].e_name;
     					
-    					$("#result").append('<tr>' +
+    					$("#result").append('<tr onclick="selectUsersWork('+username+');">' +
     							'<td><input type="checkbox" name="username" value="'+username+'" class="checklist"></td>' +
     							'<td>'+ rownum+ '</td>' +
     							'<td>'+ username+ '</td>' +
@@ -50,7 +50,7 @@
     				alert("사원목록을 가져왔습니다.");
     			},
     			error : function(){
-    				alert("전산 오류로 인하여 사원목록을 실패하였습니다.");
+    				alert("전산 오류로 인하여 사원 검색에 실패하였습니다.");
     			}
     		});
 		}
@@ -66,6 +66,9 @@
     			success: function(insertCnt){
     				if(insertCnt == 1){
     					alert("사원출근을 기록하였습니다.");    					
+    				}
+    				else if(insertCnt == 0){
+    					alert("이미 출근을 기록한 사원입니다.")
     				}
     			},
     			error : function(){
@@ -83,8 +86,12 @@
     			data : param,
     			dataTpye: 'json',
     			success: function(updateCnt){
+    				alert(updateCnt);
     				if(updateCnt == 1){
     					alert("사원의 퇴근을 기록하였습니다.");    					
+    				}
+    				else if(updateCnt == 0){
+    					alert("이미 퇴근을 기록한 사원입니다.");
     				}
     			},
     			error : function(){
@@ -92,6 +99,22 @@
     			}
     		});
 		}
+		
+	function selectUsersWork(code){
+		var param = {"username" : code};
+		$.ajax({
+			url: '/erp/Select_Users_Work_Data?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(vo){
+				alert("작동");
+			},
+			error : function(){
+				alert("전산 오류로 인하여 사원의 기록을 못 가져왔습니다.");
+			}
+		});
+	}
 		
 		
 		function allcheck(){
@@ -102,6 +125,7 @@
 	    		$(".checklist").prop("checked", false);
 	    	}
 		}
+		
 	</script>
 	
 </head>
@@ -167,7 +191,7 @@
 													</c:forEach>
 												</select>
 											</td>
-										<th class="col-md-1 col-form-label">사원 이름</th>
+										<th class="col-md-1 col-form-label">사원이름</th>
 											<td class="col-md-2 input-group">
 												<input type="text" name="e_name" class="form-control">
 											</td>
@@ -230,21 +254,6 @@
 									</thead>
 								</table>
 								
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-									style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid"
-									aria-describedby="datatable-fixed-col_info">
-									<thead>
-										<tr>											
-											<th colspan="3">총 근태일수/시간</th>
-										</tr>
-										<tr>
-											<th>구 분</th>
-											<th>일 수</th>
-											<th>시 간</th>											
-										</tr>
-									</thead>
-								</table>
 							</div>
 						</div>					
 					</div>

@@ -141,6 +141,7 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setEp_code(ep_code);
 		vo.setEp_amount(Integer.parseInt(req.getParameter("ep_amount")));
 		vo.setEp_deliver_date(Date.valueOf(req.getParameter("ep_deliver_date")));
+		vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
 
 		int updateEstimate = dao.updateEstimate(vo);
 		req.setAttribute("ep_code", ep_code);
@@ -238,6 +239,23 @@ public class ST_ServiceImpl implements ST_Service {
 		}
 
 	}
+	
+	// ST_salePlan 등록
+	@Override
+	public void salePlanWrite(HttpServletRequest req, Model model) {
+	 SalePlan vo = new SalePlan();
+	 vo.setSaleplan_code(req.getParameter("saleplan_code"));
+	 vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
+	 vo.setSp_unit(req.getParameter("sp_unit"));
+	 vo.setS_plan_start(Date.valueOf(req.getParameter("s_plan_start")));
+	 vo.setS_plan_end(Date.valueOf(req.getParameter("s_plan_end")));
+	 vo.setEf_price(Integer.parseInt(req.getParameter("ef_price")));
+	 vo.setSp_note(req.getParameter("sp_note"));
+	 
+	 int salePlanWrite = dao.writeSalePlan(vo);
+	 model.addAttribute("salePlanWrite", salePlanWrite);
+	 
+	}
 
 	// ST_sale_plan 상세 페이지 (수정 목록)
 	@Override
@@ -299,7 +317,7 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setStored_count(Integer.parseInt(req.getParameter("release_count")));
 		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSar_type(req.getParameter("sar_type"));
-		vo.setDetail_ac_code("qa8");
+		vo.setDetail_ac_code("qa1005");
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
 		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
@@ -493,10 +511,46 @@ public class ST_ServiceImpl implements ST_Service {
 		if (cnt > 0) {
 			model.addAttribute("curruentPage", currentPage); // 현재페이지
 		}
+	}
+	
+	// ST_saleList 상세 페이지 폼
+	@Override
+	public void saleListWriteForm(HttpServletRequest req, Model model) {
+		String salelist_code = req.getParameter("salelist_code");
 		
+		SaleList vo = dao.getsaleListForm(salelist_code);
+		
+		model.addAttribute("sto", vo);
+		model.addAttribute("salelist_code", salelist_code);
+	}
+	
+	// ST_saleList 수정 페이지 폼
+	@Override
+	public void saleListModifyPro(HttpServletRequest req, Model model) {
+		String salelist_code = req.getParameter("salelist_code");
+		
+		SaleList vo = new SaleList();
+		vo.setSalelist_code(salelist_code);
+		vo.setRelease_o_date(Date.valueOf(req.getParameter("release_o_date")));
+		vo.setUnit(req.getParameter("unit"));
+		vo.setPrice(Integer.parseInt(req.getParameter("price")));
+		vo.setNote(req.getParameter("note"));
+
+		int updateSaleList = dao.updateSaleList(vo);
+		
+		req.setAttribute("salelist_code", salelist_code);
+		req.setAttribute("updateSaleList", updateSaleList);
 		
 	}
 	
+	// ST_saleList 상세 페이지 삭제
+	@Override
+	public void saleListDeletePro(HttpServletRequest req, Model model) {
+		String salelist_code = req.getParameter("salelist_code");
+		int deletesaleList = dao.deleteSaleList(salelist_code);
+		model.addAttribute("salelist_code", salelist_code);
+		model.addAttribute("deletesaleList", deletesaleList);
+	}
 	
 	// Product 검색
 	@Override
@@ -531,8 +585,8 @@ public class ST_ServiceImpl implements ST_Service {
 		}
 		
 		model.addAttribute("cnt", cnt);
-		
 	}
+	
 	
 	// tables-datatable (거래 명세서) 목록
 	@Override

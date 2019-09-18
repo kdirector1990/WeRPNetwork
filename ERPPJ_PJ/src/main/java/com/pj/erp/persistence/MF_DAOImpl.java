@@ -74,5 +74,17 @@ public class MF_DAOImpl implements MF_DAO {
 	public int insertDetailAc(MF_material vo) {
 		return sqlSession.insert("com.pj.erp.persistence.MF_DAO.insertDetailAc", vo);
 	}
+
+	//생산계획수정
+	@Override
+	public int updateMFplan(MF_plan vo) {
+		return sqlSession.update("com.pj.erp.persistence.MF_DAO.updateMFplan", vo);
+	}
+
+	//생산계획삭제
+	@Override
+	public int deleteMFplan(String p_pp_code) {
+		return sqlSession.delete("com.pj.erp.persistence.MF_DAO.delateMFplan", p_pp_code);
+	}
 	
 }
