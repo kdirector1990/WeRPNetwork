@@ -16,37 +16,42 @@
 <body>
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
-		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover">
-				<thead>
-					<tr class="table-info" style="text-align: center;">
-						<th>사원코드</th>
-						<th>사원명</th>
-						<th>부서코드</th>
-						<th>직책코드</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--  있으면 -->
-					<c:if test="${cnt != 0}">
-						<c:forEach var="list" items="${dto}">
-							<tr onclick="setName(${list.username},'${list.e_name}','${list.department_code}','${list.position_code}');">
-								<td>${list.username}</td>
-								<td>${list.e_name}</td>
-								<td>${list.department_code}</td>
-								<td>${list.position_code}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					<!--  없으면 -->
-					<c:if test="${cnt == 0}">
-						<tr>
-							<td colspan="6" align="center">조회결과 없음
+		<div style="width: 100%; height: 310px; overflow: auto">
+			<form>
+				<table id="datatable" class="table table-bordered table-hover"
+					style="height: 550px;">
+					<thead class="table-info">
+						<tr style="text-align: center; pointer-events: none;">
+							<th>사원코드</th>
+							<th>사원명</th>
+							<th>부서코드</th>
+							<th>직책코드</th>
 						</tr>
-					</c:if>
-				</tbody>
-			</table>
-		</form>
+					</thead>
+
+					<tbody>
+						<!--  있으면 -->
+						<c:if test="${cnt != 0}">
+							<c:forEach var="list" items="${dto}">
+								<tr
+									onclick="setName(${list.username},'${list.e_name}','${list.department_code}','${list.position_code}');">
+									<td>${list.username}</td>
+									<td>${list.e_name}</td>
+									<td>${list.department_code}</td>
+									<td>${list.position_code}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<!--  없으면 -->
+						<c:if test="${cnt == 0}">
+							<tr>
+								<td colspan="6" align="center">조회결과 없음
+							</tr>
+						</c:if>
+					</tbody>
+				</table>
+			</form>
+		</div>
 	</div>
 	<!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
