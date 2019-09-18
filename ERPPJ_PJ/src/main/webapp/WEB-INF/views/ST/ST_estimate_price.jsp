@@ -29,9 +29,7 @@ function callback() {
 		if(httpRequest.status == 200){	// 200 : 정상 종료
 		 	result.innerHTML = "정상종료";
 			
-			var datas = httpRequest.responseText; 
-			
-			var bookList = "";
+			var datas = httpRequest.responseText;  
 			
 			result.innerHTML = datas;
 		} else {
@@ -54,28 +52,32 @@ $(function(){
 		param.username = $("#username").val();
 		param.product_name = $("#ProductName").val();
 				
-		jsonData = JSON.stringify(param);
+		jsonData = JSON.stringify(param); 
 		
 		$.ajax({
 			url : '${pageContext.request.contextPath}/ST_estimate_result?${_csrf.parameterName}=${_csrf.token }',
 			type : 'POST',
 			data : jsonData, 
 			dataType : "json",
-			contentType:"application/json;charset=UTF-8",
+			contentType:"application/json;charset=UTF-8", 
 			success : function(list){
 				
 				$('#result_2').empty();
 				
 				
-				
+				alert("dds: "+list.length);
 				for(var i = 0 ; i < list.length; i++){
-				
+					 
 					var ep_code = list[i].ep_code;
 					var ep_amount = list[i].ep_amount;
 					var ep_price = list[i].ep_price;						
 					var sp_unit = list[i].sp_unit;
 					var sp_note = list[i].sp_note;
+					var product_code = list[i].product_code;
 					var product_name = list[i].product_name;
+					
+					var customer_name = list[i].customer_name;
+					var username = list[i].username;
 					
 					var ep_deliver_date = list[i].ep_deliver_date;
 					var pa = new Date(ep_deliver_date);
@@ -84,7 +86,7 @@ $(function(){
 					var day = pa.getDate(); 
 					var ep_deliver = year + "/" + month +"/"+day;
 					
-					var s_plan_end = list[i].s_plan_end;
+					var s_plan_end = list[i].ep_reg_date;
 					var pa = new Date(s_plan_end);
 					var year = pa.getFullYear();
 					var month = (1+pa.getMonth());
@@ -92,16 +94,16 @@ $(function(){
 					var s_plan = year + "/" + month +"/"+day;
 					
 					$('#result_2').append('<tr onclick="ST_estimate_Form(\''+ep_code+'\')">'+
-                        	'<td>'+ saleplan_code +'</td>'+
-                        	'<td>'+ product_name +'</td>'+
-                        	'<td>'+ customer_name +'</td>'+
-                        	'<td>'+ detail_ac_code +'</td>'+
-							'<td>'+ product_name +'</td>'+
+							'<td>'+ ep_code +'</td>'+ 
+                        	'<td>'+ customer_name +'</td>'+ 
+                        	'<td>'+ username +'</td>'+
+                        	'<td>'+ product_code +'</td>'+ 
+							'<td>'+ product_name +'</td>'+ 
 							'<td>'+ ep_amount +'</td>'+
 							'<td>'+ ep_deliver +'</td>'+
-							'<td>'+ s_plan +'</td>'+
+							'<td>'+ s_plan + '</td>'+
 							'<td>'+ ep_price +'</td>'+
-							'<td>'+  +'</td>'+
+							'<td>'+ ep_price*0.1 +'</td>'+
                 		'</tr>');
 				
 				if(searchCount == 1){
@@ -134,7 +136,9 @@ $(function(){
 			error : function(){
 				alert("에러");
 			}
-		});			
+		});
+		
+		alert("스크립트 종료");
 	}); 
 });
 

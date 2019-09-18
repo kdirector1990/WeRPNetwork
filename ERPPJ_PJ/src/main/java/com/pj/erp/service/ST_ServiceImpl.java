@@ -124,7 +124,10 @@ public class ST_ServiceImpl implements ST_Service {
 	// ST_estimate 검색
 	@Override
 	public List<Estimate> getEstimate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
-		List<Estimate> list = dao.getEstimateresult(map);
+		List<Estimate> list = dao.getEstimateresult(map); 
+		System.out.println(list.get(0).get));
+		System.out.println(list.get(0).getCustomer_name());
+		
 		return list;
 	}
 
