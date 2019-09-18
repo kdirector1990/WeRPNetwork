@@ -17,6 +17,7 @@ import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 @Repository
 public class HR_DAOImpl implements HR_DAO{
@@ -189,6 +190,11 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public HR_FamilyVO getFamily(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
+	}
+
+	@Override
+	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getYearofservice", map);
 	}	
 
 	

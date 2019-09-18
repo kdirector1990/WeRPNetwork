@@ -32,6 +32,7 @@ import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
@@ -516,6 +517,15 @@ public class HR_ServiceImpl implements HR_Service{
 		}
 		
 		return updateCnt;
+	}
+
+
+
+	@Override
+	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws java.text.ParseException {
+		List<HR_YearService_VO> list = dao.getYearofservice(map);
+		return list;
 	}
 
 

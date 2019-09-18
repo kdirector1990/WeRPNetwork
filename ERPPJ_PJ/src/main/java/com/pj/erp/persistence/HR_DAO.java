@@ -13,6 +13,7 @@ import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 public interface HR_DAO {
 
@@ -96,4 +97,8 @@ public interface HR_DAO {
 	
 	//근태(퇴근입력)
 	public int EndWork(String username);
+	
+	//근속년수 검색결과
+	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map);
+	
 }

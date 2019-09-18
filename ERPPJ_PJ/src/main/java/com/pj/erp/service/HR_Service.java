@@ -15,6 +15,7 @@ import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 public interface HR_Service {
 	
@@ -90,5 +91,9 @@ public interface HR_Service {
 	
 	//근태(퇴근 입력)
 	public int InsertEndWork(HttpServletRequest req, Model model);
+	
+	//근속년수 검색
+	public List<HR_YearService_VO> getYearofservice(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;	
+	
 	
 }
