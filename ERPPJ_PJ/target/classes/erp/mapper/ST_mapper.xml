@@ -14,7 +14,10 @@
  	</select>
  	
  	<select id="getSaleplanArticle" resultType="com.pj.erp.vo.ST.SalePlan">
- 		SELECT * FROM saleplan_tbl WHERE saleplan_code=#{saleplan_code}
+ 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code
+ 		from saleplan_tbl s, product_list_tbl p
+ 		where s.detail_ac_code = p.product_code
+ 		and saleplan_code =#{saleplan_code}
  	</select>
  	
  	<update id="updatesalePlan" parameterType="com.pj.erp.vo.ST.SalePlan">
@@ -29,6 +32,15 @@
  		INSERT INTO saleplan_tbl(saleplan_code, ef_amount, sp_unit, s_plan_start, s_plan_end, ef_price, sp_note)
  			VALUES('sal_'||sale_plan_seq.nextval, #{ef_amount}, #{sp_unit}, #{s_plan_start}, #{s_plan_end}, #{ef_price}, #{sp_note})
  	</insert>
+ 	
+ 	<select id="getSalePlanResult" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.ST.SalePlan">
+ 		<![CDATA[
+ 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code
+ 		from saleplan_tbl s, product_list_tbl p
+ 		where s.detail_ac_code = p.product_code
+ 		and product_name like '%'||#{productName}||'%'
+ 		]]>
+ 	</select>
  	
  	
  	<!-- estimate_price 견적 현황 -->
