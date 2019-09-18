@@ -100,43 +100,42 @@
 										</select>
 									</div>
 									<div class="form-group">
-										<label>기획제안자</label>
-										<div  style="display: inline-flex;">
+										<div  style="display: -webkit-inline-box;">
+											<label class="col-md-1 col-form-label">기획제안자</label>
 											<input type="text" name="username" id="username"
 												class="form-control" required placeholder="기획제안자코드"
-												onclick="usernameList()" style="width:200px; margin-right: 30px;" />
-											<label>사원명</label>
+												onclick="usernameList()"/>
+											<label class="col-md-1 col-form-label">사원명</label>
 											<input type="text" name="e_name" id="e_name"
 											class="form-control" required placeholder="사원명" 
-												style="width:200px; margin-right: 30px;" disabled/>
-											<label>부서코드</label>
+												disabled/>
+											<label class="col-md-1 col-form-label">부서코드</label>
 											<input type="text" name="department_code" id="department_code"
 											class="form-control" required placeholder="부서코드" 
-												style="width:200px; margin-right: 30px;" disabled/>
-											<label>직책코드</label>
+												disabled/>
+											<label class="col-md-1 col-form-label">직책코드</label>
 											<input type="text" name="position_code" id="position_code"
 											class="form-control" required placeholder="직책코드" 
-												style="width:200px; margin-right: 30px;" disabled/>
+												 disabled/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label>책임자</label> 
-										<div style="display: inline-flex;">
-											<input type="text" name="position_code" id="position_code2" onclick="positionCode();"
-												class="form-control" required placeholder="책임자코드"
-													style="width:200px; margin-right: 30px;" />
+										<div style="display: -webkit-inline-box;">
 											<label>책임자</label>
+											<input type="text" name="position_code" id="position_code2" onclick="positionCode();"
+												class="form-control" required placeholder="책임자코드"/>
+											<label>사원명</label>
 											<input type="text" name="e_name" id="e_name2"
 												class="form-control" required placeholder="사원명" 
-													style="width:200px; margin-right: 30px;" disabled/>
-											<label>책임자</label>
+													 disabled/>
+											<label>부서코드</label>
 											<input type="text" name="department_code" id="department_code2"
 											class="form-control" required placeholder="부서코드" 
-												style="width:200px; margin-right: 30px;" disabled/>
-											<label>책임자</label>
+												 disabled/>
+											<label>사원코드</label>
 											<input type="text" name="username" id="username2"
 												class="form-control" required placeholder="사원코드" 
-													style="width:200px; margin-right: 30px;" disabled/>	
+													disabled/>	
 										</div>
 									</div>
 									<div class="form-group">

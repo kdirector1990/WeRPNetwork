@@ -22,7 +22,7 @@
 	</c:if>
 
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-body">
 					<div class="table-responsive">
@@ -94,20 +94,9 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<!-- end row -->
-
-
-
-
-
-
-
-
-
-
 
 	<%@ include file="../setting2.jsp"%>
 </body>
