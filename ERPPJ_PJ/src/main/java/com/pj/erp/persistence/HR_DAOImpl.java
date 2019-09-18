@@ -12,9 +12,11 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR_YearService_VO;
 
 @Repository
 public class HR_DAOImpl implements HR_DAO{
@@ -200,6 +202,20 @@ public class HR_DAOImpl implements HR_DAO{
 	public HR_FamilyVO getFamily(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getFamily", username);
 	}
+
+	@Override
+	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getYearofservice", map);
+	}	
+
+	
+
+
+	@Override
+	public int recordInput(HR_RecordVO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.recordInput", vo);
+	}
+
 	
 	//근태(근무월별 있는가)
 	@Override
@@ -211,6 +227,11 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public List<HR_Time_VO> SelectDetailWork(HR_Time_VO vo) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.SelectDetailWork", vo);
+	}
+
+	@Override
+	public String getPositionRecord() {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getPositionRecord");
 	}
 
 

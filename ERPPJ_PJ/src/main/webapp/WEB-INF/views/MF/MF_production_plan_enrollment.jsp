@@ -20,7 +20,6 @@
     			success: function(param){
     				alert("생산계획등록 성공");
     				location.reload();
-    				
     			},
     			error : function(){
     				alert("생산계획등록 실패");
@@ -74,7 +73,7 @@
 									</div>
 									<div class="form-group">
 										<label>BOM코드</label> <input type="text" name="bom_code" id="bom_code"
-											class="form-control" required placeholder="BOM코드" disabled/>
+											class="form-control" required placeholder="BOM코드" readonly/>
 									</div>
 									<div class="form-group">
 										<label>제품명</label> <input type="text" name="product_name" id="product_name"

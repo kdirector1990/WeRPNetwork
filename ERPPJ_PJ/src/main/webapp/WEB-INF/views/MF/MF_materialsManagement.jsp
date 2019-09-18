@@ -39,8 +39,8 @@
                                         <h4 class="header-title">자재관리</h4>
                                         
     									<hr>
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
+                                        <table id="datatable" class="table m-0 table-bordered table-hover" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <thead class="bg-primary text-white">
                                             <tr>
                                             	<th>계정코드</th>
                                                 <th>자재명</th>
