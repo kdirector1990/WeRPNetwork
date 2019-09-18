@@ -150,7 +150,6 @@ function callback() {
 												</table>
 											</div>
 											<!-- end .table-responsive -->
-
 										</div>
 										<!-- end .table-rep-plugin-->
 									</div>
