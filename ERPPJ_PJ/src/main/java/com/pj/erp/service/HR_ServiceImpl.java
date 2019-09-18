@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -30,9 +30,11 @@ import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
+import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.CT.CT_AS_VO;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
@@ -272,8 +274,8 @@ public class HR_ServiceImpl implements HR_Service{
 		String spa_date = "";
 		String epa_date = "";
 		
-		Date sdate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
-		Date edate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		Date sdate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
+		Date edate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
 		
 		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
 			
@@ -569,5 +571,39 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		return dto;
 	}
+	
+	// 인사발령 등록
+	@Override
+	public void HR_recordinput(HttpServletRequest req, Model model) {
+		
+		HR_RecordVO vo = new HR_RecordVO();		
+		
+		String record_title = req.getParameter("record_title");
+		String record_division = req.getParameter("record_division");
+		String record_date = req.getParameter("record_date");
+		Date col = Date.valueOf(record_date);		
+		
+		vo.setRecord_title(record_title);
+		vo.setRecord_division(record_division);
+		vo.setRecord_date(col);
+		
+		dao.HR_recordinput();
+		
+	}
+
+
+
+	@Override
+	public HR_VO HR_select_username(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		System.out.println(username);
+		
+		HR_VO data = dao.getFoundation(username);
+		
+		return data;
+	}
+
+
 
 }

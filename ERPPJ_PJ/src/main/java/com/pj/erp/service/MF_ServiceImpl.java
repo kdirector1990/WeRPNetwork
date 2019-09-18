@@ -37,9 +37,7 @@ public class MF_ServiceImpl implements MF_Service {
 		vo.setMaterial_unit(req.getParameter("material_unit"));
 		System.out.println(vo.getMaterial_name());
 		
-		int insertCnt = dao.insertMF(vo);
-		
-		model.addAttribute("insertCnt", insertCnt);
+		dao.insertMF(vo);
 	}
 
 	//자재목록가져오기
@@ -65,20 +63,18 @@ public class MF_ServiceImpl implements MF_Service {
 		vo.setMaterial_name(req.getParameter("material_name"));
 		vo.setMaterial_unit(req.getParameter("material_unit"));
 		
-		int updateCnt = dao.updateMF(vo);
-		
-		model.addAttribute("cnt", updateCnt);
+		dao.updateMF(vo);
 	}
 
 	//자재목록삭제
 	@Override
 	public void deleteMF(HttpServletRequest req, Model model) {
 		String material_code = req.getParameter("material_code");
+		System.out.println(material_code);
 		
-		int deleteCnt = dao.deleteMaterial(material_code);
-		
-		model.addAttribute("cnt", deleteCnt);
+		dao.deleteMaterial(material_code);
 	}
+	
 	//생산계획등록처리
 	@Override
 	public void insertMFPlan(HttpServletRequest req, Model model) {
@@ -99,9 +95,8 @@ public class MF_ServiceImpl implements MF_Service {
 		vo.setEf_cost(Integer.parseInt(req.getParameter("ef_cost")));
 		vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
 		
-		int insertCnt = dao.insertMFplan(vo);
+		dao.insertMFplan(vo);
 		
-		model.addAttribute("cnt", insertCnt);
 	}
 
 	// 생산계획목록가져오기
@@ -127,5 +122,35 @@ public class MF_ServiceImpl implements MF_Service {
 		model.addAttribute("cnt", cnt);
 	}
 
+	// 생산계획수정
+	@Override
+	public void updateMFplan(HttpServletRequest req, Model model) {
+		MF_plan vo = new MF_plan();
+		vo.setP_pp_code(req.getParameter("p_pp_code"));
+		vo.setBom_code(req.getParameter("bom_code"));
+		vo.setProduct_code(req.getParameter("product_code"));
+		
+		String start_date = req.getParameter("start_date");
+		start_date = start_date.replace("/", "-");
+		
+		String end_date = req.getParameter("end_date");
+		end_date = end_date.replace("/", "-");
+		
+		vo.setStart_date(Date.valueOf(start_date));
+		vo.setEnd_date(Date.valueOf(end_date));
+		
+		vo.setEf_cost(Integer.parseInt(req.getParameter("ef_cost")));
+		vo.setEf_amount(Integer.parseInt(req.getParameter("ef_amount")));
+		
+		dao.updateMFplan(vo);
+	}
 	
+	// 생산계획삭제
+	@Override
+	public void deleteMFplan(HttpServletRequest req, Model model) {
+		String p_pp_code = req.getParameter("p_pp_code");
+		System.out.println(p_pp_code);
+		
+		dao.deleteMFplan(p_pp_code);
+	}
 }
