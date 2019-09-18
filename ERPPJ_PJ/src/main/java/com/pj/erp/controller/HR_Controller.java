@@ -121,6 +121,7 @@ public class HR_Controller {
 		return "index";
 	}*/
 	
+	// 사원정보
 	@RequestMapping("HR_update_Fou")
 	@ResponseBody
 	public HR_VO HR_update_Fou(HttpServletRequest req, Model model) {

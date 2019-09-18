@@ -59,11 +59,12 @@
 					 e.ep_amount as ep_amount, 
 					 e.ep_deliver_date as ep_deliver_date, 
 					 e.ep_price as ep_price, 
-					 e.ep_reg_date as reg_date, 
+					 e.ep_reg_date as ep_reg_date, 
 					 e.username as username, 
 					 p.product_code as product_code, 
 					 p.product_name as product_name, 
-					 c.customer_name as customer_name
+					 c.customer_name as customer_name,
+					 e.ep_deliver_date as ep_deliver_date
 				 from estimate_price_tbl e, customer_list_tbl c, product_list_tbl p
 				 Where e.customer_code = c.customer_code
 				 And e.detail_ac_code = p.product_code

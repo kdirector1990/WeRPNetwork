@@ -197,10 +197,10 @@
    			
    			$('.result').show();
    			
-   			$('#datatable2 > tbody:last').append('<div class="plandiv">'+'<input type="hidden" name="plan_code" value="'+tdArr[0]+'"><div class="form-group row">'
-	  					+ '<label class="col-md-2 col-form-label" for="example-email">기획서 코드</label>'        
+   			$('#datatable2 > tbody:last').append('<div class="plandiv" id="test123">'+'<input type="hidden" name="plan_code" value="'+tdArr[0]+'"><div class="form-group row">'
+	  					+ '<label class="col-md-2 col-form-label" for="example-email" >기획서 코드</label>'        
 	  						+ '<div class="col-md-10">'
-	  				    		+ '<input type="text" name="plan_code" value="'+tdArr[0]+'" class="form-control" disabled>' 
+	  				    		+ '<input type="text" name="plan_code"  value="'+tdArr[0]+'" class="form-control" disabled>' 
 	  				        +'</div>'
 	  				    +'</div>'
 	  				    +'<div class="form-group row">'
@@ -272,10 +272,9 @@
 	  					+ '</div>'
 	  					+'</div>'
 	  				    );
-   			
+ 
    		 var offset = $(".plandiv").offset();
-         $('html, body').animate({scrollTop : offset.top}, 200);
-
+         $('html, body').animate({scrollTop : offset.top}, 200); 
 		});
      
      function updatePlan(){

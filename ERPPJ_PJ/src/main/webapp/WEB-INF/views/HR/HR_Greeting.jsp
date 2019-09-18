@@ -136,21 +136,21 @@
 											<label class="col-md-2 col-form-label" for="simpleinput">발령구분</label>
 											<div class="col-md-10">
 												<input type="text" id="simpleinput" class="form-control"
-													value="Some text value...">
+													value="" disabled>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-2 col-form-label" for="example-email">발령자</label>
 											<div class="col-md-10">
 												<input type="email" id="example-email" name="example-email"
-													class="form-control" placeholder="Email">
+													class="form-control" placeholder="발령자">
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-2 col-form-label" for="example-password">발신사업장</label>
 											<div class="col-md-10">
 												<input type="text" id="simpleinput" class="form-control"
-													value="Some text value...">
+													value="" disabled>
 											</div>
 										</div>
 
@@ -159,20 +159,20 @@
 												for="example-palaceholder">발신부서</label>
 											<div class="col-md-10">
 												<input type="text" id="simpleinput" class="form-control"
-													value="Some text value...">
+													value="" disabled>
 											</div>
 										</div>
 										<div class="form-group row">
 											<label class="col-md-2 col-form-label" for="example-textarea">참조</label>
 											<div class="col-md-10">
 												<input type="text" id="simpleinput" class="form-control"
-													value="Some text value...">
+													value="" disabled>
 											</div>
 										</div>
 										
 										<div class="form-group mb-0">
 											<input type="submit" class="btn btn-success"
-												value="사원추가">
+												value="사원추가" disabled>
 										</div>
 									</form>
 								</div>
