@@ -123,20 +123,27 @@
                         </div>
                     </li>
 						 <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="dripicons-user" alt="user-image" class="rounded-circle"></i>
+                        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <i class="dripicons-user noti-icon" alt="user-image" class="rounded-circle"></i>
                         <!-- <img src="/erp/resources/assets/images/users/login.png" alt="user-image" class="rounded-circle"> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <!-- item-->
                             <div class="dropdown-header noti-title">
-                                <h6 class="text-overflow m-0">Welcome !</h6>
+                                <h6 class="text-overflow m-0">Welcome ! ${name}</h6>
                             </div>
-                            <!-- item-->
-                            <sec:authorize access="isAnonymous()">
-                            <a href="login" class="dropdown-item notify-item">
-                                <i class="fe-log-in"></i>
-                                <span>LogIn</span>
+                             <!-- item-->
+                            <sec:authorize access="isAuthenticated()">
+                            	
+                            <a href="#" class="dropdown-item notify-item">
+                                 <h6 class="text-overflow m-0">출근</h6>
+                            </a>
+                            </sec:authorize>
+                             <!-- item-->
+                            <sec:authorize access="isAuthenticated()">
+                            	
+                            <a href="#" class="dropdown-item notify-item">
+                                 <h6 class="text-overflow m-0">퇴근</h6>
                             </a>
                             </sec:authorize>
                             <!-- item-->
