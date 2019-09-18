@@ -272,13 +272,9 @@
 	  					+ '</div>'
 	  					+'</div>'
 	  				    );
-   			
-<<<<<<< HEAD
-=======
+ 
    		 var offset = $(".plandiv").offset();
-         $('html, body').animate({scrollTop : offset.top}, 200);
-
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+         $('html, body').animate({scrollTop : offset.top}, 200); 
 		});
      
      function updatePlan(){
