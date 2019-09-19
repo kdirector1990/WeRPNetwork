@@ -79,6 +79,7 @@
 
 			
 				<div class="row">
+						
 						<div class="col-sm-12">
 							<div class="card">
 							 	<form name = "HR_record_input" action = "HR_recordinput" method = "post">

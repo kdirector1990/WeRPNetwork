@@ -183,28 +183,28 @@
 									</div>
 									
 									<div class="form-group row">
-									<label class="col-md-1 col-form-label" for="simpleinput">보훈관계<span class="text-danger">*</span></label>
-									<div class="col-md-4">
-										<select class="form-control select2" name="e_veteran_info" onchange="">
-											<option value="비해당">0. 비해당</option>
-											<option value="할아버지">1. 할아버지</option>
-											<option value="아버지">2. 아버지</option>
-											<option value="본인">3. 본인</option>																																							
-										</select>
+										<label class="col-md-1 col-form-label" for="simpleinput">보훈관계<span class="text-danger">*</span></label>
+										<div class="col-md-4">
+											<select class="form-control select2" name="e_veteran_info" onchange="">
+												<option value="비해당">0. 비해당</option>
+												<option value="할아버지">1. 할아버지</option>
+												<option value="아버지">2. 아버지</option>
+												<option value="본인">3. 본인</option>																																							
+											</select>
+										</div>
+										<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
+										<label class="col-md-1 col-form-label" for="simpleinput">보훈등급<span class="text-danger">*</span></label>
+										<div class="col-md-4">
+											<select class="form-control select2" name="e_veteran_level" onchange="">
+												<option value="비해당">0. 비해당</option>
+												<option value="국가유공자">1. 국가유공자</option>
+												<option value="고엽제후유증환자">2. 고엽제 후유증 및 고엽제 후유증 2세환자</option>
+												<option value="5.18 민주유공자">3. 5.18 민주유공자</option>
+												<option value="특수임무수행자">4. 특수임무수행자</option>
+												<option value="중장기복무제대군인">5. 중장기복무제대군인</option>																							
+											</select>
+										</div>																
 									</div>
-									<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-									<label class="col-md-1 col-form-label" for="simpleinput">보훈등급<span class="text-danger">*</span></label>
-									<div class="col-md-4">
-										<select class="form-control select2" name="e_veteran_level" onchange="">
-											<option value="비해당">0. 비해당</option>
-											<option value="국가유공자">1. 국가유공자</option>
-											<option value="고엽제후유증환자">2. 고엽제 후유증 및 고엽제 후유증 2세환자</option>
-											<option value="5.18 민주유공자">3. 5.18 민주유공자</option>
-											<option value="특수임무수행자">4. 특수임무수행자</option>
-											<option value="중장기복무제대군인">5. 중장기복무제대군인</option>																							
-										</select>
-									</div>																
-								</div>
 								
 								<div class="form-group text-right mb-0">
                                     <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
