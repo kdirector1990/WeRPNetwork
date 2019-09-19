@@ -172,7 +172,7 @@
 			</div>
 			<!-- end content -->
 
-			<%@ include file="../footer.jsp"%>
+		<%@ include file="../footer.jsp"%>
 
 		</div>
 
