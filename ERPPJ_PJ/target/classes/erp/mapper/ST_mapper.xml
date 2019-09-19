@@ -61,7 +61,7 @@
 					 e.ep_price as ep_price, 
 					 e.ep_reg_date as ep_reg_date, 
 					 e.username as username, 
-					 p.product_code as product_code, 
+					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
 					 e.ep_deliver_date as ep_deliver_date
@@ -79,11 +79,23 @@
  	</select>
  	
  	<select id="getEstimateArticle" resultType="com.pj.erp.vo.ST.Estimate">
- 		SELECT * FROM estimate_price_tbl WHERE ep_code=#{ep_code}
+ 		select e.ep_code as ep_code, 
+					 e.ep_amount as ep_amount, 
+					 e.ep_deliver_date as ep_deliver_date, 
+					 e.ep_price as ep_price, 
+					 e.ep_reg_date as ep_reg_date, 
+					 e.username as username, 
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 e.ep_deliver_date as ep_deliver_date
+				 from estimate_price_tbl e, customer_list_tbl c, product_list_tbl p
+				 Where e.customer_code = c.customer_code
+				 And e.detail_ac_code = p.product_code and ep_code=#{ep_code}
  	</select>
  	
  	<update id="updateEstimate" parameterType="com.pj.erp.vo.ST.Estimate">
- 		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_price=#{ep_price} ,ep_reg_date=sysdate WHERE ep_code=#{ep_code}
+ 		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_price=#{ep_price},ep_reg_date=sysdate  WHERE ep_code=#{ep_code}
  	</update>
  	
  	<delete id="deleteEstimate" parameterType="String">
