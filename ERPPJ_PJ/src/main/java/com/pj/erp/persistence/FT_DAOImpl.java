@@ -11,6 +11,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -213,6 +214,23 @@ public class FT_DAOImpl implements FT_DAO{
 		}
 	}
 	
+	// 사업자번호 수정
+	@Override
+	public int FT_LicenseUpdate(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LicenseUpdate",map);
+	}
+	
+	// 거래처 수정
+	@Override
+	public int FT_AccountUpdate(Map<String, Object> map) {
+		int cnt = FT_LicenseUpdate(map);
+		if(cnt == 0) {
+			return 0;
+		} else {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_AccountUpdate",map);
+		}
+	}
+	
 	// 거래처 검색 한 것 개수 가져오기
 	public int FT_AccountCntSelect(String srhval) {
 		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
@@ -333,6 +351,107 @@ public class FT_DAOImpl implements FT_DAO{
 			return null;
 		} else {
 			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_ledgerList", map);
+		}
+	}
+	
+	// 거래처 원장 리스트를 가져온다.
+	@Override
+	public int FT_ledgerAccListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_ledgerAccListCnt", map);
+	}
+	
+	@Override
+	public List<FT_Chit> FT_ledgerAccList(Map<String, Object> map) {
+		if(FT_ledgerAccListCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_ledgerAccList", map);
+		}
+	}
+	
+	// 일별 리스트를 가져온다.
+	@Override
+	public int FT_DTBDayListCntL(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DTBDayListCntL", map);
+	}
+	
+	@Override
+	public List<FT_DTB> FT_DTBDayListL(Map<String, Object> map) {
+		if(FT_DTBDayListCntL(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBDayListL", map);
+		}
+	}
+	
+	@Override
+	public int FT_DTBDayListCntM(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DTBDayListCntM", map);
+	}
+	
+	@Override
+	public List<FT_DTB> FT_DTBDayListM(Map<String, Object> map) {
+		if(FT_DTBDayListCntM(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBDayListM", map);
+		}
+	}
+	
+	@Override
+	public int FT_DTBDayListCntS(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DTBDayListCntS", map);
+	}
+	
+	@Override
+	public List<FT_DTB> FT_DTBDayListS(Map<String, Object> map) {
+		if(FT_DTBDayListCntS(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBDayListS", map);
+		}
+	}
+	
+	// 월별 리스트를 가져온다.
+	@Override
+	public int FT_DTBMonthListCntL(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListCntL", map);
+	}
+	
+	@Override
+	public List<FT_DTB> FT_DTBMonthListL(Map<String, Object> map) {
+		if(FT_DTBMonthListCntL(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListL", map);
+		}
+	}
+	
+	@Override
+	public int FT_DTBMonthListCntM(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListCntM", map);
+	}
+	
+	@Override
+	public List<FT_DTB> FT_DTBMonthListM(Map<String, Object> map) {
+		if(FT_DTBMonthListCntM(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListM", map);
+		}
+	}
+	
+	@Override
+	public int FT_DTBMonthListCntS(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListCntS", map);
+	}
+	
+	@Override
+	public List<FT_DTB> FT_DTBMonthListS(Map<String, Object> map) {
+		if(FT_DTBMonthListCntS(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListS", map);
 		}
 	}
 	

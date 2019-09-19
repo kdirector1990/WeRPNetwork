@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -277,8 +277,8 @@ public class HR_ServiceImpl implements HR_Service{
 		String spa_date = "";
 		String epa_date = "";
 		
-		Date sdate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
-		Date edate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		Date sdate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
+		Date edate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
 		
 		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
 			
@@ -621,11 +621,11 @@ public class HR_ServiceImpl implements HR_Service{
 		String username = req.getParameter("username");
 		String position_record_code = dao.getPositionRecord();
 		String record_date = req.getParameter("record_date");
-		Date col = Date.valueOf(record_date);		
+		// Date col = Date.valueOf(record_date);		
 		
 		vo.setUsername(username);
 		vo.setPosition_record_cord(position_record_code);
-		vo.setRecord_date(col);
+		// vo.setRecord_date(col);
 		
 		HR_RecordInfoVO vo2 = new HR_RecordInfoVO();
 		
@@ -699,6 +699,19 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		return dto;
 	}
+
+
+
+	@Override
+	public HR_PhysicalVO HR_select_physical(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_PhysicalVO data = dao.physicaly(username);
+		
+		return data;
+	}
+	
+	
 
 
 

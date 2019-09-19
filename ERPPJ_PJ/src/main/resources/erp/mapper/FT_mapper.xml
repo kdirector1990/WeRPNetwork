@@ -89,12 +89,28 @@
 	<insert id="FT_AccountInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
 		insert into customer_list_tbl(customer_code, license_number, customer_name, branch_name,
 		customer_credit, deal_state)
-		values(customer_seq.nextval, license_seq.currval, #{customer_name}, #{branch_name},
+		values('CUS_' || customer_seq.nextval, license_seq.currval, #{customer_name}, #{branch_name},
 		#{customer_credit}, #{deal_state})
 	</insert>
 	
+	<!-- 사업자 번호 수정 -->
+	<!-- <update id="FT_LicenseUpdate" parameterType = "com.pj.erp.vo.FT.FT_Account">
+		update b_license_tbl
+		set license_number, bs_name, bs_master, bs_startdate,
+		bs_number, bs_address, bs_address2, bs_condition, bs_line, license_scanfile
+		where license_number = #{licenseNumber}
+	</update> -->
+	
+	<!-- 거래처 수정 -->
+	<!-- <update id="FT_AccountUpdate" parameterType = "java.util.Map">
+		update customer_list_tbl
+		set customer_code, license_number, customer_name, branch_name,
+		customer_credit, deal_state
+		where customer_code = #{customerCode}
+	</update> -->
+	
 	<!-- 적금 가져오기 -->
-	<select id="FT_SavingsSelect" resultType="com.pj.erp.vo.FT.FT_Savings">
+	<select id="FT_SavingsSelect" resultType="java.util.Map">
 		SELECT
 		a.DETAIL_AC_CODE as savingsCode, a.account_name as savingsName, 
 		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
@@ -423,7 +439,7 @@
 	</select>
 	
 	<!-- 거래처 원장 리스트 갯수 가져오기 -->
-	<!-- <select id="FT_journalListCnt" parameterType="java.util.Map" resultType="int">
+	<select id="FT_ledgerListCnt" parameterType="java.util.Map" resultType="int">
 		<![CDATA[
 		select count(c.customer_code)
 		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, b_license_tbl b, (select distinct CASE WHEN count(customer_code) = 0 THEN null
@@ -441,13 +457,14 @@
         and bval.customer_code(+) = j.customer_code
         and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
         and de.detail_ac_code = #{scode}
-        and c.customer_code = #{acode}
-        group by c.customer_code
     	]]>
-	</select> -->
+    	<if test="acode != null and acode != ''">
+        	and c.customer_code = #{acode}
+        </if>
+	</select>
 	
 	<!-- 거래처 원장 리스트 가져오기 -->
-	<!-- <select id="FT_journalList" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Ledger">
+	<select id="FT_ledgerList" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Ledger">
 	<![CDATA[
 		select c.customer_code, c.customer_name, c.license_number, CASE WHEN bval.debtor_value is null THEN 0
         ELSE bval.debtor_value END as before_value, 
@@ -468,10 +485,176 @@
         and bval.customer_code(+) = j.customer_code
         and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
         and de.detail_ac_code = #{scode}
-        and c.customer_code = #{acode}
-        group by c.customer_code, c.customer_name, c.license_number, bval.debtor_value, c.deal_state, b.bs_master
     	]]>
-	</select> -->
+    	<if test="acode != null and acode != ''">
+        	and c.customer_code = #{acode}
+        </if>
+        group by c.customer_code, c.customer_name, c.license_number, bval.debtor_value, c.deal_state, b.bs_master
+	</select>
+	
+	<!-- 거래처 분개 리스트 갯수 가져오기 -->
+	<select id="FT_ledgerAccListCnt" parameterType="java.util.Map" resultType="int">
+		select count(j.detail_ac_code)
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, users writer
+		where j.detail_ac_code = de.detail_ac_code
+		and j.customer_code = c.customer_code
+		and writer.username = j.last_modi_user
+		and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		and de.detail_ac_code = #{scode}
+		and c.customer_code = #{acode}
+	</select>
+	
+	<!-- 거래처 분개 리스트 가져오기 -->
+	<select id="FT_ledgerAccList" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_Chit">
+		select j.journal_code, j.journal_number, j.journal_date, de.detail_ac_code, de.account_name,
+		c.customer_code, c.customer_name, j.debtor_value, j.creditor_value, j.l_count_value, j.r_count_value, j.journal_abstract,
+		j.jr_state, j.last_update, j.last_modi_user, writer.e_name wname, j.username, l.lg_name
+		from journal_record_tbl j, detail_ac_tbl de, customer_list_tbl c, users writer
+		, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+		and j.customer_code = c.customer_code
+		and writer.username = j.last_modi_user
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+		and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		and de.detail_ac_code = #{scode}
+		and c.customer_code = #{acode}
+	</select>
+	
+	<!-- 일별 리스트 갯수 가져오기 -->
+	<select id="FT_DTBDayListCntL" parameterType="java.util.Map" resultType="int">
+		select count(*) from        
+		(select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, l.lg_code, l.lg_name
+				from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+				where j.detail_ac_code = de.detail_ac_code
+		        and l.lg_code = a.lg_code
+				and a.ag_code = ac.ag_code2
+		        and ac.accounts_code = de.accounts_code
+		        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		        group by l.lg_code, l.lg_name)
+	</select>
+	<select id="FT_DTBDayListCntM" parameterType="java.util.Map" resultType="int">
+		select count(*) from        
+		(select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+        group by a.ag_code, a.ag_name, l.lg_code, l.lg_name)
+	</select>
+	<select id="FT_DTBDayListCntS" parameterType="java.util.Map" resultType="int">
+		select count(*) from        
+		(select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+        group by ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name)
+	</select>
+	
+	<!-- 일별 리스트 가져오기 -->
+	<select id="FT_DTBDayListL" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
+		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, l.lg_code, l.lg_name
+				from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+				where j.detail_ac_code = de.detail_ac_code
+		        and l.lg_code = a.lg_code
+				and a.ag_code = ac.ag_code2
+		        and ac.accounts_code = de.accounts_code
+		        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+		        group by l.lg_code, l.lg_name
+	</select>
+	<select id="FT_DTBDayListM" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
+		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+        group by a.ag_code, a.ag_name, l.lg_code, l.lg_name
+	</select>
+	<select id="FT_DTBDayListS" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
+		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
+        group by ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+	</select>
+	
+	<!-- 월별 리스트 갯수 가져오기 -->
+	<select id="FT_DTBMonthListCntL" parameterType="java.util.Map" resultType="int">
+		select count(*) from        
+		(select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, l.lg_code, l.lg_name
+				from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+				where j.detail_ac_code = de.detail_ac_code
+		        and l.lg_code = a.lg_code
+				and a.ag_code = ac.ag_code2
+		        and ac.accounts_code = de.accounts_code
+		        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
+		        group by l.lg_code, l.lg_name)
+	</select>
+	<select id="FT_DTBMonthListCntM" parameterType="java.util.Map" resultType="int">
+		select count(*) from        
+		(select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
+        group by a.ag_code, a.ag_name, l.lg_code, l.lg_name)
+	</select>
+	<select id="FT_DTBMonthListCntS" parameterType="java.util.Map" resultType="int">
+		select count(*) from        
+		(select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
+        group by ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name)
+	</select>
+	
+	<!-- 월별 리스트 가져오기 -->
+	<select id="FT_DTBMonthListL" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
+		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, l.lg_code, l.lg_name
+				from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+				where j.detail_ac_code = de.detail_ac_code
+		        and l.lg_code = a.lg_code
+				and a.ag_code = ac.ag_code2
+		        and ac.accounts_code = de.accounts_code
+		        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
+		        group by l.lg_code, l.lg_name
+	</select>
+	<select id="FT_DTBMonthListM" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
+		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
+        group by a.ag_code, a.ag_name, l.lg_code, l.lg_name
+	</select>
+	<select id="FT_DTBMonthListS" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
+		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+		from journal_record_tbl j, detail_ac_tbl de, ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac
+		where j.detail_ac_code = de.detail_ac_code
+        and l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
+        group by ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+	</select>
 	
 	<!-- 전표승인처리 -->
 	<update id="FT_CheckFormal" parameterType="java.util.Map">

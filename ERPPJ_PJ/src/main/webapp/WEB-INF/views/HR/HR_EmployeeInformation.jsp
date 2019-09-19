@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">	
@@ -65,8 +66,8 @@
 						var day = pa.getDate(); 
 						var start_datess = year + "/" + month +"/"+day;
 						
-					$('#result').append('<tr>'+                         	
-							'<td onclick=window.location=HR_modifyFoundation?username='+ usernames +'>'+ usernames +'</td>'+
+					$('#result').append('<tr onclick="updateINFO('+usernames+');">'+                         	
+							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_names +'</td>'+
 							'<td>'+ e_genders +'</td>'+
 							'<td>'+ e_codes +'</td>'+
@@ -116,101 +117,102 @@
 		}); 
 	 });
 	 
-	 /* function updateINFO(code){
-     	alert(code);
-	         $.ajax({
+	 
+	 function updateINFO(code){
+		 alert(code);
+		  $.ajax({
 	  			url: '/erp/HR_update_Fou?${_csrf.parameterName}=${_csrf.token }&username='+code,
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
 	  				alert("작동");
-	  				$('#result2').empty();
-	  				document.getElementById("update").style.display="block";
-	  				
 	  				var username = data.username;	  					  				
 	  				var e_name = data.e_name;
 	  				var e_gender = data.e_gender;
 	  				var e_type = data.e_type;
 	  				var e_code = data.e_code;
 	  				var e_hp = data.e_hp;
+	  				var e_mailcode = data.e_mailcode;
 	  				var e_nfcCodeNFC = data.e_nfcCodeNFC
 	  				var department_code = data.department_code;
 	  				var position_code = data.position_code;
 	  				var rank_code = data.rank_code;
 	  				var level_step = data.level_step;
 	  				
-	  				if(isNaN != true){
-	  					$('#result2').append('<input type="hidden" name="username" value="'+username+'"><div class="form-group row">'
-	  		  					+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
-	  		  						+ '<div class="col-lg-8">'
-	  		  				    		+ '<input type="text" name="e_name" value="'+e_name+'" class="form-control" readonly>' 
-	  		  				        +'</div>'
-	  		  				    +'</div>'
-	  		  				    +'<div class="form-group row">'	
-								+'<label class="col-md-2 col-form-label" for="simpleinput">성별<span class="text-danger">*</span></label>'
-								+'<div class="col-md-3  col-form-label">'
-									+'<div>'
-                                	    +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                               	        	+'<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>'
-                              	         	+'<label class="custom-control-label" for="customRadioInline1">남성</label>'
-                                   		+'</div>'
-                                        +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                            +'<input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">'
-                                            +'<label class="custom-control-label" for="customRadioInline2">여성</label>'
-                                        +'</div>'
-                                	+'</div>'
-								+'</div>'
-								+'<label class="col-md-2 col-form-label" for="simpleinput">내/외국인<span class="text-danger">*</span></label>'
+	  				alert(username);
+	  				alert(e_mailcode);
+	  				alert(e_nfcCodeNFC);
+	  				
+	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
+	  					+'<div class="form-group row">'
+	  						+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
+	  							+'<div class="col-lg-8">'
+	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control" readonly>' 
+	  				        	+'</div>'
+	  				    +'</div>'
+	  				  	+'<div class="form-group row">'	
+							+'<label class="col-md-2 col-form-label" for="simpleinput">성별<span class="text-danger">*</span></label>'
+						+'<div class="col-md-3  col-form-label">'
+                   	    	+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                  	        	+'<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>'
+                 	         	+'<label class="custom-control-label" for="customRadioInline1">남성</label>'
+                      		+'</div>'
+                           +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                               +'<input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">'
+                               +'<label class="custom-control-label" for="customRadioInline2">여성</label>'
+                           +'</div>'
+                   		+'</div>'
+                   		+'</div>'
+                   		+'<div class="form-group row">'
+                   			+'<label class="col-md-2 col-form-label" for="simpleinput">내/외국인<span class="text-danger">*</span></label>'
 								+'<div class="col-md-4  col-form-label">'
 									+'<div>'
-                                        +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                            +'<input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>'
-                                            +'<label class="custom-control-label" for="customRadioInline7">내국인</label>'
-                                        +'</div>'
-                                        +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                            +'<input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">'
-                                            +'<label class="custom-control-label" for="customRadioInline8">외국인</label>'                                            
-                                        +'</div>'
-                                    +'</div>'
-								+'</div>'
-							+'</div>'	
-							+'<div class="form-group row">'
-								+'<label class="col-md-2 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
-								+'<div class="col-md-8">'
-									+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
-								+'</div>'
+                             			+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                                 			+'<input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>'
+                                 			+'<label class="custom-control-label" for="customRadioInline7">내국인</label>'
+                             			+'</div>'
+	                             		+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+	                                 		+'<input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">'
+	                                 		+'<label class="custom-control-label" for="customRadioInline8">외국인</label>'                                            
+	                             		+'</div>'
+                         			+'</div>'
 							+'</div>'
-							+'<div class="form-group row">'	
-								+'<label class="col-md-2 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
-								+'<div class="col-md-8">'
+						+ '</div>'
+						+'<div class="form-group row">'
+							+'<label class="col-md-2 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+							+'<div class="col-md-8">'
+								+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
+							+'</div>'
+						+'</div>'
+						+'<div class="form-group row">'	
+							+'<label class="col-md-2 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
+							+'<div class="col-md-8">'
 								+'<input type="text" class="form-control" name="e_hp" value="'+e_hp+'" size="13">'
-								+'</div>'
 							+'</div>'
-						+'</div>'	
-					+'</div>'
-					+'<div class="form-group row">'
-						+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span class="text-danger">*</span></label>'
-						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">'
 						+'</div>'
-						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-						+'<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span class="text-danger">*</span></label>'
-						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">'
+						+'<div class="form-group row">'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">'
+							+'</div>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">'
+							+'</div>'
 						+'</div>'
-					+'</div>'
-					+'<div class="form-group row">'
+						+'<div class="form-group row">'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span class="text-danger">*</span></label>'
-						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="e_mailcode" value="'+e_mailcode+'">'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_mailcode" value="'+e_mailcode+'">'
+							+'</div>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label>' 
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="'+e_nfcCodeNFC+'">'
+							+'</div>'				
 						+'</div>'
-						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-						+'<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label>' 
-						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="'+e_nfcCodeNFC'">'
-						+'</div>'																
-					+'</div>'					
-					+'<div class="form-group row">'
+						+'<div class="form-group row">'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">부서<span class="text-danger">*</span></label>'
 						+'<div class="col-md-4">'
 							+'<select class="form-control select2" name="department_code" onchange="">'
@@ -221,44 +223,62 @@
 						+'</div>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">직책<span class="text-danger">*</span></label>'
-						+'<div class="col-md-4">'
-							+'<select class="form-control select2" name="position_code" onchange="">'
-								+'<c:forEach var="poi" items="${poi}">'
-								+'<option value="${poi.position_code}">${poi.position_code}</option>'	
-								+'</c:forEach>'																							
-							+'</select>'
-						+'</div>'																
-					+'</div>'					
-					+'<div class="form-group row">'
-						+'<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>'
-						+'<div class="col-md-4">'
-							+'<select class="form-control select2" name="rank_code" onchange="">'
-								+'<c:forEach var="rank" items="${rank}">'
-								+'<option value="${rank.rank_code}">${rank.rank_code}</option>'	
-								+'</c:forEach>'																							
-							+'</select>'
+							+'<div class="col-md-4">'
+								+'<select class="form-control select2" name="position_code" onchange="">'
+									+'<c:forEach var="poi" items="${poi}">'
+									+'<option value="${poi.position_code}">${poi.position_code}</option>'	
+									+'</c:forEach>'																							
+								+'</select>'
+							+'</div>'																
 						+'</div>'
+						+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<select class="form-control select2" name="rank_code" onchange="">'
+									+'<c:forEach var="rank" items="${rank}">'
+									+'<option value="${rank.rank_code}">${rank.rank_code}</option>'	
+									+'</c:forEach>'																							
+								+'</select>'
+							+'</div>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">호봉<span class="text-danger">*</span></label>'
-						+'<div class="col-md-4">'
-							+'<input type="text" class="form-control" name="level_step" value="'+level_step+''">'
-						+'</div>'																
-					+'</div>' 
-					+ '<div class="form-group text-right mb-0">'
-						+ '<button onclick="updateState();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
-						+ '<button onclick="completeAS();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리완료</button>'
-					+ '</div>'
-  				    );
-	
-	  					
-	  				}
-	  					  				
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="level_step" value="'+level_step+'">'
+							+'</div>'																
+						+'</div>'
+						+'<div class="form-group text-right mb-0">'
+							+'<button onclick="HR_modifyFoundationPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+						+'</div>'
+	  				);
 	  			},
+	  			 
 	  			error : function(){
 	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
 	  			}
-	  		});
-     } */
+	  		}); 	 
+	 }
+	 
+	 function HR_modifyFoundationPro(){
+     	var param = $("#updateFoundation").serializeArray();
+ 		alert(JSON.stringify(param));
+ 		$.ajax({
+ 			url: '/erp/HR_modifyFoundationPro',
+ 			type: 'POST',
+ 			data : param,
+ 			dataTpye: 'json',
+ 			success: function(updateCnt){
+ 				if(updateCnt != 0){
+ 					$('#result2').empty();
+ 					document.getElementById("update").style.display="none";
+ 					alert("수정이 완료되었습니다.");    					
+ 				}
+ 			},
+ 			error : function(){
+ 				alert("전산 오류로 인하여 AS처리중으로 수정하지 못했습니다.");
+ 			}
+ 		});
+     }
+	   
 	 
 
 </script>
@@ -414,7 +434,7 @@
 						                               <div class="card">
 						                                   <div class="card-body table-responsive">
 															<div class="table-responsive" style = "margin: 15px 0px 50px">
-																<form id="updateAST" method="post" class="form-horizontal">
+																<form id="updateFoundation" method="post" class="form-horizontal">
 																<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 																	<div id="result2" class="card-body">
 																		<!-- 상세 페이지 출력 위치 -->

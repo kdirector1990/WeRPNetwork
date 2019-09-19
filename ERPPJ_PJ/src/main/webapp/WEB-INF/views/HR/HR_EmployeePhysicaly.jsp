@@ -59,7 +59,7 @@
 						var e_disability_types = list[i].e_disability_type;
 						var e_disability_levels = list[i].e_disability_level;
 						
-					$('#result').append('<tr>'+                         	
+					$('#result').append('<tr onclick="updatePHY('+usernames+');>'+                         	
 							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_heights +'</td>'+
 							'<td>'+ e_weights +'</td>'+
@@ -109,6 +109,146 @@
 			});
 		}); 
 	 });
+	 
+	 function updatePHY(code){
+		 alert(code);
+		  $.ajax({
+	  			url: '/erp/HR_update_Phy?${_csrf.parameterName}=${_csrf.token }&username='+code,
+	  			type: 'POST',
+	  			dataTpye: 'json',
+	  			success: function(data){
+	  				alert("작동");
+	  				var username = data.username;	  					  				
+	  				var e_height = data.e_height;
+	  				var e_weight = data.e_weight;
+	  				var e_left_sight = data.e_left_sight;
+	  				var e_right_sight = data.e_right_sight;
+	  				var e_color_blind = data.e_color_blind;
+	  				var e_blood_type = data.e_blood_type;
+	  				var e_blood_presure = data.e_blood_presure;
+	  				var e_medical_info = data.e_medical_info;
+	  				var position_code = data.position_code;
+	  				var rank_code = data.rank_code;
+	  				var level_step = data.level_step;
+	  				
+	  				alert(username);
+	  				alert(e_mailcode);
+	  				alert(e_nfcCodeNFC);
+	  				
+	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
+	  					+'<div class="form-group row">'
+	  						+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
+	  							+'<div class="col-lg-8">'
+	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control" readonly>' 
+	  				        	+'</div>'
+	  				    +'</div>'
+	  				  	+'<div class="form-group row">'	
+							+'<label class="col-md-2 col-form-label" for="simpleinput">성별<span class="text-danger">*</span></label>'
+						+'<div class="col-md-3  col-form-label">'
+                   	    	+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                  	        	+'<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>'
+                 	         	+'<label class="custom-control-label" for="customRadioInline1">남성</label>'
+                      		+'</div>'
+                           +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                               +'<input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">'
+                               +'<label class="custom-control-label" for="customRadioInline2">여성</label>'
+                           +'</div>'
+                   		+'</div>'
+                   		+'</div>'
+                   		+'<div class="form-group row">'
+                   			+'<label class="col-md-2 col-form-label" for="simpleinput">내/외국인<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4  col-form-label">'
+									+'<div>'
+                             			+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+                                 			+'<input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>'
+                                 			+'<label class="custom-control-label" for="customRadioInline7">내국인</label>'
+                             			+'</div>'
+	                             		+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+	                                 		+'<input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">'
+	                                 		+'<label class="custom-control-label" for="customRadioInline8">외국인</label>'                                            
+	                             		+'</div>'
+                         			+'</div>'
+							+'</div>'
+						+ '</div>'
+						+'<div class="form-group row">'
+							+'<label class="col-md-2 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+							+'<div class="col-md-8">'
+								+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
+							+'</div>'
+						+'</div>'
+						+'<div class="form-group row">'	
+							+'<label class="col-md-2 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
+							+'<div class="col-md-8">'
+								+'<input type="text" class="form-control" name="e_hp" value="'+e_hp+'" size="13">'
+							+'</div>'
+						+'</div>'
+						+'<div class="form-group row">'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">'
+							+'</div>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">'
+							+'</div>'
+						+'</div>'
+						+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_mailcode" value="'+e_mailcode+'">'
+							+'</div>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label>' 
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="'+e_nfcCodeNFC+'">'
+							+'</div>'				
+						+'</div>'
+						+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">부서<span class="text-danger">*</span></label>'
+						+'<div class="col-md-4">'
+							+'<select class="form-control select2" name="department_code" onchange="">'
+								+'<c:forEach var="dep" items="${dep}">'
+								+'<option value="${dep.department_code}">${dep.department_name}</option>'	
+								+'</c:forEach>'																																							
+							+'</select>'
+						+'</div>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">직책<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<select class="form-control select2" name="position_code" onchange="">'
+									+'<c:forEach var="poi" items="${poi}">'
+									+'<option value="${poi.position_code}">${poi.position_code}</option>'	
+									+'</c:forEach>'																							
+								+'</select>'
+							+'</div>'																
+						+'</div>'
+						+'<div class="form-group row">'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">직급<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<select class="form-control select2" name="rank_code" onchange="">'
+									+'<c:forEach var="rank" items="${rank}">'
+									+'<option value="${rank.rank_code}">${rank.rank_code}</option>'	
+									+'</c:forEach>'																							
+								+'</select>'
+							+'</div>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+						+'<label class="col-md-1 col-form-label" for="simpleinput">호봉<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="level_step" value="'+level_step+'">'
+							+'</div>'																
+						+'</div>'
+						+'<div class="form-group text-right mb-0">'
+							+'<button onclick="HR_modifyFoundationPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+						+'</div>'
+	  				);
+	  			},
+	  			 
+	  			error : function(){
+	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
+	  			}
+	  		}); 	 
+	 }
 	 
 </script>
 
@@ -204,8 +344,7 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-                                            
+                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">                                            
                                             <thead>
                                                 <tr>
 	                                             	<th>사원번호</th>
@@ -228,7 +367,11 @@
                                     		
                                       		</tbody>
                                         </table>
-</div></div></div></div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
                
                <!-- 페이지 내용 입력 공간 종료 -->
 
