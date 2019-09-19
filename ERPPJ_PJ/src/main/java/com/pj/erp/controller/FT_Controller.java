@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.FT_Service;
+import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
@@ -397,7 +398,7 @@ public class FT_Controller {
 
 	// 거래처 추가    
     @RequestMapping(value="FT_AccountInsert")
-    public String FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
+    public String FT_AccountInsert(HttpServletRequest req, Model model) {
     	logger.info("url : FT_AccountInsert 호출중");
         
         service.FT_AccountInsert(req, model);
@@ -415,9 +416,17 @@ public class FT_Controller {
 	}
 	
 	// 거래처 검색 가져오기
+	@RequestMapping(value = "FT_AccountUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_AccountUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_AccountUpdate 호출중");
+
+		return service.FT_AccountUpdate(map);
+	}
+	
+	// 거래처 검색 가져오기
 	@RequestMapping(value = "FT_AccountOneSelect")
 	public @ResponseBody FT_Account FT_AccountOneSelect(HttpServletRequest req) {
-		logger.info("url : FT_AccountSelect 호출중");
+		logger.info("url : FT_AccountOneSelect 호출중");
 		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_AccountOneSelect(req);
@@ -498,6 +507,30 @@ public class FT_Controller {
 		logger.info("url : FT_ledgerList 호출중");
 
 		return service.FT_ledgerList(map, model);
+	}
+	
+	// 거래처 원장 리스트 출력
+	@RequestMapping(value = "FT_ledgerAccList")
+	public @ResponseBody List<FT_Chit> FT_ledgerAccList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_ledgerAccList 호출중");
+
+		return service.FT_ledgerAccList(map, model);
+	}
+	
+	// 일별 리스트 출력
+	@RequestMapping(value = "FT_DTBDayList")
+	public @ResponseBody List<List<FT_DTB>> FT_DTBDayList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_DTBDayList 호출중");
+
+		return service.FT_DTBDayList(map, model);
+	}
+	
+	// 월별 리스트 출력
+	@RequestMapping(value = "FT_DTBMonthList")
+	public @ResponseBody List<List<FT_DTB>> FT_DTBMonthList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_DTBMonthList 호출중");
+
+		return service.FT_DTBMonthList(map, model);
 	}
 	
 	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")

@@ -23,29 +23,25 @@
 	       		
 	       	}
 	       	
-	       	function ajaxload() {
+	       	function ajaxload(cc) {
         		var obj = new Object();
         		var jsonData;
         		
-        		if(!$(".chitState").val()) {
-        			$(".chitState").focus();
-        			return false;
-        		} else if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
+        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
         			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate").focus();
+        			$(".firstdate" + cc).focus();
         			return false;
         		} else if(window.event.which == 13){
 	        		// 자바스크립트 객체 생성
-	        		obj.scode = $("#SubjectCode").val();
-	        		obj.acode = $("#AccCode").val();
-	        		obj.firstday = $(".firstdate").val();
-	        		obj.lastday = $(".lastdate").val();
+	        		obj.scode = $("*[name=SubjectCode" + cc + "]").val();
+	        		obj.firstday = $(".firstdate" + cc).val();
+	        		obj.lastday = $(".lastdate" + cc).val();
 	        		
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
 	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
 	        		jsonData = JSON.stringify(obj);
-	        		$(".chit-table-bordered-primary tbody").html("");
+	        		$("#onepage").html("");
 	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
 	        		$.ajax({
 	                       type : "POST",
@@ -67,7 +63,7 @@
                                         } else if(data[i].deal_state == "5") {
                                         	statename = "카드사"
                                         }
-										$(".chit-table-bordered-primary tbody").append('<tr>' +
+										$("#onepage").append('<tr>' +
 	                                        '<td scope="row">' + data[i].customer_code + '</td>' +
 	                                        '<td>' + data[i].customer_name + '</td>' +
 	                                        '<td>' + data[i].license_number + '</td>' +
@@ -78,6 +74,59 @@
 	                                        '<td>' + data[i].deal_state + '</td>' +
 	                                        '<td>' + statename + '</td>' +
 	                                        '<td>' + data[i].bs_master + '</td>' +
+		                                '</tr>');
+									}
+		                    	   }
+	                       },
+	                       error : function(e) {
+	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+	                       }
+	        		});
+        		}
+        	}
+	       	
+	       	function twoajaxload(cc) {
+        		var obj = new Object();
+        		var jsonData;
+        		var balance = 0;
+        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+        			$(".firstdate" + cc).focus();
+        			return false;
+        		} else if(window.event.which == 13){
+	        		// 자바스크립트 객체 생성
+	        		obj.scode = $("*[name=SubjectCode" + cc + "]").val();
+	        		obj.acode = $("*[name=AccCode" + cc + "]").val();
+	        		obj.firstday = $(".firstdate" + cc).val();
+	        		obj.lastday = $(".lastdate" + cc).val();
+	        		
+	        		// json 객체를 String 객체로 변환 -- 
+	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+	        		jsonData = JSON.stringify(obj);
+	        		$("#twopage").html("");
+	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+	        		$.ajax({
+	                       type : "POST",
+	                       url : "/erp/FT_ledgerAccList?${_csrf.parameterName }=${_csrf.token }",
+	                       data : jsonData,
+	                       contentType : 'application/json;charset=UTF-8',
+	                       success : function(data) {
+	                    	   if(data != null){
+									for(i = 0; i < data.length; i++){
+										var dev;
+										if(data[i].lg_name == "자산" || data[i].lg_name == "비용"){
+											dev = parseInt(data[i].debtor_value) - parseInt(data[i].creditor_value);
+										} else if(data[i].lg_name == "부채" || data[i].lg_name == "자본" || data[i].lg_name == "수익"){
+											dev = parseInt(data[i].creditor_value) - parseInt(data[i].debtor_value);
+										}
+										balance += dev;
+										$("#twopage").append('<tr>' +
+	                                        '<td scope="row">' + data[i].journal_date + '</td>' +
+	                                        '<td>' + data[i].journal_abstract + '</td>' +
+	                                        '<td>' + data[i].debtor_value + '</td>' +
+	                                        '<td>' + data[i].creditor_value + '</td>' +
+	                                        '<td>' + balance + '</td>' +
 		                                '</tr>');
 									}
 		                    	   }
@@ -154,15 +203,11 @@
 					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
 					                                            	<td>계정과목</td>
-					                                                <td><input type="text" class="" id = "SubjectCode" style = "width: 100px;">&nbsp;<a href = "#" onclick="subjectlist('');"><i class="dripicons-zoom-in"></i></a>
-                                                					<input type="text" class="" id = "SubjectName" readonly style = "width: 100px;"></td>
+					                                                <td><input type="text" class="" name = "SubjectCode0" style = "width: 100px;">&nbsp;<a href = "#" onclick="subjectlist(0);"><i class="dripicons-zoom-in"></i></a>
+                                                					<input type="text" class="" name = "SubjectName0" readonly style = "width: 100px;"></td>
 					                                                
 					                                                <td>기표기간</td>
-					                                                <td><input type="date" class="firstdate" value = "2011-01-01"> ~ <input type="date" class="lastdate" value = "2011-12-31"></td>
-					                                                
-					                                            	<td>거래처</td>
-					                                            	<td><input type="text" class="" id = "AccCode" style = "width: 100px;" onkeydown = "ajaxload();">&nbsp;<a href = "#" onclick="accountlist('');"><i class="dripicons-zoom-in"></i></a>
-                                                					<input type="text" class="" id = "AccName" readonly style = "width: 100px;"></td>
+					                                                <td><input type="date" class="firstdate0" value = "2011-01-01" max = "9999-12-31"> ~ <input type="date" class="lastdate0" value = "2011-12-31" onkeydown = "ajaxload(0);" max = "9999-12-31"></td>
 					                                            </tr>
 					                                        </table>
 				    
@@ -183,21 +228,8 @@
 						                                            </tr>
 						                                            
 				                                                </thead>
-				                                                <tbody>
-				                                                	<c:forEach var="item" items="${AccountBook}">
-				                                                		<tr>
-						                                                    <td scope="row">${item.customer_code}</td>
-						                                                    <td>${item.customer_name}</td>
-						                                                    <td>${item.license_number}</td>
-						                                                    <td>${item.BeforePrice}</td>
-						                                                    <td>${item.debtor_value}</td>
-						                                                    <td>${item.creditor_value}</td>
-						                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
-						                                                    <td>${item.deal_state}</td>
-						                                                    <td>${item.deal_name}</td>
-						                                                    <td>${item.bs_master}</td>
-					                                                    </tr>
-				                                                	</c:forEach>
+				                                                <tbody id = "onepage">
+				                                                	
 				                                                </tbody>
 				                                            </table>
 				                                        </div>
@@ -214,15 +246,16 @@
 						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
 					                                            	<td>계정과목</td>
-					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
+					                                                <td><input type="text" class="" name = "SubjectCode1" style = "width: 100px;">&nbsp;<a href = "#" onclick="subjectlist(1);"><i class="dripicons-zoom-in"></i></a>
+                                                					<input type="text" class="" name = "SubjectName1" readonly style = "width: 100px;"></td>
+					                                                
+					                                                <td>기표기간</td>
+					                                                <td><input type="date" class="firstdate1" value = "2011-01-01"> ~ <input type="date" class="lastdate1" value = "2011-12-31"></td>
+					                                                
 					                                            	<td>거래처</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
+					                                            	<td><input type="text" class="" name = "AccCode1" style = "width: 100px;" onkeydown = "twoajaxload(1);">&nbsp;<a href = "#" onclick="accountlist(1);"><i class="dripicons-zoom-in"></i></a>
+                                                					<input type="text" class="" name = "AccName1" readonly style = "width: 100px;"></td>
 					                                            </tr>
-					                                            
 						                                        </table>
 					    
 					                                        <div class="table-responsive">
@@ -244,16 +277,8 @@
 							                                            </tr>
 							                                            
 					                                                </thead>
-					                                                <tbody>
-					                                                    <c:forEach var="item" items="${AccountBook}">
-					                                                		<tr>
-							                                                    <td scope="row">${item.journal_date}<</td>
-							                                                    <td>${item.journal_abstract}</td>
-							                                                    <td>${item.debtor_value}</td>
-							                                                    <td>${item.creditor_value}</td>
-							                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
-						                                                    </tr>
-					                                                	</c:forEach>
+					                                                <tbody id = "twopage">
+					                                                	
 					                                                </tbody>
 					                                            </table>
 					                                        </div>
