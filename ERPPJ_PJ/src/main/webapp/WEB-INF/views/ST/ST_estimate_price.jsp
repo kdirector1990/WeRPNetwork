@@ -65,14 +65,13 @@ $(function(){
 				$('#result_2').empty();
 				
 				
-				alert("dds: "+list.length);
 				for(var i = 0 ; i < list.length; i++){
 					var ep_code = list[i].ep_code;
 					var ep_amount = list[i].ep_amount;
 					var ep_price = list[i].ep_price;						
 					var sp_unit = list[i].sp_unit;
 					var sp_note = list[i].sp_note;
-					var product_code = list[i].product_code;
+					var detail_ac_code = list[i].detail_ac_code;
 					var product_name = list[i].product_name;
 					
 					var customer_name = list[i].customer_name;
@@ -96,7 +95,7 @@ $(function(){
 							'<td>'+ ep_code +'</td>'+ 
                         	'<td>'+ customer_name +'</td>'+ 
                         	'<td>'+ username +'</td>'+
-                        	'<td>'+ product_code +'</td>'+ 
+                        	'<td>'+ detail_ac_code +'</td>'+ 
 							'<td>'+ product_name +'</td>'+ 
 							'<td>'+ ep_amount +'</td>'+
 							'<td>'+ ep_deliver +'</td>'+
@@ -136,12 +135,18 @@ $(function(){
 				alert("에러");
 			}
 		});
-		
-		alert("스크립트 종료");
 	}); 
 });
 
+
+
 </script>
+ <script type="text/javascript">
+       function ProductName() {
+   		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
+   	}
+</script>
+
 <body>
 
 	<!-- Begin page -->
@@ -185,16 +190,16 @@ $(function(){
 								<div class="card-body">
 											<table class="col-12">
 													<tr class="form-group row">
-														<th class="col-md-1 col-form-label">거래처</th>
+														<th class="col-md-1 col-form-label" style="text-align: right;">거래처</th>
 															<td class="col-md-2 input-group">
 																<input type="text" name="customerName" id="customerName" class="form-control">
 															</td>
 													
-														<th class="col-md-1 col-form-label">담당자</th>
+														<th class="col-md-1 col-form-label" style="text-align: right;">담당자</th>
 															<td class="col-md-2 input-group">
 																<input type="text" name="username" id="username" class="form-control">
 															</td>
-														<th class="col-md-1 col-form-label">품명</th>
+														<th class="col-md-1 col-form-label" style="text-align: right;">품명</th>
 															<td class="col-md-2 input-group">
 																<input type="text" name="ProductName" id ="ProductName" class="form-control">
 															</td>
@@ -215,7 +220,7 @@ $(function(){
 									<div class="card-body">
 										<div class="table-rep-plugin">
 											<div class="" data-pattern="priority-columns">
-												<table id="tech-companies-1" class="table table-hover">
+												<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
 													<thead class="bg-primary text-white">
 														<tr>
 															<th>견적 코드</th>
