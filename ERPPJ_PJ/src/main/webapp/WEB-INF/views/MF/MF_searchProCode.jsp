@@ -95,10 +95,10 @@ function setName(product_code,bom_code,product_name) {
 					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
-							<div class="page-title-box" style="text-align: center; margin: 40px 0;">
-								<h3>
-									<b>제품검색1</b>
-								</h3>
+							<div class="page-title-box" style="text-align: center;">
+								<h4>
+									<b>제품검색</b>
+								</h4>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@ function setName(product_code,bom_code,product_name) {
 									</form>
 								</div>
 
-								<div id="result" style="overflow:auto;">
+								<div id="result">
 									<!-- 출력결과위치 -->
 								</div>
 

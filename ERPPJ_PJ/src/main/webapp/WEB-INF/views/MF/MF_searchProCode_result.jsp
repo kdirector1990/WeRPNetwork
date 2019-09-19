@@ -15,36 +15,39 @@
     </head>
 <body>
 	<div class="card-body"
-		style="padding-bottom: 0px; padding-bottom: 24px; overflow-x:auto;">
-		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover">
-				<thead>
-					<tr class="table-info" style="text-align: center;">
-						<th>제품계정코드</th>
-						<th>BOM코드</th>
-						<th>제품명</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--  있으면 -->
-					<c:if test="${cnt != 0}">
-						<c:forEach var="list" items="${dto}">
-							<tr onclick="setName('${list.product_code}','${list.bom_code}','${list.product_name}');">
-								<td>${list.product_code}</td>
-								<td>${list.bom_code}</td>
-								<td>${list.product_name}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					<!--  없으면 -->
-					<c:if test="${cnt == 0}">
-						<tr>
-							<td colspan="6" align="center">조회결과 없음
+		style="padding-bottom: 0px; padding-bottom: 24px;">
+		<div style="width: 100%; height: 310px; overflow: auto">
+			<form>
+				<table id="datatable" class="table table-bordered table-hover">
+					<thead class="table-info">
+						<tr style="text-align: center; pointer-events: none;">
+							<th>제품계정코드</th>
+							<th>BOM코드</th>
+							<th>제품명</th>
 						</tr>
-					</c:if>
-				</tbody>
-			</table>
-		</form>
+					</thead>
+					<tbody>
+						<!--  있으면 -->
+						<c:if test="${cnt != 0}">
+							<c:forEach var="list" items="${dto}">
+								<tr
+									onclick="setName('${list.product_code}','${list.bom_code}','${list.product_name}');">
+									<td>${list.product_code}</td>
+									<td>${list.bom_code}</td>
+									<td>${list.product_name}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<!--  없으면 -->
+						<c:if test="${cnt == 0}">
+							<tr>
+								<td colspan="6" align="center">조회결과 없음
+							</tr>
+						</c:if>
+					</tbody>
+				</table>
+			</form>
+		</div>
 	</div>
 	<!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>

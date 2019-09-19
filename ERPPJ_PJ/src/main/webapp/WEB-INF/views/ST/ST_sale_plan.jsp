@@ -138,11 +138,9 @@
     		}); 
     	 });	
     
-    </script>
-          <script type="text/javascript">
       function ProductName() {
   		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
-  	}
+  		}
         </script>
 <body>
 
@@ -184,51 +182,52 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-										
+
 											<th>품명</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="productName" id="productName">
 											</td>
-											
-											<td>&nbsp;&nbsp;</td>	
-											
-											<th >계획년도</th>
+
+											<td>&nbsp;&nbsp;</td>
+
+											<th>계획년도</th>
 											<td class="col-md-2 input-group"><input type="month"
 												class="form-control" name="userdate" id="userdate">
 											</td>
-											
+
 											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">조회</button></td>
-											</tr>
+											<td><button type="button"
+													class="btn btn-primary waves-effect waves-light"
+													id="search">조회</button></td>
+										</tr>
 									</table>
 								</div>
 							</div>
 						</div>
 					</div>
-								<div class="row">
-										<div class="col-lg-12">
-											<div class="card">
-												<div class="table-responsive">
-													<table class="table mb-0" style="table-layout: fixed;">
-														<thead class="thead-light">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<table class="table mb-0 table-bordered"
+									style="table-layout: fixed;">
+									<thead class="thead-light">
+										<tr>
+											<th>판매계획코드</th>
+											<th>품명</th>
+											<th>단위 (관리)</th>
+											<th>예상 금액</th>
+											<th>예상 수량</th>
+											<th>기간 시작</th>
+											<th>기간 종료</th>
+											<th>비고</th>
+										</tr>
 
-															<tr>
-																<th>판매계획코드</th>
-																<th>품명</th>
-																<th>단위 (관리)</th>
-																<th>예상 금액</th>
-																<th>예상 수량</th>
-																<th>기간 시작</th>
-																<th>기간 종료</th>
-																<th>비고</th>
-															</tr>
-															
-														</thead>
-														<tbody id="result_2">
-															<%-- <c:if test="${cnt > 0}">
+									</thead>
+									<tbody id="result_2">
+										<%-- <c:if test="${cnt > 0}">
 																<c:forEach var="dto" items="${dtos}">
 																	<tr onclick="salePlanWriteForm('${dto.saleplan_code}');">
 																		<td>${dto.saleplan_code}</td>
@@ -242,29 +241,24 @@
 																	</tr>
 																</c:forEach>
 															</c:if> --%>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-								<!-- end row -->
-
-
+									</tbody>
+								</table>
 							</div>
-							<br>
-							<hr>
-							<br>
-							<div id="result" class="card-body" style="width: 3200px;">
-								<!-- 상세 페이지 출력 위치 -->
-
-							</div>
-
 						</div>
 					</div>
-				
+				</div>
+				<!-- end row -->
+
+
+			</div>
+			<div id="result">
+				<!-- 상세 페이지 출력 위치 -->
+
+			</div>
+
+		</div>
+	</div>
+
 	<!-- end container-fluid -->
 
 	<!-- end content -->
@@ -276,7 +270,7 @@
 
 	<!-- END wrapper -->
 
-	<%@ include file="../rightbar.jsp" %>
+		<%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
         <!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
