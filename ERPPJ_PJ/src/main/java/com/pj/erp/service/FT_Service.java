@@ -7,6 +7,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -42,7 +43,7 @@ public interface FT_Service {
 	public void FT_insertChit(HttpServletRequest req, Model model);
 	
 	// 거래처 추가
-	public void FT_AccountInsert(MultipartHttpServletRequest req, Model model);
+	public void FT_AccountInsert(HttpServletRequest req, Model model);
 
 	// 사원 모두 가져오기
 	public void FT_UsersAllSelect(HttpServletRequest req, Model model);
@@ -58,6 +59,9 @@ public interface FT_Service {
 	
 	// 거래처 검색한 것 가져오기
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req);
+	
+	// 거래처 수정
+	public String FT_AccountUpdate(Map<String, Object> map);
 	
 	// 적금 가져오기
 	public void FT_SavingsSelect(HttpServletRequest req, Model model);
@@ -95,8 +99,17 @@ public interface FT_Service {
 	// 검색된 분개 모두 가져오기
 	public List<FT_Chit> FT_journalList(Map<String, Object> map, Model model);
 	
-	// 검색된 분개 모두 가져오기
+	// 거래처 분개 리스트 모두 가져오기
 	public List<FT_Ledger> FT_ledgerList(Map<String, Object> map, Model model);
+
+	// 거래처 리스트 모두 가져오기
+	public List<FT_Chit> FT_ledgerAccList(Map<String, Object> map, Model model);
+	
+	// 일별 리스트 모두 가져오기
+	public List<List<FT_DTB>> FT_DTBDayList(Map<String, Object> map, Model model);
+	
+	// 월별 리스트 모두 가져오기
+	public List<List<FT_DTB>> FT_DTBMonthList(Map<String, Object> map, Model model);
 	
 	//단기차입금목록 검색결과
 	public List<FT_Short_Borrow_List> getSBorrowList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
@@ -112,4 +125,9 @@ public interface FT_Service {
 	
 	//토지목록 검색결과
 	public List<FT_facility_list_VO> getFacilityList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	
+	//재무상태표 조회
+	public Map<String, Object> getBsshit(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 }

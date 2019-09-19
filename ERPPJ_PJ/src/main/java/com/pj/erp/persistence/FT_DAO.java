@@ -11,6 +11,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -86,6 +87,13 @@ public interface FT_DAO {
 	// 거래처 추가
 	public int FT_AccountInsert(FT_Account vo);
 	
+	// 사업자번호 수정
+	public int FT_LicenseUpdate(Map<String, Object> map);
+	
+	// 거래처 수정
+	public int FT_AccountUpdate(Map<String, Object> map);
+	
+	
 	// 거래처 검색 한 것 개수 가져오기
 	public int FT_AccountCntSelect(String srhval);
 	
@@ -151,4 +159,30 @@ public interface FT_DAO {
 	 
 	 // 거래처 원장 리스트 가져오기
 	 public List<FT_Ledger> FT_ledgerList(Map<String, Object> map);
+	 
+	 // 거래처 원장 리스트 갯수 가져오기
+	 public int FT_ledgerAccListCnt(Map<String, Object> map);
+	 
+	 // 거래처 원장 리스트 가져오기
+	 public List<FT_Chit> FT_ledgerAccList(Map<String, Object> map);
+
+	 // 일별 리스트 갯수 가져오기
+	 public int FT_DTBDayListCntL(Map<String, Object> map);
+	 public int FT_DTBDayListCntM(Map<String, Object> map);
+	 public int FT_DTBDayListCntS(Map<String, Object> map);
+	 
+	 // 일별 리스트 가져오기
+	 public List<FT_DTB> FT_DTBDayListL(Map<String, Object> map);
+	 public List<FT_DTB> FT_DTBDayListM(Map<String, Object> map);
+	 public List<FT_DTB> FT_DTBDayListS(Map<String, Object> map);
+
+	 // 월별 리스트 갯수 가져오기
+	 public int FT_DTBMonthListCntL(Map<String, Object> map);
+	 public int FT_DTBMonthListCntM(Map<String, Object> map);
+	 public int FT_DTBMonthListCntS(Map<String, Object> map);
+	 
+	 // 월별 리스트 가져오기
+	 public List<FT_DTB> FT_DTBMonthListL(Map<String, Object> map);
+	 public List<FT_DTB> FT_DTBMonthListM(Map<String, Object> map);
+	 public List<FT_DTB> FT_DTBMonthListS(Map<String, Object> map);
 }

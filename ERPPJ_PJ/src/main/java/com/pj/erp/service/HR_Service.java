@@ -81,6 +81,10 @@ public interface HR_Service {
 	
 	// 인사발령등록
 	public void HR_recordinput(HttpServletRequest req, Model model); 
+	
+	// 발령공고등록
+	public void HR_APinput(HttpServletRequest req, Model model);
+	
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */

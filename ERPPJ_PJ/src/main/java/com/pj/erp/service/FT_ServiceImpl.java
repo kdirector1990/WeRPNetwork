@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
+import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -129,49 +131,54 @@ public class FT_ServiceImpl implements FT_Service{
 	
 	// 거래처 추가
 	@Override
-    public void FT_AccountInsert(MultipartHttpServletRequest req, Model model) {
-        MultipartFile file = req.getFile("scanfile");
+    public void FT_AccountInsert(HttpServletRequest req, Model model) {
+		/*
+		 * System.out.println(req.getFile("scanfile")); MultipartFile file =
+		 * req.getFile("scanfile"); System.out.println("1");
+		 * 
+		 * String saveDir = req.getRealPath("/resources/img/"); //저장
+		 * 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\
+		 * wtpwebapps\SPRING_BMS_Project\resources\images\)
+		 * 
+		 * String realDir=
+		 * "C:\\dev50\\git2\\WeRPNetwork123\\ERPPJ_PJ\\src\\main\\webapp\\resources\\img\\";
+		 * // 저장 경로
+		 * 
+		 * try { System.out.println("1"); file.transferTo(new
+		 * File(saveDir+file.getOriginalFilename()));
+		 * 
+		 * System.out.println("1"); FileInputStream fis = new FileInputStream(saveDir +
+		 * file.getOriginalFilename()); FileOutputStream fos = new
+		 * FileOutputStream(realDir + file.getOriginalFilename());
+		 * 
+		 * int data = 0;
+		 * 
+		 * while((data = fis.read()) != -1) { fos.write(data); } fis.close();
+		 * fos.close();
+		 */
+
+        System.out.println("1");
+        FT_Account vo = new FT_Account();
+        vo.setCustomer_name(req.getParameter("customerName"));
+        vo.setBranch_name(req.getParameter("branchName"));
+        vo.setCustomer_credit(req.getParameter("customerCredit"));
+        vo.setDeal_state(req.getParameter("state"));
+        vo.setBs_name(req.getParameter("bsName"));
+        vo.setBs_master(req.getParameter("bsMaster"));
+        vo.setBs_startdate(req.getParameter("bsStartdate"));
+        vo.setBs_number(req.getParameter("bsNumber"));
+        vo.setBs_address(req.getParameter("bsAddress"));
+        vo.setBs_address2(req.getParameter("bsAddress2"));
+        vo.setBs_condition(req.getParameter("bsCondition"));
+        vo.setBs_line(req.getParameter("bsLine"));
+        vo.setLicense_scanfile("wow.png");
+        int insertCnt = dao.FT_AccountInsert(vo);
         
-        String saveDir = req.getRealPath("/resources/img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
-        
-        String realDir="C:\\dev50\\git2\\WeRPNetwork123\\ERPPJ_PJ\\src\\main\\webapp\\resources\\img"; // 저장 경로
-        
-        try {
-            file.transferTo(new File(saveDir+file.getOriginalFilename()));
+        model.addAttribute("cnt", insertCnt);
             
-            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
-            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
-            
-            int data = 0;
-            
-            while((data = fis.read()) != -1) {
-                fos.write(data);
-            }
-            fis.close();
-            fos.close();
-            
-            FT_Account vo = new FT_Account();
-            vo.setCustomer_name(req.getParameter("customerName"));
-            vo.setBranch_name(req.getParameter("branchName"));
-            vo.setCustomer_credit(req.getParameter("customerCredit"));
-            vo.setDeal_state(req.getParameter("state"));
-            vo.setBs_name(req.getParameter("bsName"));
-            vo.setBs_master(req.getParameter("bsMaster"));
-            vo.setBs_startdate(req.getParameter("bsStartdate"));
-            vo.setBs_number(req.getParameter("bsNumber"));
-            vo.setBs_address(req.getParameter("bsAddress"));
-            vo.setBs_address2(req.getParameter("bsAddress2"));
-            vo.setBs_condition(req.getParameter("bsCondition"));
-            vo.setBs_line(req.getParameter("bsLine"));
-            vo.setLicense_scanfile(file.getOriginalFilename());
-            
-            int insertCnt = dao.FT_AccountInsert(vo);
-            
-            model.addAttribute("cnt", insertCnt);
-            
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+		/*
+		 * } catch(IOException e) { e.printStackTrace(); }
+		 */
         
     }
 
@@ -187,7 +194,7 @@ public class FT_ServiceImpl implements FT_Service{
 	// 거래처 검색한 것 가져오기
 	@Override
 	public FT_Account FT_AccountOneSelect(HttpServletRequest req) {
-		FT_Account ac = dao.FT_AccountOneSelect(req.getParameter("key"));
+		FT_Account ac = dao.FT_AccountOneSelect(req.getParameter("srhval"));
 		System.out.println(ac);
 		return ac;
 	}
@@ -198,6 +205,17 @@ public class FT_ServiceImpl implements FT_Service{
 		List<FT_Account> ac = dao.FT_AccountSelect(req.getParameter("srhval"));
 		System.out.println(ac);
 		return ac;
+	}
+	
+	// 적금추가
+	@Override
+	public String FT_AccountUpdate(Map<String, Object> map) {
+		int result = dao.FT_AccountUpdate(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "insert 실패";
+		}
 	}
 	
 	// 적금가져오기
@@ -359,7 +377,7 @@ public class FT_ServiceImpl implements FT_Service{
 	public List<FT_Ledger> FT_ledgerList(Map<String, Object> map, Model model) {
 		int year = Integer.parseInt(map.get("firstday").toString().substring(0, 4));
 		String month = map.get("firstday").toString().substring(5,7);
-		if(month == "01") {
+		if(month.equals("01")) {
 			map.put("year", year-1);
 			map.put("month", "12");
 		} else {
@@ -369,9 +387,62 @@ public class FT_ServiceImpl implements FT_Service{
 			} else {
 				map.put("month", String.valueOf(Integer.parseInt(month)-1));
 			}
-			
 		}
+		
 		List<FT_Ledger> list = dao.FT_ledgerList(map);
+		System.out.println("list : " + list);
+		return list;
+	}
+	
+	// 거래처원장 리스트
+	public List<FT_Chit> FT_ledgerAccList(Map<String, Object> map, Model model) {
+		List<FT_Chit> list = dao.FT_ledgerAccList(map);
+		System.out.println("list : " + list);
+		return list;
+	}
+	
+	// 일별 리스트
+	public List<List<FT_DTB>> FT_DTBDayList(Map<String, Object> map, Model model) {
+		int year = Integer.parseInt(map.get("firstday").toString().substring(0, 4));
+		String month = map.get("firstday").toString().substring(5,7);
+		String day = map.get("firstday").toString().substring(8,10);
+		System.out.println("year" + year + "month" + month + "day" + day);
+		
+		List<FT_DTB> listL = dao.FT_DTBDayListL(map);
+		List<FT_DTB> listM = dao.FT_DTBDayListM(map);
+		List<FT_DTB> listS = dao.FT_DTBDayListS(map);
+		System.out.println("listL : " + listL);
+		System.out.println("listM : " + listM);
+		System.out.println("listS : " + listS);
+		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
+		list.add(listL);
+		list.add(listM);
+		list.add(listS);
+		String rootPath = System.getProperty("user.dir");
+        System.out.println("현재 프로젝트의 경로 : "+rootPath );
+
+		return list;
+	}
+	
+	// 월별 리스트
+	public List<List<FT_DTB>> FT_DTBMonthList(Map<String, Object> map, Model model) {
+		int year = Integer.parseInt(map.get("firstday").toString().substring(0, 4));
+		String month = map.get("firstday").toString().substring(5,7);
+		map.put("day", String.valueOf((new Date(year, Integer.parseInt(month), 0)).getDate()));
+		map.put("firstday", map.get("firstday").toString());
+		map.put("lastday", map.get("lastday").toString());
+		System.out.println("year : " + year + ", month : " + month);
+		
+		List<FT_DTB> listL = dao.FT_DTBMonthListL(map);
+		List<FT_DTB> listM = dao.FT_DTBMonthListM(map);
+		List<FT_DTB> listS = dao.FT_DTBMonthListS(map);
+		System.out.println("listL : " + listL);
+		System.out.println("listM : " + listM);
+		System.out.println("listS : " + listS);
+		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
+		list.add(listL);
+		list.add(listM);
+		list.add(listS);
 		return list;
 	}
 	
@@ -391,5 +462,19 @@ public class FT_ServiceImpl implements FT_Service{
 			}
 		}
 		return "성공";
+	}
+	
+	@Override
+	public Map<String, Object> getBsshit(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+		Map<String, Object> bs_result = new HashMap<String, Object>();
+		String fiscalyear = (String)map.get("fiscalyear");
+		System.out.println(fiscalyear);
+		List<Map> list = new ArrayList<Map>(); 
+
+		
+		bs_result.put("assets", list);
+		
+		return bs_result;
 	}
 }

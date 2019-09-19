@@ -33,16 +33,33 @@
     			$("#name" + cc).css("background-color", "#D6EAF8");
     			if(!$("#code" + cc).val()){
     				focusval = "";
+                   	$("#update").css("display", "none");
+                   	$("#submit").css("display", "");
+    				return false;
     			} else {
     				focusval = cc;
     			}
     			
     			$.ajax({
                     type : "POST",
-                    url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&code=" + $("#code" + cc).val(),
+                    url : "/erp/FT_AccountOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).val(),
                     success : function(data) {
-                 	   
-                           alert(data);
+                        alert(data);
+	                   	$("#update").css("display", "");
+	                   	$("#submit").css("display", "none");
+	                   	$("input[name=customerName]").val(data.customer_name);
+	                   	$("input[name=bsName]").val(data.bs_name);
+	                   	$("input[name=bsNumber]").val(data.license_number);
+	                   	$("input[name=bsMaster]").val(data.bs_master);
+	                   	$("input[name=bsCondition]").val(data.bs_condition);
+	                   	$("input[name=bsLine]").val(data.bs_line);
+	                   	$("input[name=customerCredit]").val(data.customer_credit);
+	                   	$("input[name=bsStartdate]").val(data.bs_startdate.substring(0,4) + "-" + data.bs_startdate.substring(5,7) + "-" + data.bs_startdate.substring(8,10));
+	                   	$("input[name=branchName]").val(data.branch_name);
+	                   	$("select[name=state] option:eq(" + data.deal_state + ")").prop("selected","selected");
+	                   	$("input[name=bsAddress]").val(data.bs_address);
+	                   	$("input[name=bsAddress2]").val(data.bs_address2);
+	                   	$("input[name=scanfile]").val(data.license_scanfile);
                     },
                     error : function(e) {
                            alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -50,16 +67,23 @@
             	});
     		}
         	
-        	function enterupdate(vv) {
+        	function update() {
         		var obj = new Object();
         		var jsonData;
-        		
-        		// 자바스크립트 객체 생성
-        		obj.checkbox = $("*[name=checkbox" + vv + "]").val();
-        		obj.code = $("*[name=code" + vv + "]").val();
-        		obj.AccName = $("*[name=AccName" + vv + "]").val();
-        		obj.type = $("*[name=type" + vv + "]").val();
-        		
+        		obj.customerName = $("input[name=customerName]").val();
+        		obj.bsName = $("input[name=bsName]").val();
+        		obj.bsNumber = $("input[name=bsNumber]").val();
+        		obj.bsMaster = $("input[name=bsMaster]").val();
+        		obj.bsCondition = $("input[name=bsCondition]").val();
+        		obj.bsLine = $("input[name=bsLine]").val();
+        		obj.customerCredit = $("input[name=customerCredit]").val();
+               	obj.bsStartdate = $("input[name=bsStartdate]").val();
+               	obj.branchName = $("input[name=branchName]").val();
+               	obj.state = $("select[name=state]").val();
+               	obj.bsAddress = $("input[name=bsAddress]").val();
+               	obj.bsAddress2 = $("input[name=bsAddress2]").val();
+               	obj.checkbox = "wow.png";
+               	
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
         		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
@@ -179,7 +203,7 @@
 							<div class="card">
 								<div class="card-body">
 									<!-- 인적정보 -->
-									<form action="FT_AccountInsert" class="form-horizontal" method="post">
+									<form action="FT_AccountInsert" method="post">
 										<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 										<div class="col-sm-12">
 											<div class="card-body table-responsive">
@@ -300,7 +324,10 @@
 												</div>
 											</div>
 										<div class="form-group text-right mb-0">
-                                            <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+											<button id = "update" class="btn btn-primary waves-effect waves-light mr-1" style = "display:none;" onclick="update();">
+                                                Update
+                                            </button>
+                                            <button id = "submit" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
                                                 Submit
                                             </button>
                                             <button type="reset" class="btn btn-secondary waves-effect">

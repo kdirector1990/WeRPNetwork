@@ -19,8 +19,7 @@
        		var today = date.getDate(); //d 
        		today = today >= 10 ? today : '0' + today; //day 두자리로 저장
        		function onload() {
-       			alert("${list}");
-       			if("${list}" != null) {
+       			if(${list} != null) {
 	        		$("#year").val("${year}");
 	        		$("#month").val("${month}");
 	        		$("#day").val("${day}");
@@ -650,7 +649,7 @@
 			                                                <option value="9">9</option>
 			                                                <option value="10">10</option>
 			                                                <option value="11">11</option>
-			                                                <option value="12" selected="selected">12</option>
+			                                                <option value="12">12</option>
 			                                        </select></td>
                                             	<td>일</td>
                                             	<td><input type="text" class="" id = "day" data-toggle="input-mask" data-mask-format="00" placeholder = "ex)29" style = "width: 100px;" onkeydown="ajaxload();"></td>
