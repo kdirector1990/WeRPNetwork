@@ -142,24 +142,375 @@
 				$('#result2').empty();
 				alert(vo.length);
 				
+				var count = 0;
 				var resultHr = 0;
 				var resultMM = 0;
 				var resultHour = 0;
 				var resultMin = 0;
+				var cmMonth = 0;
 				
-					for(var i = 0; i < vo.length; i++){
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 1){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				var s = 1;
+				if(s == 1){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 2){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 2){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 3){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 3){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 4){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 4){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 5){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 5){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 6){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 6){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 7){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 7){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 8){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 8){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+					if(cmMonth == "undefined"){
 						
-						var come = vo[i].tc_come_time;
-						var end = vo[i].tc_leave_time;
 						
-						var cm = new Date(come);
-						var ed = new Date(end);
-						
-						var cmMonth = (1+cm.getMonth());
-						
+					}else {
 						if(cmMonth == 9){
 							alert("9월");
-							var count = vo[i].count;
+							count = vo[i].count;
 							
 							var cmHour = cm.getHours();
 							var cmMm = cm.getMinutes();
@@ -180,18 +531,156 @@
 								resultMin = resultMin - 60;
 							}
 						}
-						var s = 9;
-						if(s == 9){
-							if(cmMonth == 9){
-								$("#result2").append("<tr><td>" 
-										+ s + "월</td><td>"
-										+ count + "일</td><td>"
-										+ resultHour + "시간" + resultMin + "분</td></tr>" 
-								);								
-							}
-						}				
 					}
-				
+				}
+				if(s == 9){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 10){
+							alert("10월");
+							count = vo[i].count;
+							
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							alert(resultHour + " 10월 시간");
+							alert(resultMin + " 10월 분");
+							
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+					}
+				if(s == 10){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+			for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 11){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 11){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
+				for(var i = 0; i < vo.length; i++){
+					
+					var come = vo[i].tc_come_time;
+					var end = vo[i].tc_leave_time;
+					
+					var cm = new Date(come);
+					var ed = new Date(end);
+					
+					var cmMonth = (1+cm.getMonth());
+					
+						if(cmMonth == 12){
+							count = vo[i].count;
+							var cmHour = cm.getHours();
+							var cmMm = cm.getMinutes();
+							
+							var edHour = ed.getHours();
+							var edMm = ed.getMinutes();
+							
+							resultHr = edHour - cmHour;
+							resultMM = edMm - cmMm;
+							
+							resultHour += resultHr;
+							resultMin += resultMM;
+							if(resultMin > 60) {
+								resultHour = resultHour + 1;
+								resultMin = resultMin - 60;
+							}
+						}
+				}
+				if(s == 12){
+					$("#result2").append("<tr><td>" 
+							+ s + "월</td><td>"
+							+ count + "일</td><td>"
+							+ resultHour + "시간" + resultMin + "분</td></tr>" 
+						);
+					s++;
+					count = 0;
+					resultHr = 0;
+					resultMM = 0;
+					resultHour = 0;
+					resultMin = 0;
+					cmMonth = 0;
+				}
 			},
 			error : function(){
 				alert("전산 오류로 인하여 사원의 기록을 못 가져왔습니다.");

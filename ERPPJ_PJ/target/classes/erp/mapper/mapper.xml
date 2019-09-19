@@ -15,6 +15,11 @@
 		FROM authority
 		WHERE username = #{username}	
 	</select>
+	
+	<insert id="nfc">
+		insert into nfc_log_tbl(nfc_code)
+		values(#{nfcid})
+	</insert>
 
 
 </mapper>

@@ -305,8 +305,22 @@
 		select hr_jr_seq.nextval from dual
 	</select>
 	
+	<!-- 공고코드 시퀀스
+	 -->
+	<select id="getAP_code" resultType="String">
+		select appointment_seq.nextval from dual
+	</select>
+	
+	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR_RecordVO">
-		insert into position_record_tbl(position_record_code, )
+		insert into position_record_tbl(position_record_code, record_date)
+		VALUES(#{position_record_code}, #{recore_date})
+	</insert>
+	
+	<!-- 발령공고 등록 -->
+	<insert id="insertAp" parameterType="com.pj.erp.vo.HR_ApVO">
+		insert into appointment_tbl(ap_code, ap_name, ap_content, ap_reg_date, ap_est_date, ap_status)
+		values(#{ap_code}, #{ap_name}, #{ap_content}, #{ap_reg_date}, #{ap_est_date}, #{ap_status})
 	</insert>
 	
 </mapper>

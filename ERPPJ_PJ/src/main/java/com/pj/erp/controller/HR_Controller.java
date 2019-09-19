@@ -123,7 +123,7 @@ public class HR_Controller {
 	
 	// 사원정보
 	@RequestMapping("HR_update_Fou")
-	@ResponseBody
+	@ResponseBody	
 	public HR_VO HR_update_Fou(HttpServletRequest req, Model model) {
 		logger.info("log => HR_update_Fou");
 		
@@ -252,6 +252,14 @@ public class HR_Controller {
 		logger.info("log => HR_record_input_pro");
 		service.HR_recordinput(req, model);
 		return "HR/HR_record_input_pro";
+	}
+	
+	@RequestMapping("HR_APinput")
+	public String HR_APinput(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_APinput");
+		service.HR_APinput(req, model);
+		
+		return "index";
 	}
 	
 	@RequestMapping("HR_appointment_notice")
