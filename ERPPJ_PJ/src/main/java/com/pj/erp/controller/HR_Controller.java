@@ -254,6 +254,14 @@ public class HR_Controller {
 		return "HR/HR_record_input_pro";
 	}
 	
+	@RequestMapping("HR_APinput")
+	public String HR_APinput(HttpServletRequest req, Model model) {
+		logger.info("log = > HR_APinput");
+		service.HR_APinput(req, model);
+		
+		return "HR/HR_APinput";
+	}
+	
 	@RequestMapping("HR_appointment_notice")
 	public String HT_appointment_notice(HttpServletRequest req, Model model) {
 		logger.info("log => HR_appointment_notice");

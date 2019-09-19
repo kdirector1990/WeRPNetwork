@@ -6,6 +6,7 @@ import java.util.Map;
 
 
 import com.pj.erp.vo.HR_PhysicalVO;
+import com.pj.erp.vo.HR_ApVO;
 import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
@@ -124,6 +125,10 @@ public interface HR_DAO {
 
 	// 직책변경코드 가져오기
 	public String getPositionRecord();
-
-
+	
+	// 공고코드 시퀀스 가져오기
+	public String getAP_code();
+	
+	// 발령공고 등록
+	public int insertAp(HR_ApVO ap);
 }
