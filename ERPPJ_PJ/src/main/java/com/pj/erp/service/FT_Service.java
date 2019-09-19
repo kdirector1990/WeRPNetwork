@@ -112,4 +112,9 @@ public interface FT_Service {
 	
 	//토지목록 검색결과
 	public List<FT_facility_list_VO> getFacilityList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	
+	//재무상태표 조회
+	public Map<String, Object> getBsshit(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 }
