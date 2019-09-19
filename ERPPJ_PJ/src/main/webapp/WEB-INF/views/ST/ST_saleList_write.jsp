@@ -31,7 +31,7 @@
 				<div class="col-sm-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="header-title">견적 등록</h4>
+							<h4 class="header-title">판매 등록</h4>
 							<p class="sub-header"></p>
 
 							<form class="form-horizontal" action="ST_saleList_writePro"
@@ -68,9 +68,12 @@
 										</div>
 										
 										<div class="form-group row">
-											<label class="col-md-2 col-form-label"></label>
+											<label class="col-md-2 col-form-label">출고 여부</label>
 											<div class="col-md-10">
-											<br><br>
+											<select class="form-control select" name="release_state" onchange="" style="width: 150px;">
+													<option value="1">출고</option>
+													<option value="2">미출고</option>	
+												</select>
 											</div>
 										</div>
 										

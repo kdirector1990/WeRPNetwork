@@ -22,7 +22,7 @@ function searchNameFocus(){
 function load1(customer_name) {
 	var url = document.searchName.customer_name.value;
 	
-	sendRequest(callback, "ST_searchCustomername_result", "post", "customer_name="+url);
+	sendRequest(callback, "ST_searchCustomername_result2", "post", "customer_name="+url);
 }
 
 function callback() {
@@ -55,23 +55,18 @@ function callback() {
 } 
 
 
-function setName(customer_name, deal_state, customer_code) {
+function setName(customer_name, customer_code) {
 	opener.document.getElementById("customer_nameP").value = customer_name;
-	opener.document.getElementById("deal_stateP").value = deal_state;
 	opener.document.getElementById("customer_codeP").value = customer_code;
 
 	//test alert
-	alert(customer_name, deal_state, customer_code);
+	alert(customer_name, customer_code);
 	
 	$("#customer_nameP", opener.document).val(customer_name); //jquery 이용
 	$(opener.document).find("#customer_nameP").val(customer_name); //find를 이용한 jquery
 	
-	$("#deal_stateP", opener.document).val(deal_state); //jquery 이용
-	$(opener.document).find("#deal_stateP").val(deal_state); //find를 이용한 jquery
-	
 	$("#customer_codeP", opener.document).val(customer_code); //jquery 이용
 	$(opener.document).find("#customer_codeP").val(customer_code); //find를 이용한 jquery
-	
 	self.close();
 	
 }

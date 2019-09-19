@@ -17,20 +17,24 @@
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
 		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover" style="height:550px;">
+			<table id="datatable" class="table table-bordered table-hover">
 				<thead>
 					<tr class="table-info" style="text-align: center;">
-						<th>제품 코드</th>
-						<th>제품명</th>
+						<th>거래처 코드</th>
+						<th>거래처명</th>
+						<th>신용도</th>
+						<th>거래상태</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody style="overflow:auto;">
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
-						<c:forEach var="pto" items="${ptos}">
-							<tr onclick="setName('${pto.product_name}','${pto.product_code}');">
-								<td>${pto.product_code}</td>
-								<td>${pto.product_name}</td>
+						<c:forEach var="cto" items="${ctos}">
+							<tr onclick="setName('${cto.customer_name}','${cto.customer_code}');">
+								<td>${cto.customer_code }</td>
+								<td>${cto.customer_name }</td>
+								<td>${cto.customer_credit }</td>
+								<td>${cto.deal_state }</td>
 							</tr>
 						</c:forEach>
 					</c:if>

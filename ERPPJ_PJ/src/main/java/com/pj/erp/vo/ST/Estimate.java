@@ -11,13 +11,14 @@ public class Estimate {
 	private int ep_price;	// 공급가
 	private Date ep_deliver_date; // 납품 예정일
 	private Date ep_reg_date;	// 견적 등록일
-	private String username;	// 담당자
+	private String username;	// 담당자 (코드)
 	private String e_approval_code;	// 전결 현황 코드
 	private String eas_code;	// 전결 라인 코드
 	private String position_code;	// 현재 결제자
 	private String product_name;	// 품명
 	private String customer_name;	// 거래처명
 	private String detail_ac_code;	// 제품 코드
+	private String e_name;	// 이름
 	
 	// 생성자
 	public Estimate() {}
@@ -144,6 +145,16 @@ public class Estimate {
 
 	public void setDetail_ac_code(String detail_ac_code) {
 		this.detail_ac_code = detail_ac_code;
+	}
+
+
+	public String getE_name() {
+		return e_name;
+	}
+
+
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
 	}
 
 

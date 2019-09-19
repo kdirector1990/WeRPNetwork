@@ -4,6 +4,16 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+        <script type="text/javascript">
+        function ProductName() {
+       		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
+       	}
+        
+        function customerNameList() {
+    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+    	}   
+        
+        </script>
         
  
     </head>
@@ -40,9 +50,16 @@
                                             <div class="col-xl-6" style="height: 400px;">
                                                 
                                                 <div class="form-group row">
-                                                 <label class="col-md-2 col-form-label">품명</label>
+                                                 <label class="col-md-2 col-form-label">품번</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="" class="form-control" value="" style="width: 350px;">
+                                                            <input type="text" name="detail_ac_code" class="form-control" style="width: 350px;" onclick="ProductName()" id="product_codeP">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 col-form-label">거래처 코드</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" name="customer_code" class="form-control" style="width: 350px;" onclick="customerNameList()" id = "customer_codeP">
                                                         </div>
                                                     </div>
                                                     
@@ -77,11 +94,19 @@
                                               
     
                                                     <div class="form-group row">
-                                                        <label class="col-md-2 col-form-label">품번</label>
+                                                        <label class="col-md-2 col-form-label">품명</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="ep_code" class="form-control" value="" style="width: 350px;">
+                                                            <input type="text" name="product_name" class="form-control" style="width: 350px;" id="product_nameP">
                                                         </div>
                                                     </div>
+                                                    
+                                                     <div class="form-group row">
+                                                        <label class="col-md-2 col-form-label">거래처</label>
+                                                        <div class="col-md-10">
+                                                           <input type="text" name="customer_name" class="form-control" id = "customer_nameP" style="width: 350px;">
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">공급가</label>
                                                         <div class="col-md-10">
