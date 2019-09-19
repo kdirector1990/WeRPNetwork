@@ -9,4 +9,6 @@ import org.springframework.ui.Model;
 public interface ERPService {
 
 	public void testreg(HttpServletRequest req, Model model);
+	
+	public void nfc(HttpServletRequest req, Model model);
 }
