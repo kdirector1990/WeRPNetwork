@@ -174,7 +174,7 @@
 										</div>
 										
 										<div class="form-group mb-0">
-											<input type="submit" class="btn btn-success" value="공고등록" disabled>
+											<input type="submit" class="btn btn-success" value="공고등록">
 										</div>
 									</form>
 								</div>
