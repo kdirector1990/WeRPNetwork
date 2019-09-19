@@ -323,4 +323,9 @@
 		values(#{ap_code}, #{ap_name}, #{ap_content}, #{ap_reg_date}, #{ap_est_date}, #{ap_status})
 	</insert>
 	
+	<!-- nfc 기록 조회 권순용 -->
+	<select id="getNfcLog" resultType="com.pj.erp.vo.HR.HR_nfc_log">
+		select * from hr_nfc_view
+	</select>
+	
 </mapper>

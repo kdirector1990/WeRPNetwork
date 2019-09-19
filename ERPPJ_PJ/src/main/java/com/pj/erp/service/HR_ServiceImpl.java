@@ -38,6 +38,7 @@ import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_nfc_log;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
@@ -720,6 +721,15 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_PhysicalVO data = dao.physicaly(username);
 		
 		return data;
+	}
+	
+	@Override
+	public List<HR_nfc_log> getNfcLog(HttpServletRequest req, Model model) {
+		
+		List<HR_nfc_log> nfc_log = dao.getNfcLog();
+		
+		
+		return nfc_log;
 	}
 
 }
