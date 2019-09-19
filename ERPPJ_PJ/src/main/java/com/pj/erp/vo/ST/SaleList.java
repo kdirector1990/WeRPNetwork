@@ -20,7 +20,9 @@ public class SaleList {
 	private int jr_state;	// 처리 상태
 	private String ep_code;	// 견적 코드
 	private Date release_o_date;	// 출고 요청일
-	private String salelist_name; // 제품명
+	private String product_name; // 제품명
+	private String release_name;	// 출고
+	private String e_name;
 	
 	// 생성자
 	public SaleList() {}
@@ -138,12 +140,12 @@ public class SaleList {
 		this.ep_code = ep_code;
 	}
 
-	public String getSalelist_name() {
-		return salelist_name;
+	public String getProduct_name() {
+		return product_name;
 	}
 
-	public void setSalelist_name(String salelist_name) {
-		this.salelist_name = salelist_name;
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 
 	public Date getRelease_o_date() {
@@ -161,7 +163,22 @@ public class SaleList {
 	public void setCustomer_name(String customer_name) {
 		this.customer_name = customer_name;
 	}
-	
+
+	public String getRelease_name() {
+		return release_name;
+	}
+
+	public void setRelease_name(String release_name) {
+		this.release_name = release_name;
+	}
+
+	public String getE_name() {
+		return e_name;
+	}
+
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
+	}
 	
 	
 

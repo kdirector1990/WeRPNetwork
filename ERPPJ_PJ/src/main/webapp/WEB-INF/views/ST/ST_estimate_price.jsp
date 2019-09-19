@@ -49,7 +49,7 @@ $(function(){
 		
 					
 		param.customer_name = $("#customerName").val();
-		param.username = $("#username").val();
+		param.username = $("#username_2").val();
 		param.product_name = $("#ProductName").val();
 				
 		jsonData = JSON.stringify(param); 
@@ -76,6 +76,7 @@ $(function(){
 					
 					var customer_name = list[i].customer_name;
 					var username = list[i].username;
+					var e_name = list[i].e_name;
 					
 					var ep_deliver_date = list[i].ep_deliver_date;
 					var pa = new Date(ep_deliver_date);
@@ -94,7 +95,7 @@ $(function(){
 					$('#result_2').append('<tr onclick="ST_estimate_Form(\''+ep_code+'\')">'+
 							'<td>'+ ep_code +'</td>'+ 
                         	'<td>'+ customer_name +'</td>'+ 
-                        	'<td>'+ username +'</td>'+
+                        	'<td>'+ e_name +'</td>'+
                         	'<td>'+ detail_ac_code +'</td>'+ 
 							'<td>'+ product_name +'</td>'+ 
 							'<td>'+ ep_amount +'</td>'+
@@ -145,6 +146,14 @@ $(function(){
        function ProductName() {
    		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
    	}
+       
+       function usernameList() {
+   		window.open("ST_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+   	}   
+       
+     function customerNameList() {
+    		window.open("ST_searchCustomername", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+    	}   
 </script>
 
 <body>
@@ -197,7 +206,7 @@ $(function(){
 													
 														<th class="col-md-1 col-form-label" style="text-align: right;">담당자</th>
 															<td class="col-md-2 input-group">
-																<input type="text" name="username" id="username" class="form-control">
+																<input type="text" name="username" id="username_2" class="form-control">
 															</td>
 														<th class="col-md-1 col-form-label" style="text-align: right;">품명</th>
 															<td class="col-md-2 input-group">
@@ -231,7 +240,7 @@ $(function(){
 															<th>견적 수량</th>
 															<th>납품 예정일</th>
 															<th>견적 등록일</th>
-															<th>단가</th>
+															<th>공급가</th>
 															<th>부가세</th>
 														</tr>
 													</thead>

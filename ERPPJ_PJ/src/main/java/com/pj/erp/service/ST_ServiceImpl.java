@@ -2,6 +2,7 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,12 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ST_DAO;
+import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.UserName;
 
 @Service
 public class ST_ServiceImpl implements ST_Service {
@@ -35,6 +38,9 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setEp_deliver_date(Date.valueOf(req.getParameter("ep_deliver_date")));
 		vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
 		vo.setEp_reg_date(new Date(System.currentTimeMillis()));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setUsername((String)req.getSession().getAttribute("username"));
 		
 		int estimatewrite = dao.estimatewritePro(vo);
 		
@@ -125,7 +131,7 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public List<Estimate> getEstimate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
 		List<Estimate> list = dao.getEstimateresult(map);  
-		
+		System.out.println("개수 : " + list.size());
 		return list;
 	}
 
@@ -149,6 +155,10 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setEp_code(ep_code);
 		vo.setEp_amount(Integer.parseInt(req.getParameter("ep_amount")));
 		vo.setEp_deliver_date(Date.valueOf(req.getParameter("ep_deliver_date")));
+		vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
+		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setUsername(req.getParameter("username"));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
 		vo.setEp_price(Integer.parseInt(req.getParameter("ep_price")));
 
 		int updateEstimate = dao.updateEstimate(vo);
@@ -470,6 +480,14 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("saleListWrite", saleListWrite);
 	}
 	
+	// ST_saleList 검색 조회
+	@Override
+	public List<SaleList> getsaleList(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<SaleList> list = dao.getSaleList(map);
+		System.out.println("개수 : " + list.size());
+		return list;
+	}
+	
 	// ST_saleList 목록 조회 
 	@Override
 	public void saleList(HttpServletRequest req, Model model) {
@@ -592,6 +610,41 @@ public class ST_ServiceImpl implements ST_Service {
 	// Customer 검색
 	@Override
 	public void searchCustomer(HttpServletRequest req, Model model) {
+		String customer_name = req.getParameter("customer_name");
+		
+		int cnt = dao.selectCustomer(customer_name);
+		
+		System.out.println("cnt : " + cnt);
+		
+		if (cnt > 0) {
+			List<CustomerList> ctos = dao.getCustomerList(customer_name);
+			model.addAttribute("ctos", ctos);
+		}
+		
+		model.addAttribute("cnt", cnt);
+	}
+	
+	// 담당자 검색
+	@Override
+	public void searchUsername(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int unt = dao.selectName(username); 
+		
+		System.out.println("unt: " +unt);
+		
+		if(unt > 0) {
+			List<UserName> nto = dao.getUsernameList(username);
+			model.addAttribute("nto", nto);
+		}
+
+		model.addAttribute("unt", unt);
+	
+	}
+	
+	// 거래처 코드, 거래처명 검색 결과
+	@Override
+	public void searchCustomer2(HttpServletRequest req, Model model) {
 		String customer_name = req.getParameter("customer_name");
 		
 		int cnt = dao.selectCustomer(customer_name);

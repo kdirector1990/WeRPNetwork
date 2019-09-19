@@ -16,33 +16,38 @@
 <body>
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
-		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover" style="height:550px;">
-				<thead>
-					<tr class="table-info" style="text-align: center;">
-						<th>제품 코드</th>
-						<th>제품명</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!--  있으면 -->
-					<c:if test="${cnt != 0}">
-						<c:forEach var="pto" items="${ptos}">
-							<tr onclick="setName('${pto.product_name}','${pto.product_code}');">
-								<td>${pto.product_code}</td>
-								<td>${pto.product_name}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					<!--  없으면 -->
-					<c:if test="${cnt == 0}">
-						<tr>
-							<td colspan="6" align="center">조회결과 없음
+		<div style="width: 100%; height: 310px; overflow: auto">
+			<form>
+				<table id="datatable" class="table table-bordered table-hover"
+					style="height: 550px;">
+					<thead class="table-info">
+						<tr style="text-align: center; pointer-events: none;">
+							<th>사원코드</th>
+							<th>사원명</th>
 						</tr>
-					</c:if>
-				</tbody>
-			</table>
-		</form>
+					</thead>
+
+					<tbody>
+						<!--  있으면 -->
+						<c:if test="${cnt != 0}">
+							<c:forEach var="ntos" items="${nto}">
+								<tr
+									onclick="setName('${ntos.username}', '${ntos.e_name}');">
+									<td>${ntos.username}</td>
+									<td>${ntos.e_name}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<!--  없으면 -->
+						<c:if test="${cnt == 0}">
+							<tr>
+								<td colspan="6" align="center">조회결과 없음
+							</tr>
+						</c:if>
+					</tbody>
+				</table>
+			</form>
+		</div>
 	</div>
 	<!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
