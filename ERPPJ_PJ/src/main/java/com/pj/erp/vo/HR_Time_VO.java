@@ -13,8 +13,6 @@ public class HR_Time_VO {
 	Timestamp tc_leave_time;
 	String month;
 	String year;
-	String day;
-	String time;
 	String count;
 	
 	//생성자
@@ -77,22 +75,6 @@ public class HR_Time_VO {
 		this.month = month;
 	}
 
-	public String getDay() {
-		return day;
-	}
-
-	public void setDay(String day) {
-		this.day = day;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-	
 	public String getCount() {
 		return count;
 	}
@@ -108,7 +90,5 @@ public class HR_Time_VO {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	
-	
-	
+
 }

@@ -121,6 +121,7 @@ public class HR_Controller {
 		return "index";
 	}*/
 	
+	// 사원정보
 	@RequestMapping("HR_update_Fou")
 	@ResponseBody
 	public HR_VO HR_update_Fou(HttpServletRequest req, Model model) {
@@ -129,7 +130,18 @@ public class HR_Controller {
 		HR_VO data = service.HR_select_username(req, model);
 		
 		return data;
-	}	
+	}
+	
+	// 신체정보
+	@RequestMapping("HR_update_Phy")
+	@ResponseBody
+	public HR_PhysicalVO HR_update_Phy(HttpServletRequest req, Model model) {
+		logger.info("log => HR_update_Phy");
+		
+		HR_PhysicalVO data = service.HR_select_physical(req, model);
+		
+		return data;
+	}
 
 
 	@RequestMapping("HR_EmployeeInformation")
@@ -388,7 +400,6 @@ public class HR_Controller {
 		return updateCnt;
 	}
 
-	
 	//근태(사원 근태정보 가져오기)
 	@RequestMapping("Select_Users_Work_Data")
 	@ResponseBody
@@ -396,6 +407,17 @@ public class HR_Controller {
 		logger.info("log => Select_Users_Work_Data");
 		
 		List<HR_Time_VO> vo = service.DetailUserWork(req, model);
+		
+		return vo;
+	}
+	
+	//근태(사원 근태정보 가져오기)
+	@RequestMapping("HR_select_count")
+	@ResponseBody
+	public List<HR_Time_VO> HR_select_count(HttpServletRequest req, Model model) {
+		logger.info("log => HR_select_count");
+		
+		List<HR_Time_VO> vo = service.selectCountMonth(req, model);
 		
 		return vo;
 	}

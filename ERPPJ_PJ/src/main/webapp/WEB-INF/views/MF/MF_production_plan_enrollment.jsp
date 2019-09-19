@@ -6,7 +6,7 @@
     <script type="text/javascript">
         
         function searchProCode() {
-    		window.open("MF_searchProCode", "searchBomCode", "menubar=no, width=380px, height = 520px location=no,status=no,scrollbars=yes");
+    		window.open("MF_searchProCode", "searchBomCode", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}
         
         function planInsert(){

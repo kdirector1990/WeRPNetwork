@@ -136,7 +136,7 @@ function setName(username,e_name,department_code,position_code) {
 									</form>
 								</div>
 
-								<div id="result" style="overflow:auto;">
+								<div id="result">
 									<!-- 출력결과위치 -->
 								</div>
 

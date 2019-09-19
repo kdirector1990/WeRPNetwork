@@ -17,7 +17,7 @@
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
 		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover">
+			<table id="datatable" class="table table-bordered table-hover" style="height:550px;">
 				<thead>
 					<tr class="table-info" style="text-align: center;">
 						<th>제품 코드</th>

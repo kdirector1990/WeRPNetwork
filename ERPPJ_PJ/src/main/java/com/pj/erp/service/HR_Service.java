@@ -87,6 +87,9 @@ public interface HR_Service {
 	// 사원코드 가져오기
 	public HR_VO HR_select_username(HttpServletRequest req, Model model);
 	
+	// 신체정보 가져오기
+	public HR_PhysicalVO HR_select_physical(HttpServletRequest req, Model model);
+	
 	//근태(사원목록 가져오기)
 	public List<HR_Time_VO> selectUserHR(HttpServletRequest req, Model model);
 	
@@ -101,5 +104,8 @@ public interface HR_Service {
 	
 	//근태(근무일별 목록 가져오기)
 	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model);
+	
+	//근태(월별 카운트)
+	public List<HR_Time_VO> selectCountMonth(HttpServletRequest req, Model model);
 	
 }
