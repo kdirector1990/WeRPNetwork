@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.ST_salesstatus;
 import com.pj.erp.vo.ST.SalePlan;
 
 public interface ST_Service {
@@ -95,6 +96,6 @@ public interface ST_Service {
 	public void transaction(HttpServletRequest req, Model model);
 	
 	// 매출 현황
-	public void totalSales(HttpServletRequest req, Model model);
+	public List<ST_salesstatus> totalSales(HttpServletRequest req, Model model);
 
 }

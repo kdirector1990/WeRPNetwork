@@ -3,6 +3,85 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<script type = "text/javascript">
+
+var searchCount = 1;
+$(function(){
+	$('#search').click(function(){
+		var param = new Object();
+		var jsonData;
+		
+					
+		param.department_code = $("#department_code").val();
+		param.username = $("#username").val();
+		param.customer_code = $("#customer_code").val();
+		param.product_name = $("#product_name").val();
+				
+		jsonData = JSON.stringify(param);
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/ST_salesTotal_result?${_csrf.parameterName}=${_csrf.token }',
+			type : 'POST',
+			data : jsonData, 
+			dataType : "json",
+			contentType:"application/json;charset=UTF-8",
+			success : function(list){
+				
+				$('#result').empty();
+				
+				
+				
+				for(var i = 0 ; i < list.length; i++){
+				
+					var customer_code = list[i].customer_code;
+					var customer_name = list[i].customer_name;
+					var month = list[i].month;						
+					var total_amount = list[i].total_amount;
+					var total_price = list[i].total_price;
+					var count = list[i].count;
+					
+				$('#result').append('<tr>'+                         	
+						'<td>'+ customer_code +'</td>'+
+						'<td>'+ customer_name +'</td>'+
+						'<td>'+ month +'</td>'+
+						'<td>'+ total_amount +'</td>'+
+						'<td>'+ total_price +'</td>'+
+						'<td>'+ count +'</td>'+
+            		'</tr>');
+				
+				if(searchCount == 1){
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+				searchCount = searchCount + 1;
+				}
+				
+				}
+				
+			},
+			error : function(){
+				alert("에러");
+			}
+		});			
+	}); 
+});
+</script>
 </head>
 <body>
 	<!-- Begin page -->
@@ -40,90 +119,27 @@
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="부서">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
+												name="department_code" id="department_code" class="form-control"></td>
+
 											<th class="col-md-1 col-form-label">사원</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-
-											<th class="col-md-1 col-form-label">해당년도</th>
-											<td><input type="text" class="form-control"
-												placeholder="mm/dd/yyyy" data-provide="datepicker"
-												data-date-autoclose="true" /></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-										</tr>
-
-										<tr class="form-group row">
-
-											<th class="col-md-1 col-form-label">고객</th>
-											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="고객">
+												name="username" id="username" class="form-control">
 											</td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label">거래구분</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
-											</select></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-
-											<th class="col-md-1 col-form-label">조회기준</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
-											</select></td>
-										</tr>
-
-										<tr class="form-group row">
-											<th class="col-md-1 col-form-label"><select
-												class="form-control select2" name="" onchange="">
-													<option>2. 실적담당</option>
-													<option>1. 고객담당</option>
-													<option>0. 품목담당</option>
-											</select></th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
-											</select></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label"><select
-												class="form-control select2" name="" onchange="">
-													<option>3. 품번범위</option>
-													<option>2. 규격</option>
-													<option>1. 품명</option>
-													<option>0. 품번</option>
-											</select></th>
+											<th class="col-md-1 col-form-label">거래처</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td><th class="col-md-1 col-form-label">~</th><td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-
+												name="customer_code" id="customer_code" class="form-control">
+												
+											<th class="col-md-1 col-form-label">품명</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="product_name" id="product_name" class="form-control">
+											</td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-dark waves-effect waves-light"
+											id = "search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -174,7 +190,6 @@
 															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
 															<thead>
 																<tr>
-																	<th></th>
 																	<th>코드</th>
 																	<th>고객명</th>
 																	<th>합계</th>
@@ -192,6 +207,9 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
+															<tbody id = "result">
+								
+															</tbody>
 														</table>
 													</div>
 												</div>
@@ -228,6 +246,9 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
+															<tbody id = "">
+								
+															</tbody>
 														</table>
 													</div>
 												</div>
@@ -262,6 +283,9 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
+															<tbody id = "">
+								
+															</tbody>
 														</table>
 													</div>
 												</div>
@@ -296,6 +320,9 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
+															<tbody id="">
+															
+															</tbody>
 														</table>
 													</div>
 												</div>
@@ -306,40 +333,35 @@
 							</div>
 						</div>
 					</div>
-
-					<%@ include file="../footer.jsp"%>
 				</div>
+				<%@ include file="../footer.jsp"%>
 			</div>
-
-			<!-- ============================================================== -->
-			<!-- End Page content -->
-			<!-- ============================================================== -->
-
 		</div>
-		<!-- END wrapper -->
+
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
 
 		<%@ include file="../rightbar.jsp"%>
 		<%@ include file="../setting2.jsp"%>
+  <!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-		<!-- plugins -->
-		<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
-		<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-		<!-- plugins -->
-		<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-		<script
-			src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-
-		<!-- dashboard init -->
-		<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
-		<!-- Init js-->
-		<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id = "bodyappend"></div>
 </body>
 </html>

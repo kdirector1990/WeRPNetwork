@@ -17,6 +17,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_salesstatus;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -613,9 +614,10 @@ public class ST_ServiceImpl implements ST_Service {
 
 	}
 
+	//매출현황
 	@Override
-	public void totalSales(HttpServletRequest req, Model model) {
-
+	public List<ST_salesstatus> totalSales(HttpServletRequest req, Model model) {
+		return null;
 	}
 
 }

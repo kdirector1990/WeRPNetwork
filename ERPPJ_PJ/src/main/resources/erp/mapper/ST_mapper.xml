@@ -174,4 +174,10 @@
 	<select id="getCustomerList" resultType="com.pj.erp.vo.ST.CustomerList" parameterType="String">
 		select customer_code, license_number, customer_name, branch_name, customer_credit, deal_state from customer_list_tbl where customer_name like '%'||#{customer_name}||'%'
 	</select>
+	
+	<!-- 매출 -->
+	<select id="getTotalSales" resultType="com.pj.erp.vo.ST.ST_salesstatus" parameterType="java.util.Map">
+		select * from st_salesstatus_cus_view
+	</select>
+	
  </mapper>

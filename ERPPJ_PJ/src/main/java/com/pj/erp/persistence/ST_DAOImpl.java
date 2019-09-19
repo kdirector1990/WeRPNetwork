@@ -11,6 +11,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_salesstatus;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -205,6 +206,12 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public List<CustomerList> getCustomerList(String customer_name) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getCustomerList", customer_name);
+	}
+
+	//매출
+	@Override
+	public List<ST_salesstatus> getTotalSales(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getTotalSales", map);
 	}
 	
 

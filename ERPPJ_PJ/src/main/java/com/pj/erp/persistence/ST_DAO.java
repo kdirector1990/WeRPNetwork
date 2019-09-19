@@ -7,6 +7,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_salesstatus;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -109,4 +110,7 @@ public interface ST_DAO {
 	// 거래처명 검색 목록 가져오기
 	public List<CustomerList> getCustomerList(String customer_name);
 
+	//매출
+	public List<ST_salesstatus> getTotalSales(Map<String, Object> map);
+	
 }

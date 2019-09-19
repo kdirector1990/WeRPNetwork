@@ -442,7 +442,6 @@
 	                          		</a>
 	                          		<ul>
 	                          				<li><a href="ST_unpaidOrders">!출고 지연 집계</a></li>						                   
-						                    <li><a href="ST_salesStatus">매출 현황</a></li>
 						                    <li><a href="ST_salesTotal">매출 집계표(월별)</a></li>
 						                    <li><a href="coming_soon">!매출 순위표</a></li>
 											<li><a href="coming_soon">!추정 매출원가</a></li>
