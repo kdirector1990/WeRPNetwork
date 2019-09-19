@@ -55,6 +55,13 @@ public class ERPController {
 		return "index";
 	}
 	
+	@RequestMapping("nfc")
+	public String nfc(HttpServletRequest req, Model model) {
+		logger.info("log => nfc");
+		service.nfc(req, model);
+		return "nfc";
+	}
+	
 	@RequestMapping("admin-grid")
 	public String admingrid(Locale locale, Model model) {
 		logger.info("log => admin-grid"); 

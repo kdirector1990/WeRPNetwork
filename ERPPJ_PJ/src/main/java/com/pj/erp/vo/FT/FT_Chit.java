@@ -19,6 +19,7 @@ public class FT_Chit {
 	private String wname; // 수정자명
 	private String username; // 승인자코드
 	private String fname; // 승인자명
+	private String lg_name; // 대계정명
 	
 	
 	public String getJournal_code() {
@@ -129,6 +130,13 @@ public class FT_Chit {
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+	public String getLg_name() {
+		return lg_name;
+	}
+	public void setLg_name(String lg_name) {
+		this.lg_name = lg_name;
+	}
+	
 	
 	
 }

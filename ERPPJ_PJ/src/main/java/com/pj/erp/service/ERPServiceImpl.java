@@ -48,5 +48,12 @@ public class ERPServiceImpl implements ERPService{
 		
 	}
 	
+	@Override
+	public void nfc(HttpServletRequest req, Model model) {
+		String nfcid = req.getParameter("nfcid");
+		dao.nfc(nfcid);
+		
+	}
+	
 	
 }

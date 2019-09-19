@@ -146,8 +146,6 @@
 
 	<!-- Begin page -->
 	<div id="wrapper">
-
-
 		<%@ include file="../sidebar.jsp"%>
 
 		<!-- ============================================================== -->
@@ -209,9 +207,9 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-sm-12">
 							<div class="card">
-								<table class="table mb-0 table-bordered"
+								<table class="table mb-0 table-bordered table-hover"
 									style="table-layout: fixed;">
 									<thead class="thead-light">
 										<tr>
@@ -252,7 +250,6 @@
 
 			</div>
 			<div id="result">
-				<!-- 상세 페이지 출력 위치 -->
 
 			</div>
 
@@ -272,23 +269,9 @@
 
 		<%@ include file="../rightbar.jsp" %>
         <%@ include file="../setting2.jsp" %>
-        <!-- plugins -->
-	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
-	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-	<!-- plugins -->
-        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-
-	<!-- dashboard init -->
-	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
-	<!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-	<div id = "bodyappend"></div>
-
+     <!-- Datatable plugin js -->
+    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 

@@ -3,6 +3,149 @@
 <html lang="en">
     <head>
         <%@ include file="../setting.jsp" %>
+        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+		<script src="/erp/resources/assets/css/js/request.js"></script>
+        <script type="text/javascript">
+	       	function ajaxload(cc) {
+        		var obj = new Object();
+        		var jsonData;
+        		
+        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+        			$(".firstdate" + cc).focus();
+        			return false;
+        		} else if(window.event.which == 13){
+	        		// 자바스크립트 객체 생성
+	        		obj.firstday = $(".firstdate" + cc).val();
+	        		obj.lastday = $(".lastdate" + cc).val();
+	        		
+	        		// json 객체를 String 객체로 변환 -- 
+	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+	        		jsonData = JSON.stringify(obj);
+	        		$("#onepage").html("");
+	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+	        		$.ajax({
+	                       type : "POST",
+	                       url : "/erp/FT_DTBDayList?${_csrf.parameterName }=${_csrf.token }",
+	                       data : jsonData,
+	                       contentType : 'application/json;charset=UTF-8',
+	                       success : function(data) {
+	                    	   if(data != null){
+	                    		   var listL = data[0];
+	                    		   var listM = data[1];
+	                    		   var listS = data[2];
+									for(var j = 0; j < listL.length; j++){
+										$("#onepage").append('<tr>' +
+	                                        '<td scope="row" style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].lg_name + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
+		                                '</tr>');
+										for(var k = 0; k < listM.length; k++) {
+											if(listL[j].lg_name == listM[k].lg_name){
+												$("#onepage").append('<tr>' +
+				                                        '<td scope="row" style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].ag_name + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
+					                                '</tr>');
+											}
+											for(var l = 0; l < listS.length; l++) {
+												if(listM[k].ag_name == listS[l].ag_name){
+													$("#onepage").append('<tr>' +
+					                                        '<td scope="row">' + listS[l].debtorsum + '</td>' +
+					                                        '<td>' + listS[l].debtorsum + '</td>' +
+					                                        '<td>' + listS[l].accounts_name + '</td>' +
+					                                        '<td>' + listS[l].creditorsum + '</td>' +
+					                                        '<td>' + listS[l].creditorsum + '</td>' +
+						                                '</tr>');
+												}
+											}
+										}
+										
+									}
+		                    	}
+	                       },
+	                       error : function(e) {
+	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+	                       }
+	        		});
+        		}
+        	}
+	       	
+	       	function twoajaxload(cc) {
+        		var obj = new Object();
+        		var jsonData;
+        		var balance = 0;
+        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+        			$(".firstdate" + cc).focus();
+        			return false;
+        		} else if(window.event.which == 13){
+	        		// 자바스크립트 객체 생성
+	        		obj.firstday = $(".firstdate" + cc).val();
+	        		obj.lastday = $(".lastdate" + cc).val();
+	        		
+	        		// json 객체를 String 객체로 변환 -- 
+	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+	        		jsonData = JSON.stringify(obj);
+	        		$("#twopage").html("");
+	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+	        		$.ajax({
+	                       type : "POST",
+	                       url : "/erp/FT_DTBMonthList?${_csrf.parameterName }=${_csrf.token }",
+	                       data : jsonData,
+	                       contentType : 'application/json;charset=UTF-8',
+	                       success : function(data) {
+	                    	   if(data != null){
+	                    		   var listL = data[0];
+	                    		   var listM = data[1];
+	                    		   var listS = data[2];
+									for(var j = 0; j < listL.length; j++){
+										$("#twopage").append('<tr>' +
+	                                        '<td scope="row" style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].lg_name + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
+		                                '</tr>');
+										for(var k = 0; k < listM.length; k++) {
+											if(listL[j].lg_name == listM[k].lg_name){
+												$("#twopage").append('<tr>' +
+				                                        '<td scope="row" style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].ag_name + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
+					                                '</tr>');
+											}
+											for(var l = 0; l < listS.length; l++) {
+												if(listM[k].ag_name == listS[l].ag_name){
+													$("#twopage").append('<tr>' +
+					                                        '<td scope="row">' + listS[l].debtorsum + '</td>' +
+					                                        '<td>' + listS[l].debtorsum + '</td>' +
+					                                        '<td>' + listS[l].accounts_name + '</td>' +
+					                                        '<td>' + listS[l].creditorsum + '</td>' +
+					                                        '<td>' + listS[l].creditorsum + '</td>' +
+						                                '</tr>');
+												}
+											}
+										}
+										
+									}
+		                    	}
+	                       },
+	                       error : function(e) {
+	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+	                       }
+	        		});
+        		}
+        	}
+       	</script>
     </head>
 
     <body>
@@ -44,17 +187,16 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-3">Default Tabs</h4>
     
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fa fa-home"></i></span>
                                                     <span class="d-none d-sm-block">일계</span>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">        
                                                     <span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
                                                     <span class="d-none d-sm-block">월계</span>
                                                 </a>
@@ -62,64 +204,36 @@
                                         </ul>
                                         <div class="tab-content">
                                         	<!-- 잔액 -->
-                                           	<div class="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                           	<div class="tab-pane show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                      			<div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
 					    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
-					                                            	<td>계정과목</td>
-					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                
 					                                                <td>기표기간</td>
-					                                                <td><input type="date" class="">~<input type="date" class=""></td>
-					                                                
-					                                            	<td>거래처</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
+					                                                <td><input type="date" class="firstdate0" value = "2011-01-01" max = "9999-12-31"> ~ <input type="date" class="lastdate0" value = "2011-12-31" onkeydown = "ajaxload(0);" max = "9999-12-31"></td>
 					                                            </tr>
 					                                        </table>
 				    
 				                                        <div class="table-responsive">
-				                                            <table class="table mb-0">
-				                                                <thead class="thead-light">
-				                                                    <!-- <tr>
-				                                                    <th scope="col">#</th>
-				                                                    <th scope="col">First</th>
-				                                                    <th scope="col">Last</th>
-				                                                    <th scope="col">Handle</th>
-				                                                    </tr> -->
+				                                            <table class="table m-0 table-bordered">
+				                                                <thead style = "text-align:center;">
 				                                                    <tr>
-						                                                <th colspan = "3">차변</th>
-						                                                <th rowspan = "2">계정과목</th>
-						                                                <th colspan = "3">대변</th>
+						                                                <th colspan = "2" style = "background-color:#5DADE2; color:#fff;">차변</th>
+						                                                <th rowspan = "2" style = "vertical-align:middle; background-color:#5DADE2; color:#fff;">계정과목</th>
+						                                                <th colspan = "2" style = "background-color:#5DADE2; color:#fff;">대변</th>
 						                                            </tr>
 						                                            
 				                                                    <tr>
-						                                                <th>계</th>
-						                                                <th>현금</th>
-						                                                <th>대체</th>
-						                                                <th>대체</th>
-						                                                <th>현금</th>
-						                                                <th>계</th>
+						                                                <th style = "background-color:#5DADE2; color:#fff;">계</th>
+						                                                <th style = "background-color:#5DADE2; color:#fff;">금액</th>
+						                                                <th style = "background-color:#5DADE2; color:#fff;">금액</th>
+						                                                <th style = "background-color:#5DADE2; color:#fff;">계</th>
 						                                            </tr>
 						                                            
 				                                                </thead>
-				                                                <tbody>
-				                                                	<c:forEach var="item" items="${chitList}">
-				                                                		<tr>
-						                                                    <td>${item.customer_code}<</td>
-						                                                    <td>${item.customer_name}</td>
-						                                                    <td>${item.license_number}</td>
-						                                                    <td>${item.BeforePrice}</td>
-						                                                    <td>${item.debtor_value}</td>
-						                                                    <td>${item.creditor_value}</td>
-						                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
-					                                                    </tr>
-				                                                	</c:forEach>
+				                                                <tbody id = "onepage">
+				                                                	
 				                                                </tbody>
 				                                            </table>
 				                                        </div>
@@ -129,59 +243,36 @@
                                           </div>
                                           
                                           <!-- 원장 -->
-                                            <div class="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                            <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                 <div class="col-sm-12">
 					                                <div class="card">
 					                                    <div class="card-body table-responsive">
 						    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					                                            <tr>
-					                                            
-					                                            	<td>계정과목</td>
-					                                                <td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
-					                                                
 					                                                <td>기표기간</td>
-					                                                <td><input type="date" class="">~<input type="date" class=""></td>
-					                                            	
-					                                            	<td>거래처</td>
-					                                            	<td><input type="text" class="">&nbsp;<a href="#"><i class="dripicons-zoom-in"></i></a>
-					                                                	<input type="text" class="" readonly>
-					                                                </td>
+					                                                <td><input type="month" class="firstdate1" value = "2011-01-01"> ~ <input type="month" class="lastdate1" value = "2011-12-31" onkeydown = "twoajaxload(1);"></td>
 					                                            </tr>
 						                                        </table>
 					    
 					                                        <div class="table-responsive">
-					                                            <table class="table mb-0">
-					                                                <thead class="thead-light">
+					                                            <table class="table m-0 table-bordered">
+					                                                <thead style = "text-align:center;">
 					                                                    <tr>
-							                                                <th colspan = "3">차변</th>
-							                                                <th rowspan = "2">계정과목</th>
-							                                                <th colspan = "3">대변</th>
+							                                                <th colspan = "2" style = "background-color:#5DADE2; color:#fff;">차변</th>
+							                                                <th rowspan = "2" style = "vertical-align:middle; background-color:#5DADE2; color:#fff;">계정과목</th>
+							                                                <th colspan = "2" style = "background-color:#5DADE2; color:#fff;">대변</th>
 							                                            </tr>
 							                                            
 					                                                    <tr>
-							                                                <th>계</th>
-							                                                <th>현금</th>
-							                                                <th>대체</th>
-							                                                <th>대체</th>
-							                                                <th>현금</th>
-							                                                <th>계</th>
+							                                                <th style = "background-color:#5DADE2; color:#fff;">계</th>
+							                                                <th style = "background-color:#5DADE2; color:#fff;">금액</th>
+							                                                <th style = "background-color:#5DADE2; color:#fff;">금액</th>
+							                                                <th style = "background-color:#5DADE2; color:#fff;">계</th>
 							                                            </tr>
 							                                            
 					                                                </thead>
-					                                                <tbody>
-					                                                    <c:forEach var="item" items="${chitList}">
-					                                                		<tr>
-							                                                    <td>${item.customer_code}<</td>
-							                                                    <td>${item.customer_name}</td>
-							                                                    <td>${item.license_number}</td>
-							                                                    <td>${item.BeforePrice}</td>
-							                                                    <td>${item.debtor_value}</td>
-							                                                    <td>${item.creditor_value}</td>
-							                                                    <td>${item.BeforePrice + item.debtor_value - item.creditor_value}</td>
-						                                                    </tr>
-					                                                	</c:forEach>
+					                                                <tbody id = "twopage">
+					                                                    
 					                                                </tbody>
 					                                            </table>
 					                                        </div>

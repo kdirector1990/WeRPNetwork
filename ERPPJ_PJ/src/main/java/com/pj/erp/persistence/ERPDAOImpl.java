@@ -26,4 +26,9 @@ public class ERPDAOImpl implements ERPDAO{
 		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.authCheck",username);
 	}
 	
+	@Override
+	public void nfc(String nfcid) {
+		sqlSession.insert("com.pj.erp.persistence.ERPDAO.nfc",nfcid); 
+	}
+	
 }

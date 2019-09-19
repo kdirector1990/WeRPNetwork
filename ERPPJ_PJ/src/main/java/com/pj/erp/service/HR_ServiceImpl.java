@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -27,12 +27,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.persistence.HR_DAO;
 
 import com.pj.erp.vo.HR_PhysicalVO;
+import com.pj.erp.vo.HR_ApVO;
 import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
 
 import com.pj.erp.vo.HR_RankVO;
-import com.pj.erp.vo.HR_RecordInfoVO;
 import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
@@ -277,8 +277,8 @@ public class HR_ServiceImpl implements HR_Service{
 		String spa_date = "";
 		String epa_date = "";
 		
-		Date sdate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
-		Date edate = new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		Date sdate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
+		Date edate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
 		
 		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
 			
@@ -620,31 +620,45 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String username = req.getParameter("username");
 		String position_record_code = dao.getPositionRecord();
-		String record_date = req.getParameter("record_date");
-		// Date col = Date.valueOf(record_date);		
+		Date record_date = (Date.valueOf(req.getParameter("record_date")));
+		
+		
 		
 		vo.setUsername(username);
 		vo.setPosition_record_cord(position_record_code);
-		// vo.setRecord_date(col);
-		
-		HR_RecordInfoVO vo2 = new HR_RecordInfoVO();
-		
-		String record_title = req.getParameter("record_title");
-		String record_division = req.getParameter("record_division");
-		
-		vo2.setRecord_title(record_title);
-		vo2.setRecord_division(record_division);
+		vo.setRecord_date(record_date);		
 		
 		int cnt = 0;
 		
 		cnt = dao.recordInput(vo);
 		
 		model.addAttribute("cnt", 1);		
+		model.addAttribute("insertCnt", cnt);		
+	}
+	
+	@Override
+	public void HR_APinput(HttpServletRequest req, Model model) {
+		HR_ApVO ap = new HR_ApVO();
+		
+		String ap_code = dao.getAP_code();
+		String ap_name = req.getParameter("ap_name");
+		String ap_content = req.getParameter("ap_content");
+		
+		ap.setAp_code(ap_code);
+		ap.setAp_name(ap_name);
+		ap.setAp_content(ap_content);
+		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
+		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
+		ap.setAp_status(req.getParameter("ap_status"));
+		
+		int cnt = 0;		
+		
+		cnt = dao.insertAp(ap);
+		
+		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);
 		
 	}
-
-
 
 	@Override
 	public HR_VO HR_select_username(HttpServletRequest req, Model model) {
@@ -656,7 +670,6 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		return data;
 	}
-
 
 	//근태(월별 카운트)
 	@Override
@@ -700,8 +713,6 @@ public class HR_ServiceImpl implements HR_Service{
 		return dto;
 	}
 
-
-
 	@Override
 	public HR_PhysicalVO HR_select_physical(HttpServletRequest req, Model model) {
 		String username = req.getParameter("username");
@@ -710,9 +721,5 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		return data;
 	}
-	
-	
-
-
 
 }
