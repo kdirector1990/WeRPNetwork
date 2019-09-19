@@ -87,40 +87,41 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-body">
-										<table class="col-12">
-											<tr class="form-group row">
-												<th class="col-md-1 col-form-label">거래처</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="" id="" class="form-control"></td>
-	
-												<th class="col-md-1 col-form-label">품목</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="" id="" class="form-control"></td>
-	
-												<th class="col-md-1 col-form-label">사원</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="" id="" class="form-control"></td>
-	
-												<th class="col-md-1 col-form-label">출고요청일</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="" class="form-control" data-provide="datepicker"
-													data-date-autoclose="true"></td>
-											</tr>
-										</table>
-										
-										<div align="right">
-											<button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button>
-										</div>
+									<table class="col-12">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">거래처</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="" id="" class="form-control"></td>
+
+											<th class="col-md-1 col-form-label">품목</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="" id="" class="form-control"></td>
+
+											<th class="col-md-1 col-form-label">사원</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="" id="" class="form-control"></td>
+
+											<th class="col-md-1 col-form-label">출고요청일</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="" class="form-control" data-provide="datepicker"
+												data-date-autoclose="true"></td>
+										</tr>
+									</table>
+
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">검색</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- end row -->
-					
-					<div id = "result">
-          					<!-- 결과출력 -->
-                   	</div>
-			                      	
+
+					<div id="result">
+						<!-- 결과출력 -->
+					</div>
+
 				</div>
 				<!-- end container-fluid -->
 			</div>
@@ -139,7 +140,7 @@
 	<!-- END wrapper -->
 
 
-		<%@ include file="../rightbar.jsp"%>
-		<%@ include file="../setting2.jsp"%>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 </body>
 </html>

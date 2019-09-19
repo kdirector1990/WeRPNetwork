@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%@ include file="../setting.jsp" %>
-        <script type="text/javascript">
+<head>
+<%@ include file="../setting.jsp"%>
+<script type="text/javascript">
         function usernameList() {
     		window.open("MS_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}
@@ -31,10 +31,10 @@
     	}
         
         </script>
-    </head>
+</head>
 
-    <body>
-        <!-- Begin page -->
+<body>
+	<!-- Begin page -->
 	<div id="wrapper">
 
 
@@ -71,26 +71,27 @@
 										value="${_csrf.token }"> <input type="hidden"
 										name="hiddenId" value="0">
 									<div class="form-group">
-										<label class="col-md-1 col-form-label">기획명</label> <input type="text" name="plan_name"
-											class="form-control" required placeholder="기획명" />
+										<label class="col-md-1 col-form-label">기획명</label> <input
+											type="text" name="plan_name" class="form-control" required
+											placeholder="기획명" />
 									</div>
 									<div class="form-group">
 										<label class="col-md-1 col-form-label">시작예정일</label>
-										 <!-- <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"> --> 
+										<!-- <input type="date" id="datepicker1" name="plan_startdate" class="form-control" data-toggle="input-mask" style="width: 100%;"> -->
 										<input type="text" name="plan_startdate" class="form-control"
 											placeholder="yyyy/mm/dd" data-provide="datepicker"
-											data-date-autoclose="true"> 
+											data-date-autoclose="true">
 									</div>
 									<div class="form-group">
 										<label class="col-md-1 col-form-label">종료목표일</label>
 										<!--  <input type="date" id="datepicker2" name="plan_enddate" class="form-control" data-toggle="input-mask" style="width: 100%;" data-date-autoclose="true"> -->
 										<input type="text" name="plan_enddate" class="form-control"
 											placeholder="yyyy/mm/dd" data-provide="datepicker"
-											data-date-autoclose="true"> 
+											data-date-autoclose="true">
 									</div>
 									<div class="form-group">
-										<label class="col-md-1 col-form-label">기획상태</label> 
-										<select name="plan_state" class="form-control" required>
+										<label class="col-md-1 col-form-label">기획상태</label> <select
+											name="plan_state" class="form-control" required>
 											<option>선택</option>
 											<option value="기획단계">기획단계</option>
 											<option value="준비중">준비중</option>
@@ -101,41 +102,36 @@
 									</div>
 									<div class="form-group">
 										<div style="display: flex;">
-											<label class="col-md-1 col-form-label">기획제안자</label>
-											<input type="text" name="username" id="username"
+											<label class="col-md-1 col-form-label">기획제안자</label> <input
+												type="text" name="username" id="username"
 												class="form-control" required placeholder="기획제안자코드"
-												onclick="usernameList()"/>
-											<label class="col-md-1 col-form-label">사원명</label>
-											<input type="text" name="e_name" id="e_name"
-											class="form-control" required placeholder="사원명" 
-												disabled/>
-											<label class="col-md-1 col-form-label">부서코드</label>
-											<input type="text" name="department_code" id="department_code"
-											class="form-control" required placeholder="부서코드" 
-												disabled/>
-											<label class="col-md-1 col-form-label">직책코드</label>
-											<input type="text" name="position_code" id="position_code"
-											class="form-control" required placeholder="직책코드" 
-												 disabled/>
+												onclick="usernameList()" /> <label
+												class="col-md-1 col-form-label">사원명</label> <input
+												type="text" name="e_name" id="e_name" class="form-control"
+												required placeholder="사원명" disabled /> <label
+												class="col-md-1 col-form-label">부서코드</label> <input
+												type="text" name="department_code" id="department_code"
+												class="form-control" required placeholder="부서코드" disabled />
+											<label class="col-md-1 col-form-label">직책코드</label> <input
+												type="text" name="position_code" id="position_code"
+												class="form-control" required placeholder="직책코드" disabled />
 										</div>
 									</div>
 									<div class="form-group">
 										<div style="display: flex;">
-											<label class="col-md-1 col-form-label">책임자</label>
-											<input type="text" name="position_code" id="position_code2" onclick="positionCode();"
-												class="form-control" required placeholder="책임자코드"/>
-											<label class="col-md-1 col-form-label">사원명</label>
-											<input type="text" name="e_name" id="e_name2"
-												class="form-control" required placeholder="사원명" 
-													 disabled/>
-											<label class="col-md-1 col-form-label">부서코드</label>
-											<input type="text" name="department_code" id="department_code2"
-											class="form-control" required placeholder="부서코드" 
-												 disabled/>
-											<label class="col-md-1 col-form-label">사원코드</label>
-											<input type="text" name="username" id="username2"
-												class="form-control" required placeholder="사원코드" 
-													disabled/>	
+											<label class="col-md-1 col-form-label">책임자</label> <input
+												type="text" name="position_code" id="position_code2"
+												onclick="positionCode();" class="form-control" required
+												placeholder="책임자코드" /> <label
+												class="col-md-1 col-form-label">사원명</label> <input
+												type="text" name="e_name" id="e_name2" class="form-control"
+												required placeholder="사원명" disabled /> <label
+												class="col-md-1 col-form-label">부서코드</label> <input
+												type="text" name="department_code" id="department_code2"
+												class="form-control" required placeholder="부서코드" disabled />
+											<label class="col-md-1 col-form-label">사원코드</label> <input
+												type="text" name="username" id="username2"
+												class="form-control" required placeholder="사원코드" disabled />
 										</div>
 									</div>
 									<div class="form-group">
@@ -158,20 +154,23 @@
 								</form>
 							</div>
 						</div>
+					</div>
 				</div>
-			</div><!-- end row -->
-		</div><!-- end container-fluid -->
-		<%@ include file="../footer.jsp"%>
+				<!-- end row -->
+			</div>
+			<!-- end container-fluid -->
+			<%@ include file="../footer.jsp"%>
+
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
 
 	</div>
-			<!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+	<!-- END wrapper -->
 
- </div>  <!-- END wrapper -->
-       
 
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-    </body>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+</body>
 </html>

@@ -1,27 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
 <style type="text/css">
-	#firstR{
-		display:none;
-	}
-	#seoncdR{
-		display:none;
-	}
+#firstR {
+	display: none;
+}
+
+#seoncdR {
+	display: none;
+}
 </style>
 
-    <%@ include file="../setting.jsp" %>
-    
-    <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    
-    <script type="text/javascript">
+<%@ include file="../setting.jsp"%>
+
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
     
     var searchCount = 1;
     
@@ -154,146 +168,160 @@
     
     </script>
 </head>
-	<body>
-     	 <!-- Begin page -->
-    	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
-            <div class="content-page">
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<%@ include file="../sidebar.jsp"%>
+		<div class="content-page">
 			<!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->           
-            
-                <!-- 페이지 내용 입력 공간 -->
-            
-                
-                <!-- Start Content-->
-                    <div class="container-fluid">
-                    
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">전산</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">설비유지비</a></li>
-                                            <li class="breadcrumb-item active">수리 폐기</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">수리폐기</h4>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-				<div class="col-sm-12">
-					<div class="card">
-						<div class="card-body table-responsive">
-							<table class = "col-12" >
-								<tr class="form-group row" >
-									<th class="col-md-1 col-form-label">수리코드</th>
-										<td class="col-md-2 input-group">
-												<input type="text" class="form-control" name="rr_code" id = "rr_code" placeholder = "RP_">
-										</td>
-									<td class="col-md-1 col-form-label">&nbsp;</td>			
-									<th class="col-md-1 col-form-label">부서명</th>
-										<td class="col-md-2 input-group">
-											<input type="text" class="form-control" name="department_name" id="department_name" placeholder = "부서명">
-										</td>
-									<td class="col-md-1 col-form-label">&nbsp;</td>			
-									<th class="col-md-1 col-form-label">수리제목</th>
-										<td class="col-md-2 input-group">
-											<input type="text" class="form-control" name="rr_title" id="rr_title" placeholder = "수리제목">
-										</td>	
-									
-									<td><button type="button" class="btn btn-primary waves-effect waves-light" onclick = "search();">검색</button></td>
-								</tr>
-							</table>
-		                    	</div>
-                             </div>
-		                   </div> 
-                         </div>
-                        
-                        
-                        <!-- start page title -->
-                        
-                        <!-- end page title --> 
-						
-					<div id="firstR">	
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-                                        <form id="DelUpdate">
-                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead>
-                                            <tr>
-                                            	<th><input type="checkbox" id="allChecked" onclick="allcheck();"></th>
-                                            	<th>수리코드</th>
-                                            	<th>사용부서</th>
-                                                <th>등록일</th>
-                                                <th>제목</th>
-                                                <th>처리상태</th>
-                                                <th>수리방법</th>
-                                                <th>금액</th>
-                                            </tr>
-                                            </thead>
-    
-                                            <tbody id="result">
-                                            </tbody>
-                                        </table>
-                                        </form>
-                                    </div>
-                                    <div class="form-group text-right mr-1">
-                                          <button class="btn btn-primary waves-effect waves-light mr-1" type="button" onclick="delRpX();">폐기취소</button>
-                            		</div>
-                                </div>
-                            </div>
-                        </div>
-                     </div>
-                    
-                    </div> <!-- end container-fluid -->
-                    
+			<!-- Start Page Content here -->
+			<!-- ============================================================== -->
 
-                </div> <!-- end content -->
-                
-               
-               
-               <!-- 페이지 내용 입력 공간 종료 -->
-               
-                <%@ include file="../footer.jsp" %>
+			<!-- 페이지 내용 입력 공간 -->
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
 
-        </div>
-        <!-- END wrapper -->
+			<!-- Start Content-->
+			<div class="container-fluid">
 
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-        
-        <!-- plugins -->
+
+				<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box">
+							<div class="page-title-right">
+								<ol class="breadcrumb m-0">
+									<li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">전산</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">설비유지비</a></li>
+									<li class="breadcrumb-item active">수리 폐기</li>
+								</ol>
+							</div>
+							<h4 class="page-title">수리폐기</h4>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body table-responsive">
+								<table class="col-12">
+									<tr class="form-group row">
+										<th class="col-md-1 col-form-label">수리코드</th>
+										<td class="col-md-2 input-group"><input type="text"
+											class="form-control" name="rr_code" id="rr_code"
+											placeholder="RP_"></td>
+										<td class="col-md-1 col-form-label">&nbsp;</td>
+										<th class="col-md-1 col-form-label">부서명</th>
+										<td class="col-md-2 input-group"><input type="text"
+											class="form-control" name="department_name"
+											id="department_name" placeholder="부서명"></td>
+										<td class="col-md-1 col-form-label">&nbsp;</td>
+										<th class="col-md-1 col-form-label">수리제목</th>
+										<td class="col-md-2 input-group"><input type="text"
+											class="form-control" name="rr_title" id="rr_title"
+											placeholder="수리제목"></td>
+
+										<td><button type="button"
+												class="btn btn-primary waves-effect waves-light"
+												onclick="search();">검색</button></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- start page title -->
+
+				<!-- end page title -->
+
+				<div id="firstR">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+									<form id="DelUpdate">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+										<table id="datatable"
+											class="table table-striped table-bordered dt-responsive nowrap"
+											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+											<thead>
+												<tr>
+													<th><input type="checkbox" id="allChecked"
+														onclick="allcheck();"></th>
+													<th>수리코드</th>
+													<th>사용부서</th>
+													<th>등록일</th>
+													<th>제목</th>
+													<th>처리상태</th>
+													<th>수리방법</th>
+													<th>금액</th>
+												</tr>
+											</thead>
+
+											<tbody id="result">
+											</tbody>
+										</table>
+									</form>
+								</div>
+								<div class="form-group text-right mr-1">
+									<button class="btn btn-primary waves-effect waves-light mr-1"
+										type="button" onclick="delRpX();">폐기취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- end container-fluid -->
+
+
+		</div>
+		<!-- end content -->
+
+
+
+		<!-- 페이지 내용 입력 공간 종료 -->
+
+		<%@ include file="../footer.jsp"%>
+
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
 	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
 	<!-- plugins -->
-        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 	<!-- dashboard init -->
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-        <div id = "bodyappend"></div>
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 
-		<script type="text/javascript">
+	<script type="text/javascript">
       	//문자 지우기
        function removeChar(event) {
        	    event = event || window.event;
@@ -328,5 +356,5 @@
        	}
     	</script>
 
-    </body>
+</body>
 </html>

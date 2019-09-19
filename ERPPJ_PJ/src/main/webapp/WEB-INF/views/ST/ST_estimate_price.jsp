@@ -4,19 +4,32 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <!-- Responsive Table css -->
-  <link rel="stylesheet" type="text/css"
-    	href="/erp/resources/assets/libs/c3/c3.min.css">	
-    <script src="/erp/resources/assets/js/request.js"></script>
-    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-    	<script src="/erp/resources/assets/css/js/request.js"></script>
-    	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <script type = "text/javascript">
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/erp/resources/assets/js/request.js"></script>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<script type="text/javascript">
         
 function ST_estimate_Form(url) {
 	sendRequest(callback, "ST_estimate_Form", "post", "${_csrf.parameterName }=${_csrf.token }&ep_code="+url);
@@ -142,7 +155,7 @@ $(function(){
 
 
 </script>
- <script type="text/javascript">
+<script type="text/javascript">
        function ProductName() {
    		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
    	}
@@ -155,7 +168,6 @@ $(function(){
     		window.open("ST_searchCustomername", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}   
 </script>
-
 <body>
 
 	<!-- Begin page -->
@@ -197,55 +209,61 @@ $(function(){
 						<div class="col-12">
 							<div class="card">
 								<div class="card-body">
-											<table class="col-12">
-													<tr class="form-group row">
-														<th class="col-md-1 col-form-label" style="text-align: right;">거래처</th>
-															<td class="col-md-2 input-group">
-																<input type="text" name="customerName" id="customerName" class="form-control">
-															</td>
-													
-														<th class="col-md-1 col-form-label" style="text-align: right;">담당자</th>
-															<td class="col-md-2 input-group">
-																<input type="text" name="username" id="username_2" class="form-control">
-															</td>
-														<th class="col-md-1 col-form-label" style="text-align: right;">품명</th>
-															<td class="col-md-2 input-group">
-																<input type="text" name="ProductName" id ="ProductName" class="form-control">
-															</td>
-														<td class="col-md-2 input-group"><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">조회</button></td>
-													</tr>	
-												</table>
-										</div>
-									</div>
-								<!-- end card -->
+									<table class="col-12">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label"
+												style="text-align: right;">거래처</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="customerName" id="customerName" class="form-control">
+											</td>
+
+											<th class="col-md-1 col-form-label"
+												style="text-align: right;">담당자</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="username" id="username_2" class="form-control">
+											</td>
+											<th class="col-md-1 col-form-label"
+												style="text-align: right;">품명</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="ProductName" id="ProductName" class="form-control">
+											</td>
+											<td class="col-md-2 input-group"><button type="button"
+													class="btn btn-primary waves-effect waves-light"
+													id="search">조회</button></td>
+										</tr>
+									</table>
+								</div>
 							</div>
-							<!-- end col -->
+							<!-- end card -->
 						</div>
-						<!-- end row -->
-					
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="card">
-									<div class="card-body">
-										<div class="table-rep-plugin">
-											<div class="" data-pattern="priority-columns">
-												<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-													<thead class="bg-primary text-white">
-														<tr>
-															<th>견적 코드</th>
-															<th>거래처</th>
-															<th>담당자</th>
-															<th>품번</th>
-															<th>품명</th>
-															<th>견적 수량</th>
-															<th>납품 예정일</th>
-															<th>견적 등록일</th>
-															<th>공급가</th>
-															<th>부가세</th>
-														</tr>
-													</thead>
-													<tbody id="result_2">
-														<%-- <c:if test="${cnt > 0}">
+						<!-- end col -->
+					</div>
+					<!-- end row -->
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-rep-plugin">
+										<div class="" data-pattern="priority-columns">
+											<table id="datatable"
+												class="table table-striped table-bordered dt-responsive nowrap">
+												<thead class="bg-primary text-white">
+													<tr>
+														<th>견적 코드</th>
+														<th>거래처</th>
+														<th>담당자</th>
+														<th>품번</th>
+														<th>품명</th>
+														<th>견적 수량</th>
+														<th>납품 예정일</th>
+														<th>견적 등록일</th>
+														<th>공급가</th>
+														<th>부가세</th>
+													</tr>
+												</thead>
+												<tbody id="result_2">
+													<%-- <c:if test="${cnt > 0}">
 															<c:forEach var="eto" items="${etos}">
 																<tr  onclick="ST_estimate_Form('${eto.ep_code}');">
 																	<td>${eto.ep_code}</td> <!-- 견적 코드  -->
@@ -262,16 +280,16 @@ $(function(){
 																</tr>
 															</c:forEach>
 														</c:if> --%>
-													</tbody>
-												</table>
-											</div>
-											<!-- end .table-responsive -->
+												</tbody>
+											</table>
 										</div>
-										<!-- end .table-rep-plugin-->
+										<!-- end .table-responsive -->
 									</div>
+									<!-- end .table-rep-plugin-->
 								</div>
 							</div>
 						</div>
+					</div>
 					<div id="result">
 						<!-- 상세 페이지 출력 위치 -->
 
@@ -283,7 +301,7 @@ $(function(){
 			</div>
 			<!-- end content -->
 
-			<%@ include file="../footer.jsp" %>
+			<%@ include file="../footer.jsp"%>
 
 		</div>
 
@@ -293,24 +311,29 @@ $(function(){
 
 	</div>
 	<!-- END wrapper -->
-		<%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-        <!-- plugins -->
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+	<!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
 	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
 	<!-- plugins -->
-        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 	<!-- dashboard init -->
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-	<div id = "bodyappend"></div>
-	
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
+
 </body>
 </html>

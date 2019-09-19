@@ -6,15 +6,26 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
-<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-	<script src="/erp/resources/assets/css/js/request.js"></script>
-	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-    <script type = "text/javascript">
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<script type="text/javascript">
     var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
@@ -103,7 +114,7 @@
 		}); 
 	 });
 	 
-</script>	
+</script>
 </head>
 
 <body>
@@ -130,88 +141,95 @@
 							<div class="page-title-box">
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">인사정보</a></li>
-                                            <li class="breadcrumb-item active">책정임금현황</li>
-                                        </ol>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">WeRP</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">인사</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">인사정보</a></li>
+										<li class="breadcrumb-item active">책정임금현황</li>
+									</ol>
 								</div>
 								<h4 class="page-title">책정임금현황</h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
-			
 
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="card">
-						<div class="card-body table-responsive">
-							<table class = "col-12" >
-								<tr class="form-group row" >
-									<th class="col-md-1 col-form-label">부서</th>
-									<td class="col-md-2 input-group">
-											<input type="text" class="form-control" name="d_name" id = "d_name" placeholder = "부서명">
-											</td>
-									<td class="col-md-1 col-form-label">&nbsp;</td>			
-									<th class="col-md-1 col-form-label">사원검색</th>
-										<td class="col-md-2 input-group">
-											<input type="text" class="form-control" name="e_name" id="e_name" placeholder = "한글이름">
-											</td>	
-									<td><button type="button" class="btn btn-primary waves-effect waves-light" id = "search">검색</button></td>
-									<td class="col-md-1 col-form-label">&nbsp;</td>		
-									<th class="col-md-1 col-form-label"> 임금 총 합계 : </th>
-									<th class="col-md-2 col-form-label" id = "totals"> </th>
-								</tr>
-							</table>
-		                    	</div>
-                             </div>
-		                   </div> 
-                         </div>
-                         
-                      <div class="row">
+
+					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-                                        <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
-                                            <col style = "width:10%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:15%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:10%;">
-                                            <col style = "width:10%;">
-                                 <thead>
-									<tr>
-										<th>사원번호</th>
-										<th>사원명</th>
-										<th>부서</th>
-										<th>직급</th>
-										<th>입사일</th>
-										<th>기본급</th>
-										<th>급호수당</th>
-										<th>연장수당</th>
-										<th>합계</th>
-									</tr>
-								</thead>
-								<tbody id = "result">
-								
-								</tbody>
+									<table class="col-12">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">부서</th>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="d_name" id="d_name"
+												placeholder="부서명"></td>
+											<td class="col-md-1 col-form-label">&nbsp;</td>
+											<th class="col-md-1 col-form-label">사원검색</th>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="e_name" id="e_name"
+												placeholder="한글이름"></td>
+											<td><button type="button"
+													class="btn btn-primary waves-effect waves-light"
+													id="search">검색</button></td>
+											<td class="col-md-1 col-form-label">&nbsp;</td>
+											<th class="col-md-1 col-form-label">임금 총 합계 :</th>
+											<th class="col-md-2 col-form-label" id="totals"></th>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 
-							</table>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+									<table id="datatable"
+										class="table table-striped table-bordered dt-responsive nowrap">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<col style="width: 15%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<col style="width: 15%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<thead>
+											<tr>
+												<th>사원번호</th>
+												<th>사원명</th>
+												<th>부서</th>
+												<th>직급</th>
+												<th>입사일</th>
+												<th>기본급</th>
+												<th>급호수당</th>
+												<th>연장수당</th>
+												<th>합계</th>
+											</tr>
+										</thead>
+										<tbody id="result">
 
+										</tbody>
+
+									</table>
+
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div></div>
 
 
 
-			<%@ include file="../footer.jsp" %>
-		
-		</div>
+				<%@ include file="../footer.jsp"%>
+
+			</div>
 		</div>
 		<!-- ============================================================== -->
 		<!-- End Page content -->
@@ -220,23 +238,28 @@
 	</div>
 	<!-- END wrapper -->
 
-	<%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-        <!-- plugins -->
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+	<!-- plugins -->
 	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
 	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
 	<!-- plugins -->
-        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 	<!-- dashboard init -->
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-	<div id = "bodyappend"></div>
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 </body>
 </html>

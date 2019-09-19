@@ -1,16 +1,16 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <!--  
 상세계정 코드의 값 설정들이 완료되어야지 완벽하게 돌릴 수 있음.
 ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 -->
 <head>
-<%@ include file="../setting.jsp" %>
-<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js" ></script> 
-		<script src="/erp/resources/assets/css/js/request.js"></script>
-        <script type="text/javascript">
+<%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
         	
@@ -188,149 +188,188 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         		});
         	}
         	
-        </script> 
+        </script>
 </head>
-	<body>
-     	 <!-- Begin page -->
-    	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
-            <div class="content-page">
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<%@ include file="../sidebar.jsp"%>
+		<div class="content-page">
 			<!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->           
-            
-            <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">전산</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">설비관리</a></li>
-                                            <li class="breadcrumb-item active">전산설비 등록</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">전산설비 등록</h4>
-                                </div>
-                            </div>
-                        </div>
-                        </div>     
-                        <!-- end page title --> 
-						
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-                                        <h4 class="header-title">설비등록</h4>
-                                        <div align="right">
-		    								<button id="insertCT" onclick="Insert();" type="button" class="btn btn-outline-primary waves-effect waves-light">등록</button>
-										</div>
-                                        
-    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <tr>
-                                                <td>작성자 : ${name }</td>
-                                            </tr>
-                                        </table>
-                                        
-                                       <div class="table-responsive" style = "margin: 15px 0px 50px">
-                                       <form id="CTinsert" action="CT_subject_add" method="post" class="form-horizontal">
-                                        <input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-                                            <table class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
-	                                            <col style = "width:12%">
-	                                            <col style = "width:13%;">
-                                                <col style = "width:7%">
-                                                <col style = "width:7%;">
-                                                <col style = "width:8%;">
-                                                <col style = "width:11%;">
-                                                <col style = "width:9%;">
-                                                <col style = "width:13%;">
-                                                <col style = "width:10%;">
-                                                <col style = "width:10%;">
+			<!-- Start Page Content here -->
+			<!-- ============================================================== -->
 
-                                                <thead>
-                                                    <tr>
-                                                    	<th>설비코드</th>
-		                                                <th>설비명</th>
-		                                                <th>보유구분</th>
-		                                                <th>구입일</th>
-		                                                <th>사용부서</th>
-		                                                <th>위치</th>
-		                                                <th>매입가</th>
-		                                                <th>예상내용연수</th>
-		                                                <th>감가상각여부</th>
-		                                                <th>감가상각법</th>
-		                                            </tr>
-		                                        </thead>
-		    
-		                                        <tbody>
-		                                            <tr>
-		                                            	<td><select name="ceq_code0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);" autofocus>
-		                                            			<option value="">선택
-		                                            			<option value="025">장비
-		                                            		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_name0" id="first" onkeydown = "enter(this.tagName,this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;"></td>
-		                                                <td><select class="form-control" name = "ceq_type0" onfocus = "focuse();" style = "width: 100%; -webkit-appearance: none; border:0px;" required onchange="enter(this.tagName,this.name);">
-		                                                	<option value="null">선택</option>
-		                                                	<option value="보유">보유
-		                                                	<option value="대여">대여
-		                                                </select></td>
-		                                                <td><input type="date" onfocus = "focuse(this.name);" name = "ceq_acquire_date0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "enter(this.tagName, this.name);" required></td>
-		                                                <td><select class="form-control" onfocus = "focuse(this.name);" name = "deparment_code0" style = "width: 100%; -webkit-appearance: none; border:0px;"  onchange="enter(this.tagName, this.name);">
-		                                                	<c:forEach var="vo" items="${dto}">
-		                                                		<option value="${vo.department_code }">${vo.department_name }</option>
-		                                                	</c:forEach>
-			                                       		</select></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "ceq_location0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" class="form-control" name = "ceq_prime_cost0" onfocus = "focuse();" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onchange="enter(this.tagName,this.name);" required></td>
-			                                       		<td><input type="text" onfocus = "focuse(this.name);" name = "ceq_durable0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);" onkeyup="enter(this.tagName, this.name);"></td>
-			                                       		<td><select name="ceq_depreciation0" onfocus = "focuse();" class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enterinsert(0);" required>
-			                                       			<option value="">선택</option>
-			                                       			<option value="2">Y</option>
-			                                       			<option value="1">N</option>
-			                                       		</select>
-			                                       		<td>
-			                                       		<select id="enter" name = "ceq_depreciation_type0" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onchange="enter(this.tagName, this.name);">
-			                                       			<option value="N">선택
-			                                       			<option value="정률법">정률법
-			                                       			<option value="정액법">정액법
-			                                       		</select>
-			                                       		</td>
-		                                            </tr>
-		                                        </tbody>
-                                            </table>
-                                            </form>
-										  </div>
-										  <div class="form-group text-right mb-0">
-		    										<button onclick="add();" type="button" class="btn btn-outline-primary waves-effect waves-light">추가</button>
-		    										<button onclick="del();" type="button" class="btn btn-outline-primary waves-effect waves-light">삭제</button>
-											</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end container-fluid -->
+			<!-- Start Content-->
+			<div class="container-fluid">
 
-                </div> <!-- end content -->
-          
-                <%@ include file="../footer.jsp" %>
+				<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box">
+							<div class="page-title-right">
+								<ol class="breadcrumb m-0">
+									<li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">전산</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">설비관리</a></li>
+									<li class="breadcrumb-item active">전산설비 등록</li>
+								</ol>
+							</div>
+							<h4 class="page-title">전산설비 등록</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end page title -->
 
-            
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-body table-responsive">
+							<h4 class="header-title">설비등록</h4>
+							<div align="right">
+								<button id="insertCT" onclick="Insert();" type="button"
+									class="btn btn-outline-primary waves-effect waves-light">등록</button>
+							</div>
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+							<table id="datatable"
+								style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+								<tr>
+									<td>작성자 : ${name }</td>
+								</tr>
+							</table>
 
-       
-        <!-- END wrapper -->
+							<div class="table-responsive" style="margin: 15px 0px 50px">
+								<form id="CTinsert" action="CT_subject_add" method="post"
+									class="form-horizontal">
+									<input type="hidden" name="${_csrf.parameterName }"
+										value="${_csrf.token }">
+									<table
+										class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered">
+										<col style="width: 12%">
+										<col style="width: 13%;">
+										<col style="width: 7%">
+										<col style="width: 7%;">
+										<col style="width: 8%;">
+										<col style="width: 11%;">
+										<col style="width: 9%;">
+										<col style="width: 13%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
 
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-        
-        <script type="text/javascript">
+										<thead>
+											<tr>
+												<th>설비코드</th>
+												<th>설비명</th>
+												<th>보유구분</th>
+												<th>구입일</th>
+												<th>사용부서</th>
+												<th>위치</th>
+												<th>매입가</th>
+												<th>예상내용연수</th>
+												<th>감가상각여부</th>
+												<th>감가상각법</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td><select name="ceq_code0" class="form-control"
+													data-toggle="input-mask" style="width: 100%; border: 0px;"
+													onchange="enter(this.tagName, this.name);" autofocus>
+														<option value="">선택
+														<option value="025">장비
+												</select></td>
+												<td><input type="text" onfocus="focuse(this.name);"
+													name="ceq_name0" id="first"
+													onkeydown="enter(this.tagName,this.name);"
+													class="form-control" placeholder="ex)전산처리기계"
+													style="width: 100%; border: 0px;"></td>
+												<td><select class="form-control" name="ceq_type0"
+													onfocus="focuse();"
+													style="width: 100%; -webkit-appearance: none; border: 0px;"
+													required onchange="enter(this.tagName,this.name);">
+														<option value="null">선택</option>
+														<option value="보유">보유
+														<option value="대여">대여
+												</select></td>
+												<td><input type="date" onfocus="focuse(this.name);"
+													name="ceq_acquire_date0" class="form-control"
+													data-toggle="input-mask" style="width: 100%; border: 0px;"
+													onkeyup="enter(this.tagName, this.name);" required></td>
+												<td><select class="form-control"
+													onfocus="focuse(this.name);" name="deparment_code0"
+													style="width: 100%; -webkit-appearance: none; border: 0px;"
+													onchange="enter(this.tagName, this.name);">
+														<c:forEach var="vo" items="${dto}">
+															<option value="${vo.department_code }">${vo.department_name }</option>
+														</c:forEach>
+												</select></td>
+												<td><input type="text" onfocus="focuse(this.name);"
+													name="ceq_location0" class="form-control"
+													data-toggle="input-mask" style="width: 100%; border: 0px;"
+													onkeyup="enter(this.tagName, this.name);"></td>
+												<td><input type="text" class="form-control"
+													name="ceq_prime_cost0" onfocus="focuse();"
+													data-toggle="input-mask" style="width: 100%; border: 0px;"
+													onkeyup="removeChar(event); inputNumberFormat(this);"
+													onchange="enter(this.tagName,this.name);" required></td>
+												<td><input type="text" onfocus="focuse(this.name);"
+													name="ceq_durable0" class="form-control"
+													data-toggle="input-mask" style="width: 100%; border: 0px;"
+													onkeyup="removeChar(event); inputNumberFormat(this);"
+													onkeyup="enter(this.tagName, this.name);"></td>
+												<td><select name="ceq_depreciation0"
+													onfocus="focuse();" class="form-control"
+													style="width: 100%; -webkit-appearance: none; border: 0px;"
+													onchange="enterinsert(0);" required>
+														<option value="">선택</option>
+														<option value="2">Y</option>
+														<option value="1">N</option>
+												</select>
+												<td><select id="enter" name="ceq_depreciation_type0"
+													class="form-control" data-toggle="input-mask"
+													style="width: 100%; border: 0px;"
+													onchange="enter(this.tagName, this.name);">
+														<option value="N">선택
+														<option value="정률법">정률법
+														<option value="정액법">정액법
+												</select></td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+							<div class="form-group text-right mb-0">
+								<button onclick="add();" type="button"
+									class="btn btn-outline-primary waves-effect waves-light">추가</button>
+								<button onclick="del();" type="button"
+									class="btn btn-outline-primary waves-effect waves-light">삭제</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end container-fluid -->
+
+	</div>
+	<!-- end content -->
+
+	<%@ include file="../footer.jsp"%>
+
+
+
+	<!-- ============================================================== -->
+	<!-- End Page content -->
+	<!-- ============================================================== -->
+
+
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<script type="text/javascript">
         
         //문자 지우기
         function removeChar(event) {
@@ -365,6 +404,6 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
        	    obj.value = comma(obj.value);
        	}
         
-        </script>
-    </body>
-    </html>
+    </script>
+</body>
+</html>

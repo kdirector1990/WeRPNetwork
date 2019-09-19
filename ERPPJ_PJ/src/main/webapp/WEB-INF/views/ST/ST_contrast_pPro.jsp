@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%@ include file="../setting.jsp" %>
-               <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-        <script type="text/javascript">
+<head>
+<%@ include file="../setting.jsp"%>
+<script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
            var count = 1;   
        
            function focuse() {
@@ -50,11 +50,11 @@
            }
            
         </script>
-    </head>
+</head>
 
-    <body>
+<body>
 
-    <!-- Begin page -->
+	<!-- Begin page -->
 	<div id="wrapper">
 		<%@ include file="../sidebar.jsp"%>
 
@@ -73,11 +73,13 @@
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									 <ol class="breadcrumb m-0">
-                                           <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                           <li class="breadcrumb-item"><a href="javascript: void(0);">UI Kit</a></li>
-                                           <li class="breadcrumb-item active">Images</li>
-                                       </ol>
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Codefox</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">UI Kit</a></li>
+										<li class="breadcrumb-item active">Images</li>
+									</ol>
 								</div>
 								<h2 class="page-title">견적 대비 생산 현황</h2>
 							</div>
@@ -259,6 +261,6 @@
 
 
 	<%@ include file="../rightbar.jsp"%>
-		<%@ include file="../setting2.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 </body>
 </html>
