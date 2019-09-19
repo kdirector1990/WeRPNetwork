@@ -127,13 +127,13 @@
 	  				var e_blood_type = data.e_blood_type;
 	  				var e_blood_presure = data.e_blood_presure;
 	  				var e_medical_info = data.e_medical_info;
-	  				var position_code = data.position_code;
-	  				var rank_code = data.rank_code;
-	  				var level_step = data.level_step;
+	  				var e_veteran_type = data.e_veteran_type;
+	  				var e_veteran_info = data.e_veteran_info;
+	  				var e_veteran_level = data.e_veteran_level;
+	  				var e_disability_type = data.e_disability_type;
+	  				var e_disability_level = data.e_disability_level;
 	  				
-	  				alert(username);
-	  				alert(e_mailcode);
-	  				alert(e_nfcCodeNFC);
+	  				alert(username);	  				
 	  				
 	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
 	  					+'<div class="form-group row">'
