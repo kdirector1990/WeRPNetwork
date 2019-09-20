@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ST_Service;
+import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -212,8 +215,8 @@ public class ST_Controller {
 		logger.info("log => ST_saleList_result");
 		List<SaleList> list = service.getsaleList(map, req, model);
 		return list;
-	}
-	
+	} 
+	     
 	// ST_saleList 판매 관리 상세 페이지
 	@RequestMapping("ST_saleList_Form")
 	public String ST_saleList_Form(HttpServletRequest req, Model model) {
@@ -353,19 +356,31 @@ public class ST_Controller {
 		return "ST/ST_estimate_deletePro";
 	}
 	
-	
-	@RequestMapping("ST_salesStatus")
-	public String salesStatus(Locale locale, Model model) {
-		logger.info("log => salesStatus");
-		
-		return "ST/ST_salesStatus";
-	}
-	
+	//매출 집계표(월별)
 	@RequestMapping("ST_salesTotal")
 	public String ST_salesTotal(Locale locale, Model model) {
 		logger.info("log => ST_salesTotal");
-		
+			
 		return "ST/ST_salesTotal";
+	}
+	
+	//매출 고객  검색목록
+	@RequestMapping("ST_salesTotal_result")
+	@ResponseBody
+	public List<ST_searchCustomerCode> ST_salesTotal_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_salesTotal_result");
+		List<ST_searchCustomerCode> vo = service.totalSales(req, model);
+		
+		return vo;
+	}
+	
+	//매출 - 품명 검색목록 
+	@RequestMapping("ST_searchProductName_result")
+	public List<ST_searchProductCode> ST_searchProductName_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchProductName_result");
+		List<ST_searchProductCode> vo = service.searchProductCode(req, model);
+		
+		return vo;
 	}
 	
 	@RequestMapping("ST_salesTotal2")

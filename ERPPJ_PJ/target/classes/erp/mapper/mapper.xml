@@ -16,10 +16,22 @@
 		WHERE username = #{username}	
 	</select>
 	
-	<insert id="nfc">
+	<!-- nfc 등록 -->
+	<insert id="nfc" parameterType="String">
 		insert into nfc_log_tbl(nfc_code)
 		values(#{nfcid})
 	</insert>
+	
+	<!-- NFC로 출퇴근 사람 username가져오기 -->
+	<select id="selectNfc" parameterType="String" resultType="com.pj.erp.vo.HR.HR_nfc_log">
+		Select nfc_code, Min(tag_date) as min, Max(tag_date) as max, e_name, username 
+		From nfc_daylog_view
+        Where nfc_code = #{nfc_code}
+        And tag_date like to_char(sysdate, 'yyyymmdd%')
+		Group by e_name, username, nfc_code
+	</select>
+	
+	<!-- NFC 시간 입력하기 -->
 
 
 </mapper>

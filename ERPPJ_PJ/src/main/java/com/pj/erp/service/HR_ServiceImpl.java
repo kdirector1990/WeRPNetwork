@@ -18,17 +18,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.HR_DAO;
-import com.pj.erp.vo.HR_ApVO;
-import com.pj.erp.vo.HR_FamilyVO;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_RankVO;
-import com.pj.erp.vo.HR_RecordVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_ApVO;
+import com.pj.erp.vo.HR.HR_FamilyVO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RankVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -266,19 +266,16 @@ public class HR_ServiceImpl implements HR_Service{
 		String pa_sDate = pa_dates.substring(0, 10);
 		String pa_eDate = pa_dates.substring(13, 23);
 		
-		String spa_date = "";
-		String epa_date = "";
+		String syear = pa_sDate.substring(8,10);
+		String smonth = pa_sDate.substring(0,2);
+		String sday = pa_sDate.substring(3,5);
 		
-		Date sdate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
-		Date edate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		String eyear = pa_eDate.substring(8,10);
+		String emonth = pa_eDate.substring(0,2);
+		String eday = pa_eDate.substring(3,5);
 		
-		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
-			
-			spa_date = new_format.format(sdate);
-			epa_date = new_format.format(edate);
-			
-			System.out.println(spa_date);
-			System.out.println(epa_date);
+		String spa_date = syear + "/" + smonth +"/" +sday;
+		String epa_date = eyear + "/" + emonth +"/" +eday;
 		
 		map.put("spa_date", spa_date);
 		map.put("epa_date", epa_date);
@@ -513,11 +510,13 @@ public class HR_ServiceImpl implements HR_Service{
 	public int InsertEndWork(HttpServletRequest req, Model model) {
 
 		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i++) {
-			int users = dao.selectEndWork(username[i]);
+			map.put("username", username[i]);
+			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
 				updateCnt = dao.EndWork(username[i]);

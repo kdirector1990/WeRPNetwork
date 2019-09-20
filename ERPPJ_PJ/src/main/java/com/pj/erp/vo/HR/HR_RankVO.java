@@ -1,4 +1,4 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.HR;
 
 public class HR_RankVO {
 	

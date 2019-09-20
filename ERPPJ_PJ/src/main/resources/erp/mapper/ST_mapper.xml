@@ -136,15 +136,15 @@
  	
  	<!-- saleList -->
  	<insert id="insertsaleList" parameterType="com.pj.erp.vo.ST.SaleList">
- 		INSERT INTO salelist_tbl(salelist_code, username, reg_date, release_o_date, unit, amount, price, note)
- 			VALUES('sa_' || salelist_seq.nextval, #{username}, sysdate, #{release_o_date}, #{unit}, #{amount}, #{price}, #{note})
+ 		INSERT INTO salelist_tbl(salelist_code, username, reg_date, release_o_date, unit, amount, price, note, detail_ac_code, customer_code, release_state)
+ 			VALUES('sa_' || salelist_seq.nextval, #{username}, sysdate, #{release_o_date}, #{unit}, #{amount}, #{price}, #{note}, #{detail_ac_code}, #{customer_code}, #{release_state})
  	</insert>
  	
  	<select id="getSaleListCnt" resultType="int">
  		SELECT COUNT(*) as FROM salelist_tbl
  	</select>
  	
- 	<select id="getSaleList" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
+ 	<select id="getSaleList" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
  		<![CDATA[
  			  select s.salelist_code as salelist_code, 
 					 s.reg_date as reg_date, 
@@ -157,6 +157,7 @@
 					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
+					  s.note as note,
 					 u.e_name as e_name
 				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
 				 Where s.customer_code = c.customer_code
@@ -165,6 +166,7 @@
 				and c.customer_name like '%'||#{customer_name}||'%'
 				and s.username like '%'||#{username}||'%'
 				and p.product_name like '%'||#{product_name}||'%'
+				and s.release_state like '%'||#{release}||'%'
  		]]>
  	</select>
  	
@@ -173,11 +175,28 @@
  	</select>
  	
  	<select id="getsaleListForm" resultType="com.pj.erp.vo.ST.SaleList">
- 		SELECT * FROM salelist_tbl WHERE salelist_code = #{salelist_code}
+ 		select s.salelist_code as salelist_code, 
+					 s.reg_date as reg_date, 
+					 s.release_o_date as release_o_date, 
+					 s.unit as unit,
+					 s.amount as amount,
+					 s.price as price,
+					 s.username as username, 
+					 s.customer_code as customer_code,
+					 s.release_state as release_state,
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 s.note as note,
+					 u.e_name as e_name
+				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username and salelist_code = #{salelist_code}
  	</select>
  	
  	<update id="updateSaleList" parameterType="com.pj.erp.vo.ST.SaleList">
- 		UPDATE salelist_tbl SET release_o_date=#{release_o_date}, unit=#{unit}, price=#{price}, note=#{note} WHERE salelist_code=#{salelist_code}
+ 		UPDATE salelist_tbl SET release_o_date=#{release_o_date}, unit=#{unit}, price=#{price}, note=#{note}, username=#{username}, customer_code=#{customer_code}, release_state =#{release_state}, detail_ac_code=#{detail_ac_code}  WHERE salelist_code=#{salelist_code}
  	</update>
  	
  	<delete id="deleteSaleList" parameterType="String">
@@ -205,6 +224,11 @@
 		select customer_code, license_number, customer_name, branch_name, customer_credit, deal_state from customer_list_tbl where customer_name like '%'||#{customer_name}||'%'
 	</select>
 	
+	<!-- 매출 목록 -->
+	<select id="getTotalSales" resultType="com.pj.erp.vo.ST.ST_searchCustomerCode" parameterType="java.util.Map">
+		select * from st_salesstatus_cus_view where customer_code like '%'||#{customer_code}||'%'
+	</select>
+	
 	<!-- 사원 검색 -->
 	<select id="selectName" resultType="int" parameterType="String">
 		select COUNT(*) from users where username like '%'||#{username}||'%'
@@ -214,4 +238,5 @@
 	<select id="getUsernameList" resultType="com.pj.erp.vo.ST.UserName" parameterType="String">
 		select username, e_name from users where username like '%'||#{username}||'%'
 	</select>
+	
  </mapper>

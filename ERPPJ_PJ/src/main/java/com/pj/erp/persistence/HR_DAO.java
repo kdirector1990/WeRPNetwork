@@ -3,17 +3,17 @@ package com.pj.erp.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.pj.erp.vo.HR_ApVO;
-import com.pj.erp.vo.HR_FamilyVO;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_RankVO;
-import com.pj.erp.vo.HR_RecordVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_ApVO;
+import com.pj.erp.vo.HR.HR_FamilyVO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RankVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
 public interface HR_DAO {
@@ -100,7 +100,7 @@ public interface HR_DAO {
 	public int StartWork(String username);
 	
 	//근태(퇴근 날짜 있는지
-	public int selectEndWork(String username);
+	public int selectEndWork(Map<String, Object> map);
 	
 	//근태(퇴근입력)
 	public int EndWork(String username);

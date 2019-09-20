@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_DTB;
-import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
@@ -32,6 +32,7 @@ import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
+import com.pj.erp.vo.HR.HR_VO;
 
 @Controller
 public class FT_Controller {
@@ -207,7 +208,7 @@ public class FT_Controller {
 	public String FT_Deposit(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Deposit");
 
-		service.FT_DepositSelect(req, model);
+		service.FT_DepositAllSelect(req, model);
 
 		return "FT/FT_Deposit";
 	}
@@ -222,15 +223,28 @@ public class FT_Controller {
 
 	// 예금목록
 	@RequestMapping("FT_Deposit_list")
-	public String FT_Deposit_list(Locale locale, Model model) {
+	public String FT_Deposit_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Deposit_list");
 
+		service.FT_DepositAllSelect(req, model);
+		
 		return "FT/FT_Deposit_list";
+	}
+	
+	// 예금관리
+	@RequestMapping("FT_depositsub_list")
+	public String FT_depositsub_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_depositsub_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		service.FT_DepositAllSelect(req, model);
+
+		return "FT/FT_depositsub_list";
 	}
 
 	// 단기대여금목록
 	@RequestMapping("FT_short_Loan_list")
-	public String FT_short_Loan_list(Locale locale, Model model) {
+	public String FT_short_Loan_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Loan_list");
 
 		return "FT/FT_short_Loan_list";
@@ -238,7 +252,7 @@ public class FT_Controller {
 
 	// 단기매매증권목록
 	@RequestMapping("FT_short_Securities_list")
-	public String FT_short_Securities_list(Locale locale, Model model) {
+	public String FT_short_Securities_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Securities_list");
 
 		return "FT/FT_short_Securities_list";
@@ -246,7 +260,7 @@ public class FT_Controller {
 
 	// 받을어음목록
 	@RequestMapping("FT_Note_list")
-	public String FT_Note_list(Locale locale, Model model) {
+	public String FT_Note_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Note_list");
 
 		return "FT/FT_Note_list";
@@ -365,6 +379,16 @@ public class FT_Controller {
 		return "FT/FT_Subject_list";
 	}
 	
+	// 증계정 목록
+	@RequestMapping("FT_AccSubject_list")
+	public String FT_AccSubject_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Subject_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		service.FT_AccSubjectAllSelect(req, model);
+		return "FT/FT_AccSubject_list";
+	}
+	
 	// 사원 목록
 	@RequestMapping("FT_users_list")
 	public String FT_users_list(HttpServletRequest req, Model model) {
@@ -425,12 +449,20 @@ public class FT_Controller {
 		return service.FT_AccountSelect(req);
 	}
 	
-	// 거래처 검색 가져오기
+	// 거래처 수정
 	@RequestMapping(value = "FT_AccountUpdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_AccountUpdate(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_AccountUpdate 호출중");
 
 		return service.FT_AccountUpdate(map);
+	}
+	
+	// 거래처 삭제
+	@RequestMapping(value = "FT_AccountDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_AccountDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_AccountDelete 호출중");
+
+		return service.FT_AccountDelete(map);
 	}
 	
 	// 거래처 검색 가져오기
@@ -448,6 +480,22 @@ public class FT_Controller {
 		logger.info("url : FT_AccountSelect 호출중");
 
 		return service.FT_SubjectSelect(req, model);
+	}
+	
+	// 계정과목 검색 가져오기
+	@RequestMapping(value = "FT_DepositSelect")
+	public @ResponseBody List<FT_Deposit> FT_DepositSelect(HttpServletRequest req, Model model) {
+		logger.info("url : FT_AccountSelect 호출중");
+
+		return service.FT_DepositSelect(req, model);
+	}
+	
+	// 계정과목 검색 가져오기
+	@RequestMapping(value = "FT_AccSubjectSelect")
+	public @ResponseBody List<FT_Subject> FT_AccSubjectSelect(HttpServletRequest req, Model model) {
+		logger.info("url : FT_AccSubjectSelect 호출중");
+
+		return service.FT_AccSubjectSelect(req, model);
 	}
 
 	// 적금 추가
@@ -467,6 +515,15 @@ public class FT_Controller {
 		String result = service.FT_SavingsUpdate(map);
 		return result;
 	}
+	
+	// 적금 삭제
+	@RequestMapping(value = "FT_SavingsDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SavingsDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SavingsDelete 호출중");
+		String result = service.FT_SavingsDelete(map);
+		return result;
+	}
+	
 
 	// 예금 추가
 	@RequestMapping(value = "FT_DepositInsert", produces = "application/text; charset=utf8")
@@ -483,6 +540,14 @@ public class FT_Controller {
 	public @ResponseBody String FT_DepositUpdate(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_DepositUpdate 호출중");
 		String result = service.FT_DepositInsert(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_DepositDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_DepositDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_DepositDelete 호출중");
+		String result = service.FT_DepositDelete(map);
 		return result;
 	}
 	
@@ -543,6 +608,7 @@ public class FT_Controller {
 		return service.FT_DTBMonthList(map, model);
 	}
 	
+	// 카드 추가
 	@RequestMapping(value = "FT_CardManagementInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_CardManagementInsert(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_CardManagementInsert 호출중");
@@ -553,8 +619,24 @@ public class FT_Controller {
 		String CardPurpose = map.get("CardPurpose").toString();
 		String Owner = map.get("Owner").toString();
 		String PayCode = map.get("PayCode").toString();
-		return AccCode + " " + CardName + " " + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose
-				+ " " + Owner + " " + PayCode;
+		String result = service.FT_CardManagementInsert(map);
+		return result;
+	}
+	
+	// 카드 수정
+	@RequestMapping(value = "FT_CardManagementUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_CardManagementUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_CardManagementUpdate 호출중");
+		String result = service.FT_CardManagementUpdate(map);
+		return result;
+	}
+	
+	// 카드 삭제
+	@RequestMapping(value = "FT_CardManagementDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_CardManagementDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_CardManagementDelete 호출중");
+		String result = service.FT_CardManagementDelete(map);
+		return result;
 	}
 	
 	

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -102,7 +104,12 @@ public interface ST_Service {
 	// tables-datatable (거래 명세서) 목록
 	public void transaction(HttpServletRequest req, Model model);
 	
-	// 매출 현황
-	public void totalSales(HttpServletRequest req, Model model);
+	//매출 - 고객
+	public List<ST_searchCustomerCode> totalSales(HttpServletRequest req, Model model);
+	
+	//매출 - 품명
+	public List<ST_searchProductCode> searchProductCode(HttpServletRequest req, Model model);
+	
+	
 
 }

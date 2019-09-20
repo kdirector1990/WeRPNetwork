@@ -11,6 +11,8 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -213,6 +215,12 @@ public class ST_DAOImpl implements ST_DAO {
 	public List<CustomerList> getCustomerList(String customer_name) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getCustomerList", customer_name);
 	}
+
+	//매출
+	@Override
+	public List<ST_searchCustomerCode> getTotalSales(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getTotalSales", map);
+	}
 	
 	// 사원 이름 검색 확인
 	@Override
@@ -224,6 +232,12 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public List<UserName> getUsernameList(String username) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getUsernameList", username);
+	}
+
+	//매출 - 품목
+	@Override
+	public List<ST_searchProductCode> getProCode(String product_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getProCode", product_name);
 	}
 	
 

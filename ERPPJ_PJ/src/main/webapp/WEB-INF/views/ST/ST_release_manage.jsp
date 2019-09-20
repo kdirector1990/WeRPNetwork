@@ -68,7 +68,7 @@
 										<li class="breadcrumb-item active">견적 현황</li>
 									</ol>
 								</div>
-								<h4 class="page-title">견적 현황</h4>
+								<h4 class="page-title">출고 관리</h4>
 							</div>
 						</div>
 					</div>

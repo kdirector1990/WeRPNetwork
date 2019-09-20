@@ -3,6 +3,104 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<script type="text/javascript">
+
+var searchCount = 1;
+
+function search() {
+	var param = new Object();
+	var jsonData;
+	
+	/* 부서, 사원, 거래처, 품명 */
+	param.position_code = $("#position_code").val();
+	param.username = $("#username").val();
+	param.customer_code = $("#customer_code").val();
+	param.product_name = $("#ProductName").val();
+			
+	jsonData = JSON.stringify(param); 
+	
+	$.ajax({
+		url : '${pageContext.request.contextPath}/ST_salesStatus_result?${_csrf.parameterName}=${_csrf.token }',
+		type : 'POST',
+		data : jsonData, 
+		dataType : "json",
+		contentType:"application/json;charset=UTF-8", 
+		success : function(list){
+			
+			$('#result_2').empty();
+			
+			for(var i = 0 ; i < list.length; i++){
+				var ep_code = list[i].ep_code;
+				var ep_amount = list[i].ep_amount;
+				var ep_price = list[i].ep_price;						
+				var sp_unit = list[i].sp_unit;
+				var sp_note = list[i].sp_note;
+				var detail_ac_code = list[i].detail_ac_code;
+				var product_name = list[i].product_name;
+				
+				var customer_name = list[i].customer_name;
+				var username = list[i].username;
+				
+				var ep_deliver_date = list[i].ep_deliver_date;
+				var pa = new Date(ep_deliver_date);
+				var year = pa.getFullYear();
+				var month = (1+pa.getMonth());
+				var day = pa.getDate(); 
+				var ep_deliver = year + "/" + month +"/"+day;
+				
+				var s_plan_end = list[i].ep_reg_date;
+				var pa = new Date(s_plan_end);
+				var year = pa.getFullYear();
+				var month = (1+pa.getMonth());
+				var day = pa.getDate(); 
+				var s_plan = year + "/" + month +"/"+day;
+				
+				$('#result_2').append('<tr onclick="ST_estimate_Form(\''+ep_code+'\')">'+
+						'<td>'+ ep_code +'</td>'+ 
+                    	'<td>'+ customer_name +'</td>'+ 
+                    	'<td>'+ username +'</td>'+
+                    	'<td>'+ detail_ac_code +'</td>'+ 
+						'<td>'+ product_name +'</td>'+ 
+						'<td>'+ ep_amount +'</td>'+
+						'<td>'+ ep_deliver +'</td>'+
+						'<td>'+ s_plan + '</td>'+
+						'<td>'+ ep_price +'</td>'+
+						'<td>'+ ep_price*0.1 +'</td>'+
+            		'</tr>');
+			
+			if(searchCount == 1){
+			$('#bodyappend').append(
+			        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+			        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+			        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+			        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+			        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+			);
+			searchCount = searchCount + 1;
+			}
+			
+			
+			}
+			
+		},
+		error : function(){
+			alert("에러");
+		}
+	});
+}
+</script>
 </head>
 <body>
 	<!-- Begin page -->
@@ -35,95 +133,31 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="부서">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
+												name="" id="" class="form-control">
+											</td>
+
 											<th class="col-md-1 col-form-label">사원</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label">마감기간</th>
-											<td><input
-												class="form-control input-daterange-datepicker" type="text"
-												name="daterange" /></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-										</tr>
-
-										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">고객</th>
+												name="username" id="username" class="form-control">
+											</td>
+											<th class="col-md-1 col-form-label">거래처</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="고객"></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label">거래구분</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
-											</select></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label">부서기준</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>0. 입력부서</option>
-													<option>1. 품목담당부서</option>
-													<option>2. 고객담당부서</option>
-											</select></td>
-										</tr>
-
-										<tr class="form-group row">
-											<th class="col-md-1 col-form-label"><select
-												class="form-control select2" name="" onchange="">
-													<option>2. 실적담당</option>
-													<option>1. 고객담당</option>
-													<option>0. 품목담당</option>
-											</select></th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option>-- --</option>
-											</select></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-
-											<th class="col-md-1 col-form-label"><select
-												class="form-control select2" name="" onchange="">
-													<option>3. 품번범위</option>
-													<option>2. 규격</option>
-													<option>1. 품명</option>
-													<option>0. 품번</option>
-											</select></th>
+												name="customer_code" id="customer_code" class="form-control">
+												
+											<th class="col-md-1 col-form-label">품명</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">~</th>
-											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
+												name="ProductName" id="ProductName" class="form-control">
+											</td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button" class="btn btn-dark waves-effect waves-light" onclick="search();">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -132,13 +166,12 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap"
+										class="table table-striped table-bordered"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<thead>
 											<tr>
-												<th></th>
 												<th>부서</th>
 												<th>마감일자</th>
 												<th>고객</th>
@@ -154,7 +187,6 @@
 												<th>공급가</th>
 												<th>부가세</th>
 												<th>합계액</th>
-												<th>관리구분</th>
 												<th>비고(내역)</th>
 											</tr>
 										</thead>

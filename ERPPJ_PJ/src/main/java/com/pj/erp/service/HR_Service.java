@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
 public interface HR_Service {
