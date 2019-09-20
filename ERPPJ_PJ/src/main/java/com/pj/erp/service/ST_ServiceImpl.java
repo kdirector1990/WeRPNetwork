@@ -474,6 +474,9 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setAmount(Integer.parseInt(req.getParameter("amount")));
 		vo.setUsername((String)req.getSession().getAttribute("username"));
 		vo.setNote(req.getParameter("note"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setRelease_state(req.getParameter("release_state"));
 		
 		int saleListWrite = dao.insertsaleList(vo);
 		
@@ -572,6 +575,11 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setUnit(req.getParameter("unit"));
 		vo.setPrice(Integer.parseInt(req.getParameter("price")));
 		vo.setNote(req.getParameter("note"));
+		vo.setUsername(req.getParameter("username"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setRelease_state(req.getParameter("release_state"));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		
 
 		int updateSaleList = dao.updateSaleList(vo);
 		

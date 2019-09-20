@@ -37,15 +37,15 @@
 			
 			$.ajax({
                 type : "GET",
-                url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=${key}",
+                url : "/erp/FT_DepositSelect?${_csrf.parameterName }=${_csrf.token }&srhval=${key}",
                 success : function(data) {
 	           	   if(data != null){
 		                   $("tbody").html("");
 							for(var i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
-		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
-		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
+			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].depositCode + '</td>' +
+		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].depositName + '</td>' +
+		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].accountNo + '</td>' +
 			              		'</tr>');
 							}
 	           	   }
@@ -62,12 +62,12 @@
 			$("#name" + cc).parent().children().css("background-color", "#D6EAF8");
 			$("#licenseNo" + cc).parent().children().css("background-color", "#D6EAF8");
 			acode = $("#code" + cc).html();
-			aname = $("#name" + cc).html();
+			aname = $("#licenseNo" + cc).html();
 		}
     
 		function setvalue(val){
-			$("input[name=AccCode${keyname}]", opener.document).val(acode);
-    		$("input[name=AccName${keyname}]", opener.document).val(aname);
+			$("input[name=PayCode${keyname}]", opener.document).val(acode);
+    		$("input[name=PayNo${keyname}]", opener.document).val(aname);
 			self.close();
 		}
 	    
@@ -76,15 +76,15 @@
 			var jsonData;
 	   		$.ajax({
 	                  type : "GET",
-	                  url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + val,
+	                  url : "/erp/FT_DepositSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + val,
 	                  success : function(data) {
 	             	   if(data != null){
 		               		$("tbody").html("");
 							for(i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
-                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
-                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
+	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].depositCode + '</td>' +
+                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].depositName + '</td>' +
+                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].accountNo + '</td>' +
 	                		'</tr>');
 							}
 	             	   }
@@ -111,7 +111,7 @@
 					<div class="col-12">
 						<div class="page-title-box" style="text-align: center;">
 							<h4>
-								<b>거래처목록</b>
+								<b>예금목록</b>
 							</h4>
 						</div>
 					</div>
@@ -140,22 +140,22 @@
                                         <tr class="table-info">
                                             <th>코드</th>
                                             <th>거래처명</th>
-                                            <th>사업자번호</th>
+                                            <th>계좌번호</th>
                                         </tr>
                               		</thead>
                             		<tbody>
                                   		<c:set var="count" value="0"/>
-                                  		<c:if test="${account != null}">
-	                                  		<c:forEach var = "acc" items="${account}">
+                                  		<c:if test="${deposit != null}">
+	                                  		<c:forEach var="depo" items="${deposit}">
 	                                       		<tr>
-	                                       			<td id = "code${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">${acc.customer_code}</td>
-	                                       			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">${acc.customer_name}</td>
-	                                       			<td id = "licenseNo${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">${acc.license_number}</td>
+	                                       			<td id = "code${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">${depo.depositCode}</td>
+	                                       			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">${depo.depositName}</td>
+	                                       			<td id = "licenseNo${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">${depo.accountNo}</td>
 	                                       			<c:set var="count" value="${count+1}"/>
 	                                       		</tr>
                                        		</c:forEach>
                                   		</c:if>
-                                  		<c:if test="${account == null}">
+                                  		<c:if test="${deposit == null}">
 	                                		<c:forEach var = "sub" begin="1" end="100">
 	                                    		<tr>
 	                                       			<td id = "code${count}" ondblclick="setvalue(${count})" style = "width:60px; font-size: .8em;">${sub}</td>

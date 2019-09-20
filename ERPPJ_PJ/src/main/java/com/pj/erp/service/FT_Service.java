@@ -8,6 +8,7 @@ import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
+import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -45,6 +46,12 @@ public interface FT_Service {
 	// 거래처 추가
 	public void FT_AccountInsert(HttpServletRequest req, Model model);
 
+	// 거래처 수정
+	public String FT_AccountUpdate(Map<String, Object> map);
+
+	// 거래처 삭제
+	public String FT_AccountDelete(Map<String, Object> map);
+	
 	// 사원 모두 가져오기
 	public void FT_UsersAllSelect(HttpServletRequest req, Model model);
 	
@@ -60,9 +67,6 @@ public interface FT_Service {
 	// 거래처 검색한 것 가져오기
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req);
 	
-	// 거래처 수정
-	public String FT_AccountUpdate(Map<String, Object> map);
-	
 	// 적금 가져오기
 	public void FT_SavingsSelect(HttpServletRequest req, Model model);
 	
@@ -72,8 +76,14 @@ public interface FT_Service {
 	// 적금수정
 	public String FT_SavingsUpdate(Map<String, Object> map);
 	
+	// 적금삭제
+	public String FT_SavingsDelete(Map<String, Object> map);
+	
 	// 예금 가져오기
-	public void FT_DepositSelect(HttpServletRequest req, Model model);
+	public void FT_DepositAllSelect(HttpServletRequest req, Model model);
+	
+	// 예금 검색한 것 가져오기
+	public List<FT_Deposit> FT_DepositSelect(HttpServletRequest req, Model model);
 	
 	// 예금추가
 	public String FT_DepositInsert(Map<String, Object> map);
@@ -81,11 +91,32 @@ public interface FT_Service {
 	// 예금수정
 	public String FT_DepositUpdate(Map<String, Object> map);
 	
+	// 예금삭제
+	public String FT_DepositDelete(Map<String, Object> map);
+	
+	// 카드 가져오기
+	public void FT_CardManagementSelect(HttpServletRequest req, Model model);
+	
+	// 카드추가
+	public String FT_CardManagementInsert(Map<String, Object> map);
+	
+	// 카드수정
+	public String FT_CardManagementUpdate(Map<String, Object> map);
+	
+	// 카드삭제
+	public String FT_CardManagementDelete(Map<String, Object> map);
+	
 	// 계정과목 가져오기
 	public void FT_SubjectAllSelect(HttpServletRequest req, Model model);
 	
 	// 계정과목 검색 가져오기
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model);
+	
+	// 중계정과목 가져오기
+	public void FT_AccSubjectAllSelect(HttpServletRequest req, Model model);
+	
+	// 중계정과목 검색 가져오기
+	public List<FT_Subject> FT_AccSubjectSelect(HttpServletRequest req, Model model);
 	
 	//예산신청입력처리
 	public void FT_applyinput(HttpServletRequest req, Model model);

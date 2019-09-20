@@ -266,19 +266,16 @@ public class HR_ServiceImpl implements HR_Service{
 		String pa_sDate = pa_dates.substring(0, 10);
 		String pa_eDate = pa_dates.substring(13, 23);
 		
-		String spa_date = "";
-		String epa_date = "";
+		String syear = pa_sDate.substring(8,10);
+		String smonth = pa_sDate.substring(0,2);
+		String sday = pa_sDate.substring(3,5);
 		
-		Date sdate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
-		Date edate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		String eyear = pa_eDate.substring(8,10);
+		String emonth = pa_eDate.substring(0,2);
+		String eday = pa_eDate.substring(3,5);
 		
-		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
-			
-			spa_date = new_format.format(sdate);
-			epa_date = new_format.format(edate);
-			
-			System.out.println(spa_date);
-			System.out.println(epa_date);
+		String spa_date = syear + "/" + smonth +"/" +sday;
+		String epa_date = eyear + "/" + emonth +"/" +eday;
 		
 		map.put("spa_date", spa_date);
 		map.put("epa_date", epa_date);

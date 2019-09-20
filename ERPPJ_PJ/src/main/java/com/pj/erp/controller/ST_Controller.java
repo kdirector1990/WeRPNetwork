@@ -212,8 +212,8 @@ public class ST_Controller {
 		logger.info("log => ST_saleList_result");
 		List<SaleList> list = service.getsaleList(map, req, model);
 		return list;
-	}
-	
+	} 
+	     
 	// ST_saleList 판매 관리 상세 페이지
 	@RequestMapping("ST_saleList_Form")
 	public String ST_saleList_Form(HttpServletRequest req, Model model) {
