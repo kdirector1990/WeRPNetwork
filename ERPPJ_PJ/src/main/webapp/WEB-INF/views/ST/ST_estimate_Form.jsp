@@ -38,18 +38,26 @@
 											value="${eto.ep_code }">${eto.ep_code }</td>
 
 										<th>거래처</th>
-										<td></td>
+										<td><input type="text" class="input" name="customer_name" onclick="customerNameList()"
+											value="${eto.customer_name }" id = "customer_nameP"><input type="text" class="input" name="customer_code"
+											value="${eto.customer_code }" id = "customer_codeP"></td>
 
 										<th>담당자</th>
-										<td></td>
+										<td><input type="text" class="input" name="username"
+											value="${eto.username }" onclick="usernameList()" id="username">
+											<input type="text" class="input" name="e_name"
+											value="${eto.e_name }" id="e_name">
+										</td>
 									</tr>
 
 									<tr>
 										<th>품번</th>
-										<td></td>
+										<td><input type="text" class="input" name="detail_ac_code"
+											value="${eto.detail_ac_code }" onclick="ProductName()" id="product_codeP"></td>
 
 										<th>품명</th>
-										<td></td>
+										<td><input type="text" class="input" name="detail_ac_code"
+											value="${eto.detail_ac_code }" id="product_nameP"></td>
 
 										<th>견적 수량</th>
 										<td><input type="text" class="input" name="ep_amount"
@@ -65,17 +73,12 @@
 										<td><input class="input" type="date" name="ep_reg_date"
 											value="${eto.ep_reg_date }"></td>
 
-										<th>단가</th>
-										<td><input class="input" type="text" name="ep_price"
-											value="${eto.ep_price }"></td>
 									</tr>
 
 									<tr>
 										<th>공급가</th>
-										<td></td>
-
-										<th>부가세</th>
-										<td></td>
+										<td><input class="input" type="text" name="ep_price"
+											value="${eto.ep_price }"></td>
 
 										<th></th>
 										<td></td>

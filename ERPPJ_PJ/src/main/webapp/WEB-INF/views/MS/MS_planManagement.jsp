@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
 <style type="text/css">
-	.result{
-		display: none;
-	}
+.result {
+	display: none;
+}
 </style>
 
 <script type="text/javascript">
@@ -45,116 +45,122 @@
     		});
     	}
     </script>
-    
-    <%@ include file="../setting.jsp" %>
+
+<%@ include file="../setting.jsp"%>
 </head>
-	<body>
-     	 <!-- Begin page -->
-    	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
-            <div class="content-page">
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<%@ include file="../sidebar.jsp"%>
+		<div class="content-page">
 			<!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->           
-            
-            <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title">경영지원</h4>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
-						
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="header-title">기획서</h4>
-                                        <p class="sub-header">관리</p>
-    									<hr>
-                                        <table id="datatable" class="table m-0 table-bordered table-hover" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead class="bg-primary text-white">
-                                            <tr>
-                                            	<th>기획서 코드</th>
-                                            	<th>기획명</th>
-                                                <th>기획제안자</th>
-                                                <th>책임자</th>
-                                                <th>기획등록일</th>
-                                                <th>시작예정일</th>
-                                                <th>종료예정일</th>
-                                                <th>기획상태</th>
-                                                <th>기획목표</th>
-                                                <th>상세 기획안 파일</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                           	<c:forEach var="list" items="${dto}">
-	                                            <tr>
-	                                            	<td>${list.plan_code}</td>
-	                                            	<td>${list.plan_name}</td>
-	                                            	<td>${list.username}</td>
-	                                                <td>${list.position_code}</td>
-	                                                <td>${list.plan_regdate}</td>
-	                                                <td>${list.plan_startdate}<%-- <fmt:formatDate value="${list.plan_startdate}" type ="both" pattern="yyyy/MM/dd"/> --%></td>
-	                                                <td>${list.plan_enddate}<%-- <fmt:formatDate value="${list.plan_enddate}" type ="both" pattern="yyyy/MM/dd"/> --%></td>
-	                                                <td>${list.plan_state}</td>
-	                                                <td>${list.plan_objective}</td>
-	                                                <td>${list.plan_proposal}</td>
-	                                            </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                        
-                                        <div class="result">
-	                                        <br>
-											<form id="updatePlan">
-												<input type='hidden' name="${_csrf.parameterName }"
-													value="${_csrf.token }">
-												<table id="datatable2"
-													class="table table-striped dt-responsive nowrap"
-													style="border-collapse: collapse; border-spacing: 0;">
-													<thead>
-													</thead>
-													
-													<tbody>
-													</tbody>
-												</table>
-											</form>				
-										</div>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end container-fluid -->
+			<!-- Start Page Content here -->
+			<!-- ============================================================== -->
 
-                </div> <!-- end content -->
-          
-                <%@ include file="../footer.jsp" %>
+			<!-- Start Content-->
+			<div class="container-fluid">
+
+				<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box">
+							<h4 class="page-title">경영지원</h4>
+						</div>
+					</div>
+				</div>
+				<!-- end page title -->
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="header-title">기획서</h4>
+								<p class="sub-header">관리</p>
+								<hr>
+								<table id="datatable"
+									class="table m-0 table-bordered table-hover"
+									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									<thead class="bg-primary text-white">
+										<tr>
+											<th>기획서 코드</th>
+											<th>기획명</th>
+											<th>기획제안자</th>
+											<th>책임자</th>
+											<th>기획등록일</th>
+											<th>시작예정일</th>
+											<th>종료예정일</th>
+											<th>기획상태</th>
+											<th>기획목표</th>
+											<th>상세 기획안 파일</th>
+										</tr>
+									</thead>
 
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+									<tbody>
+										<c:forEach var="list" items="${dto}">
+											<tr>
+												<td>${list.plan_code}</td>
+												<td>${list.plan_name}</td>
+												<td>${list.username}</td>
+												<td>${list.position_code}</td>
+												<td>${list.plan_regdate}</td>
+												<td>${list.plan_startdate}<%-- <fmt:formatDate value="${list.plan_startdate}" type ="both" pattern="yyyy/MM/dd"/> --%></td>
+												<td>${list.plan_enddate}<%-- <fmt:formatDate value="${list.plan_enddate}" type ="both" pattern="yyyy/MM/dd"/> --%></td>
+												<td>${list.plan_state}</td>
+												<td>${list.plan_objective}</td>
+												<td>${list.plan_proposal}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 
-        </div>
-        <!-- END wrapper -->
+								<div class="result">
+									<br>
+									<form id="updatePlan">
+										<input type='hidden' name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+										<table id="datatable2"
+											class="table table-striped dt-responsive nowrap"
+											style="border-collapse: collapse; border-spacing: 0;">
+											<thead>
+											</thead>
 
-    <%@ include file="../rightbar.jsp" %>
-    <%@ include file="../setting2.jsp" %>
-    
-    <!-- Datatable plugin js -->
-    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-        
-    <script type="text/javascript">
+											<tbody>
+											</tbody>
+										</table>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end container-fluid -->
+
+		</div>
+		<!-- end content -->
+
+		<%@ include file="../footer.jsp"%>
+
+
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<!-- Datatable plugin js -->
+	<script
+		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<script type="text/javascript">
      $("#datatable tbody tr").click(function(){
     	 
 			if($(".plandiv") != null){
@@ -315,5 +321,5 @@
 		});
 	}
     </script>
-    </body>
+</body>
 </html>

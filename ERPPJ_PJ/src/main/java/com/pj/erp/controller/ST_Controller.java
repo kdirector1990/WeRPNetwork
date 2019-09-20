@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
 @Controller
@@ -44,7 +45,7 @@ public class ST_Controller {
 		logger.info("log => ST_tables-datatable");
 		
 		return "ST/tables-datatable";
-	}
+	} 
 	
 	// �꽭湲� 紐낆꽭�꽌 諛쒗뻾
 	@RequestMapping("ST_tax-statements")
@@ -204,6 +205,15 @@ public class ST_Controller {
 		return "ST/ST_saleList"; 
 	}
 	
+	// ST_saleList_result
+	@RequestMapping(value = "ST_saleList_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<SaleList> ST_saleList_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_saleList_result");
+		List<SaleList> list = service.getsaleList(map, req, model);
+		return list;
+	}
+	
 	// ST_saleList 판매 관리 상세 페이지
 	@RequestMapping("ST_saleList_Form")
 	public String ST_saleList_Form(HttpServletRequest req, Model model) {
@@ -306,7 +316,7 @@ public class ST_Controller {
 		
 		return "ST/ST_estimate_price";
 	}
-	
+	 
 	// 견적 현황 검색
 	@RequestMapping(value = "ST_estimate_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
@@ -395,7 +405,7 @@ public class ST_Controller {
 		logger.info("log => ST_searchCustomername");
 		
 		return "ST/ST_searchCustomername";
-	}
+	} 
 	
 	// CustomerName 결과
 	@RequestMapping("ST_searchCustomername_result")
@@ -405,5 +415,42 @@ public class ST_Controller {
 		
 		return "ST/ST_searchCustomername_result";
 	}
+	
+	// 담당자 검색
+	@RequestMapping("ST_searchUsername")
+	public String ST_searchUsername(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchUsername");
+		
+		return "ST/ST_searchUsername";
+	}
+	
+	// 담당자 검색
+	@RequestMapping("ST_searchUsername_result")
+	public String ST_searchUsername_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchUsername_result");
+		service.searchUsername(req, model);
+		
+		return "ST/ST_searchUsername_result";
+	}
+	
+	// estimate 거래처명, 거래처 코드
+	@RequestMapping("ST_searchCustomername2")
+	public String ST_searchCustomername2(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomername2");
+		
+		return "ST/ST_searchCustomername2";
+	}
+	
+	// CustomerName 결과
+	@RequestMapping("ST_searchCustomername_result2")
+	public String ST_searchCustomername_result2(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomername_result2");
+		service.searchCustomer2(req, model);
+		
+		return "ST/ST_searchCustomername_result2";
+	}
+		
+	
+	
 
 }

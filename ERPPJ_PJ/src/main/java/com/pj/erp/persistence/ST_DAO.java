@@ -9,6 +9,7 @@ import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.UserName;
 
 public interface ST_DAO {
 
@@ -82,6 +83,9 @@ public interface ST_DAO {
 	// saleList 게시글 조회
 	public int getSaleListCnt();
 	
+	// saleList 검색
+	public List<SaleList> getSaleList(Map<String, Object> map);
+	
 	// saleList 게시글 목록 조회
 	public List<SaleList> getSaleListArticle(Map<String, Object> map);
 	
@@ -108,5 +112,15 @@ public interface ST_DAO {
 	
 	// 거래처명 검색 목록 가져오기
 	public List<CustomerList> getCustomerList(String customer_name);
+	
+	// 사원 이름 검색 확인
+	public int selectName(String username);
+	
+	// 사원 검색 목록 불러오기
+	public List<UserName> getUsernameList(String username); 
+	
+	
+	
+	
 
 }

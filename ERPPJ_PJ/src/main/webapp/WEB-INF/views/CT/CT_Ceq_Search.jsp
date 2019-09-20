@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +7,11 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
-		
-    
-	<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-	<script src="/erp/resources/assets/css/js/request.js"></script>
-    <script type = "text/javascript">
+
+
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
 
 
 // 결과
@@ -57,70 +57,72 @@ function setCeqSerial(code){
 
 </head>
 <body onload="searchNameFocus();">
-<!-- username 검색 -->
-<div id="wrapper">
+	<!-- username 검색 -->
+	<div id="wrapper">
 		<!-- ============================================================== -->
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-			<div class="content">
+		<div class="content">
 
-				<!-- Start Content-->
-				<div class="container-fluid">
-				
+			<!-- Start Content-->
+			<div class="container-fluid">
+
 				<!-- start page title -->
 				<div class="row">
 					<div class="col-12">
-						<div class="page-title-box" style = "text-align:center;">
-							<h4><b>전산설비코드</b></h4>
+						<div class="page-title-box" style="text-align: center;">
+							<h4>
+								<b>전산설비코드</b>
+							</h4>
 						</div>
 					</div>
 				</div>
 				<!-- end page title -->
 
 				<div class="row">
-						<div class="col-sm-12">
-							<div class="card" style="margin-bottom: 5px;">
-								<div class="card-body">
-									<form action="" name="searchCode">
-										
-										<table>
-											<tr>
-												<th>사용 부서</th>
-												<td>
-													<select name="department_code"  class="form-control" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="load1();">
-															<option value="" selected disabled>선택</option>
-														<c:forEach var="vo" items="${dto}">
-		                                                		<option value="${vo.department_code }">${vo.department_name }</option>
-		                                                </c:forEach>
-													</select>
-												</td>
-											</tr>
-										</table>
-									</form>
-                               	</div>
-                               	
-                              <div id = "result">
-			                      <!-- 출력결과위치 -->
-		                      </div>
-		                      
-                             </div>
-		                   </div> 
-                       </div>
-                    </div> 
-                      
-                      
-               
-               <!-- 페이지 내용 입력 공간 종료 -->
+					<div class="col-sm-12">
+						<div class="card" style="margin-bottom: 5px;">
+							<div class="card-body">
+								<form action="" name="searchCode">
+
+									<table>
+										<tr>
+											<th>사용 부서</th>
+											<td><select name="department_code" class="form-control"
+												style="width: 100%; -webkit-appearance: none; border: 0px;"
+												onchange="load1();">
+													<option value="" selected disabled>선택</option>
+													<c:forEach var="vo" items="${dto}">
+														<option value="${vo.department_code }">${vo.department_name }</option>
+													</c:forEach>
+											</select></td>
+										</tr>
+									</table>
+								</form>
+							</div>
+
+							<div id="result">
+								<!-- 출력결과위치 -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 
-			<%@ include file="../footer.jsp" %>
+			<!-- 페이지 내용 입력 공간 종료 -->
 
+
+
+			<%@ include file="../footer.jsp"%>
 		</div>
-		<!-- ============================================================== -->
-		<!-- End Page content -->
-		<!-- ============================================================== -->
-</div>
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 </body>
 </html>

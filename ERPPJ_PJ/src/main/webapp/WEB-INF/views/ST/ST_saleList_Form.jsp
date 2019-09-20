@@ -27,92 +27,90 @@ function ProductName() {
 	</c:if>
 
 
-
-	<div class="col-lg-6">
-		<div class="card">
-			<div class="card-body" style="width: 1500px;">
-				<div class="table-responsive">
-					<c:if test="${deletesaleList !=0 }">
-						<c:if test="${updateSaleList != 0 }">
-							<form method="post">
-								<input type="hidden" name="${_csrf.parameterName }"
-									value="${_csrf.token }">
-								<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
-								<table class="table table-striped mb-0">
-									<tr>
-										<th>판매 코드</th>
-										<td><input type="hidden" class="input"
-											name="salelist_code" value="${sto.salelist_code }">${sto.salelist_code }
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="table-responsive">
+						<c:if test="${deletesaleList !=0 }">
+							<c:if test="${updateSaleList != 0 }">
+								<form method="post">
+									<input type="hidden" name="${_csrf.parameterName }"
+										value="${_csrf.token }">
+									<%-- <input type = "hidden" name = "pageNum" value="#{pageNum }"> --%>
+									<table class="table table-bordered mb-0">
+										<tr>
+											<th>판매 코드</th>
+											<td><input type="hidden" class="input"
+												name="salelist_code" value="${sto.salelist_code }">${sto.salelist_code }
 											</td>
 
-										<th>제품명</th>
-										<td><input class="input" type="text" name=""
-											value="" id="product_nameP" onclick="ProductName()"></td>
-										
-										<th>담당자</th>
-										<td><input class="input" type="text"
-											name="" value=""></td>	
-											
+											<th>제품명</th>
+											<td><input class="form-control" type="text" name="" value=""
+												id="product_nameP" onclick="ProductName()"></td>
 
-									</tr>
+											<th>담당자</th>
+											<td><input class="form-control" type="text" name="" value=""></td>
 
-									<tr>
-									
-										<th>등록일</th>
-										<td><input class="input" type="hidden"
-											name="reg_date" value="${sto.reg_date }">${sto.reg_date }</td>
 
-										<th>출고 요청일</th>
-										<td><input class="input" type="date" name="release_o_date"
-											value="${sto.release_o_date }"></td>
-											
-										<th>단위</th>
-										<td><input class="input" type="text" name="unit"
-											value="${sto.unit }"></td>	
-										
+										</tr>
 
-									</tr>
+										<tr>
 
-									<tr>
-										
-										<th>가격</th>
-										<td><input class="input" type="text" name="price" value="${sto.price }">
-										</td>
-										
-										<th>거래처</th>
-										<td><input class="input" type="text" name=""
-											value=""></td>
-										
-										<th>출고여부</th>
-										<td><input class="input" type="text" name=""
-											value=""></td>
-									</tr>
+											<th>등록일</th>
+											<td><input class="form-control" type="hidden" name="reg_date"
+												value="${sto.reg_date }">${sto.reg_date }</td>
 
-									<tr>
-										
-									<tr>
-										<th>비고</th>
-										<td colspan="5"><textarea class="input" rows="7" cols="150" name = "note" >${sto.note }</textarea></td>
-									</tr>
+											<th>출고 요청일</th>
+											<td><input class="form-control" type="date"
+												name="release_o_date" value="${sto.release_o_date }"></td>
 
-									<tr>
-										<th><input class="inputButton" type="submit" value="수정"
-											formaction="ST_saleList_modifyPro"> <input
-											class="inputButton" type="submit" value="삭제"
-											formaction="ST_saleList_deletePro"> <input
-											class="inputButton" type="button" value="수정 취소" onClick="window.location.reload()">
-									</tr>
+											<th>단위</th>
+											<td><input class="form-control" type="text" name="unit"
+												value="${sto.unit }"></td>
 
-								</table>
-							</form>
+
+										</tr>
+
+										<tr>
+
+											<th>가격</th>
+											<td><input class="form-control" type="text" name="price"
+												value="${sto.price }"></td>
+
+											<th>거래처</th>
+											<td><input class="form-control" type="text" name="" value=""></td>
+
+											<th>출고여부</th>
+											<td><input class="form-control" type="text" name="" value=""></td>
+										</tr>
+
+										<tr>
+										<tr>
+											<th>비고</th>
+											<td colspan="5"><textarea class="form-control" rows="7"
+													cols="150" name="note">${sto.note }</textarea></td>
+										</tr>
+
+										<tr>
+											<th><input class="inputButton" type="submit" value="수정"
+												formaction="ST_saleList_modifyPro"> <input
+												class="inputButton" type="submit" value="삭제"
+												formaction="ST_saleList_deletePro"> <input
+												class="inputButton" type="button" value="수정 취소"
+												onClick="window.location.reload()">
+										</tr>
+
+									</table>
+								</form>
+							</c:if>
 						</c:if>
-					</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- end content -->
 	</div>
-	<!-- end content -->
-
 
 	<!-- ============================================================== -->
 	<!-- End Page content -->

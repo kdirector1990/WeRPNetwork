@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
 public interface ST_Service {
@@ -70,6 +71,9 @@ public interface ST_Service {
 	// ST_saleList 목록 조회
 	public void saleList(HttpServletRequest req, Model model);
 	
+	// ST_saleList 검색 기능
+	public List<SaleList> getsaleList(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	// ST_saleList 상세 페이지
 	public void saleListWriteForm(HttpServletRequest req, Model model);
 	
@@ -82,13 +86,17 @@ public interface ST_Service {
 	
 	
 	
-	
 	// Product 검색
 	public void searchProduct(HttpServletRequest req, Model model);
 	
 	// Customer 검색
 	public void searchCustomer(HttpServletRequest req, Model model);
 	
+	// 담당자 검색
+	public void searchUsername(HttpServletRequest req, Model model);
+	
+	// Customer 검색
+	public void searchCustomer2(HttpServletRequest req, Model model);
 	
 	
 	// tables-datatable (거래 명세서) 목록

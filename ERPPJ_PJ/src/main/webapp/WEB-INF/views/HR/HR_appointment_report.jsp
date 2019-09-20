@@ -104,7 +104,8 @@
 
 											</tr>
 											<tr class="form-group row">
-												<th class="col-md-1 col-form-label">발령구분</td>
+												<th class="col-md-1 col-form-label">발령구분
+												</td>
 												<td class="col-md-2 input-group"><input type="text"
 													class="form-control" name="" placeholder="발령구분">
 													<div class="input-group-append">
@@ -113,7 +114,8 @@
 															<i class="fas fa-search"></i>
 														</button>
 													</div></td>
-												<th class="col-md-1 col-form-label">발령호수</td>
+												<th class="col-md-1 col-form-label">발령호수
+												</td>
 												<td class="col-md-2 input-group"><input type="text"
 													class="form-control" name="" placeholder="발령호수">
 													<div class="input-group-append">
@@ -122,7 +124,8 @@
 															<i class="fas fa-search"></i>
 														</button>
 													</div></td>
-												<th class="col-md-1 col-form-label">발령내역</td>
+												<th class="col-md-1 col-form-label">발령내역
+												</td>
 												<td class="col-md-2 input-group"><input type="text"
 													class="form-control" name="" placeholder="발령내역">
 													<div class="input-group-append">

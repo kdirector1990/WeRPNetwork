@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.HR_ApVO;
 import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
@@ -17,6 +18,7 @@ import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Repository
 public class HR_DAOImpl implements HR_DAO{
@@ -138,7 +140,7 @@ public class HR_DAOImpl implements HR_DAO{
 	
 	@Override
 	public HR_PhysicalVO physicaly(String username) {
-		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.physicaly");
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.physicaly", username);
 	}
 
 	@Override
@@ -237,6 +239,22 @@ public class HR_DAOImpl implements HR_DAO{
 
 	public String getPositionRecord() {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getPositionRecord");
+	}
+
+	@Override
+	public String getAP_code() {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getAP_code");
+	}
+
+	@Override
+	public int insertAp(HR_ApVO ap) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertAp", ap);
+	}
+	
+	@Override 
+	public List<HR_nfc_log> getNfcLog() {
+		 
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getNfcLog");
 	}
 
 

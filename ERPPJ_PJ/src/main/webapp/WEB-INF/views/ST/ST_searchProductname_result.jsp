@@ -17,14 +17,14 @@
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
 		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover">
+			<table id="datatable" class="table table-bordered table-hover" style="height:550px;">
 				<thead>
 					<tr class="table-info" style="text-align: center;">
 						<th>제품 코드</th>
 						<th>제품명</th>
 					</tr>
 				</thead>
-				<tbody style="overflow:auto;">
+				<tbody>
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
 						<c:forEach var="pto" items="${ptos}">

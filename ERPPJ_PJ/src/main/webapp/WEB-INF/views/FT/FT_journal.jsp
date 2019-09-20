@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%@ include file="../setting.jsp" %>
-        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/erp/resources/assets/css/js/request.js"></script>
-        <script type="text/javascript">
+<head>
+<%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
         	var frontcursor;
@@ -140,181 +140,198 @@
         		window.open(url, "users_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
         	}
         </script>
-        <!-- Table datatable css -->
-        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    </head>
+<!-- Table datatable css -->
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
 
-    <body onload = "start();">
+<body onload="start();">
 
-        <!-- Begin page -->
-        <div id="wrapper">
+	<!-- Begin page -->
+	<div id="wrapper">
 
-            
-            <%@ include file="../sidebar.jsp" %>
 
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+		<%@ include file="../sidebar.jsp"%>
 
-            <div class="content-page">
-                <div class="content">
-                    
-                    <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                            <li class="breadcrumb-item active">Datatables</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">분개장</h4>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
-						
-                        <form name = "chitManager" method="post">
-                        <input type = "hidden" name = "${_csrf.parameterName }" value="${_csrf.token }">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <tr>
-                                                <td>기표기간</td>
-                                                <td><input type="date" class="firstdate" value = "2011-01-01"> ~ <input type="date" class="lastdate" value = "2011-12-31"></td>
-                                            	<td>작성자</td>
-                                                <td><input type="text" class="" id = "usercode" style = "width: 100px;" onkeyup = "ajaxload();">&nbsp;<a href = "#" onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
-                                                	<input type="text" class="" id = "username" readonly style = "width: 100px;"></td>
-                                            </tr>
-                                        </table>
-                                        
-                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
-	                                        <table id="datatable" class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:5%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:10%">
-	                                            <col style = "width:5%">
-	                                            <thead>
-	                                            <tr>
-	                                                <th colspan="2">구분[기표]</th>
-	                                                <th colspan="2">차변</th>
-	                                                <th colspan="2">대변</th>
-	                                                <th rowspan="2">적요</th>
-	                                                <th colspan="2">거래처</th>
-	                                            </tr>
-	                                            <tr>
-	                                            	<th>년/월/일</th>
-	                                                <th>번호</th>
-	                                                <th>금액</th>
-	                                                <th>계정과목</th>
-	                                                <th>계정과목</th>
-	                                                <th>금액</th>
-	                                                <th>코드</th>
-	                                                <th>거래처명</th>
-	                                            </tr>
-	                                            </thead>
-	    		
-	    
-	                                            <tbody>
-	                                            
-	                                            </tbody>
-	                                        </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                    </div> <!-- end container-fluid -->
+		<!-- ============================================================== -->
+		<!-- Start Page Content here -->
+		<!-- ============================================================== -->
 
-                </div> <!-- end content -->
-                
+		<div class="content-page">
+			<div class="content">
 
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="#">About Us</a>
-                                    <a href="#">Help</a>
-                                    <a href="#">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
+				<!-- Start Content-->
+				<div class="container-fluid">
 
-            </div>
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box">
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Codefox</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Tables</a></li>
+										<li class="breadcrumb-item active">Datatables</li>
+									</ol>
+								</div>
+								<h4 class="page-title">분개장</h4>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+					<form name="chitManager" method="post">
+						<input type="hidden" name="${_csrf.parameterName }"
+							value="${_csrf.token }">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card">
+									<div class="card-body table-responsive">
+										<table id="datatable"
+											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+											<tr>
+												<td>기표기간</td>
+												<td><input type="date" class="firstdate"
+													value="2011-01-01"> ~ <input type="date"
+													class="lastdate" value="2011-12-31"></td>
+												<td>작성자</td>
+												<td><input type="text" class="" id="usercode"
+													style="width: 100px;" onkeyup="ajaxload();">&nbsp;<a
+													href="#" onclick="userslist();"><i
+														class="dripicons-zoom-in"></i></a> <input type="text" class=""
+													id="username" readonly style="width: 100px;"></td>
+											</tr>
+										</table>
 
-        </div>
-        <!-- END wrapper -->
+										<div class="table-responsive" style="margin: 15px 0px 15px">
+											<table id="datatable"
+												class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered"
+												style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+												<col style="width: 10%">
+												<col style="width: 5%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 10%">
+												<col style="width: 5%">
+												<thead>
+													<tr>
+														<th colspan="2">구분[기표]</th>
+														<th colspan="2">차변</th>
+														<th colspan="2">대변</th>
+														<th rowspan="2">적요</th>
+														<th colspan="2">거래처</th>
+													</tr>
+													<tr>
+														<th>년/월/일</th>
+														<th>번호</th>
+														<th>금액</th>
+														<th>계정과목</th>
+														<th>계정과목</th>
+														<th>금액</th>
+														<th>코드</th>
+														<th>거래처명</th>
+													</tr>
+												</thead>
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
 
-        <!-- Vendor js -->
-        <%@ include file="../rightbar.jsp" %>
-        <script src="/erp/resources/assets/js/vendor.min.js"></script>
+												<tbody>
 
-        <!-- Bootstrap select plugin -->
-        <script src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end container-fluid -->
 
-        <!-- Datatable plugin js -->
-        <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+			</div>
+			<!-- end content -->
 
-        <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
 
-        <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
 
-        <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
+			<%@ include file="../footer.jsp"%>
+		</div>
+	</div>
+	<!-- END wrapper -->
 
-        <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-        <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 
-        <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-        <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
+	<!-- Vendor js -->
+	<script src="/erp/resources/assets/js/vendor.min.js"></script>
 
-        <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
+	<!-- Bootstrap select plugin -->
+	<script
+		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 
-        <!-- App js -->
-        <script src="/erp/resources/assets/js/app.min.js"></script>
-        
-    </body>
+	<!-- Datatable plugin js -->
+	<script
+		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+
+	<script
+		src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
+
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
+
+	<script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
+	<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
+	<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
+
+	<script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
+
+	<!-- App js -->
+	<script src="/erp/resources/assets/js/app.min.js"></script>
+
+</body>
 </html>
