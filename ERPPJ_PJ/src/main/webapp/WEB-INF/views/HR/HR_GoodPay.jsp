@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
 <style type="text/css">
-	#payAll{
-		display : none;
-	}
+#payAll {
+	display: none;
+}
 </style>
 
 <%@ include file="../setting.jsp"%>
@@ -14,7 +14,7 @@
 	href="/erp/resources/assets/libs/c3/c3.min.css">
 
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> -->	
+<!-- <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> -->
 <script type="text/javascript">
 
 	
@@ -93,104 +93,106 @@
 		<!-- Start Page Content here -->
 		<!-- ============================================================== -->
 
-<form id="updatePay" action="HR_GoodPay_payUpdate" method="post" class="form-horizontal">
-		<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
-		<div class="content-page">
-			<div class="content">
+		<form id="updatePay" action="HR_GoodPay_payUpdate" method="post"
+			class="form-horizontal">
+			<input type='hidden' name="${_csrf.parameterName }"
+				value="${_csrf.token }">
+			<div class="content-page">
+				<div class="content">
 
-				<!-- Start Content-->
-				<div class="container-fluid">
-					<!-- start page title -->
-					<div class="row">
-						<div class="col-12">
-							<div class="page-title-box">
-								<h4 class="page-title">호봉테이블 입력</h4>
+					<!-- Start Content-->
+					<div class="container-fluid">
+						<!-- start page title -->
+						<div class="row">
+							<div class="col-12">
+								<div class="page-title-box">
+									<h4 class="page-title">호봉테이블 입력</h4>
+								</div>
 							</div>
 						</div>
-					</div>
-					<!-- end page title -->
+						<!-- end page title -->
 
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered mb-0">
-									<thead>
-										<tr>
-											<th scope="col" colspan="2" style="center">대 상 직 급</th>																						
-										</tr>
-										
-										<tr>
-											<th scope="col">코 드</th>
-											<th scope="col">직 급</th>
-										</tr>
-										
-										<c:forEach var="rank" items="${vo}">
-											<tr id="rank2">
-												<td class="UserRank" onclick="load(${rank.rank_code});">${rank.rank_code}</td>
-												<td class="UserRank2" onclick="load(${rank.rank_code});">${rank.rank_name}</td>
-											</tr>
-										</c:forEach>
-										
-									</thead>									
-								</table>							
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="card">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-bordered mb-0">
+												<thead>
+													<tr>
+														<th scope="col" colspan="2" style="">대 상 직 급</th>
+													</tr>
+
+													<tr>
+														<th scope="col">코 드</th>
+														<th scope="col">직 급</th>
+													</tr>
+
+													<c:forEach var="rank" items="${vo}">
+														<tr id="rank2">
+															<td class="UserRank" onclick="load(${rank.rank_code});">${rank.rank_code}</td>
+															<td class="UserRank2" onclick="load(${rank.rank_code});">${rank.rank_name}</td>
+														</tr>
+													</c:forEach>
+
+												</thead>
+											</table>
+										</div>
+
+										<div class="table-responsive">
+											<table class="table table-bordered mb-0">
+												<thead>
+													<tr>
+														<th scope="col" colspan="2">호봉이력</th>
+													</tr>
+
+													<tr>
+														<th scope="col">적용시작연월</th>
+														<th scope="col">적용종료연월</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+									</div>
+								</div>
 							</div>
-							
-							<div class="table-responsive">
-								<table class="table table-bordered mb-0">
-									<thead>
-										<tr>
-											<th scope="col" colspan="2">호봉이력</th>																						
-										</tr>
-										
-										<tr>
-											<th scope="col">적용시작연월</th>
-											<th scope="col">적용종료연월</th>
-										</tr>
-									</thead>									
-								</table>							
+
+
+							<div class="col-lg-6">
+								<div id="payAll">
+									<div class="card">
+										<div class="card-body">
+											<div class="table-responsive">
+												<table id="pay2" class="table table-bordered mb-0">
+													<thead>
+														<tr>
+															<th rowspan="2" align="center">호 봉</th>
+															<th colspan="3" align="center">호 봉 테 이 블</th>
+															<th rowspan="2" align="center">합 계</th>
+														</tr>
+
+														<tr>
+															<th scope="col" align="center">기 본 급</th>
+															<th scope="col" align="center">급 호 수 당</th>
+															<th scope="col" align="center">연 장 수 당</th>
+														</tr>
+													</thead>
+												</table>
+												<div class="page-title-center"></div>
+											</div>
+											<div class="page-title-center">
+												<button id="updatePA" onclick="payUpdate();" type="button"
+													class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
+						<%@ include file="../footer.jsp"%>
 					</div>
-				</div>
-
-			
-				<div class="col-lg-6">
-				<div id="payAll">
-					<div class="card">
-						<div class="card-body">
-							<div class="table-responsive">
-								<table id="pay2" class="table table-bordered mb-0">
-									<thead>
-										<tr>
-											<th rowspan="2" align="center">호 봉</th>
-											<th colspan="3" align="center">호 봉 테 이 블</th>
-											<th rowspan="2" align="center">합 계</th>																						
-										</tr>
-										
-										<tr>
-											<th scope="col" align="center">기 본 급</th>
-											<th scope="col" align="center">급 호 수 당</th>
-											<th scope="col" align="center">연 장 수 당</th>
-										</tr>
-									</thead>
-								</table>
-								<div class="page-title-center">
-									</div>								
-							</div>
-							<div class="page-title-center">
-    								<button id="updatePA" onclick="payUpdate();" type="button" class="btn btn-outline-primary waves-effect waves-light">호봉수정</button>
-							</div>
-						</div>
-					</div>
-				</div>
 				</div>
 			</div>
-			 <%@ include file="../footer.jsp" %>
-			</div>
-		</div>
-		</div>
 		</form>
 
 		<!-- ============================================================== -->
@@ -200,10 +202,10 @@
 	</div>
 	<!-- END wrapper -->
 
-	 <%@ include file="../rightbar.jsp" %>
-     <%@ include file="../setting2.jsp" %>
-     
-     <script type="text/javascript">
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<script type="text/javascript">
 
      function addComma(num) {
    	  var regexp = /\B(?=(\d{3})+(?!\d))/g;

@@ -55,6 +55,13 @@ public class ERPController {
 		return "index";
 	}
 	
+	@RequestMapping("nfc")
+	public String nfc(HttpServletRequest req, Model model) {
+		logger.info("log => nfc");
+		service.nfc(req, model);
+		return "nfc";
+	}
+	
 	@RequestMapping("admin-grid")
 	public String admingrid(Locale locale, Model model) {
 		logger.info("log => admin-grid"); 
@@ -583,18 +590,7 @@ public class ERPController {
 		return "denied"; 
 	}
 	
-	/*
-	 * //로그아웃
-	 * 
-	 * @RequestMapping(value = "logout", method = RequestMethod.GET) public String
-	 * logout(HttpServletRequest req, HttpServletResponse res) throws Exception{
-	 * logger.info("url == > logout"); Authentication auth =
-	 * SecurityContextHolder.getContext().getAuthentication(); if(auth != null) {
-	 * req.getSession().removeAttribute("memId"); req.getSession().invalidate(); new
-	 * SecurityContextLogoutHandler().logout(req, res, auth); }
-	 * 
-	 * return "redirect:/index"; }
-	 */
+
 	
 	
 }

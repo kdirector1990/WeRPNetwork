@@ -16,6 +16,7 @@ import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_nfc_log;
 
 public interface HR_Service {
 	
@@ -81,6 +82,10 @@ public interface HR_Service {
 	
 	// 인사발령등록
 	public void HR_recordinput(HttpServletRequest req, Model model); 
+	
+	// 발령공고등록
+	public void HR_APinput(HttpServletRequest req, Model model);
+	
 	/*
 	 * // 사원번호 중복체크 public void userChk(HttpServletRequest req, Model model);
 	 */
@@ -107,5 +112,9 @@ public interface HR_Service {
 	
 	//근태(월별 카운트)
 	public List<HR_Time_VO> selectCountMonth(HttpServletRequest req, Model model);
+	
+	//nfc 기록 조회용(임시)
+	public List<HR_nfc_log> getNfcLog(HttpServletRequest req, Model model);
+	
 	
 }

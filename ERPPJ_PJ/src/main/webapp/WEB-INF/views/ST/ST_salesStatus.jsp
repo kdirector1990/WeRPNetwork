@@ -39,8 +39,8 @@
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
-											<td class="col-md-2 input-group">
-												<input type="text" class="form-control" name="" placeholder = "부서">
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="부서">
 												<div class="input-group-append">
 													<button type="button"
 														class="btn btn-icon waves-effect waves-light btn-primary">
@@ -49,7 +49,8 @@
 												</div></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">사원</th>
-											<td class="col-md-2 input-group"><input type="text" class="form-control" name="" placeholder = "사원">
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="사원">
 												<div class="input-group-append">
 													<button type="button"
 														class="btn btn-icon waves-effect waves-light btn-primary">
@@ -64,17 +65,16 @@
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 										</tr>
 
-										<tr class="form-group row">											
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">고객</th>
-											<td class="col-md-2 input-group"><input type="text" class="form-control" name="" placeholder = "고객">
-												</td>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="" placeholder="고객"></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">거래구분</th>
 											<td class="col-md-2 input-group"><select
 												class="form-control select2" name="" onchange="">
 													<option>-- --</option>
-											</select>
-											</td>
+											</select></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">부서기준</th>
 											<td class="col-md-2 input-group"><select
@@ -85,7 +85,7 @@
 											</select></td>
 										</tr>
 
-										<tr class="form-group row">											
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
 													<option>2. 실적담당</option>
@@ -95,10 +95,9 @@
 											<td class="col-md-2 input-group"><select
 												class="form-control select2" name="" onchange="">
 													<option>-- --</option>
-											</select>
-											</td>
+											</select></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
-											
+
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
 													<option>3. 품번범위</option>
@@ -113,7 +112,9 @@
 														class="btn btn-icon waves-effect waves-light btn-primary">
 														<i class="fas fa-search"></i>
 													</button>
-												</div></td><th class="col-md-1 col-form-label">~</th><td class="col-md-2 input-group"><input type="text"
+												</div></td>
+											<th class="col-md-1 col-form-label">~</th>
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="" placeholder="사원">
 												<div class="input-group-append">
 													<button type="button"
@@ -153,7 +154,7 @@
 												<th>공급가</th>
 												<th>부가세</th>
 												<th>합계액</th>
-												<th>관리구분</th>												
+												<th>관리구분</th>
 												<th>비고(내역)</th>
 											</tr>
 										</thead>

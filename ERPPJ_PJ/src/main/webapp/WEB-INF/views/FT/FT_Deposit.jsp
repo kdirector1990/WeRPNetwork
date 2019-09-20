@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
     <head>
         <%@ include file="../setting.jsp" %>
         <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
 		<script src="/erp/resources/assets/css/js/request.js"></script>
         <script type="text/javascript">
+=======
+<head>
+<%@ include file="../setting.jsp"%>
+<script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/pj/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
         	var count = 1/* ${listsize} */;
         	var subcount = 1;
         	var frontcursor;
@@ -331,18 +339,32 @@
 	        	}
         	}
         </script>
-        <!-- Table datatable css -->
-        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    </head>
+<!-- Table datatable css -->
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
 
-    <body>
+<body>
 
+<<<<<<< HEAD
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -485,105 +507,193 @@
                 <hr class="mt-0">
                 <h5 class="pl-3">Basic Settings</h5>
                 <hr class="mb-0" />
+=======
+	<!-- Begin page -->
+	<div id="wrapper">
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 
 
-                <div class="p-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                        <label class="custom-control-label" for="customCheck1">Notifications</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
-                        <label class="custom-control-label" for="customCheck2">API Access</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Auto Updates</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
-                        <label class="custom-control-label" for="customCheck4">Online Status</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck5">
-                        <label class="custom-control-label" for="customCheck5">Auto Payout</label>
-                    </div>
-                </div>
+		<%@ include file="../sidebar.jsp"%>
 
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Timeline</h5>
-                <hr class="mb-0" />
+		<!-- ============================================================== -->
+		<!-- Start Page Content here -->
+		<!-- ============================================================== -->
 
-                <div class="p-3">
-                    <ul class="list-unstyled activity-widget">
-                        <li class="activity-list">
-                            <p class="mb-0"><small>08 July</small></p>
-                            <p>Neque porro quisquam est</p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>09 July</small></p>
-                            <p>Ut enim ad minima veniam quis velit esse </p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>10 July</small></p>
-                            <p>Quis autem vel eum iure</p>
-                        </li>
-                    </ul>
-                </div>
+		<div class="content-page">
+			<div class="content">
 
-                <!-- Messages -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">13:40 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                            <p class="inbox-item-date">13:34 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                            <p class="inbox-item-date">13:17 PM</p>
-                        </div>
+				<!-- Start Content-->
+				<div class="container-fluid">
 
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                            <p class="inbox-item-date">12:20 PM</p>
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box">
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Codefox</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Tables</a></li>
+										<li class="breadcrumb-item active">Datatables</li>
+									</ol>
+								</div>
+								<h4 class="page-title">예금관리</h4>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
 
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">10:15 AM</p>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+									<div class="table-responsive" style="margin: 15px 0px 15px">
+										<table
+											class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+											<col style="width: 10%;">
+											<col style="width: 10%;">
+											<col style="width: 7%;">
+											<col style="width: 13%;">
+											<col style="width: 10%">
+											<col style="width: 20%;">
+											<col style="width: 20%;">
+											<col style="width: 10%;">
+											<col style="width: 10%;">
+											<thead>
+												<tr>
+													<th>예금코드</th>
+													<th>예금명</th>
+													<th>거래처코드</th>
+													<th>거래처명</th>
+													<th>계정코드</th>
+													<th>계정명</th>
+													<th>계좌번호</th>
+													<th>예금주</th>
+												</tr>
+											</thead>
 
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
+											<tbody>
+												<c:set var="cnt" value="0" />
+												<c:forEach var="depo" items="${deposit}">
+													<tr>
+														<td><input type="text" onfocus="focuse(this.name);"
+															name="depositCode${cnt}" class="form-control"
+															data-toggle="input-mask"
+															style="width: 100%; border: 0px;" readonly
+															onclick="notfocus(this.name);"
+															value="${depo.depositCode}"></td>
+														<td><input type="text" onfocus="focuse(this.name);"
+															id="first${cnt}" name="depositName${cnt}"
+															class="form-control" data-toggle="input-mask"
+															style="width: 100%; border: 0px;"
+															onkeydown="enter(this.tagName, this.name);"
+															value="${depo.depositName}"></td>
+														<td><input type="text" onfocus="focuse(this.name);"
+															name="AccCode${cnt}" class="form-control"
+															onclick="accountlist(${cnt})" data-toggle="input-mask"
+															style="width: 100%; border: 0px;"
+															onkeydown="enter(this.tagName, this.name);"
+															value="${depo.accCode}"></td>
+														<td><input type="text" onfocus="focuse(this.name);"
+															name="AccName${cnt}" class="form-control"
+															data-toggle="input-mask"
+															style="width: 100%; border: 0px;" readonly
+															onclick="notfocus(this.name);" value="${depo.accName}"></td>
+														<td><input type="text" onfocus="focuse(this.name);"
+															name="SubjectCode${cnt}" class="form-control"
+															onclick="subjectlist(${cnt})" data-toggle="input-mask"
+															style="width: 100%; border: 0px;"
+															onkeydown="enter(this.tagName, this.name);"
+															value="${depo.subjectCode}"></td>
+														<td><input type="text" onfocus="focuse(this.name);"
+															name="SubjectName${cnt}" class="form-control"
+															data-toggle="input-mask"
+															style="width: 100%; border: 0px;" readonly
+															onclick="notfocus(this.name);"
+															value="${depo.subjectName}"></td>
+														<td><input type="text" onfocus="focuse(this.name);"
+															name="AccountNo${cnt}" class="form-control"
+															data-toggle="input-mask"
+															style="width: 100%; border: 0px;"
+															onkeydown="enter(this.tagName, this.name);"
+															value="${depo.accountNo}"></td>
+														<td><input type="text" id="enter${cnt}"
+															onfocus="focuse(this.name);" name="AccountHolder${cnt}"
+															class="form-control" data-toggle="input-mask"
+															style="width: 100%; border: 0px;"
+															onkeydown="enter(this.tagName, this.name);"
+															value="${depo.accountHolder}"></td>
+													</tr>
+													<c:set var="cnt" value="${cnt+1}" />
+												</c:forEach>
+												<tr>
+													<td><input type="text" onfocus="focuse(this.name);"
+														name="depositCode${cnt}" class="form-control"
+														data-toggle="input-mask" style="width: 100%; border: 0px;"
+														readonly onclick="notfocus(this.name);"></td>
+													<td><input type="text" onfocus="focuse(this.name);"
+														id="first${cnt}" name="depositName${cnt}"
+														class="form-control" data-toggle="input-mask"
+														style="width: 100%; border: 0px;"
+														onkeydown="enter(this.tagName, this.name);"></td>
+													<td><input type="text" onfocus="focuse(this.name);"
+														name="AccCode${cnt}" class="form-control"
+														onclick="accountlist(${cnt})" data-toggle="input-mask"
+														style="width: 100%; border: 0px;"
+														onkeydown="enter(this.tagName, this.name);"></td>
+													<td><input type="text" onfocus="focuse(this.name);"
+														name="AccName${cnt}" class="form-control"
+														data-toggle="input-mask" style="width: 100%; border: 0px;"
+														readonly onclick="notfocus(this.name);"></td>
+													<td><input type="text" onfocus="focuse(this.name);"
+														name="SubjectCode${cnt}" class="form-control"
+														onclick="subjectlist(${cnt})" data-toggle="input-mask"
+														style="width: 100%; border: 0px;"
+														onkeydown="enter(this.tagName, this.name);"></td>
+													<td><input type="text" onfocus="focuse(this.name);"
+														name="SubjectName${cnt}" class="form-control"
+														data-toggle="input-mask" style="width: 100%; border: 0px;"
+														readonly onclick="notfocus(this.name);"></td>
+													<td><input type="text" onfocus="focuse(this.name);"
+														name="AccountNo${cnt}" class="form-control"
+														data-toggle="input-mask" style="width: 100%; border: 0px;"
+														onkeydown="enter(this.tagName, this.name);"></td>
+													<td><input type="text" id="enter${cnt}"
+														onfocus="focuse(this.name);" name="AccountHolder${cnt}"
+														class="form-control" data-toggle="input-mask"
+														style="width: 100%; border: 0px;"
+														onkeydown="enterinsert(${cnt});"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end container-fluid -->
 
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
+			</div>
+			<!-- end content -->
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
 
+<<<<<<< HEAD
         <!-- Vendor js -->
         <%@ include file="../rightbar.jsp" %>
    		<%@ include file="../setting2.jsp" %>
         
     </body>
+=======
+			<%@ include file="../footer.jsp"%>
+		</div>
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+</body>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 </html>

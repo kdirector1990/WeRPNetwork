@@ -1,21 +1,20 @@
 package com.pj.erp.persistence;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-import com.pj.erp.vo.HR_PhysicalVO;
+import com.pj.erp.vo.HR_ApVO;
 import com.pj.erp.vo.HR_FamilyVO;
 import com.pj.erp.vo.HR_GreetingVO;
 import com.pj.erp.vo.HR_PaystepVO;
-
+import com.pj.erp.vo.HR_PhysicalVO;
 import com.pj.erp.vo.HR_RankVO;
 import com.pj.erp.vo.HR_RecordVO;
 import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_nfc_log;
 
 public interface HR_DAO {
 
@@ -124,6 +123,13 @@ public interface HR_DAO {
 
 	// 직책변경코드 가져오기
 	public String getPositionRecord();
-
-
+	
+	// 공고코드 시퀀스 가져오기
+	public String getAP_code();
+	
+	// 발령공고 등록
+	public int insertAp(HR_ApVO ap);
+	
+	// nfc 기록 조회(임시)
+	public List<HR_nfc_log> getNfcLog();
 }

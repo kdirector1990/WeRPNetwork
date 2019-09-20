@@ -553,4 +553,18 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 		return "성공";
 	}
+	
+	@Override
+	public Map<String, Object> getBsshit(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+		Map<String, Object> bs_result = new HashMap<String, Object>();
+		String fiscalyear = (String)map.get("fiscalyear");
+		System.out.println(fiscalyear);
+		List<Map> list = new ArrayList<Map>(); 
+
+		
+		bs_result.put("assets", list);
+		
+		return bs_result;
+	}
 }

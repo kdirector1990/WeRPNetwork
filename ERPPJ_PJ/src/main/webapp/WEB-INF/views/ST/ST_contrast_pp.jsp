@@ -240,8 +240,8 @@
 	</div>
 	<!-- END wrapper -->
 
-	<%@ include file="../rightbar.jsp" %>
-    <%@ include file="../setting2.jsp" %>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 
 </body>
 </html>

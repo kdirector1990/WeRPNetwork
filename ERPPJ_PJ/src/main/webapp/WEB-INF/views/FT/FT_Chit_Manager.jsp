@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%@ include file="../setting.jsp" %>
-        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/erp/resources/assets/css/js/request.js"></script>
-        <script type="text/javascript">
+<head>
+<%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
         	var count = 1;
         	var subcount = 1;
         	var frontcursor;
@@ -236,172 +236,173 @@
         		}
         	}
         </script>
-        <!-- Table datatable css -->
-        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    </head>
+<!-- Table datatable css -->
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
 
-    <body>
+<body>
 
-        <!-- Begin page -->
-        <div id="wrapper">
+	<!-- Begin page -->
+	<div id="wrapper">
 
-            
-            <%@ include file="../sidebar.jsp" %>
 
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+		<%@ include file="../sidebar.jsp"%>
 
-            <div class="content-page">
-                <div class="content">
-                    
-                    <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                            <li class="breadcrumb-item active">Datatables</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">전표승인해제</h4>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
-						
-						<form name = "chitManager" method="post">
-						<input type = "hidden" name = "${_csrf.parameterName }" value="${_csrf.token }">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-                                        <div align="right" style = "margin-bottom: 30px;">
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light" onclick = "chkformal();">승인처리</button>
-    									<br>
-    									</div>
-    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <tr>
-                                            	<td>전표상태&emsp;&emsp;<select class="chitState" style = "width: 100px; -webkit-appearance: none;">
-	                                                <option value="1">미결</option>
-	                                                <option value="2">승인</option>
-	                                                <option value="0">전체</option>
-		                                       	</select></td>
-		                                       	
-                                                <td>결의기간&emsp;&emsp;<input type="date" class="firstdate" value = "2011-01-01"> ~
-                                                <input type="date" class="lastdate" onkeydown = "ajaxload();" value = "2011-12-31">
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        
-                                       <div class="table-responsive" style = "margin: 15px 0px 50px">
-                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-                                                <thead>
-                                                    <tr>
-		                                                <th style = "text-align: center;"><img src = "/erp/resources/img/checked.png" width = "20px" height = "20px" name = "all_Check" style = "align: center;" onclick = "allCheck(this.name);"></th>
-		                                                <th>결의일자</th>
-		                                                <th>번호</th>
-		                                                <th>승인자</th>
-		                                            </tr>
-		                                        </thead>
-		    
-		                                        <tbody>
-		                                        	
-		                                        </tbody>
-                                            </table>
-                                        </div>
-                                        
-                                        <div class="table-responsive" style = "margin: 0px 0px 50px">
-                                            <table class="table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered">
-                                                <col style = "width:7%;">
-                                                <col style = "width:6%;">
-                                                <col style = "width:7%">
-                                                <col style = "width:10%;">
-                                                <col style = "width:7%;">
-                                                <col style = "width:10%;">
-                                                <col style = "width: 10%;">
-                                                <col style = "width: 3%;">
-                                                <col style = "width: 10%;">
-                                                <col style = "width: 8%;">
-                                                <col style = "width: 8%;">
-                                                <col style = "width: 8%;">
-                                                <thead>
-                                                    <tr>
-		                                                <th>분개코드</th>
-		                                                <th>구분</th>
-		                                                <th>계정</th>
-		                                                <th>계정명</th>
-		                                                <th>거래처</th>
-		                                                <th>거래처명</th>
-		                                                <th>금액</th>
-		                                                <th>수량</th>
-		                                                <th>적요</th>
-		                                                <th>작성자</th>
-		                                                <th>전표상태</th>
-		                                                <th>최종수정일</th>
-		                                            </tr>
-		                                      	</thead>
-		    
-		                                        <tbody>
-		                                            
-		                                        </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                    </div> <!-- end container-fluid -->
+		<!-- ============================================================== -->
+		<!-- Start Page Content here -->
+		<!-- ============================================================== -->
 
-                </div> <!-- end content -->
-                
+		<div class="content-page">
+			<div class="content">
 
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="#">About Us</a>
-                                    <a href="#">Help</a>
-                                    <a href="#">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
+				<!-- Start Content-->
+				<div class="container-fluid">
 
-            </div>
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box">
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Codefox</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Tables</a></li>
+										<li class="breadcrumb-item active">Datatables</li>
+									</ol>
+								</div>
+								<h4 class="page-title">전표승인해제</h4>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+					<form name="chitManager" method="post">
+						<input type="hidden" name="${_csrf.parameterName }"
+							value="${_csrf.token }">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card">
+									<div class="card-body table-responsive">
+										<div align="right" style="margin-bottom: 30px;">
+											<button type="button"
+												class="btn btn-outline-primary waves-effect waves-light"
+												onclick="chkformal();">승인처리</button>
+											<br>
+										</div>
+										<table id="datatable"
+											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+											<tr>
+												<td>전표상태&emsp;&emsp;<select class="chitState"
+													style="width: 100px; -webkit-appearance: none;">
+														<option value="1">미결</option>
+														<option value="2">승인</option>
+														<option value="0">전체</option>
+												</select></td>
 
-        </div>
-        <!-- END wrapper -->
+												<td>결의기간&emsp;&emsp;<input type="date"
+													class="firstdate" value="2011-01-01"> ~ <input
+													type="date" class="lastdate" onkeydown="ajaxload();"
+													value="2011-12-31">
+												</td>
+											</tr>
+										</table>
 
-        
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+										<div class="table-responsive" style="margin: 15px 0px 50px">
+											<table
+												class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+												<thead>
+													<tr>
+														<th style="text-align: center;"><img
+															src="/erp/resources/img/checked.png" width="20px"
+															height="20px" name="all_Check" style="align: center;"
+															onclick="allCheck(this.name);"></th>
+														<th>결의일자</th>
+														<th>번호</th>
+														<th>승인자</th>
+													</tr>
+												</thead>
 
-        <!-- Vendor js -->
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-    </body>
+												<tbody>
+
+												</tbody>
+											</table>
+										</div>
+
+										<div class="table-responsive" style="margin: 0px 0px 50px">
+											<table
+												class="table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered">
+												<col style="width: 7%;">
+												<col style="width: 6%;">
+												<col style="width: 7%">
+												<col style="width: 10%;">
+												<col style="width: 7%;">
+												<col style="width: 10%;">
+												<col style="width: 10%;">
+												<col style="width: 3%;">
+												<col style="width: 10%;">
+												<col style="width: 8%;">
+												<col style="width: 8%;">
+												<col style="width: 8%;">
+												<thead>
+													<tr>
+														<th>분개코드</th>
+														<th>구분</th>
+														<th>계정</th>
+														<th>계정명</th>
+														<th>거래처</th>
+														<th>거래처명</th>
+														<th>금액</th>
+														<th>수량</th>
+														<th>적요</th>
+														<th>작성자</th>
+														<th>전표상태</th>
+														<th>최종수정일</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- end container-fluid -->
+
+			</div>
+			<!-- end content -->
+
+
+			<%@ include file="../footer.jsp"%>
+		</div>
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+</body>
 </html>

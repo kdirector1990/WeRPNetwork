@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
-    <%@ include file="../setting.jsp" %>
+<%@ include file="../setting.jsp"%>
 </head>
-	<body>
-     	 <!-- Begin page -->
-    	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<%@ include file="../sidebar.jsp"%>
 		<div class="content-page">
 			<!-- ============================================================== -->
 			<!-- Start Page Content here -->
@@ -41,57 +41,58 @@
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">관리</p>
 								<hr>
-							<div class="form-horizontal"  style="overflow-y:auto;">
-                               	<form id="manageMF_plan" action="" method="post" >
-                               	<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
-								<table id="datatable"
-									class="table m-0 table-bordered table-hover"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<col style = "width:12%">
-                                    <col style = "width:13%;">
-                                    <col style = "width:10%">
-                                    <col style = "width:10%;">
-                                    <col style = "width:10%;">
-                                    <col style = "width:11%;">
-                                    <col style = "width:11%;">
-                                    <col style = "width:13%;">
-                                    <col style = "width:10%;">
-									
-									<thead class="bg-primary text-white">
-										<tr>
-											<th>생산계획코드</th>
-											<th>BOM코드</th>
-											<th>제품계정코드</th>
-											<th>기간시작</th>
-											<th>기간종료</th>
-											<th>예상 생산 원가</th>
-											<th>목표 생산 수량</th>
-											<th>전결라인코드</th>
-											<th>전결현황코드</th>
-										</tr>
-									</thead>
+								<div class="form-horizontal" style="overflow-y: auto;">
+									<form id="manageMF_plan" action="" method="post">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+										<table id="datatable"
+											class="table m-0 table-bordered table-hover"
+											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+											<col style="width: 12%">
+											<col style="width: 13%;">
+											<col style="width: 10%">
+											<col style="width: 10%;">
+											<col style="width: 10%;">
+											<col style="width: 11%;">
+											<col style="width: 11%;">
+											<col style="width: 13%;">
+											<col style="width: 10%;">
 
-									<tbody>
-										<c:forEach var="list" items="${dto}">
-											<tr>
-												<td>${list.p_pp_code}</td>
-												<td>${list.bom_code}</td>
-												<td>${list.product_code}</td>
-												<td>${list.start_date}</td>
-												<td>${list.end_date}</td>
-												<td>${list.ef_cost}</td>
-												<td>${list.ef_amount}</td>
-												<td>${list.eas_code}</td>
-												<td>${list.e_approval_code}</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								</form>
+											<thead class="bg-primary text-white">
+												<tr>
+													<th>생산계획코드</th>
+													<th>BOM코드</th>
+													<th>제품계정코드</th>
+													<th>기간시작</th>
+													<th>기간종료</th>
+													<th>예상 생산 원가</th>
+													<th>목표 생산 수량</th>
+													<th>전결라인코드</th>
+													<th>전결현황코드</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<c:forEach var="list" items="${dto}">
+													<tr>
+														<td>${list.p_pp_code}</td>
+														<td>${list.bom_code}</td>
+														<td>${list.product_code}</td>
+														<td>${list.start_date}</td>
+														<td>${list.end_date}</td>
+														<td>${list.ef_cost}</td>
+														<td>${list.ef_amount}</td>
+														<td>${list.eas_code}</td>
+														<td>${list.e_approval_code}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</form>
 								</div>
 
 								<div class="result">
-									 <br>
+									<br>
 									<form id="MF_production_plan_enrollment">
 										<input type='hidden' name="${_csrf.parameterName }"
 											value="${_csrf.token }"> <br>
@@ -100,11 +101,11 @@
 											style="border-collapse: collapse; border-spacing: 0;">
 											<thead>
 											</thead>
-											
+
 											<tbody>
 											</tbody>
 										</table>
-									</form>		
+									</form>
 								</div>
 							</div>
 						</div>
@@ -117,23 +118,25 @@
 		</div>
 		<!-- end content -->
 
-		<%@ include file="../footer.jsp" %>
+		<%@ include file="../footer.jsp"%>
 
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
 
-        </div>
-        <!-- END wrapper -->
+	</div>
+	<!-- END wrapper -->
 
-    <%@ include file="../rightbar.jsp" %>
-    <%@ include file="../setting2.jsp" %>
-    
-    <!-- Datatable plugin js -->
-    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript">
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<!-- Datatable plugin js -->
+	<script
+		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript">
     
     function searchProCode() {
 		window.open("MF_searchProCode", "searchBomCode", "menubar=no, width=380px, height = 520px location=no,status=no,scrollbars=yes");
@@ -265,7 +268,7 @@
 			
 		});
 	}
-    </script>    
-  
-    </body>
+    </script>
+
+</body>
 </html>

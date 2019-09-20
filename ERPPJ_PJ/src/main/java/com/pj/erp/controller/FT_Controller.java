@@ -1,6 +1,7 @@
 package com.pj.erp.controller;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -102,8 +103,17 @@ public class FT_Controller {
 	@RequestMapping("FT_BS")
 	public String FT_BS(Locale locale, Model model) {
 		logger.info("log => FT_BS");
-
+		
 		return "FT/FT_BS";
+	}
+	
+	// 재무상태표 조회 쿼리
+	@RequestMapping(value="FT_search_BS", produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> FT_search_BS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_search_BS");
+		Map<String, Object> bs_map = service.getBsshit(map, req, model); 
+		return bs_map; 
 	}
 
 	@RequestMapping("FT_IS")

@@ -42,57 +42,57 @@
 						</div>
 					</div>
 					<!-- end page title -->
-			
-
-			
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="card-body table-responsive">
-								
-								<br>
 
 
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead>
-										<tr>
-											<th>구분</th>
-											<th>항목</th>
-											<th>설정</th>
-											<th>설명</th>
-										</tr>
-									</thead>
 
-									<tbody>
-										<tr color="red">
-											<td>적용기준</td>
-											<td>노동부기준적용</td>
-											<td>안함</td>
-											<td>노동부 사이트의 계산식과 동일기준으로 계산합니다.</td>
-										</tr>
-									</tbody>
-									
-									<tbody>
-										<tr color="red">
-											<td>평균임금</td>
-											<td>평균임금기간산정</td>
-											<td>전월기준</td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+
+									<br>
+
+
+									<table id="datatable"
+										class="table table-striped table-bordered dt-responsive nowrap"
+										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<thead>
+											<tr>
+												<th>구분</th>
+												<th>항목</th>
+												<th>설정</th>
+												<th>설명</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr color="red">
+												<td>적용기준</td>
+												<td>노동부기준적용</td>
+												<td>안함</td>
+												<td>노동부 사이트의 계산식과 동일기준으로 계산합니다.</td>
+											</tr>
+										</tbody>
+
+										<tbody>
+											<tr color="red">
+												<td>평균임금</td>
+												<td>평균임금기간산정</td>
+												<td>전월기준</td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
+
+
+
+
+					<%@ include file="../footer.jsp"%>
 				</div>
-			
-
-
-
-			<%@ include file="../footer.jsp" %>
-			</div>
 			</div>
 		</div>
 
@@ -103,8 +103,8 @@
 	</div>
 	<!-- END wrapper -->
 
-	<%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 
 </body>
 </html>
