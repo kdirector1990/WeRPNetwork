@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.ST.Estimate;
-import com.pj.erp.vo.ST.ST_salesstatus;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -363,12 +364,21 @@ public class ST_Controller {
 		return "ST/ST_salesTotal";
 	}
 	
-	//매출 집계표(월별) 검색
+	//매출 고객  검색목록
 	@RequestMapping("ST_salesTotal_result")
 	@ResponseBody
-	public List<ST_salesstatus> ST_salesTotal_result(HttpServletRequest req, Model model) {
+	public List<ST_searchCustomerCode> ST_salesTotal_result(HttpServletRequest req, Model model) {
 		logger.info("log => ST_salesTotal_result");
-		List<ST_salesstatus> vo = service.totalSales(req, model);
+		List<ST_searchCustomerCode> vo = service.totalSales(req, model);
+		
+		return vo;
+	}
+	
+	//매출 - 품명 검색목록 
+	@RequestMapping("ST_searchProductName_result")
+	public List<ST_searchProductCode> ST_searchProductName_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchProductName_result");
+		List<ST_searchProductCode> vo = service.searchProductCode(req, model);
 		
 		return vo;
 	}

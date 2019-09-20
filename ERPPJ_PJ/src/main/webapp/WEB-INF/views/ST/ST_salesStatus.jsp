@@ -168,7 +168,7 @@ function search() {
 							<div class="card">
 								<div class="card-body">
 									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap"
+										class="table table-striped table-bordered"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<thead>
 											<tr>

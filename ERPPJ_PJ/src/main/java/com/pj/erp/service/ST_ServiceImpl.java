@@ -18,7 +18,8 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
-import com.pj.erp.vo.ST.ST_salesstatus;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -667,7 +668,7 @@ public class ST_ServiceImpl implements ST_Service {
 
 	//매출현황
 	@Override
-	public List<ST_salesstatus> totalSales(HttpServletRequest req, Model model) {
+	public List<ST_searchCustomerCode> totalSales(HttpServletRequest req, Model model) {
 		System.out.println("test");
 		String department_code = req.getParameter("department_code");
 		String username = req.getParameter("username");
@@ -680,9 +681,17 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("customer_code", customer_code);
 		map.put("product_name", product_name);
 		
-		List<ST_salesstatus> vo = dao.getTotalSales(map);
+		List<ST_searchCustomerCode> vo = dao.getTotalSales(map);
 		
 		return vo;
+	}
+
+	//매출 - 품명
+	@Override
+	public List<ST_searchProductCode> searchProductCode(HttpServletRequest req, Model model) {
+		String product_name = req.getParameter("product_name");
+		//List<ST_searchProductCode> vo = dao.getProCode(product_name);
+		return null;
 	}
 
 }

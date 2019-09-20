@@ -19,18 +19,38 @@
 				for(var i = 0; i < vo.length; i++){
 					var customer_code = vo[i].customer_code;
 					var customer_name = vo[i].customer_name;
-					var month = vo[i].month;
-					var total_amount = vo[i].total_amount;
-					var total_price = vo[i].total_price;
-					var count = vo[i].count;
+					var total = vo[i].m01 + vo[i].m02 + vo[i].m03 + vo[i].m04 
+								+ vo[i].m05 + vo[i].m06 + vo[i].m07 + vo[i].m08
+								+ vo[i].m09 + vo[i].m10 +  vo[i].m11 + vo[i].m12;
+					var m01 = vo[i].m01;
+					var m02 = vo[i].m02;
+					var m03 = vo[i].m03;
+					var m04 = vo[i].m04;
+					var m05 = vo[i].m05;
+					var m06 = vo[i].m06;
+					var m07 = vo[i].m07;
+					var m08 = vo[i].m08;
+					var m09 = vo[i].m09;
+					var m10 = vo[i].m10;
+					var m11 = vo[i].m11;
+					var m12 = vo[i].m12;
 					
 					$("#result").append('<tr>' +
 							'<td>'+ customer_code+ '</td>' +
 							'<td>'+ customer_name+ '</td>' +
-							'<td>'+ month+ '</td>' +
-							'<td>'+ total_amount+ '</td>' +
-							'<td>'+ total_price+ '</td>' +
-							'<td>' + count + '</td></tr>'
+							'<td>'+ total + '</td>' +
+							'<td>'+ m01 + '</td>' +
+							'<td>'+ m02 + '</td>' +
+							'<td>'+ m03 + '</td>' +
+							'<td>'+ m04 + '</td>' +
+							'<td>'+ m05 + '</td>' +
+							'<td>'+ m06 + '</td>' +
+							'<td>'+ m07 + '</td>' +
+							'<td>'+ m08 + '</td>' +
+							'<td>'+ m09 + '</td>' +
+							'<td>'+ m10 + '</td>' +
+							'<td>'+ m11 + '</td>' +
+							'<td>' + m12 + '</td></tr>'
 					)
 				}
 				
@@ -147,13 +167,12 @@
 											<input type="hidden" name="${_csrf.parameterName }"
 												value="${_csrf.token }">
 											<div class="col-sm-12">
-												<div class="card-body table-responsive">
-													<div class="table-responsive" style="margin: 15px 0px 50px">
-														<table
-															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+												<div class="card-body">
+													<div class="card-body">
+														<table id="datatable"
+															class="table m-0 chit-table-colored-borderedchit-table-bordered-primary  table-bordered table-hover">
 															<thead>
 																<tr>
-																	<th></th>
 																	<th>코드</th>
 																	<th>고객명</th>
 																	<th>합계</th>
@@ -171,8 +190,8 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
-															<tbody id = "result">
-								
+															<tbody id="result">
+
 															</tbody>
 														</table>
 													</div>
@@ -193,7 +212,6 @@
 																	<th></th>
 																	<th>품번</th>
 																	<th>품명</th>
-																	<th>규격</th>
 																	<th>단위</th>
 																	<th>합계</th>
 																	<th>1월</th>
@@ -210,7 +228,7 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
-															<tbody id = "">
+															<tbody id = "result2">
 								
 															</tbody>
 														</table>
@@ -247,7 +265,7 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
-															<tbody id = "">
+															<tbody id = "result3">
 								
 															</tbody>
 														</table>
@@ -284,7 +302,7 @@
 																	<th>12월</th>
 																</tr>
 															</thead>
-															<tbody id="">
+															<tbody id="result4">
 															
 															</tbody>
 														</table>
@@ -309,6 +327,9 @@
 	<!-- END wrapper -->
 		<%@ include file="../rightbar.jsp"%>
 		<%@ include file="../setting2.jsp"%>
+		<!-- Datatable plugin js -->
+		<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+		<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
 	<div id = "bodyappend"></div>
 </body>
 </html>
