@@ -4,83 +4,44 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <script type = "text/javascript">
-
-var searchCount = 1;
-$(function(){
-	$('#search').click(function(){
-		var param = new Object();
-		var jsonData;
-		
-					
-		param.department_code = $("#department_code").val();
-		param.username = $("#username").val();
-		param.customer_code = $("#customer_code").val();
-		param.product_name = $("#product_name").val();
-				
-		jsonData = JSON.stringify(param);
-		
+ function search() {
+	 var param = $("#search").serializeArray();
+		alert(JSON.stringify(param));
 		$.ajax({
-			url : '${pageContext.request.contextPath}/ST_salesTotal_result?${_csrf.parameterName}=${_csrf.token }',
-			type : 'POST',
-			data : jsonData, 
-			dataType : "json",
-			contentType:"application/json;charset=UTF-8",
-			success : function(list){
+			url: '/erp/ST_salesTotal_result?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(vo){
 				
 				$('#result').empty();
-				
-				
-				
-				for(var i = 0 ; i < list.length; i++){
-				
-					var customer_code = list[i].customer_code;
-					var customer_name = list[i].customer_name;
-					var month = list[i].month;						
-					var total_amount = list[i].total_amount;
-					var total_price = list[i].total_price;
-					var count = list[i].count;
+
+				for(var i = 0; i < vo.length; i++){
+					var customer_code = vo[i].customer_code;
+					var customer_name = vo[i].customer_name;
+					var month = vo[i].month;
+					var total_amount = vo[i].total_amount;
+					var total_price = vo[i].total_price;
+					var count = vo[i].count;
 					
-				$('#result').append('<tr>'+                         	
-						'<td>'+ customer_code +'</td>'+
-						'<td>'+ customer_name +'</td>'+
-						'<td>'+ month +'</td>'+
-						'<td>'+ total_amount +'</td>'+
-						'<td>'+ total_price +'</td>'+
-						'<td>'+ count +'</td>'+
-            		'</tr>');
-				
-				if(searchCount == 1){
-				$('#bodyappend').append(
-				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-				);
-				searchCount = searchCount + 1;
+					$("#result").append('<tr>' +
+							'<td>'+ customer_code+ '</td>' +
+							'<td>'+ customer_name+ '</td>' +
+							'<td>'+ month+ '</td>' +
+							'<td>'+ total_amount+ '</td>' +
+							'<td>'+ total_price+ '</td>' +
+							'<td>' + count + '</td></tr>'
+					)
 				}
 				
-				}
-				
+				alert("검색목록을 가져왔습니다.");
 			},
 			error : function(){
-				alert("에러");
+				alert("실패하였습니다.");
 			}
-		});			
-	}); 
-});
+		});
+ }
+
 </script>
 </head>
 <body>
@@ -115,30 +76,32 @@ $(function(){
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<table class="col-12">
-										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">부서</th>
-											<td class="col-md-2 input-group"><input type="text"
-												name="department_code" id="department_code" class="form-control"></td>
-
-											<th class="col-md-1 col-form-label">사원</th>
-											<td class="col-md-2 input-group"><input type="text"
-												name="username" id="username" class="form-control">
-											</td>
-											<th class="col-md-1 col-form-label">거래처</th>
-											<td class="col-md-2 input-group"><input type="text"
-												name="customer_code" id="customer_code" class="form-control">
-												
-											<th class="col-md-1 col-form-label">품명</th>
-											<td class="col-md-2 input-group"><input type="text"
-												name="product_name" id="product_name" class="form-control">
-											</td>
-										</tr>
-									</table>
+									<form id="search">
+										<table class="col-12">
+											<tr class="form-group row">
+												<th class="col-md-1 col-form-label">부서</th>
+												<td class="col-md-2 input-group"><input type="text"
+													name="department_code" id="department_code" class="form-control"></td>
+	
+												<th class="col-md-1 col-form-label">사원</th>
+												<td class="col-md-2 input-group"><input type="text"
+													name="username" id="username" class="form-control">
+												</td>
+												<th class="col-md-1 col-form-label">거래처</th>
+												<td class="col-md-2 input-group"><input type="text"
+													name="customer_code" id="customer_code" class="form-control">
+													
+												<th class="col-md-1 col-form-label">품명</th>
+												<td class="col-md-2 input-group"><input type="text"
+													name="product_name" id="product_name" class="form-control">
+												</td>
+											</tr>
+										</table>
+									</form>
 									<div align="right">
 										<button type="button"
 											class="btn btn-dark waves-effect waves-light"
-											id = "search">조회</button>
+											onclick="search();">조회</button>
 									</div>
 								</div>
 							</div>
@@ -190,6 +153,7 @@ $(function(){
 															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
 															<thead>
 																<tr>
+																	<th></th>
 																	<th>코드</th>
 																	<th>고객명</th>
 																	<th>합계</th>

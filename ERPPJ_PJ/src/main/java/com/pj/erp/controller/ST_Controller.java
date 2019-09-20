@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ST_Service;
+import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ST_salesstatus;
 import com.pj.erp.vo.ST.SalePlan;
@@ -348,18 +349,19 @@ public class ST_Controller {
 	@RequestMapping("ST_salesTotal")
 	public String ST_salesTotal(Locale locale, Model model) {
 		logger.info("log => ST_salesTotal");
-		
+			
 		return "ST/ST_salesTotal";
 	}
 	
 	//매출 집계표(월별) 검색
 	@RequestMapping("ST_salesTotal_result")
-	public String ST_salesTotal_result(Locale locale, Model model) {
+	@ResponseBody
+	public List<ST_salesstatus> ST_salesTotal_result(HttpServletRequest req, Model model) {
 		logger.info("log => ST_salesTotal_result");
+		List<ST_salesstatus> vo = service.totalSales(req, model);
 		
-		return "ST/ST_salesTotal_result";
+		return vo;
 	}
-	
 	
 	@RequestMapping("ST_salesTotal2")
 	public String ST_salesTotal2(Locale locale, Model model) {

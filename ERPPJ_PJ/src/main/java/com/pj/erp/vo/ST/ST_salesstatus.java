@@ -2,7 +2,7 @@ package com.pj.erp.vo.ST;
 
 public class ST_salesstatus {
 	private String customer_code;
-	private String cudtomer_name;
+	private String customer_name;
 	private int month;
 	private int total_amount;
 	private int total_price;
@@ -14,11 +14,12 @@ public class ST_salesstatus {
 	public void setCustomer_code(String customer_code) {
 		this.customer_code = customer_code;
 	}
-	public String getCudtomer_name() {
-		return cudtomer_name;
+	
+	public String getCustomer_name() {
+		return customer_name;
 	}
-	public void setCudtomer_name(String cudtomer_name) {
-		this.cudtomer_name = cudtomer_name;
+	public void setCustomer_name(String customer_name) {
+		this.customer_name = customer_name;
 	}
 	public int getMonth() {
 		return month;

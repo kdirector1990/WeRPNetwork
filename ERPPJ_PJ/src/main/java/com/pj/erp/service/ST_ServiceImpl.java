@@ -607,7 +607,6 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("cnt", cnt);
 	}
 	
-	
 	// tables-datatable (거래 명세서) 목록
 	@Override
 	public void transaction(HttpServletRequest req, Model model) {
@@ -617,7 +616,21 @@ public class ST_ServiceImpl implements ST_Service {
 	//매출현황
 	@Override
 	public List<ST_salesstatus> totalSales(HttpServletRequest req, Model model) {
-		return null;
+		System.out.println("test");
+		String department_code = req.getParameter("department_code");
+		String username = req.getParameter("username");
+		String customer_code = req.getParameter("customer_code");
+		String product_name = req.getParameter("product_name");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_code", department_code);
+		map.put("username", username);
+		map.put("customer_code", customer_code);
+		map.put("product_name", product_name);
+		
+		List<ST_salesstatus> vo = dao.getTotalSales(map);
+		
+		return vo;
 	}
 
 }
