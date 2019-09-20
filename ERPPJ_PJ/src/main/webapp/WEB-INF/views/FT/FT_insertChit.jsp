@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%@ include file="../setting.jsp" %>
-        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/erp/resources/assets/css/js/request.js"></script>
-        <script type="text/javascript">
+<head>
+<%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
         	var count = 1;
         	var frontcursor;
         	var updatekey = 0;
@@ -575,204 +575,319 @@
 	        	}
         	}
         </script>
-        <!-- Table datatable css -->
-        <link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    </head>
+<!-- Table datatable css -->
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedcolumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
 
-    <body onload="onload();">
+<body onload="onload();">
 
-        <!-- Begin page -->
-        <div id="wrapper">
+	<!-- Begin page -->
+	<div id="wrapper">
 
-            
-            <%@ include file="../sidebar.jsp" %>
 
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+		<%@ include file="../sidebar.jsp"%>
 
-            <div class="content-page">
-                <div class="content">
-                    
-                    <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                            <li class="breadcrumb-item active">Datatables</li>
-                                        </ol>
-                                    </div>
-                                    <h4 class="page-title">전표입력</h4>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
-						
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-                                        <div align="right" style = "margin-bottom: 30px;">
-    									<button type="button" class="btn btn-outline-primary waves-effect waves-light" onclick = "chitdelete();">전표삭제</button>
-    									<br>
-    									</div>
-    									<table id="datatable" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <tr>
-                                                <td>작성자</td>
-                                                <td><input type="text" class="" id = "usercode" readonly style = "width: 100px;">&nbsp;<a href = "#" onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
-                                                	<input type="text" class="" id = "username" readonly style = "width: 100px;"></td>
-                                               
-                                                <td>년</td>
-                                            	<td><input type="text" class="" data-toggle="input-mask" data-mask-format="0000" placeholder = "ex)2018" style = "width: 100px;" id = "year"></td>
-                                            	<td>월</td>
-                                            	<td><select class="" style = "width:50px;" id = "month">
-			                                                <option value="1">1</option>
-			                                                <option value="2">2</option>
-			                                                <option value="3">3</option>
-			                                                <option value="4">4</option>
-			                                                <option value="5">5</option>
-			                                                <option value="6">6</option>
-			                                                <option value="7">7</option>
-			                                                <option value="8">8</option>
-			                                                <option value="9">9</option>
-			                                                <option value="10">10</option>
-			                                                <option value="11">11</option>
-			                                                <option value="12">12</option>
-			                                        </select></td>
-                                            	<td>일</td>
-                                            	<td><input type="text" class="" id = "day" data-toggle="input-mask" data-mask-format="00" placeholder = "ex)29" style = "width: 100px;" onkeydown="ajaxload();"></td>
-												<td>거래번호</td>
-                                            	<td><input type="number" class="" id = "journalNum" data-toggle="input-mask" style = "width: 100px;" min = "0" max="0" value = "0" onkeydown="change();"></td>
-                                            	
-                                            </tr>
-                                        </table>
-                                        
-                                       <div class="table-responsive" style = "margin: 15px 0px 50px">
-                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-                                                <col style = "width:5%;">
-                                                <col style = "width:8%;">
-                                                <col style = "width:5%">
-                                                <col style = "width:8%;">
-                                                <col style = "width:6%;">
-                                                <col style = "width:10%;">
-                                                <col style = "width: 6%;">
-                                                <col style = "width: 10%;">
-                                                <col style = "width: 10%;">
-                                                <col style = "width: 5%;">
-                                                <col style = "width: 10%;">
-                                                <col style = "width: 7%;">
-                                                <col style = "width: 10%;">
-                                                <thead>
-                                                    <tr>
-		                                                <th>일</th>
-		                                                <th>분개코드</th>
-		                                                <th>번호</th>
-		                                                <th>구분</th>
-		                                                <th>계정</th>
-		                                                <th>계정명</th>
-		                                                <th>거래처</th>
-		                                                <th>거래처명</th>
-		                                                <th>금액</th>
-		                                                <th>수량</th>
-		                                                <th>적요</th>
-		                                                <th>전표상태</th>
-		                                                <th>최종수정일</th>
-		                                            </tr>
-		                                        </thead>
-		    
-		                                        <tbody>
-		                                        	<c:if test="${list != null}">
-			                                            <c:set var="cnt" value="0"/>
-			                                            <c:forEach var="lists" items="${list}">
-			                                            	<tr>
-							                                    <input type = "hidden" name = "writer${cnt}" value = "${lists.last_modi_user}">
-							                                    <input type = "hidden" name = "formaler${cnt}" value = "${lists.fname}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "date${cnt + 1}" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${day}"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "key${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.journal_code}"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "number${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.journal_number}"></td>
-							                                    <c:if test="${lists.debtor_value == 0}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" id = "first${cnt + 1}" name = "RLstate${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "RLenter(this.tagName, this.name);" value = "대변"></td>
-							                                    </c:if>
-							                                    <c:if test="${lists.debtor_value != 0}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" id = "first${cnt + 1}" name = "RLstate${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "RLenter(this.tagName, this.name);" value = "차변"></td>
-							                                    </c:if>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "SubjectCode${cnt + 1}" class="form-control" onclick = "subjectlist(${cnt + 1})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.detail_ac_code}"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "SubjectName${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.account_name}"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "AccCode${cnt + 1}" class="form-control" onclick = "accountlist(${cnt + 1})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.customer_code}"></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "AccName${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.customer_name}"></td>
-							                                    <c:if test="${lists.debtor_value == 0}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "price${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.creditor_value}"></td>
-							                                    </c:if>
-							                                    <c:if test="${lists.debtor_value != 0}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "price${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.debtor_value}"></td>
-							                                    </c:if>
-							                                    <c:if test="${lists.l_count_value == 0}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "count${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.r_count_value}"></td>
-							                                    </c:if>
-							                                    <c:if test="${lists.l_count_value != 0}">
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "count${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.l_count_value}"></td>
-							                                    </c:if>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "text${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lists.journal_abstract}"></td>
-							                                    <td><select class="form-control" id = "enter${cnt + 1}" onfocus = "focuse(${cnt + 1});" name = "type${cnt + 1}" style = "width:100%; -webkit-appearance:none; border:0px;" onkeydown = "enterupdate(${cnt + 1});" onchange="enterupdate(${cnt + 1});">
-							                                    <c:if test="${lists.jr_state == 0}">
-							                                    <option value="0" selected="selected">== 선택 ==</option>
-							                                    <option value="1">일반</option>
-							                                    <option value="2">매입</option>
-							                                    <option value="3">매출</option>
-							                                    <option value="4">결산</option>
-							                                    </c:if>
-							                                    <c:if test="${lists.jr_state == 1}">
-							                                    <option value="0">== 선택 ==</option>
-							                                    <option value="1" selected="selected">일반</option>
-							                                    <option value="2">매입</option>
-							                                    <option value="3">매출</option>
-							                                    <option value="4">결산</option>
-							                                    </c:if>
-							                                    <c:if test="${lists.jr_state == 2}">
-							                                    <option value="0">== 선택 ==</option>
-							                                    <option value="1">일반</option>
-							                                    <option value="2" selected="selected">매입</option>
-							                                    <option value="3">매출</option>
-							                                    <option value="4">결산</option>
-							                                    </c:if>
-							                                    <c:if test="${lists.jr_state == 3}">
-							                                    <option value="0">== 선택 ==</option>
-							                                    <option value="1">일반</option>
-							                                    <option value="2">매입</option>
-							                                    <option value="3" selected="selected">매출</option>
-							                                    <option value="4">결산</option>
-							                                    </c:if>
-							                                    <c:if test="${lists.jr_state == 4}">
-							                                    <option value="0">== 선택 ==</option>
-							                                    <option value="1">일반</option>
-							                                    <option value="2">매입</option>
-							                                    <option value="3">매출</option>
-							                                    <option value="4" selected="selected">결산</option>
-							                                    </c:if>
-							                                    
-							                               		</select></td>
-							                                    <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "updateday${cnt + 1}" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lists.last_update}"></td>
-							                                    <c:set var="cnt" value="${cnt + 1}"/>
-							                                </tr>
-			                                            </c:forEach>
-		                                            </c:if>
-		                                        </tbody>
-                                            </table>
-                                        </div>
-                                        
-                                        <!-- <div class="table-responsive" style = "margin: 0px 0px 50px">
+		<!-- ============================================================== -->
+		<!-- Start Page Content here -->
+		<!-- ============================================================== -->
+
+		<div class="content-page">
+			<div class="content">
+
+				<!-- Start Content-->
+				<div class="container-fluid">
+
+					<!-- start page title -->
+					<div class="row">
+						<div class="col-12">
+							<div class="page-title-box">
+								<div class="page-title-right">
+									<ol class="breadcrumb m-0">
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Codefox</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">Tables</a></li>
+										<li class="breadcrumb-item active">Datatables</li>
+									</ol>
+								</div>
+								<h4 class="page-title">전표입력</h4>
+							</div>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body table-responsive">
+									<div align="right" style="margin-bottom: 30px;">
+										<button type="button"
+											class="btn btn-outline-primary waves-effect waves-light"
+											onclick="chitdelete();">전표삭제</button>
+										<br>
+									</div>
+									<table id="datatable"
+										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<tr>
+											<td>작성자</td>
+											<td><input type="text" class="" id="usercode" readonly
+												style="width: 100px;">&nbsp;<a href="#"
+												onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
+												<input type="text" class="" id="username" readonly
+												style="width: 100px;"></td>
+
+											<td>년</td>
+											<td><input type="text" class="" data-toggle="input-mask"
+												data-mask-format="0000" placeholder="ex)2018"
+												style="width: 100px;" id="year"></td>
+											<td>월</td>
+											<td><select class="" style="width: 50px;" id="month">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+											</select></td>
+											<td>일</td>
+											<td><input type="text" class="" id="day"
+												data-toggle="input-mask" data-mask-format="00"
+												placeholder="ex)29" style="width: 100px;"
+												onkeydown="ajaxload();"></td>
+											<td>거래번호</td>
+											<td><input type="number" class="" id="journalNum"
+												data-toggle="input-mask" style="width: 100px;" min="0"
+												max="0" value="0" onkeydown="change();"></td>
+
+										</tr>
+									</table>
+
+									<div class="table-responsive" style="margin: 15px 0px 50px">
+										<table
+											class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+											<col style="width: 5%;">
+											<col style="width: 8%;">
+											<col style="width: 5%">
+											<col style="width: 8%;">
+											<col style="width: 6%;">
+											<col style="width: 10%;">
+											<col style="width: 6%;">
+											<col style="width: 10%;">
+											<col style="width: 10%;">
+											<col style="width: 5%;">
+											<col style="width: 10%;">
+											<col style="width: 7%;">
+											<col style="width: 10%;">
+											<thead>
+												<tr>
+													<th>일</th>
+													<th>분개코드</th>
+													<th>번호</th>
+													<th>구분</th>
+													<th>계정</th>
+													<th>계정명</th>
+													<th>거래처</th>
+													<th>거래처명</th>
+													<th>금액</th>
+													<th>수량</th>
+													<th>적요</th>
+													<th>전표상태</th>
+													<th>최종수정일</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<c:if test="${list != null}">
+													<c:set var="cnt" value="0" />
+													<c:forEach var="lists" items="${list}">
+														<tr>
+															<input type="hidden" name="writer${cnt}"
+																value="${lists.last_modi_user}">
+															<input type="hidden" name="formaler${cnt}"
+																value="${lists.fname}">
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="date${cnt + 1}" class="form-control"
+																data-toggle="input-mask" data-mask-format="0000/00/00"
+																placeholder="YYYY/DD/MM"
+																style="width: 100%; border: 0px;" readonly
+																onclick="notfocus(this.name);" value="${day}"></td>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="key${cnt + 1}" class="form-control"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;" readonly
+																onclick="notfocus(this.name);"
+																value="${lists.journal_code}"></td>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="number${cnt + 1}" class="form-control"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;" readonly
+																onclick="notfocus(this.name);"
+																value="${lists.journal_number}"></td>
+															<c:if test="${lists.debtor_value == 0}">
+																<td><input type="text"
+																	onfocus="focuse(${cnt + 1});" id="first${cnt + 1}"
+																	name="RLstate${cnt + 1}" class="form-control"
+																	data-toggle="input-mask"
+																	style="width: 100%; border: 0px;"
+																	onkeyup="RLenter(this.tagName, this.name);" value="대변"></td>
+															</c:if>
+															<c:if test="${lists.debtor_value != 0}">
+																<td><input type="text"
+																	onfocus="focuse(${cnt + 1});" id="first${cnt + 1}"
+																	name="RLstate${cnt + 1}" class="form-control"
+																	data-toggle="input-mask"
+																	style="width: 100%; border: 0px;"
+																	onkeyup="RLenter(this.tagName, this.name);" value="차변"></td>
+															</c:if>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="SubjectCode${cnt + 1}" class="form-control"
+																onclick="subjectlist(${cnt + 1})"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;"
+																onkeydown="enter(this.tagName, this.name);"
+																value="${lists.detail_ac_code}"></td>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="SubjectName${cnt + 1}" class="form-control"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;" readonly
+																onclick="notfocus(this.name);"
+																value="${lists.account_name}"></td>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="AccCode${cnt + 1}" class="form-control"
+																onclick="accountlist(${cnt + 1})"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;"
+																onkeydown="enter(this.tagName, this.name);"
+																value="${lists.customer_code}"></td>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="AccName${cnt + 1}" class="form-control"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;" readonly
+																onclick="notfocus(this.name);"
+																value="${lists.customer_name}"></td>
+															<c:if test="${lists.debtor_value == 0}">
+																<td><input type="text"
+																	onfocus="focuse(${cnt + 1});" name="price${cnt + 1}"
+																	class="form-control" data-toggle="input-mask"
+																	style="width: 100%; border: 0px;"
+																	onkeydown="enter(this.tagName, this.name);"
+																	value="${lists.creditor_value}"></td>
+															</c:if>
+															<c:if test="${lists.debtor_value != 0}">
+																<td><input type="text"
+																	onfocus="focuse(${cnt + 1});" name="price${cnt + 1}"
+																	class="form-control" data-toggle="input-mask"
+																	style="width: 100%; border: 0px;"
+																	onkeydown="enter(this.tagName, this.name);"
+																	value="${lists.debtor_value}"></td>
+															</c:if>
+															<c:if test="${lists.l_count_value == 0}">
+																<td><input type="text"
+																	onfocus="focuse(${cnt + 1});" name="count${cnt + 1}"
+																	class="form-control" data-toggle="input-mask"
+																	style="width: 100%; border: 0px;"
+																	onkeydown="enter(this.tagName, this.name);"
+																	value="${lists.r_count_value}"></td>
+															</c:if>
+															<c:if test="${lists.l_count_value != 0}">
+																<td><input type="text"
+																	onfocus="focuse(${cnt + 1});" name="count${cnt + 1}"
+																	class="form-control" data-toggle="input-mask"
+																	style="width: 100%; border: 0px;"
+																	onkeydown="enter(this.tagName, this.name);"
+																	value="${lists.l_count_value}"></td>
+															</c:if>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="text${cnt + 1}" class="form-control"
+																data-toggle="input-mask"
+																style="width: 100%; border: 0px;"
+																onkeydown="enter(this.tagName, this.name);"
+																value="${lists.journal_abstract}"></td>
+															<td><select class="form-control"
+																id="enter${cnt + 1}" onfocus="focuse(${cnt + 1});"
+																name="type${cnt + 1}"
+																style="width: 100%; -webkit-appearance: none; border: 0px;"
+																onkeydown="enterupdate(${cnt + 1});"
+																onchange="enterupdate(${cnt + 1});">
+																	<c:if test="${lists.jr_state == 0}">
+																		<option value="0" selected="selected">== 선택
+																			==</option>
+																		<option value="1">일반</option>
+																		<option value="2">매입</option>
+																		<option value="3">매출</option>
+																		<option value="4">결산</option>
+																	</c:if>
+																	<c:if test="${lists.jr_state == 1}">
+																		<option value="0">== 선택 ==</option>
+																		<option value="1" selected="selected">일반</option>
+																		<option value="2">매입</option>
+																		<option value="3">매출</option>
+																		<option value="4">결산</option>
+																	</c:if>
+																	<c:if test="${lists.jr_state == 2}">
+																		<option value="0">== 선택 ==</option>
+																		<option value="1">일반</option>
+																		<option value="2" selected="selected">매입</option>
+																		<option value="3">매출</option>
+																		<option value="4">결산</option>
+																	</c:if>
+																	<c:if test="${lists.jr_state == 3}">
+																		<option value="0">== 선택 ==</option>
+																		<option value="1">일반</option>
+																		<option value="2">매입</option>
+																		<option value="3" selected="selected">매출</option>
+																		<option value="4">결산</option>
+																	</c:if>
+																	<c:if test="${lists.jr_state == 4}">
+																		<option value="0">== 선택 ==</option>
+																		<option value="1">일반</option>
+																		<option value="2">매입</option>
+																		<option value="3">매출</option>
+																		<option value="4" selected="selected">결산</option>
+																	</c:if>
+
+															</select></td>
+															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																name="updateday${cnt + 1}" class="form-control"
+																data-toggle="input-mask" data-mask-format="0000/00/00"
+																placeholder="YYYY/DD/MM"
+																style="width: 100%; border: 0px;" readonly
+																onclick="notfocus(this.name);"
+																value="${lists.last_update}"></td>
+															<c:set var="cnt" value="${cnt + 1}" />
+														</tr>
+													</c:forEach>
+												</c:if>
+											</tbody>
+										</table>
+									</div>
+
+									<!-- <div class="table-responsive" style = "margin: 0px 0px 50px">
                                             <table class="table m-0 chitsub-table-colored-bordered chitsub-table-bordered-primary table-bordered">
                                                 <col style = "width:5%;">
                                                 <col style = "width:10%;">
@@ -810,154 +925,24 @@
 		                                        </tbody>
                                             </table>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end container-fluid -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end container-fluid -->
 
-                </div> <!-- end content -->
-                
-
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="#">About Us</a>
-                                    <a href="#">Help</a>
-                                    <a href="#">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
-
-            </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
-        </div>
-        <!-- END wrapper -->
-
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <hr class="mt-0">
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
+			</div>
+			<!-- end content -->
 
 
-                <div class="p-3">
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                        <label class="custom-control-label" for="customCheck1">Notifications</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2" checked>
-                        <label class="custom-control-label" for="customCheck2">API Access</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                        <label class="custom-control-label" for="customCheck3">Auto Updates</label>
-                    </div>
-                    <div class="custom-control custom-checkbox mb-2">
-                        <input type="checkbox" class="custom-control-input" id="customCheck4" checked>
-                        <label class="custom-control-label" for="customCheck4">Online Status</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck5">
-                        <label class="custom-control-label" for="customCheck5">Auto Payout</label>
-                    </div>
-                </div>
+			<%@ include file="../footer.jsp"%>
+		</div>
+	</div>
+	<!-- END wrapper -->
 
-                <!-- Timeline -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Timeline</h5>
-                <hr class="mb-0" />
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
 
-                <div class="p-3">
-                    <ul class="list-unstyled activity-widget">
-                        <li class="activity-list">
-                            <p class="mb-0"><small>08 July</small></p>
-                            <p>Neque porro quisquam est</p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>09 July</small></p>
-                            <p>Ut enim ad minima veniam quis velit esse </p>
-                        </li>
-                        <li class="activity-list">
-                            <p class="mb-0"><small>10 July</small></p>
-                            <p>Quis autem vel eum iure</p>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Messages -->
-                <hr class="mt-0" />
-                <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">24</span></h5>
-                <hr class="mb-0" />
-                <div class="p-3">
-                    <div class="inbox-widget">
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-1.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Chadengle</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">13:40 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Tomaslau</a></p>
-                            <p class="inbox-item-text">I've finished it! See you so...</p>
-                            <p class="inbox-item-date">13:34 PM</p>
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Stillnotdavid</a></p>
-                            <p class="inbox-item-text">This theme is awesome!</p>
-                            <p class="inbox-item-date">13:17 PM</p>
-                        </div>
-
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Kurafire</a></p>
-                            <p class="inbox-item-text">Nice to meet you</p>
-                            <p class="inbox-item-date">12:20 PM</p>
-
-                        </div>
-                        <div class="inbox-item">
-                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
-                            <p class="inbox-item-author"><a href="javascript: void(0);">Shahedk</a></p>
-                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                            <p class="inbox-item-date">10:15 AM</p>
-
-                        </div>
-                    </div> <!-- end inbox-widget -->
-                </div> <!-- end .p-3-->
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
-
-        <!-- Vendor js -->
-        <%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-        
-    </body>
+</body>
 </html>

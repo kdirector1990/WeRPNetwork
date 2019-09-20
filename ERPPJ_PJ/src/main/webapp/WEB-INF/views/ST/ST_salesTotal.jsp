@@ -301,31 +301,14 @@
 				<%@ include file="../footer.jsp"%>
 			</div>
 		</div>
-
 		<!-- ============================================================== -->
 		<!-- End Page content -->
 		<!-- ============================================================== -->
 
 	</div>
 	<!-- END wrapper -->
-
 		<%@ include file="../rightbar.jsp"%>
 		<%@ include file="../setting2.jsp"%>
-  <!-- plugins -->
-	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
-	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-	<!-- plugins -->
-        <script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <script src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-        <script src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-
-	<!-- dashboard init -->
-	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
-	<!-- Init js-->
-        <script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
 	<div id = "bodyappend"></div>
 </body>
 </html>

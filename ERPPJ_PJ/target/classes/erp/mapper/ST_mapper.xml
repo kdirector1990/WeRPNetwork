@@ -45,8 +45,8 @@
  	
  	<!-- estimate_price 견적 현황 -->
  	<insert id="estimatewritePro" parameterType="com.pj.erp.vo.ST.Estimate">
- 		INSERT INTO estimate_price_tbl(ep_code, ep_amount, ep_deliver_date, ep_price, ep_reg_date)
- 			VALUES('ep_'||estimate_seq.nextval, #{ep_amount}, #{ep_deliver_date}, #{ep_price}, sysdate)
+ 		INSERT INTO estimate_price_tbl(ep_code, ep_amount, ep_deliver_date, ep_price, ep_reg_date, customer_code, detail_ac_code , username)
+ 			VALUES('ep_'||estimate_seq.nextval, #{ep_amount}, #{ep_deliver_date}, #{ep_price}, sysdate, #{customer_code}, #{detail_ac_code}, #{username})
  	</insert>
  	
  	<select id="getestimateCnt" resultType="int">
@@ -64,13 +64,15 @@
 					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
-					 e.ep_deliver_date as ep_deliver_date
-				 from estimate_price_tbl e, customer_list_tbl c, product_list_tbl p
+					 e.ep_deliver_date as ep_deliver_date,
+					 u.e_name as e_name
+				 from estimate_price_tbl e, customer_list_tbl c, product_list_tbl p, users u
 				 Where e.customer_code = c.customer_code
 				 And e.detail_ac_code = p.product_code
-				and customer_name like '%'||#{customer_name}||'%'
-				and username like '%'||#{username}||'%'
-				and product_name like '%'||#{product_name}||'%'
+				 And e.username = u.username
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and e.username like '%'||#{username}||'%'
+				and p.product_name like '%'||#{product_name}||'%'
  		]]>
  	</select>
  	
@@ -88,14 +90,18 @@
 					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
-					 e.ep_deliver_date as ep_deliver_date
-				 from estimate_price_tbl e, customer_list_tbl c, product_list_tbl p
+					 c.customer_code as customer_code,
+					 e.ep_deliver_date as ep_deliver_date,
+					 u.e_name as e_name
+				 from estimate_price_tbl e, customer_list_tbl c, product_list_tbl p, users u
 				 Where e.customer_code = c.customer_code
-				 And e.detail_ac_code = p.product_code and ep_code=#{ep_code}
+				 And e.detail_ac_code = p.product_code
+				 And e.username = u.username
+				 And ep_code=#{ep_code}
  	</select>
  	
  	<update id="updateEstimate" parameterType="com.pj.erp.vo.ST.Estimate">
- 		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_price=#{ep_price},ep_reg_date=sysdate  WHERE ep_code=#{ep_code}
+ 		UPDATE estimate_price_tbl SET ep_amount=#{ep_amount}, ep_deliver_date=#{ep_deliver_date}, ep_price=#{ep_price},ep_reg_date=sysdate, detail_ac_code=#{detail_ac_code}, username=#{username}, customer_code=#{customer_code}  WHERE ep_code=#{ep_code}
  	</update>
  	
  	<delete id="deleteEstimate" parameterType="String">
@@ -136,6 +142,30 @@
  	
  	<select id="getSaleListCnt" resultType="int">
  		SELECT COUNT(*) as FROM salelist_tbl
+ 	</select>
+ 	
+ 	<select id="getSaleList" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
+ 		<![CDATA[
+ 			  select s.salelist_code as salelist_code, 
+					 s.reg_date as reg_date, 
+					 s.release_o_date as release_o_date, 
+					 s.unit as unit,
+					 s.amount as amount,
+					 s.price as price,
+					 s.username as username, 
+					 s.release_state as release_state,
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and s.username like '%'||#{username}||'%'
+				and p.product_name like '%'||#{product_name}||'%'
+ 		]]>
  	</select>
  	
  	<select id="getSaleListArticle" resultType="com.pj.erp.vo.ST.SaleList" parameterType="java.util.Map">
@@ -180,4 +210,13 @@
 		select * from st_salesstatus_cus_view
 	</select>
 	
+	<!-- 사원 검색 -->
+	<select id="selectName" resultType="int" parameterType="String">
+		select COUNT(*) from users where username like '%'||#{username}||'%'
+	</select>
+	
+	<!-- 검색 목록  -->
+	<select id="getUsernameList" resultType="com.pj.erp.vo.ST.UserName" parameterType="String">
+		select username, e_name from users where username like '%'||#{username}||'%'
+	</select>
  </mapper>

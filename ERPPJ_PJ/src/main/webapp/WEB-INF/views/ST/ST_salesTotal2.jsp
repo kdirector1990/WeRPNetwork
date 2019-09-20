@@ -70,8 +70,7 @@
 
 											<th class="col-md-1 col-form-label">고객</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="고객">
-											</td>
+												class="form-control" name="" placeholder="고객"></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">거래구분</th>
 											<td class="col-md-2 input-group"><select
@@ -87,7 +86,7 @@
 											</select></td>
 										</tr>
 
-										<tr class="form-group row">											
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label"><select
 												class="form-control select2" name="" onchange="">
 													<option>2. 실적담당</option>
@@ -113,7 +112,9 @@
 														class="btn btn-icon waves-effect waves-light btn-primary">
 														<i class="fas fa-search"></i>
 													</button>
-												</div></td><th class="col-md-1 col-form-label">~</th><td class="col-md-2 input-group"><input type="text"
+												</div></td>
+											<th class="col-md-1 col-form-label">~</th>
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="" placeholder="사원">
 												<div class="input-group-append">
 													<button type="button"
@@ -135,8 +136,8 @@
 								<div class="card-body">
 									<ul class="nav nav-tabs" role="tablist">
 										<li class="nav-item"><a class="nav-link active"
-											id="usergroup-tab" data-toggle="tab" href="#usergroup" role="tab"
-											aria-controls="user" aria-selected="false"> <span
+											id="usergroup-tab" data-toggle="tab" href="#usergroup"
+											role="tab" aria-controls="user" aria-selected="false"> <span
 												class="d-block d-sm-none"><i class="fa fa-usergroup"></i></span>
 												<span class="d-none d-sm-block">고객분류</span>
 										</a></li>
@@ -163,8 +164,8 @@
 
 									<div class="tab-content">
 										<!-- 고객 -->
-										<div class="tab-pane show active" id="usergroup" role="tabpanel"
-											aria-labelledby="usergroup-tab">
+										<div class="tab-pane show active" id="usergroup"
+											role="tabpanel" aria-labelledby="usergroup-tab">
 											<input type="hidden" name="${_csrf.parameterName }"
 												value="${_csrf.token }">
 											<div class="col-sm-12">
@@ -211,7 +212,7 @@
 																	<th></th>
 																	<th>코드</th>
 																	<th>지역분류명</th>
-																	<th>합계</th>																	
+																	<th>합계</th>
 																	<th>1월</th>
 																	<th>2월</th>
 																	<th>3월</th>
@@ -304,40 +305,41 @@
 							</div>
 						</div>
 					</div>
-
-					<%@ include file="../footer.jsp"%>
 				</div>
+
+				<%@ include file="../footer.jsp"%>
 			</div>
-
-			<!-- ============================================================== -->
-			<!-- End Page content -->
-			<!-- ============================================================== -->
-
 		</div>
-		<!-- END wrapper -->
 
-		<%@ include file="../rightbar.jsp"%>
-		<%@ include file="../setting2.jsp"%>
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
 
-		<!-- plugins -->
-		<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
-		<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-		<!-- plugins -->
-		<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-		<script
-			src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+	</div>
+	<!-- END wrapper -->
 
-		<!-- dashboard init -->
-		<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
-		<!-- Init js-->
-		<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
 </body>
 </html>

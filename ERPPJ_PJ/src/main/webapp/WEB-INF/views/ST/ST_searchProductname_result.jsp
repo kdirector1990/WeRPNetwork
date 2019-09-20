@@ -24,7 +24,7 @@
 						<th>제품명</th>
 					</tr>
 				</thead>
-				<tbody style="overflow:auto;">
+				<tbody>
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
 						<c:forEach var="pto" items="${ptos}">

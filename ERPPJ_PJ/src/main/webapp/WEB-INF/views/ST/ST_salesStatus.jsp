@@ -138,7 +138,7 @@ function search() {
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
 											<td class="col-md-2 input-group"><input type="text"
-												name="position_code" id="position_code" class="form-control">
+												name="" id="" class="form-control">
 											</td>
 
 											<th class="col-md-1 col-form-label">사원</th>

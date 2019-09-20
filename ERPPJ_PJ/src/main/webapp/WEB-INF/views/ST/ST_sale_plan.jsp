@@ -6,19 +6,32 @@
 <%@ include file="../setting.jsp"%>
 <!-- Table datatable css -->
 </head>
-  <link rel="stylesheet" type="text/css"
-    	href="/erp/resources/assets/libs/c3/c3.min.css">	
-    <script src="/erp/resources/assets/js/request.js"></script>
-    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-    	<script src="/erp/resources/assets/css/js/request.js"></script>
-    	<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
-        <link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <script type = "text/javascript">
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/erp/resources/assets/js/request.js"></script>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<script type="text/javascript">
 
     function salePlanWriteForm(url) {
     	sendRequest(callback, "ST_sale_plan_writeForm", "post", "${_csrf.parameterName }=${_csrf.token }&saleplan_code="+url);
@@ -249,9 +262,7 @@
 
 
 			</div>
-			<div id="result">
-
-			</div>
+			<div id="result"></div>
 
 		</div>
 	</div>
@@ -259,19 +270,21 @@
 	<!-- end container-fluid -->
 
 	<!-- end content -->
-			<%@ include file="../footer.jsp" %>
-		
-		<!-- ============================================================== -->
-		<!-- End Page content -->
-		<!-- ============================================================== -->
+	<%@ include file="../footer.jsp"%>
+
+	<!-- ============================================================== -->
+	<!-- End Page content -->
+	<!-- ============================================================== -->
 
 	<!-- END wrapper -->
 
-		<%@ include file="../rightbar.jsp" %>
-        <%@ include file="../setting2.jsp" %>
-     <!-- Datatable plugin js -->
-    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+	<!-- Datatable plugin js -->
+	<script
+		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 

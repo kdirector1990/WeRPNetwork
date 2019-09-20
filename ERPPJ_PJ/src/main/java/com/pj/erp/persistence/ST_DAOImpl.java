@@ -14,6 +14,7 @@ import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.ST_salesstatus;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.UserName;
 
 @Repository
 public class ST_DAOImpl implements ST_DAO {
@@ -155,6 +156,12 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getSaleListCnt");
 	}
 	
+	// 검색 결과
+	@Override
+	public List<SaleList> getSaleList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getSaleList",map);
+	}
+	
 	// saleList 게시글 목록 조회
 	@Override
 	public List<SaleList> getSaleListArticle(Map<String, Object> map) {
@@ -212,6 +219,18 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public List<ST_salesstatus> getTotalSales(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getTotalSales", map);
+	}
+	
+	// 사원 이름 검색 확인
+	@Override
+	public int selectName(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectName", username);
+	}
+	
+	// 사원 검색 목록
+	@Override
+	public List<UserName> getUsernameList(String username) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getUsernameList", username);
 	}
 	
 

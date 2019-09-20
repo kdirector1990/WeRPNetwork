@@ -323,6 +323,7 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="HR_work_record">근태결과입력</a></li>
+	                          			<li><a href="HR_nfc">근태(nfc)</a></li>
 	                          			<li><a href="HR_GoodPay">호봉테이블입력</a></li>
 					                	<li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
 					                	<li><a href="coming_soon">!급여대장</a></li>

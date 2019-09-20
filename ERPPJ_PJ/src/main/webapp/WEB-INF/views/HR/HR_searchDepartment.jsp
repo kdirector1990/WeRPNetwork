@@ -24,18 +24,18 @@
 							alert(param.username);
 							alert(param.e_name);
 							alert(param.pa_date); */
-							$.ajax({
-								url : '${pageContext.request.contextPath}/HR_searchDepartment_result?${_csrf.parameterName}=${_csrf.token }',
-								type : 'GET',
-								data : param,
-								success : function(data) {
-									$('#result').html(data)
-									;
-								},
-								error : function() {
-									alert("에러");
-								}
-							});
+							$
+									.ajax({
+										url : '${pageContext.request.contextPath}/HR_searchDepartment_result?${_csrf.parameterName}=${_csrf.token }',
+										type : 'GET',
+										data : param,
+										success : function(data) {
+											$('#result').html(data);
+										},
+										error : function() {
+											alert("에러");
+										}
+									});
 						});
 	});
 </script>
@@ -80,7 +80,8 @@
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서명</th>
 											<td class="col-md-2 input-group"><select
-												class="form-control select2" id="department_name" name="department_name">
+												class="form-control select2" id="department_name"
+												name="department_name">
 													<option></option>
 													<option value="1">인사</option>
 													<option value="2">기획</option>
@@ -92,8 +93,8 @@
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">부서코드 검색</th>
 											<td class="col-md-1 input-group"><input type="text"
-												class="form-control" name="department_code" id="department_code">
-											</td>											
+												class="form-control" name="department_code"
+												id="department_code"></td>
 											<td><button type="button"
 													class="btn btn-primary waves-effect waves-light"
 													id="search">검색</button></td>
@@ -120,7 +121,7 @@
 		<!-- ============================================================== -->
 
 	</div>
-	
+
 	<!-- END wrapper -->
 
 	<%@ include file="../rightbar.jsp"%>

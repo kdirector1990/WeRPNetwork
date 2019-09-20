@@ -1,114 +1,126 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE html>
+	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
 <style type="text/css">
-	.result{
-		display: none;
-	}
+.result {
+	display: none;
+}
 </style>
-    <%@ include file="../setting.jsp" %>
+<%@ include file="../setting.jsp"%>
 </head>
-	<body>
-     	 <!-- Begin page -->
-    	 <div id="wrapper">
-    	 <%@ include file="../sidebar.jsp" %>
-            <div class="content-page">
+<body>
+	<!-- Begin page -->
+	<div id="wrapper">
+		<%@ include file="../sidebar.jsp"%>
+		<div class="content-page">
 			<!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->           
-            
-            <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title">자재관리</h4>
-                                </div>
-                            </div>
-                        </div>     
-                        <!-- end page title --> 
-						
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-body table-responsive">
-                                    
-                                        <h4 class="header-title">자재관리</h4>
-                                        
-    									<hr>
-                                        <table id="datatable" class="table m-0 table-bordered table-hover" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                            <thead class="bg-primary text-white">
-                                            <tr>
-                                            	<th>계정코드</th>
-                                                <th>자재명</th>
-                                                <th>단위</th>
-                                            </tr>
-                                            </thead>
-    
-    
-                                            <tbody>
-                                           	<c:forEach var="list" items="${dto}">
-	                                            <tr>
-	                                                <td>${list.material_code}</td>
-	                                                <td>${list.material_name}</td>
-	                                                <td>${list.material_unit}</td>
-	                                            </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
-                                        
-                                        <div class="result">
-                                        <br>
-                                        <form id="updateMaterial">
-                                        	<input type = 'hidden' name = "${_csrf.parameterName }" value ="${_csrf.token }">
-    									<br>
-                                        <table id="datatable2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0;">
-                                            <thead>
-                                            <tr>
-                                            	<th>계정코드</th>
-                                                <th>자재명</th>
-                                                <th>단위</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                        <div align="right">
-	    									<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updateMaterial();">수정</button>
-	    									<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deleteMaterial();">폐기</button>
-    									</div>
-                                        </form>
-                                        </div>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end container-fluid -->
+			<!-- Start Page Content here -->
+			<!-- ============================================================== -->
 
-                </div> <!-- end content -->
-          
-                <%@ include file="../footer.jsp" %>
+			<!-- Start Content-->
+			<div class="container-fluid">
+
+				<!-- start page title -->
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box">
+							<h4 class="page-title">자재관리</h4>
+						</div>
+					</div>
+				</div>
+				<!-- end page title -->
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body table-responsive">
+
+								<h4 class="header-title">자재관리</h4>
+
+								<hr>
+								<table id="datatable"
+									class="table m-0 table-bordered table-hover"
+									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									<thead class="bg-primary text-white">
+										<tr>
+											<th>계정코드</th>
+											<th>자재명</th>
+											<th>단위</th>
+										</tr>
+									</thead>
 
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+									<tbody>
+										<c:forEach var="list" items="${dto}">
+											<tr>
+												<td>${list.material_code}</td>
+												<td>${list.material_name}</td>
+												<td>${list.material_unit}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 
-        </div>
-        <!-- END wrapper -->
+								<div class="result">
+									<br>
+									<form id="updateMaterial">
+										<input type='hidden' name="${_csrf.parameterName }"
+											value="${_csrf.token }"> <br>
+										<table id="datatable2"
+											class="table table-striped table-bordered dt-responsive nowrap"
+											style="border-collapse: collapse; border-spacing: 0;">
+											<thead>
+												<tr>
+													<th>계정코드</th>
+													<th>자재명</th>
+													<th>단위</th>
+												</tr>
+											</thead>
+											<tbody>
+											</tbody>
+										</table>
+										<div align="right">
+											<button type="button" id="btnRe"
+												class="btn btn-outline-dark waves-effect waves-light"
+												onclick="updateMaterial();">수정</button>
+											<button type="button" id="btnDel"
+												class="btn btn-outline-dark waves-effect waves-light"
+												onclick="deleteMaterial();">폐기</button>
+										</div>
+									</form>
+								</div>
 
-    <%@ include file="../rightbar.jsp" %>
-    <%@ include file="../setting2.jsp" %>
-    
-    <!-- Datatable plugin js -->
-    <script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-        
-    <script type="text/javascript">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end container-fluid -->
+
+		</div>
+		<!-- end content -->
+
+		<%@ include file="../footer.jsp"%>
+
+
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
+
+	</div>
+	<!-- END wrapper -->
+
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+
+	<!-- Datatable plugin js -->
+	<script
+		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<script type="text/javascript">
      $("#datatable tr").click(function(){
     	 
 			if($(".plantr") != null){
@@ -182,5 +194,5 @@
 		});
 	}
     </script>
-    </body>
+</body>
 </html>
