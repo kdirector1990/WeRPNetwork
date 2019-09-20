@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class Release {
 	
-	private String  sar_code;	// 입출고 코드
+	private String sar_code;	// 입출고 코드
 	private String detail_ac_code;	// 제품 코드
 	private int unit_cost;	// 단가
 	private int stored_count;	// 입고량
@@ -19,6 +19,8 @@ public class Release {
 	private String username;	// 담당자
 	private String position_code; // 현재 결제자
 	private String customer_code;	// 거래처 코드
+	private String product_name;	// 품명
+	private String e_name;	// 담당자명
 	
 	// 생성자
 	public Release() {}
@@ -143,5 +145,23 @@ public class Release {
 	public void setCustomer_code(String customer_code) {
 		this.customer_code = customer_code;
 	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public String getE_name() {
+		return e_name;
+	}
+
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
+	}
+	
+	
 	
 }

@@ -113,6 +113,32 @@
  		select COUNT(*) as FROM sar_list_tbl
  	</select>
  	
+ 	<select id="getreleaseResult" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.Release">
+ 		<![CDATA[
+ 				select s.sar_code as sar_code, 
+					 s.unit_cost as unit_cost, 
+					 s.stored_count as stored_count, 
+					 s.release_count as release_count, 
+					 s.stored_name as stored_name, 
+					 s.username as username, 
+					 s.stored_name as stored_name,
+					 s.release_name as release_name, 
+					 s.release_date as release_date,
+					 s.sar_type as sar_type, 
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from sar_list_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and s.username like '%'||#{username}||'%'
+				and p.product_name like '%'||#{product_name}||'%'
+ 		]]>
+ 	</select>
+ 	
  	<select id="getReleaseList" resultType="com.pj.erp.vo.ST.Release" parameterType="java.util.Map">
  		SELECT * FROM sar_list_tbl
  	</select>
@@ -154,10 +180,10 @@
 					 s.price as price,
 					 s.username as username, 
 					 s.release_state as release_state,
+					 s.release_date as release_date,
 					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
-					  s.note as note,
 					 u.e_name as e_name
 				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
 				 Where s.customer_code = c.customer_code
@@ -166,7 +192,6 @@
 				and c.customer_name like '%'||#{customer_name}||'%'
 				and s.username like '%'||#{username}||'%'
 				and p.product_name like '%'||#{product_name}||'%'
-				and s.release_state like '%'||#{release}||'%'
  		]]>
  	</select>
  	

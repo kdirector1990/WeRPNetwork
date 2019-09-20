@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.ST.Estimate;
+import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -87,6 +88,15 @@ public class ST_Controller {
 		service.release(req, model);
 		
 		return "ST/ST_release_manage";
+	} 
+	
+	// ST_release 검색 관리
+	@RequestMapping(value = "ST_release_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<Release> ST_release_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_release_result");
+		List<Release> list = service.getRelease(map, req, model);
+		return list;
 	} 
 	
 	// ST_release 출고 등록

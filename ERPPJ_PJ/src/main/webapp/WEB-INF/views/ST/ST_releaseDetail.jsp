@@ -37,59 +37,68 @@
 											<table class="table m-0 table-bordered">
 												<tr>
 													<th style="width: 215px;">출고 코드</th>
-													<td><input type="hidden" class="input" name="sar_code"
+													<td><input type="hidden" class="form-control" name="sar_code"
 														value="${rto.sar_code }">${rto.sar_code }</td>
 		
-													<th>출고 거래처명</th>
-													<td><input class="input" type="text" name="release_name"
-														value="${rto.release_name }"></td>
-												</tr>
-												
-												<tr>
-													<th>입고처</th>
-													<td><input class = "input" type = "text" name = "stored_name"
-													value="${rto.stored_name }"></td>
-													
-													<th>입고 수량</th>
-													<td><input class = "input" type = "text" name = "stored_count"
-													value="${rto.stored_count }">
-													</td>
-												</tr>
-		
-												<tr>
-													<th>등록일</th>
-													<td><input class="input" type="hidden" name="release_date"
-														value="${rto.release_date }">${rto.release_date }</td>
-		
-													<th>출고처</th>
-													<td><input class="input" type="text" name="release_name" value="${rto.release_name }"></td>
-		
-												</tr>
-		
-												<tr>
-													<th>담당자</th>
-													<td><input class="input" type="text" name="username" value="${rto.username }"></td>
-		
-													<th>출고 수량</th>
-													<td><input class="input" type="text"
-														name="release_count" value="${rto.release_count}"></td>
-												</tr>
-		
-												<tr>
-													<th>단가</th>
-													<td><input type="text" class="input" name="unit_cost"
-														value="${rto.unit_cost}"></td>
-														
-													<th>구분</th>
-													<td><select class="form-control" name="sar_type">
+													<th style="width: 215px;">구분</th>
+													<td style="width: 450px;"><select class="form-control" name="sar_type">
 														<option value="판매">2. 판매</option>
 														<option value="재입고">3. 재입고</option>
 													</select></td>
 												</tr>
 												
+												<tr >
+													<th >출고처</th>
+													<td style="width: 500px;"><div class="col-md-10">
+													<div style="display: inline-block;">
+													<input type="text" class="form-control" name="customer_code"
+													 id = "customer_codeP" onclick="CustomerName()"style="width: 140px; float: left;">
+													 
+													<input type="text" name="release_name" class="form-control"
+															id="customer_nameP"onclick="CustomerName()" value="${rto.release_name }"style="width: 140px; float: right;">
+													</div>
+													</div></td>
+													
+													<th>출고 수량</th>
+													<td><input class="form-control" type="text"
+														name="release_count" value="${rto.release_count}"></td>
+												</tr>
+		
 												<tr>
-													<th>합계액</th>
-													<td><input type="text" class="input" name=" " value=""></td>
+													<th>입고처</th>
+													<td><div class="col-md-10">
+													<div style="display: inline-block;">
+													<input type="text" class="form-control" name="customer_code"
+													 id = "customer_codeP" onclick="CustomerName()" style="width: 140px; float: left;">
+													 
+													<input type="text" name="stored_name" class="form-control"
+															id="customer_nameP" onclick="CustomerName()" value="${rto.stored_name }" style="width: 140px; float: right;">
+													</div>
+													</div></td>
+													
+													<th>입고 수량</th>
+													<td><input class="form-control" type="text"
+														name="stored_count" value="${rto.stored_count}"></td>
+												
+												</tr>
+		
+												<tr>
+													<th>등록일</th>
+													<td><input class="form-control" type="hidden" name="release_date"
+														value="${rto.release_date }">${rto.release_date }</td>
+												
+													<th>담당자</th>
+													<td><input class="form-control" type="text" name="username" value="${rto.username }"></td>
+		
+													
+												</tr>
+		
+												<tr>
+													<th>단가</th>
+													<td><input type="text" class="form-control" name="unit_cost"
+														value="${rto.unit_cost}" style="width: 250px;"></td>
+														
+													
 												</tr>
 		
 												<tr>

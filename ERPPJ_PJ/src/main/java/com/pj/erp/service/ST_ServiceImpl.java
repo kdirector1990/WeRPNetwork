@@ -46,7 +46,6 @@ public class ST_ServiceImpl implements ST_Service {
 		
 		model.addAttribute("estimatewrite", estimatewrite);
 		
-		
 	}
 	
 	// ST_estimate_price 글 목록
@@ -353,6 +352,14 @@ public class ST_ServiceImpl implements ST_Service {
 		
 		model.addAttribute("releaseWritePro", releaseWritePro);
 		
+	}
+	
+	// ST_release 검색 조회
+	@Override
+	public List<Release> getRelease(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<Release> list = dao.getreleaseResult(map);
+		System.out.println("작동");
+		return list;
 	}
 		
 	

@@ -60,6 +60,9 @@ public interface ST_DAO {
 	// release 게시글 갯수 구하기
 	public int getReleaseCnt();
 	
+	// ST_release
+	public List<Release> getreleaseResult(Map<String, Object> map);
+	
 	// release 게시글 목록 조회
 	public List<Release> getReleaseList(Map<String, Object> map);
 	

@@ -62,7 +62,6 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteEstimate", ep_code);
 	}
 	
-	
 	// ------ salePlan (판매 계획 관리)
 	// salePlan (판매 계획 관리 목록)
 	@Override
@@ -111,6 +110,12 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public int getReleaseCnt() {
 		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getReleaseCnt");
+	}
+	
+	// release 검색
+	@Override
+	public List<Release> getreleaseResult(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getreleaseResult", map);
 	}
 	
 	// release 게시글 목록 조회
