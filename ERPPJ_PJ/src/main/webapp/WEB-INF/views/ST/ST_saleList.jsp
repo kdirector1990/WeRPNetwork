@@ -4,9 +4,8 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <!-- Responsive Table css -->
-<link href="/erp/resources/assets/libs/rwd-table/rwd-table.min.css"
-	rel="stylesheet" type="text/css" />
-</head>
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
 <script src="/erp/resources/assets/js/request.js"></script>
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
@@ -63,7 +62,7 @@
     		param.customer_name = $("#customerName").val();
     		param.username = $("#username_2").val();
     		param.product_name = $("#ProductName").val();
-    		/* param.release = $("#release").val(); */
+    		param.release = $("#release").val(); 
     				
     		jsonData = JSON.stringify(param); 
     		
@@ -79,17 +78,23 @@
     				
     				for(var i = 0 ; i < list.length; i++){
     					var salelist_code = list[i].salelist_code;
-    					var ep_amount = list[i].ep_amount;
-    					var ep_price = list[i].ep_price;						
-    					var sp_unit = list[i].sp_unit;
-    					var sp_note = list[i].sp_note;
+    					var amount = list[i].amount;
+    					var price = list[i].price;						
+    					var unit = list[i].unit;
+    					var note = list[i].note;
     					var detail_ac_code = list[i].detail_ac_code;
     					var product_name = list[i].product_name;
     					
     					var customer_name = list[i].customer_name;
     					var username = list[i].username;
     					var e_name = list[i].e_name;
-    					var release_state = lost[i].release_state;
+    					var release_state = list[i].release_state;
+    					if(release_state == 1){
+    						release_state="출고"
+    					}
+    					if(release_state == 2){
+    						release_state="미출고"
+    					}
     					
     					var reg_date = list[i].reg_date;
     					var pa = new Date(reg_date);
@@ -151,11 +156,21 @@
     		});
     	}); 
     });
-
-
-    
-    
     </script>
+    
+    <script type="text/javascript">
+function ProductName() {
+	window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
+}
+
+function customerNameList() {
+	window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}   
+
+function usernameList() {
+		window.open("ST_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}   
+</script>
 
 <body>
 
@@ -229,7 +244,8 @@
 									</table>
 									<div align="right">
 										<button type="button"
-											class="btn btn-dark waves-effect waves-light" id="search">조회</button>
+													class="btn btn-primary waves-effect waves-light"
+													id="search">조회</button>
 										<a
 											onclick="window.open('ST_saleList_write', '_blank', 'width=1500 height=600')">
 											<button type="button"
@@ -263,7 +279,6 @@
 														<th>출고여부</th>
 														<th>비고</th>
 													</tr>
-
 												</thead>
 												<tbody id="result_2">
 													<%-- <c:if test="${cnt > 0}">
@@ -318,54 +333,27 @@
 	<!-- END wrapper -->
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-	<!-- Vendor js -->
-	<script src="/erp/resources/assets/js/vendor.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-	<!-- Bootstrap select plugin -->
-	<script
-		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-	<!-- Datatable plugin js -->
-	<script
-		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
-
-	<script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-	<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-	<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
-
-	<script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
-
-	<!-- App js -->
-	<script src="/erp/resources/assets/js/app.min.js"></script>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
 	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 	<div id="bodyappend"></div>
 </body>
 </html>

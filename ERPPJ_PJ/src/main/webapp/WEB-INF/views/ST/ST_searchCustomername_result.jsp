@@ -30,7 +30,7 @@
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
 						<c:forEach var="cto" items="${ctos}">
-							<tr onclick="setName('${cto.customer_name}','${cto.deal_state}');">
+							<tr onclick="setName('${cto.customer_name}','${cto.deal_state}', '${cto.customer_code}');">
 								<td>${cto.customer_code }</td>
 								<td>${cto.customer_name }</td>
 								<td>${cto.customer_credit }</td>

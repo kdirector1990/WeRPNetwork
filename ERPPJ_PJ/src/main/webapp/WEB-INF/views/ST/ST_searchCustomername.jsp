@@ -59,7 +59,6 @@ function setName(customer_name, deal_state, customer_code) {
 	opener.document.getElementById("customer_nameP").value = customer_name;
 	opener.document.getElementById("deal_stateP").value = deal_state;
 	opener.document.getElementById("customer_codeP").value = customer_code;
-
 	//test alert
 	alert(customer_name, deal_state, customer_code);
 	
@@ -71,7 +70,6 @@ function setName(customer_name, deal_state, customer_code) {
 	
 	$("#customer_codeP", opener.document).val(customer_code); //jquery 이용
 	$(opener.document).find("#customer_codeP").val(customer_code); //find를 이용한 jquery
-	
 	self.close();
 	
 }
