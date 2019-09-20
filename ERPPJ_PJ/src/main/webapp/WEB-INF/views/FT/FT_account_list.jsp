@@ -43,9 +43,9 @@
 		                   $("tbody").html("");
 							for(var i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px;">' + data[i].customer_code + '</td>' +
-		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px;">' + data[i].customer_name + '</td>' +
-		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px );">' + data[i].license_number + '</td>' +
+			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
+		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
+		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
 			              		'</tr>');
 							}
 	           	   }
@@ -82,9 +82,9 @@
 		               		$("tbody").html("");
 							for(i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px;">' + data[i].customer_code + '</td>' +
-                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px;">' + data[i].customer_name + '</td>' +
-                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px );">' + data[i].license_number + '</td>' +
+	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
+                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
+                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
 	                		'</tr>');
 							}
 	             	   }
@@ -182,8 +182,69 @@
 							</div>
 						</div>
 					</div>
+<<<<<<< HEAD
+					<!-- end page title -->
+                	<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body" style = "padding-bottom:0px;">
+									<div style = "text-align: center;">
+										<label>Search : <input type="search" id = "searchid" class="form-control form-control-sm" aria-controls="datatable" style = "display:inline-block; width:150px;" onkeyup = "search(this.value);"></label>
+									</div>
+									<div align="right">
+   										<button type="button" class="btn-subpage" onclick="setvalue();">확인</button>
+   										<button type="button" class="btn-subpage" onclick="self.close();">취소</button>
+   									</div>
+								</div>
+								<div class="card-body" style = "padding-bottom:0px;">
+                           			<table style = "width: 280px" id="datatable" class="table table-bordered dt-responsive nowrap subtables">
+	                                   <colgroup>
+	                            			<col style = "width:60px;">
+	                            			<col style = "width:90px;">
+	                            			<col style = "width:130px;">
+	                                   </colgroup>
+	                                   <thead>
+	                                        <tr class="table-info">
+	                                            <th>코드</th>
+	                                            <th>거래처명</th>
+	                                            <th>사업자번호</th>
+	                                        </tr>
+	                              		</thead>
+	                            		<tbody>
+	                                  		<c:set var="count" value="0"/>
+	                                  		<c:if test="${account != null}">
+		                                   		<c:forEach var = "acc" items="${account}">
+		                                       		<tr>
+		                                       			<td id = "code${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">${acc.customer_code}</td>
+		                                       			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">${acc.customer_name}</td>
+		                                       			<td id = "licenseNo${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">${acc.license_number}</td>
+		                                       			<c:set var="count" value="${count+1}"/>
+		                                       		</tr>
+	                                       		</c:forEach>
+	                                  		</c:if>
+	                                  		<c:if test="${account == null}">
+		                                		<c:forEach var = "sub" begin="1" end="100">
+		                                    		<tr>
+		                                       			<td id = "code${count}" ondblclick="setvalue(${count})" style = "width:60px; font-size: .8em;">${sub}</td>
+		                                       			<td id = "name${count}" ondblclick="setvalue(${count})" style = "width:90px; font-size: .8em;">${sub}</td>
+		                                       			<td id = "licenseNo${count}" ondblclick="setvalue(${count})" style = "width: calc( 130px - 16px ); font-size: .8em;">${sub}</td>
+		                                       			<c:set var="count" value="${count+1}"/>
+		                                       		</tr>
+		                                   		</c:forEach>
+		                               		</c:if>
+	                              		</tbody>
+	                               </table>
+                               	</div>
+                             </div>
+		                   </div> 
+                         </div>
+                      </div> 
+               
+               <!-- 페이지 내용 입력 공간 종료 -->
+=======
 				</div>
 			</div>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 
 			<!-- 페이지 내용 입력 공간 종료 -->
 
