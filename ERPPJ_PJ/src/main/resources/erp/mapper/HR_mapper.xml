@@ -211,7 +211,7 @@
 	</insert>
 	
 	<!-- 퇴근자 확인 -->
-	<select id="selectEndWork" resultType="int">
+	<select id="selectEndWork" parameterType="java.util.Map" resultType="int">
 		Select Count(*) from time_card_tbl
 		Where username = #{username}
 		And to_char(tc_leave_time, 'YYYY/MM/DD') = to_char(sysdate, 'YYYY/MM/DD')

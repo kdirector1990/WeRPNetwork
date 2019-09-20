@@ -81,7 +81,7 @@
 	<insert id="FT_LicenseInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
 		insert into b_license_tbl(license_number, bs_name, bs_master, bs_startdate,
 		bs_number, bs_address, bs_address2, bs_condition, bs_line, license_scanfile)
-		values(license_seq.nextval, #{bs_name}, #{bs_master}, #{bs_startdate},
+		values(#{license_number}, #{bs_name}, #{bs_master}, #{bs_startdate},
 		#{bs_number}, #{bs_address}, #{bs_address2}, #{bs_condition}, #{bs_line}, #{license_scanfile})
 	</insert>
 	
@@ -89,113 +89,233 @@
 	<insert id="FT_AccountInsert" parameterType = "com.pj.erp.vo.FT.FT_Account">
 		insert into customer_list_tbl(customer_code, license_number, customer_name, branch_name,
 		customer_credit, deal_state)
-		values('CUS_' || customer_seq.nextval, license_seq.currval, #{customer_name}, #{branch_name},
+		values('CUS_' || customer_seq.nextval, #{license_number}, #{customer_name}, #{branch_name},
 		#{customer_credit}, #{deal_state})
 	</insert>
 	
 	<!-- 사업자 번호 수정 -->
-	<!-- <update id="FT_LicenseUpdate" parameterType = "com.pj.erp.vo.FT.FT_Account">
+	<update id="FT_LicenseUpdate" parameterType = "java.util.Map">
 		update b_license_tbl
-		set license_number, bs_name, bs_master, bs_startdate,
-		bs_number, bs_address, bs_address2, bs_condition, bs_line, license_scanfile
+		set bs_name = #{bsName}, bs_master = #{bsMaster}, bs_startdate = #{bsStartdate},
+		bs_number = #{bsNumber}, bs_address = #{bsAddress}, bs_address2 = #{bsAddress2}, bs_condition = #{bsCondition},
+		bs_line = #{bsLine}, license_scanfile = #{scanfile}
 		where license_number = #{licenseNumber}
-	</update> -->
+	</update>
 	
 	<!-- 거래처 수정 -->
-	<!-- <update id="FT_AccountUpdate" parameterType = "java.util.Map">
+	<update id="FT_AccountUpdate" parameterType = "java.util.Map">
 		update customer_list_tbl
-		set customer_code, license_number, customer_name, branch_name,
-		customer_credit, deal_state
+		set customer_name = #{customerName}, branch_name = #{branchName},
+		customer_credit = #{customerCredit}, deal_state = #{state}
 		where customer_code = #{customerCode}
-	</update> -->
+	</update>
+	
+	<!-- 사업자 번호 삭제 -->
+	<delete id="FT_LicenseDelete" parameterType = "java.util.Map">
+		delete from b_license_tbl
+		where license_number = #{licenseNumber}
+	</delete>
+	
+	<!-- 거래처 삭제 -->
+	<delete id="FT_AccountDelete" parameterType = "java.util.Map">
+		delete from customer_list_tbl
+		where customer_code = #{customerCode}
+	</delete>
 	
 	<!-- 적금 가져오기 -->
-	<select id="FT_SavingsSelect" resultType="java.util.Map">
+	<select id="FT_SavingsSelect" resultType="com.pj.erp.vo.FT.FT_Savings">
 		SELECT
-		a.DETAIL_AC_CODE as savingsCode, a.account_name as savingsName, 
+		s.SA_CODE as savingsCode, d.ACCOUNT_NAME as savingsName, 
 		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, s.sa_number as accountNo, s.sa_holder as accountHolder, s.sa_amount as devPrice
-		FROM detail_ac_tbl a, SAVING_ACCOUNT_TBL s, customer_list_tbl c, ACCOUNTS_TBL ac
-		where a.DETAIL_AC_CODE = s.sa_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		a.ACCOUNTS_NAME as subjectName, s.sa_number as accountNo, s.sa_holder as accountHolder, s.sa_amount as devPrice
+		FROM detail_ac_tbl d, SAVING_ACCOUNT_TBL s, customer_list_tbl c, accounts_tbl a
+		where d.DETAIL_AC_CODE = s.sa_code
+		and d.ACCOUNTS_CODE = a.ACCOUNTS_CODE
 		and s.customer_code = c.customer_code
-		order by to_number(a.DETAIL_AC_CODE) asc
+		order by s.SA_CODE asc
 	</select>
 	
 	<!-- 적금 key 가져오기 -->
 	<select id="FT_SavingsKeySelect" resultType="String">
 		select sa_code from SAVING_ACCOUNT_TBL
 		where ROWNUM = 1
-		ORDER BY to_number(sa_code) desc
+		ORDER BY sa_code desc
 	</select>
 	
 	<!-- 적금 추가 -->
 	<insert id="FT_SavingsPrevInsert" parameterType = "java.util.Map">
 		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
-		values (#{SubjectCode}, accounts_seq.nextval, #{savingsName})
+		values (#{SubjectCode}, 'SA_' || savings_seq.nextval, #{savingsName})
 	</insert>
 	
 	<insert id="FT_SavingsInsert" parameterType = "java.util.Map">
 		insert into SAVING_ACCOUNT_TBL(SA_CODE, CUSTOMER_CODE, SA_NUMBER, SA_HOLDER, SA_AMOUNT)
-		values (accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder}, #{DevPrice})
+		values ('SA_' || savings_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder}, #{DevPrice})
 	</insert>
 	
 	<!-- 적금수정 -->
-	<insert id="FT_SavingsPrevUpdate" parameterType = "java.util.Map">
+	<update id="FT_SavingsPrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
 		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{savingsName}
 		where DETAIL_AC_CODE = #{savingsCode}
-	</insert>
+	</update>
 	
-	<insert id="FT_SavingsUpdate" parameterType = "java.util.Map">
+	<update id="FT_SavingsUpdate" parameterType = "java.util.Map">
 		update SAVING_ACCOUNT_TBL
 		set CUSTOMER_CODE = #{AccCode}, SA_NUMBER = #{AccountNo}, SA_HOLDER = #{AccountHolder}, SA_AMOUNT = #{DevPrice}
 		where SA_CODE = #{savingsCode}
-	</insert>
+	</update>
+	
+	<!-- 적금삭제 -->
+	<delete id="FT_SavingsPrevDelete" parameterType = "java.util.Map">
+		delete from detail_ac_tbl
+		where DETAIL_AC_CODE = #{key}
+	</delete>
+	
+	<delete id="FT_SavingsDelete" parameterType = "java.util.Map">
+		delete from SAVING_ACCOUNT_TBL
+		where SA_CODE = #{key}
+	</delete>
 	
 	<!-- 예금 가져오기 -->
-	<select id="FT_DepositSelect" resultType="com.pj.erp.vo.FT.FT_Savings">
+	<select id="FT_DepositAllSelect" resultType="com.pj.erp.vo.FT.FT_Deposit">
 		SELECT
-		a.DETAIL_AC_CODE as depositCode, a.account_name as depositName, 
+		b.BA_CODE as depositCode, a.account_name as depositName, 
 		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
 		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
 		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
 		where a.DETAIL_AC_CODE = b.ba_code
 		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
 		and b.customer_code = c.customer_code
-		order by to_number(a.DETAIL_AC_CODE) asc
+		order by b.BA_CODE asc
+	</select>
+	
+	<!-- 예금 개수 가져오기 -->
+	<select id="FT_DepositCntSelect" parameterType="String" resultType="int">
+		select count(b.BA_CODE)
+		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
+		where a.DETAIL_AC_CODE = b.ba_code
+		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		and b.customer_code = c.customer_code
+		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 예금 검색한 것 가져오기 -->
+	<select id="FT_DepositSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Deposit">
+		SELECT
+		b.BA_CODE as depositCode, a.account_name as depositName, 
+		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
+		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
+		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
+		where a.DETAIL_AC_CODE = b.ba_code
+		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		and b.customer_code = c.customer_code
+		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
 	<!-- 예금 key 가져오기 -->
 	<select id="FT_DepositKeySelect" resultType="String">
 		select ba_code from bank_account_tbl
 		where ROWNUM = 1
-		ORDER BY to_number(ba_code) desc
+		ORDER BY ba_code desc
 	</select>
 	
 	<!-- 예금 추가 -->
 	<insert id="FT_DepositPrevInsert" parameterType = "java.util.Map">
 		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
-		values (#{SubjectCode}, accounts_seq.nextval, #{depositName})
+		values (#{SubjectCode}, 'DE_' || accounts_seq.nextval, #{depositName})
 	</insert>
 	
 	<insert id="FT_DepositInsert" parameterType = "java.util.Map">
 		insert into bank_account_tbl(BA_CODE, CUSTOMER_CODE, BA_NUMBER, BA_HOLDER)
-		values (accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder})
+		values ('DE_' || accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder})
 	</insert>
 	
 	<!-- 예금수정 -->
-	<insert id="FT_DepositPrevUpdate" parameterType = "java.util.Map">
+	<update id="FT_DepositPrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
 		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{depositName}
 		where DETAIL_AC_CODE = #{depositCode}
-	</insert>
+	</update>
 	
-	<insert id="FT_DepositUpdate" parameterType = "java.util.Map">
+	<update id="FT_DepositUpdate" parameterType = "java.util.Map">
 		update bank_account_tbl
 		set CUSTOMER_CODE = #{AccCode}, BA_NUMBER = #{AccountNo}, BA_HOLDER = #{AccountHolder}
 		where BA_CODE = #{depositCode}
+	</update>
+	
+	<!-- 예금삭제 -->
+	<delete id="FT_DepositPrevDelete" parameterType = "java.util.Map">
+		delete from detail_ac_tbl
+		where DETAIL_AC_CODE = #{key}
+	</delete>
+	
+	<delete id="FT_DepositDelete" parameterType = "java.util.Map">
+		delete from bank_account_tbl
+		where BA_CODE = #{key}
+	</delete>
+	
+	<!-- 카드 가져오기 -->
+	<select id="FT_CardManagementSelect" resultType="com.pj.erp.vo.FT.FT_Card">
+		SELECT
+		cd.card_code as cardCode, cd.card_name as cardName, 
+		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
+		ac.ACCOUNTS_NAME as subjectName, cd.card_type as cardType, cd.card_Obj as cardPurpose, cd.card_owner as owner, 
+		cd.ba_code as payCode, b.ba_number as accountNo, b.ba_holder as accountHolder
+		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, CARD_LIST_TBL cd, accounts_tbl ac
+		where a.DETAIL_AC_CODE = cd.cardCode
+		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		and cd.customer_code = c.customer_code
+		and cd.ba_code = b.ba_code
+		order by b.BA_CODE asc
+	</select>
+	
+	<!-- 카드 key 가져오기 -->
+	<select id="FT_CardManagementKeySelect" resultType="String">
+		select card_code from CARD_LIST_TBL
+		where ROWNUM = 1
+		ORDER BY card_code desc
+	</select>
+	
+	<!-- 카드 추가 -->
+	<insert id="FT_CardManagementPrevInsert" parameterType = "java.util.Map">
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
+		values (#{SubjectCode}, 'CD_' || cards_seq.nextval, #{CardName})
 	</insert>
+	
+	<insert id="FT_CardManagementInsert" parameterType = "java.util.Map">
+		insert into CARD_LIST_TBL(card_code, customer_code, card_name, card_type, card_Obj, card_owner, ba_code)
+		values ('CD_' || cards_seq.currval, #{AccCode}, #{CardName}, #{CardType}, #{CardPurpose}, #{Owner}, #{PayCode})
+	</insert>
+	
+	<!-- 카드수정 -->
+	<update id="FT_CardManagementPrevUpdate" parameterType = "java.util.Map">
+		update detail_ac_tbl
+		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{CardName}
+		where DETAIL_AC_CODE = #{CardCode}
+	</update>
+	
+	<update id="FT_CardManagementUpdate" parameterType = "java.util.Map">
+		update CARD_LIST_TBL
+		set customer_code = #{AccCode}, card_name = #{CardName}, card_type = #{CardType},
+		card_Obj = #{CardPurpose}, card_owner = #{Owner}, ba_code = #{PayCode}
+		where card_code = #{CardCode}
+	</update>
+	
+	<!-- 카드삭제 -->
+	<delete id="FT_CardManagementPrevDelete" parameterType = "java.util.Map">
+		delete from detail_ac_tbl
+		where DETAIL_AC_CODE = #{key}
+	</delete>
+	
+	<delete id="FT_CardManagementDelete" parameterType = "java.util.Map">
+		delete from CARD_LIST_TBL
+		where card_code = #{key}
+	</delete>
 	
 	<!-- 거래처 가져오기 -->
 	<select id="FT_AccountAllSelect" resultType="com.pj.erp.vo.FT.FT_Account">
@@ -274,6 +394,38 @@
         and ac.accounts_code = de.accounts_code
 		and (de.detail_ac_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
 		or de.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	
+	<!-- 중계정과목 가져오기 -->
+	<select id="FT_AccSubjectAllSelect" resultType="com.pj.erp.vo.FT.FT_Subject">
+		select ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name, l.lg_code, l.lg_name
+		from ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac, detail_ac_tbl de
+		where l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+	</select>
+	
+	<!-- 중계정과목 개수 가져오기 -->
+	<select id="FT_AccSubjectCntSelect" parameterType="String" resultType="int">
+		select count(de.detail_ac_code)
+		from ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac, detail_ac_tbl de
+		where l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+		and (ac.accounts_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or ac.accounts_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 중계정과목 검색한 것 가져오기 -->
+	<select id="FT_AccSubjectSelect" resultType="com.pj.erp.vo.FT.FT_Subject">
+		select ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name, l.lg_code, l.lg_name
+		from ledger_group_tbl l, accounts_group_tbl a, accounts_tbl ac, detail_ac_tbl de
+		where l.lg_code = a.lg_code
+		and a.ag_code = ac.ag_code2
+        and ac.accounts_code = de.accounts_code
+		and (ac.accounts_code like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or ac.accounts_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
 	<!-- 사원 가져오기 -->

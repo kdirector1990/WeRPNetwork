@@ -22,8 +22,10 @@ import com.pj.erp.persistence.FT_DAO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
+import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
@@ -159,6 +161,7 @@ public class FT_ServiceImpl implements FT_Service{
 
         System.out.println("1");
         FT_Account vo = new FT_Account();
+        vo.setLicense_number(req.getParameter("number"));
         vo.setCustomer_name(req.getParameter("customerName"));
         vo.setBranch_name(req.getParameter("branchName"));
         vo.setCustomer_credit(req.getParameter("customerCredit"));
@@ -181,6 +184,28 @@ public class FT_ServiceImpl implements FT_Service{
 		 */
         
     }
+	
+	// 거래처 수정
+	@Override
+	public String FT_AccountUpdate(Map<String, Object> map) {
+		int result = dao.FT_AccountUpdate(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "insert 실패";
+		}
+	}
+	
+	// 거래처 삭제
+	@Override
+	public String FT_AccountDelete(Map<String, Object> map) {
+		int result = dao.FT_LicenseDelete(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "insert 실패";
+		}
+	}
 
 	// 거래처 가져오기
 	@Override
@@ -205,17 +230,6 @@ public class FT_ServiceImpl implements FT_Service{
 		List<FT_Account> ac = dao.FT_AccountSelect(req.getParameter("srhval"));
 		System.out.println(ac);
 		return ac;
-	}
-	
-	// 적금추가
-	@Override
-	public String FT_AccountUpdate(Map<String, Object> map) {
-		int result = dao.FT_AccountUpdate(map);
-		if(result != 0) {
-			return "성공";
-		} else {
-			return "insert 실패";
-		}
 	}
 	
 	// 적금가져오기
@@ -247,13 +261,35 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 
+	// 적금삭제
+	@Override
+	public String FT_SavingsDelete(Map<String, Object> map) {
+		if(dao.FT_SavingsPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
 	// 예금가져오기
 	@Override
-	public void FT_DepositSelect(HttpServletRequest req, Model model) {
-		List<FT_Savings> savings = dao.FT_DepositSelect();
-		model.addAttribute("saving", savings);
+	public void FT_DepositAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Deposit> savings = dao.FT_DepositAllSelect();
+		System.out.println(savings);
+		System.out.println(savings.size());
+		model.addAttribute("deposit", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
+
+	// 예금 검색한 것 가져오기
+	@Override
+	public List<FT_Deposit> FT_DepositSelect(HttpServletRequest req, Model model) {
+		List<FT_Deposit> tf = dao.FT_DepositSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
+	}
+	
 
 	// 예금추가
 	@Override
@@ -276,6 +312,55 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 
+	// 예금삭제
+	@Override
+	public String FT_DepositDelete(Map<String, Object> map) {
+		if(dao.FT_DepositPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
+	// 예금가져오기
+	@Override
+	public void FT_CardManagementSelect(HttpServletRequest req, Model model) {
+		List<FT_Card> savings = dao.FT_CardManagementSelect();
+		model.addAttribute("saving", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+	
+	// 예금추가
+	@Override
+	public String FT_CardManagementInsert(Map<String, Object> map) {
+		int result = dao.FT_CardManagementInsert(map);
+		if(result != 0) {
+			return dao.FT_CardManagementKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 예금수정
+	@Override
+	public String FT_CardManagementUpdate(Map<String, Object> map) {
+		if(dao.FT_CardManagementUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
+	// 예금삭제
+	@Override
+	public String FT_CardManagementDelete(Map<String, Object> map) {
+		if(dao.FT_CardManagementPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
 	// 계정과목 가져오기
 	@Override
 	public void FT_SubjectAllSelect(HttpServletRequest req, Model model) {
@@ -289,6 +374,24 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> tf = dao.FT_SubjectSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
+	}
+
+	// 중계정과목 가져오기
+	@Override
+	public void FT_AccSubjectAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Subject> subject = dao.FT_AccSubjectAllSelect();
+		System.out.println("AccountCode : " + subject.get(0).getAccounts_code());
+		model.addAttribute("subject", subject);
+		model.addAttribute("listsize", subject.size() + 1);
+	}
+	
+	// 중계정과목 검색한 것 가져오기
+	@Override
+	public List<FT_Subject> FT_AccSubjectSelect(HttpServletRequest req, Model model) {
+		List<FT_Subject> tf = dao.FT_AccSubjectSelect(req.getParameter("srhval"));
 		System.out.println(tf);
 		System.out.println(req.getParameter("srhval"));
 		return tf;

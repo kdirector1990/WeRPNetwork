@@ -188,8 +188,8 @@ public class HR_DAOImpl implements HR_DAO{
 	
 	//근태(퇴근확인)
 	@Override
-	public int selectEndWork(String username) {
-		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectEndWork", username);
+	public int selectEndWork(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectEndWork", map);
 	}
 
 	//근태(퇴근입력)
