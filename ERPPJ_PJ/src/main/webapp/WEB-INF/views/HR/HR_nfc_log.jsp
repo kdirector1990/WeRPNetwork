@@ -50,7 +50,7 @@
 				success : function(nfclog){
 					
 					$('#result').empty();
-					
+					$('#bodyappend').empty();
 					
 					
 					for(var i = 0 ; i < nfclog.length; i++){

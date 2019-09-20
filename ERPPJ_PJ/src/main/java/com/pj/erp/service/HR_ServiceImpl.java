@@ -513,11 +513,13 @@ public class HR_ServiceImpl implements HR_Service{
 	public int InsertEndWork(HttpServletRequest req, Model model) {
 
 		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i++) {
-			int users = dao.selectEndWork(username[i]);
+			map.put("username", username[i]);
+			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
 				updateCnt = dao.EndWork(username[i]);

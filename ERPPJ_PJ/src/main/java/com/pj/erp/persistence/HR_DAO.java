@@ -100,7 +100,7 @@ public interface HR_DAO {
 	public int StartWork(String username);
 	
 	//근태(퇴근 날짜 있는지
-	public int selectEndWork(String username);
+	public int selectEndWork(Map<String, Object> map);
 	
 	//근태(퇴근입력)
 	public int EndWork(String username);
