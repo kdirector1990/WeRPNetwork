@@ -50,6 +50,7 @@
 				success : function(nfclog){
 					
 					$('#result').empty();
+					$('#bodyappend').empty();
 					
 					
 					
