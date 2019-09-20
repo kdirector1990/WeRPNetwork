@@ -8,6 +8,7 @@ import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
+import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -79,7 +80,10 @@ public interface FT_Service {
 	public String FT_SavingsDelete(Map<String, Object> map);
 	
 	// 예금 가져오기
-	public void FT_DepositSelect(HttpServletRequest req, Model model);
+	public void FT_DepositAllSelect(HttpServletRequest req, Model model);
+	
+	// 예금 검색한 것 가져오기
+	public List<FT_Deposit> FT_DepositSelect(HttpServletRequest req, Model model);
 	
 	// 예금추가
 	public String FT_DepositInsert(Map<String, Object> map);

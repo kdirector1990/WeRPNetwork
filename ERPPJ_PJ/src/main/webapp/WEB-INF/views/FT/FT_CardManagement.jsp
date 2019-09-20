@@ -180,16 +180,6 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                             /*  if (data.answer == 'success') {
-	                                      alert(data.name + '님 환영합니다.');
-	                                      var map = new MapArray();
-	                                      postData('/News/index.do', map);
-	                              } else if (data.answer == 'fail') {
-	                                      alert('아이디와 비번이 일치하지 않습니다.');
-	                              } else if (data.answer == 'error') {
-	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                              } */
 	                              alert(data);
 	                              if(updatekey == 0){
 	                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
@@ -244,8 +234,8 @@
         		} else if(window.event.which == 40) {
                 	updatekey = 1;
                 	selectval = $("#enter" + vv).val();
-                	if($("#enter" + (vv+1)).attr("onchange") != "enterinsert(" + (vv+1) + ");"){
-                    	$("#enter" + (vv+1)).focus();
+                	if($("#enter" + (cc+1)).attr("onchange") != "enterinsert(" + (cc+1) + ");"){
+                    	$("#enter" + (cc+1)).focus();
                 	}
 					return false;
         		} else if(window.event.which == 13) {
@@ -253,13 +243,13 @@
             		var jsonData;
 	                 
 	              	// 자바스크립트 객체 생성
-	        		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
-	        		obj.SubjectCode = $("input[name=SubjectCode" + vv + "]").val();
-	        		obj.CardName = $("input[name=CardName" + vv + "]").val();
-	        		obj.CardType = $("select[name=CardType" + vv + "]").val();
-	        		obj.CardPurpose = $("input[name=CardPurpose" + vv + "]").val();
-	        		obj.Owner = $("input[name=Owner" + vv + "]").val();
-	        		obj.PayCode = $("input[name=PayCode" + vv + "]").val();
+	        		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
+	        		obj.SubjectCode = $("input[name=SubjectCode" + cc + "]").val();
+	        		obj.CardName = $("input[name=CardName" + cc + "]").val();
+	        		obj.CardType = $("select[name=CardType" + cc + "]").val();
+	        		obj.CardPurpose = $("input[name=CardPurpose" + cc + "]").val();
+	        		obj.Owner = $("input[name=Owner" + cc + "]").val();
+	        		obj.PayCode = $("input[name=PayCode" + cc + "]").val();
 	         		
 	         		// json 객체를 String 객체로 변환 -- 
 	         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -283,25 +273,25 @@
 	                               } else if (data.answer == 'error') {
 	                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
 	                               } */
-		           	       			 $("input[name=savingsCode" + cc + "]").val(data);
+		           	       			 $("input[name=CardCode" + cc + "]").val(data);
 	                               frontcursor = $(".chit-table-bordered-primary tbody #enter" + cc).attr("name");
 		           	       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
 		           	       			$(".chit-table-bordered-primary tbody").append('<tr>' +
-		           	       				'<td><input type="text" onfocus = "focuse(${cnt});" name = "CardCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" id = "first${cnt}" name = "CardName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><select class="form-control" onfocus = "focuse(${cnt});" name = "CardType${cnt}" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);">' +
+		           	       				'<td><input type="text" onfocus = "focuse(' + count + ');" name = "CardCode' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" id = "first' + count + '" name = "CardName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><select class="form-control" onfocus = "focuse(' + count + ');" name = "CardType' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);">' +
 		                                '<option value="0">== 선택 ==</option>' +
 		                                '<option value="1">체크카드</option>' +
 		                                '<option value="2">신용카드</option>' +
 		                           		'</select></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-		                           		'<td><input type="text" onfocus = "focuse(${cnt});" name = "CardPurpose${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "Owner${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "PayCode${cnt}" class="form-control" onclick = "depositlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "PayNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "AccCode' + count + '" class="form-control" onclick = "accountlist(' + count + ')" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "SubjectCode' + count + '" class="form-control" onclick = "subjectlist(' + count + ')" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "SubjectName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                           		'<td><input type="text" onfocus = "focuse(' + count + ');" name = "CardPurpose' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "Owner' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" id = "enter' + count + '" onfocus = "focuse(' + count + ');" name = "PayCode' + count + '" class="form-control" onclick = "depositlist(' + count + ')" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(' + count + ');"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "PayNo' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 		           	                       '</tr>');
 		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
 		           	                 count = count + 1;
@@ -327,6 +317,14 @@
             	var popupY = Math.ceil((window.screen.height - 528)/2);
         		var url = "FT_account_list?key=" + $("*[name=AccCode" + accountcode + "]").val() + "&keyname=" + accountcode;
         		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
+        		
+        	}
+        	
+        	function depositlist(depositcode) {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
+        		var url = "FT_depositsub_list?key=" + $("*[name=PayCode" + depositcode + "]").val() + "&keyname=" + depositcode;
+        		window.open(url, "deposit_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
         		
         	}
         	

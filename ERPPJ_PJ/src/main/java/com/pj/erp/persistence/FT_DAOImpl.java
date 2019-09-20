@@ -150,8 +150,25 @@ public class FT_DAOImpl implements FT_DAO{
 
 	// 예금 가져오기
 	@Override
-	public List<FT_Deposit> FT_DepositSelect() {
-		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepositSelect");
+	public List<FT_Deposit> FT_DepositAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepositAllSelect");
+	}
+
+	// 예금 검색 한 것 개수 가져오기
+	@Override
+	public int FT_DepositCntSelect(String srhval) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_DepositCntSelect(srhval);
+	}
+	
+	// 예금 검색한 것 가져오기
+	@Override
+	public List<FT_Deposit> FT_DepositSelect(String srhval) {
+		if(FT_DepositCntSelect(srhval) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepositSelect", srhval);
+		}
 	}
 	
 	// 예금 키 가져오기
@@ -168,7 +185,7 @@ public class FT_DAOImpl implements FT_DAO{
 
 	@Override
 	public int FT_DepositInsert(Map<String, Object> map) {
-		int previnsertCnt = FT_SavingsPrevInsert(map);
+		int previnsertCnt = FT_DepositPrevInsert(map);
 		if(previnsertCnt != 0) {
 			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_DepositInsert",map);
 		} else {
@@ -184,7 +201,7 @@ public class FT_DAOImpl implements FT_DAO{
 
 	@Override
 	public int FT_DepositUpdate(Map<String, Object> map) {
-		int previnsertCnt = FT_SavingsPrevUpdate(map);
+		int previnsertCnt = FT_DepositPrevUpdate(map);
 		if(previnsertCnt != 0) {
 			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_DepositUpdate",map);
 		} else {

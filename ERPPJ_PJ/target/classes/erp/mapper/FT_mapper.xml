@@ -178,7 +178,7 @@
 	</delete>
 	
 	<!-- 예금 가져오기 -->
-	<select id="FT_DepositSelect" resultType="com.pj.erp.vo.FT.FT_Savings">
+	<select id="FT_DepositAllSelect" resultType="com.pj.erp.vo.FT.FT_Deposit">
 		SELECT
 		b.BA_CODE as depositCode, a.account_name as depositName, 
 		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
@@ -188,6 +188,33 @@
 		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
 		and b.customer_code = c.customer_code
 		order by b.BA_CODE asc
+	</select>
+	
+	<!-- 예금 개수 가져오기 -->
+	<select id="FT_DepositCntSelect" parameterType="String" resultType="int">
+		select count(b.BA_CODE)
+		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
+		where a.DETAIL_AC_CODE = b.ba_code
+		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		and b.customer_code = c.customer_code
+		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+	</select>
+	
+	<!-- 예금 검색한 것 가져오기 -->
+	<select id="FT_DepositSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Deposit">
+		SELECT
+		b.BA_CODE as depositCode, a.account_name as depositName, 
+		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
+		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
+		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
+		where a.DETAIL_AC_CODE = b.ba_code
+		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		and b.customer_code = c.customer_code
+		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
+		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
 	</select>
 	
 	<!-- 예금 key 가져오기 -->
@@ -257,7 +284,7 @@
 	<!-- 카드 추가 -->
 	<insert id="FT_CardManagementPrevInsert" parameterType = "java.util.Map">
 		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
-		values (#{SubjectCode}, 'CD_' || cards_seq.nextval, #{depositName})
+		values (#{SubjectCode}, 'CD_' || cards_seq.nextval, #{CardName})
 	</insert>
 	
 	<insert id="FT_CardManagementInsert" parameterType = "java.util.Map">
@@ -268,7 +295,7 @@
 	<!-- 카드수정 -->
 	<update id="FT_CardManagementPrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
-		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{depositName}
+		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{CardName}
 		where DETAIL_AC_CODE = #{CardCode}
 	</update>
 	

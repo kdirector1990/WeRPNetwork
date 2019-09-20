@@ -73,7 +73,13 @@ public interface FT_DAO {
 	public int FT_SavingsDelete(Map<String, Object> map);
 	
 	// 예금 가져오기
-	public List<FT_Deposit> FT_DepositSelect();
+	public List<FT_Deposit> FT_DepositAllSelect();
+
+	// 예금 검색한 것 가져오기
+	public List<FT_Deposit> FT_DepositSelect(String srhval);
+	
+	// 예금 가져오기
+	public int FT_DepositCntSelect(String srhval);
 	
 	// 예금 key 가져오기
 	public String FT_DepositKeySelect();

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_DTB;
+import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
@@ -207,7 +208,7 @@ public class FT_Controller {
 	public String FT_Deposit(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Deposit");
 
-		service.FT_DepositSelect(req, model);
+		service.FT_DepositAllSelect(req, model);
 
 		return "FT/FT_Deposit";
 	}
@@ -222,15 +223,28 @@ public class FT_Controller {
 
 	// 예금목록
 	@RequestMapping("FT_Deposit_list")
-	public String FT_Deposit_list(Locale locale, Model model) {
+	public String FT_Deposit_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Deposit_list");
 
+		service.FT_DepositAllSelect(req, model);
+		
 		return "FT/FT_Deposit_list";
+	}
+	
+	// 예금관리
+	@RequestMapping("FT_depositsub_list")
+	public String FT_depositsub_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_depositsub_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		service.FT_DepositAllSelect(req, model);
+
+		return "FT/FT_depositsub_list";
 	}
 
 	// 단기대여금목록
 	@RequestMapping("FT_short_Loan_list")
-	public String FT_short_Loan_list(Locale locale, Model model) {
+	public String FT_short_Loan_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Loan_list");
 
 		return "FT/FT_short_Loan_list";
@@ -238,7 +252,7 @@ public class FT_Controller {
 
 	// 단기매매증권목록
 	@RequestMapping("FT_short_Securities_list")
-	public String FT_short_Securities_list(Locale locale, Model model) {
+	public String FT_short_Securities_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Securities_list");
 
 		return "FT/FT_short_Securities_list";
@@ -246,7 +260,7 @@ public class FT_Controller {
 
 	// 받을어음목록
 	@RequestMapping("FT_Note_list")
-	public String FT_Note_list(Locale locale, Model model) {
+	public String FT_Note_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Note_list");
 
 		return "FT/FT_Note_list";
@@ -466,6 +480,14 @@ public class FT_Controller {
 		logger.info("url : FT_AccountSelect 호출중");
 
 		return service.FT_SubjectSelect(req, model);
+	}
+	
+	// 계정과목 검색 가져오기
+	@RequestMapping(value = "FT_DepositSelect")
+	public @ResponseBody List<FT_Deposit> FT_DepositSelect(HttpServletRequest req, Model model) {
+		logger.info("url : FT_AccountSelect 호출중");
+
+		return service.FT_DepositSelect(req, model);
 	}
 	
 	// 계정과목 검색 가져오기
