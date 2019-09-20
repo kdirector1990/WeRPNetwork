@@ -328,4 +328,15 @@
 		select * from hr_nfc_view
 	</select>
 	
+	<!-- 사원 직책 목록 조회 -->
+	<select id ="getPositions" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_VO">
+	<![CDATA[
+		select username, department_code, position_code 
+		from users u, appointment_tbl a
+		where ap_code like '%'||#{ap_code}||'%' 
+		and ap_name like '%'||#{ap_name}||'%' 		
+		and rank_code like '%'||#{rank_code}||'%'
+		]]>
+	</select>
+	
 </mapper>

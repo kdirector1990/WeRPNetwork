@@ -132,4 +132,7 @@ public interface HR_DAO {
 	
 	// nfc 기록 조회(임시)
 	public List<HR_nfc_log> getNfcLog();
+	
+	// 사원 직책 검색 
+	public List<HR_VO> getPositions(Map<String, Object> map);
 }

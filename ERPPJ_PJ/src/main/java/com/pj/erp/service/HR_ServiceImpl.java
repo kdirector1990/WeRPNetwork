@@ -611,14 +611,18 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_RecordVO vo = new HR_RecordVO();		
 		
 		String username = req.getParameter("username");
+		String position_code_after = req.getParameter("position_code_after");
 		String position_record_code = dao.getPositionRecord();
 		Date record_date = (Date.valueOf(req.getParameter("record_date")));
+		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
 		
 		
 		
 		vo.setUsername(username);
-		vo.setPosition_record_cord(position_record_code);
+		vo.setPosition_code_after(position_code_after);
+		vo.setPosition_record_code(position_record_code);
 		vo.setRecord_date(record_date);		
+		vo.setRecord_date_after(record_date_after);
 		
 		int cnt = 0;
 		
@@ -630,18 +634,23 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	@Override
 	public void HR_APinput(HttpServletRequest req, Model model) {
+		int i = 0;
+		
 		HR_ApVO ap = new HR_ApVO();
 		
 		String ap_code = dao.getAP_code();
 		String ap_name = req.getParameter("ap_name");
-		String ap_content = req.getParameter("ap_content");
+		String ap_content = req.getParameter("ap_content");	
+		
+		System.out.println(req.getParameter("ap_reg_date"));
+		System.out.println(req.getParameter("ap_est_date"));
 		
 		ap.setAp_code(ap_code);
 		ap.setAp_name(ap_name);
 		ap.setAp_content(ap_content);
 		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
 		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
-		ap.setAp_status(req.getParameter("ap_status"));
+		ap.setAp_status(req.getParameter("ap_status"));		
 		
 		int cnt = 0;		
 		
@@ -721,6 +730,15 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		
 		return nfc_log;
+	}
+	
+	@Override
+	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException {
+		
+		
+		List<HR_VO> list = dao.getPositions(map); 
+		return list;
+					
 	}
 
 }

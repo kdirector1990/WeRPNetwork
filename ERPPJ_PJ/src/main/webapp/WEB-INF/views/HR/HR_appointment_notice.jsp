@@ -6,6 +6,94 @@
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+	
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<link href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    var searchCount = 1;
+	 $(function(){
+		$('#search').click(function(){
+			var param = new Object();
+			var jsonData;
+			
+						
+			param.username = $("#ap_code").val();
+			param.e_name = $("#ap_reg_date").val();
+			param.department_code = $("#ap_name").val();			
+					
+			jsonData = JSON.stringify(param);
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/HR_position_record_result?${_csrf.parameterName}=${_csrf.token }',
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){
+					
+					$('#result').empty();
+					$('#result2').empty();
+					$('#bodyappend').empty();
+					
+					
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var usernames = list[i].username;
+						var e_names = list[i].e_name;						
+						var department_codes = list[i].department_code;
+						var position_codes = list[i].position_code;											
+						
+						
+					$('#result').append('<tr onclick="recordList('+usernames+');">'+                         	
+							'<td>'+ usernames +'</td>'+
+							'<td>'+ e_names +'</td>'+							
+							'<td>'+ department_codes +'</td>'+
+							'<td>'+ position_codes +'</td>'+								
+                 		'</tr>');
+					
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
+					
+					}
+					
+				},
+				error : function(){
+					alert("에러");
+				}
+			});			
+		}); 
+	 });
+
+</script>
 </head>
 
 <body>
@@ -52,44 +140,50 @@
 									<div align="right">
 										<br>
 									</div>
-									<table class="col-12" id="datatable"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">발령호수</td>
+											<td class="col-md-1 col-form-label">공고코드</td>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="사원코드">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-										</tr>
-										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">발령구분</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control select2" name="" onchange="">
-													<option value=""></option>
-											</select></td>
-											<th class="col-md-1 col-form-label">발령일자
+												class="form-control" name="ap_code" id="ap_code">
 											</td>
+
+											<th class="col-md-1 col-form-label">&nbsp;</th>
+
+											<th class="col-md-1 col-form-label">공고일</th>
+											<td class="col-md-2 input-group"><input type="date" name="ap_reg_date"
+												placeholder="mm/dd/yyyy" style="size: 100px;"> <i
+												class="mdi mdi-calendar"></i></td>
+
+											<th class="col-md-1 col-form-label">&nbsp;</th>
+
+											<th class="col-md-1 col-form-label">공고명</th>
 											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="발령호수">
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
-											<th class="col-md-1 col-form-label">제목</th>
-											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="" placeholder="제목"></td>
+												class="form-control" name="ap_name"
+												id="ap_name"></td>										
+											
 										</tr>
+										
+										<tr class="form-group row">
+
+											<th class="col-md-1 col-form-label"></th>
+											<td class="col-md-2 input-group">
+											</td>
+
+											<th class="col-md-1 col-form-label">&nbsp;</th>
+											<th class="col-md-1 col-form-label"></th>
+											<td class="col-md-2 input-group">
+											</td>
+
+											<th class="col-md-1 col-form-label"></th>
+											<td><button type="button"
+													class="btn btn-primary waves-effect waves-light"
+													id="search">검색</button></td>
+										</tr>										
 									</table>
 								</div>
 							</div>
 						</div>
+					</div>	
 
 						<div class="row">
 							<div class="col-xl-6">
@@ -99,8 +193,7 @@
 											class="table table-striped table-bordered dt-responsive nowrap"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
-												<tr>
-													<th rowspan="2">NO</th>
+												<tr>													
 													<th colspan="4">발령대상자</th>
 												</tr>
 												<tr>
@@ -110,7 +203,10 @@
 													<th>직책</th>
 												</tr>
 											</thead>
-
+											
+											<tbody id="result">
+											
+											</tbody>
 										</table>
 									</div>
 								</div>
@@ -124,8 +220,7 @@
 											class="table table-striped table-bordered dt-responsive nowrap"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
-												<tr>
-													<th rowspan="2">NO</th>
+												<tr>													
 													<th colspan="4">발령내역</th>
 												</tr>
 												<tr>
@@ -135,18 +230,18 @@
 													<th>비고</th>
 												</tr>
 											</thead>
-
+											
+											<tbody id="result2">
+											
+											</tbody>
 										</table>
-
-
 
 									</div>
 								</div>
-
 							</div>
 							<!-- end col -->
 						</div>
-					</div>
+					
 
 					<div class="row">
 						<div class="col-xl-6">

@@ -54,6 +54,7 @@
 				success : function(list){
 					
 					$('#result').empty();
+					$('#bodyappend').empty();
 					
 					
 					

@@ -116,5 +116,8 @@ public interface HR_Service {
 	//nfc 기록 조회용(임시)
 	public List<HR_nfc_log> getNfcLog(HttpServletRequest req, Model model);
 	
+	// 직책목록 조회
+	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	
 }
