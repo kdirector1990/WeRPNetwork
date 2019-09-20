@@ -18,17 +18,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.HR_DAO;
-import com.pj.erp.vo.HR_ApVO;
-import com.pj.erp.vo.HR_FamilyVO;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_RankVO;
-import com.pj.erp.vo.HR_RecordVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_ApVO;
+import com.pj.erp.vo.HR.HR_FamilyVO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RankVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -266,19 +266,16 @@ public class HR_ServiceImpl implements HR_Service{
 		String pa_sDate = pa_dates.substring(0, 10);
 		String pa_eDate = pa_dates.substring(13, 23);
 		
-		String spa_date = "";
-		String epa_date = "";
+		String syear = pa_sDate.substring(8,10);
+		String smonth = pa_sDate.substring(0,2);
+		String sday = pa_sDate.substring(3,5);
 		
-		Date sdate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_sDate);
-		Date edate = (Date) new SimpleDateFormat("mm/dd/yyyy").parse(pa_eDate);
+		String eyear = pa_eDate.substring(8,10);
+		String emonth = pa_eDate.substring(0,2);
+		String eday = pa_eDate.substring(3,5);
 		
-		SimpleDateFormat new_format = new SimpleDateFormat("yy/mm/dd");
-			
-			spa_date = new_format.format(sdate);
-			epa_date = new_format.format(edate);
-			
-			System.out.println(spa_date);
-			System.out.println(epa_date);
+		String spa_date = syear + "/" + smonth +"/" +sday;
+		String epa_date = eyear + "/" + emonth +"/" +eday;
 		
 		map.put("spa_date", spa_date);
 		map.put("epa_date", epa_date);
@@ -513,11 +510,13 @@ public class HR_ServiceImpl implements HR_Service{
 	public int InsertEndWork(HttpServletRequest req, Model model) {
 
 		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i++) {
-			int users = dao.selectEndWork(username[i]);
+			map.put("username", username[i]);
+			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
 				updateCnt = dao.EndWork(username[i]);
@@ -611,14 +610,18 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_RecordVO vo = new HR_RecordVO();		
 		
 		String username = req.getParameter("username");
+		String position_code_after = req.getParameter("position_code_after");
 		String position_record_code = dao.getPositionRecord();
 		Date record_date = (Date.valueOf(req.getParameter("record_date")));
+		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
 		
 		
 		
 		vo.setUsername(username);
-		vo.setPosition_record_cord(position_record_code);
+		vo.setPosition_code_after(position_code_after);
+		vo.setPosition_record_code(position_record_code);
 		vo.setRecord_date(record_date);		
+		vo.setRecord_date_after(record_date_after);
 		
 		int cnt = 0;
 		
@@ -630,18 +633,23 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	@Override
 	public void HR_APinput(HttpServletRequest req, Model model) {
+		int i = 0;
+		
 		HR_ApVO ap = new HR_ApVO();
 		
 		String ap_code = dao.getAP_code();
 		String ap_name = req.getParameter("ap_name");
-		String ap_content = req.getParameter("ap_content");
+		String ap_content = req.getParameter("ap_content");	
+		
+		System.out.println(req.getParameter("ap_reg_date"));
+		System.out.println(req.getParameter("ap_est_date"));
 		
 		ap.setAp_code(ap_code);
 		ap.setAp_name(ap_name);
 		ap.setAp_content(ap_content);
 		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
 		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
-		ap.setAp_status(req.getParameter("ap_status"));
+		ap.setAp_status(req.getParameter("ap_status"));		
 		
 		int cnt = 0;		
 		
@@ -721,6 +729,15 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		
 		return nfc_log;
+	}
+	
+	@Override
+	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException {
+		
+		
+		List<HR_VO> list = dao.getPositions(map); 
+		return list;
+					
 	}
 
 }

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Card;
@@ -21,6 +20,7 @@ import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
+import com.pj.erp.vo.HR.HR_VO;
 
 public interface FT_DAO {
 	
@@ -73,7 +73,13 @@ public interface FT_DAO {
 	public int FT_SavingsDelete(Map<String, Object> map);
 	
 	// 예금 가져오기
-	public List<FT_Deposit> FT_DepositSelect();
+	public List<FT_Deposit> FT_DepositAllSelect();
+
+	// 예금 검색한 것 가져오기
+	public List<FT_Deposit> FT_DepositSelect(String srhval);
+	
+	// 예금 가져오기
+	public int FT_DepositCntSelect(String srhval);
 	
 	// 예금 key 가져오기
 	public String FT_DepositKeySelect();

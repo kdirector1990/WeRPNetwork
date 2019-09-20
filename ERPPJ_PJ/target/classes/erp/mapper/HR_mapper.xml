@@ -5,12 +5,12 @@
     
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
-	<insert id="insertMember" parameterType="com.pj.erp.vo.HR_VO">
+	<insert id="insertMember" parameterType="com.pj.erp.vo.HR.HR_VO">
 		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
 		values(#{username}, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{department_code}, #{position_code}, #{rank_code}, #{start_date}, #{enabled}) 
 	</insert>
 	
-	<insert id="insertMember2" parameterType="com.pj.erp.vo.HR_VO">
+	<insert id="insertMember2" parameterType="com.pj.erp.vo.HR.HR_VO">
 		insert into users(username, password, e_name, enabled, department_code, rank_code, position_code, level_step)
 		values(userid.nextval, #{password}, #{e_name}, 1, 'plan_depart', '920', 'pos_1001', 1) 
 	</insert>
@@ -36,7 +36,7 @@
 	</insert>
 	
 	<!-- 가족정보 등록 -->	
-	<insert id="insertFamily" parameterType="com.pj.erp.vo.HR_FamilyVO">
+	<insert id="insertFamily" parameterType="com.pj.erp.vo.HR.HR_FamilyVO">
 		insert into family_info(username, f_name, f_type, f_born)
 		values(#{username}, #{f_name}, #{f_type}, #{f_born})
 	</insert>
@@ -48,22 +48,22 @@
 	</insert>	
 	
 	<!-- 사원 정보 -->
-	<select id="foundation" resultType="com.pj.erp.vo.HR_VO">
+	<select id="foundation" resultType="com.pj.erp.vo.HR.HR_VO">
 		select * from users
 	</select>
 	
 	<!-- 사원 정보 한건 -->
-	<select id="getFoundation" parameterType="String" resultType="com.pj.erp.vo.HR_VO">
+	<select id="getFoundation" parameterType="String" resultType="com.pj.erp.vo.HR.HR_VO">
 		select * from users where username = #{username}
 	</select>
 	
 	<!-- 신체 정보 리스트 -->
-	<select id="physicalyList" resultType="com.pj.erp.vo.HR_PhysicalVO">
+	<select id="physicalyList" resultType="com.pj.erp.vo.HR.HR_PhysicalVO">
 		select * from physicaly_info_tbl
 	</select>
 	
 	<!-- 신체 정보 한건 -->
-	<select id="physicaly" parameterType="String" resultType="com.pj.erp.vo.HR_PhysicalVO">
+	<select id="physicaly" parameterType="String" resultType="com.pj.erp.vo.HR.HR_PhysicalVO">
 		select * from physicaly_info_tbl where username =#{username}
 	</select>
 	
@@ -71,7 +71,7 @@
 	
 	
 	<!-- 사원 정보 수정 -->
-	<update id="updateFoundation" parameterType="com.pj.erp.vo.HR_VO">
+	<update id="updateFoundation" parameterType="com.pj.erp.vo.HR.HR_VO">
 		update users set e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode}, level_step=#{level_step}, e_nfcCodeNFC=#{e_nfcCodeNFC}, department_code=#{department_code}, position_code=#{position_code}, rank_code=#{rank_code} where username=#{username}
 	</update>
 	
@@ -81,22 +81,22 @@
 	</select> -->
 	
 	<!-- 신체정보 수정처리 -->
-	<update id="updatePhysicaly" parameterType="com.pj.erp.vo.HR_PhysicalVO">
+	<update id="updatePhysicaly" parameterType="com.pj.erp.vo.HR.HR_PhysicalVO">
 		UPDATE physicaly_info_tbl SET e_height=#{e_height}, e_weight=#{e_weight}, e_left_sight=#{e_left_sight}, e_right_sight=#{e_right_sight}, e_color_blind=#{e_color_blind}, e_blood_type=#{e_blood_type}, e_blood_presure=#{e_blood_presure}, e_medical_info=#{e_medical_info}, e_veteran_type=#{e_veteran_type}, e_veteran_info=#{e_veteran_info}, e_veteran_level=#{e_veteran_level}, e_disability_type=#{e_disability_type}, e_disability_level=#{e_disability_level} WHERE username=#{username}
 	</update>
 	
 	<!-- 가족정보 가져오기 -->
-	<select id="getFamily" parameterType="String" resultType="com.pj.erp.vo.HR_FamilyVO">
+	<select id="getFamily" parameterType="String" resultType="com.pj.erp.vo.HR.HR_FamilyVO">
 		select * from family_info where username = #{username}
 	</select>
 	
 	<!-- 가족정보 수정처리 -->
-	<update id="updateFamily" parameterType="com.pj.erp.vo.HR_FamilyVO">
+	<update id="updateFamily" parameterType="com.pj.erp.vo.HR.HR_FamilyVO">
 		update family_info set f_name=#{f_name}, f_type=#{f_type}, f_cohabitation=#{f_cohabitation}, f_born=#{f_born}, f_born_type=#{f_born_type} where username=#{username}
 	</update>
 	
 	<!-- 사원정보 조회  -->
-	<select id ="getUsers" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_VO">
+	<select id ="getUsers" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_VO">
 	<![CDATA[
 		select username, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date from users 
 		where username like '%'||#{username}||'%' 
@@ -108,7 +108,7 @@
 	</select>
 	
 	<!-- 사원신체정보 조회  -->
-	<select id ="getPhysicaly" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_PhysicalVO">
+	<select id ="getPhysicaly" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_PhysicalVO">
 	<![CDATA[
 		select u.username AS username, p.e_height as e_height, p.e_weight as e_weight, p.e_left_sight as e_left_sight, p.e_right_sight as e_right_sight, p.e_color_blind as e_color_blind, p.e_blood_type as e_blood_type, p.e_blood_presure as e_blood_presure, p.e_medical_info as e_medical_info, p.e_veteran_type as e_veteran_type, p.e_veteran_info as e_veteran_info , p.e_veteran_level as e_veteran_level, p.e_disability_type as e_disability_type, p.e_disability_level as e_disability_level 
 		from users u ,department_tbl d ,rank_tbl r , position_tbl o, physicaly_info_tbl p
@@ -125,45 +125,45 @@
 	</select>
 	
 	<!-- 검색 목록 가져오기 -->
-	<select id="getUsernameList" resultType="com.pj.erp.vo.HR_VO" parameterType="String">
+	<select id="getUsernameList" resultType="com.pj.erp.vo.HR.HR_VO" parameterType="String">
 		select username, e_name, department_code, position_code from users where e_name like '%'||#{e_name}||'%'
 	</select>
 	
 	<!-- 부서 목록 -->
-	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_code, department_name from department_tbl	 
 	</select>
 	
 	<!-- 직책 목록 -->
-	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select position_code from position_tbl
 	</select>
 	
 	<!-- 직급 목록 -->
-	<select id="getRankList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_VO">
+	<select id="getRankList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select rank_code from rank_tbl
 	</select>	
 	
 	<!-- 호봉테이블(랭크) -->	
-	<select id="rank" resultType="com.pj.erp.vo.HR_RankVO">
+	<select id="rank" resultType="com.pj.erp.vo.HR.HR_RankVO">
 		select * from rank_tbl
 	</select>
 	
 	<!-- 호봉테이블(금액) -->
-	<select id="pay" resultType="com.pj.erp.vo.HR_PaystepVO">
+	<select id="pay" resultType="com.pj.erp.vo.HR.HR_PaystepVO">
 		select * from paystep_tbl
 		Where rank_code = #{rank_code}
 	</select>
 	
 	<!-- 호봉테이블(금액수정) -->
-	<update id="updatePay" parameterType="com.pj.erp.vo.HR_PaystepVO">
+	<update id="updatePay" parameterType="com.pj.erp.vo.HR.HR_PaystepVO">
 		Update paystep_tbl
 		Set BASE_PAYMENT = #{BASE_PAYMENT}, ADD_PAYMENT = #{ADD_PAYMENT}, EXTENSION_PAYMENT = #{EXTENSION_PAYMENT}
 		Where paystep_code = #{paystep_code} And rank_code = #{rank_code}
 	</update>
 	
 	<!-- 인사고과조회 -->	
-	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_GreetingVO">
+	<select id = "getGreeting" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_GreetingVO">
 	<![CDATA[
 		select pa_code, username, pa_date, pa_type, pa_name, department_Code, pa_details, detail_ac_code, pa_value, pa_other, jr_state  from getgreeting_view 
 		where pa_code like '%'||#{pa_code}||'%' 
@@ -174,7 +174,7 @@
 	</select>
 	
 	<!-- 임금현황조회 -->
-	<select id = "getSalary" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_SalaryVO">
+	<select id = "getSalary" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_SalaryVO">
 	<![CDATA[
 		select u.username, u.e_name, d.department_name, r.rank_name, u.start_date, p.base_payment, p.add_payment, p.extension_payment
 		from users u ,department_tbl d ,rank_tbl r ,paystep_tbl p
@@ -188,7 +188,7 @@
 	</select>
 	
 	<!-- 근태(사원정보 검색) -->
-	<select id = "selectUserTime" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_Time_VO">
+	<select id = "selectUserTime" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_Time_VO">
 		select username, e_name, department_code, RowNum 
 		From users
 		where department_code like '%'||#{department_code}||'%' 
@@ -211,7 +211,7 @@
 	</insert>
 	
 	<!-- 퇴근자 확인 -->
-	<select id="selectEndWork" resultType="int">
+	<select id="selectEndWork" parameterType="java.util.Map" resultType="int">
 		Select Count(*) from time_card_tbl
 		Where username = #{username}
 		And to_char(tc_leave_time, 'YYYY/MM/DD') = to_char(sysdate, 'YYYY/MM/DD')
@@ -227,7 +227,7 @@
 	
 	
 	<!-- 근속년수 검색 -->
-	<select id = "getYearofservice" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR_YearService_VO">
+	<select id = "getYearofservice" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_YearService_VO">
 		select username, e_name, department_name, position_name , start_date, e_code
     		, trunc(trunc(months_between(to_date(#{day}),start_date),0)/12,0) as service_year
    			, mod(trunc(months_between(to_date(#{day}),start_date),0),12) as service_month
@@ -249,7 +249,7 @@
 	</select>
 	
 	<!-- 근태(근무월별 있는가)2 -->
-	<select id="DetailWork2" resultType="com.pj.erp.vo.HR_Time_VO">
+	<select id="DetailWork2" resultType="com.pj.erp.vo.HR.HR_Time_VO">
 		Select Count(*) as count
 		From time_card_tbl
 		Where tc_come_time Like #{year}||'/'||#{month}||'%'
@@ -260,7 +260,7 @@
 	</select>
 	
 	<!-- 근태 기록가져오기 -->
-	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR_Time_VO" resultType="com.pj.erp.vo.HR_Time_VO">
+	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="com.pj.erp.vo.HR.HR_Time_VO">
 		SELECT
     		a.username as username,
 		    count(a.username) as count,
@@ -284,7 +284,7 @@
 	</select>
 	
 	<!-- 근태 기록가져오기 -->
-	<select id="SelectDetailWork2" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR_Time_VO">
+	<select id="SelectDetailWork2" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_Time_VO">
 		SELECT
     		count(a.username) as count,
     		To_char(a.tc_come_time, 'mm') as month,
@@ -312,13 +312,13 @@
 	</select>
 	
 	<!-- 직책변경 등록 -->
-	<insert id="recordInput" parameterType="com.pj.erp.vo.HR_RecordVO">
+	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
 		insert into position_record_tbl(position_record_code, record_date)
 		VALUES(#{position_record_code}, #{recore_date})
 	</insert>
 	
 	<!-- 발령공고 등록 -->
-	<insert id="insertAp" parameterType="com.pj.erp.vo.HR_ApVO">
+	<insert id="insertAp" parameterType="com.pj.erp.vo.HR.HR_ApVO">
 		insert into appointment_tbl(ap_code, ap_name, ap_content, ap_reg_date, ap_est_date, ap_status)
 		values(#{ap_code}, #{ap_name}, #{ap_content}, #{ap_reg_date}, #{ap_est_date}, #{ap_status})
 	</insert>
@@ -326,6 +326,17 @@
 	<!-- nfc 기록 조회 권순용 -->
 	<select id="getNfcLog" resultType="com.pj.erp.vo.HR.HR_nfc_log">
 		select * from hr_nfc_view
+	</select>
+	
+	<!-- 사원 직책 목록 조회 -->
+	<select id ="getPositions" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_VO">
+	<![CDATA[
+		select username, department_code, position_code 
+		from users u, appointment_tbl a
+		where ap_code like '%'||#{ap_code}||'%' 
+		and ap_name like '%'||#{ap_name}||'%' 		
+		and rank_code like '%'||#{rank_code}||'%'
+		]]>
 	</select>
 	
 </mapper>

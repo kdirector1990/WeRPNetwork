@@ -180,16 +180,6 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                             /*  if (data.answer == 'success') {
-	                                      alert(data.name + '님 환영합니다.');
-	                                      var map = new MapArray();
-	                                      postData('/News/index.do', map);
-	                              } else if (data.answer == 'fail') {
-	                                      alert('아이디와 비번이 일치하지 않습니다.');
-	                              } else if (data.answer == 'error') {
-	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                              } */
 	                              alert(data);
 	                              if(updatekey == 0){
 	                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
@@ -244,8 +234,8 @@
         		} else if(window.event.which == 40) {
                 	updatekey = 1;
                 	selectval = $("#enter" + vv).val();
-                	if($("#enter" + (vv+1)).attr("onchange") != "enterinsert(" + (vv+1) + ");"){
-                    	$("#enter" + (vv+1)).focus();
+                	if($("#enter" + (cc+1)).attr("onchange") != "enterinsert(" + (cc+1) + ");"){
+                    	$("#enter" + (cc+1)).focus();
                 	}
 					return false;
         		} else if(window.event.which == 13) {
@@ -253,13 +243,13 @@
             		var jsonData;
 	                 
 	              	// 자바스크립트 객체 생성
-	        		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
-	        		obj.SubjectCode = $("input[name=SubjectCode" + vv + "]").val();
-	        		obj.CardName = $("input[name=CardName" + vv + "]").val();
-	        		obj.CardType = $("select[name=CardType" + vv + "]").val();
-	        		obj.CardPurpose = $("input[name=CardPurpose" + vv + "]").val();
-	        		obj.Owner = $("input[name=Owner" + vv + "]").val();
-	        		obj.PayCode = $("input[name=PayCode" + vv + "]").val();
+	        		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
+	        		obj.SubjectCode = $("input[name=SubjectCode" + cc + "]").val();
+	        		obj.CardName = $("input[name=CardName" + cc + "]").val();
+	        		obj.CardType = $("select[name=CardType" + cc + "]").val();
+	        		obj.CardPurpose = $("input[name=CardPurpose" + cc + "]").val();
+	        		obj.Owner = $("input[name=Owner" + cc + "]").val();
+	        		obj.PayCode = $("input[name=PayCode" + cc + "]").val();
 	         		
 	         		// json 객체를 String 객체로 변환 -- 
 	         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -283,25 +273,25 @@
 	                               } else if (data.answer == 'error') {
 	                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
 	                               } */
-		           	       			 $("input[name=savingsCode" + cc + "]").val(data);
+		           	       			 $("input[name=CardCode" + cc + "]").val(data);
 	                               frontcursor = $(".chit-table-bordered-primary tbody #enter" + cc).attr("name");
 		           	       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
 		           	       			$(".chit-table-bordered-primary tbody").append('<tr>' +
-		           	       				'<td><input type="text" onfocus = "focuse(${cnt});" name = "CardCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" id = "first${cnt}" name = "CardName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><select class="form-control" onfocus = "focuse(${cnt});" name = "CardType${cnt}" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);">' +
+		           	       				'<td><input type="text" onfocus = "focuse(' + count + ');" name = "CardCode' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" id = "first' + count + '" name = "CardName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><select class="form-control" onfocus = "focuse(' + count + ');" name = "CardType' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);">' +
 		                                '<option value="0">== 선택 ==</option>' +
 		                                '<option value="1">체크카드</option>' +
 		                                '<option value="2">신용카드</option>' +
 		                           		'</select></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-		                           		'<td><input type="text" onfocus = "focuse(${cnt});" name = "CardPurpose${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "Owner${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
-		                                '<td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "PayCode${cnt}" class="form-control" onclick = "depositlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>' +
-		                                '<td><input type="text" onfocus = "focuse(${cnt});" name = "PayNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "AccCode' + count + '" class="form-control" onclick = "accountlist(' + count + ')" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "SubjectCode' + count + '" class="form-control" onclick = "subjectlist(' + count + ')" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "SubjectName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
+		                           		'<td><input type="text" onfocus = "focuse(' + count + ');" name = "CardPurpose' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "Owner' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		                                '<td><input type="text" id = "enter' + count + '" onfocus = "focuse(' + count + ');" name = "PayCode' + count + '" class="form-control" onclick = "depositlist(' + count + ')" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(' + count + ');"></td>' +
+		                                '<td><input type="text" onfocus = "focuse(' + count + ');" name = "PayNo' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 		           	                       '</tr>');
 		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
 		           	                 count = count + 1;
@@ -327,6 +317,14 @@
             	var popupY = Math.ceil((window.screen.height - 528)/2);
         		var url = "FT_account_list?key=" + $("*[name=AccCode" + accountcode + "]").val() + "&keyname=" + accountcode;
         		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
+        		
+        	}
+        	
+        	function depositlist(depositcode) {
+            	var popupX = Math.ceil((window.screen.width - 363)/2);
+            	var popupY = Math.ceil((window.screen.height - 528)/2);
+        		var url = "FT_depositsub_list?key=" + $("*[name=PayCode" + depositcode + "]").val() + "&keyname=" + depositcode;
+        		window.open(url, "deposit_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
         		
         	}
         	
@@ -387,8 +385,6 @@
 </head>
 
 <body>
-
-<<<<<<< HEAD
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -507,180 +503,7 @@
                         </div>
                     </div> <!-- end container-fluid -->
 
-                </div> <!-- end content -->
-                
-
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="#">About Us</a>
-                                    <a href="#">Help</a>
-                                    <a href="#">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
-
-            </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
-        </div>
-        <!-- END wrapper -->
-
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <hr class="mt-0">
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
-=======
-	<!-- Begin page -->
-	<div id="wrapper">
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-
-
-		<%@ include file="../sidebar.jsp"%>
-
-		<!-- ============================================================== -->
-		<!-- Start Page Content here -->
-		<!-- ============================================================== -->
-
-		<div class="content-page">
-			<div class="content">
-
-				<!-- Start Content-->
-				<div class="container-fluid">
-
-					<!-- start page title -->
-					<div class="row">
-						<div class="col-12">
-							<div class="page-title-box">
-								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
-										<li class="breadcrumb-item active">Datatables</li>
-									</ol>
-								</div>
-								<h4 class="page-title">카드관리</h4>
-							</div>
-						</div>
-					</div>
-					<!-- end page title -->
-
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body table-responsive">
-									<div class="table-responsive" style="margin: 15px 0px 15px">
-										<table
-											class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-											<col style="width: 8%;">
-											<col style="width: 10%;">
-											<col style="width: 7%">
-											<col style="width: 10%;">
-											<col style="width: 15%;">
-											<col style="width: 10%;">
-											<col style="width: 10%;">
-											<col style="width: 10%;">
-											<col style="width: 7%;">
-											<col style="width: 13%;">
-											<thead>
-												<tr>
-													<th>거래처코드</th>
-													<th>거래처명</th>
-													<th>계정코드</th>
-													<th>계정명</th>
-													<th>카드명</th>
-													<th>카드종류</th>
-													<th>사용목적</th>
-													<th>소유자</th>
-													<th>결제코드</th>
-													<th>결제계좌번호</th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<tr>
-													<td><input type="text" onfocus="focuse(this.name);"
-														id="first0" name="AccCode0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="AccName0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														readonly onclick="notfocus(this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="SubjectCode0" class="form-control" onclick=""
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="SubjectName0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														readonly onclick="notfocus(this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="CardName0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><select class="form-control"
-														onfocus="focuse(this.name);" name="CardType0"
-														style="width: 100%; -webkit-appearance: none; border: 0px;"
-														onkeydown="enter(this.tagName,this.name);">
-															<option value="">== 선택 ==</option>
-															<option value="일반">일반카드</option>
-															<option value="체크">체크카드</option>
-													</select></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="CardPurpose0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="Owner0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="PayCode0" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" id="enter0"
-														onfocus="focuse(this.name);" name="PayNo0"
-														class="form-control" data-toggle="input-mask"
-														style="width: 100%; border: 0px;"
-														onkeydown="enterinsert(0);"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end container-fluid -->
-
-			</div>
-			<!-- end content -->
-
-
+                </div> 
 			<!-- end content -->
 
 			<%@ include file="../footer.jsp"%>

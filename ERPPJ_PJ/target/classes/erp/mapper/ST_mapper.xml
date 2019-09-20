@@ -249,6 +249,11 @@
 		select customer_code, license_number, customer_name, branch_name, customer_credit, deal_state from customer_list_tbl where customer_name like '%'||#{customer_name}||'%'
 	</select>
 	
+	<!-- 매출 목록 -->
+	<select id="getTotalSales" resultType="com.pj.erp.vo.ST.ST_searchCustomerCode" parameterType="java.util.Map">
+		select * from st_salesstatus_cus_view where customer_code like '%'||#{customer_code}||'%'
+	</select>
+	
 	<!-- 사원 검색 -->
 	<select id="selectName" resultType="int" parameterType="String">
 		select COUNT(*) from users where username like '%'||#{username}||'%'
@@ -258,4 +263,5 @@
 	<select id="getUsernameList" resultType="com.pj.erp.vo.ST.UserName" parameterType="String">
 		select username, e_name from users where username like '%'||#{username}||'%'
 	</select>
+	
  </mapper>

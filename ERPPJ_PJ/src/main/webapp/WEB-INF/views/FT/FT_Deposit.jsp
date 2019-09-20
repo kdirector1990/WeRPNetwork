@@ -2,25 +2,17 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-    <head>
-        <%@ include file="../setting.jsp" %>
-        <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
-		<script src="/erp/resources/assets/css/js/request.js"></script>
-        <script type="text/javascript">
-=======
 <head>
-<%@ include file="../setting.jsp"%>
-<script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script>
-<script src="/pj/resources/assets/css/js/request.js"></script>
-<script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+    <%@ include file="../setting.jsp" %>
+    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script> 
+	<script src="/erp/resources/assets/css/js/request.js"></script>
+    <script type="text/javascript">
         	var count = 1/* ${listsize} */;
         	var subcount = 1;
         	var frontcursor;
         	var updatekey = 0;
         	var selectval;
-        	var focusval;
+        	var focusval = "";
         	function notfocus(dd){
     			var nowme = $("*[name=" + dd + "]").parent();
         		for(var i = 0; i < $("*[name=" + dd + "]").parent().nextAll().children().length; i++){
@@ -364,7 +356,6 @@
 
 <body>
 
-<<<<<<< HEAD
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -434,26 +425,26 @@
 		                                            <c:set var="cnt" value="0"/>
 		                                        	<c:forEach var="depo" items="${deposit}">
 		                                        		<tr>																			
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "depositCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.depositCode}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first${cnt}" name = "depositName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.depositName}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accCode}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.accName}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.subjectCode}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.subjectName}"></td>
-			                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accountNo}"></td>
-			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(this.name);" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accountHolder}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "depositCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.depositCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" id = "first${cnt}" name = "depositName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.depositName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.accName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.subjectCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${depo.subjectName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accountNo}"></td>
+			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.accountHolder}"></td>
 			                                            </tr>
 			                                            <c:set var="cnt" value="${cnt+1}"/>
 		                                        	</c:forEach>
 		                                            <tr>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "depositCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" id = "first${cnt}" name = "depositName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(this.name);" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(this.name);" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "depositCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" id = "first${cnt}" name = "depositName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccountNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "AccountHolder${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
@@ -466,226 +457,6 @@
 
                 </div> <!-- end content -->
                 
-
-                <!-- Footer Start -->
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                2016 - 2019 &copy; Codefox theme by <a href="">Coderthemes</a>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-right footer-links d-none d-sm-block">
-                                    <a href="#">About Us</a>
-                                    <a href="#">Help</a>
-                                    <a href="#">Contact Us</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- end Footer -->
-
-            </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
-
-        </div>
-        <!-- END wrapper -->
-
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div class="rightbar-title">
-                <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5 class="m-0 text-white">Settings</h5>
-            </div>
-            <div class="slimscroll-menu">
-                <hr class="mt-0">
-                <h5 class="pl-3">Basic Settings</h5>
-                <hr class="mb-0" />
-=======
-	<!-- Begin page -->
-	<div id="wrapper">
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-
-
-		<%@ include file="../sidebar.jsp"%>
-
-		<!-- ============================================================== -->
-		<!-- Start Page Content here -->
-		<!-- ============================================================== -->
-
-		<div class="content-page">
-			<div class="content">
-
-				<!-- Start Content-->
-				<div class="container-fluid">
-
-					<!-- start page title -->
-					<div class="row">
-						<div class="col-12">
-							<div class="page-title-box">
-								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
-										<li class="breadcrumb-item active">Datatables</li>
-									</ol>
-								</div>
-								<h4 class="page-title">예금관리</h4>
-							</div>
-						</div>
-					</div>
-					<!-- end page title -->
-
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body table-responsive">
-									<div class="table-responsive" style="margin: 15px 0px 15px">
-										<table
-											class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-											<col style="width: 10%;">
-											<col style="width: 10%;">
-											<col style="width: 7%;">
-											<col style="width: 13%;">
-											<col style="width: 10%">
-											<col style="width: 20%;">
-											<col style="width: 20%;">
-											<col style="width: 10%;">
-											<col style="width: 10%;">
-											<thead>
-												<tr>
-													<th>예금코드</th>
-													<th>예금명</th>
-													<th>거래처코드</th>
-													<th>거래처명</th>
-													<th>계정코드</th>
-													<th>계정명</th>
-													<th>계좌번호</th>
-													<th>예금주</th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<c:set var="cnt" value="0" />
-												<c:forEach var="depo" items="${deposit}">
-													<tr>
-														<td><input type="text" onfocus="focuse(this.name);"
-															name="depositCode${cnt}" class="form-control"
-															data-toggle="input-mask"
-															style="width: 100%; border: 0px;" readonly
-															onclick="notfocus(this.name);"
-															value="${depo.depositCode}"></td>
-														<td><input type="text" onfocus="focuse(this.name);"
-															id="first${cnt}" name="depositName${cnt}"
-															class="form-control" data-toggle="input-mask"
-															style="width: 100%; border: 0px;"
-															onkeydown="enter(this.tagName, this.name);"
-															value="${depo.depositName}"></td>
-														<td><input type="text" onfocus="focuse(this.name);"
-															name="AccCode${cnt}" class="form-control"
-															onclick="accountlist(${cnt})" data-toggle="input-mask"
-															style="width: 100%; border: 0px;"
-															onkeydown="enter(this.tagName, this.name);"
-															value="${depo.accCode}"></td>
-														<td><input type="text" onfocus="focuse(this.name);"
-															name="AccName${cnt}" class="form-control"
-															data-toggle="input-mask"
-															style="width: 100%; border: 0px;" readonly
-															onclick="notfocus(this.name);" value="${depo.accName}"></td>
-														<td><input type="text" onfocus="focuse(this.name);"
-															name="SubjectCode${cnt}" class="form-control"
-															onclick="subjectlist(${cnt})" data-toggle="input-mask"
-															style="width: 100%; border: 0px;"
-															onkeydown="enter(this.tagName, this.name);"
-															value="${depo.subjectCode}"></td>
-														<td><input type="text" onfocus="focuse(this.name);"
-															name="SubjectName${cnt}" class="form-control"
-															data-toggle="input-mask"
-															style="width: 100%; border: 0px;" readonly
-															onclick="notfocus(this.name);"
-															value="${depo.subjectName}"></td>
-														<td><input type="text" onfocus="focuse(this.name);"
-															name="AccountNo${cnt}" class="form-control"
-															data-toggle="input-mask"
-															style="width: 100%; border: 0px;"
-															onkeydown="enter(this.tagName, this.name);"
-															value="${depo.accountNo}"></td>
-														<td><input type="text" id="enter${cnt}"
-															onfocus="focuse(this.name);" name="AccountHolder${cnt}"
-															class="form-control" data-toggle="input-mask"
-															style="width: 100%; border: 0px;"
-															onkeydown="enter(this.tagName, this.name);"
-															value="${depo.accountHolder}"></td>
-													</tr>
-													<c:set var="cnt" value="${cnt+1}" />
-												</c:forEach>
-												<tr>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="depositCode${cnt}" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														readonly onclick="notfocus(this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														id="first${cnt}" name="depositName${cnt}"
-														class="form-control" data-toggle="input-mask"
-														style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="AccCode${cnt}" class="form-control"
-														onclick="accountlist(${cnt})" data-toggle="input-mask"
-														style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="AccName${cnt}" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														readonly onclick="notfocus(this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="SubjectCode${cnt}" class="form-control"
-														onclick="subjectlist(${cnt})" data-toggle="input-mask"
-														style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="SubjectName${cnt}" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														readonly onclick="notfocus(this.name);"></td>
-													<td><input type="text" onfocus="focuse(this.name);"
-														name="AccountNo${cnt}" class="form-control"
-														data-toggle="input-mask" style="width: 100%; border: 0px;"
-														onkeydown="enter(this.tagName, this.name);"></td>
-													<td><input type="text" id="enter${cnt}"
-														onfocus="focuse(this.name);" name="AccountHolder${cnt}"
-														class="form-control" data-toggle="input-mask"
-														style="width: 100%; border: 0px;"
-														onkeydown="enterinsert(${cnt});"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end container-fluid -->
-
-			</div>
-			<!-- end content -->
-
-
-<<<<<<< HEAD
-        <!-- Vendor js -->
-        <%@ include file="../rightbar.jsp" %>
-   		<%@ include file="../setting2.jsp" %>
-        
-    </body>
-=======
 			<%@ include file="../footer.jsp"%>
 		</div>
 	</div>
@@ -695,5 +466,4 @@
 	<%@ include file="../setting2.jsp"%>
 
 </body>
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 </html>

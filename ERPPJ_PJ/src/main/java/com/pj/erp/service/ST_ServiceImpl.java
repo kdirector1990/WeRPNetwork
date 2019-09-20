@@ -2,7 +2,6 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +13,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ST_DAO;
-import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -675,15 +676,37 @@ public class ST_ServiceImpl implements ST_Service {
 	}
 	
 	
-	// tables-datatable (거래 명세서) 목록
 	@Override
 	public void transaction(HttpServletRequest req, Model model) {
 
 	}
 
+	//매출현황
 	@Override
-	public void totalSales(HttpServletRequest req, Model model) {
+	public List<ST_searchCustomerCode> totalSales(HttpServletRequest req, Model model) {
+		System.out.println("test");
+		String department_code = req.getParameter("department_code");
+		String username = req.getParameter("username");
+		String customer_code = req.getParameter("customer_code");
+		String product_name = req.getParameter("product_name");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_code", department_code);
+		map.put("username", username);
+		map.put("customer_code", customer_code);
+		map.put("product_name", product_name);
+		
+		List<ST_searchCustomerCode> vo = dao.getTotalSales(map);
+		
+		return vo;
+	}
 
+	//매출 - 품명
+	@Override
+	public List<ST_searchProductCode> searchProductCode(HttpServletRequest req, Model model) {
+		String product_name = req.getParameter("product_name");
+		//List<ST_searchProductCode> vo = dao.getProCode(product_name);
+		return null;
 	}
 
 }
