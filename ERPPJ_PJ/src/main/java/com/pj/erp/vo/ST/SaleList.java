@@ -23,6 +23,7 @@ public class SaleList {
 	private String product_name; // 제품명
 	private String release_name;	// 출고
 	private String e_name;
+	private String deal_state;	
 	
 	// 생성자
 	public SaleList() {}
@@ -179,6 +180,16 @@ public class SaleList {
 	public void setE_name(String e_name) {
 		this.e_name = e_name;
 	}
+
+	public String getDeal_state() {
+		return deal_state;
+	}
+
+	public void setDeal_state(String deal_state) {
+		this.deal_state = deal_state;
+	}
+	
+	
 	
 	
 

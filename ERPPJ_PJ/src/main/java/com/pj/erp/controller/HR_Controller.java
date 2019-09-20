@@ -14,10 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.CT_Service;
@@ -29,6 +26,7 @@ import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Controller
 public class HR_Controller {
@@ -428,6 +426,24 @@ public class HR_Controller {
 		List<HR_Time_VO> vo = service.selectCountMonth(req, model);
 		
 		return vo;
+	}
+	
+	// nfc 기록 메뉴(임시)
+	@RequestMapping("HR_nfc")
+	public String HR_nfc(HttpServletRequest req, Model model){
+		
+		return "HR/HR_nfc_log"; 	
+	}
+	
+	// nfc 기록 조회(임시)
+	@RequestMapping("HR_nfc_result")
+	@ResponseBody
+	public List<HR_nfc_log> HR_nfc_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_nfc_result");
+		
+		List<HR_nfc_log> nfclog = service.getNfcLog(req, model); 
+		
+		return nfclog;
 	}
 	
 }

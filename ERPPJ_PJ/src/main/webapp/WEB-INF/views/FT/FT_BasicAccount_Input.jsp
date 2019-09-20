@@ -45,6 +45,8 @@
     			$("#code" + cc).css("background-color", "#D6EAF8");
     			$("#name" + cc).parent().css("background-color", "#D6EAF8");
     			$("#name" + cc).css("background-color", "#D6EAF8");
+    			$("#number" + cc).parent().css("background-color", "#D6EAF8");
+    			$("#number" + cc).css("background-color", "#D6EAF8");
     			if(!$("#code" + cc).val()){
     				focusval = "";
                    	$("#update").css("display", "none");
@@ -61,9 +63,10 @@
                         alert(data);
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
+	                   	$("input[name=number]").val(data.license_number);
 	                   	$("input[name=customerName]").val(data.customer_name);
 	                   	$("input[name=bsName]").val(data.bs_name);
-	                   	$("input[name=bsNumber]").val(data.license_number);
+	                   	$("input[name=bsNumber]").val(data.bs_number);
 	                   	$("input[name=bsMaster]").val(data.bs_master);
 	                   	$("input[name=bsCondition]").val(data.bs_condition);
 	                   	$("input[name=bsLine]").val(data.bs_line);
@@ -84,6 +87,12 @@
         	function update() {
         		var obj = new Object();
         		var jsonData;
+        		if(!$("input[name=number]").val()) {
+        			alert("사업자번호 입력해주시와요!");
+        			return false;
+        		}
+        		obj.licenseNumber = $("input[name=number]").val();
+        		obj.customerCode = $("#code" + focusval).val();
         		obj.customerName = $("input[name=customerName]").val();
         		obj.bsName = $("input[name=bsName]").val();
         		obj.bsNumber = $("input[name=bsNumber]").val();
@@ -96,7 +105,7 @@
                	obj.state = $("select[name=state]").val();
                	obj.bsAddress = $("input[name=bsAddress]").val();
                	obj.bsAddress2 = $("input[name=bsAddress2]").val();
-               	obj.checkbox = "wow.png";
+               	obj.scanfile = "wow.png";
                	
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -110,8 +119,36 @@
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
-                    	   
                               alert(data);
+                              $("#name" + focusval).val($("input[name=customerName]").val());
+                              $("#number" + focusval).val($("input[name=number]").val());
+                       },
+                       error : function(e) {
+                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                       }
+               });
+        	}
+        	
+        	function deleted() {
+        		var obj = new Object();
+        		var jsonData;
+        		obj.licenseNumber = $("#number" + focusval).val();
+        		obj.customerCode = $("#code" + focusval).val();
+               	
+        		// json 객체를 String 객체로 변환 -- 
+        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
+        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
+        		jsonData = JSON.stringify(obj);
+        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
+        		
+        		$.ajax({
+                       type : "POST",
+                       url : "/erp/FT_AccountDelete?${_csrf.parameterName }=${_csrf.token }",
+                       data : jsonData,
+                       contentType : 'application/json;charset=UTF-8',
+                       success : function(data) {
+                              alert(data);
+                              location.reload();
                        },
                        error : function(e) {
                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -175,6 +212,53 @@
 						<div class="col-sm-12">
 							<div class="accordion" id="accordion-test">
 								<div class="card mb-2">
+<<<<<<< HEAD
+	                                <div class="card-header bg-primary">
+	                                    <h4 class="card-title font-14 mb-0">
+	                                        <a href="#" class="collapsed text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+	                                           	일반 거래처 목록
+	                                        </a>
+	                                    </h4>
+	                                </div>
+	                                <div id="collapseOne" class="collapse" data-parent="#accordion-test">
+	                                    <div class="card-body">
+	                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
+                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                                <col>
+                                                <col>
+                                                <thead>
+                                                    <tr>
+		                                                <th>코드</th>
+		                                                <th>거래처명</th>
+		                                                <th>사업자등록번호</th>
+		                                            </tr>
+		                                        </thead>
+		    
+		                                        <tbody>
+		                                            <c:set var="count" value="0"/>
+				                                  	<c:if test="${account != null}">
+				                                   		<c:forEach var = "sub" items="${account}">
+				                                    		<tr>
+				                                    			<td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_code}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_name}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<td><input type="text" id = "number${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.license_number}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<c:set var="count" value="${count+1}"/>
+				                                    		</tr>
+				                                   		</c:forEach>
+				                                  	</c:if>
+		                                            <tr>
+		                                                <td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    	<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    	<td><input type="text" id = "number${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+		                                            </tr>
+		                                        </tbody>
+                                            </table>
+                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+                            </div>
+=======
 									<div class="card-header bg-primary">
 										<h4 class="card-title font-14 mb-0">
 											<a href="#" class="collapsed text-white"
@@ -234,6 +318,7 @@
 									</div>
 								</div>
 							</div>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 							<div class="card">
 								<div class="card-body">
 									<!-- 인적정보 -->
@@ -268,8 +353,12 @@
 															<label class="col-lg-4 col-form-label" for="simpleinput">사업자등록번호<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
+<<<<<<< HEAD
+																<input type="text" class="form-control" name="number" placeholder = "사업자등록번호" style = "background-color:#FCF3CF;" required="required">
+=======
 																<input type="text" class="form-control" name="bsNumber"
 																	placeholder="사업자등록번호">
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 															</div>
 														</div>
 
@@ -342,6 +431,22 @@
 																	<option value="5">카드사</option>
 																</select>
 															</div>
+<<<<<<< HEAD
+															
+															<div class="form-group row">
+																<label class="col-lg-4 col-form-label" for="simpleinput">법인등록번호<span class="text-danger">*</span></label>
+																<div class="col-lg-8">
+																	<input type="text" class="form-control" name="bsNumber" placeholder = "법인등록번호">
+																</div>
+															</div>
+															
+															<div class="form-group row">	
+																<label class="col-lg-4 col-form-label"
+																	for="simpleinput">사업장소재지<span class="text-danger">*</span></label>
+																<div class="col-lg-8">
+																	<input type="text" class="form-control" name="bsAddress" placeholder = "사업장소재지">
+																</div>
+=======
 														</div>
 
 														<div class="form-group row">
@@ -350,6 +455,7 @@
 															<div class="col-lg-8">
 																<input type="text" class="form-control" name="bsAddress"
 																	placeholder="사업장소재지">
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 															</div>
 														</div>
 
@@ -372,6 +478,16 @@
 													</div>
 												</div>
 											</div>
+<<<<<<< HEAD
+										<div id = "submit" class="form-group text-right mb-0">
+                                            <button class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                                Submit
+                                            </button>
+                                            <button type="reset" class="btn btn-secondary waves-effect">
+                                                Cancel
+                                            </button>
+                                        </div>
+=======
 										</div>
 										<div class="form-group text-right mb-0">
 											<button id="update"
@@ -383,7 +499,16 @@
 											<button type="reset" class="btn btn-secondary waves-effect">
 												Cancel</button>
 										</div>
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 									</form>
+									<div id = "update" class="form-group text-right mb-0" style = "display:none;">
+										<button class="btn btn-primary waves-effect waves-light mr-1" onclick="update();">
+	                                        Update
+	                                    </button>
+	                                    <button class="btn btn-primary waves-effect waves-light mr-1" onclick="deleted();">
+	                                        Delete
+	                                    </button>
+                                    </div>
 								</div>
 							</div>
 							<!-- end container-fluid -->

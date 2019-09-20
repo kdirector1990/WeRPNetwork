@@ -18,6 +18,7 @@ import com.pj.erp.vo.HR_SalaryVO;
 import com.pj.erp.vo.HR_Time_VO;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Repository
 public class HR_DAOImpl implements HR_DAO{
@@ -248,6 +249,12 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int insertAp(HR_ApVO ap) {
 		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertAp", ap);
+	}
+	
+	@Override 
+	public List<HR_nfc_log> getNfcLog() {
+		 
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getNfcLog");
 	}
 
 
