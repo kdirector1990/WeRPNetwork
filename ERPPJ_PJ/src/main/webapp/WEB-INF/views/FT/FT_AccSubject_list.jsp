@@ -16,70 +16,68 @@
 		//opener : window 객체의 open() 메소드로 열린 새창(=중복확인창)에서, 열어준 부모창(=회원가입창)에 접근할 때 사용
 		//self.close() : 메시지 없이 현재 창을 닫을 때 사용
 		//hiddenId : 중복확인 버튼 클릭 여부 체크(0: 클릭안함, 1: 클릭함)
-	    var acode;
-		var aname;
-	
-		$(function(){
-			$("#searchid").val("${key}");
-			
-			$.ajax({
+    	var scode;
+    	var sname;
+    
+    	$(function(){
+    		$("#searchid").val("${key}");
+    		
+    		$.ajax({
                 type : "GET",
-                url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=${key}",
+                url : "/erp/FT_AccSubjectSelect?${_csrf.parameterName }=${_csrf.token }&srhval=${key}",
                 success : function(data) {
-	           	   if(data != null){
-		                   $("tbody").html("");
-							for(var i = 0; i < data.length; i++){
-								$("tbody").append('<tr>' +
-			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
-		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
-		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
-			              		'</tr>');
-							}
-	           	   }
+           	   if(data != null){
+	                   $("tbody").html("");
+						for(i = 0; i < data.length; i++){
+							$("tbody").append('<tr>' +
+              				'<td id = "code' + i + '" onclick="focuse(' + i + ');" style = "width: 80px;" ondblclick="setvalue();">' + data[i].accounts_code + '</td>' +
+              				'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 200px - 16px );">' + data[i].accounts_name + '</td>' +
+              			'</tr>');
+						}
+           	   }
                 },
                 error : function(e) {
                 		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
                 }
  			});
-		});
-	
-		function focuse(cc) {
-			$("tbody *").css("background-color", "");
-			$("#code" + cc).parent().children().css("background-color", "#D6EAF8");
-			$("#name" + cc).parent().children().css("background-color", "#D6EAF8");
-			$("#licenseNo" + cc).parent().children().css("background-color", "#D6EAF8");
-			acode = $("#code" + cc).html();
-			aname = $("#name" + cc).html();
-		}
+    	});
     
-		function setvalue(val){
-			$("input[name=AccCode${keyname}]", opener.document).val(acode);
-    		$("input[name=AccName${keyname}]", opener.document).val(aname);
-			self.close();
+    	function focuse(cc) {
+    		$("tbody *").css("background-color", "");
+   			$("#code" + cc).parent().children().css("background-color", "#D6EAF8");
+   			$("#name" + cc).parent().children().css("background-color", "#D6EAF8");
+   			scode = $("#code" + cc).html();
+   			sname = $("#name" + cc).html();
+    	}
+    	
+	    function setvalue(val){
+			$("input[name=SubjectCode${keyname}]", opener.document).val(scode);
+    		$("input[name=SubjectName${keyname}]", opener.document).val(sname);
+    		
+   			self.close();
 		}
 	    
 	    function search(val){
 	    	var obj = new Object();
-			var jsonData;
-	   		$.ajax({
-	                  type : "GET",
-	                  url : "/erp/FT_AccountSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + val,
-	                  success : function(data) {
+    		var jsonData;
+       		$.ajax({
+                      type : "GET",
+                      url : "/erp/FT_AccSubjectSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + val,
+                      success : function(data) {
 	             	   if(data != null){
-		               		$("tbody").html("");
+		                   $("tbody").html("");
 							for(i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
-                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
-                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
-	                		'</tr>');
+                    				'<td id = "code' + i + '" onclick="focuse(' + i + ');" style = "width: 80px;" ondblclick="setvalue();">' + data[i].accounts_code + '</td>' +
+                    				'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 200px - 16px );">' + data[i].accounts_name + '</td>' +
+                    			'</tr>');
 							}
 	             	   }
-	                  },
-	                  error : function(e) {
-	                  		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
-	                  }
-	   		});
+                      },
+                      error : function(e) {
+                      		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
+                      }
+       		});
 		}
     </script>
     </head>
@@ -97,11 +95,12 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box" style = "text-align:center;">
-								<h4><b>거래처목록</b></h4>
+								<h4><b>중계정과목목록</b></h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
+                
                 	<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
@@ -115,39 +114,35 @@
    									</div>
 								</div>
 								<div class="card-body" style = "padding-bottom:0px;">
-                           			<table style = "width: 280px" id="datatable" class="table table-bordered dt-responsive nowrap subtables">
+                           			<table  id="datatable" class="table table-bordered dt-responsive nowrap subtables">
 	                                   <colgroup>
-	                            			<col style = "width:60px;">
-	                            			<col style = "width:90px;">
-	                            			<col style = "width:130px;">
+	                            			<col style = "width:80px;">
+	                            			<col style = "width:200px;">
 	                                   </colgroup>
 	                                   <thead>
 	                                        <tr class="table-info">
-	                                            <th>코드</th>
-	                                            <th>거래처명</th>
-	                                            <th>사업자번호</th>
+	                                        	<th>코드</th>
+	                                        	<th>계정과목명</th>
 	                                        </tr>
 	                              		</thead>
-	                            		<tbody>
+	                            		<tbody style="overflow:auto;">
 	                                  		<c:set var="count" value="0"/>
-	                                  		<c:if test="${account != null}">
-		                                   		<c:forEach var = "acc" items="${account}">
-		                                       		<tr>
-		                                       			<td id = "code${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">${acc.customer_code}</td>
-		                                       			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">${acc.customer_name}</td>
-		                                       			<td id = "licenseNo${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">${acc.license_number}</td>
-		                                       			<c:set var="count" value="${count+1}"/>
-		                                       		</tr>
-	                                       		</c:forEach>
+	                                  		<c:if test="${subject != null}">
+	                                   		<c:forEach var = "sub" items="${subject}">
+	                                    		<tr>
+	                                    			<td id = "code${count}" onclick="focuse(${count});" style = "width: 80px;" ondblclick="setvalue();">${sub.accounts_code}</td>
+	                                    			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 200px - 16px );">${sub.accounts_name}</td>
+	                                    			<c:set var="count" value="${count+1}"/>
+	                                    		</tr>
+	                                   		</c:forEach>
 	                                  		</c:if>
-	                                  		<c:if test="${account == null}">
+	                                  		<c:if test="${subject == null}">
 		                                		<c:forEach var = "sub" begin="1" end="100">
 		                                    		<tr>
-		                                       			<td id = "code${count}" ondblclick="setvalue(${count})" style = "width:60px; font-size: .8em;">${sub}</td>
-		                                       			<td id = "name${count}" ondblclick="setvalue(${count})" style = "width:90px; font-size: .8em;">${sub}</td>
-		                                       			<td id = "licenseNo${count}" ondblclick="setvalue(${count})" style = "width: calc( 130px - 16px ); font-size: .8em;">${sub}</td>
-		                                       			<c:set var="count" value="${count+1}"/>
-		                                       		</tr>
+		                                    			<td id = "code${count}" ondblclick="setvalue(this)" style = "width:80px;">${sub}</td>
+		                                    			<td id = "name${count}" ondblclick="setvalue(this)" style = "width: calc( 200px - 16px );">${sub}</td>
+		                                    			<c:set var="count" value="${count+1}"/>
+		                                    		</tr>
 		                                   		</c:forEach>
 		                               		</c:if>
 	                              		</tbody>
