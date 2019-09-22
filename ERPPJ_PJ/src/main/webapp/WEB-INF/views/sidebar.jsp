@@ -1,6 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="setting.jsp" %>
+    <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	
+	function comeWork(){
+		var param = $("#actionWorks").serializeArray();
+		$.ajax({
+			url : '/erp/HR_Start_Work_Sidebar',
+			type : 'POST',
+			data : param,
+			dataTpye : 'json',
+			success : function(insertCnt) {
+				if (insertCnt == 1) {
+					alert("사원출근을 기록하였습니다.");
+				} else if (insertCnt == 0) {
+					alert("이미 출근을 기록한 사원입니다.")
+				}
+			},
+			error : function() {
+				alert("전산 오류로 인하여 사원의 출근 기록을 실패하였습니다.");
+			}
+		});
+	}
+	
+	function leaveWork(){
+		var param = $("#actionWorks").serializeArray();
+		$.ajax({
+			url : '/erp/HR_End_Work_Sidebar',
+			type : 'POST',
+			data : param,
+			dataTpye : 'json',
+			success : function(updateCnt) {
+				if (updateCnt == 1) {
+					alert("사원의 퇴근을 기록하였습니다.");
+				} else if (updateCnt == 0) {
+					alert("이미 퇴근을 기록한 사원입니다.");
+				}
+			},
+			error : function() {
+				alert("전산 오류로 인하여 사원의 퇴근 기록에 실패하였습니다.");
+			}
+		});
+	}
+	
+</script>
 
 <!-- Topbar Start -->
             <div class="navbar-custom">
@@ -133,19 +177,24 @@
                                 <h6 class="text-overflow m-0">Welcome ! ${name}</h6>
                             </div>
                              <!-- item-->
+                             
+                            <form id="actionWorks">
+                            <input type="hidden" name = "username" value="${username}">
+                            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                             <sec:authorize access="isAuthenticated()">
-                            	
-                            <a href="#" class="dropdown-item notify-item">
+                            
+                            <a href="#" class="dropdown-item notify-item" onclick="comeWork()">
                                  <h6 class="text-overflow m-0">출근</h6>
                             </a>
                             </sec:authorize>
                              <!-- item-->
                             <sec:authorize access="isAuthenticated()">
                             	
-                            <a href="#" class="dropdown-item notify-item">
+                            <a href="#" class="dropdown-item notify-item" onclick="leaveWork()">
                                  <h6 class="text-overflow m-0">퇴근</h6>
                             </a>
                             </sec:authorize>
+                            </form>
                             <!-- item-->
                             <sec:authorize access="isAuthenticated()">
                             	

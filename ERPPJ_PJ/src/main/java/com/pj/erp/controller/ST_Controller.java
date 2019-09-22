@@ -22,7 +22,9 @@ import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -373,21 +375,42 @@ public class ST_Controller {
 		return "ST/ST_salesTotal";
 	}
 	
-	//매출 고객  검색목록
-	@RequestMapping("ST_salesTotal_result")
+	//매출 고객 검색목록
+	@RequestMapping("ST_searchCustomerCode_result")
 	@ResponseBody
-	public List<ST_searchCustomerCode> ST_salesTotal_result(HttpServletRequest req, Model model) {
-		logger.info("log => ST_salesTotal_result");
-		List<ST_searchCustomerCode> vo = service.totalSales(req, model);
+	public List<ST_searchCustomerCode> ST_searchCustomerCode_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomerCode_result");
+		List<ST_searchCustomerCode> vo = service.searchCustomerCode(req, model);
 		
 		return vo;
 	}
 	
 	//매출 - 품명 검색목록 
 	@RequestMapping("ST_searchProductName_result")
+	@ResponseBody
 	public List<ST_searchProductCode> ST_searchProductName_result(HttpServletRequest req, Model model) {
 		logger.info("log => ST_searchProductName_result");
 		List<ST_searchProductCode> vo = service.searchProductCode(req, model);
+		
+		return vo;
+	}
+	
+	//매출 - 담당자 검색목록 
+	@RequestMapping("ST_searchUsernameCode_result")
+	@ResponseBody
+	public List<ST_searchUsername> ST_searchUsernameCode_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchUsernameCode_result");
+		List<ST_searchUsername> vo = service.searchUsernameCode(req, model);
+		
+		return vo;
+	}
+	
+	//매출 - 부서 검색목록 
+	@RequestMapping("ST_searchDepartmentCode_result")
+	@ResponseBody
+	public List<ST_searchDepartmentCode> ST_searchDepartmentCode_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentCode_result");
+		List<ST_searchDepartmentCode> vo = service.searchDepartmentCode(req, model);
 		
 		return vo;
 	}

@@ -41,8 +41,6 @@ public class HR_ServiceImpl implements HR_Service{
 	@Autowired
 	HR_DAO dao;
 	
-	
-	
 	// 인사정보등록
 	@Override
 	public void inputFoundation(HttpServletRequest req, Model model) {			
@@ -536,11 +534,6 @@ public class HR_ServiceImpl implements HR_Service{
 		return list;
 	}
 
-
-
-	
-	
-
 	//근태(근무일별 목록 가져오기)
 	@Override
 	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model) {
@@ -610,14 +603,16 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_RecordVO vo = new HR_RecordVO();		
 		
 		String username = req.getParameter("username");
+		String position_code = req.getParameter("position_code");
 		String position_code_after = req.getParameter("position_code_after");
 		String position_record_code = dao.getPositionRecord();
 		Date record_date = (Date.valueOf(req.getParameter("record_date")));
 		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
-		
+		String ap_code = "";
 		
 		
 		vo.setUsername(username);
+		vo.setPosition_code(position_code);
 		vo.setPosition_code_after(position_code_after);
 		vo.setPosition_record_code(position_record_code);
 		vo.setRecord_date(record_date);		
@@ -738,6 +733,59 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_VO> list = dao.getPositions(map); 
 		return list;
 					
+	}
+
+	//부서조회
+	@Override
+	public List<HR_VO> getDepartment(HttpServletRequest req, Model model){
+		
+		String department_name = req.getParameter("department_name");
+		String department_code = req.getParameter("department_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_name", department_name);
+		map.put("department_code", department_code);
+		
+		List<HR_VO> list = dao.getDepartmentCodeName(map);
+		
+		return list;
+	}
+	
+	//사이드바 출근
+	@Override
+	public int sidebarWorkStart(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int insertCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		int users = dao.selectWork(map);		
+		if(users == 0) {
+			System.out.println("작동2");
+			insertCnt = dao.StartWork(username);
+		}
+		
+		return insertCnt;
+	}
+
+
+	//사이드바 퇴근
+	@Override
+	public int sidebarEndWork(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		int users = dao.selectEndWork(map);
+		
+		if(users == 0) {
+			updateCnt = dao.EndWork(username);
+		}
+		
+		return updateCnt;
 	}
 
 }

@@ -27,6 +27,7 @@ import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 
 @Controller
 public class HR_Controller {
@@ -349,6 +350,7 @@ public class HR_Controller {
 		return "index"; 
 	}
 	
+	//부서조회
 	@RequestMapping("HR_searchDepartment")
 	public String searchDeapartment(HttpServletRequest req, Model model) {
 		logger.info("log => searchDepartment");
@@ -356,13 +358,15 @@ public class HR_Controller {
 		return "HR/HR_searchDepartment";
 	}
 	
+	//부서조회 처리
 	@RequestMapping("HR_searchDepartment_result")
-	public String searchDeapartment_result(HttpServletRequest req, Model model) {
-		logger.info("log => searchDepartment_result");
+	@ResponseBody
+	public List<HR_VO> HR_searchDepartment_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_searchDepartment_result");
+		List<HR_VO> list = service.getDepartment(req, model);
 		
-		return "HR/HR_searchDepartment_result";
+		return list;
 	}
-	
 	/*
 	 * @RequestMapping("HR_InputHRex")
 	public String HR_InputHRex(HttpServletRequest req, Model model) {
@@ -453,6 +457,28 @@ public class HR_Controller {
 		logger.info("log => HR_position_record_result");
 		List<HR_VO> list = service.getPositions(map, req, model);
 		return list;
+	}
+	
+	// 사이드바 출근
+	@RequestMapping("HR_Start_Work_Sidebar")
+	@ResponseBody
+	public int HR_Start_Work_Sidebar(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Start_Work_Sidebar");
+		
+		int insertCnt = service.sidebarWorkStart(req, model);
+		
+		return insertCnt;
+	}
+	
+	//사이드바 퇴근
+	@RequestMapping("HR_End_Work_Sidebar")
+	@ResponseBody
+	public int HR_End_Work_Sidebar(HttpServletRequest req, Model model) {
+		logger.info("log => HR_End_Work_Sidebar");
+		
+		int updateCnt = service.sidebarEndWork(req, model);
+		
+		return updateCnt;
 	}
 	
 }

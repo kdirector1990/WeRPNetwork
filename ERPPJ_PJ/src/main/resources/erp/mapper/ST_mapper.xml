@@ -271,9 +271,24 @@
 		select customer_code, license_number, customer_name, branch_name, customer_credit, deal_state from customer_list_tbl where customer_name like '%'||#{customer_name}||'%'
 	</select>
 	
-	<!-- 매출 목록 -->
+	<!-- 매출 고객 목록 -->
 	<select id="getTotalSales" resultType="com.pj.erp.vo.ST.ST_searchCustomerCode" parameterType="java.util.Map">
 		select * from st_salesstatus_cus_view where customer_code like '%'||#{customer_code}||'%'
+	</select>
+	
+	<!-- 매출 품목 목록 -->
+	<select id="getProCode" resultType="com.pj.erp.vo.ST.ST_searchProductCode" parameterType="java.util.Map">
+		select * from st_salesstatus_pro_view where product_code like '%'||#{product_code}||'%'
+	</select>
+	
+	<!-- 매출 담당자 목록 -->
+	<select id="getUsername" resultType="com.pj.erp.vo.ST.ST_searchUsername" parameterType="java.util.Map">
+		select * from st_salesstatus_user_view where username like '%'||#{username}||'%'
+	</select>
+	
+	<!-- 매출 부서 목록 -->
+	<select id="getDepartmentCode" resultType="com.pj.erp.vo.ST.ST_searchDepartmentCode" parameterType="java.util.Map">
+		select * from st_salesstatus_dep_view where department_code like '%'||#{department_code}||'%'
 	</select>
 	
 	<!-- 사원 검색 -->

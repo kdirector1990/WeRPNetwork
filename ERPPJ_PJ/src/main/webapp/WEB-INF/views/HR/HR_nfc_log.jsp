@@ -35,10 +35,6 @@
 		$('#search').click(function(){
 			var param = new Object();
 			var jsonData;
-			
-						
-			 
-					
 			jsonData = JSON.stringify();
 			
 			$.ajax({
@@ -51,11 +47,6 @@
 					
 					$('#result').empty();
 					$('#bodyappend').empty();
-<<<<<<< HEAD
-=======
-					
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-					
 					
 					for(var i = 0 ; i < nfclog.length; i++){
 					
