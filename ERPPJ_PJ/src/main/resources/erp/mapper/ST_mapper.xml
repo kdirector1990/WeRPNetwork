@@ -117,6 +117,7 @@
  		<![CDATA[
  				select s.sar_code as sar_code, 
 					 s.unit_cost as unit_cost, 
+					 s.customer_code as customer_code,
 					 s.stored_count as stored_count, 
 					 s.release_count as release_count, 
 					 s.stored_name as stored_name, 
@@ -136,6 +137,7 @@
 				and c.customer_name like '%'||#{customer_name}||'%'
 				and s.username like '%'||#{username}||'%'
 				and p.product_name like '%'||#{product_name}||'%'
+				and s.sar_type like '%'||#{sarTType}||'%'
  		]]>
  	</select>
  	
@@ -144,11 +146,30 @@
  	</select>
  	
  	<select id="getReleaseArticle" resultType="com.pj.erp.vo.ST.Release">
- 		SELECT * FROM sar_list_tbl WHERE sar_code=#{sar_code}
+ 		select s.sar_code as sar_code, 
+					 s.unit_cost as unit_cost, 
+					 s.stored_count as stored_count, 
+					 s.customer_code as customer_code,
+					 s.release_count as release_count, 
+					 s.stored_name as stored_name, 
+					 s.username as username, 
+					 s.stored_name as stored_name,
+					 s.release_name as release_name, 
+					 s.release_date as release_date,
+					 s.sar_type as sar_type, 
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from sar_list_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				 and sar_code=#{sar_code}
  	</select>
  	
  	<update id="updateRelease" parameterType="com.pj.erp.vo.ST.Release">
- 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost}, stored_name=${stored_name}, stored_count=#{stored_count}, sar_type=#{sar_type} WHERE sar_code=#{sar_code}
+ 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost}, stored_name=${stored_name}, stored_count=#{stored_count}, sar_type=#{sar_type}, customer_code=#{customer_code}, detail_ac_code=#{detail_ac_code}, username=#{username} WHERE sar_code=#{sar_code}
  	</update>
  	
  	<delete id="deleteRelease" parameterType="String">
@@ -156,8 +177,8 @@
  	</delete>
  	
  	<insert id="insertRelease" parameterType="com.pj.erp.vo.ST.Release">
- 		INSERT INTO sar_list_tbl(sar_code,release_name, stored_name, unit_cost, release_count, stored_count,  release_date, detail_ac_code, sar_type, username)
- 			VALUES('sar_'||release_seq.nextval, #{release_name} ,#{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, sysdate, #{detail_ac_code},  #{sar_type}, #{username})
+ 		INSERT INTO sar_list_tbl(sar_code,release_name, stored_name, unit_cost, release_count, stored_count,  release_date, detail_ac_code, sar_type, username, customer_code)
+ 			VALUES('sar_'||release_seq.nextval, #{release_name} ,#{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, sysdate, #{detail_ac_code},  #{sar_type}, #{username}, #{customer_code})
  	</insert>
  	
  	<!-- saleList -->
@@ -179,8 +200,8 @@
 					 s.amount as amount,
 					 s.price as price,
 					 s.username as username, 
+					 s.note as note,
 					 s.release_state as release_state,
-					 s.release_date as release_date,
 					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
@@ -192,6 +213,7 @@
 				and c.customer_name like '%'||#{customer_name}||'%'
 				and s.username like '%'||#{username}||'%'
 				and p.product_name like '%'||#{product_name}||'%'
+				and s.release_state like '%'||#{release}||'%'
  		]]>
  	</select>
  	

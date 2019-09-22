@@ -348,7 +348,8 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setStored_count(Integer.parseInt(req.getParameter("release_count")));
 		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSar_type(req.getParameter("sar_type"));
-		vo.setDetail_ac_code("qa1005");
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
 		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
@@ -453,6 +454,10 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setStored_name(req.getParameter("stored_count"));
 		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
 		vo.setSar_type(req.getParameter("sar_type"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setUsername(req.getParameter("username"));
+		
 		
 		int updateRelease = dao.updateRelease(vo);
 		

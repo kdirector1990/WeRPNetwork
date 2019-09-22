@@ -90,10 +90,10 @@
     					var e_name = list[i].e_name;
     					var release_state = list[i].release_state;
     					if(release_state == 1){
-    						release_state="출고"
+    						release_state= "출고";
     					}
-    					if(release_state == 2){
-    						release_state="미출고"
+    					if (release_state == 2){
+    						release_state= "미출고";
     					}
     					
     					var reg_date = list[i].reg_date;
@@ -353,7 +353,6 @@ function usernameList() {
 	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
 	<!-- Init js-->
 	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-	<div id="bodyappend"></div>
 	<div id="bodyappend"></div>
 </body>
 </html>
