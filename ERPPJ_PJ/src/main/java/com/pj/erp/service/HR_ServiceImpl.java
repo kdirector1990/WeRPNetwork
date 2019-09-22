@@ -615,6 +615,7 @@ public class HR_ServiceImpl implements HR_Service{
 		String position_record_code = dao.getPositionRecord();
 		Date record_date = (Date.valueOf(req.getParameter("record_date")));
 		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
+		String ap_code = "";
 		
 		
 		vo.setUsername(username);
