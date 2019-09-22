@@ -41,8 +41,6 @@ public class HR_ServiceImpl implements HR_Service{
 	@Autowired
 	HR_DAO dao;
 	
-	
-	
 	// 인사정보등록
 	@Override
 	public void inputFoundation(HttpServletRequest req, Model model) {			
@@ -536,11 +534,6 @@ public class HR_ServiceImpl implements HR_Service{
 		return list;
 	}
 
-
-
-	
-	
-
 	//근태(근무일별 목록 가져오기)
 	@Override
 	public List<HR_Time_VO> DetailUserWork(HttpServletRequest req, Model model) {
@@ -740,6 +733,44 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_VO> list = dao.getPositions(map); 
 		return list;
 					
+	}
+
+
+	//사이드바 출근
+	@Override
+	public int sidebarWorkStart(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int insertCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		int users = dao.selectWork(map);		
+		if(users == 0) {
+			System.out.println("작동2");
+			insertCnt = dao.StartWork(username);
+		}
+		
+		return insertCnt;
+	}
+
+
+	//사이드바 퇴근
+	@Override
+	public int sidebarEndWork(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		int users = dao.selectEndWork(map);
+		
+		if(users == 0) {
+			updateCnt = dao.EndWork(username);
+		}
+		
+		return updateCnt;
 	}
 
 }

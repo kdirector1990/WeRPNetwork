@@ -455,4 +455,26 @@ public class HR_Controller {
 		return list;
 	}
 	
+	// 사이드바 출근
+	@RequestMapping("HR_Start_Work_Sidebar")
+	@ResponseBody
+	public int HR_Start_Work_Sidebar(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Start_Work_Sidebar");
+		
+		int insertCnt = service.sidebarWorkStart(req, model);
+		
+		return insertCnt;
+	}
+	
+	//사이드바 퇴근
+	@RequestMapping("HR_End_Work_Sidebar")
+	@ResponseBody
+	public int HR_End_Work_Sidebar(HttpServletRequest req, Model model) {
+		logger.info("log => HR_End_Work_Sidebar");
+		
+		int updateCnt = service.sidebarEndWork(req, model);
+		
+		return updateCnt;
+	}
+	
 }

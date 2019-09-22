@@ -119,5 +119,10 @@ public interface HR_Service {
 	// 직책목록 조회
 	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	//사이드바 출근
+	public int sidebarWorkStart(HttpServletRequest req, Model model);
+	
+	//사이드바 퇴근
+	public int sidebarEndWork(HttpServletRequest req, Model model);
 	
 }

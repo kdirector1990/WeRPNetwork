@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+	<script src="/erp/resources/assets/js/moment-duration-format.js"></script>
+
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <link
 	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
@@ -155,8 +157,7 @@
 		var param = {
 			"username" : code
 		};
-		$
-				.ajax({
+		$.ajax({
 					url : '/erp/Select_Users_Work_Data?${_csrf.parameterName}=${_csrf.token }',
 					type : 'POST',
 					data : param,
@@ -518,32 +519,29 @@
 							var ed = new Date(end);
 
 							var cmMonth = (1 + cm.getMonth());
+							
+							if (cmMonth == 9) {
+								count = vo[i].count;
+								var cmHour = cm.getHours();
+								var cmMm = cm.getMinutes();
 
-							if (cmMonth == "undefined") {
+								var edHour = ed.getHours();
+								var edMm = ed.getMinutes();
+								
+								var ms = moment(ed, "YYYY/MM/DD HH:mm:ss").diff(moment(cm, "YYYY/MM/DD HH:mm:ss"));
+								var d = moment.duration(ms);
+								var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+								
+								alert(s);
 
-							} else {
-								if (cmMonth == 9) {
-									alert("9월");
-									count = vo[i].count;
+								resultHr = edHour - cmHour;
+								resultMM = edMm - cmMm;
 
-									var cmHour = cm.getHours();
-									var cmMm = cm.getMinutes();
-
-									var edHour = ed.getHours();
-									var edMm = ed.getMinutes();
-
-									resultHr = edHour - cmHour;
-									resultMM = edMm - cmMm;
-
-									resultHour += resultHr;
-									resultMin += resultMM;
-									alert(resultHour + " 9월 시간");
-									alert(resultMin + " 9월 분");
-
-									if (resultMin > 60) {
-										resultHour = resultHour + 1;
-										resultMin = resultMin - 60;
-									}
+								resultHour += resultHr;
+								resultMin += resultMM;
+								if (resultMin > 60) {
+									resultHour = resultHour + 1;
+									resultMin = resultMin - 60;
 								}
 							}
 						}
