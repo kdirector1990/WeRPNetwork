@@ -473,6 +473,23 @@ public class ST_Controller {
 		
 		return "ST/ST_searchCustomername_result2";
 	}
+	
+	// estimate 거래처명, 거래처 코드
+	@RequestMapping("ST_searchCustomername3")
+	public String ST_searchCustomername3(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomername3");
+		
+		return "ST/ST_searchCustomername3";
+	}
+	
+	// CustomerName 결과
+	@RequestMapping("ST_searchCustomername_result3")
+	public String ST_searchCustomername_result3(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchCustomername_result3");
+		service.searchCustomer2(req, model);
+		
+		return "ST/ST_searchCustomername_result3";
+	}
 		
 	
 	

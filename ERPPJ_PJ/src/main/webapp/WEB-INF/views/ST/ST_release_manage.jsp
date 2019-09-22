@@ -62,6 +62,7 @@
 	    		param.customer_name = $("#customerName").val();
 	    		param.username = $("#username_2").val();
 	    		param.product_name = $("#ProductName").val();
+	    		param.sarTType = $("#sarType").val();
 	    				
 	    		jsonData = JSON.stringify(param); 
 	    		$.ajax({
@@ -83,6 +84,16 @@
 	    					var release_name = list[i].release_name;
 	    					
 	    					var sar_type = list[i].sar_type;
+	    					if(sar_type == "1"){
+	    						sar_type = "입고";
+	    					}
+	    					if(sar_type == "2"){
+	    						sar_type = "출고";
+	    					}
+	    					if(sar_type == "3"){
+	    						sar_type="재입고";
+	    					}
+	    					
 	    					var e_name = list[i].e_name;
 	    					var product_name = list[i].product_name;
 	    					
@@ -141,6 +152,25 @@
 	    	}); 
 	    });	    
     </script>
+    
+    <script type="text/javascript">
+       function ProductName() {
+   		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
+   	}
+       
+       function usernameList() {
+   		window.open("ST_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+   	}   
+       
+     function customerNameList() {
+    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+    	} 
+    
+     function customerNameList3() {
+ 		window.open("ST_searchCustomername3", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+ 	} 
+</script>
+    
 <body>
 
 	<!-- Begin page -->
@@ -187,19 +217,27 @@
 											value="${_csrf.token }">
 										<table class="col-12">
 											<tr class="form-group row">
-												<th class="col-md-1 col-form-label">거래처</th>
+												<th class="col-md-1 col-form-label" style="text-align: right;">거래처</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="customerName" id="customerName" class="form-control"></td>
 
-												<th class="col-md-1 col-form-label">담당자</th>
+												<th class="col-md-1 col-form-label"style="text-align: right;">담당자</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="username" id="username_2" class="form-control"></td>
 													
-												<th class="col-md-1 col-form-label">품명</th>
+												<th class="col-md-1 col-form-label"style="text-align: right;">품명</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="ProductName" id="ProductName" class="form-control"></td>
 													
-												<td class="col-md-2 input-group"><button type="button"
+												<th class="col-md-1 col-form-label" style="text-align: right;">구분</th>
+												<td class="col-md-2 input-group">
+												<select class="form-control" name="sar_type" id="sarType">
+														<option value = "1">1. 입고</option>
+														<option value="2">2. 판매</option>
+														<option value="3">3. 재입고</option>
+													</select></td>	
+													
+												<td class="col-md-2 input-group"><button type="button" 
 														class="btn btn-primary waves-effect waves-light" id="search">조회</button></td>
 											</tr>
 										</table>
@@ -216,12 +254,11 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<div class="responsive-table-plugin">
-										<div class="table-rep-plugin">
-											<div class="table-responsive" data-pattern="priority-columns">
-												<table id="tech-companies-1"
-													class="table m-0 table-bordered table-hover">
-													<thead class="bg-primary text-white">
+									<div class="table-rep-plugin">
+										<div class="" data-pattern="priority-columns">
+											<table id="datatable"
+												class="table table-striped table-bordered dt-responsive nowrap">
+												<thead class="bg-primary text-white">
 														<tr>
 															<th>입출고 코드</th>
 															<th>품명</th>
@@ -293,7 +330,6 @@
 		<!-- End Page content -->
 		<!-- ============================================================== -->
 
-	</div>
 	<!-- END wrapper -->
 
 	<%@ include file="../rightbar.jsp"%>
