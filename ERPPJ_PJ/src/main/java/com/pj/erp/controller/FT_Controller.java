@@ -551,7 +551,7 @@ public class FT_Controller {
 		String CardName = map.get("CardName").toString();
 		String CardType = map.get("CardType").toString();
 		String CardPurpose = map.get("CardPurpose").toString();
-		String Owner = map.get("Owner").toString();
+		String Owner = map.get("Owner").toString(); 
 		String PayCode = map.get("PayCode").toString();
 		return AccCode + " " + CardName + " " + SubjectCode + " " + CardType + " " + CardPurpose + " " + CardPurpose
 				+ " " + Owner + " " + PayCode;

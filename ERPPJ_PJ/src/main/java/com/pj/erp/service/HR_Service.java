@@ -116,5 +116,7 @@ public interface HR_Service {
 	//nfc 기록 조회용(임시)
 	public List<HR_nfc_log> getNfcLog(HttpServletRequest req, Model model);
 	
+
+	
 	
 }

@@ -60,14 +60,13 @@
 						var nfc_code = nfclog[i].nfc_code;
 						var username = nfclog[i].username;
 						var e_name = nfclog[i].e_name;
-						 
 						
 					$('#result').append('<tr>'+                         	
 							'<td>'+ tag_date +'</td>'+
 							'<td>'+ nfc_code +'</td>'+
-							'<td>'+ username +'</td>'+
+							'<td>'+ username +'</td>'+ 
 							'<td>'+ e_name +'</td>'+
-							 							
+							
                  		'</tr>');
 					
 					if(searchCount == 1){

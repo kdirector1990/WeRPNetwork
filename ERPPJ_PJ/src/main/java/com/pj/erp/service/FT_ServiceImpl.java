@@ -31,6 +31,7 @@ import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
+import com.pj.erp.vo.HR.HR_accounts_balance;
 
 @Service
 public class FT_ServiceImpl implements FT_Service{
@@ -470,10 +471,14 @@ public class FT_ServiceImpl implements FT_Service{
 		Map<String, Object> bs_result = new HashMap<String, Object>();
 		String fiscalyear = (String)map.get("fiscalyear");
 		System.out.println(fiscalyear);
-		List<Map> list = new ArrayList<Map>(); 
-
+		List<HR_accounts_balance> assets_list = new ArrayList<HR_accounts_balance>();
 		
-		bs_result.put("assets", list);
+		
+		bs_result.put("assets_list", assets_list);
+		 
+		 
+
+		 
 		
 		return bs_result;
 	}

@@ -11,6 +11,6 @@ public interface ERPDAO {
 	
 	public Map<String, Object> authCheck(String username);
 	
-	public void nfc(String nfcid);
+	public int nfc(String nfcid);
 
 }

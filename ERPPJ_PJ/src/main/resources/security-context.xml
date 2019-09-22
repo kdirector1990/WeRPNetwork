@@ -16,6 +16,10 @@
 				access = "permitAll" 
 			/>
 			<security:intercept-url 
+				pattern = "/nfc2"  
+				access = "permitAll" 
+			/>
+			<security:intercept-url 
 				pattern = "/index"
 				access = "hasAnyRole('ROLE_HR','ROLE_CT','ROLE_MF','ROLE_MS','ROLE_ST','ROLE_FT','ROLE_ADMIN')" 
 			/>

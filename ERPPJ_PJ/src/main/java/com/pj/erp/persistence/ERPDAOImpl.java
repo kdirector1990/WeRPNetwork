@@ -27,8 +27,8 @@ public class ERPDAOImpl implements ERPDAO{
 	}
 	
 	@Override
-	public void nfc(String nfcid) {
-		sqlSession.insert("com.pj.erp.persistence.ERPDAO.nfc",nfcid); 
+	public int nfc(String nfcid) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.nfc",nfcid); 
 	}
 	
 }

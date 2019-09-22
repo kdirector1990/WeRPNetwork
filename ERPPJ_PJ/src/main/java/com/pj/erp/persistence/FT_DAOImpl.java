@@ -19,6 +19,7 @@ import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
+import com.pj.erp.vo.HR.HR_accounts_balance;
 
 @Repository
 public class FT_DAOImpl implements FT_DAO{
@@ -459,4 +460,13 @@ public class FT_DAOImpl implements FT_DAO{
 	public int FT_CheckFormal(Map<String, Object> map) {
 		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_CheckFormal", map);
 	}
+	
+	@Override
+	public List<HR_accounts_balance> FT_getAssetsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
 }

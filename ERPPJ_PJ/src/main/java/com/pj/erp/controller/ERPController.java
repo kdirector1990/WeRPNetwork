@@ -1,18 +1,23 @@
 package com.pj.erp.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
@@ -55,11 +60,22 @@ public class ERPController {
 		return "index";
 	}
 	
-	@RequestMapping("nfc")
-	public String nfc(HttpServletRequest req, Model model) {
+	@RequestMapping("nfc") 
+	public String nfc(HttpServletRequest req, Model model )  {
 		logger.info("log => nfc");
-		service.nfc(req, model);
+		int result = service.nfc(req, model);
+		if(result==1) {
+			System.out.println("result2: "+result);
+			return "nfc2";
+		}
+		 
 		return "nfc";
+	}
+	@RequestMapping("nfc2")  
+	public String nfc2(HttpServletRequest req, Model model) {
+		logger.info("log => nfc2");
+ 
+		return "index";
 	}
 	
 	@RequestMapping("admin-grid")
