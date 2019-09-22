@@ -56,20 +56,13 @@ public class ERPServiceImpl implements ERPService{
 	}
 	
 	@Override
-	public int nfc(HttpServletRequest req, Model model) {
+	public void nfc(HttpServletRequest req, Model model) {
 		String nfcid = req.getParameter("nfcid");
-<<<<<<< HEAD
-		System.out.println("nfcid: "+ nfcid);
-		int result = dao.nfc(nfcid);
-=======
+ 
 		Map<String, Object> map = new HashMap<>();
-		dao.nfc(nfcid);
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-		
-<<<<<<< HEAD
-		
-		return result;
-=======
+		dao.nfc(nfcid); 
+ 
+ 
 		System.out.println("작동");
 		HR_nfc_log nfc= dao.selectNfc(nfcid);
 		System.out.println("nfc_code : " + nfcid);
@@ -156,7 +149,7 @@ public class ERPServiceImpl implements ERPService{
 				}
 			}
 		}
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+ 
 	}
 	
 	

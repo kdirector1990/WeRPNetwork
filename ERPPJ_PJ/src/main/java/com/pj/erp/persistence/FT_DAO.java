@@ -20,11 +20,10 @@ import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
-<<<<<<< HEAD
+ 
 import com.pj.erp.vo.HR.HR_accounts_balance;
-=======
-import com.pj.erp.vo.HR.HR_VO;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+ 
+import com.pj.erp.vo.HR.HR_VO; 
 
 public interface FT_DAO {
 	

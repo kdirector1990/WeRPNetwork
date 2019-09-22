@@ -63,20 +63,12 @@ public class ERPController {
 	@RequestMapping("nfc") 
 	public String nfc(HttpServletRequest req, Model model )  {
 		logger.info("log => nfc");
-		int result = service.nfc(req, model);
-		if(result==1) {
-			System.out.println("result2: "+result);
-			return "nfc2";
-		}
+		service.nfc(req, model);
+ 
 		 
 		return "nfc";
 	}
-	@RequestMapping("nfc2")  
-	public String nfc2(HttpServletRequest req, Model model) {
-		logger.info("log => nfc2");
  
-		return "index";
-	}
 	
 	@RequestMapping("admin-grid")
 	public String admingrid(Locale locale, Model model) {

@@ -115,13 +115,9 @@ public interface HR_Service {
 	
 	//nfc 기록 조회용(임시)
 	public List<HR_nfc_log> getNfcLog(HttpServletRequest req, Model model);
-	
-<<<<<<< HEAD
-
-=======
+ 
 	// 직책목록 조회
-	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException; 
 	
 	
 }
