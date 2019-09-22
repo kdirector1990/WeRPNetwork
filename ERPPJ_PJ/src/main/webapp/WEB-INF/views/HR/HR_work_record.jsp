@@ -41,12 +41,12 @@
 	var day;
 	var worktime;
 	var count;
+	var searchCount = 1;
 
 	function searchWork() {
 		var param = $("#select_user_time").serializeArray();
 		alert(JSON.stringify(param));
-		$
-				.ajax({
+		$.ajax({
 					url : '/erp/HR_User_Time',
 					type : 'POST',
 					data : param,
@@ -54,6 +54,7 @@
 					success : function(vo) {
 
 						$('#result').empty();
+						$('#bodyappend').empty();
 						document.getElementById("timeButton").style.display = "block";
 
 						for (var i = 0; i < vo.length; i++) {
@@ -61,18 +62,40 @@
 							var username = vo[i].username;
 							var e_name = vo[i].e_name;
 
-							$("#result")
-									.append(
+							$("#result").append(
 											'<tr onclick="selectUsersWork('
-													+ username
-													+ '); selectCount('
-													+ username
-													+ ')">'
-													+ '<td><input type="checkbox" name="username" value="'+username+'" class="checklist"></td>'
-													+ '<td>' + rownum + '</td>'
-													+ '<td>' + username
-													+ '</td>' + '<td>' + e_name
-													+ '</td></tr>')
+												+ username
+												+ '); selectCount('
+												+ username
+												+ ')">'
+												+ '<td><input type="checkbox" name="username" value="'+username+'" class="checklist"></td>'
+												+ '<td>' + rownum + '</td>'
+												+ '<td>' + username
+												+ '</td>' + '<td>' + e_name
+												+ '</td></tr>');
+							if(searchCount == 1){
+								$('#bodyappend').append(
+								        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+								        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+								        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+								        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+								        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+								);
+								searchCount = searchCount + 1;
+							}
+							
 						}
 
 						alert("사원목록을 가져왔습니다.");
@@ -130,21 +153,44 @@
 		var param = {
 			"username" : code
 		};
-		$
-				.ajax({
+		$.ajax({
 					url : '/erp/HR_select_count?${_csrf.parameterName}=${_csrf.token }',
 					type : 'POST',
 					data : param,
 					dataTpye : 'json',
 					success : function(vo) {
 						$('#result3').empty();
+						$('#bodyappend').empty();
+						
 						for (var i = 0; i < vo.length; i++) {
 							var count = vo[i].count;
 							var month = i + 1;
 
-							$("#result3").append(
-									"<tr><td>" + month + "월</td><td>" + count
-											+ "일</td></tr>")
+						$("#result3").append(
+								"<tr><td>" + month + "월</td><td>" + count
+										+ "일</td></tr>");
+						if(searchCount == 1){
+							$('#bodyappend').append(
+							        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+							        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+							        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+							);
+							searchCount = searchCount + 1;
+						}
 						}
 					},
 					error : function() {
@@ -789,9 +835,7 @@
 										<form id="timeRecordTbl">
 											<input type="hidden" name="${_csrf.parameterName }"
 												value="${_csrf.token }">
-											<table id="datatable"
-												class="table table-striped table-bordered dt-responsive nowrap"
-												style="border-collapse: collapse; border-spacing: 0; width: 100%; overflow: auto">
+											<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 												<thead>
 													<tr>
 														<th><input type="checkbox" id="allChecked"
@@ -821,10 +865,7 @@
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
-										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-											style="border-collapse: collapse; border-spacing: 0px; width: 100%;"
-											role="grid" aria-describedby="datatable-fixed-col_info">
+										<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>
 													<th colspan="3">근무일별 근태집계</th>
@@ -848,10 +889,7 @@
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
-										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-											style="border-collapse: collapse; border-spacing: 0px; width: 100%;"
-											role="grid" aria-describedby="datatable-fixed-col_info">
+										<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>
 													<th colspan="3">근태결과일 근태집계</th>
@@ -873,9 +911,7 @@
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
-										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>
 													<th colspan="4">지각조퇴/사용자정의</th>
