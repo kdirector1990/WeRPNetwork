@@ -16,10 +16,10 @@
     	function enterinsert() {
    			
    			$(".chit-table-bordered-primary tbody").append('<tr id = "tr'+count+'">' +   					
-                    '<td><input type="text"   name = "number'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text"   name = "record_cord'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text"   name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text"   name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" name = "position_record_code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" name = "'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
                     '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
                    '</tr>');
                 count = count + 1;
@@ -108,8 +108,7 @@
 										</div>
 
 										<div class="table-responsive" style="margin: 15px 0px 50px">
-											<table
-												class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+											<table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
 												<col style="width: 5%;">
 												<col style="width: 25%">
 												<col style="width: 25%;">
@@ -151,10 +150,8 @@
 
 									<div class="row">
 										<div class="col-xl-6">
-											<form action="HR_APinput" class="form-horizontal"
-												method="post">
-												<input type="hidden" name="${_csrf.parameterName }"
-													value="${_csrf.token }">
+											<form action="HR_APinput" class="form-horizontal" method="post">
+												<input type="hidden" name="${_csrf.parameterName }"	value="${_csrf.token }">												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고명</label>
 													<div class="col-md-10">
@@ -165,7 +162,7 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고내용</label>
 													<div class="col-md-10">
-														<input type="text" id="simpleinput" class="form-control"
+														<input type="text" id="ap_content" class="form-control"
 															name="ap_content">
 													</div>
 												</div>
@@ -246,7 +243,7 @@
 															</tbody>
 
 															<tbody>
-																<tr color="red">
+																<tr>
 																	<th></th>
 																	<td>20020603</td>
 																	<td>이준상</td>

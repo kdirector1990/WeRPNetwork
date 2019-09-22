@@ -5,11 +5,12 @@ import java.sql.Date;
 public class HR_RecordVO {
 	
 	private String username;
+	private String position_code;
 	private String position_code_after;
 	private String position_record_code;
 	private Date record_date_after;
 	private Date record_date;
-	private String recordInfo;
+	private String ap_code;
 	
 	
 	public HR_RecordVO() {}
@@ -24,7 +25,15 @@ public class HR_RecordVO {
 		this.username = username;
 	}
 
-
+	public String getPosition_code() {
+		return position_code;
+	}
+	
+	public void setPosition_code(String position_code) {
+		this.position_code = position_code;
+	}
+	
+	
 	public String getPosition_code_after() {
 		return position_code_after;
 	}
@@ -65,13 +74,14 @@ public class HR_RecordVO {
 	}
 
 
-	public String getRecordInfo() {
-		return recordInfo;
+	public String getAp_code() {
+		return ap_code;
 	}
 
 
-	public void setRecordInfo(String recordInfo) {
-		this.recordInfo = recordInfo;
-	}	
+	public void setAp_code(String ap_code) {
+		this.ap_code = ap_code;
+	}
+	
 	
 }
