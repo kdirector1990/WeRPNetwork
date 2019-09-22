@@ -18,10 +18,9 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
-import com.pj.erp.vo.FT.FT_land_list_VO;
- 
-import com.pj.erp.vo.HR.HR_accounts_balance; 
+import com.pj.erp.vo.FT.FT_land_list_VO; 
 import com.pj.erp.vo.HR.HR_VO; 
 
 @Repository
@@ -613,10 +612,11 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_CheckFormal", map);
 	}
 	
+	// 재무상태표_자산   - 권순용
 	@Override
-	public List<HR_accounts_balance> FT_getAssetsList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FT_accounts_balance> FT_getAssetsList(String typename) {
+		
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_getAssetsList", typename);
 	}
 	
 	

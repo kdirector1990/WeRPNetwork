@@ -18,11 +18,9 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
- 
-import com.pj.erp.vo.HR.HR_accounts_balance;
- 
 import com.pj.erp.vo.HR.HR_VO; 
 
 public interface FT_DAO {
@@ -245,5 +243,5 @@ public interface FT_DAO {
 	 
 	 
 	 // 재무상태표_자산   - 권순용
-	 public List<HR_accounts_balance> FT_getAssetsList();
+	 public List<FT_accounts_balance> FT_getAssetsList(String typename);
 }

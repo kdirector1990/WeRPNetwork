@@ -1,6 +1,6 @@
-package com.pj.erp.vo.HR;
+package com.pj.erp.vo.FT;
 
-public class HR_accounts_balance {
+public class FT_accounts_balance {
 	String Detail_ac_code;
 	String account_name;
 	
@@ -10,7 +10,7 @@ public class HR_accounts_balance {
 	int credit_value;
 	int r_count_value;
 	
-	public HR_accounts_balance() {
+	public FT_accounts_balance() {
 		 
 	}
 

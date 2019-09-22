@@ -816,4 +816,9 @@
 		and journal_number = #{nos}
 	</update>
 	
+	<!-- 재무상태표 계정별 합계_권순용 -->
+	<select id="FT_getAssetsList" resultType="com.pj.erp.vo.FT.FT_accounts_balance">
+		select * from getBalanceShit_t_view where lg_name=#{typename}
+	</select>
+	
 </mapper>

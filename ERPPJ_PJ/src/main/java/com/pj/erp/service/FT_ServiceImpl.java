@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,9 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO; 
-import com.pj.erp.vo.HR.HR_accounts_balance; 
 import com.pj.erp.vo.HR.HR_VO; 
 
 @Service
@@ -573,14 +574,29 @@ public class FT_ServiceImpl implements FT_Service{
 			throws ParseException {
 		Map<String, Object> bs_result = new HashMap<String, Object>();
 		String fiscalyear = (String)map.get("fiscalyear");
-		System.out.println(fiscalyear);
-		List<HR_accounts_balance> assets_list = new ArrayList<HR_accounts_balance>();
 		
-		
+		String typename = "자산"; 
+		List<FT_accounts_balance> assets_list = dao.FT_getAssetsList(typename);
 		bs_result.put("assets_list", assets_list);
-		 
-		 
+		System.out.println("1: "+assets_list.get(0).getAccount_name());
+		
+		typename = "부채";
+		List<FT_accounts_balance> liab_list = dao.FT_getAssetsList(typename);
+		bs_result.put("liab_list", liab_list);
 
+		typename = "자본";
+		List<FT_accounts_balance> capit_list = dao.FT_getAssetsList(typename);
+		bs_result.put("capit_list", capit_list);
+		System.out.println("1: "+capit_list.get(0).getAccount_name());
+		
+		int dds[] = {assets_list.size(), liab_list.size()+capit_list.size()};
+		int result=dds[0];
+		for(int i=1; i<dds.length; i++) {
+			if(dds[i]>=result) {
+				result = dds[i];
+			}
+		}
+		System.out.println("result max: "+ result );
 		 
 		
 		return bs_result;

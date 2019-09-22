@@ -97,14 +97,14 @@ public class FT_Controller {
 	@RequestMapping("FT_DTB")
 	public String FT_DTB(Locale locale, Model model) {
 		logger.info("log => FT_DTB");
-
+		
 		return "FT/FT_DTB";
 	}
 
 	@RequestMapping("FT_BS")
 	public String FT_BS(Locale locale, Model model) {
 		logger.info("log => FT_BS");
-		
+		 
 		return "FT/FT_BS";
 	}
 	
