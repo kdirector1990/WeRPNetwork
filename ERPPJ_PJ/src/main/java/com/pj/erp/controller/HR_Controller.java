@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Controller
@@ -444,6 +444,15 @@ public class HR_Controller {
 		List<HR_nfc_log> nfclog = service.getNfcLog(req, model); 
 		
 		return nfclog;
+	}
+	
+	// 인사발령공고들
+	@RequestMapping(value = "HR_position_record_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_VO> HR_position_record_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_position_record_result");
+		List<HR_VO> list = service.getPositions(map, req, model);
+		return list;
 	}
 	
 }

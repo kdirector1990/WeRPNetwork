@@ -77,15 +77,31 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="va" begin="1" end="200" step="1">
-											<tr>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-											</tr>
-										</c:forEach>
+										<c:set var="count" value="0"/>
+                                  		<c:if test="${deposit != null}">
+	                                  		<c:forEach var="depo" items="${deposit}">
+	                                       		<tr>
+													<td>${depo.depositCode}</td>
+													<td>${depo.subjectCode}</td>
+													<td>${depo.accCode}</td>
+													<td>${depo.accountNo}</td>
+													<td>${depo.accountHolder}</td>
+	                                       			<c:set var="count" value="${count+1}"/>
+	                                       		</tr>
+                                       		</c:forEach>
+                                  		</c:if>
+                                  		<c:if test="${deposit == null}">
+	                                		<c:forEach var = "depo" begin="1" end="100">
+	                                    		<tr>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+	                                       			<c:set var="count" value="${count+1}"/>
+	                                       		</tr>
+	                                   		</c:forEach>
+	                               		</c:if>
 									</tbody>
 								</table>
 							</div>

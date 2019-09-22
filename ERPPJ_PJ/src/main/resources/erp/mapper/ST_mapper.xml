@@ -113,16 +113,63 @@
  		select COUNT(*) as FROM sar_list_tbl
  	</select>
  	
+ 	<select id="getreleaseResult" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.Release">
+ 		<![CDATA[
+ 				select s.sar_code as sar_code, 
+					 s.unit_cost as unit_cost, 
+					 s.customer_code as customer_code,
+					 s.stored_count as stored_count, 
+					 s.release_count as release_count, 
+					 s.stored_name as stored_name, 
+					 s.username as username, 
+					 s.stored_name as stored_name,
+					 s.release_name as release_name, 
+					 s.release_date as release_date,
+					 s.sar_type as sar_type, 
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from sar_list_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and s.username like '%'||#{username}||'%'
+				and p.product_name like '%'||#{product_name}||'%'
+				and s.sar_type like '%'||#{sarTType}||'%'
+ 		]]>
+ 	</select>
+ 	
  	<select id="getReleaseList" resultType="com.pj.erp.vo.ST.Release" parameterType="java.util.Map">
  		SELECT * FROM sar_list_tbl
  	</select>
  	
  	<select id="getReleaseArticle" resultType="com.pj.erp.vo.ST.Release">
- 		SELECT * FROM sar_list_tbl WHERE sar_code=#{sar_code}
+ 		select s.sar_code as sar_code, 
+					 s.unit_cost as unit_cost, 
+					 s.stored_count as stored_count, 
+					 s.customer_code as customer_code,
+					 s.release_count as release_count, 
+					 s.stored_name as stored_name, 
+					 s.username as username, 
+					 s.stored_name as stored_name,
+					 s.release_name as release_name, 
+					 s.release_date as release_date,
+					 s.sar_type as sar_type, 
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from sar_list_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				 and sar_code=#{sar_code}
  	</select>
  	
  	<update id="updateRelease" parameterType="com.pj.erp.vo.ST.Release">
- 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost}, stored_name=${stored_name}, stored_count=#{stored_count}, sar_type=#{sar_type} WHERE sar_code=#{sar_code}
+ 	 	UPDATE sar_list_tbl SET release_name=#{release_name}, release_count=#{release_count}, unit_cost=#{unit_cost}, stored_name=${stored_name}, stored_count=#{stored_count}, sar_type=#{sar_type}, customer_code=#{customer_code}, detail_ac_code=#{detail_ac_code}, username=#{username} WHERE sar_code=#{sar_code}
  	</update>
  	
  	<delete id="deleteRelease" parameterType="String">
@@ -130,21 +177,21 @@
  	</delete>
  	
  	<insert id="insertRelease" parameterType="com.pj.erp.vo.ST.Release">
- 		INSERT INTO sar_list_tbl(sar_code,release_name, stored_name, unit_cost, release_count, stored_count,  release_date, detail_ac_code, sar_type, username)
- 			VALUES('sar_'||release_seq.nextval, #{release_name} ,#{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, sysdate, #{detail_ac_code},  #{sar_type}, #{username})
+ 		INSERT INTO sar_list_tbl(sar_code,release_name, stored_name, unit_cost, release_count, stored_count,  release_date, detail_ac_code, sar_type, username, customer_code)
+ 			VALUES('sar_'||release_seq.nextval, #{release_name} ,#{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, sysdate, #{detail_ac_code},  #{sar_type}, #{username}, #{customer_code})
  	</insert>
  	
  	<!-- saleList -->
  	<insert id="insertsaleList" parameterType="com.pj.erp.vo.ST.SaleList">
- 		INSERT INTO salelist_tbl(salelist_code, username, reg_date, release_o_date, unit, amount, price, note)
- 			VALUES('sa_' || salelist_seq.nextval, #{username}, sysdate, #{release_o_date}, #{unit}, #{amount}, #{price}, #{note})
+ 		INSERT INTO salelist_tbl(salelist_code, username, reg_date, release_o_date, unit, amount, price, note, detail_ac_code, customer_code, release_state)
+ 			VALUES('sa_' || salelist_seq.nextval, #{username}, sysdate, #{release_o_date}, #{unit}, #{amount}, #{price}, #{note}, #{detail_ac_code}, #{customer_code}, #{release_state})
  	</insert>
  	
  	<select id="getSaleListCnt" resultType="int">
  		SELECT COUNT(*) as FROM salelist_tbl
  	</select>
  	
- 	<select id="getSaleList" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
+ 	<select id="getSaleList" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
  		<![CDATA[
  			  select s.salelist_code as salelist_code, 
 					 s.reg_date as reg_date, 
@@ -153,6 +200,7 @@
 					 s.amount as amount,
 					 s.price as price,
 					 s.username as username, 
+					 s.note as note,
 					 s.release_state as release_state,
 					 p.product_code as detail_ac_code, 
 					 p.product_name as product_name, 
@@ -165,6 +213,7 @@
 				and c.customer_name like '%'||#{customer_name}||'%'
 				and s.username like '%'||#{username}||'%'
 				and p.product_name like '%'||#{product_name}||'%'
+				and s.release_state like '%'||#{release}||'%'
  		]]>
  	</select>
  	
@@ -173,11 +222,28 @@
  	</select>
  	
  	<select id="getsaleListForm" resultType="com.pj.erp.vo.ST.SaleList">
- 		SELECT * FROM salelist_tbl WHERE salelist_code = #{salelist_code}
+ 		select s.salelist_code as salelist_code, 
+					 s.reg_date as reg_date, 
+					 s.release_o_date as release_o_date, 
+					 s.unit as unit,
+					 s.amount as amount,
+					 s.price as price,
+					 s.username as username, 
+					 s.customer_code as customer_code,
+					 s.release_state as release_state,
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 s.note as note,
+					 u.e_name as e_name
+				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username and salelist_code = #{salelist_code}
  	</select>
  	
  	<update id="updateSaleList" parameterType="com.pj.erp.vo.ST.SaleList">
- 		UPDATE salelist_tbl SET release_o_date=#{release_o_date}, unit=#{unit}, price=#{price}, note=#{note} WHERE salelist_code=#{salelist_code}
+ 		UPDATE salelist_tbl SET release_o_date=#{release_o_date}, unit=#{unit}, price=#{price}, note=#{note}, username=#{username}, customer_code=#{customer_code}, release_state =#{release_state}, detail_ac_code=#{detail_ac_code}  WHERE salelist_code=#{salelist_code}
  	</update>
  	
  	<delete id="deleteSaleList" parameterType="String">
@@ -205,6 +271,11 @@
 		select customer_code, license_number, customer_name, branch_name, customer_credit, deal_state from customer_list_tbl where customer_name like '%'||#{customer_name}||'%'
 	</select>
 	
+	<!-- 매출 목록 -->
+	<select id="getTotalSales" resultType="com.pj.erp.vo.ST.ST_searchCustomerCode" parameterType="java.util.Map">
+		select * from st_salesstatus_cus_view where customer_code like '%'||#{customer_code}||'%'
+	</select>
+	
 	<!-- 사원 검색 -->
 	<select id="selectName" resultType="int" parameterType="String">
 		select COUNT(*) from users where username like '%'||#{username}||'%'
@@ -214,4 +285,5 @@
 	<select id="getUsernameList" resultType="com.pj.erp.vo.ST.UserName" parameterType="String">
 		select username, e_name from users where username like '%'||#{username}||'%'
 	</select>
+	
  </mapper>

@@ -95,11 +95,10 @@
 
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="card">
-								<form name="HR_record_input" action="HR_recordinput"
-									method="post">
-									<input type="hidden" name="${_csrf.parameterName }"
-										value="${_csrf.token }">
+							<form name="HR_record_input" action="HR_recordinput" method="post">
+								<input type="hidden" name="${_csrf.parameterName }"
+									value="${_csrf.token }">
+								<div class="card">								
 									<div class="card-body">
 										<div class="form-group text-right mr-1">
 											<button class="btn btn-primary waves-effect waves-light mr-1"
@@ -137,9 +136,9 @@
 											type="submit">입력</button>
 										<button type="reset"
 											class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
-									</div>
-								</form>
-							</div>
+									</div>								
+								</div>
+							</form>
 						</div>
 					</div>
 
@@ -148,14 +147,14 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="header-title">발령공고</h4>
-									<br>
-									<br>
+									<h4 class="header-title">발령공고</h4>									
 
 									<div class="row">
 										<div class="col-xl-6">
 											<form action="HR_APinput" class="form-horizontal"
 												method="post">
+												<input type="hidden" name="${_csrf.parameterName }"
+													value="${_csrf.token }">
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고명</label>
 													<div class="col-md-10">
@@ -173,17 +172,17 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고등록일</label>
 													<div class="col-md-10">
-														<input type="text" name="ap_reg_date" class="form-control"
-															placeholder="yyyy/mm/dd" data-provide="datepicker"
-															data-date-autoclose="true">
+														<input type="date" name="ap_reg_date"
+															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
+															class="mdi mdi-calendar"></i>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고시행일</label>
 													<div class="col-md-10">
-														<input type="text" name="ap_est_date" class="form-control"
-															placeholder="yyyy/mm/dd" data-provide="datepicker"
-															data-date-autoclose="true">
+														<input type="date" name="ap_est_date"
+															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
+															class="mdi mdi-calendar"></i>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -192,11 +191,11 @@
 													<div class="col-md-10">
 														<select class="form-control select2" name="ap_status"
 															onchange="">
-															<option value="공고예정">1. 공고예정</option>
-															<option value="공고중">2. 공고중</option>
-															<option value="시행완료">3. 시행완료</option>
-															<option value="시행취소">4. 시행취소</option>
-															<option value="삭제">5. 삭제</option>
+															<option value="1">1. 공고예정</option>
+															<option value="2">2. 공고중</option>
+															<option value="3">3. 시행완료</option>
+															<option value="4">4. 시행취소</option>
+															<option value="5">5. 삭제</option>
 														</select>
 													</div>
 												</div>
@@ -227,7 +226,7 @@
 															</thead>
 
 															<tbody>
-																<tr color="red">
+																<tr>
 																	<th></th>
 																	<td>20000601</td>
 																	<td>이수희</td>
@@ -237,7 +236,7 @@
 															</tbody>
 
 															<tbody>
-																<tr color="red">
+																<tr>
 																	<th></th>
 																	<td>20001101</td>
 																	<td>박용덕</td>

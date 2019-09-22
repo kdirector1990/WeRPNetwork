@@ -154,6 +154,9 @@
 					'<td><input type="text" name="material_name" value="' +tdArr[1]+'"></td>' +
 					'<td><input type="text" name="material_unit" value="' +tdArr[2]+'"</td>' +
            		'</tr>');
+   			
+   			var offset = $(".plantr").offset();
+            $('html, body').animate({scrollTop : offset.top}, 200); 
 		});
      
      function updateMaterial(){

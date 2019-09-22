@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.HR.HR_nfc_log;
+
 @Repository
 public class ERPDAOImpl implements ERPDAO{
 	
@@ -29,6 +31,13 @@ public class ERPDAOImpl implements ERPDAO{
 	@Override
 	public int nfc(String nfcid) {
 		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.nfc",nfcid); 
+	}
+
+	//NFC를 통해  username 가져오기
+	@Override
+	public HR_nfc_log selectNfc(String nfc_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.selectNfc", nfc_code);
+		
 	}
 	
 }

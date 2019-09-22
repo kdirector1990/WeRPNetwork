@@ -7,6 +7,8 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -59,6 +61,9 @@ public interface ST_DAO {
 	// ------ ST_release (출고 관리)
 	// release 게시글 갯수 구하기
 	public int getReleaseCnt();
+	
+	// ST_release
+	public List<Release> getreleaseResult(Map<String, Object> map);
 	
 	// release 게시글 목록 조회
 	public List<Release> getReleaseList(Map<String, Object> map);
@@ -120,7 +125,11 @@ public interface ST_DAO {
 	public List<UserName> getUsernameList(String username); 
 	
 	
-	
-	
 
+	//매출
+	public List<ST_searchCustomerCode> getTotalSales(Map<String, Object> map);
+	
+	//매출 - 품목
+	public List<ST_searchProductCode> getProCode(String product_name);
+	
 }

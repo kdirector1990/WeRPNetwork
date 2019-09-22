@@ -45,9 +45,11 @@
 
 											<label class="col-md-2 col-form-label">품명</label>
 											<div class="col-md-10">
-												<input type="text" name="product_name" class="form-control"
-													id="product_nameP" value="" style="width: 350px;"
-													onclick="ProductName()">
+											<div style="display: inline-block;">
+											<input class="form-control" type="text" name="detail_ac_code" value="${sto.detail_ac_code }"
+												id="product_codeP" onclick="ProductName()" style="width: 120px; float: left;">
+											<input class="form-control" type="text" name="product_name" value="${sto.product_name }"
+												id="product_nameP"  style="width: 120px; float: right;"></div>
 											</div>
 										</div>
 
@@ -111,9 +113,14 @@
 										<div class="form-group row">
 											<label class="col-md-2 col-form-label">거래처명</label>
 											<div class="col-md-10">
-												<input type="text" name="customer_code" class="form-control"
-													value="" style="width: 350px;" id="customer_nameP"
-													onclick="CustomerName()">
+											<div style="display: inline-block;">
+											<input type="text" class="form-control" name="customer_code"
+											 id = "customer_codeP" onclick="CustomerName()" style="width: 120px; float: left;">
+											 
+											<input type="text" name="customer_code" class="form-control"
+													value=""  id="customer_nameP"
+													onclick="CustomerName()" style="width: 120px; float: right;">
+											</div>
 											</div>
 										</div>
 
@@ -121,7 +128,7 @@
 										<div class="form-group row">
 											<label class="col-md-2 col-form-label">거래 상태</label>
 											<div class="col-md-10">
-												<input type="text" name="unit" class="form-control"
+												<input type="text" name="deal_state" class="form-control"
 													id="deal_stateP" value="" style="width: 350px;">
 											</div>
 										</div>

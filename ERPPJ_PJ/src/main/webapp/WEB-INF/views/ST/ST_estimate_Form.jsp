@@ -38,9 +38,10 @@
 											value="${eto.ep_code }">${eto.ep_code }</td>
 
 										<th>거래처</th>
-										<td><input type="text" class="input" name="customer_name" onclick="customerNameList()"
-											value="${eto.customer_name }" id = "customer_nameP"><input type="text" class="input" name="customer_code"
-											value="${eto.customer_code }" id = "customer_codeP"></td>
+										<td>
+										<input type="text" class="input" name="customer_code" onclick="customerNameList()" value="${eto.customer_code }" id = "customer_codeP">
+										<input type="text" class="input" name="customer_name"  value="${eto.customer_name }" id = "customer_nameP">
+											</td>
 
 										<th>담당자</th>
 										<td><input type="text" class="input" name="username"

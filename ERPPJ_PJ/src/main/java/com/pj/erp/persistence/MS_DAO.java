@@ -3,7 +3,7 @@ package com.pj.erp.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.MS.MS_plan;
 
 //경영지원

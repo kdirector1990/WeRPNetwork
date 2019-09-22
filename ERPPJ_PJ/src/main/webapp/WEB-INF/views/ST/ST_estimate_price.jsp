@@ -165,7 +165,7 @@ $(function(){
    	}   
        
      function customerNameList() {
-    		window.open("ST_searchCustomername", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}   
 </script>
 <body>

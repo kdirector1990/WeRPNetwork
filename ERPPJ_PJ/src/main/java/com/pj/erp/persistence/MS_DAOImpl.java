@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.MS.MS_plan;
 
 //경영지원

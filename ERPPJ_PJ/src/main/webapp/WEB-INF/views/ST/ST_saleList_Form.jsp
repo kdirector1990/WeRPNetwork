@@ -4,11 +4,7 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
-<script type="text/javascript">
-function ProductName() {
-	window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
-}
-</script>
+
 </head>
 
 <body>
@@ -46,11 +42,19 @@ function ProductName() {
 											</td>
 
 											<th>제품명</th>
-											<td><input class="form-control" type="text" name="" value=""
-												id="product_nameP" onclick="ProductName()"></td>
-
+											<td>
+											<div style="display: inline-block;">
+											<input class="form-control" type="text" name="detail_ac_code" value="${sto.detail_ac_code }"
+												id="product_codeP" onclick="ProductName()" style="width: 120px; float: left;">
+											<input class="form-control" type="text" name="product_name" value="${sto.product_name }"
+												id="product_nameP"  style="width: 120px; float: right;"></div></td>
+											
 											<th>담당자</th>
-											<td><input class="form-control" type="text" name="" value=""></td>
+											<td><div style="display: inline-block;">
+											<input class="form-control" type="text" name="username" value="${sto.username }"
+												onclick="usernameList()" id="username" style="width: 120px; float: left;">
+											<input class="form-control" type="text" name="e_name" value="${sto.e_name }"
+												id="e_name"  style="width: 120px; float: right;"></div></td>
 
 
 										</tr>
@@ -79,10 +83,22 @@ function ProductName() {
 												value="${sto.price }"></td>
 
 											<th>거래처</th>
-											<td><input class="form-control" type="text" name="" value=""></td>
-
+											<td>
+											<div style="display: inline-block;">
+											<input class="form-control" type="text" name="customer_code" value="${sto.customer_code }"
+												id="customer_codeP" onclick="customerNameList()" style="width: 120px; float: left;">
+											<input class="form-control" type="text" name="customer_name" value="${sto.customer_name }"
+												id="customer_nameP"  style="width: 120px; float: right;"></div></td>
+												
 											<th>출고여부</th>
-											<td><input class="form-control" type="text" name="" value=""></td>
+											<td>
+											<select class="form-control select" name = "release_state"
+												style="width: 150px;">
+													<option value="1">출고</option>
+													<option value="2">미출고</option>
+											</select>
+											
+											</td>
 										</tr>
 
 										<tr>
