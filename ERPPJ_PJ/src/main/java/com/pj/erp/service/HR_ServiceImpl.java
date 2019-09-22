@@ -740,4 +740,19 @@ public class HR_ServiceImpl implements HR_Service{
 					
 	}
 
+	//부서조회
+	@Override
+	public List<HR_VO> getDepartment(HttpServletRequest req, Model model){
+		
+		String department_name = req.getParameter("department_name");
+		String department_code = req.getParameter("department_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_name", department_name);
+		map.put("department_code", department_code);
+		
+		List<HR_VO> list = dao.getDepartmentCodeName(map);
+		return list;
+	}
+
 }

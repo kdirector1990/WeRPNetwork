@@ -131,7 +131,7 @@
 	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
-		select department_code, department_name from department_tbl	 
+		select department_code, department_name from department_tbl
 	</select>
 	
 	<!-- 직책 목록 -->
@@ -339,4 +339,11 @@
 		]]>
 	</select>
 	
+	<!-- 부서조회 -->
+	<select id="getDepartmentCodeName" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
+		select department_name, department_code
+		from department_tbl	
+		where department_name like '%'||#{department_name}||'%' 
+		or department_code like '%'||#{department_code}||'%'
+	</select>
 </mapper>

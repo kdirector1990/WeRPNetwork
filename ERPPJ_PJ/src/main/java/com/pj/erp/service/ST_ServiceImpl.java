@@ -19,7 +19,9 @@ import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
 import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -681,32 +683,57 @@ public class ST_ServiceImpl implements ST_Service {
 
 	}
 
-	//매출현황
+	//매출 - 고객
 	@Override
-	public List<ST_searchCustomerCode> totalSales(HttpServletRequest req, Model model) {
-		System.out.println("test");
-		String department_code = req.getParameter("department_code");
-		String username = req.getParameter("username");
+	public List<ST_searchCustomerCode> searchCustomerCode(HttpServletRequest req, Model model) {
 		String customer_code = req.getParameter("customer_code");
-		String product_name = req.getParameter("product_name");
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("department_code", department_code);
-		map.put("username", username);
 		map.put("customer_code", customer_code);
-		map.put("product_name", product_name);
 		
-		List<ST_searchCustomerCode> vo = dao.getTotalSales(map);
-		
+		List<ST_searchCustomerCode> vo = dao.getCustomerCode(map);
+		System.out.println("test1 : " +customer_code);
 		return vo;
 	}
 
 	//매출 - 품명
 	@Override
 	public List<ST_searchProductCode> searchProductCode(HttpServletRequest req, Model model) {
-		String product_name = req.getParameter("product_name");
-		//List<ST_searchProductCode> vo = dao.getProCode(product_name);
-		return null;
+		String product_code = req.getParameter("product_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("product_code", product_code);
+		
+		List<ST_searchProductCode> vo = dao.getProCode(map);
+		return vo;
+	}
+
+	//매출 - 담당자
+	@Override
+	public List<ST_searchUsername> searchUsernameCode(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("username", username);
+		
+		List<ST_searchUsername> vo = dao.getUsername(map);
+		System.out.println("test3 : "+ username);
+		
+		return vo;
+	}
+
+	//매출 - 부서
+	@Override
+	public List<ST_searchDepartmentCode> searchDepartmentCode(HttpServletRequest req, Model model) {
+		String department_code = req.getParameter("department_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_code", department_code);
+		
+		List<ST_searchDepartmentCode> vo = dao.getDepartmentCode(map);
+		System.out.println("test4 : "+ department_code);
+		
+		return vo;
 	}
 
 }

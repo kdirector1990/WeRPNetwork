@@ -13,7 +13,9 @@ import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.Release;
 
 import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 
@@ -111,11 +113,15 @@ public interface ST_Service {
 	public void transaction(HttpServletRequest req, Model model);
 	
 	//매출 - 고객
-	public List<ST_searchCustomerCode> totalSales(HttpServletRequest req, Model model);
+	public List<ST_searchCustomerCode> searchCustomerCode(HttpServletRequest req, Model model);
 	
 	//매출 - 품명
 	public List<ST_searchProductCode> searchProductCode(HttpServletRequest req, Model model);
 	
+	//매출 - 담당자
+	public List<ST_searchUsername> searchUsernameCode(HttpServletRequest req, Model model);
 	
+	//매출 - 부서
+	public List<ST_searchDepartmentCode> searchDepartmentCode(HttpServletRequest req, Model model);
 
 }

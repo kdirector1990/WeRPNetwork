@@ -135,4 +135,7 @@ public interface HR_DAO {
 	
 	// 사원 직책 검색 
 	public List<HR_VO> getPositions(Map<String, Object> map);
+	
+	// 부서조회
+	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map);
 }

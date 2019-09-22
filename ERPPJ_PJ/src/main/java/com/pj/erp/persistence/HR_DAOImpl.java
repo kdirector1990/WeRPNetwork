@@ -262,5 +262,11 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getPositions", map);
 	}
 
+	// 부서조회
+	@Override
+	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getDepartmentCodeName", map);
+	}
+
 
 }
