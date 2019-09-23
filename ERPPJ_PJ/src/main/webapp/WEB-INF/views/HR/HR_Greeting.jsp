@@ -136,21 +136,21 @@
 
 											<div class="col-xl-6">
 												<div class="form-group row">
+													<label class="col-md-2 col-form-label">공고 코드</label>
+													<div class="col-md-10">
+														<input type="text" name="ap_code" class="form-control"
+															value="" style="width: 350px;">
+													</div>
+												</div>
+												
+												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 직책</label>
 													<div class="col-md-10">
 														<input type="text" name="position_code_after"
 															class="form-control" id="position_code_after"
 															style="width: 350px;">
 													</div>
-												</div>													
-												
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label">공고 코드</label>
-													<div class="col-md-10">
-														<input type="text" name="ap_code" class="form-control"
-															value="" style="width: 350px;">
-													</div>
-												</div>												
+												</div>																								
 											</div>
 											<!-- end col -->
 
