@@ -19,7 +19,7 @@
 		<form name="selectTable">
 			<table id="datatable" class="table table-bordered table-hover">
 				<thead>
-					<tr class="table-info" style="text-align: center;">
+					<tr class="table-info" style="text-align: center; pointer-events: none;">
 						<th>거래처 코드</th>
 						<th>거래처명</th>
 						<th>신용도</th>

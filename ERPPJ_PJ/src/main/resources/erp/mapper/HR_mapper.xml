@@ -348,7 +348,6 @@
 		select department_name, department_code
 		from department_tbl	
 		where department_name like '%'||#{department_name}||'%' 
-		or department_code like '%'||#{department_code}||'%'
 	</select>
 	
 	<!-- 지각/조퇴 갯수 -->
