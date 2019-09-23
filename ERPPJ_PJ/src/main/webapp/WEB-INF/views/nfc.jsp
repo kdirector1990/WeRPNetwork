@@ -5,11 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type='text/javascript'>
-     /* opener=self;
-     setTimeout('self.close()',3000); */
-     setTimeout(window.open('about:blank','_self').self.close(),3000); 
-</script>
+
 </head>
 <body>
 

@@ -1,12 +1,16 @@
 package com.pj.erp.vo.HR;
 
+import java.sql.Timestamp;
+
 public class HR_nfc_log {
 	
 	//멤버변수
 	String tag_date; // nfc 접촉시간
 	String nfc_code; // nfc 코드
 	String username; // 사번
-	String e_name;	// 사원명
+	String e_name;	 // 사원명
+	String min;
+	String max;
 	
 	//디폴트 생성자
 	public HR_nfc_log() {}
@@ -45,8 +49,26 @@ public class HR_nfc_log {
 		this.e_name = e_name;
 	}
 
-	
-	 
-	
 
+	public String getMin() {
+		return min;
+	}
+
+
+	public void setMin(String min) {
+		this.min = min;
+	}
+
+
+	public String getMax() {
+		return max;
+	}
+
+
+	public void setMax(String max) {
+		this.max = max;
+	}
+	
+	
+	
 }

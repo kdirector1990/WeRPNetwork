@@ -19,14 +19,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 
 @Controller
 public class HR_Controller {
@@ -349,6 +350,7 @@ public class HR_Controller {
 		return "index"; 
 	}
 	
+	//부서조회
 	@RequestMapping("HR_searchDepartment")
 	public String searchDeapartment(HttpServletRequest req, Model model) {
 		logger.info("log => searchDepartment");
@@ -356,13 +358,15 @@ public class HR_Controller {
 		return "HR/HR_searchDepartment";
 	}
 	
+	//부서조회 처리
 	@RequestMapping("HR_searchDepartment_result")
-	public String searchDeapartment_result(HttpServletRequest req, Model model) {
-		logger.info("log => searchDepartment_result");
+	@ResponseBody
+	public List<HR_VO> HR_searchDepartment_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_searchDepartment_result");
+		List<HR_VO> list = service.getDepartment(req, model);
 		
-		return "HR/HR_searchDepartment_result";
+		return list;
 	}
-	
 	/*
 	 * @RequestMapping("HR_InputHRex")
 	public String HR_InputHRex(HttpServletRequest req, Model model) {
@@ -406,7 +410,7 @@ public class HR_Controller {
 		return updateCnt;
 	}
 
-	//근태(사원 근태정보 가져오기)
+	//근태(사원 근태 월, 일, 시간 정보 가져오기)
 	@RequestMapping("Select_Users_Work_Data")
 	@ResponseBody
 	public List<HR_Time_VO> Select_Users_Work_Data(HttpServletRequest req, Model model) {
@@ -444,6 +448,37 @@ public class HR_Controller {
 		List<HR_nfc_log> nfclog = service.getNfcLog(req, model); 
 		
 		return nfclog;
+	}
+	
+	// 인사발령공고들
+	@RequestMapping(value = "HR_position_record_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_VO> HR_position_record_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_position_record_result");
+		List<HR_VO> list = service.getPositions(map, req, model);
+		return list;
+	}
+	
+	// 사이드바 출근
+	@RequestMapping("HR_Start_Work_Sidebar")
+	@ResponseBody
+	public int HR_Start_Work_Sidebar(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Start_Work_Sidebar");
+		
+		int insertCnt = service.sidebarWorkStart(req, model);
+		
+		return insertCnt;
+	}
+	
+	//사이드바 퇴근
+	@RequestMapping("HR_End_Work_Sidebar")
+	@ResponseBody
+	public int HR_End_Work_Sidebar(HttpServletRequest req, Model model) {
+		logger.info("log => HR_End_Work_Sidebar");
+		
+		int updateCnt = service.sidebarEndWork(req, model);
+		
+		return updateCnt;
 	}
 	
 }

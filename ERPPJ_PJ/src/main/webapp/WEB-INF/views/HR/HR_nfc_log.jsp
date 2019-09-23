@@ -35,12 +35,9 @@
 		$('#search').click(function(){
 			var param = new Object();
 			var jsonData;
-			
-						
-			 
-					
 			jsonData = JSON.stringify();
-			
+			$('#result').empty();
+			$('#bodyappend').empty();
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_nfc_result?${_csrf.parameterName}=${_csrf.token }',
 				type : 'POST',
@@ -52,49 +49,48 @@
 					$('#result').empty();
 					$('#bodyappend').empty();
 					
-					
-					
 					for(var i = 0 ; i < nfclog.length; i++){
 					
 						var tag_date = nfclog[i].tag_date;
 						var nfc_code = nfclog[i].nfc_code;
 						var username = nfclog[i].username;
 						var e_name = nfclog[i].e_name;
-						 
 						
 					$('#result').append('<tr>'+                         	
 							'<td>'+ tag_date +'</td>'+
 							'<td>'+ nfc_code +'</td>'+
-							'<td>'+ username +'</td>'+
+							'<td>'+ username +'</td>'+ 
 							'<td>'+ e_name +'</td>'+
-							 							
+							
                  		'</tr>');
 					
 					if(searchCount == 1){
-					$('#bodyappend').append(
-					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-					);
+						$('#bodyappend').append(
+						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+						);
 					searchCount = searchCount + 1;
 					}
 					
 					
 					}
+					
+					
 					
 				},
 				error : function(){

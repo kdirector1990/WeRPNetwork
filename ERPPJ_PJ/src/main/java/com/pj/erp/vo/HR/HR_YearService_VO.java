@@ -1,4 +1,4 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.HR;
 
 import java.sql.Date;
 

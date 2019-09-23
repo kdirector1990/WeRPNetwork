@@ -23,7 +23,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
-import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Building;
@@ -34,6 +33,7 @@ import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
+import com.pj.erp.vo.HR.HR_VO;
 
 @Controller
 public class FT_Controller {
@@ -98,14 +98,14 @@ public class FT_Controller {
 	@RequestMapping("FT_DTB")
 	public String FT_DTB(Locale locale, Model model) {
 		logger.info("log => FT_DTB");
-
+		
 		return "FT/FT_DTB";
 	}
 
 	@RequestMapping("FT_BS")
 	public String FT_BS(Locale locale, Model model) {
 		logger.info("log => FT_BS");
-		
+		 
 		return "FT/FT_BS";
 	}
 	
@@ -114,7 +114,7 @@ public class FT_Controller {
 	@ResponseBody
 	public Map<String, Object> FT_search_BS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => FT_search_BS");
-		Map<String, Object> bs_map = service.getBsshit(map, req, model); 
+		Map<String, Object> bs_map = service.getBsshit(map, req, model);
 		return bs_map; 
 	}
 
@@ -124,6 +124,17 @@ public class FT_Controller {
 
 		return "FT/FT_IS";
 	}
+	
+	// 손익계산서 조회 쿼리
+	@RequestMapping(value="FT_search_IS", produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> FT_search_IS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_search_IS");
+		Map<String, Object> is_map = service.getBsshit(map, req, model);
+		return is_map; 
+	}
+	
+	
 
 	@RequestMapping("FT_p_cost")
 	public String FT_p_cost(Locale locale, Model model) {
@@ -618,7 +629,7 @@ public class FT_Controller {
 		String CardName = map.get("CardName").toString();
 		String CardType = map.get("CardType").toString();
 		String CardPurpose = map.get("CardPurpose").toString();
-		String Owner = map.get("Owner").toString();
+		String Owner = map.get("Owner").toString(); 
 		String PayCode = map.get("PayCode").toString();
 		String result = service.FT_CardManagementInsert(map);
 		return result;

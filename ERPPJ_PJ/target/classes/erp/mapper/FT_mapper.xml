@@ -499,7 +499,7 @@
 	</select>
 	
 	<!-- 사원 가져오기 -->
-	<select id="FT_UsersAllSelect" resultType="com.pj.erp.vo.HR_VO">
+	<select id="FT_UsersAllSelect" resultType="com.pj.erp.vo.HR.HR_VO">
 		select * from users
 		order by TO_NUMBER(username)
 	</select>
@@ -512,7 +512,7 @@
 	</select>
 	
 	<!-- 사원 검색한 것 가져오기 -->
-	<select id="FT_UsersSelect" resultType="com.pj.erp.vo.HR_VO">
+	<select id="FT_UsersSelect" resultType="com.pj.erp.vo.HR.HR_VO">
 		select * from users
 		where (username like '%' || #{srhval, jdbcType=VARCHAR} || '%'
 		or e_name like '%' || #{srhval, jdbcType=VARCHAR} || '%')
@@ -887,5 +887,10 @@
 		where journal_date = #{dates}
 		and journal_number = #{nos}
 	</update>
+	
+	<!-- 재무상태표 계정별 합계_권순용 -->
+	<select id="FT_getAssetsList" resultType="com.pj.erp.vo.FT.FT_accounts_balance">
+		select * from getBalanceShit_t_view where lg_name=#{typename} order by acc_level
+	</select>
 	
 </mapper>

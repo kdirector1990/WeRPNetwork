@@ -36,7 +36,7 @@
 						<div class="card">
 							<div class="card-body">
 
-								<h4 class="header-title">기획서 관리</h4>
+								<h4 class="header-title">기획서 조회</h4>
 
 								<hr>
 								<table id="datatable"
@@ -227,7 +227,9 @@
  			    	+ '</div>' 
  					+'</div>'
  				    );
- 			
+   			var offset = $(".plandiv").offset();
+            $('html, body').animate({scrollTop : offset.top}, 200); 
+   			
 		});
     </script>
 </body>

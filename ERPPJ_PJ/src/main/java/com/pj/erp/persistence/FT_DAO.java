@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Building;
@@ -20,8 +19,10 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
+import com.pj.erp.vo.HR.HR_VO; 
 
 public interface FT_DAO {
 	
@@ -263,4 +264,8 @@ public interface FT_DAO {
 	 public List<FT_DTB> FT_DTBMonthListL(Map<String, Object> map);
 	 public List<FT_DTB> FT_DTBMonthListM(Map<String, Object> map);
 	 public List<FT_DTB> FT_DTBMonthListS(Map<String, Object> map);
+	 
+	 
+	 // 재무상태표_자산   - 권순용
+	 public List<FT_accounts_balance> FT_getAssetsList(String typename);
 }

@@ -1,4 +1,4 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.HR;
 
 import java.sql.Timestamp;
 
@@ -17,6 +17,7 @@ public class HR_VO {
 	private String department_code;
 	private String department_name;
 	private String rank_code;
+	private String rank_name;
 	private String position_code;
 	private String position_name;
 	private int level_step;
@@ -128,6 +129,14 @@ public class HR_VO {
 
 	public void setRank_code(String rank_code) {
 		this.rank_code = rank_code;
+	}
+	
+	public String getRank_name() {
+		return rank_name;
+	}
+	
+	public void setRank_name(String rank_name) {
+		this.rank_name = rank_name;
 	}
 
 	public String getPosition_code() {

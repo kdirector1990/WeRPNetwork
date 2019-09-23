@@ -2,7 +2,6 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +13,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ST_DAO;
-import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchUsername;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -45,7 +48,6 @@ public class ST_ServiceImpl implements ST_Service {
 		int estimatewrite = dao.estimatewritePro(vo);
 		
 		model.addAttribute("estimatewrite", estimatewrite);
-		
 		
 	}
 	
@@ -346,13 +348,22 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setStored_count(Integer.parseInt(req.getParameter("release_count")));
 		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSar_type(req.getParameter("sar_type"));
-		vo.setDetail_ac_code("qa1005");
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
 		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
 		
 		model.addAttribute("releaseWritePro", releaseWritePro);
 		
+	}
+	
+	// ST_release 검색 조회
+	@Override
+	public List<Release> getRelease(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<Release> list = dao.getreleaseResult(map);
+		System.out.println("작동");
+		return list;
 	}
 		
 	
@@ -443,6 +454,10 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setStored_name(req.getParameter("stored_count"));
 		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
 		vo.setSar_type(req.getParameter("sar_type"));
+		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
+		vo.setUsername(req.getParameter("username"));
+		
 		
 		int updateRelease = dao.updateRelease(vo);
 		
@@ -668,15 +683,62 @@ public class ST_ServiceImpl implements ST_Service {
 	}
 	
 	
-	// tables-datatable (거래 명세서) 목록
 	@Override
 	public void transaction(HttpServletRequest req, Model model) {
 
 	}
 
+	//매출 - 고객
 	@Override
-	public void totalSales(HttpServletRequest req, Model model) {
+	public List<ST_searchCustomerCode> searchCustomerCode(HttpServletRequest req, Model model) {
+		String customer_code = req.getParameter("customer_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("customer_code", customer_code);
+		
+		List<ST_searchCustomerCode> vo = dao.getCustomerCode(map);
+		System.out.println("test1 : " +customer_code);
+		return vo;
+	}
 
+	//매출 - 품명
+	@Override
+	public List<ST_searchProductCode> searchProductCode(HttpServletRequest req, Model model) {
+		String product_code = req.getParameter("product_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("product_code", product_code);
+		
+		List<ST_searchProductCode> vo = dao.getProCode(map);
+		return vo;
+	}
+
+	//매출 - 담당자
+	@Override
+	public List<ST_searchUsername> searchUsernameCode(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("username", username);
+		
+		List<ST_searchUsername> vo = dao.getUsername(map);
+		System.out.println("test3 : "+ username);
+		
+		return vo;
+	}
+
+	//매출 - 부서
+	@Override
+	public List<ST_searchDepartmentCode> searchDepartmentCode(HttpServletRequest req, Model model) {
+		String department_code = req.getParameter("department_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_code", department_code);
+		
+		List<ST_searchDepartmentCode> vo = dao.getDepartmentCode(map);
+		System.out.println("test4 : "+ department_code);
+		
+		return vo;
 	}
 
 }

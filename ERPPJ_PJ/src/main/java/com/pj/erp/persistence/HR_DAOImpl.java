@@ -7,17 +7,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pj.erp.vo.HR_ApVO;
-import com.pj.erp.vo.HR_FamilyVO;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_RankVO;
-import com.pj.erp.vo.HR_RecordVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_ApVO;
+import com.pj.erp.vo.HR.HR_FamilyVO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RankVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Repository
@@ -188,8 +188,8 @@ public class HR_DAOImpl implements HR_DAO{
 	
 	//근태(퇴근확인)
 	@Override
-	public int selectEndWork(String username) {
-		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectEndWork", username);
+	public int selectEndWork(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectEndWork", map);
 	}
 
 	//근태(퇴근입력)
@@ -255,6 +255,27 @@ public class HR_DAOImpl implements HR_DAO{
 	public List<HR_nfc_log> getNfcLog() {
 		 
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getNfcLog");
+	}
+
+	@Override
+	public List<HR_VO> getPositions(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getPositions", map);
+	}
+
+	// 부서조회
+	@Override
+	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getDepartmentCodeName", map);
+	}
+
+	@Override
+	public int lateWorkStart(String username) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.lateWorkStart", username);
+	}
+
+	@Override
+	public int ealryWorkEnd(String username) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.ealryWorkEnd", username);
 	}
 
 

@@ -1,4 +1,4 @@
-package com.pj.erp.vo;
+package com.pj.erp.vo.HR;
 
 import java.sql.Timestamp;
 
@@ -13,7 +13,7 @@ public class HR_Time_VO {
 	Timestamp tc_leave_time;
 	String month;
 	String year;
-	String count;
+	int count;
 	
 	//생성자
 	public HR_Time_VO() {}
@@ -75,11 +75,11 @@ public class HR_Time_VO {
 		this.month = month;
 	}
 
-	public String getCount() {
+	public int getCount() {
 		return count;
 	}
 
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
 

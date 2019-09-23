@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.MF_DAO;
-import com.pj.erp.vo.HR_VO;
+import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.MF.MF_material;
 import com.pj.erp.vo.MF.MF_plan;
 import com.pj.erp.vo.MF.MF_product_list;

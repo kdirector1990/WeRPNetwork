@@ -57,7 +57,6 @@
 											<col style="width: 11%;">
 											<col style="width: 13%;">
 											<col style="width: 10%;">
-
 											<thead class="bg-primary text-white">
 												<tr>
 													<th>생산계획코드</th>
@@ -182,7 +181,7 @@
    			$('#datatable2 > tbody:last').append('<div class="plandiv">'+'<input type="hidden" name="p_pp_code" value="'+tdArr[0]+'"><div class="form-group row">'
   					+ '<label class="col-md-2 col-form-label" for="example-email">생산계획 코드</label>'        
   						+ '<div class="col-md-10">'
-  				    		+ '<input type="text" name="p_pp_code" value="'+tdArr[0]+'" class="form-control" disabled>' 
+  				    		+ '<input type="text" name="p_pp_code" id="p_pp_code" value="'+tdArr[0]+'" class="form-control" disabled>' 
   				        +'</div>'
   				    +'</div>'
   				    +'<div class="form-group row">'
@@ -195,9 +194,14 @@
   			        + '<label class="col-md-2 col-form-label" for="simpleinput">제품계정코드</label>' 
   			        	+ '<div class="col-md-10">'
   			            	+ '<input type="text" name="product_code" id="product_code" value="'+tdArr[2]+'" id="simpleinput" class="form-control" onclick="searchProCode();">'
-  			            	+ '<input type="text" name="product_name" id="product_name" id="simpleinput" class="form-control" disabled>' 
-  			        	+ '</div>'
-  			    	+'</div>'
+			            + '</div>'
+			        +'</div>'
+			        + '<div class="form-group row">'
+  			        + '<label class="col-md-2 col-form-label" for="simpleinput">제품명</label>' 
+  			        	+ '<div class="col-md-10">'
+  			        	+ '<input type="text" name="product_name" id="product_name" id="simpleinput" class="form-control" readonl>' 
+			            + '</div>'
+			        +'</div>'
   			    	+ '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">기간시작</label>'
   			        	+ '<div class="col-md-10">'
@@ -228,6 +232,9 @@
   					+ '</div>'
   					+'</div>'
   				    );
+   			
+   			var offset = $(".plandiv").offset();
+            $('html, body').animate({scrollTop : offset.top}, 200); 
   			
 		});
      

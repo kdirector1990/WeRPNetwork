@@ -19,7 +19,11 @@
        		var today = date.getDate(); //d 
        		today = today >= 10 ? today : '0' + today; //day 두자리로 저장
        		function onload() {
+<<<<<<< HEAD
        			if("${list}" != "") {
+=======
+       			if(${list} != null)  {
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	        		$("#year").val("${year}");
 	        		$("#month option:eq(${month-1})" ).prop("selected","selected");
 	        		$("#day").val("${day}");
@@ -736,11 +740,13 @@
 												<c:if test="${list != null}">
 													<c:forEach var="lists" items="${list}">
 														<tr>
-															<input type="hidden" name="writer${cnt}"
+															
+															<td><input type="hidden" name="writer${cnt}"
 																value="${lists.last_modi_user}">
 															<input type="hidden" name="formaler${cnt}"
 																value="${lists.fname}">
-															<td><input type="text" onfocus="focuse(${cnt + 1});"
+																
+																<input type="text" onfocus="focuse(${cnt + 1});"
 																name="date${cnt + 1}" class="form-control"
 																data-toggle="input-mask" data-mask-format="0000/00/00"
 																placeholder="YYYY/DD/MM"
@@ -789,7 +795,7 @@
 																value="${lists.account_name}"></td>
 															<td><input type="text" onfocus="focuse(${cnt + 1});"
 																name="AccCode${cnt + 1}" class="form-control"
-																onclick="accountlist(${cnt + 1})"
+									 							onclick="accountlist(${cnt + 1})"
 																data-toggle="input-mask"
 																style="width: 100%; border: 0px;"
 																onkeydown="enter(this.tagName, this.name);"

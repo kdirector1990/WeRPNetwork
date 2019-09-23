@@ -18,17 +18,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.HR_DAO;
-import com.pj.erp.vo.HR_ApVO;
-import com.pj.erp.vo.HR_FamilyVO;
-import com.pj.erp.vo.HR_GreetingVO;
-import com.pj.erp.vo.HR_PaystepVO;
-import com.pj.erp.vo.HR_PhysicalVO;
-import com.pj.erp.vo.HR_RankVO;
-import com.pj.erp.vo.HR_RecordVO;
-import com.pj.erp.vo.HR_SalaryVO;
-import com.pj.erp.vo.HR_Time_VO;
-import com.pj.erp.vo.HR_VO;
-import com.pj.erp.vo.HR_YearService_VO;
+import com.pj.erp.vo.HR.HR_ApVO;
+import com.pj.erp.vo.HR.HR_FamilyVO;
+import com.pj.erp.vo.HR.HR_GreetingVO;
+import com.pj.erp.vo.HR.HR_PaystepVO;
+import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RankVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
+import com.pj.erp.vo.HR.HR_SalaryVO;
+import com.pj.erp.vo.HR.HR_Time_VO;
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -40,8 +40,6 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	@Autowired
 	HR_DAO dao;
-	
-	
 	
 	// 인사정보등록
 	@Override
@@ -96,10 +94,10 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO vo = new HR_VO();		
 		
 		String username = dao.getUsername();
-		String e_name = "1234";
+		String e_name = req.getParameter("e_name");
 		// String e_picture = file.getOriginalFilename();
 		
-		String password = passwordEncoder.encode(e_name);
+		String password = passwordEncoder.encode("1234");
 		System.out.println(e_name);				
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
@@ -498,7 +496,15 @@ public class HR_ServiceImpl implements HR_Service{
 			System.out.println("작동");
 			if(users == 0) {
 				System.out.println("작동2");
-				insertCnt = dao.StartWork(username[i]);
+				Calendar c = Calendar.getInstance();
+				int Hour = c.get(Calendar.HOUR_OF_DAY);
+				
+				if(Hour > 9) {
+					insertCnt = dao.lateWorkStart(username[i]);
+				}
+				else {
+					insertCnt = dao.StartWork(username[i]);
+				}
 			}
 		}
 		
@@ -510,14 +516,26 @@ public class HR_ServiceImpl implements HR_Service{
 	public int InsertEndWork(HttpServletRequest req, Model model) {
 
 		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		String [] username = req.getParameterValues("username");
 		
 		for(int i = 0; i < username.length; i++) {
-			int users = dao.selectEndWork(username[i]);
+			map.put("username", username[i]);
+			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
-				updateCnt = dao.EndWork(username[i]);
+				
+				Calendar c = Calendar.getInstance();
+				int Hour = c.get(Calendar.HOUR_OF_DAY);
+				
+				if(Hour < 18) {
+					updateCnt = dao.ealryWorkEnd(username[i]);
+				}
+				else {
+					updateCnt = dao.EndWork(username[i]);
+				}
+				
 			}
 		}
 		
@@ -533,11 +551,6 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_YearService_VO> list = dao.getYearofservice(map);
 		return list;
 	}
-
-
-
-	
-	
 
 	//근태(근무일별 목록 가져오기)
 	@Override
@@ -608,14 +621,20 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_RecordVO vo = new HR_RecordVO();		
 		
 		String username = req.getParameter("username");
+		String position_code = req.getParameter("position_code");
+		String position_code_after = req.getParameter("position_code_after");
 		String position_record_code = dao.getPositionRecord();
 		Date record_date = (Date.valueOf(req.getParameter("record_date")));
-		
+		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
+		String ap_code = "";
 		
 		
 		vo.setUsername(username);
-		vo.setPosition_record_cord(position_record_code);
+		vo.setPosition_code(position_code);
+		vo.setPosition_code_after(position_code_after);
+		vo.setPosition_record_code(position_record_code);
 		vo.setRecord_date(record_date);		
+		vo.setRecord_date_after(record_date_after);
 		
 		int cnt = 0;
 		
@@ -627,18 +646,23 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	@Override
 	public void HR_APinput(HttpServletRequest req, Model model) {
+		int i = 0;
+		
 		HR_ApVO ap = new HR_ApVO();
 		
 		String ap_code = dao.getAP_code();
 		String ap_name = req.getParameter("ap_name");
-		String ap_content = req.getParameter("ap_content");
+		String ap_content = req.getParameter("ap_content");	
+		
+		System.out.println(req.getParameter("ap_reg_date"));
+		System.out.println(req.getParameter("ap_est_date"));
 		
 		ap.setAp_code(ap_code);
 		ap.setAp_name(ap_name);
 		ap.setAp_content(ap_content);
 		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
 		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
-		ap.setAp_status(req.getParameter("ap_status"));
+		ap.setAp_status(req.getParameter("ap_status"));		
 		
 		int cnt = 0;		
 		
@@ -718,6 +742,86 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		
 		return nfc_log;
+	}
+	
+	@Override
+	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException {
+		
+		
+		List<HR_VO> list = dao.getPositions(map); 
+		return list;
+					
+	}
+
+	//부서조회
+	@Override
+	public List<HR_VO> getDepartment(HttpServletRequest req, Model model){
+		
+		String department_name = req.getParameter("department_name");
+		String department_code = req.getParameter("department_code");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("department_name", department_name);
+		map.put("department_code", department_code);
+		
+		List<HR_VO> list = dao.getDepartmentCodeName(map);
+		
+		return list;
+	}
+	
+	//사이드바 출근
+	@Override
+	public int sidebarWorkStart(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int insertCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		int users = dao.selectWork(map);		
+		if(users == 0) {
+			System.out.println("작동2");
+			Calendar c = Calendar.getInstance();
+			int Hour = c.get(Calendar.HOUR_OF_DAY);
+			System.out.println(Hour);
+			if(Hour > 9) {
+				insertCnt = dao.lateWorkStart(username);
+			}
+			else {
+				insertCnt = dao.StartWork(username);
+			}
+			
+		}
+		
+		return insertCnt;
+	}
+
+
+	//사이드바 퇴근
+	@Override
+	public int sidebarEndWork(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		int updateCnt = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		int users = dao.selectEndWork(map);
+		
+		if(users == 0) {
+			
+			Calendar c = Calendar.getInstance();
+			int Hour = c.get(Calendar.HOUR_OF_DAY);
+			
+			if(Hour < 18) {
+				updateCnt = dao.ealryWorkEnd(username);
+			}
+			else {
+				updateCnt = dao.EndWork(username);
+			}
+		}
+		
+		return updateCnt;
 	}
 
 }

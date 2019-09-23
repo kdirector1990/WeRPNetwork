@@ -11,6 +11,10 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_searchProductCode;
+import com.pj.erp.vo.ST.ST_searchUsername;
+import com.pj.erp.vo.ST.ST_searchCustomerCode;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
 import com.pj.erp.vo.ST.UserName;
@@ -62,7 +66,6 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteEstimate", ep_code);
 	}
 	
-	
 	// ------ salePlan (판매 계획 관리)
 	// salePlan (판매 계획 관리 목록)
 	@Override
@@ -111,6 +114,12 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public int getReleaseCnt() {
 		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.getReleaseCnt");
+	}
+	
+	// release 검색
+	@Override
+	public List<Release> getreleaseResult(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getreleaseResult", map);
 	}
 	
 	// release 게시글 목록 조회
@@ -213,7 +222,7 @@ public class ST_DAOImpl implements ST_DAO {
 	public List<CustomerList> getCustomerList(String customer_name) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getCustomerList", customer_name);
 	}
-	
+
 	// 사원 이름 검색 확인
 	@Override
 	public int selectName(String username) {
@@ -224,6 +233,30 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public List<UserName> getUsernameList(String username) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getUsernameList", username);
+	}
+
+	//매출 - 고객
+	@Override
+	public List<ST_searchCustomerCode> getCustomerCode(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getTotalSales", map);
+	}
+	
+	//매출 - 품목
+	@Override
+	public List<ST_searchProductCode> getProCode(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getProCode", map);
+	}
+
+	//매출 - 담당자
+	@Override
+	public List<ST_searchUsername> getUsername(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getUsername", map);
+	}
+
+	//매출 - 부서
+	@Override
+	public List<ST_searchDepartmentCode> getDepartmentCode(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getDepartmentCode", map);
 	}
 	
 
