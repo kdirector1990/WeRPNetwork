@@ -396,6 +396,19 @@
 												<div class="form-group row">
 													<div class="col-md-5">
 														<div class="form-group row">
+															<label class="col-lg-4 col-form-label" for="simpleinput">사용부서<span
+																class="text-danger">*</span></label>
+															<div class="col-lg-8">
+																<input type="text" class="form-control" name="e_name"
+																	placeholder="한글이름">
+																<button type="button"
+																	class="btn btn-icon waves-effect waves-light btn-primary">
+																	<i class="fas fa-search"></i>
+																</button>
+															</div>
+														</div>
+													
+														<div class="form-group row">
 															<label class="col-lg-4 col-form-label" for="simpleinput">건물명<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
@@ -403,17 +416,11 @@
 																	placeholder="한글이름">
 															</div>
 														</div>
-
+														
 														<div class="form-group row">
 															<label class="col-lg-4 col-form-label" for="simpleinput">건물주소<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name"
-																	placeholder="한글이름" style="width: 20%; display: inline;">
-																<button type="button"
-																	class="btn btn-icon waves-effect waves-light btn-primary">
-																	<i class="fas fa-search"></i>
-																</button>
 																<input type="text" class="form-control" name="e_name"
 																	placeholder="한글이름">
 															</div>
@@ -423,30 +430,14 @@
 															<label class="col-lg-4 col-form-label" for="simpleinput">구입일<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name"
-																	placeholder="한글이름">
+																<input type="date" class="form-control" name="buydate">
 															</div>
 														</div>
 													</div>
 													<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 													<div class="col-md-5">
 														<div class="form-group row">
-															<label class="col-lg-4 col-form-label" for="simpleinput">계정<span
-																class="text-danger">*</span></label>
-															<div class="col-lg-8">
-																<input type="text" class="form-control" name="e_name"
-																	placeholder="한글이름" style="width: 20%; display: inline;">
-																<button type="button"
-																	class="btn btn-icon waves-effect waves-light btn-primary">
-																	<i class="fas fa-search"></i>
-																</button>
-																<input type="text" class="form-control" name="e_name"
-																	placeholder="한글이름" style="display: inline; width: 65%;">
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label class="col-lg-4 col-form-label" for="simpleinput">사용부서<span
+															<label class="col-lg-4 col-form-label" for="simpleinput">감가계정코드<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
 																<input type="text" class="form-control" name="e_name"

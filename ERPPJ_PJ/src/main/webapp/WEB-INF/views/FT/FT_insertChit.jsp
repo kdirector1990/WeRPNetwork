@@ -7,7 +7,7 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-        	var count = 1;
+        	var count = 2;
         	var frontcursor;
         	var updatekey = 0;
         	var focusval;
@@ -19,12 +19,12 @@
        		var today = date.getDate(); //d 
        		today = today >= 10 ? today : '0' + today; //day 두자리로 저장
        		function onload() {
-       			if(${list} != null) {
+       			if("${list}" != "") {
 	        		$("#year").val("${year}");
-	        		$("#month").val("${month}");
+	        		$("#month option:eq(${month-1})" ).prop("selected","selected");
 	        		$("#day").val("${day}");
 	        		$("#journalNum").val("${chkno}");
-	        		count = parseInt("${listsize}");
+	        		count = parseInt("${listsize+2}");
        			}
        		}
        		
@@ -256,17 +256,24 @@
         		var obj = new Object();
         		var jsonData;
         		
-        		if(!$("#year").val()){
-        			$("#year").focus();
-        			return false;
-        		} else if(!$("#month").val()) {
-        			$("#month").focus();
-        			return false;
-        		} else if(parseInt($("#day").val()) > (new Date(obj.year, obj.month, 0)).getDate()){
-        			alert("날짜가 초과되었습니다. 다시 입력해주세요");
-        			$("#day").focus();
-        			return false;
-        		} else if(window.event.which == 13){
+        		if(window.event.which == 13){
+        			if(!$("#year").val()){
+            			alert("년도 입력해주세요");
+            			$("#year").focus();
+            			return false;
+            		} else if(!$("#month").val()) {
+            			alert("월을 입력해주세요");
+            			$("#month").focus();
+            			return false;
+            		} else if(!$("#day").val()){
+            			alert("날짜 입력해주세요!");
+            			$("#day").focus();
+            			return false;
+            		} else if(parseInt($("#day").val()) > (new Date(obj.year, obj.month, 0)).getDate()){
+            			alert("날짜가 초과되었습니다. 다시 입력해주세요");
+            			$("#day").focus();
+            			return false;
+            		}
 	        		// 자바스크립트 객체 생성
 	        		obj.year = $("#year").val();
 	        		obj.month = $("#month").val();
@@ -284,7 +291,6 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                    	   alert(data);
 	                    	   $("#journalNum").attr("max", data);
 	                    	   $("#journalNum").val(data);
 	                    	   $(".chit-table-bordered-primary tbody").html('<tr>' +
@@ -326,7 +332,20 @@
 	        		var jsonData;
 	        		
 	        		if(!$("#year").val()){
+	        			alert("년도 입력해주세요");
 	        			$("#year").focus();
+	        			return false;
+	        		} else if(!$("#month").val()) {
+	        			alert("월을 입력해주세요");
+	        			$("#month").focus();
+	        			return false;
+	        		} else if(!$("#day").val()){
+	        			alert("날짜 입력해주세요!");
+	        			$("#day").focus();
+	        			return false;
+	        		} else if(parseInt($("#day").val()) > (new Date(obj.year, obj.month, 0)).getDate()){
+	        			alert("날짜가 초과되었습니다. 다시 입력해주세요");
+	        			$("#day").focus();
 	        			return false;
 	        		} else {
 		        		// 자바스크립트 객체 생성
@@ -347,8 +366,6 @@
 		                       contentType : 'application/json;charset=UTF-8',
 		                       success : function(data) {
 		                    	   $(".chit-table-bordered-primary tbody").html("");
-		                    	   alert(data);
-		                    	   alert(data.length);
 		                    		var i = 0;
 		                    	   if(data != null){
 									for(i = 0; i < data.length; i++){
@@ -648,13 +665,6 @@
 									<table id="datatable"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<tr>
-											<td>작성자</td>
-											<td><input type="text" class="" id="usercode" readonly
-												style="width: 100px;">&nbsp;<a href="#"
-												onclick="userslist();"><i class="dripicons-zoom-in"></i></a>
-												<input type="text" class="" id="username" readonly
-												style="width: 100px;"></td>
-
 											<td>년</td>
 											<td><input type="text" class="" data-toggle="input-mask"
 												data-mask-format="0000" placeholder="ex)2018"
@@ -722,8 +732,8 @@
 											</thead>
 
 											<tbody>
+												<c:set var="cnt" value="0" />
 												<c:if test="${list != null}">
-													<c:set var="cnt" value="0" />
 													<c:forEach var="lists" items="${list}">
 														<tr>
 															<input type="hidden" name="writer${cnt}"
@@ -882,6 +892,30 @@
 															<c:set var="cnt" value="${cnt + 1}" />
 														</tr>
 													</c:forEach>
+													<tr>
+														<input type = "hidden" name = "writer${cnt + 1}">
+								                        <input type = "hidden" name = "formaler${cnt + 1}">
+								                        <td>
+								                        <input type="text" onfocus = "focuse(${cnt + 1});" name = "date${cnt + 1}" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "key${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "number${cnt + 1}" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" id = "first${cnt + 1}" name = "RLstate${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "RLenter(this.tagName, this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "SubjectCode${cnt + 1}" class="form-control" onclick = "subjectlist(${cnt + 1})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "SubjectName${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "AccCode${cnt + 1}" class="form-control" onclick = "accountlist(${cnt + 1})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "AccName${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "price${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "count${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "text${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+								                        <td><select class="form-control" id = "enter' + count + '" onfocus = "focuse(${cnt + 1});" name = "type${cnt + 1}" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);" onchange="enterinsert(${cnt + 1});">
+								                        <option value="0">== 선택 ==</option>
+								                        <option value="1">일반</option>
+								                        <option value="2">매입</option>
+								                        <option value="3">매출</option>
+								                        <option value="4">결산</option>
+								                   		</select></td>
+								                        <td><input type="text" onfocus = "focuse(${cnt + 1});" name = "updateday${cnt + 1}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+							                        </tr>
 												</c:if>
 											</tbody>
 										</table>

@@ -77,14 +77,14 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="va" begin="1" end="200" step="1">
+										<c:forEach var="item" items="${note}">
 											<tr>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
+												<td>${item.bill_r_code}</td>
+												<td>${item.customer_code}</td>
+												<td>${item.payment_price}</td>
+												<td>${item.payment_date}</td>
+												<td>${item.payment_expriration}</td>
+												<td>${item.payment_interest}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

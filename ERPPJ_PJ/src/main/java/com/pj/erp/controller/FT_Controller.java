@@ -26,6 +26,7 @@ import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.HR_VO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
@@ -262,7 +263,7 @@ public class FT_Controller {
 	@RequestMapping("FT_Note_list")
 	public String FT_Note_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Note_list");
-
+		
 		return "FT/FT_Note_list";
 	}
 
@@ -639,5 +640,49 @@ public class FT_Controller {
 		return result;
 	}
 	
+
+
+	// 건물 추가    
+    @RequestMapping(value="FT_BuildingInsert")
+    public String FT_BuildingInsert(HttpServletRequest req, Model model) {
+    	logger.info("url : FT_BuildingInsert 호출중");
+        
+        service.FT_BuildingInsert(req, model);
+        
+        return "FT/FT_BulidingComplete";
+    }
+
+	// 건물 검색 가져오기
+	@RequestMapping(value = "FT_BuildingSelect")
+	public @ResponseBody List<FT_Building> FT_BuildingSelect(HttpServletRequest req) {
+		logger.info("url : FT_AccountSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_BuildingSelect(req);
+	}
 	
+	// 건물 수정
+	@RequestMapping(value = "FT_BuildingUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_BuildingUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_BuildingUpdate 호출중");
+
+		return service.FT_BuildingUpdate(map);
+	}
+	
+	// 건물 삭제
+	@RequestMapping(value = "FT_BuildingDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_BuildingDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_BuildingDelete 호출중");
+
+		return service.FT_BuildingDelete(map);
+	}
+	
+	// 건물 검색 가져오기
+	@RequestMapping(value = "FT_BuildingOneSelect")
+	public @ResponseBody FT_Building FT_BuildingOneSelect(HttpServletRequest req) {
+		logger.info("url : FT_BuildingOneSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_BuildingOneSelect(req);
+	}
 }
