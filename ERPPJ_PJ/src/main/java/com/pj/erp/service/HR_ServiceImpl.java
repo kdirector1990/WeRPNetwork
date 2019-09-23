@@ -600,23 +600,30 @@ public class HR_ServiceImpl implements HR_Service{
 	@Override
 	public void HR_recordinput(HttpServletRequest req, Model model) {
 		
-		HR_RecordVO vo = new HR_RecordVO();		
+		HR_RecordVO vo = new HR_RecordVO();
 		
+		String position_record_code = dao.getPositionRecord();
 		String username = req.getParameter("username");
+		String ap_code = dao.getAP_code();
 		String position_code = req.getParameter("position_code");
 		String position_code_after = req.getParameter("position_code_after");
-		String position_record_code = dao.getPositionRecord();
-		Date record_date = (Date.valueOf(req.getParameter("record_date")));
-		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
-		String ap_code = "";
+		String department_code = req.getParameter("department_code");
+		String department_code_after = req.getParameter("department_code_after");
 		
+		String sDate = req.getParameter("record_date");
+		sDate = sDate.replace("/", "-");		
+		String eDate = req.getParameter("record_date_after");
+		eDate = eDate.replace("/", "-");
 		
 		vo.setUsername(username);
+		vo.setAp_code(ap_code);
 		vo.setPosition_code(position_code);
 		vo.setPosition_code_after(position_code_after);
 		vo.setPosition_record_code(position_record_code);
-		vo.setRecord_date(record_date);		
-		vo.setRecord_date_after(record_date_after);
+		vo.setDepartment_code(department_code);
+		vo.setDepartment_code_after(department_code_after);
+		vo.setRecord_date(Date.valueOf(sDate));		
+		vo.setRecord_date_after(Date.valueOf(eDate));
 		
 		int cnt = 0;
 		
@@ -627,24 +634,23 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 	
 	@Override
-	public void HR_APinput(HttpServletRequest req, Model model) {
-		int i = 0;
+	public void HR_APinput(HttpServletRequest req, Model model) {		
 		
 		HR_ApVO ap = new HR_ApVO();
 		
 		String ap_code = dao.getAP_code();
 		String ap_name = req.getParameter("ap_name");
-		String ap_content = req.getParameter("ap_content");	
-		
-		System.out.println(req.getParameter("ap_reg_date"));
-		System.out.println(req.getParameter("ap_est_date"));
+		String ap_content = req.getParameter("ap_content");				
 		
 		ap.setAp_code(ap_code);
 		ap.setAp_name(ap_name);
 		ap.setAp_content(ap_content);
-		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
+		ap.setAp_reg_date(new Timestamp(System.currentTimeMillis())); 
 		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
-		ap.setAp_status(req.getParameter("ap_status"));		
+		ap.setAp_status(req.getParameter("ap_status"));
+		
+		System.out.println(ap_name);
+		System.out.println(ap_content);
 		
 		int cnt = 0;		
 		

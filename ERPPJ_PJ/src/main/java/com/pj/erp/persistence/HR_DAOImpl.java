@@ -293,5 +293,10 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.delete("com.pj.erp.persistence.HR_DAO.deleteNfc", tag_code);
 	}
 
+	@Override
+	public HR_ApVO getApInfo(String ap_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getApInfo", ap_code);
+	}
+
 
 }

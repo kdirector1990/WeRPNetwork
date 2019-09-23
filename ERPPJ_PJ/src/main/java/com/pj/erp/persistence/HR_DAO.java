@@ -139,6 +139,9 @@ public interface HR_DAO {
 	// 부서조회
 	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map);
 	
+	// 공고
+	public HR_ApVO getApInfo(String ap_code);
+	
 	//지각 입력
 	public int lateWorkStart(String username);
 	

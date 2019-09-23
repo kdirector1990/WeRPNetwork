@@ -3,9 +3,118 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/erp/resources/assets/js/request.js"></script>
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<link
+	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedHeader.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/scroller.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
+	rel="stylesheet" type="text/css" />
 <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-	
+var searchCount = 1;
+$(function(){
+	$('#search').click(function(){
+		var param = new Object();
+		var jsonData;
+					
+		param.productName = $("#productName").val();
+	/* 	param.year = $("#year").val();
+		param.mon = $("#month").val(); */
+				
+		jsonData = JSON.stringify(param); 
+		$.ajax({
+			url : '${pageContext.request.contextPath}/ST_contrast_result?${_csrf.parameterName}=${_csrf.token }',
+			type : 'POST',
+			data : jsonData, 
+			dataType : "json",
+			contentType:"application/json;charset=UTF-8", 
+			success : function(list){
+				
+				$('#result_2').empty();
+				
+				for(var i = 0 ; i < list.length; i++){
+					var sale_code = list[i].sale_code;
+					var sale_pname = list[i].sale_pname;						
+					var customer_name = list[i].customer_name;
+					var sale_name = list[i].sale_name;
+					var sale_amount = list[i].sale_amount;
+					var plan_amount = list[i].plan_amount;
+					
+					
+					var e_name = list[i].e_name;
+					var product_name = list[i].product_name;
+					var sale_date = list[i].sale_date;
+					
+					var saledate = list[i].sale_date;
+					var pa = new Date(saledate);
+					var year = pa.getFullYear();
+					var month = (1+pa.getMonth());
+					var day = pa.getDate(); 
+					var rel_date = month;
+					
+					$('#result_2').append( '<tr>' +
+							'<td>'+ sale_date +'</td>'+ 
+                        	'<td>'+ sale_code +'</td>'+ 
+                        	'<td>'+ sale_pname +'</td>'+
+                        	'<td>'+ customer_name +'</td>'+ 
+							'<td>'+ sale_name +'</td>'+ 
+							'<td>'+ sale_amount +'</td>'+
+							'<td>'+ plan_amount +'</td>'+
+							'<td>'+ sale_amount/plan_amount*100 + '</td>'+
+                		'</tr>');
+				
+				if(searchCount == 1){
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+				searchCount = searchCount + 1;
+				}
+				
+				
+				}
+				
+			},
+			error : function(){
+				alert("에러");
+			}
+		});
+	}); 
+});	    
 </script>
 </head>
 
@@ -54,158 +163,72 @@
 								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">품목</th>
+											<th class="col-md-1 col-form-label" style="text-align: right;">품목</th>
 											<td class="col-md-2 input-group"><input type="text"
-												name="" id="" class="form-control"></td>
+												name="productName" id="productName" class="form-control"></td>
+												
+											<th class="col-md-1 col-form-label" style="text-align: right;">연도</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="year" id="year" class="form-control"></td>	
 
-											<th class="col-md-1 col-form-label">기간</th>
-											<td class="col-md-2 input-group"><input type="text"
-												name="" id="" class="form-control"></td>
+											<th class="col-md-1 col-form-label" style="text-align: right;">월별</th>
+											<td class="col-md-2 input-group">
+												<select class="form-control" name="month" id="month">
+														<option value = "1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
+														<option value="11">11</option>
+														<option value="12">12</option>
+												</select>
+											</td>
 										</tr>
 									</table>
 									<div align="right">
 										<button type="button"
-											class="btn btn-dark waves-effect waves-light">조회</button>
+											class="btn btn-dark waves-effect waves-light" id ="search">조회</button>
 									</div>
 									<hr>
 
 
-									<ul class="nav nav-tabs" role="tablist">
-										<li class="nav-item"><a class="nav-link active"
-											id="home-tab" data-toggle="tab" href="#home" role="tab"
-											aria-controls="home" aria-selected="false"> <span
-												class="d-block d-sm-none"><i class="fa fa-home"></i></span>
-												<span class="d-none d-sm-block">품목</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" id="profile-tab"
-											data-toggle="tab" href="#profile" role="tab"
-											aria-controls="profile" aria-selected="true"> <span
-												class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-												<span class="d-none d-sm-block">품목군</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" id="message-tab"
-											data-toggle="tab" href="#message" role="tab"
-											aria-controls="message" aria-selected="false"> <span
-												class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
-												<span class="d-none d-sm-block">월별</span>
-										</a></li>
-									</ul>
-
 									<!-- 품목 -->
-									<div class="tab-content">
-										<div class="tab-pane" id="home" role="tabpanel"
-											aria-labelledby="home-tab">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="card">
-														<div class="card-body">
-															<p class="sub-header"></p>
-															<table class="table m-0 table-hover table-bordered">
-																<thead>
-																	<tr>
-																		<th>품번</th>
-																		<th>품명</th>
-																		<th>규격</th>
-																		<th>단위</th>
-																		<th>계획 수량</th>
-																		<th>출고 수량</th>
-																		<th>계획 금액</th>
-																		<th>출고 금액</th>
-																		<th>달성율</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-										<!-- tab-pane -->
-
-
-										<!-- 품목군 -->
-										<div class="tab-pane show active" id="profile" role="tabpanel"
-											aria-labelledby="profile-tab">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="card">
-														<div class="card-body">
-															<p class="sub-header"></p>
-															<table class="table m-0 table-hover table-bordered">
-																<thead>
-																	<tr>
-																		<th>코드</th>
-																		<th>품목군</th>
-																		<th>계획수량</th>
-																		<th>출고 수량</th>
-																		<th>계획 금액</th>
-																		<th>출고 금액</th>
-																		<th>달성율</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-
-											</div>
-											<!-- 품목군 -->
-										</div>
-
-										<!-- 월별 -->
-										<div class="tab-pane" id="message" role="tabpanel"
-											aria-labelledby="message-tab">
-											<div class="row">
-												<div class="col-lg-12">
-													<div class="card">
-														<div class="card-body">
-															<p class="sub-header"></p>
-															<table class="table m-0 table-hover table-bordered">
-																<thead>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="card">
+												<div class="card-body">
+													<div class="table-rep-plugin">
+														<div class="" data-pattern="priority-columns">
+															<table id="datatable"
+																class="table table-striped table-bordered dt-responsive nowrap">
+																<thead class="bg-primary text-white">
 																	<tr>
 																		<th>월</th>
-																		<th>계획 수량</th>
+																		<th>품번</th>
+																		<th>품명</th>
+																		<th>거래처</th>
+																		<th>담당자</th>
 																		<th>출고 수량</th>
-																		<th>계획 금액</th>
-																		<th>출고 금액</th>
+																		<th>계획 수량</th>
 																		<th>달성율</th>
 																	</tr>
 																</thead>
-																<tbody>
-																	<tr>
+																<tbody id = "result_2">
+																	<!-- <tr>
 																		<td>Table cell</td>
 																		<td>Table cell</td>
 																		<td>Table cell</td>
 																		<td>Table cell</td>
 																		<td>Table cell</td>
 																		<td>Table cell</td>
-																	</tr>
+																		<td>Table cell</td>
+																		<td>Table cell</td>
+																	</tr> -->
 																</tbody>
 															</table>
 														</div>
@@ -213,7 +236,9 @@
 												</div>
 
 											</div>
+
 										</div>
+		
 									</div>
 
 								</div>
@@ -239,9 +264,30 @@
 
 	</div>
 	<!-- END wrapper -->
-
+	<!-- END wrapper -->
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 
 </body>
 </html>

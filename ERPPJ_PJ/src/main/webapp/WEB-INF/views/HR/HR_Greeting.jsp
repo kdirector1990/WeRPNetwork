@@ -9,8 +9,7 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-        var count = 0;
-    	
+        var count = 0;    	
     	
     	
     	function enterinsert() {
@@ -19,7 +18,7 @@
                     /* '<td><input type="text" name = "ap_code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+ */
                     '<td><input type="text" name = "ap_name'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
                     '<td><input type="text" name = "ap_content'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "ap_reg_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                    '<td><input type="text" class="form-control" placeholder="mm-dd-yyyy" name = "ap_reg_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
                    '</tr>');
                 count = count + 1;
                 
@@ -95,46 +94,79 @@
 					<div class="row">
 						<div class="col-sm-12">							
 							<div class="card">
-								<form action="HR_APinput" class="form-horizontal" method="post">
-								<input type="hidden" name="${_csrf.parameterName }"	value="${_csrf.token }"> 								
-									<div class="card-body">
-										<div class="form-group text-right mr-1">
-											<button class="btn btn-primary waves-effect waves-light mr-1"
-												type="button" onclick="enterinsert();">추가</button>
-											<button class="btn btn-primary waves-effect waves-light mr-1"
-												type="button" onclick="enterdelete();">삭제</button>
-										</div>
+								<div class="card-body">
+									<h4 class="header-title">직책변경공고</h4>
+									<p class="sub-header"></p>
 
-										<div class="table-responsive" style="margin: 15px 0px 50px">
-											<table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+									<form class="form-horizontal" action="HR_recordinput"
+										method="post">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+										<div class="row">
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">사원번호</label>
+													<div class="col-md-10">
+														<input type="text" name="username"
+															class="form-control" id=username value=""
+															style="width: 350px;">
+													</div>
+												</div>												
+
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">직급 변경일</label>
+													<div class="col-md-10">
+														<input type="date" name="record_date"
+															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
+															class="mdi mdi-calendar"></i>
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">변경 후 직급 변경일</label>
+													<div class="col-md-10">
+														<input type="date" name="record_date_after"
+															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
+															class="mdi mdi-calendar"></i>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">공고 코드</label>
+													<div class="col-md-10">
+														<input type="text" name="ap_code" class="form-control"
+															value="" style="width: 350px;">
+													</div>
+												</div>
 												
-												<!-- <col style="width: 20%"> -->
-												<col style="width: 50%;">
-												<col style="width: 20%;">
-												<col style="width: 30%;">
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">변경 후 직책</label>
+													<div class="col-md-10">
+														<input type="text" name="position_code_after"
+															class="form-control" id="position_code_after"
+															style="width: 350px;">
+													</div>
+												</div>																								
+											</div>
+											<!-- end col -->
 
-												<thead>
-													<tr>														
-														<!-- <th>발령호수</th> -->
-														<th>제목</th>
-														<th>발령구분</th>
-														<th>발령일자</th>														
-													</tr>
-												</thead>
-
-												<tbody>
-												</tbody>
-											</table>
+											<div class="form-group mb-0">
+												<div>
+													<button type="submit"
+														class="btn btn-primary waves-effect waves-light mr-1">
+														등록</button>
+													<button type="reset"
+														class="btn btn-secondary waves-effect waves-light">
+														취소</button>
+												</div>
+											</div>
+											<!-- end row -->
 										</div>
-									</div>
-									<div class="form-group text-right mr-1">
-										<input type="submit" class="btn btn-success" value="등록">
-										<button type="reset"
-											class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
-									</div>
-								</form>								
-							</div>
-														
+									</form>
+								</div>
+							</div>														
 						</div>
 					</div>
 
@@ -162,15 +194,7 @@
 														<input type="text" id="ap_content" class="form-control"
 															name="ap_content">
 													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label" for="simpleinput">공고등록일</label>
-													<div class="col-md-10">
-														<input type="date" name="ap_reg_date"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
-													</div>
-							 					</div>
+												</div>												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고시행일</label>
 													<div class="col-md-10">
@@ -185,11 +209,11 @@
 													<div class="col-md-10">
 														<select class="form-control select2" name="ap_status"
 															onchange="">
-															<option value="1">1. 공고예정</option>
-															<option value="2">2. 공고중</option>
-															<option value="3">3. 시행완료</option>
-															<option value="4">4. 시행취소</option>
-															<option value="5">5. 삭제</option>
+															<option value="1"> 공고예정</option>
+															<option value="2"> 공고중</option>
+															<option value="3"> 시행완료</option>
+															<option value="4"> 시행취소</option>
+															<option value="5"> 삭제</option>
 														</select>
 													</div>
 												</div>

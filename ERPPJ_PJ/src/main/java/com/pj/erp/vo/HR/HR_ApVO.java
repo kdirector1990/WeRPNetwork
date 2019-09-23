@@ -1,13 +1,14 @@
 package com.pj.erp.vo.HR;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class HR_ApVO {
 
 	private String ap_code;
 	private String ap_name;
 	private String ap_content;
-	private Date ap_reg_date;
+	private Timestamp ap_reg_date;
 	private Date ap_est_date;
 	private String ap_status;
 	
@@ -37,11 +38,11 @@ public class HR_ApVO {
 		this.ap_content = ap_content;
 	}
 
-	public Date getAp_reg_date() {
+	public Timestamp getAp_reg_date() {
 		return ap_reg_date;
 	}
 
-	public void setAp_reg_date(Date ap_reg_date) {
+	public void setAp_reg_date(Timestamp ap_reg_date) {
 		this.ap_reg_date = ap_reg_date;
 	}
 
