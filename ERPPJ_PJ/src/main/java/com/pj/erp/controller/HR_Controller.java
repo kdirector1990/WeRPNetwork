@@ -481,4 +481,15 @@ public class HR_Controller {
 		return updateCnt;
 	}
 	
+	//지각,조퇴 일수 가져오기 
+	@RequestMapping("HR_Late_Check")
+	@ResponseBody
+	public List<HR_Time_VO> HR_Late_Check(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Late_Check");
+		
+		List<HR_Time_VO> vo = service.LateDateSelect(req, model);
+		
+		return vo;
+	}
+	
 }
