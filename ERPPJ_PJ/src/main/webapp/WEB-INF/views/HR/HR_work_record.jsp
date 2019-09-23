@@ -838,13 +838,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -891,13 +891,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 						
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -943,13 +943,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -995,13 +995,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1047,13 +1047,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1099,13 +1099,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1151,13 +1151,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1203,13 +1203,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1255,13 +1255,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 						
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1301,7 +1301,6 @@
 					var cmMonth = (1 + cm.getMonth());
 
 					if (cmMonth == 10) {
-						alert("10월");
 						count = vo[i].count;
 
 						var cmHour = cm.getHours();
@@ -1310,20 +1309,18 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
 						resultHour += resultHr;
 						resultMin += resultMm;
-						alert(resultHour + " 10월 시간");
-						alert(resultMin + " 10월 분");
 
 						if (resultMin > 60) {
 							resultHour = resultHour + 1;
@@ -1365,13 +1362,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
@@ -1417,13 +1414,13 @@
 						var edHour = ed.getHours();
 						var edMm = ed.getMinutes();
 
-						if(edMm < cmMm){
-							resultHr = edHour - cmHour - 1;
-							resultMm = edMm - cmMm + 60;
+						if(cmHour > 9){
+							resultHr = cmHour - 9;
+							resultMm = cmMm;
 						}
-						else{
-							resultHr = edHour - cmHour;
-							resultMm = edMm - cmMm;	
+						else if(edHour > 18){
+							resultHr = edHour - 18;
+							resultMm = edMm;	
 						}
 						
 						Count += count;
