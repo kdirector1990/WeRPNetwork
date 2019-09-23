@@ -4,6 +4,22 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <script type = "text/javascript">
+function ST_searchCustomerName() {
+	window.open("ST_searchCustomername3", "ST_searchCustomerName", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
+
+function ST_searchUsername() {
+	window.open("ST_searchUsername", "ST_searchUsername", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
+
+function ST_searchProductname() {
+	window.open("ST_searchProductname", "ST_searchProductname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
+
+function ST_searchDepartmentname() {
+	window.open("ST_searchDepartmentname", "ST_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
+var searchCount = 1;
  function searchCus() {
 	 var param = $("#search").serializeArray();
 	 /* alert(JSON.stringify(param));  */
@@ -52,9 +68,32 @@
 							'<td>'+ m11 + '</td>' +
 							'<td>' + m12 + '</td></tr>'
 					)
+					
+					if(searchCount == 1){
+						$('#bodyappend').append(
+						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+						);
+						searchCount = searchCount + 1;
+						}
 				};
 				
-				alert("검색목록을 가져왔습니다1.");
+			/* 	alert("검색목록을 가져왔습니다1."); */
 			}, 
 			
 			error : function(){
@@ -114,7 +153,7 @@
 						'<td>' + m12 + '</td></tr>'
 				)
 			}
-				alert("검색목록을 가져왔습니다2.");
+				/* alert("검색목록을 가져왔습니다2."); */
 			}, 
 			
 			error : function(){
@@ -173,7 +212,7 @@
 					)
 				};
 				
-				alert("검색목록을 가져왔습니다3.");
+				/* alert("검색목록을 가져왔습니다3."); */
 			}, 
 			
 			error : function(){
@@ -232,7 +271,7 @@
 					)
 				};
 				
-				alert("검색목록을 가져왔습니다4.");
+				/* alert("검색목록을 가져왔습니다4."); */
 			}, 
 			
 			error : function(){
@@ -278,23 +317,29 @@
 										<table class="col-12">
 											<tr class="form-group row">
 												<th class="col-md-1 col-form-label">거래처</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="customer_code" id="customer_code" class="form-control">
+												<td class="col-md-2 input-group">
+												<input type="text" name="customer_code" id="customer_codeM" class="form-control" onclick="ST_searchCustomerName();">
+												<input type="text" name="customer_name" id="customer_nameM" class="form-control" readonly>
+												<td>
 													
 												<th class="col-md-1 col-form-label">품명</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="product_code" id="product_code" class="form-control">
+												<td class="col-md-2 input-group">
+												<input type="text" name="product_code" id="product_codeP" class="form-control" onclick="ST_searchProductname();">
+												<input type="text" name="product_name" id="product_nameP" class="form-control" readonly>
 												</td>
-												
-													
+											</tr>
+											<tr class="form-group row">		
 												<th class="col-md-1 col-form-label">사원</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="username" id="username" class="form-control">
+												<td class="col-md-2 input-group">
+												<input type="text" name="username" id="username" class="form-control" onclick="ST_searchUsername();">
+												<input type="text" name="e_name" id="e_name" class="form-control" readonly>
 												</td>
 												
 												<th class="col-md-1 col-form-label">부서</th>
-												<td class="col-md-2 input-group"><input type="text"
-													name="department_code" id="department_code" class="form-control"></td>
+												<td class="col-md-2 input-group">
+												<input type="text" name="department_code" id="department_code" class="form-control" onclick="ST_searchDepartmentname();">
+												<input type="text" name="department_name" id="department_name" class="form-control" readonly>
+												</td>
 											</tr>
 										</table>
 									</form>
@@ -347,9 +392,9 @@
 											<input type="hidden" name="${_csrf.parameterName }"
 												value="${_csrf.token }">
 											<div class="col-sm-12">
-												<div class="card-body table-responsive">
+												<div class="card-body">
 													<div class="table-responsive" style="margin: 15px 0px 50px">
-														<table
+														<table id = "datatable"
 															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
 															<thead>
 																<tr>
@@ -383,9 +428,9 @@
 										<div class="tab-pane" id="product" role="tabpanel"
 											aria-labelledby="product-tab">
 											<div class="col-sm-12">
-												<div class="card-body table-responsive">
+												<div class="card-body">
 													<div class="table-responsive" style="margin: 15px 0px 50px">
-														<table
+														<table id="datatable-fixed-header"
 															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
 															<thead>
 																<tr>
@@ -420,9 +465,9 @@
 										<div class="tab-pane" id="manager" role="tabpanel"
 											aria-labelledby="manager-tab">
 											<div class="col-sm-12">
-												<div class="card-body table-responsive">
+												<div class="card-body">
 													<div class="table-responsive" style="margin: 15px 0px 50px">
-														<table
+														<table id="datatable-keytable"
 															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
 															<thead>
 																<tr>
@@ -456,9 +501,9 @@
 										<div class="tab-pane" id="department" role="tabpanel"
 											aria-labelledby="department-tab">
 											<div class="col-sm-12">
-												<div class="card-body table-responsive">
+												<div class="card-body">
 													<div class="table-responsive" style="margin: 15px 0px 50px">
-														<table
+														<table id="datatable-responsive"
 															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
 															<thead>
 																<tr>
@@ -504,9 +549,7 @@
 	<!-- END wrapper -->
 		<%@ include file="../rightbar.jsp"%>
 		<%@ include file="../setting2.jsp"%>
-		<!-- Datatable plugin js -->
-		<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-		<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+		
 	<div id = "bodyappend"></div>
 </body>
 </html>

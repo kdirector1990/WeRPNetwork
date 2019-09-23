@@ -1,8 +1,12 @@
 package com.pj.erp.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+
+import com.pj.erp.vo.MS.MS_plan;
 
 // 경영지원 
 public interface MS_Service {
@@ -11,7 +15,7 @@ public interface MS_Service {
 	public void insertPlan(HttpServletRequest req, Model model);
 	
 	//기획서 조회
-	public void selectPlan(HttpServletRequest req, Model model);
+	public List<MS_plan> selectPlan(HttpServletRequest req, Model model);
 	
 	//기획서 수정
 	public int updatePlan(HttpServletRequest req, Model model);

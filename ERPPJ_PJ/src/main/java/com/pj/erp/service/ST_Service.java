@@ -124,4 +124,7 @@ public interface ST_Service {
 	//매출 - 부서
 	public List<ST_searchDepartmentCode> searchDepartmentCode(HttpServletRequest req, Model model);
 
+	//부서조회 팝업창 검색
+	public void searchDepCode(HttpServletRequest req, Model model);
+	
 }

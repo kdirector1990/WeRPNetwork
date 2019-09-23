@@ -347,7 +347,11 @@
 	<select id="getDepartmentCodeName" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_name, department_code
 		from department_tbl	
+<<<<<<< HEAD
 		where department_name like '%'||#{department_name}||'%' 		
+=======
+		where department_name like '%'||#{department_name}||'%' 
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	</select>
 	
 	<!-- 지각/조퇴 갯수 -->

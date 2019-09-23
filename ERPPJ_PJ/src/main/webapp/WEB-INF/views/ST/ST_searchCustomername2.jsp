@@ -100,7 +100,7 @@ function setName(customer_name, customer_code) {
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body"
-								style="margin-bottom: 0px; padding-bottom: 0px;">
+								style="margin-bottom: 0px; padding-bottom: 44px;">
 								<form action="" name="searchName">
 									<table>
 										<tr>

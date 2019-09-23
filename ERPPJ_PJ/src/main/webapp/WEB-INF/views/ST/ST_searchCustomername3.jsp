@@ -18,6 +18,13 @@ function searchNameFocus(){
 	document.searchName.customer_name.focus();
 }
 
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 실행할 내용
+         load1();
+    }
+}
+
 // 결과
 function load1(customer_name) {
 	var url = document.searchName.customer_name.value;
@@ -100,12 +107,12 @@ function setName(customer_name, customer_code) {
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body"
-								style="margin-bottom: 0px; padding-bottom: 0px;">
-								<form action="" name="searchName">
+								style="margin-bottom: 0px; padding-bottom: 44px;">
+								<form name="searchName" onsubmit="return false">
 									<table>
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
-											<td><input type="text" name="customer_name"
+											<td><input onkeyup="enterkey();" type="text" name="customer_name"
 												class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
