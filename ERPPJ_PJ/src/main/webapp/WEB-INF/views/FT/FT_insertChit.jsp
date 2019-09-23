@@ -19,11 +19,7 @@
        		var today = date.getDate(); //d 
        		today = today >= 10 ? today : '0' + today; //day 두자리로 저장
        		function onload() {
-<<<<<<< HEAD
        			if("${list}" != "") {
-=======
-       			if(${list} != null)  {
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	        		$("#year").val("${year}");
 	        		$("#month option:eq(${month-1})" ).prop("selected","selected");
 	        		$("#day").val("${day}");
@@ -260,16 +256,16 @@
         		var obj = new Object();
         		var jsonData;
         		
-        		if(window.event.which == 13){
-        			if(!$("#year").val()){
-            			alert("년도 입력해주세요");
-            			$("#year").focus();
-            			return false;
-            		} else if(!$("#month").val()) {
-            			alert("월을 입력해주세요");
-            			$("#month").focus();
-            			return false;
-            		} else if(!$("#day").val()){
+        		if(!$("#year").val()){
+        			alert("년도 입력해주세요");
+        			$("#year").focus();
+        			return false;
+        		} else if(!$("#month").val()) {
+        			alert("월을 입력해주세요");
+        			$("#month").focus();
+        			return false;
+        		} else if(window.event.which == 13){
+        			if(!$("#day").val()){
             			alert("날짜 입력해주세요!");
             			$("#day").focus();
             			return false;
@@ -331,23 +327,23 @@
         	}
         	
         	function change() {
-        		if(window.event.which == 13){
+        		if(!$("#year").val()){
+        			alert("년도 입력해주세요");
+        			$("#year").focus();
+        			return false;
+        		} else if(!$("#month").val()) {
+        			alert("월을 입력해주세요");
+        			$("#month").focus();
+        			return false;
+        		} else if(!$("#day").val()){
+        			alert("날짜 입력해주세요!");
+        			$("#day").focus();
+        			return false;
+        		} else if(window.event.which == 13){
 	        		var obj = new Object();
 	        		var jsonData;
 	        		
-	        		if(!$("#year").val()){
-	        			alert("년도 입력해주세요");
-	        			$("#year").focus();
-	        			return false;
-	        		} else if(!$("#month").val()) {
-	        			alert("월을 입력해주세요");
-	        			$("#month").focus();
-	        			return false;
-	        		} else if(!$("#day").val()){
-	        			alert("날짜 입력해주세요!");
-	        			$("#day").focus();
-	        			return false;
-	        		} else if(parseInt($("#day").val()) > (new Date(obj.year, obj.month, 0)).getDate()){
+	        		if(parseInt($("#day").val()) > (new Date(obj.year, obj.month, 0)).getDate()){
 	        			alert("날짜가 초과되었습니다. 다시 입력해주세요");
 	        			$("#day").focus();
 	        			return false;
