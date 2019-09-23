@@ -11,11 +11,8 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
-<<<<<<< HEAD
 import com.pj.erp.vo.ST.ST_contrast;
-=======
 import com.pj.erp.vo.ST.ST_department;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
