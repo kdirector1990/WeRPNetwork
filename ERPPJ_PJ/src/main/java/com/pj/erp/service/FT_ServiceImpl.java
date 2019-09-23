@@ -22,12 +22,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.persistence.FT_DAO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -44,6 +46,9 @@ public class FT_ServiceImpl implements FT_Service{
 	// 거래번호 최고값 가져오기
 	@Override
 	public int FT_chitMaxNumber(Map<String, Object> map) {
+		if(Integer.parseInt(map.get("month").toString()) < 10) {
+			map.put("month","0" + map.get("month"));
+		}
 		int number = dao.FT_DateChitCnt(map); 
 		if(number == 0) {
 			return 1;
@@ -55,7 +60,12 @@ public class FT_ServiceImpl implements FT_Service{
 	// 분개 데이터 가져오기
 	@Override
 	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map, Model model) {
+		System.out.println(Integer.parseInt(map.get("month").toString()));
+		if(Integer.parseInt(map.get("month").toString()) < 10) {
+			map.put("month","0" + Integer.parseInt(map.get("month").toString()));
+		}
 		int number = dao.FT_chitDataCnt(map); 
+		System.out.println(number);
 		if(number == 0) {
 			return null;
 		} else {
@@ -318,6 +328,57 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public String FT_DepositDelete(Map<String, Object> map) {
 		if(dao.FT_DepositPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
+	// 예금가져오기
+	@Override
+	public void FT_NoteAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Note> savings = dao.FT_NoteAllSelect();
+		System.out.println(savings);
+		System.out.println(savings.size());
+		model.addAttribute("deposit", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+
+	// 예금 검색한 것 가져오기
+	@Override
+	public List<FT_Note> FT_NoteSelect(HttpServletRequest req, Model model) {
+		List<FT_Note> tf = dao.FT_NoteSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
+	}
+	
+
+	// 예금추가
+	@Override
+	public String FT_NoteInsert(Map<String, Object> map) {
+		int result = dao.FT_NoteInsert(map);
+		if(result != 0) {
+			return dao.FT_NoteKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 예금수정
+	@Override
+	public String FT_NoteUpdate(Map<String, Object> map) {
+		if(dao.FT_NoteUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
+	// 예금삭제
+	@Override
+	public String FT_NoteDelete(Map<String, Object> map) {
+		if(dao.FT_NotePrevDelete(map) != 0) {
 			return "성공";
 		} else {
 			return "실패";
@@ -589,16 +650,76 @@ public class FT_ServiceImpl implements FT_Service{
 		bs_result.put("capit_list", capit_list);
 		System.out.println("1: "+capit_list.get(0).getAccount_name());
 		
-		int dds[] = {assets_list.size(), liab_list.size()+capit_list.size()};
-		int result=dds[0];
-		for(int i=1; i<dds.length; i++) {
-			if(dds[i]>=result) {
-				result = dds[i];
-			}
+		int left_max = assets_list.size();
+		int right_max = liab_list.size()+capit_list.size(); 
+		int maxsize= left_max;
+		if(left_max<=right_max) {
+			maxsize = right_max;
 		}
-		System.out.println("result max: "+ result );
+		
+		System.out.println("result max: "+ maxsize );
 		 
 		
 		return bs_result;
+	}
+	
+	// 건물 추가
+	@Override
+    public void FT_BuildingInsert(HttpServletRequest req, Model model) {
+        FT_Building vo = new FT_Building();
+        int insertCnt = dao.FT_BuildingInsert(vo);
+        
+        model.addAttribute("cnt", insertCnt);
+            
+		/*
+		 * } catch(IOException e) { e.printStackTrace(); }
+		 */
+        
+    }
+	
+	// 건물 수정
+	@Override
+	public String FT_BuildingUpdate(Map<String, Object> map) {
+		int result = dao.FT_BuildingUpdate(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "insert 실패";
+		}
+	}
+	
+	// 건물 삭제
+	@Override
+	public String FT_BuildingDelete(Map<String, Object> map) {
+		int result = dao.FT_BuildingDelete(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 건물 가져오기
+	@Override
+	public void FT_BuildingAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Building> account = dao.FT_BuildingAllSelect();
+		model.addAttribute("account", account);
+		model.addAttribute("listsize", account.size() + 1);
+	}
+	
+	// 건물 검색한 것 가져오기
+	@Override
+	public FT_Building FT_BuildingOneSelect(HttpServletRequest req) {
+		FT_Building ac = dao.FT_BuildingOneSelect(req.getParameter("srhval"));
+		System.out.println(ac);
+		return ac;
+	}
+
+	// 건물 검색한 것 가져오기
+	@Override
+	public List<FT_Building> FT_BuildingSelect(HttpServletRequest req) {
+		List<FT_Building> ac = dao.FT_BuildingSelect(req.getParameter("srhval"));
+		System.out.println(ac);
+		return ac;
 	}
 }

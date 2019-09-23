@@ -94,10 +94,10 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO vo = new HR_VO();		
 		
 		String username = dao.getUsername();
-		String e_name = "1234";
+		String e_name = req.getParameter("e_name");
 		// String e_picture = file.getOriginalFilename();
 		
-		String password = passwordEncoder.encode(e_name);
+		String password = passwordEncoder.encode("1234");
 		System.out.println(e_name);				
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
@@ -496,7 +496,15 @@ public class HR_ServiceImpl implements HR_Service{
 			System.out.println("작동");
 			if(users == 0) {
 				System.out.println("작동2");
-				insertCnt = dao.StartWork(username[i]);
+				Calendar c = Calendar.getInstance();
+				int Hour = c.get(Calendar.HOUR_OF_DAY);
+				
+				if(Hour > 9) {
+					insertCnt = dao.lateWorkStart(username[i]);
+				}
+				else {
+					insertCnt = dao.StartWork(username[i]);
+				}
 			}
 		}
 		
@@ -517,7 +525,17 @@ public class HR_ServiceImpl implements HR_Service{
 			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
-				updateCnt = dao.EndWork(username[i]);
+				
+				Calendar c = Calendar.getInstance();
+				int Hour = c.get(Calendar.HOUR_OF_DAY);
+				
+				if(Hour < 18) {
+					updateCnt = dao.ealryWorkEnd(username[i]);
+				}
+				else {
+					updateCnt = dao.EndWork(username[i]);
+				}
+				
 			}
 		}
 		
@@ -542,8 +560,8 @@ public class HR_ServiceImpl implements HR_Service{
 		int i = 1;
 		
 		String month;
-		List<HR_Time_VO> dto = new ArrayList<>();
-		List<HR_Time_VO> dtos = null;
+		List<HR_Time_VO> dtos = null; //배열을 가져온다.
+		List<HR_Time_VO> dto = new ArrayList<>(); //가져온 정보를 배열에 다시 집어넣는다.
 		
 		String username = req.getParameter("username");
 		
@@ -761,7 +779,16 @@ public class HR_ServiceImpl implements HR_Service{
 		int users = dao.selectWork(map);		
 		if(users == 0) {
 			System.out.println("작동2");
-			insertCnt = dao.StartWork(username);
+			Calendar c = Calendar.getInstance();
+			int Hour = c.get(Calendar.HOUR_OF_DAY);
+			System.out.println(Hour);
+			if(Hour > 9) {
+				insertCnt = dao.lateWorkStart(username);
+			}
+			else {
+				insertCnt = dao.StartWork(username);
+			}
+			
 		}
 		
 		return insertCnt;
@@ -780,10 +807,77 @@ public class HR_ServiceImpl implements HR_Service{
 		int users = dao.selectEndWork(map);
 		
 		if(users == 0) {
-			updateCnt = dao.EndWork(username);
+			
+			Calendar c = Calendar.getInstance();
+			int Hour = c.get(Calendar.HOUR_OF_DAY);
+			
+			if(Hour < 18) {
+				updateCnt = dao.ealryWorkEnd(username);
+			}
+			else {
+				updateCnt = dao.EndWork(username);
+			}
 		}
 		
 		return updateCnt;
+	}
+
+	//지각, 조퇴 정보 가져오기
+	@Override
+	public List<HR_Time_VO> LateDateSelect(HttpServletRequest req, Model model) {
+		
+		int cnt = 0;
+		int i = 1;
+		
+		String month;
+		List<HR_Time_VO> dto = new ArrayList<>();
+		List<HR_Time_VO> dtos = null;
+		
+		String username = req.getParameter("username");
+		
+		Calendar c = Calendar.getInstance();
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		System.out.println(year);
+		String years= year.substring(2);
+		
+		do {
+			if(i < 10) {
+				month = "0"+i;
+			}
+			else {
+				month = ""+i;
+			}
+			HR_Time_VO vo = new HR_Time_VO();
+			vo.setUsername(username);
+			vo.setYear(years);
+			vo.setMonth(month);
+			cnt = dao.LateEearlyer(vo);
+			if(cnt != 0) {
+				System.out.println();
+				System.out.println("갯수 : " + cnt);
+				System.out.println("년도 : " + vo.getYear());
+				System.out.println("사원번호 : " + vo.getUsername());
+				System.out.println("월 : " + vo.getMonth());
+				dtos = dao.selectLateEearlyEnd(vo);
+				
+				System.out.println(" -------------------- 구분선 ----------------------");
+				System.out.println(" dtos.size() : " + dtos.size());
+				System.out.println(" -------------------- 구분선 ---------- ------------");
+				
+				
+				for (int j = 0; j < dtos.size(); j++) {
+					HR_Time_VO temp = dtos.get(j);
+					
+					dto.add(temp);
+				}
+				
+				System.out.println("작동");
+				cnt = 0;
+			}
+			i++;
+		}while(i < 13);
+		
+		return dto;
 	}
 
 }
