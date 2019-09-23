@@ -123,6 +123,17 @@ public class FT_Controller {
 
 		return "FT/FT_IS";
 	}
+	
+	// 손익계산서 조회 쿼리
+	@RequestMapping(value="FT_search_IS", produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> FT_search_IS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_search_IS");
+		Map<String, Object> is_map = service.getBsshit(map, req, model);
+		return is_map; 
+	}
+	
+	
 
 	@RequestMapping("FT_p_cost")
 	public String FT_p_cost(Locale locale, Model model) {

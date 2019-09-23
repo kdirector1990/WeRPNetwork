@@ -1,25 +1,41 @@
 package com.pj.erp.vo.FT;
 
 public class FT_accounts_balance {
-	String Detail_ac_code;
+	int acc_level;
+	String lg_name;
+	String accounts_name;
 	String account_name;
 	
-	int debtor_value;
-	int l_count_value;
+	double debtor_total; 
 	
-	int credit_value;
-	int r_count_value;
+	double creditor_total; 
 	
 	public FT_accounts_balance() {
 		 
 	}
 
-	public String getDetail_ac_code() {
-		return Detail_ac_code;
+	public int getAcc_level() {
+		return acc_level;
 	}
 
-	public void setDetail_ac_code(String detail_ac_code) {
-		Detail_ac_code = detail_ac_code;
+	public void setAcc_level(int acc_level) {
+		this.acc_level = acc_level;
+	}
+
+	public String getLg_name() {
+		return lg_name;
+	}
+
+	public void setLg_name(String lg_name) {
+		this.lg_name = lg_name;
+	}
+
+	public String getAccounts_name() {
+		return accounts_name;
+	}
+
+	public void setAccounts_name(String accounts_name) {
+		this.accounts_name = accounts_name;
 	}
 
 	public String getAccount_name() {
@@ -30,38 +46,23 @@ public class FT_accounts_balance {
 		this.account_name = account_name;
 	}
 
-	public int getDebtor_value() {
-		return debtor_value;
+	public double getDebtor_total() {
+		return debtor_total;
 	}
 
-	public void setDebtor_value(int debtor_value) {
-		this.debtor_value = debtor_value;
+	public void setDebtor_total(double debtor_total) {
+		this.debtor_total = debtor_total;
 	}
 
-	public int getL_count_value() {
-		return l_count_value;
+	public double getCreditor_total() {
+		return creditor_total;
 	}
 
-	public void setL_count_value(int l_count_value) {
-		this.l_count_value = l_count_value;
+	public void setCreditor_total(double creditor_total) {
+		this.creditor_total = creditor_total;
 	}
-
-	public int getCredit_value() {
-		return credit_value;
-	}
-
-	public void setCredit_value(int credit_value) {
-		this.credit_value = credit_value;
-	}
-
-	public int getR_count_value() {
-		return r_count_value;
-	}
-
-	public void setR_count_value(int r_count_value) {
-		this.r_count_value = r_count_value;
-	}
-	
+ 
+	 
 	
 	
 
