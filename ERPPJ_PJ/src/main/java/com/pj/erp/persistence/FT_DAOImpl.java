@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
@@ -605,6 +606,53 @@ public class FT_DAOImpl implements FT_DAO{
 		} else {
 			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DTBMonthListS", map);
 		}
+	}
+	
+
+	// 거래처 추가
+	@Override
+	public int FT_BuildingInsert(FT_Building vo) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_BuildingInsert",vo);
+	}
+	
+	// 거래처 수정
+	@Override
+	public int FT_BuildingUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_BuildingUpdate",map);
+	}
+	
+	// 거래처 삭제
+	@Override
+	public int FT_BuildingDelete(Map<String, Object> map) {
+		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_BuildingDelete",map);
+	}
+	
+	// 거래처 검색 한 것 개수 가져오기
+	public int FT_BuildingCntSelect(String srhval) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_BuildingCntSelect(srhval);
+	}
+	
+	// 거래처 검색한 것 가져오기
+	@Override
+	public FT_Building FT_BuildingOneSelect(String srhval) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BuildingOneSelect", srhval);
+	}
+	
+	// 거래처 검색한 것 가져오기
+	@Override
+	public List<FT_Building> FT_BuildingSelect(String srhval) {
+		if(FT_BuildingCntSelect(srhval) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_BuildingSelect", srhval);
+		}
+	}
+
+	// 거래처 가져오기
+	@Override
+	public List<FT_Building> FT_BuildingAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_BuildingAllSelect");
 	}
 	
 	// 전표승인처리

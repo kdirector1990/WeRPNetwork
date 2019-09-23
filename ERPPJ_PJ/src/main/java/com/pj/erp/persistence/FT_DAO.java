@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
@@ -151,6 +152,29 @@ public interface FT_DAO {
 	
 	// 거래처가져오기
 	public List<FT_Account> FT_AccountAllSelect();
+	
+
+	// 건물 추가
+	public int FT_BuildingInsert(FT_Building vo);
+	
+	// 건물 수정
+	public int FT_BuildingUpdate(Map<String, Object> map);
+	
+	// 건물 삭제
+	public int FT_BuildingDelete(Map<String, Object> map);
+	
+	
+	// 건물 검색 한 것 개수 가져오기
+	public int FT_BuildingCntSelect(String srhval);
+	
+	// 건물 검색 한 것 하나 가져오기
+	public FT_Building FT_BuildingOneSelect(String srhval);
+	
+	// 건물 검색 한 것 가져오기
+	public List<FT_Building> FT_BuildingSelect(String srhval);
+	
+	// 건물가져오기
+	public List<FT_Building> FT_BuildingAllSelect();
 	
 	// 계정과목가져오기
 	public List<FT_Subject> FT_SubjectAllSelect();

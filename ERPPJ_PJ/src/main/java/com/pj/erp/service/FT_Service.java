@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
@@ -66,6 +67,24 @@ public interface FT_Service {
 	
 	// 거래처 검색한 것 가져오기
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req);
+	
+	// 건물 추가
+	public void FT_BuildingInsert(HttpServletRequest req, Model model);
+
+	// 건물 수정
+	public String FT_BuildingUpdate(Map<String, Object> map);
+
+	// 건물 삭제
+	public String FT_BuildingDelete(Map<String, Object> map);
+	
+	// 건물 모두 가져오기
+	public void FT_BuildingAllSelect(HttpServletRequest req, Model model);
+	
+	// 건물 검색한 것 가져오기
+	public FT_Building FT_BuildingOneSelect(HttpServletRequest req);
+	
+	// 건물 검색한 것 가져오기
+	public List<FT_Building> FT_BuildingSelect(HttpServletRequest req);
 	
 	// 적금 가져오기
 	public void FT_SavingsSelect(HttpServletRequest req, Model model);

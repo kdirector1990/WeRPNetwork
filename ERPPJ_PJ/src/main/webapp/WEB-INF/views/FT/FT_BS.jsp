@@ -19,14 +19,66 @@
 					data : jsonData,
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
-					success : function(bs_map) {
-						alert("성공?");
-						var assets = bs_map.assets;
-						alert(assets[0]);
-
+					success : function(bs_map) { 
+						var assets = bs_map.assets_list;
+						var liab = bs_map.liab_list;
+					 	var capit = bs_map.capit_list;
+						
+						$('#bs_result').empty();
+						
+						var assets_left_total = 0;
+						var assets_right_total = 0;
+						$('#bs_result').append('<tr><td></td><td></td><td><h4>1. 자산</h4></td><td></td><td></td></tr>');
 						for (var i = 0; i < assets.length; i++) {
-
+							var left_val = assets[i].debtor_total-assets[i].creditor_total;
+							var right_val = assets[i].creditor_total-assets[i].debtor_total;
+							$('#bs_result').append(
+									
+							'<tr>'+
+								'<td>'+ left_val +'</td>'+
+								'<td>'+ assets[i].debtor_total +'</td>'+
+								'<td>'+ assets[i].account_name +'</td>'+
+								'<td>'+ assets[i].creditor_total +'</td>'+
+								'<td>'+ '0' +'</td>' +
+							'</tr>'); 
+							assets_left_total += left_val;
+							assets_right_total += right_val;
 						}
+						var liab_left_total = 0;
+						var liab_right_total = 0;
+						$('#bs_result').append('<tr><td></td><td></td><td><h4>2. 부채</h4></td><td></td><td></td></tr>');
+						for (var i = 0; i < liab.length; i++) {
+							var left_val = liab[i].debtor_total-liab[i].creditor_total;
+							var right_val = liab[i].creditor_total-liab[i].debtor_total;
+							$('#bs_result').append(
+									
+							'<tr>'+
+								'<td>'+ '0' +'</td>'+
+								'<td>'+ liab[i].debtor_total +'</td>'+
+								'<td>'+ liab[i].account_name +'</td>'+
+								'<td>'+ liab[i].creditor_total +'</td>'+
+								'<td>'+ right_val +'</td>' +
+							'</tr>'); 
+							liab_left_total += left_val;
+							liab_right_total += right_val;
+						}
+						
+						$('#bs_result').append('<tr><td></td><td></td><td><h4>3. 자본금</h4></td><td></td><td></td></tr>');
+						 
+							var income = (assets_left_total-liab_right_total)-capit[0].creditor_total;
+							var left_val = capit[0].debtor_total-capit[0].creditor_total;
+							var right_val = capit[0].creditor_total-capit[0].debtor_total+income;
+							$('#bs_result').append(
+									
+							'<tr>'+
+								'<td>'+ '0' +'</td>'+
+								'<td>'+ capit[0].debtor_total +'</td>'+
+								'<td>'+ capit[0].account_name +'</td>'+
+								'<td>'+ capit[0].creditor_total+' ( '+income+' ) ' +'</td>'+
+								'<td>'+ right_val +'</td>' +
+							'</tr>'); 
+						 
+						
 
 					},
 					error : function() {
@@ -147,80 +199,24 @@
 												<div class="card">
 													<div class="card-body table-responsive">
 														<div class="table-responsive">
-															<table class="table mb-0"
-																style="width: 49.9%; float: left;">
+															<table class="table mb-0"  >
 																<thead class="thead-light">
 																	<tr>
-																		<th>계정명</th>
 																		<th>잔액</th>
-																	</tr>
-
-
-
+																		<th>차변</th>
+																		<th>계정명</th>
+																		<th>대변</th>
+																		<th>잔액</th>
+																	</tr> 
 																</thead>
-																<tbody>
-																	<!-- 자산 -->
-																	<tr>
-																		<td colspan="2">1. 자산</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">--당좌자산</td>
-																	</tr>
-																	<tr>
-																		<td>현금</td>
-																		<td style="text-align: right;">100</td>
-																	<tr>
+																<tbody id="bs_result">
+																	 
 																</tbody>
 															</table>
-															<table class="table mb-0"
-																style="width: 49.9%; float: right;">
-																<thead class="thead-light">
-																	<tr>
-																		<th>계정명</th>
-																		<th>잔액</th>
-
-																	</tr>
-
-
-
-																</thead>
-																<tbody>
-																	<!-- 부채 -->
-																	<tr>
-																		<td colspan="2">2. 부채</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">--유동부채</td>
-																	</tr>
-																	<tr>
-																		<td>현금</td>
-																		<td style="text-align: right;">100</td>
-																	<tr>
-																		<!-- 자본 -->
-																</tbody>
-															</table>
+															 
 
 														</div>
-														<div class="table-responsive">
-															<table class="table mb-0">
-																<thead class="thead-light">
-																	<tr>
-																		<th rowspan="2" colspan="2">과목</th>
-																		<th colspan="2">제 16 (당)기</th>
-																		<th colspan="2">제 15 (전)기</th>
-																	</tr>
-
-																	<tr>
-																		<th colspan="2">금액</th>
-																		<th colspan="2">금액</th>
-																	</tr>
-
-																</thead>
-																<tbody>
-
-																</tbody>
-															</table>
-														</div>
+														 
 													</div>
 												</div>
 											</div>
