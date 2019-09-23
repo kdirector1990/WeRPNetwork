@@ -346,12 +346,8 @@
 	<!-- 부서조회 -->
 	<select id="getDepartmentCodeName" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_name, department_code
-		from department_tbl	
-<<<<<<< HEAD
-		where department_name like '%'||#{department_name}||'%' 		
-=======
-		where department_name like '%'||#{department_name}||'%' 
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+		from department_tbl
+		where department_name like '%'||#{department_name}||'%'
 	</select>
 	
 	<!-- 지각/조퇴 갯수 -->
@@ -379,5 +375,11 @@
 		And tc_state = '3'
 		Group by tc_leave_time, tc_come_time, To_char(tc_come_time, 'mm')
 	</select>
+	
+	<!-- NFC체크박스 지우기 -->
+	<delete id="deleteNfc" parameterType="String">
+		Delete nfc_log_tbl
+		Where tag_code = #{tag_code}
+	</delete>
 	
 </mapper>

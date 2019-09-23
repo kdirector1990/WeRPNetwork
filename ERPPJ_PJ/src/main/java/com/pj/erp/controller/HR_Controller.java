@@ -492,4 +492,16 @@ public class HR_Controller {
 		return vo;
 	}
 	
+	//NFC데이터 체크박스 지우기
+	@RequestMapping("HR_NFC_Delete")
+	@ResponseBody
+	public int HR_NFC_Delete(HttpServletRequest req, Model model) {
+		logger.info("log => HR_NFC_Delete");
+		
+		int deleteCnt = service.deleteNfcSelect(req, model);
+		
+		return deleteCnt;
+	}
+	
+	
 }
