@@ -1258,10 +1258,12 @@
 						if(cmHour > 9){
 							resultHr = cmHour - 9;
 							resultMm = cmMm;
+							money = (resultHr * 8350);
 						}
 						else if(edHour > 18){
 							resultHr = edHour - 18;
 							resultMm = edMm;	
+							money = (resultHr * 8350);
 						}
 						
 						Count += count;
@@ -1312,6 +1314,7 @@
 						if(cmHour > 9){
 							resultHr = cmHour - 9;
 							resultMm = cmMm;
+							money = (resultHr * 8350);
 						}
 						else if(edHour > 18){
 							resultHr = edHour - 18;
@@ -1633,7 +1636,7 @@
 													<th>구 분</th>
 													<th>일 수</th>
 													<th>시 간</th>
-													<th>금 액</th>
+													<th>차 감 금 액</th>
 												</tr>
 											</thead>
 											
