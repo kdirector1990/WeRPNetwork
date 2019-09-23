@@ -10,6 +10,7 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
+import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -117,9 +118,6 @@ public interface FT_Service {
 	// 받을어음 가져오기
 	public void FT_NoteAllSelect(HttpServletRequest req, Model model);
 	
-	// 받을어음 검색한 것 가져오기
-	public List<FT_Note> FT_NoteSelect(HttpServletRequest req, Model model);
-	
 	// 받을어음 추가
 	public String FT_NoteInsert(Map<String, Object> map);
 	
@@ -128,6 +126,19 @@ public interface FT_Service {
 	
 	// 받을어음 삭제
 	public String FT_NoteDelete(Map<String, Object> map);
+	
+	// 받을어음 가져오기
+	public void FT_LoanAllSelect(HttpServletRequest req, Model model);
+	
+	// 받을어음 추가
+	public String FT_LoanInsert(Map<String, Object> map);
+	
+	// 받을어음 수정
+	public String FT_LoanUpdate(Map<String, Object> map);
+	
+	// 받을어음 삭제
+	public String FT_LoanDelete(Map<String, Object> map);
+	
 	
 	// 카드 가져오기
 	public void FT_CardManagementSelect(HttpServletRequest req, Model model);
