@@ -136,12 +136,12 @@
 	
 	<!-- 직책 목록 -->
 	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
-		select position_code from position_tbl
+		select position_code, position_name from position_tbl
 	</select>
 	
 	<!-- 직급 목록 -->
 	<select id="getRankList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
-		select rank_code from rank_tbl
+		select rank_code, rank_name from rank_tbl
 	</select>	
 	
 	<!-- 호봉테이블(랭크) -->	
