@@ -132,7 +132,7 @@
 												<span class="d-block d-sm-none"><i
 													class="fa fa-employee"></i></span> <span class="d-none d-sm-block">사원정보</span>
 										</a></li>
-										<li class="nav-item"><a class="nav-link"
+										<!-- <li class="nav-item"><a class="nav-link"
 											id="presidency-tab" data-toggle="tab" href="#presidency"
 											role="tab" aria-controls="presidency" aria-selected="true">
 												<span class="d-block d-sm-none"><i class="fa fa-user"></i></span>
@@ -143,7 +143,7 @@
 											aria-controls="message" aria-selected="false"> <span
 												class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
 												<span class="d-none d-sm-block">급여정보</span>
-										</a></li>
+										</a></li> -->
 									</ul>
 
 									<div class="tab-content">
@@ -198,7 +198,7 @@
 																		</div>
 																	</div>
 																	<label class="col-md-2 col-form-label"
-																		for="simpleinput	">내/외국인<span
+																		for="simpleinput">내/외국인<span
 																		class="text-danger">*</span></label>
 																	<div class="col-md-4  col-form-label">
 																		<div>
@@ -290,7 +290,7 @@
 																<select class="form-control select2"
 																	name="position_code" onchange="">
 																	<c:forEach var="poi" items="${poi}">
-																		<option value="${poi.position_code}">${poi.position_code}</option>
+																		<option value="${poi.position_code}">${poi.position_name}</option>
 																	</c:forEach>
 																</select>
 															</div>
@@ -303,7 +303,7 @@
 																<select class="form-control select2" name="rank_code"
 																	onchange="">
 																	<c:forEach var="rank" items="${rank}">
-																		<option value="${rank.rank_code}">${rank.rank_code}</option>
+																		<option value="${rank.rank_code}">${rank.rank_name}</option>
 																	</c:forEach>
 																</select>
 															</div>
@@ -325,7 +325,7 @@
 													</div>
 												</form>
 
-												<form action="HR_inputPhysical" class="form-horizontal"
+												<%-- <form action="HR_inputPhysical" class="form-horizontal"
 													id="physical" name="inputPhysicaly" method="post">
 													<input type="hidden" name="${_csrf.parameterName }"
 														value="${_csrf.token }"> <input type="hidden"
@@ -593,12 +593,12 @@
 													type="submit">Submit</button>
 												<button type="reset" class="btn btn-secondary waves-effect">
 													Cancel</button>
-											</div>
+											</div> --%>
 
 
 										</div>
 
-										<!-- 재직정보 -->
+										<%-- <!-- 재직정보 -->
 										<div class="tab-pane" id="presidency" role="tabpanel"
 											aria-labelledby="presidency-tab">
 											<form action="HR_inputProHR2" class="form-horizontal"
@@ -968,7 +968,7 @@
 												<div class="form-group mb-0">
 													<input type="submit" class="btn btn-success" value="등록">
 												</div>
-											</form>
+											</form> --%>
 										</div>
 									</div>
 
