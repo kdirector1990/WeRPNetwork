@@ -113,7 +113,7 @@ public class FT_Controller {
 	@ResponseBody
 	public Map<String, Object> FT_search_BS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => FT_search_BS");
-		Map<String, Object> bs_map = service.getBsshit(map, req, model); 
+		Map<String, Object> bs_map = service.getBsshit(map, req, model);
 		return bs_map; 
 	}
 

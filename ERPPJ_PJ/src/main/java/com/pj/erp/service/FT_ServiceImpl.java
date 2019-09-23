@@ -589,14 +589,14 @@ public class FT_ServiceImpl implements FT_Service{
 		bs_result.put("capit_list", capit_list);
 		System.out.println("1: "+capit_list.get(0).getAccount_name());
 		
-		int dds[] = {assets_list.size(), liab_list.size()+capit_list.size()};
-		int result=dds[0];
-		for(int i=1; i<dds.length; i++) {
-			if(dds[i]>=result) {
-				result = dds[i];
-			}
+		int left_max = assets_list.size();
+		int right_max = liab_list.size()+capit_list.size(); 
+		int maxsize= left_max;
+		if(left_max<=right_max) {
+			maxsize = right_max;
 		}
-		System.out.println("result max: "+ result );
+		
+		System.out.println("result max: "+ maxsize );
 		 
 		
 		return bs_result;
