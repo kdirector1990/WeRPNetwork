@@ -37,15 +37,10 @@
 	rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
-	var year;
-	var day;
-	var worktime;
-	var count;
 	var searchCount = 1;
 
 	function searchWork() {
 		var param = $("#select_user_time").serializeArray();
-		alert(JSON.stringify(param));
 		$.ajax({
 					url : '/erp/HR_User_Time',
 					type : 'POST',
@@ -98,7 +93,6 @@
 							
 						}
 
-						alert("사원목록을 가져왔습니다.");
 					},
 					error : function() {
 						alert("전산 오류로 인하여 사원 검색에 실패하였습니다.");
@@ -160,7 +154,6 @@
 					dataTpye : 'json',
 					success : function(vo) {
 						$('#result3').empty();
-						$('#bodyappend').empty();
 						
 						for (var i = 0; i < vo.length; i++) {
 							var count = vo[i].count;
@@ -169,28 +162,6 @@
 						$("#result3").append(
 								"<tr><td>" + month + "월</td><td>" + count
 										+ "일</td></tr>");
-						if(searchCount == 1){
-							$('#bodyappend').append(
-							        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-							        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-							        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-							        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-							        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-							);
-							searchCount = searchCount + 1;
-						}
 						}
 					},
 					error : function() {
@@ -212,9 +183,10 @@
 						$('#result2').empty();
 						alert(vo.length);
 
+						var Count = 0;
 						var count = 0;
 						var resultHr = 0;
-						var resultMM = 0;
+						var resultMm = 0;
 						var resultHour = 0;
 						var resultMin = 0;
 						var cmMonth = 0;
@@ -237,11 +209,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -251,13 +230,14 @@
 						var s = 1;
 						if (s == 1) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -279,12 +259,19 @@
 
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
-
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -293,13 +280,14 @@
 						}
 						if (s == 2) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -322,11 +310,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -335,13 +330,14 @@
 						}
 						if (s == 3) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -364,11 +360,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -377,13 +380,14 @@
 						}
 						if (s == 4) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -406,11 +410,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -419,13 +430,14 @@
 						}
 						if (s == 5) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -448,11 +460,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -461,13 +480,14 @@
 						}
 						if (s == 6) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -490,11 +510,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -503,13 +530,14 @@
 						}
 						if (s == 7) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -532,11 +560,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -545,13 +580,14 @@
 						}
 						if (s == 8) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -574,17 +610,19 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 								
-								var ms = moment(ed, "YYYY/MM/DD HH:mm:ss").diff(moment(cm, "YYYY/MM/DD HH:mm:ss"));
-								var d = moment.duration(ms);
-								var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
 								
-								alert(s);
-
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
+								
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -593,13 +631,14 @@
 						}
 						if (s == 9) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -624,11 +663,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								alert(resultHour + " 10월 시간");
 								alert(resultMin + " 10월 분");
 
@@ -640,13 +686,14 @@
 						}
 						if (s == 10) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -669,11 +716,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -682,13 +736,14 @@
 						}
 						if (s == 11) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;
@@ -711,11 +766,18 @@
 								var edHour = ed.getHours();
 								var edMm = ed.getMinutes();
 
-								resultHr = edHour - cmHour;
-								resultMM = edMm - cmMm;
-
+								if(edMm < cmMm){
+									resultHr = edHour - cmHour - 1;
+									resultMm = edMm - cmMm + 60;
+								}
+								else{
+									resultHr = edHour - cmHour;
+									resultMm = edMm - cmMm;	
+								}
+								
+								Count += count;
 								resultHour += resultHr;
-								resultMin += resultMM;
+								resultMin += resultMm;
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
 									resultMin = resultMin - 60;
@@ -724,13 +786,14 @@
 						}
 						if (s == 12) {
 							$("#result2").append(
-									"<tr><td>" + s + "월</td><td>" + count
+									"<tr><td>" + s + "월</td><td>" + Count
 											+ "일</td><td>" + resultHour + "시간"
 											+ resultMin + "분</td></tr>");
 							s++;
+							Count = 0;
 							count = 0;
 							resultHr = 0;
-							resultMM = 0;
+							resultMm = 0;
 							resultHour = 0;
 							resultMin = 0;
 							cmMonth = 0;

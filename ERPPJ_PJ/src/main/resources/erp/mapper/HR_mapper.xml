@@ -261,26 +261,17 @@
 	
 	<!-- 근태 기록가져오기 -->
 	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="com.pj.erp.vo.HR.HR_Time_VO">
-		SELECT
-    		a.username as username,
-		    count(a.username) as count,
-		    To_char(a.tc_come_time, 'mm') as month,
-		    To_char(a.tc_come_time, 'yyyy') as year,
-		    b.tc_leave_time as tc_leave_time,
-		    b.tc_come_time as tc_come_time
-		From time_card_tbl a, time_card_tbl b
-		Where b.tc_come_time Like #{year}||'/'||#{month}||'%'
-		And b.tc_leave_time Like #{year}||'/'||#{month}||'%'
-		And a.tc_leave_time Like #{year}||'/'||#{month}||'%'
-		And a.tc_come_time Like #{year}||'/'||#{month}||'%'
-		And a.tc_leave_time is not null
-		And a.tc_come_time is not null
-		And b.tc_come_time is not null
-		And b.tc_leave_time is not null
-		And a.username = #{username}
-		Group by To_char(a.tc_come_time, 'mm'), b.tc_leave_time - b.tc_come_time
-    	, b.tc_leave_time, b.tc_come_time, To_char(a.tc_come_time, 'yyyy'),
-    	a.username
+		select count(*) as count, 
+			To_char(tc_come_time, 'mm') as month,
+    		tc_leave_time, tc_come_time 
+            from time_card_tbl
+		Where username = #{username}
+		And tc_come_time is not null
+		And tc_leave_time is not null
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time Like #{year}||'/'||#{month}||'%'
+		Group by To_char(tc_come_time, 'mm'),
+    		tc_leave_time, tc_come_time
 	</select>
 	
 	<!-- 근태 기록가져오기 -->
@@ -309,8 +300,6 @@
 	<select id="getAP_code" resultType="String">
 		select appointment_seq.nextval from dual
 	</select>
-	
-	
 	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
