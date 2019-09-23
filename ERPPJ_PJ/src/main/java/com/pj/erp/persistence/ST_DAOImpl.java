@@ -11,6 +11,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
@@ -193,7 +194,12 @@ public class ST_DAOImpl implements ST_DAO {
 	public int deleteSaleList(String salelist_code) {
 		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteSaleList", salelist_code);
 	}
-
+	
+	// ST_contrast 검색 조회
+	@Override
+	public List<ST_contrast> getContrast(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getContrast", map);
+	}
 	
 	
 	

@@ -250,6 +250,10 @@
  		DELETE salelist_tbl WHERE salelist_code = #{salelist_code}
  	</delete>
  	
+ 	<select id="getContrast" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.ST_contrast">
+ 		   select * from ST_contrast_pp_View where sale_pname like '%'||#{productName}||'%'
+ 	</select>
+ 	
  	
  	<!-- Product 검색 -->
 	<select id="selectProduct" resultType="int" parameterType="String" >
