@@ -616,8 +616,22 @@ public class FT_ServiceImpl implements FT_Service{
 			throws ParseException {
 		Map<String, Object> is_result = new HashMap<String, Object>();
 		
+		String typename = "수익"; 
+		List<FT_accounts_balance> income_list = dao.FT_getAssetsList(typename);
+		is_result.put("income_list", income_list);
+		System.out.println(income_list.get(0).getAccount_name());
 		
-		return null;
+		
+		
+		
+		
+		
+		typename = "비용"; 
+		List<FT_accounts_balance> cost_list = dao.FT_getAssetsList(typename);
+		is_result.put("cost_list", cost_list);
+		
+		
+		return is_result;
 	}
 	
 	// 건물 추가

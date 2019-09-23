@@ -20,81 +20,24 @@
 					data : jsonData,
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
-					success : function(bs_map) { 
-						var assets = bs_map.assets_list;
-						var liab = bs_map.liab_list;
-					 	var capit = bs_map.capit_list;
+					success : function(is_map) { 
+						var income = is_map.income_list;
+						var cost = is_map.cost_list; 
 						
-						$('#bs_result').empty();
-						
+						$('#is_result').empty();
 						
 						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						var assets_left_total = 0;
-						var assets_right_total = 0;
-						$('#bs_result').append('<tr><td></td><td></td><td><h4>1. 자산</h4></td><td></td><td></td></tr>');
-						for (var i = 0; i < assets.length; i++) {
-							var left_val = assets[i].debtor_total-assets[i].creditor_total;
-							var right_val = assets[i].creditor_total-assets[i].debtor_total;
-							$('#bs_result').append(
+						$('#is_result').append('<tr><td><h4>1. 수익</h4></td></tr>');
+						for(var i=0; i<income.length; i++){
+							var result_val = income[i].creditor_total-income[i].debtor_total;
+							$('#is_result').append('<tr>'+
+									'<td colspan="2">'+income[i].account_name+'</td>'+
 									
-							'<tr>'+
-								'<td>'+ left_val +'</td>'+
-								'<td>'+ assets[i].debtor_total +'</td>'+
-								'<td>'+ assets[i].account_name +'</td>'+
-								'<td>'+ assets[i].creditor_total +'</td>'+
-								'<td>'+ '0' +'</td>' +
-							'</tr>'); 
-							assets_left_total += left_val;
-							assets_right_total += right_val;
-						}
-						var liab_left_total = 0;
-						var liab_right_total = 0;
-						$('#bs_result').append('<tr><td></td><td></td><td><h4>2. 부채</h4></td><td></td><td></td></tr>');
-						for (var i = 0; i < liab.length; i++) {
-							var left_val = liab[i].debtor_total-liab[i].creditor_total;
-							var right_val = liab[i].creditor_total-liab[i].debtor_total;
-							$('#bs_result').append(
+									'<td>'+result_val+'</td>'+ 
 									
-							'<tr>'+
-								'<td>'+ '0' +'</td>'+
-								'<td>'+ liab[i].debtor_total +'</td>'+
-								'<td>'+ liab[i].account_name +'</td>'+
-								'<td>'+ liab[i].creditor_total +'</td>'+
-								'<td>'+ right_val +'</td>' +
-							'</tr>'); 
-							liab_left_total += left_val;
-							liab_right_total += right_val;
-						}
-						
-						$('#bs_result').append('<tr><td></td><td></td><td><h4>3. 자본금</h4></td><td></td><td></td></tr>');
-						 
-							var income = (assets_left_total-liab_right_total)-capit[0].creditor_total;
-							var left_val = capit[0].debtor_total-capit[0].creditor_total;
-							var right_val = capit[0].creditor_total-capit[0].debtor_total+income;
-							$('#bs_result').append(
-									
-							'<tr>'+
-								'<td>'+ '0' +'</td>'+
-								'<td>'+ capit[0].debtor_total +'</td>'+
-								'<td>'+ capit[0].account_name +'</td>'+
-								'<td>'+ capit[0].creditor_total+' ( '+income+' ) ' +'</td>'+
-								'<td>'+ right_val +'</td>' +
-							'</tr>'); 
-						 
-						
+									'</tr>');
+							
+						}  
 
 					},
 					error : function() {
