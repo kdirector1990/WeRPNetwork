@@ -608,7 +608,7 @@ public class HR_ServiceImpl implements HR_Service{
 		String position_record_code = dao.getPositionRecord();
 		Date record_date = (Date.valueOf(req.getParameter("record_date")));
 		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
-		String ap_code = "";
+		String ap_code = req.getParameter("ap_code");
 		
 		
 		vo.setUsername(username);
@@ -636,15 +636,14 @@ public class HR_ServiceImpl implements HR_Service{
 		String ap_name = req.getParameter("ap_name");
 		String ap_content = req.getParameter("ap_content");	
 		
-		System.out.println(req.getParameter("ap_reg_date"));
-		System.out.println(req.getParameter("ap_est_date"));
+		System.out.println(req.getParameter("ap_reg_date"));		
 		
 		ap.setAp_code(ap_code);
 		ap.setAp_name(ap_name);
 		ap.setAp_content(ap_content);
 		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
 		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
-		ap.setAp_status(req.getParameter("ap_status"));		
+		ap.setAp_status(req.getParameter("1"));		
 		
 		int cnt = 0;		
 		
