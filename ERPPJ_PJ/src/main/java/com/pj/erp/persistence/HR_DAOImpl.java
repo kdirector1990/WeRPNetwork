@@ -268,5 +268,15 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getDepartmentCodeName", map);
 	}
 
+	@Override
+	public int lateWorkStart(String username) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.lateWorkStart", username);
+	}
+
+	@Override
+	public int ealryWorkEnd(String username) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.ealryWorkEnd", username);
+	}
+
 
 }
