@@ -108,6 +108,9 @@ public class ERPServiceImpl implements ERPService{
 		System.out.println("오늘 " + today);
 
 		String username = nfc.getUsername();
+		
+		System.out.println("유저네임 : " + nfc.getUsername());
+		
 		map.put("username", username);
 		System.out.println("if문 전");
 		System.out.println("today" + today);
@@ -125,7 +128,25 @@ public class ERPServiceImpl implements ERPService{
 		if(todays == comeDays) {
 			System.out.println("if문");
 			int cometime = Integer.parseInt(comeTime);
-			if(leaves > end) {
+			if(leaves < end) {
+				int selectCnt2 = dao2.selectEndWork(map);
+				if(selectCnt2 == 0) {
+					int insertCnt2 = dao2.ealryWorkEnd(username);
+					System.out.println("조퇴합니다.");
+					if(insertCnt2 == 0) {
+						int Hour = c.get(Calendar.HOUR_OF_DAY);
+						if(Hour > 9) {
+							dao2.lateWorkStart(username);
+							System.out.println("지각했습니다.");
+						}
+						else {
+							dao2.StartWork(username);
+							System.out.println("정상출근입니다.");
+						}
+					}
+				}
+			}
+			else if(leaves > end) {
 				int selectCnt2 = dao2.selectEndWork(map);
 				System.out.println("퇴근인원 확인");
 				if(selectCnt2 == 0) {

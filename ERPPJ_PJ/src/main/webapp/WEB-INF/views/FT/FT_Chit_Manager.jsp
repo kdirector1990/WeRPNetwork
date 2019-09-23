@@ -12,6 +12,16 @@
         	var frontcursor;
         	var updatekey = 0;
         	var selectval;
+        	var d = new Date();
+			$(function(){
+				if((d.getMonth() + 1) < 10){
+	        		$(".lastdate").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".firstdate").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+				} else {
+	        		$(".lastdate").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".firstdate").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+				}
+			});
         	function focuse(s) {
         		$(".chit-table-bordered-primary tbody *").focus(function() {
         			$(".chit-table-bordered-primary tbody *").css("background-color", "");
@@ -165,8 +175,6 @@
         			}
         		}
               	// 자바스크립트 객체 생성
-         		alert(datelist);
-         		alert(nolist);
          		obj.dates = datelist;
          		obj.nos = nolist;
          		obj.username = ${sessionScope.username};
@@ -182,6 +190,7 @@
                         contentType : 'application/json;charset=UTF-8',
                         success : function(data) {
                         	alert(data);
+                        	location.reload();
                         },
                         error : function(e) {
                                alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -193,15 +202,16 @@
         		var obj = new Object();
         		var jsonData;
         		
-        		if(!$(".chitState").val()) {
-        			$(".chitState").focus();
-        			return false;
-        		} else if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
-        			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate").focus();
-        			return false;
-        		} else if(window.event.which == 13){
+        		if(window.event.which == 13){
 	        		// 자바스크립트 객체 생성
+        			if(!$(".chitState").val()) {
+            			$(".chitState").focus();
+            			return false;
+            		} else if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
+            			alert("두 날짜의 사이값이 존재하도록 해주세요");
+            			$(".firstdate").focus();
+            			return false;
+            		}
 	        		obj.state = $(".chitState").val();
 	        		obj.firstday = $(".firstdate").val();
 	        		obj.lastday = $(".lastdate").val();
@@ -220,13 +230,21 @@
 	                       success : function(data) {
 	                    	   if(data != null){
 									for(i = 0; i < data.length; i++){
+										var str;
+										if(data[i].fname == null){
+											str = '<input type="checkbox" onfocus = "focuse(this.name);" name = "check" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" value = "' + i + '" readonly onkeydown = "enter(this.tagName, this.name);">';	
+										} else {
+											str = '';
+										}
 										$(".chit-table-bordered-primary tbody").append('<tr>' +
-												'<td align = "center" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"><input type="checkbox" onfocus = "focuse(this.name);" name = "check" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" value = "' + i + '" readonly onkeydown = "enter(this.tagName, this.name);"></td>' +
-			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "date' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].journal_date + '"></td>' +
+												'<td align = "center" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();">' + str + '</td>' +
+			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "date' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].journal_date.substring(0,10) + '"></td>' +
 			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "no'+ i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].journal_number + '"></td>' +
 			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "confirmname'+ i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].fname + '"></td>' +
 		                                '</tr>');
 									}
+		                    	   } else {
+		                    		   alert("데이터가 없습니다. 있는 기간을 선택해주세요!");
 		                    	   }
 	                       },
 	                       error : function(e) {
@@ -320,9 +338,8 @@
 												</select></td>
 
 												<td>결의기간&emsp;&emsp;<input type="date"
-													class="firstdate" value="2011-01-01"> ~ <input
-													type="date" class="lastdate" onkeydown="ajaxload();"
-													value="2011-12-31">
+													class="firstdate"> ~ <input
+													type="date" class="lastdate" onkeydown="ajaxload();">
 												</td>
 											</tr>
 										</table>

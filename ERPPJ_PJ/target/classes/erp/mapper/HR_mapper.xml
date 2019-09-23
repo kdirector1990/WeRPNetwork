@@ -210,6 +210,12 @@
 		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate)
 	</insert>
 	
+	<!-- 근태(지각 출근입력) -->
+	<insert id="lateWorkStart" parameterType="String">
+		Insert Into time_card_tbl(tc_code, username, tc_come_time, tc_state)
+		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate, '3')
+	</insert>
+	
 	<!-- 퇴근자 확인 -->
 	<select id="selectEndWork" parameterType="java.util.Map" resultType="int">
 		Select Count(*) from time_card_tbl
@@ -221,6 +227,14 @@
 	<update id="EndWork" parameterType="String">
 		Update time_card_tbl
 		Set tc_leave_time = sysdate, tc_state = 2
+		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+		And username = #{username}
+	</update>
+	
+	<!-- 근태(조퇴입력) -->
+	<update id="ealryWorkEnd" parameterType="String">
+		Update time_card_tbl
+		Set tc_leave_time = sysdate, tc_state = 3
 		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
 		And username = #{username}
 	</update>
@@ -261,26 +275,17 @@
 	
 	<!-- 근태 기록가져오기 -->
 	<select id="SelectDetailWork" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="com.pj.erp.vo.HR.HR_Time_VO">
-		SELECT
-    		a.username as username,
-		    count(a.username) as count,
-		    To_char(a.tc_come_time, 'mm') as month,
-		    To_char(a.tc_come_time, 'yyyy') as year,
-		    b.tc_leave_time as tc_leave_time,
-		    b.tc_come_time as tc_come_time
-		From time_card_tbl a, time_card_tbl b
-		Where b.tc_come_time Like #{year}||'/'||#{month}||'%'
-		And b.tc_leave_time Like #{year}||'/'||#{month}||'%'
-		And a.tc_leave_time Like #{year}||'/'||#{month}||'%'
-		And a.tc_come_time Like #{year}||'/'||#{month}||'%'
-		And a.tc_leave_time is not null
-		And a.tc_come_time is not null
-		And b.tc_come_time is not null
-		And b.tc_leave_time is not null
-		And a.username = #{username}
-		Group by To_char(a.tc_come_time, 'mm'), b.tc_leave_time - b.tc_come_time
-    	, b.tc_leave_time, b.tc_come_time, To_char(a.tc_come_time, 'yyyy'),
-    	a.username
+		select count(*) as count, 
+			To_char(tc_come_time, 'mm') as month,
+    		tc_leave_time, tc_come_time 
+            from time_card_tbl
+		Where username = #{username}
+		And tc_come_time is not null
+		And tc_leave_time is not null
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time Like #{year}||'/'||#{month}||'%'
+		Group by To_char(tc_come_time, 'mm'),
+    		tc_leave_time, tc_come_time
 	</select>
 	
 	<!-- 근태 기록가져오기 -->
@@ -309,8 +314,6 @@
 	<select id="getAP_code" resultType="String">
 		select appointment_seq.nextval from dual
 	</select>
-	
-	
 	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
@@ -347,4 +350,31 @@
 		where department_name like '%'||#{department_name}||'%' 
 		or department_code like '%'||#{department_code}||'%'
 	</select>
+	
+	<!-- 지각/조퇴 갯수 -->
+	<select id="LateEearlyer" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="int">
+		select Count(tc_code)
+		From time_card_tbl
+		Where username = #{username}
+		And tc_come_time is not null
+		And tc_leave_time is not null
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time Like #{year}||'/'||#{month}||'%'
+		And tc_state = '3'
+	</select>
+	
+	<!-- 지각/조퇴(월, 시간, 갯수) -->
+	<select id="selectLateEearlyEnd" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="com.pj.erp.vo.HR.HR_Time_VO">
+		select count(*) as count, To_char(tc_come_time, 'mm') as month,
+    		tc_leave_time, tc_come_time 
+            from time_card_tbl
+		Where username = #{username}
+		And tc_come_time is not null
+		And tc_leave_time is not null
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time Like #{year}||'/'||#{month}||'%'
+		And tc_state = '3'
+		Group by tc_leave_time, tc_come_time, To_char(tc_come_time, 'mm')
+	</select>
+	
 </mapper>

@@ -128,4 +128,7 @@ public interface HR_Service {
 	//사이드바 퇴근
 	public int sidebarEndWork(HttpServletRequest req, Model model);
 	
+	//지각, 조퇴 정보 가져오기
+	public List<HR_Time_VO> LateDateSelect(HttpServletRequest req, Model model);
+	
 }
