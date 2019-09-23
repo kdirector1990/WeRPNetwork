@@ -9,12 +9,14 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -100,6 +102,33 @@ public interface FT_DAO {
 	
 	public int FT_DepositUpdate(Map<String, Object> map);
 
+	// 예금 가져오기
+	public List<FT_Note> FT_NoteAllSelect();
+
+	// 예금 검색한 것 가져오기
+	public List<FT_Note> FT_NoteSelect(String srhval);
+	
+	// 예금 가져오기
+	public int FT_NoteCntSelect(String srhval);
+	
+	// 예금 key 가져오기
+	public String FT_NoteKeySelect();
+	
+	// 예금추가
+	public int FT_NotePrevInsert(Map<String, Object> map);
+	
+	public int FT_NoteInsert(Map<String, Object> map);
+	
+	// 예금수정
+	public int FT_NotePrevDelete(Map<String, Object> map);
+	
+	public int FT_NoteDelete(Map<String, Object> map);
+	
+	// 예금삭제
+	public int FT_NotePrevUpdate(Map<String, Object> map);
+	
+	public int FT_NoteUpdate(Map<String, Object> map);
+	
 	// 카드 가져오기
 	public List<FT_Card> FT_CardManagementSelect();
 	
@@ -151,6 +180,29 @@ public interface FT_DAO {
 	
 	// 거래처가져오기
 	public List<FT_Account> FT_AccountAllSelect();
+	
+
+	// 건물 추가
+	public int FT_BuildingInsert(FT_Building vo);
+	
+	// 건물 수정
+	public int FT_BuildingUpdate(Map<String, Object> map);
+	
+	// 건물 삭제
+	public int FT_BuildingDelete(Map<String, Object> map);
+	
+	
+	// 건물 검색 한 것 개수 가져오기
+	public int FT_BuildingCntSelect(String srhval);
+	
+	// 건물 검색 한 것 하나 가져오기
+	public FT_Building FT_BuildingOneSelect(String srhval);
+	
+	// 건물 검색 한 것 가져오기
+	public List<FT_Building> FT_BuildingSelect(String srhval);
+	
+	// 건물가져오기
+	public List<FT_Building> FT_BuildingAllSelect();
 	
 	// 계정과목가져오기
 	public List<FT_Subject> FT_SubjectAllSelect();

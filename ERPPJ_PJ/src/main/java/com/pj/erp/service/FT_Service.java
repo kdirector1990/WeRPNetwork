@@ -5,11 +5,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
@@ -67,6 +69,24 @@ public interface FT_Service {
 	// 거래처 검색한 것 가져오기
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req);
 	
+	// 건물 추가
+	public void FT_BuildingInsert(HttpServletRequest req, Model model);
+
+	// 건물 수정
+	public String FT_BuildingUpdate(Map<String, Object> map);
+
+	// 건물 삭제
+	public String FT_BuildingDelete(Map<String, Object> map);
+	
+	// 건물 모두 가져오기
+	public void FT_BuildingAllSelect(HttpServletRequest req, Model model);
+	
+	// 건물 검색한 것 가져오기
+	public FT_Building FT_BuildingOneSelect(HttpServletRequest req);
+	
+	// 건물 검색한 것 가져오기
+	public List<FT_Building> FT_BuildingSelect(HttpServletRequest req);
+	
 	// 적금 가져오기
 	public void FT_SavingsSelect(HttpServletRequest req, Model model);
 	
@@ -93,6 +113,21 @@ public interface FT_Service {
 	
 	// 예금삭제
 	public String FT_DepositDelete(Map<String, Object> map);
+	
+	// 받을어음 가져오기
+	public void FT_NoteAllSelect(HttpServletRequest req, Model model);
+	
+	// 받을어음 검색한 것 가져오기
+	public List<FT_Note> FT_NoteSelect(HttpServletRequest req, Model model);
+	
+	// 받을어음 추가
+	public String FT_NoteInsert(Map<String, Object> map);
+	
+	// 받을어음 수정
+	public String FT_NoteUpdate(Map<String, Object> map);
+	
+	// 받을어음 삭제
+	public String FT_NoteDelete(Map<String, Object> map);
 	
 	// 카드 가져오기
 	public void FT_CardManagementSelect(HttpServletRequest req, Model model);

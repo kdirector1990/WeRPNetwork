@@ -95,7 +95,8 @@
 					<div class="row">
 						<div class="col-sm-12">							
 							<div class="card">
-								<form action="HR_APinput" class="form-horizontal" method="post"> 								
+								<form action="HR_APinput" class="form-horizontal" method="post">
+								<input type="hidden" name="${_csrf.parameterName }"	value="${_csrf.token }"> 								
 									<div class="card-body">
 										<div class="form-group text-right mr-1">
 											<button class="btn btn-primary waves-effect waves-light mr-1"

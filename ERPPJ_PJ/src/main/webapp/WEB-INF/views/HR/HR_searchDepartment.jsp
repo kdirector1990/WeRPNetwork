@@ -108,12 +108,12 @@
 									<form class="search">
 										<table class="col-12">
 											<tr class="form-group row">
-												<th class="col-md-1 col-form-label">부서코드 검색</th>
+												<th class="col-md-1 col-form-label">부서명</th>
 												<td><input type="text" class="form-control"
-													name="department_code" id="department_code"></td>
+													name="department_name" id="department_name"></td>
 												<th class="col-md-1 col-form-label">&nbsp;</th>
 
-												<th class="col-md-1 col-form-label">부서명</th>
+												<!-- <th class="col-md-1 col-form-label">부서명</th>
 												<td><select class="form-control" id="department_name"
 													name="department_name">
 														<option value=""></option>
@@ -123,7 +123,7 @@
 														<option value="재무">재무</option>
 														<option value="전산">전산</option>
 														<option value="제조">제조</option>
-												</select></td>
+												</select></td> -->
 												<td><button type="button"
 														class="btn btn-primary waves-effect waves-light"
 														id="search">검색</button></td>
