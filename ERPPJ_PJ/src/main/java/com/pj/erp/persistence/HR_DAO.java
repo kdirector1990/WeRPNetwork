@@ -138,4 +138,10 @@ public interface HR_DAO {
 	
 	// 부서조회
 	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map);
+	
+	//지각 입력
+	public int lateWorkStart(String username);
+	
+	//조퇴 입력
+	public int ealryWorkEnd(String username);
 }

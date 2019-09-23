@@ -496,7 +496,15 @@ public class HR_ServiceImpl implements HR_Service{
 			System.out.println("작동");
 			if(users == 0) {
 				System.out.println("작동2");
-				insertCnt = dao.StartWork(username[i]);
+				Calendar c = Calendar.getInstance();
+				int Hour = c.get(Calendar.HOUR_OF_DAY);
+				
+				if(Hour > 9) {
+					insertCnt = dao.lateWorkStart(username[i]);
+				}
+				else {
+					insertCnt = dao.StartWork(username[i]);
+				}
 			}
 		}
 		
@@ -517,7 +525,17 @@ public class HR_ServiceImpl implements HR_Service{
 			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
-				updateCnt = dao.EndWork(username[i]);
+				
+				Calendar c = Calendar.getInstance();
+				int Hour = c.get(Calendar.HOUR_OF_DAY);
+				
+				if(Hour < 18) {
+					updateCnt = dao.ealryWorkEnd(username[i]);
+				}
+				else {
+					updateCnt = dao.EndWork(username[i]);
+				}
+				
 			}
 		}
 		
@@ -763,7 +781,16 @@ public class HR_ServiceImpl implements HR_Service{
 		int users = dao.selectWork(map);		
 		if(users == 0) {
 			System.out.println("작동2");
-			insertCnt = dao.StartWork(username);
+			Calendar c = Calendar.getInstance();
+			int Hour = c.get(Calendar.HOUR_OF_DAY);
+			System.out.println(Hour);
+			if(Hour > 9) {
+				insertCnt = dao.lateWorkStart(username);
+			}
+			else {
+				insertCnt = dao.StartWork(username);
+			}
+			
 		}
 		
 		return insertCnt;
@@ -782,7 +809,16 @@ public class HR_ServiceImpl implements HR_Service{
 		int users = dao.selectEndWork(map);
 		
 		if(users == 0) {
-			updateCnt = dao.EndWork(username);
+			
+			Calendar c = Calendar.getInstance();
+			int Hour = c.get(Calendar.HOUR_OF_DAY);
+			
+			if(Hour < 18) {
+				updateCnt = dao.ealryWorkEnd(username);
+			}
+			else {
+				updateCnt = dao.EndWork(username);
+			}
 		}
 		
 		return updateCnt;
