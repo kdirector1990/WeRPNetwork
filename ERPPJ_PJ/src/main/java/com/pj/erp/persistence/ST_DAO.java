@@ -7,7 +7,11 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+<<<<<<< HEAD
 import com.pj.erp.vo.ST.ST_contrast;
+=======
+import com.pj.erp.vo.ST.ST_department;
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
@@ -125,7 +129,7 @@ public interface ST_DAO {
 	public List<CustomerList> getCustomerList(String customer_name);
 	
 	// 사원 이름 검색 확인
-	public int selectName(String username);
+	public int selectName(String e_name);
 	
 	// 사원 검색 목록 불러오기
 	public List<UserName> getUsernameList(String username); 
@@ -144,5 +148,9 @@ public interface ST_DAO {
 	//매출 - 부서
 	public List<ST_searchDepartmentCode> getDepartmentCode(Map<String, Object> map);
 	
+	//팝업창 부서조회 목록 유무
+	public int selectDepName(String department_name);
 	
+	//팝업창 부서조회 목록 
+	public List<ST_department> getDepartmentList(String department_name);
 }

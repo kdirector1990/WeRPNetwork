@@ -138,4 +138,19 @@ public interface HR_DAO {
 	
 	// 부서조회
 	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map);
+	
+	//지각 입력
+	public int lateWorkStart(String username);
+	
+	//조퇴 입력
+	public int ealryWorkEnd(String username);
+	
+	//지각/조퇴 갯수 가져오기
+	public int LateEearlyer(HR_Time_VO vo);
+	
+	//지각, 조퇴 (시간, 월, 갯수, 들고오기)
+	public List<HR_Time_VO> selectLateEearlyEnd(HR_Time_VO vo);
+	
+	//NFC 지우기
+	public int deleteNfc(String tag_code);
 }

@@ -13,10 +13,7 @@ public interface MS_DAO{
 	public int insertPlan(MS_plan vo);
 	
 	// 기획서 조회
-	public List<MS_plan> getPlanList();
-	
-	//기획서 목록 수량
-	public int getPlanListCnt();
+	public List<MS_plan> getPlanList(String username);
 	
 	//기획서 수정
 	public int updatePlan(MS_plan vo);

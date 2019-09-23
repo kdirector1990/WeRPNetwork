@@ -528,6 +528,20 @@ public class ST_Controller {
 	}
 		
 	
+	//부서 조회 팝업창
+	@RequestMapping("ST_searchDepartmentname")
+	public String ST_searchDepartmentname(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname");
+		
+		return "ST/ST_searchDepartmentname";
+	}
 	
-
+	//부서 조회 팝업창 결과
+	@RequestMapping("ST_searchDepartmentname_result")
+	public String ST_searchDepartmentname_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname_result");
+		service.searchDepCode(req, model);
+		
+		return "ST/ST_searchDepartmentname_result";
+	}
 }

@@ -410,7 +410,7 @@ public class HR_Controller {
 		return updateCnt;
 	}
 
-	//근태(사원 근태정보 가져오기)
+	//근태(사원 근태 월, 일, 시간 정보 가져오기)
 	@RequestMapping("Select_Users_Work_Data")
 	@ResponseBody
 	public List<HR_Time_VO> Select_Users_Work_Data(HttpServletRequest req, Model model) {
@@ -480,5 +480,28 @@ public class HR_Controller {
 		
 		return updateCnt;
 	}
+	
+	//지각,조퇴 일수 가져오기 
+	@RequestMapping("HR_Late_Check")
+	@ResponseBody
+	public List<HR_Time_VO> HR_Late_Check(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Late_Check");
+		
+		List<HR_Time_VO> vo = service.LateDateSelect(req, model);
+		
+		return vo;
+	}
+	
+	//NFC데이터 체크박스 지우기
+	@RequestMapping("HR_NFC_Delete")
+	@ResponseBody
+	public int HR_NFC_Delete(HttpServletRequest req, Model model) {
+		logger.info("log => HR_NFC_Delete");
+		
+		int deleteCnt = service.deleteNfcSelect(req, model);
+		
+		return deleteCnt;
+	}
+	
 	
 }

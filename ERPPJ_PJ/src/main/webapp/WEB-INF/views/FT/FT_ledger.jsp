@@ -7,6 +7,21 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
+			var d = new Date();
+			$(function(){
+				if((d.getMonth() + 1) < 10){
+	        		$(".lastdate0").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".firstdate0").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".lastdate1").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".firstdate1").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+				} else {
+	        		$(".lastdate0").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".firstdate0").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".lastdate1").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+	        		$(".firstdate1").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+				}
+			});
+
 	        function subjectlist(subjectcode) {
 	           	var popupX = Math.ceil((window.screen.width - 363)/2);
 	           	var popupY = Math.ceil((window.screen.height - 528)/2);
@@ -27,11 +42,16 @@
         		var obj = new Object();
         		var jsonData;
         		
-        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
-        			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate" + cc).focus();
-        			return false;
-        		} else if(window.event.which == 13){
+        		if(window.event.which == 13){
+        			if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+            			alert("두 날짜의 사이값이 존재하도록 해주세요");
+            			$(".firstdate" + cc).focus();
+            			return false;
+            		} else if(!$("*[name=SubjectCode" + cc + "]").val()) {
+            			alert("계정과목을 선택해주세요");
+            			$("*[name=SubjectCode" + cc + "]").focus();
+            			return false;
+            		}
 	        		// 자바스크립트 객체 생성
 	        		obj.scode = $("*[name=SubjectCode" + cc + "]").val();
 	        		obj.firstday = $(".firstdate" + cc).val();
@@ -89,11 +109,20 @@
         		var obj = new Object();
         		var jsonData;
         		var balance = 0;
-        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
-        			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate" + cc).focus();
-        			return false;
-        		} else if(window.event.which == 13){
+        		if(window.event.which == 13){
+        			if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+            			alert("두 날짜의 사이값이 존재하도록 해주세요!");
+            			$(".firstdate" + cc).focus();
+            			return false;
+            		} else if(!$("*[name=SubjectCode" + cc + "]").val()) {
+            			alert("계정과목을 선택해주세요!");
+            			$("*[name=SubjectCode" + cc + "]").focus();
+            			return false;
+            		} else if(!$("*[name=AccCode" + cc + "]").val()) {
+            			alert("거래처를 선택해주세요!");
+            			$("*[name=AccCode" + cc + "]").focus();
+            			return false;
+            		}
 	        		// 자바스크립트 객체 생성
 	        		obj.scode = $("*[name=SubjectCode" + cc + "]").val();
 	        		obj.acode = $("*[name=AccCode" + cc + "]").val();
@@ -216,8 +245,8 @@
 
 																<td>기표기간</td>
 																<td><input type="date" class="firstdate0"
-																	value="2011-01-01" max="9999-12-31"> ~ <input
-																	type="date" class="lastdate0" value="2011-12-31"
+																	max="9999-12-31"> ~ <input
+																	type="date" class="lastdate0"
 																	onkeydown="ajaxload(0);" max="9999-12-31"></td>
 															</tr>
 														</table>
@@ -268,8 +297,8 @@
 
 																<td>기표기간</td>
 																<td><input type="date" class="firstdate1"
-																	value="2011-01-01"> ~ <input type="date"
-																	class="lastdate1" value="2011-12-31"></td>
+																	> ~ <input type="date"
+																	class="lastdate1"></td>
 
 																<td>거래처</td>
 																<td><input type="text" class="" name="AccCode1"

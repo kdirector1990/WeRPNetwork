@@ -11,6 +11,7 @@ public class HR_nfc_log {
 	String e_name;	 // 사원명
 	String min;
 	String max;
+	String tag_code;
 	
 	//디폴트 생성자
 	public HR_nfc_log() {}
@@ -67,6 +68,16 @@ public class HR_nfc_log {
 
 	public void setMax(String max) {
 		this.max = max;
+	}
+
+
+	public String getTag_code() {
+		return tag_code;
+	}
+
+
+	public void setTag_code(String tag_code) {
+		this.tag_code = tag_code;
 	}
 	
 	

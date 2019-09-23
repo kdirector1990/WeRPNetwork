@@ -287,7 +287,7 @@
 	
 	<!-- 매출 담당자 목록 -->
 	<select id="getUsername" resultType="com.pj.erp.vo.ST.ST_searchUsername" parameterType="java.util.Map">
-		select * from st_salesstatus_user_view where username like '%'||#{username}||'%'
+		select * from st_salesstatus_user_view where e_name like '%'||#{e_name}||'%'
 	</select>
 	
 	<!-- 매출 부서 목록 -->
@@ -297,12 +297,22 @@
 	
 	<!-- 사원 검색 -->
 	<select id="selectName" resultType="int" parameterType="String">
-		select COUNT(*) from users where username like '%'||#{username}||'%'
+		select COUNT(*) from users where e_name like '%'||#{e_name}||'%'
 	</select>
 	
-	<!-- 검색 목록  -->
+	<!-- 팝업창 사원검색 목록  -->
 	<select id="getUsernameList" resultType="com.pj.erp.vo.ST.UserName" parameterType="String">
-		select username, e_name from users where username like '%'||#{username}||'%'
+		select username, e_name from users where e_name like '%'||#{e_name}||'%'
+	</select>
+	
+	<!-- 팝업창 부서검색목록 유무 -->
+	<select id="selectDepName" resultType="int" parameterType="String">
+		select COUNT(*) from department_tbl where department_name like '%'||#{department_name}||'%'
+	</select>
+	
+	<!-- 팝업창 부서검색 목록조회 -->
+	<select id="getDepartmentList" resultType="com.pj.erp.vo.ST.ST_department" parameterType="String">
+		select department_name,department_code from department_tbl where department_name like '%'||#{department_name}||'%'
 	</select>
 	
  </mapper>

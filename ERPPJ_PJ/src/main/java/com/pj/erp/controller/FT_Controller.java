@@ -25,6 +25,7 @@ import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
+import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
@@ -113,7 +114,7 @@ public class FT_Controller {
 	@ResponseBody
 	public Map<String, Object> FT_search_BS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => FT_search_BS");
-		Map<String, Object> bs_map = service.getBsshit(map, req, model); 
+		Map<String, Object> bs_map = service.getBsshit(map, req, model);
 		return bs_map; 
 	}
 
@@ -123,6 +124,17 @@ public class FT_Controller {
 
 		return "FT/FT_IS";
 	}
+	
+	// 손익계산서 조회 쿼리
+	@RequestMapping(value="FT_search_IS", produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> FT_search_IS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_search_IS");
+		Map<String, Object> is_map = service.getBsshit(map, req, model);
+		return is_map; 
+	}
+	
+	
 
 	@RequestMapping("FT_p_cost")
 	public String FT_p_cost(Locale locale, Model model) {
@@ -212,6 +224,43 @@ public class FT_Controller {
 
 		return "FT/FT_Deposit";
 	}
+	
+	// 예금관리
+	@RequestMapping("FT_note")
+	public String FT_note(HttpServletRequest req, Model model) {
+		logger.info("log => FT_note");
+
+		service.FT_NoteAllSelect(req, model);
+
+		return "FT/FT_note";
+	}
+	
+	// 예금 추가
+	@RequestMapping(value = "FT_NoteInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_NoteInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteInsert 호출중");
+
+		String result = service.FT_NoteInsert(map);
+
+		return result;
+	}
+
+	// 예금 수정
+	@RequestMapping(value = "FT_NoteUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_NoteUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteUpdate 호출중");
+		String result = service.FT_NoteInsert(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_NoteDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_NoteDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteDelete 호출중");
+		String result = service.FT_NoteDelete(map);
+		return result;
+	}
+	
 
 	// 카드관리
 	@RequestMapping("FT_CardManagement")
@@ -262,7 +311,7 @@ public class FT_Controller {
 	@RequestMapping("FT_Note_list")
 	public String FT_Note_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Note_list");
-
+		
 		return "FT/FT_Note_list";
 	}
 
@@ -639,5 +688,49 @@ public class FT_Controller {
 		return result;
 	}
 	
+
+
+	// 건물 추가    
+    @RequestMapping(value="FT_BuildingInsert")
+    public String FT_BuildingInsert(HttpServletRequest req, Model model) {
+    	logger.info("url : FT_BuildingInsert 호출중");
+        
+        service.FT_BuildingInsert(req, model);
+        
+        return "FT/FT_BulidingComplete";
+    }
+
+	// 건물 검색 가져오기
+	@RequestMapping(value = "FT_BuildingSelect")
+	public @ResponseBody List<FT_Building> FT_BuildingSelect(HttpServletRequest req) {
+		logger.info("url : FT_AccountSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_BuildingSelect(req);
+	}
 	
+	// 건물 수정
+	@RequestMapping(value = "FT_BuildingUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_BuildingUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_BuildingUpdate 호출중");
+
+		return service.FT_BuildingUpdate(map);
+	}
+	
+	// 건물 삭제
+	@RequestMapping(value = "FT_BuildingDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_BuildingDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_BuildingDelete 호출중");
+
+		return service.FT_BuildingDelete(map);
+	}
+	
+	// 건물 검색 가져오기
+	@RequestMapping(value = "FT_BuildingOneSelect")
+	public @ResponseBody FT_Building FT_BuildingOneSelect(HttpServletRequest req) {
+		logger.info("url : FT_BuildingOneSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_BuildingOneSelect(req);
+	}
 }
