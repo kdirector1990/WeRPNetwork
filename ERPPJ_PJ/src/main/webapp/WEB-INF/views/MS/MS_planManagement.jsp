@@ -67,7 +67,8 @@
         			dataTpye: 'json',
         			success: function(vo){
         				
-        				$('.result1').empty();
+        				$('#result').empty();
+        				$('#bodyappend').empty();
 
         				for(var i = 0; i < vo.length; i++){
         					
@@ -81,8 +82,9 @@
         					var plan_state = vo[i].plan_state;
         					var plan_objective = vo[i].plan_objective;
         					var plan_proposal = vo[i].plan_proposal;
+        					var babokwon = vo[i];
         					
-        					$(".result1").append('<tr>' +
+        					$("#result").append('<tr onclick="searchData();" >' +
         							'<td>'+ plan_code+ '</td>' +
         							'<td>'+ plan_name+ '</td>' +
         							'<td>'+ username + '</td>' +
@@ -125,127 +127,6 @@
         		});
         }
         
-        $("#datatable tbody tr").click(function(){
-       	 
-			if($(".plandiv") != null){
-				$(".plandiv").remove();
-			}
-			
-			var tdArr = new Array();	// 배열 선언
-			
-			// 현재 클릭된 Row(<tr>)
-			var tr = $(this);
-			var td = tr.children();
-			
-			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-			td.each(function(i){
-				tdArr.push(td.eq(i).text());
-			});
-			
-			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var plan_code = td.eq(1).text();
-   			var plan_name = td.eq(2).text();
-   			var username = td.eq(3).text();
-   			var position_code = td.eq(4).text();
-   			var plan_regdate = td.eq(5).text();
-   			var plan_startdate = td.eq(6).text();
-   			var plan_enddate = td.eq(7).text();
-   			var plan_state = td.eq(8).text();
-   			var plan_objective = td.eq(9).text();
-   			var plan_proposal = td.eq(10).text();
-			
-   			tdArr.push(plan_code);
-   			tdArr.push(plan_name);
-   			tdArr.push(username);
-   			tdArr.push(position_code);
-   			tdArr.push(plan_regdate);
-   			tdArr.push(plan_startdate);
-   			tdArr.push(plan_enddate);
-   			tdArr.push(plan_state);
-   			tdArr.push(plan_objective);
-   			tdArr.push(plan_proposal);
-   			
-   			$('.result2').show();
-   			
-   			$('#datatable2 > tbody:last').append('<div class="plandiv" id="test123">'+'<input type="hidden" name="plan_code" value="'+tdArr[0]+'"><div class="form-group row">'
-	  					+ '<label class="col-md-2 col-form-label" for="example-email" >기획서 코드</label>'        
-	  						+ '<div class="col-md-10">'
-	  				    		+ '<input type="text" name="plan_code"  value="'+tdArr[0]+'" class="form-control" disabled>' 
-	  				        +'</div>'
-	  				    +'</div>'
-	  				    +'<div class="form-group row">'
-	  			        +'<label class="col-md-2 col-form-label" for="example-email">기획명</label>'
-	  			        	+ '<div class="col-md-10">'
-	  			            	+ '<input type="text" name="plan_name" value="'+tdArr[1]+'" class="form-control" >'
-	  			        	+ '</div>'
-	  			    	+ '</div>'
-	  				    + '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="simpleinput">기획제안자</label>' 
-	  			        	+ '<div class="col-md-10">'
-	  			            	+ '<input type="text" name="username" value="'+tdArr[2]+'" id="simpleinput" class="form-control">' 
-	  			        	+ '</div>'
-	  			    	+'</div>'
-	  			    	+ '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">책임자</label>'
-	  			        	+ '<div class="col-md-10">'
-	  			        	+ '<input type="text" name="position_code" value="'+tdArr[3]+'" id="simpleinput" class="form-control" >'
-	  			        	+ '</div>'
-	  			    	+ '</div>'
-	  			    	+ '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="simpleinput">기획등록일</label>'
-	  			        	+ '<div class="col-md-10">'
-	  			            	+ '<input type="text" name="plan_regdate" value="'+tdArr[4]+'" id="simpleinput" class="form-control" disabled>'
-	  			        	+ '</div>'
-	  			    	+ '</div>'
-	  			    	+  '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">시작예정일</label>'
-	  			        	+'<div class="col-md-10">'
-	  			            	+ '<input type="text" name="plan_startdate" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[5]+'" id="simpleinput" class="form-control" >'
-	  			        	+ '</div>'
-	  			    	+ '</div>' 
-	  			    	+  '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">종료예정일</label>'
-	  			        	+'<div class="col-md-10">'
-	  			            	+ '<input type="text" name="plan_enddate" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[6]+'" id="simpleinput" class="form-control" >'
-	  			        	+ '</div>'
-	  			    	+ '</div>' 
-	  			    	+  '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획상태</label>'
-	  			        	+'<div class="col-md-10">'
-	  			        		+ '<select name="plan_state" class="form-control" required>'
-	  			        			+ '<option value="'+tdArr[7]+'">'+tdArr[7]+'</option>'
-	  			        			+ '<option disabled>-------------------------</option>'
-									+ '<option value="기획단계">기획단계</option>'
-									+ '<option value="준비중">준비중</option>'
-									+ '<option value="진행중">진행중</option>'
-									+ '<option value="완료">완료</option>'
-									+ '<option value="페기">페기</option>'
-								+ '</select>'
-								
-	  			        	+ '</div>'
-	  			    	+ '</div>' 
-	  			    	+  '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획목표</label>'
-	  			        	+'<div class="col-md-10">'
-	  			        		+ '<textarea name="plan_objective" class="form-control" rows="5" id="example-textarea">'+tdArr[8]+'</textarea>'
-	  			        	+ '</div>'
-	  			    	+ '</div>' 
-	  			    	+  '<div class="form-group row">'
-	  			        + '<label class="col-md-2 col-form-label" for="example-textarea">상세 기획안 파일</label>'
-	  			        	+'<div class="col-md-10">'
-	  			            	+ '<input type="text" name="plan_proposal" value="'+tdArr[9]+'" id="simpleinput" class="form-control" >'
-	  			        	+ '</div>'
-	  			    	+ '</div>' 
-	  			    	+ '<div class="form-group text-right mb-0">'
-	  						+ '<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>'
-	  						+ '<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>'
-	  					+ '</div>'
-	  					+'</div>'
-	  				    );
- 
-   		 var offset = $(".plandiv").offset();
-         $('html, body').animate({scrollTop : offset.top}, 200); 
-		});
     </script>
 
 <%@ include file="../setting.jsp"%>
@@ -324,12 +205,12 @@
 										</tr>
 									</thead>
 
+									<tbody id="result">
 
-									<tbody class="result1">
 									</tbody>
 								</table>
 
-								<div class="result2">
+								<div id="result2">
 									<br>
 									<form id="updatePlan">
 										<input type='hidden' name="${_csrf.parameterName }"
