@@ -330,7 +330,7 @@
 							</li>
                                                       
                            	<li> 
-	                          <a href="javascript: void(0);">
+	                          <a href="javascript: void(0);" id = "0">
 	                             <i class="mdi mdi-account"></i> 
 	                             <span> 인사 </span>
 	                             <span class="menu-arrow"></span>
@@ -344,11 +344,11 @@
 	                          			<li><a href="HR_searchDepartment">부서조회</a></li>
 	                          		</ul>
 	                          	</li>
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">인사정보
+	                          	<li><a href="javascript: void(0);" aria-expanded="false" id = "1">인사정보
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>	                          			
-	                          			<li><a href="HR_InputHR">인사정보등록</a></li>
+	                          			<li><a href="HR_InputHR" id = "2">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
 										<li><a href="HR_EmployeePhysicaly">신체정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
