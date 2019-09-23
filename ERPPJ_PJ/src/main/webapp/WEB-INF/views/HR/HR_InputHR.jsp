@@ -303,7 +303,7 @@
 																<select class="form-control select2" name="rank_code"
 																	onchange="">
 																	<c:forEach var="rank" items="${rank}">
-																		<option value="${rank.rank_code}">${rank.rank_name}</option>
+																		<option value="${rank.rank_code}">${rank.rank_name}(${rank.rank_code})</option>
 																	</c:forEach>
 																</select>
 															</div>

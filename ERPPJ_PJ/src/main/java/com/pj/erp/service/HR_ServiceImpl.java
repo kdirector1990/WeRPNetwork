@@ -94,10 +94,10 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO vo = new HR_VO();		
 		
 		String username = dao.getUsername();
-		String e_name = "1234";
+		String e_name = req.getParameter("e_name");
 		// String e_picture = file.getOriginalFilename();
 		
-		String password = passwordEncoder.encode(e_name);
+		String password = passwordEncoder.encode("1234");
 		System.out.println(e_name);				
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
