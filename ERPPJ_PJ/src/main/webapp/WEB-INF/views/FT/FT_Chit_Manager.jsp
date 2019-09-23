@@ -230,8 +230,14 @@
 	                       success : function(data) {
 	                    	   if(data != null){
 									for(i = 0; i < data.length; i++){
+										var str;
+										if(data[i].fname == null){
+											str = '<input type="checkbox" onfocus = "focuse(this.name);" name = "check" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" value = "' + i + '" readonly onkeydown = "enter(this.tagName, this.name);">';	
+										} else {
+											str = '';
+										}
 										$(".chit-table-bordered-primary tbody").append('<tr>' +
-												'<td align = "center" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();"><input type="checkbox" onfocus = "focuse(this.name);" name = "check" class="form-control" data-toggle="input-mask" style = "width: 20px; border:0px;" value = "' + i + '" readonly onkeydown = "enter(this.tagName, this.name);"></td>' +
+												'<td align = "center" ondblclick="javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; chitManager.submit();">' + str + '</td>' +
 			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "date' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].journal_date.substring(0,10) + '"></td>' +
 			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "no'+ i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].journal_number + '"></td>' +
 			                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "confirmname'+ i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\'; javascript: chitManager.submit();" value = "' + data[i].fname + '"></td>' +
