@@ -7,6 +7,7 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
+			var daynum;
         	var count = 2;
         	var frontcursor;
         	var updatekey = 0;
@@ -66,9 +67,9 @@
         	}
         	
         	function RLenter(cc, dd) {
-       			if(window.event.which == 97) {
+       			if(window.event.which == 97 || window.event.which == 49) {
            			$("input[name=" + dd + "]").val("차변");
-           		} else if(window.event.which == 98) {
+           		} else if(window.event.which == 98 || window.event.which == 50) {
            			$("input[name=" + dd + "]").val("대변");
            		} else {
            			$("input[name=" + dd + "]").val("");
@@ -80,6 +81,20 @@
         			var swit = 0;
         			var nowme = $("input[name=" + dd + "]").parent();
         			if(window.event.which == 13){
+            			if(dd == ("SubjectCode" + parseInt(dd.substring(dd.length-1,dd.length)))){
+            				var popupX = Math.ceil((window.screen.width - 363)/2);
+                        	var popupY = Math.ceil((window.screen.height - 528)/2);
+                    		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + parseInt(dd.substring(dd.length-1,dd.length)) + "]").val() + "&keyname=" + parseInt(dd.substring(dd.length-1,dd.length));
+                    		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
+                    		return false;
+            			}
+            			if(dd == ("AccCode" + parseInt(dd.substring(dd.length-1,dd.length)))){
+                        	var popupX = Math.ceil((window.screen.width - 363)/2);
+                        	var popupY = Math.ceil((window.screen.height - 528)/2);
+                    		var url = "FT_account_list?key=" + $("*[name=AccCode" + parseInt(dd.substring(dd.length-1,dd.length)) + "]").val() + "&keyname=" + parseInt(dd.substring(dd.length-1,dd.length));
+                    		window.open(url, "account_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
+                    		return false;
+            			}
         				for(var i = 0; i < $("input[name=" + dd + "]").parent().nextAll().children().length; i++){
         					nowme = nowme.next();
         					if(!nowme.children().attr("readonly")){
@@ -274,6 +289,8 @@
             			$("#day").focus();
             			return false;
             		}
+
+            		daynum = $("#day").val()
 	        		// 자바스크립트 객체 생성
 	        		obj.year = $("#year").val();
 	        		obj.month = $("#month").val();
@@ -297,7 +314,7 @@
 	                                    '<input type = "hidden" name = "writer1" value = "${sessionScope.username}">' +
 	                                    '<input type = "hidden" name = "formaler1" value = "">' +
 	                                    '<td>' +
-	                                    '<input type="text" onfocus = "focuse(1);" name = "date1" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
+	                                    '<input type="text" onfocus = "focuse(1);" name = "date1" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "' + daynum + '"></td>' +
 	                                    '<td><input type="text" onfocus = "focuse(1);" name = "key1" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 	                                    '<td><input type="text" onfocus = "focuse(1);" name = "number1" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "' + $("#journalNum").val() + '"></td>' +
 	                                    '<td><input type="text" onfocus = "focuse(1);" id = "first1" name = "RLstate1" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "RLenter(this.value, this.name);" onkeydown = "enter(this.tagName, this.name);"></td>' +
@@ -420,7 +437,7 @@
 		                                    '<input type = "hidden" name = "writer' + i + '" value = "${sessionScope.username}">' +
 		                                    '<input type = "hidden" name = "formaler' + i + '" value = "">' +
 		                                    '<td>' +
-		                                    '<input type="text" onfocus = "focuse(' + i + ');" name = "date' + i + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
+		                                    '<input type="text" onfocus = "focuse(' + i + ');" name = "date' + i + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "' + daynum + '"></td>' +
 		                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "key' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
 		                                    '<td><input type="text" onfocus = "focuse(' + i + ');" name = "number' + i + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "' + $("#journalNum").val() + '"></td>' +
 		                                    '<td><input type="text" onfocus = "focuse(' + i + ');" id = "first' + i + '" name = "RLstate' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "RLenter(this.value, this.name);" onkeydown = "enter(this.tagName, this.name);"></td>' +
@@ -493,7 +510,7 @@
                         '<input type = "hidden" name = "writer' + count + '" value = "${sessionScope.username}">' +
                         '<input type = "hidden" name = "formaler' + count + '" value = "">' +
                         '<td>' +
-                        '<input type="text" onfocus = "focuse(' + count + ');" name = "date' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" value = "30" readonly onclick = "notfocus(this.name);"></td>' +
+                        '<input type="text" onfocus = "focuse(' + count + ');" name = "date' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="0000/00/00" placeholder = "YYYY/DD/MM" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "' + daynum + '"></td>' +
                         '<td><input type="text" onfocus = "focuse(' + count + ');" name = "key' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                         '<td><input type="text" onfocus = "focuse(' + count + ');" name = "number' + count + '" class="form-control" data-toggle="input-mask" data-mask-format="00000" placeholder = "ex)10001" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "' + $("#journalNum").val() + '"></td>' +
                         '<td><input type="text" onfocus = "focuse(' + count + ');" id = "first' + count + '" name = "RLstate' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup = "RLenter(this.tagName, this.name);"></td>' +
