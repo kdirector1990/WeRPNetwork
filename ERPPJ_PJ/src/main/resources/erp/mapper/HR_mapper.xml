@@ -377,4 +377,10 @@
 		Group by tc_leave_time, tc_come_time, To_char(tc_come_time, 'mm')
 	</select>
 	
+	<!-- NFC체크박스 지우기 -->
+	<delete id="deleteNfc" parameterType="String">
+		Delete nfc_log_tbl
+		Where tag_code = #{tag_code}
+	</delete>
+	
 </mapper>

@@ -150,4 +150,7 @@ public interface HR_DAO {
 	
 	//지각, 조퇴 (시간, 월, 갯수, 들고오기)
 	public List<HR_Time_VO> selectLateEearlyEnd(HR_Time_VO vo);
+	
+	//NFC 지우기
+	public int deleteNfc(String tag_code);
 }

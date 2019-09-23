@@ -882,4 +882,17 @@ public class HR_ServiceImpl implements HR_Service{
 		return dto;
 	}
 
+	@Override
+	public int deleteNfcSelect(HttpServletRequest req, Model model) {
+		
+		int updateCnt = 0;
+		
+		String[] tag_code = req.getParameterValues("tag_code");
+		
+		for(int i = 0; i < tag_code.length; i++) {
+			updateCnt = dao.deleteNfc(tag_code[i]);
+		}
+		return updateCnt;
+	}
+
 }
