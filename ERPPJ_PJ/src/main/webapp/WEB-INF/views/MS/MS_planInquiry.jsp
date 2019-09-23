@@ -8,6 +8,88 @@
 }
 </style>
 <%@ include file="../setting.jsp"%>
+<script type="text/javascript">
+function ST_searchUsername() {
+	window.open("ST_searchUsername", "ST_searchUsername", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
+
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 실행할 내용
+         searchCus();
+    }
+}
+
+var searchCount = 1;
+function searchCus() {
+	 var param = $("#search").serializeArray();
+	 /* alert(JSON.stringify(param));  */
+		$.ajax({
+			url: '/erp/MS_planInquiry_result?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(vo){
+				
+				$('#result1').empty();
+				$('#bodyappend').empty();
+	
+				for(var i = 0; i < vo.length; i++){
+					
+					var plan_code = vo[i].plan_code;
+					var plan_name = vo[i].plan_name;
+					var username = vo[i].username;
+					var position_code = vo[i].position_code;
+					var plan_regdate = vo[i].plan_regdate;
+					var plan_startdate = vo[i].plan_startdate;
+					var plan_enddate = vo[i].plan_enddate;
+					var plan_state = vo[i].plan_state;
+					var plan_objective = vo[i].plan_objective;
+					var plan_proposal = vo[i].plan_proposal;
+					
+					$("#result1").append('<tr>' +
+							'<td>'+ plan_code+ '</td>' +
+							'<td>'+ plan_name+ '</td>' +
+							'<td>'+ username + '</td>' +
+							'<td>'+ position_code + '</td>' +
+							'<td>'+ plan_regdate + '</td>' +
+							'<td>'+ plan_startdate + '</td>' +
+							'<td>'+ plan_enddate + '</td>' +
+							'<td>'+ plan_state + '</td>' +
+							'<td>'+ plan_objective + '</td>' +
+							'<td>' + plan_proposal + '</td></tr>');
+					
+					if(searchCount == 1){
+						$('#bodyappend').append(
+						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+						);
+						searchCount = searchCount + 1;
+						}
+				}
+				
+			},
+			error : function(){
+				alert("실패.");
+			}
+		});
+}
+</script>
 </head>
 <body>
 	<!-- Begin page -->
@@ -35,14 +117,41 @@
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body">
+								<form id="search" onsubmit="return false">
+									<table class="col-12">
+										<tr class="form-group row">
+											<tr class="form-group row">		
+												<th class="col-md-1 col-form-label">사원</th>
+												<td class="col-md-2 input-group">
+												<input type="text" name="username" id="username"
+												class="form-control" onclick="ST_searchUsername();"  onkeyup="enterkey();">
+												<input type="text" name="e_name" id="e_name"
+												class="form-control" readonly>
+												</td>
+												
+											</tr>
+										</table>
+									</form>
+									<div align="right">
+										<button type="button"
+										class="btn btn-dark waves-effect waves-light"
+										onclick="searchCus();">조회</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
 								<h4 class="header-title">기획서 조회</h4>
-
 								<hr>
-								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap"
+								<table id="datatable1"
+									class="table m-0 table-bordered table-hover"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead>
+									<thead class="bg-primary text-white">
 										<tr>
 											<th>기획서 코드</th>
 											<th>기획명</th>
@@ -58,27 +167,13 @@
 									</thead>
 
 
-									<tbody>
-										<c:forEach var="list" items="${dto}">
-											<tr>
-												<td>${list.plan_code}</td>
-												<td>${list.plan_name}</td>
-												<td>${list.username}</td>
-												<td>${list.position_code}</td>
-												<td>${list.plan_regdate}</td>
-												<td>${list.plan_startdate}</td>
-												<td>${list.plan_enddate}</td>
-												<td>${list.plan_state}</td>
-												<td>${list.plan_objective}</td>
-												<td>${list.plan_proposal}</td>
-											</tr>
-										</c:forEach>
+									<tbody id="result1">
 									</tbody>
 								</table>
 
-								<div class="result">
+								<div class="result2">
 									<br>
-									<form id="updatePlan">
+									<form>
 										<input type='hidden' name="${_csrf.parameterName }"
 											value="${_csrf.token }"> <br>
 										<table id="datatable2"
@@ -92,7 +187,6 @@
 										</table>
 									</form>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -116,14 +210,8 @@
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
 
-	<!-- Datatable plugin js -->
-	<script
-		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-
 	<script type="text/javascript">
-     $("#datatable tbody tr").click(function(){
+     $("#datatable1 tbody tr").click(function(){
     	 
 			if($(".plandiv") != null){
 				$(".plandiv").remove();
@@ -163,7 +251,7 @@
    			tdArr.push(plan_objective);
    			tdArr.push(plan_proposal);
    			
-   			$('.result').show();
+   			$('.result2').show();
    			
    			$('#datatable2 > tbody:last').append('<div class="plandiv">'+'<input type="hidden" name="plan_code" value="'+tdArr[0]+'"><div class="form-group row">'
  					+ '<label class="col-md-2 col-form-label" for="example-email">기획서 코드</label>'        
@@ -232,5 +320,6 @@
    			
 		});
     </script>
+    <div id="bodyappend"></div>
 </body>
 </html>

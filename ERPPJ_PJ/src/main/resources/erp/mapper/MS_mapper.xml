@@ -11,12 +11,7 @@
 	
 	<!-- 기획서 목록  -->
 	<select id="getPlanList" resultType="com.pj.erp.vo.MS.MS_plan">
-		SELECT * FROM plan_list_tbl
-	</select>
-	
-	<!-- 기획서 수량 갯수 -->
-	<select id="getPlanListCnt" resultType="int">
-		SELECT COUNT(*) FROM plan_list_tbl 
+		SELECT * FROM plan_list_tbl where username like '%'||#{username}||'%'
 	</select>
 	
 	<!-- 기획서 수정 -->

@@ -15,7 +15,7 @@
 
 // 검색창 포커스	 
 function searchNameFocus(){
-	document.searchName.username.focus();
+	document.searchName.e_name.focus();
 }
 
 function enterkey() {
@@ -27,20 +27,20 @@ function enterkey() {
 
 
 // 결과
-function load1(username) {
-	var url = document.searchName.username.value;
+function load1(e_name) {
+	var url = document.searchName.e_name.value;
 	
-	sendRequest(loadBook_callback, "ST_searchUsername_result", "post", "username="+url);
+	sendRequest(loadBook_callback, "ST_searchUsername_result", "post", "e_name="+url);
 }
 
 function loadBook_callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.username.value){
+		if(!document.searchName.e_name.value){
 			alert("사원 이름을 입력하세요!");
 			location.reload();
-			document.searchName.username.focus();
+			document.searchName.e_name.focus();
 			return false;
 		}
 	
@@ -113,7 +113,7 @@ function setName(username, e_name) {
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
 											<td><input onkeyup="enterkey();" type="text"
-												name="username" class="form-control form-control-sm"
+												name="e_name" class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
 										</tr>

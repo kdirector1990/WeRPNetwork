@@ -18,6 +18,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_department;
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
@@ -647,17 +648,16 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("cnt", cnt);
 	}
 	
-	// 담당자 검색
+	// e_name 사원명 검색
 	@Override
 	public void searchUsername(HttpServletRequest req, Model model) {
-		String username = req.getParameter("username");
+		String e_name = req.getParameter("e_name");
 		
-		int unt = dao.selectName(username); 
-		
+		int unt = dao.selectName(e_name); 
 		System.out.println("unt: " +unt);
 		
 		if(unt > 0) {
-			List<UserName> nto = dao.getUsernameList(username);
+			List<UserName> nto = dao.getUsernameList(e_name);
 			model.addAttribute("nto", nto);
 		}
 
@@ -697,7 +697,7 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("customer_code", customer_code);
 		
 		List<ST_searchCustomerCode> vo = dao.getCustomerCode(map);
-		System.out.println("test1 : " +customer_code);
+		System.out.println("거래처test1 : " +customer_code);
 		return vo;
 	}
 
@@ -710,19 +710,20 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("product_code", product_code);
 		
 		List<ST_searchProductCode> vo = dao.getProCode(map);
+		System.out.println("품명test2 : " +product_code);
 		return vo;
 	}
 
 	//매출 - 담당자
 	@Override
 	public List<ST_searchUsername> searchUsernameCode(HttpServletRequest req, Model model) {
-		String username = req.getParameter("username");
+		String e_name = req.getParameter("e_name");
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("username", username);
+		map.put("e_name", e_name);
 		
 		List<ST_searchUsername> vo = dao.getUsername(map);
-		System.out.println("test3 : "+ username);
+		System.out.println("담당자test3 : "+ e_name);
 		
 		return vo;
 	}
@@ -736,9 +737,26 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("department_code", department_code);
 		
 		List<ST_searchDepartmentCode> vo = dao.getDepartmentCode(map);
-		System.out.println("test4 : "+ department_code);
+		System.out.println("부서test4 : "+ department_code);
 		
 		return vo;
+	}
+
+	//부서조회 팝업창 검색
+	@Override
+	public void searchDepCode(HttpServletRequest req, Model model) {
+		String department_name = req.getParameter("department_name");
+		
+		int cnt = dao.selectDepName(department_name);
+		
+		System.out.println("cnt : " + cnt);
+		
+		if (cnt > 0) {
+			List<ST_department> dto = dao.getDepartmentList(department_name);
+			model.addAttribute("dto", dto);
+		}
+		
+		model.addAttribute("cnt", cnt);		
 	}
 
 }
