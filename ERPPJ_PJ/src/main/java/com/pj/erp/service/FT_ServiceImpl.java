@@ -611,6 +611,15 @@ public class FT_ServiceImpl implements FT_Service{
 		return bs_result;
 	}
 	
+	@Override
+	public Map<String, Object> getIsshit(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+		Map<String, Object> is_result = new HashMap<String, Object>();
+		
+		
+		return null;
+	}
+	
 	// 건물 추가
 	@Override
     public void FT_BuildingInsert(HttpServletRequest req, Model model) {
