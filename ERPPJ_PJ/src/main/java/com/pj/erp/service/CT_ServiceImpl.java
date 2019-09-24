@@ -71,12 +71,10 @@ public class CT_ServiceImpl implements CT_Service{
 			
 			//상세계정테이블에 담는다.
 			ac.setAccounts_code("ta_00100");
-			ac.setDetail_ac_code(ceq_code); //전산코드 100고정이었음.
 			ac.setAccount_name(ceq_name);
 			
 			insertAC = dao.InsertAC(ac);
 			if(insertAC == 1) {
-				vo.setCeq_code(ceq_code);
 				vo.setCeq_name(ceq_name);
 				vo.setCeq_type(ceq_type);
 				vo.setCeq_acquire_date(col);
