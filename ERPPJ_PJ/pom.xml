@@ -192,6 +192,15 @@
 		</dependency>
 
 		<!-- fileUpload -->
+		
+		<!-- solidity 시작 -->
+		<dependency>
+		  <groupId>org.web3j</groupId>
+		  <artifactId>core</artifactId>
+		  <version>3.6.0</version>
+		</dependency>
+		
+		<!-- solidity 끝-->
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
