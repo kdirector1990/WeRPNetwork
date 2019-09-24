@@ -544,4 +544,22 @@ public class ST_Controller {
 		
 		return "ST/ST_searchDepartmentname_result";
 	}
+	
+	//부서 조회 팝업창
+	@RequestMapping("ST_searchDepartmentname2")
+	public String ST_searchDepartmentname2(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname2");
+		int count = Integer.parseInt(req.getParameter("count"));
+		req.getSession().setAttribute("count", count);
+		return "ST/ST_searchDepartmentname2";
+	}
+	
+	//부서 조회 팝업창 결과
+	@RequestMapping("ST_searchDepartmentname_result2")
+	public String ST_searchDepartmentname_result2(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname_result2");
+		service.searchDepCode(req, model);
+		
+		return "ST/ST_searchDepartmentname_result2";
+	}
 }
