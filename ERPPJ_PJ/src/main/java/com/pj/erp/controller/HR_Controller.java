@@ -519,7 +519,6 @@ public class HR_Controller {
 		logger.info("log => HR_End_Work_Sidebar");
 		
 		int updateCnt = service.sidebarEndWork(req, model);
-		
 		return updateCnt;
 	}
 	

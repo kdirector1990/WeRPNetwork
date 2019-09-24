@@ -17,11 +17,14 @@ public interface MS_Service {
 	//기획서 조회
 	public List<MS_plan> selectPlan(HttpServletRequest req, Model model);
 	
+	//상세조회
+	public void selectPlanDetail(HttpServletRequest req, Model model);
+	
 	//기획서 수정
-	public int updatePlan(HttpServletRequest req, Model model);
+	public void updatePlan(HttpServletRequest req, Model model);
 	
 	//기획서 삭제
-	public int deletePlan(HttpServletRequest req, Model model);
+	public void deletePlan(HttpServletRequest req, Model model);
 	
 	//e_name(사원명)으로 username 찾기
 	public void searchUsername(HttpServletRequest req, Model model);

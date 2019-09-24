@@ -6,6 +6,12 @@
 <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/pj/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
+
+	
+			function searchdept(count) {
+				window.open("ST_searchDepartmentname2?count="+count+"", "ST_searchDepartmentname2", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+			}
+			
         	var count = 0;
         	
         	    	
@@ -13,13 +19,10 @@
         	function enterinsert() {
        			
        			$(".chit-table-bordered-primary tbody").append('<tr id = "tr'+count+'">' +
-       					'<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "startdate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "enddate'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                        '<td><input type="text"   name = "code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                        '<td><input type="text"   name = "subject'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                        '<td><input type="text"  id="department_code'+count+'" name = "dept_code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onclick="searchdept('+count+');" ></td>'+
+                        '<td><input type="text"  id="department_name'+count+'" name = "dept_name'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
                         '<td><input type="text"   name = "money'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                        '<td><input type="text"   name = "dept'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                        '<td><input type="text"   name = "cf'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                        '<td><input type="text"   name = "purpose'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
                        '</tr>');
                     count = count + 1;
                     
@@ -31,6 +34,11 @@
         		
        			$("#tr"+count).remove();
     
+        	}
+        	
+        	function countc(){
+        		count = count -1
+        		$("#countc").append('<input type="hidden" name="count" value="'+count+'">')
         	}
         	
         </script>
@@ -88,8 +96,9 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<form name="FT_apply_input" action="FT_apply_input_pro"
-								method="post">
+							<form name="FT_apply_input" action="FT_apply_input_pro" 
+								method="post" onsubmit="countc();">
+								<div id = "countc"></div>
 								<input type="hidden" name="${_csrf.parameterName }"
 									value="${_csrf.token }">
 								<div class="card-body">
@@ -103,22 +112,16 @@
 									<div class="table-responsive" style="margin: 15px 0px 50px">
 										<table
 											class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-											<col style="width: 10%;">
-											<col style="width: 10%">
-											<col style="width: 15%;">
-											<col style="width: 20%;">
-											<col style="width: 15%;">
-											<col style="width: 10%;">
-											<col style="width: 20%;">
+											<col style="width: 25%;">
+											<col style="width: 25%">
+											<col style="width: 25%;">
+											<col style="width: 25%;">
 											<thead>
 												<tr>
-													<th>시작일</th>
-													<th>종료일</th>
-													<th>예산코드</th>
-													<th>예산과목명</th>
+													<th>부서코드</th>
+													<th>부서명</th>
 													<th>금액</th>
-													<th>부서</th>
-													<th>전결라인코드</th>
+													<th>사용목적</th>
 												</tr>
 											</thead>
 											<tbody id="result">
@@ -128,7 +131,7 @@
 								</div>
 								<div class="form-group text-right mr-1">
 									<button class="btn btn-primary waves-effect waves-light mr-1"
-										type="submit">입력</button>
+										type="submit" >입력</button>
 									<button type="reset"
 										class="btn btn-secondary waves-effect waves-light mr-1">Cancel</button>
 								</div>

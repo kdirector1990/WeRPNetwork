@@ -29,6 +29,12 @@ public class MS_DAOImpl implements MS_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.MS_DAO.getPlanList", username);
 	}
 
+	//기획서 상세조회
+	@Override
+	public MS_plan getPlanDetail(String plan_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.MS_DAO.getPlanDetail", plan_code);
+	}
+	
 	//기획서 수정
 	@Override
 	public int updatePlan(MS_plan vo) {
@@ -52,5 +58,6 @@ public class MS_DAOImpl implements MS_DAO{
 	public List<HR_VO> getUsernameList(String e_name) {
 		return sqlSession.selectList("com.pj.erp.persistence.MS_DAO.getUsernameList", e_name);
 	}
+
 
 }

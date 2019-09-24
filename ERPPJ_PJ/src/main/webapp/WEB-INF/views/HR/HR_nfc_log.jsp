@@ -31,7 +31,7 @@
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
     var searchCount = 1;
-	 $(function(){
+    $(function(){
 		$('#search').click(function(){
 			var param = new Object();
 			var jsonData;
@@ -57,44 +57,37 @@
 						var e_name = nfclog[i].e_name;
 						var tag_code = nfclog[i].tag_code;
 						
-						alert(tag_code);
+						$('#result').append('<tr>'+
+								'<td><input type="checkbox" name="tag_code" value="'+tag_code+'" class="checklist"></td>' +
+								'<td>'+ tag_date +'</td>'+
+								'<td>'+ nfc_code +'</td>'+
+								'<td>'+ username +'</td>'+ 
+								'<td>'+ e_name +'</td>'+
+	                 		'</tr>');
 						
-					$('#result').append('<tr>'+
-							'<td><input type="checkbox" name="tag_code" value="\''+tag_code+'\'" class="checklist"></td>' +
-							'<td>'+ tag_date +'</td>'+
-							'<td>'+ nfc_code +'</td>'+
-							'<td>'+ username +'</td>'+ 
-							'<td>'+ e_name +'</td>'+
-                 		'</tr>');
-					
-					if(searchCount == 1){
-						$('#bodyappend').append(
-						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-						);
-					searchCount = searchCount + 1;
+						if(searchCount == 1){
+							$('#bodyappend').append(
+							        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+							        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+							        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+							        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+							        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+							);
+						searchCount = searchCount + 1;
+						}
 					}
-					
-					
-					}
-					
-					
-					
 				},
 				error : function(){
 					alert("에러");
@@ -110,9 +103,10 @@
 				type: 'POST',
 				data : param,
 				dataTpye: 'json',
-				success: function(updateCnt){
-					if(updateCnt == 1){
-						alert("폐기처리를 수정하였습니다.")
+				success: function(deleteCnt){
+					if(deleteCnt == 1){
+						alert("NFC로그를  삭제하였습니다.")
+						search.click();
 					}
 				},
 				error : function(){
@@ -207,7 +201,7 @@
 											<th class="col-md-1 col-form-label"></th>
 											<td><button type="button"
 													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
+													id="search" onclick="searchNFCLIST();">검색</button></td>
 										</tr>
 									</table>
 								</div>

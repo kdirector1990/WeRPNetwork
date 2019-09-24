@@ -549,7 +549,7 @@
 	                          		</ul>
 	                          	</li>
 
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">당좌자산
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">당좌자산 목록
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
@@ -557,6 +557,17 @@
 					                    <li><a href="FT_short_Loan_list">단기 대여금 목록</a></li>
 					                    <li><a href="FT_short_Securities_list">단기매매증권목록</a></li>
 					                    <li><a href="FT_Note_list">받을 어음 목록</a></li>
+	                          		</ul>
+	                          	</li>
+	                          	
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">당좌자산 관리
+	                          			<span class="menu-arrow"></span>
+	                          		</a>
+	                          		<ul>
+	                          			<li><a href="FT_Deposit">예금 관리</a></li>
+					                    <li><a href="FT_short_Loan">단기 대여금 관리</a></li>
+					                    <li><a href="FT_short_Securities">단기매매증권 관리</a></li>
+					                    <li><a href="FT_note">받을 어음 관리</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -599,7 +610,6 @@
 	                          		<ul>
 	                          			<li><a href="FT_BasicAccount_Input">거래처 관리</a></li>
 	                          			<li><a href="FT_Savings">적금 관리</a></li>
-	                          			<li><a href="FT_Deposit">예금 관리</a></li>
                     					<li><a href="FT_CardManagement">카드 관리</a></li>
 	                          		</ul>
 	                          	</li>

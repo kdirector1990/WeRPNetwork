@@ -24,6 +24,7 @@ public class SaleList {
 	private String release_name;	// 출고
 	private String e_name;
 	private String deal_state;	
+	private String release_date;	// 출고 등록일
 	
 	// 생성자
 	public SaleList() {}
@@ -188,8 +189,14 @@ public class SaleList {
 	public void setDeal_state(String deal_state) {
 		this.deal_state = deal_state;
 	}
-	
-	
+
+	public String getRelease_date() {
+		return release_date;
+	}
+
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
+	}
 	
 	
 

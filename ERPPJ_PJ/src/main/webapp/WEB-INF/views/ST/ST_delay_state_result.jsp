@@ -22,9 +22,8 @@
 						<table class="table m-0 table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>판매대장코드</th>
-									<th>등록일</th>
-									<th>거래처 코드</th>
+									<th>판매 코드</th>
+									<th>출고 요청일</th>
 									<th>거래처명</th>
 									<th>제품명</th>
 									<th>수량</th>
@@ -34,8 +33,8 @@
 									<th>비고</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach var="var" begin="1" end="20" step="1">
+							<tbody id = "result">
+								<%-- <c:forEach var="var" begin="1" end="20" step="1">
 									<c:if test="${var eq param.username }">
 										<tr>
 											<td>${var }</td>
@@ -49,9 +48,8 @@
 											<td>${var }</td>
 											<td>${var }</td>
 										</tr>
-									</c:if>
-								</c:forEach>
-
+									</c:if> 
+								</c:forEach> --%>
 							</tbody>
 						</table>
 					</div>

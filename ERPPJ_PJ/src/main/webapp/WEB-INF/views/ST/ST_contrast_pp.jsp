@@ -37,8 +37,8 @@ $(function(){
 		var jsonData;
 					
 		param.productName = $("#productName").val();
-	/* 	param.year = $("#year").val();
-		param.mon = $("#month").val(); */
+		param.year = $("#years").val();
+		param.mon = $("#month").val(); 
 				
 		jsonData = JSON.stringify(param); 
 		$.ajax({
@@ -71,6 +71,9 @@ $(function(){
 					var day = pa.getDate(); 
 					var rel_date = month;
 					
+					var amount = sale_amount/plan_amount*100;
+					var am = amount.toFixed(1);
+					
 					$('#result_2').append( '<tr>' +
 							'<td>'+ sale_date +'</td>'+ 
                         	'<td>'+ sale_code +'</td>'+ 
@@ -79,7 +82,7 @@ $(function(){
 							'<td>'+ sale_name +'</td>'+ 
 							'<td>'+ sale_amount +'</td>'+
 							'<td>'+ plan_amount +'</td>'+
-							'<td>'+ sale_amount/plan_amount*100 + '</td>'+
+							'<td>'+ am + '%</td>'+
                 		'</tr>');
 				
 				if(searchCount == 1){
@@ -169,11 +172,12 @@ $(function(){
 												
 											<th class="col-md-1 col-form-label" style="text-align: right;">연도</th>
 											<td class="col-md-2 input-group"><input type="text"
-												name="year" id="year" class="form-control"></td>	
+												name="years" id="years" class="form-control"></td>	
 
 											<th class="col-md-1 col-form-label" style="text-align: right;">월별</th>
 											<td class="col-md-2 input-group">
 												<select class="form-control" name="month" id="month">
+														<option value = "">월</option>
 														<option value = "1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
