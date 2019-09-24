@@ -125,4 +125,13 @@ public class MS_ServiceImpl implements MS_Service {
 		model.addAttribute("cnt", cnt);
 	}
 
+	//상세조회
+	@Override
+	public void selectPlanDetail(HttpServletRequest req, Model model) {
+		String plan_code = req.getParameter("plan_code");
+		MS_plan vo = dao.getPlanDetail(plan_code);
+		
+		model.addAttribute("dto", vo);
+	}
+
 }

@@ -9,13 +9,17 @@ public class MS_plan {
 	private String plan_name;			//기획명
 	private String username;			//기획제안자
 	private String position_code;		//책임자
-	private Timestamp plan_regdate;		//기획등록일
+	private Timestamp plan_regdate;		//기획등록일 
+	
 	private Date plan_startdate;	//기획 시작 예정일
 	private Date plan_enddate;		//기획 종료 목표일
 	private String plan_objective;		//기획 목표
 	private String plan_state;			//기획 상태
 	private String plan_proposal;		//상세 기획안 파일
 	
+	
+	 
+
 	public MS_plan() {}
 
 	public String getPlan_code() {

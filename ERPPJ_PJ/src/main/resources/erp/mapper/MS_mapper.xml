@@ -10,8 +10,13 @@
 	</insert>
 	
 	<!-- 기획서 목록  -->
-	<select id="getPlanList" resultType="com.pj.erp.vo.MS.MS_plan">
+	<select id="getPlanList" resultType="com.pj.erp.vo.MS.MS_plan" parameterType="String">
 		SELECT * FROM plan_list_tbl where username like '%'||#{username}||'%'
+	</select>
+	
+	<!-- 기획서 상세조회 -->
+	<select id="getPlanDetail" resultType="com.pj.erp.vo.MS.MS_plan" parameterType="String">
+		select * from plan_list_tbl where plan_code like '%'||#{plan_code}||'%'
 	</select>
 	
 	<!-- 기획서 수정 -->

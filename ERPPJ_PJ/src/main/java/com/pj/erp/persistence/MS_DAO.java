@@ -15,6 +15,9 @@ public interface MS_DAO{
 	// 기획서 조회
 	public List<MS_plan> getPlanList(String username);
 	
+	//기획서 상세조회
+	public MS_plan getPlanDetail(String plan_code);
+	
 	//기획서 수정
 	public int updatePlan(MS_plan vo);
 	

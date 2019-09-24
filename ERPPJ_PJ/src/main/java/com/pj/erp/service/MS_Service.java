@@ -17,6 +17,9 @@ public interface MS_Service {
 	//기획서 조회
 	public List<MS_plan> selectPlan(HttpServletRequest req, Model model);
 	
+	//상세조회
+	public void selectPlanDetail(HttpServletRequest req, Model model);
+	
 	//기획서 수정
 	public int updatePlan(HttpServletRequest req, Model model);
 	

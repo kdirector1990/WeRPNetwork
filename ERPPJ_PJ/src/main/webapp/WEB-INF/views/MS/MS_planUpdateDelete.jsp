@@ -25,44 +25,71 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
-	<div class="card-body"
-		style="padding-bottom: 0px; padding-bottom: 24px;">
-		<div style="width: 100%; height: 310px; overflow: auto">
-			<form>
-				<table id="datatable" class="table table-bordered table-hover"
+			<form id= "datatable2">
+				<table class="table table-bordered table-hover"
 					style="height: 550px;">
-					<thead class="table-info">
-						<tr style="text-align: center; pointer-events: none;">
-							<th>사원코드</th>
-							<th>사원명</th>
-							<th>부서코드</th>
-							<th>직책코드</th>
-						</tr>
-					</thead>
-
 					<tbody>
 						<!--  있으면 -->
-						<c:if test="${cnt != 0}">
-							<c:forEach var="list" items="${dto}">
-								<tr
-									onclick="setName(${list.username},'${list.e_name}','${list.department_code}','${list.position_code}');">
-									<td>${list.username}</td>
-									<td>${list.e_name}</td>
-									<td>${list.department_code}</td>
-									<td>${list.position_code}</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-						<!--  없으면 -->
-						<c:if test="${cnt == 0}">
-							<tr>
-								<td colspan="6" align="center">조회결과 없음
-							</tr>
-						</c:if>
+						<tr>
+							<th>기획서 코드</th>
+							<td><input type="text" name="plan_code" class="form-control" value="${dto.plan_code}" readonly></td>
+						</tr>
+						<tr>
+							<th>기획명</th>
+							<td><input type="text" name="plan_name" class="form-control" value="${dto.plan_name}"></td>
+						</tr>
+						<tr>
+							<th>기획제안자</th>
+							<td><input type="text" name="username" class="form-control" value="${dto.username}"></td>
+						</tr>
+						<tr>
+							<th>책임자</th>
+							<td><input type="text" name="position_code" class="form-control" value="${dto.position_code}"></td>
+						</tr>
+						<tr>
+							<th>기획등록일</th>
+							<td><input type="text" name="plan_regdate" class="form-control" value="${dto.plan_regdate}" readonly></td>
+						</tr>
+						<tr>
+							<th>시작예정일</th>
+							<td><input type="text" name="plan_regdate" class="form-control" data-provide="datepicker" data-date-autoclose="true" value="${dto.plan_startdate}"></td>
+						</tr>
+						<tr>
+							<th>종료예정일</th>
+							<td><input type="text" name="plan_enddate" class="form-control" data-provide="datepicker" data-date-autoclose="true" value="${dto.plan_enddate}"></td>
+						</tr>
+						<tr>
+							<th>기획상태</th>
+							<td>
+							<select name="plan_state" class="form-control" id="selectbox" required >
+									<option value="${dto.plan_state}">${dto.plan_state}</option>
+									<option value="기획단계" >기획단계</option>
+									<option value="준비중">준비중</option>
+									<option value="진행중">진행중</option>
+									<option value="완료">완료</option>
+									<option value="페기">페기</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>기획목표</th>
+							<td><input type="text" name="plan_objective" class="form-control" value="${dto.plan_objective}"></td>
+						</tr>
+						<tr>
+							<th>상세 기획안 파일</th>
+							<td><input type="text" name="plan_proposal" class="form-control" value="${dto.plan_proposal}"></td>
+						</tr>
 					</tbody>
 				</table>
+				<div class="form-group text-right mb-0">
+					<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>
+					<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>
+				</div>
 			</form>
 		</div>
 	</div>

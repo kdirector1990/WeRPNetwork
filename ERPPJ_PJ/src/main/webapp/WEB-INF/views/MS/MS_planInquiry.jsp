@@ -8,13 +8,10 @@
 }
 </style>
 <%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
 function ST_searchUsername() {
 	window.open("ST_searchUsername", "ST_searchUsername", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
-}
-
-function salePlanWriteForm(url) {
-	sendRequest(callback, "MS_planInquiry_result", "post", "${_csrf.parameterName }=${_csrf.token }&saleplan_code="+url);
 }
 
 function enterkey() {
@@ -25,10 +22,8 @@ function enterkey() {
 }
 
 //결과
-function load1(username) {
-	var url = document.searchName.customer_name.value;
-	
-	sendRequest(callback, "MS_planInquiry", "post", "username="+url);
+function MS_planDetail_result(url) { 
+	sendRequest(callback, "MS_planDetail_result", "post", "${_csrf.parameterName }=${_csrf.token }&plan_code="+url);
 }
 
 function callback() {
@@ -50,7 +45,7 @@ function callback() {
 		}
 	
 	} else {
-		//result.innerHTML = "상태 : " + httpRequest.readyState;
+		result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
 } 
 
@@ -65,7 +60,7 @@ function searchCus() {
 			dataTpye: 'json',
 			success: function(vo){
 				
-				$('#result').empty();
+				$('#result1').empty();
 				$('#bodyappend').empty();
 	
 				for(var i = 0; i < vo.length; i++){
@@ -81,7 +76,7 @@ function searchCus() {
 					var plan_objective = vo[i].plan_objective;
 					var plan_proposal = vo[i].plan_proposal;
 					
-					$("#result").append('<tr onclick="load1();">' +
+					$("#result1").append('<tr onclick="MS_planDetail_result(\''+plan_code+'\')">' +
 							'<td>'+ plan_code+ '</td>' +
 							'<td>'+ plan_name+ '</td>' +
 							'<td>'+ username + '</td>' +
@@ -116,7 +111,6 @@ function searchCus() {
 						searchCount = searchCount + 1;
 						}
 				}
-				
 			},
 			error : function(){
 				alert("실패.");
@@ -201,13 +195,13 @@ function searchCus() {
 										</tr>
 									</thead>
 
-									<tbody id="result">
+									<tbody id="result1">
 									
 									</tbody>
 								</table>
 
-								<div id="result2">
-									<br>
+								<div id="result">
+									<%-- <br>
 									<form>
 										<input type='hidden' name="${_csrf.parameterName }"
 											value="${_csrf.token }"> <br>
@@ -220,7 +214,7 @@ function searchCus() {
 											<tbody>
 											</tbody>
 										</table>
-									</form>
+									</form> --%>
 								</div>
 							</div>
 						</div>

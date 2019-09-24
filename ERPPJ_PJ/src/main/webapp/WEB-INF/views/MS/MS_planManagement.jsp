@@ -6,130 +6,160 @@
 .result {
 	display: none;
 }
+#updatePlan{
+	display: none;
+}
 </style>
-
-<script type="text/javascript">
-        function updatePlan(){
-    		var param = $("#datatable2").serializeArray();
-    		alert(JSON.stringify(param));
-    		$.ajax({
-    			url: '/erp/MS_updatePlanPro',
-    			type: 'POST',
-    			data : param,
-    			dataTpye: 'json',
-    			success: function(param){
-    				alert("수정되었습니다.");
-    				location.reload();
-    			},
-    			error : function(){
-    				alert("수정에 실패하였습니다.");
-    			}
-    		});
-    	}
-        
-        function deletePlan(){
-    		var param = $("#datatable2").serializeArray();
-    		alert(JSON.stringify(param));
-    		$.ajax({
-    			url: '/erp/MS_deletePlanPro',
-    			type: 'POST',
-    			data : param,
-    			dataTpye: 'json',
-    			success: function(param){
-    				alert("삭제되었습니다.");
-    				location.reload();
-    			},
-    			error : function(){
-    				alert("삭제 실패하였습니다.");
-    			}
-    		});
-    	}
-        
-        function ST_searchUsername() {
-        	window.open("ST_searchUsername", "ST_searchUsername", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
-        }
-
-        function enterkey() {
-            if (window.event.keyCode == 13) {
-                 // 엔터키가 눌렸을 때 실행할 내용
-                 searchCus();
-            }
-        }
-
-        var searchCount = 1;
-        function searchCus() {
-        	 var param = $("#search").serializeArray();
-        	 /* alert(JSON.stringify(param));  */
-        		$.ajax({
-        			url: '/erp/MS_planInquiry_result?${_csrf.parameterName}=${_csrf.token }',
-        			type: 'POST',
-        			data : param,
-        			dataTpye: 'json',
-        			success: function(vo){
-        				
-        				$('#result').empty();
-        				$('#bodyappend').empty();
-
-        				for(var i = 0; i < vo.length; i++){
-        					
-        					var plan_code = vo[i].plan_code;
-        					var plan_name = vo[i].plan_name;
-        					var username = vo[i].username;
-        					var position_code = vo[i].position_code;
-        					var plan_regdate = vo[i].plan_regdate;
-        					var plan_startdate = vo[i].plan_startdate;
-        					var plan_enddate = vo[i].plan_enddate;
-        					var plan_state = vo[i].plan_state;
-        					var plan_objective = vo[i].plan_objective;
-        					var plan_proposal = vo[i].plan_proposal;
-        					var babokwon = vo[i];
-        					
-        					$("#result").append('<tr onclick="searchData();" >' +
-        							'<td>'+ plan_code+ '</td>' +
-        							'<td>'+ plan_name+ '</td>' +
-        							'<td>'+ username + '</td>' +
-        							'<td>'+ position_code + '</td>' +
-        							'<td>'+ plan_regdate + '</td>' +
-        							'<td>'+ plan_startdate + '</td>' +
-        							'<td>'+ plan_enddate + '</td>' +
-        							'<td>'+ plan_state + '</td>' +
-        							'<td>'+ plan_objective + '</td>' +
-        							'<td>' + plan_proposal + '</td></tr>');
-        					
-        					if(searchCount == 1){
-        						$('#bodyappend').append(
-        						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-        						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-        						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-        						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-        						);
-        						searchCount = searchCount + 1;
-        						}
-        				}
-        				
-        			},
-        			error : function(){
-        				alert("실패.");
-        			}
-        		});
-        }
-        
-    </script>
-
 <%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/request.js"></script>
+<script type="text/javascript">
+function updatePlan(){
+	var param = $("#datatable2").serializeArray();
+	alert(JSON.stringify(param));
+	$.ajax({
+		url: '/erp/MS_updatePlanPro',
+		type: 'POST',
+		data : param,
+		dataTpye: 'json',
+		success: function(param){
+			alert("수정되었습니다.");
+			location.reload();
+		},
+		error : function(){
+			alert("수정에 실패하였습니다.");
+		}
+	});
+}
+
+function deletePlan(){
+	var param = $("#datatable2").serializeArray();
+	alert(JSON.stringify(param));
+	$.ajax({
+		url: '/erp/MS_deletePlanPro',
+		type: 'POST',
+		data : param,
+		dataTpye: 'json',
+		success: function(param){
+			alert("삭제되었습니다.");
+			location.reload();
+		},
+		error : function(){
+			alert("삭제 실패하였습니다.");
+		}
+	});
+}
+
+
+function ST_searchUsername() {
+	window.open("ST_searchUsername", "ST_searchUsername", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
+
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 실행할 내용
+         searchCus();
+    }
+}
+
+//결과
+function MS_planUpdateDelete(url) { 
+	sendRequest(callback, "MS_planUpdateDelete", "post", "${_csrf.parameterName }=${_csrf.token }&plan_code="+url);
+}
+
+function callback() {
+	var result = document.getElementById("result");
+	
+	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+	
+		if(httpRequest.status == 200){	// 200 : 정상 종료
+			result.innerHTML = "정상종료";
+			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
+			
+			var datas = httpRequest.responseText;
+			document.getElementById("updatePlan").style.display="block";
+			result.innerHTML = datas;
+			
+		} else {
+			result.innerHTML = "에러발생";
+			
+		}
+	
+	} else {
+		result.innerHTML = "상태 : " + httpRequest.readyState;
+	}
+} 
+
+var searchCount = 1;
+function searchCus() {
+	 var param = $("#search").serializeArray();
+	 /* alert(JSON.stringify(param));  */
+		$.ajax({
+			url: '/erp/MS_planInquiry_result?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : param,
+			dataTpye: 'json',
+			success: function(vo){
+				
+				$('#result1').empty();
+				$('#bodyappend').empty();
+	
+				for(var i = 0; i < vo.length; i++){
+					
+					var plan_code = vo[i].plan_code;
+					var plan_name = vo[i].plan_name;
+					var username = vo[i].username;
+					var position_code = vo[i].position_code;
+					var plan_regdate = vo[i].plan_regdate;
+					var plan_startdate = vo[i].plan_startdate;
+					var plan_enddate = vo[i].plan_enddate;
+					var plan_state = vo[i].plan_state;
+					var plan_objective = vo[i].plan_objective;
+					var plan_proposal = vo[i].plan_proposal;
+					
+					$("#result1").append('<tr onclick="MS_planUpdateDelete(\''+plan_code+'\')">' +
+							'<td>'+ plan_code+ '</td>' +
+							'<td>'+ plan_name+ '</td>' +
+							'<td>'+ username + '</td>' +
+							'<td>'+ position_code + '</td>' +
+							'<td>'+ plan_regdate + '</td>' +
+							'<td>'+ plan_startdate + '</td>' +
+							'<td>'+ plan_enddate + '</td>' +
+							'<td>'+ plan_state + '</td>' +
+							'<td>'+ plan_objective + '</td>' +
+							'<td>' + plan_proposal + '</td></tr>' 
+							);
+					
+					if(searchCount == 1){
+						$('#bodyappend').append(
+						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+						);
+						searchCount = searchCount + 1;
+						}
+				}
+			},
+			error : function(){
+				alert("실패.");
+			}
+		});
+}
+
+</script>
 </head>
 <body>
 	<!-- Begin page -->
@@ -148,16 +178,15 @@
 					<div class="col-12">
 						<div class="page-title-box">
 							<h4 class="page-title">경영지원</h4>
-								<p class="sub-header">기획서관리</p>
 						</div>
 					</div>
 				</div>
 				<!-- end page title -->
-				
+
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body"> 
+							<div class="card-body">
 								<form id="search" onsubmit="return false">
 									<table class="col-12">
 										<tr class="form-group row">
@@ -187,6 +216,8 @@
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body">
+								<h4 class="header-title">기획서 관리</h4>
+								<hr>
 								<table id="datatable"
 									class="table m-0 table-bordered table-hover"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -205,30 +236,29 @@
 										</tr>
 									</thead>
 
-									<tbody id="result">
-
+									<tbody id="result1">
+									
 									</tbody>
 								</table>
 
-								<div id="result2">
-									<br>
-									<form id="updatePlan">
-										<input type='hidden' name="${_csrf.parameterName }"
-											value="${_csrf.token }">
-										<table id="datatable2"
-											class="table table-striped dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0;">
-											<thead>
-											</thead>
-
-											<tbody>
-											</tbody>
-										</table>
-									</form>
-								</div>
+							</div>
 						</div>
 					</div>
 				</div>
+				
+			<div id="updatePlan">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
+								<div id="result">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
 			</div>
 			<!-- end container-fluid -->
 
@@ -236,7 +266,7 @@
 		<!-- end content -->
 
 		<%@ include file="../footer.jsp"%>
-		</div>
+
 
 		<!-- ============================================================== -->
 		<!-- End Page content -->
@@ -247,6 +277,7 @@
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
- 	<div id="bodyappend"></div>
+
+    <div id="bodyappend"></div>
 </body>
 </html>
