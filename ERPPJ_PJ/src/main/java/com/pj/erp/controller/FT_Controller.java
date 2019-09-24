@@ -193,7 +193,7 @@ public class FT_Controller {
 	public String FT_apply_input_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input_pro");
 		service.FT_applyinput(req, model);
-		return "FT/FT_apply_input_pro";
+		return "FT/FT_apply_input";
 	}
 
 	// 거래처 관리
