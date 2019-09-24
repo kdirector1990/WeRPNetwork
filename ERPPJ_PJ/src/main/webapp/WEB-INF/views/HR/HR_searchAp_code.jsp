@@ -38,7 +38,7 @@ function loadBook_callback() {
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
 		if(!document.searchName.ap_name.value){
-			alert("사원이름을 입력하세요!");
+			alert("공고명을 입력하세요!");
 			location.reload();
 			document.searchName.ap_name.focus();
 			return false;

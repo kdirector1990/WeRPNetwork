@@ -285,7 +285,7 @@ public class HR_Controller {
 		logger.info("log => HR_recordinput");
 		service.HR_recordinput(req, model);
 		
-		return "HR/HR_recordinput";
+		return "index";
 	}
 	
 	@RequestMapping("HR_record_input_pro")
