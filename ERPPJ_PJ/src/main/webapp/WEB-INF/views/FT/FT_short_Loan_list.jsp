@@ -61,35 +61,66 @@
 								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap">
 									<col style="width: 10%;">
-									<col style="width: 10%">
-									<col style="width: 15%;">
-									<col style="width: 20%;">
-									<col style="width: 15%;">
-									<col style="width: 15%;">
-									<col style="width: 15%;">
+	                                <col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
 									<thead>
 										<tr>
 											<th>단기대여금코드</th>
+											<th>단기대여금명</th>
 											<th>거래처코드</th>
+	                                        <th>거래처명</th>
 											<th>사원번호</th>
+											<th>사원이름</th>
 											<th>대여금액</th>
 											<th>대여일</th>
 											<th>만기일</th>
 											<th>이자율</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="va" begin="1" end="200" step="1">
-											<tr>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-											</tr>
-										</c:forEach>
+	  
+	                                <tbody>
+	                                    <c:set var="cnt" value="0"/>  
+	                                    <c:if test="${loan == null}">                             
+	                                    	<c:forEach var="lo" items="${loan}">
+	                                      		<tr>																			
+	                                               <td>${lo.loanCode}</td>
+	                                               <td>${lo.loanName}</td>
+	                                               <td>${lo.customer_code}</td>
+	                                               <td>${lo.customer_name}</td>
+	                                               <td>${lo.username}</td>
+	                                               <td>${lo.ename}</td>
+	                                               <td>${lo.loan_s_price}</td>
+	                                               <td>${lo.loan_s_date.substring(0,10)}</td>
+	                                               <td>${lo.loan_s_expriration.substring(0,10)}</td>
+	                                               <td>${lo.loan_s_interest}</td>
+	                                           </tr>
+	                                           <c:set var="cnt" value="${cnt+1}"/>
+	                                      	</c:forEach>
+                                  		</c:if>
+                                  		<c:if test="${loan == null}">
+	                                		<c:forEach var = "depo" begin="1" end="100">
+	                                    		<tr>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+	                                       			<c:set var="cnt" value="${cnt+1}"/>
+	                                       		</tr>
+	                                   		</c:forEach>
+	                               		</c:if>
 									</tbody>
 								</table>
 							</div>

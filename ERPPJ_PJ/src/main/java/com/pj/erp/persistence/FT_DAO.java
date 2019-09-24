@@ -260,6 +260,15 @@ public interface FT_DAO {
 	// 계정과목 검색한 것 가져오기
 	public List<FT_Subject> FT_AccSubjectSelect(String srhval);
 	
+	// 부서가져오기
+	public List<HR_VO> FT_DepartmentAllSelect();
+	
+	// 부서 검색 한 것 개수 가져오기
+	public int FT_DepartmentCntSelect(String srhval);
+	
+	// 부서 검색한 것 가져오기
+	public List<HR_VO> FT_DepartmentSelect(String srhval);
+	
 	// 사원 가져오기
 	public List<HR_VO> FT_UsersAllSelect();
 	
