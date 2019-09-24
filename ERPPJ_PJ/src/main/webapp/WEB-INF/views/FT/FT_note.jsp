@@ -134,14 +134,14 @@
 					return false;
         		} else if(window.event.which == 13) {
 	        		// 자바스크립트 객체 생성
-	         		obj.noteCode = $("input[name=noteCode" + cc + "]").val();
-	         		obj.noteNumber = $("input[name=noteNumber" + cc + "]").val();
-	         		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
-	         		obj.AccName = $("input[name=AccName" + cc + "]").val();
-	         		obj.price = $("input[name=basePrice" + cc + "]").val();
-	         		obj.startDate = $("input[name=startDay" + cc + "]").val();
-	         		obj.endDate = $("input[name=endDay" + cc + "]").val();
-	         		obj.lend = $("input[name=lend" + cc + "]").val();
+	         		obj.noteCode = $("input[name=noteCode" + vv + "]").val();
+	         		obj.noteNumber = $("input[name=noteNumber" + vv + "]").val();
+	         		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
+	         		obj.AccName = $("input[name=AccName" + vv + "]").val();
+	         		obj.price = $("input[name=basePrice" + vv + "]").val();
+	         		obj.startDate = $("input[name=startDay" + vv + "]").val();
+	         		obj.endDate = $("input[name=endDay" + vv + "]").val();
+	         		obj.lend = $("input[name=lend" + vv + "]").val();
 	        		
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -407,7 +407,7 @@
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "basePrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_price}"></td>
 			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_date.substring(0,10)}"></td>
 			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_expriration.substring(0,10)}"></td>
-			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_interest}"></td>
+			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enterupdate(${cnt});" value = "${no.payment_interest}"></td>
 			                                            </tr>
 			                                            <c:set var="cnt" value="${cnt+1}"/>
 		                                        	</c:forEach>

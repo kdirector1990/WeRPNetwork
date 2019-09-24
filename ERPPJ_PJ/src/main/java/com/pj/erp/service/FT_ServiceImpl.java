@@ -515,6 +515,23 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println(req.getParameter("srhval"));
 		return tf;
 	}
+	
+	// 계정과목 가져오기
+	@Override
+	public void FT_DepartmentAllSelect(HttpServletRequest req, Model model) {
+		List<HR_VO> subject = dao.FT_DepartmentAllSelect();
+		model.addAttribute("subject", subject);
+		model.addAttribute("listsize", subject.size() + 1);
+	}
+	
+	// 계정과목 검색한 것 가져오기
+	@Override
+	public List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model) {
+		List<HR_VO> tf = dao.FT_DepartmentSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
+	}
 
 	// 중계정과목 가져오기
 	@Override
@@ -741,14 +758,17 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
     public void FT_BuildingInsert(HttpServletRequest req, Model model) {
         FT_Building vo = new FT_Building();
+        vo.setBuildingName(req.getParameter("buildingName"));
+        vo.setAddress(req.getParameter("Address"));
+        vo.setBuyDate(req.getParameter("buyDate"));
+        vo.setBuyPrice(req.getParameter("buyPrice"));
+        vo.setDepartmentCode(req.getParameter("departmentCode"));
+        vo.setThinkYear(req.getParameter("thinkYear"));
+        vo.setGamga(req.getParameter("gamga"));
+        vo.setGamgaWay(req.getParameter("gamgaWay"));
         int insertCnt = dao.FT_BuildingInsert(vo);
-        
+
         model.addAttribute("cnt", insertCnt);
-            
-		/*
-		 * } catch(IOException e) { e.printStackTrace(); }
-		 */
-        
     }
 	
 	// 건물 수정

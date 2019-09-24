@@ -168,6 +168,12 @@ public interface FT_Service {
 	
 	// 계정과목 검색 가져오기
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model);
+
+	// 계정과목 가져오기
+	public void FT_DepartmentAllSelect(HttpServletRequest req, Model model);
+	
+	// 계정과목 검색 가져오기
+	public List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model);
 	
 	// 중계정과목 가져오기
 	public void FT_AccSubjectAllSelect(HttpServletRequest req, Model model);

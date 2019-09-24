@@ -617,6 +617,29 @@ public class FT_DAOImpl implements FT_DAO{
 			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_UsersSelect", srhval);
 		}
 	}	
+
+	// 부서 가져오기
+	@Override
+	public List<HR_VO> FT_DepartmentAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepartmentAllSelect");
+	}
+	
+	// 부서 검색 한 것 개수 가져오기
+	@Override
+	public int FT_DepartmentCntSelect(String srhval) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_DepartmentCntSelect(srhval);
+	}
+	
+	// 부서 검색한 것 가져오기
+	@Override
+	public List<HR_VO> FT_DepartmentSelect(String srhval) {
+		if(FT_DepartmentCntSelect(srhval) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepartmentSelect", srhval);
+		}
+	}
 	
 	//단기차입금 검색
 	@Override
