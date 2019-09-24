@@ -16,7 +16,7 @@ public class MateralServiceImpl {
 	// 가나슈와 연결 한다 : localhost:8545
 	private static final Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	// 호스트에 가나슈 첫번째 계정의  PRIVATE KEY 복사하여 연결
-	private static final Credentials hostCredentials = Credentials.create("bfbbe8f7d376179a0fd9be7dff0697b1f2fc2cfcfb5fecd06291bff0a28e52b5");
+	private static final Credentials hostCredentials = Credentials.create("666a82fc33f8134577a7beb1bdeaa689bb72740178727691d63032432b83e0fb");
 	// 가나슈의 gasLimit과 gasPrice를 적어준다.
 	private static final BigInteger gasLimit = new BigInteger("6721975");
 	private static final BigInteger gasPrice = new BigInteger("20000000000");
@@ -46,11 +46,12 @@ public class MateralServiceImpl {
     // 이더를 전송하는 메소드
     @SuppressWarnings("deprecation")
 	public void payCreateClub(HttpServletRequest req) throws Exception {
-    	String r_name= (String) req.getSession().getAttribute("memId");
+    	// 구매하는 부서의 이름으로 구매하게 만든다. 
+    	String deptcode = (String) req.getSession().getAttribute("department_code");
     	// 2번째 계정의 primary key를 접속한 동호회 개설자에게 부여한다.
     	Credentials new_credentials = Credentials.create("e1bc6e0fc06696e454b1c42286b0b5b0ddcf4eba190976a24e9645924f70485a");
 
-    	byte[] name = stringToBytes32(r_name); 
+    	byte[] name = stringToBytes32(deptcode); 
     	BigInteger price = etherToWei(new BigDecimal(1)); // 개설비는 1이더로 고정하기위함
     	
     	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
