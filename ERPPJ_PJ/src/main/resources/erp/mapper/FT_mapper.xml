@@ -891,72 +891,47 @@
 	<!-- 받을어음 가져오기 -->
 	<!-- <select id="FT_NoteAllSelect" resultType="com.pj.erp.vo.FT.FT_Note">
 		SELECT
-		b.BA_CODE as depositCode, a.account_name as depositName, 
-		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		b.bill_r_code, a.account_name as noteNumber, 
+		c.customer_code, c.customer_name, b.payment_price,
+		b.payment_date, b.payment_expriration, b.payment_interest
+		FROM detail_ac_tbl a, bill_receivable_tbl b, customer_list_tbl c, accounts_tbl ac
+		where a.DETAIL_AC_CODE = b.bill_r_code
 		and b.customer_code = c.customer_code
-		order by b.BA_CODE asc
-	</select> -->
-	
-	<!-- 받을어음 개수 가져오기 -->
-	<!-- <select id="FT_NoteCntSelect" parameterType="String" resultType="int">
-		select count(b.BA_CODE)
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
-		and b.customer_code = c.customer_code
-		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
-	</select> -->
-	
-	<!-- 받을어음 검색한 것 가져오기 -->
-	<!-- <select id="FT_NoteSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Note">
-		SELECT
-		b.BA_CODE as depositCode, a.account_name as depositName, 
-		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
-		and b.customer_code = c.customer_code
-		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
+		order by b.bill_r_code asc
 	</select> -->
 	
 	<!-- 받을어음 key 가져오기 -->
 	<!-- <select id="FT_NoteKeySelect" resultType="String">
-		select ba_code from bank_account_tbl
+		select bill_r_code from bill_receivable_tbl
 		where ROWNUM = 1
-		ORDER BY ba_code desc
+		ORDER BY bill_r_code desc
 	</select> -->
 	
 	<!-- 받을어음 추가 -->
 	<!-- <insert id="FT_NotePrevInsert" parameterType = "java.util.Map">
-		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
-		values (#{SubjectCode}, 'DE_' || accounts_seq.nextval, #{depositName})
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
+		values (받을어음 코드번호, 'NT_' || note_seq.nextval, #{noteNumber} || '(받을어음)', 받을어음 관련 테이블명)
 	</insert>
 	
 	<insert id="FT_NoteInsert" parameterType = "java.util.Map">
-		insert into bank_account_tbl(BA_CODE, CUSTOMER_CODE, BA_NUMBER, BA_HOLDER)
-		values ('DE_' || accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder})
+		insert into bill_receivable_tbl(bill_r_code, customer_code, payment_price, payment_date,
+		payment_expriration, payment_interest)
+		values ('NT_' || note_seq.currval, #{AccCode}, #{price}, #{startDate},
+		#{endDate}, #{lend})
 	</insert> -->
 	
 	<!-- 받을어음 수정 -->
 	<!-- <update id="FT_NotePrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
-		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{depositName}
-		where DETAIL_AC_CODE = #{depositCode}
+		set ACCOUNT_NAME = #{noteNumber} || '(받을어음)'
+		where DETAIL_AC_CODE = #{noteCode}
 	</update>
 	
 	<update id="FT_NoteUpdate" parameterType = "java.util.Map">
-		update bank_account_tbl
-		set CUSTOMER_CODE = #{AccCode}, BA_NUMBER = #{AccountNo}, BA_HOLDER = #{AccountHolder}
-		where BA_CODE = #{depositCode}
+		update bill_receivable_tbl
+		set CUSTOMER_CODE = #{AccCode}, payment_price = #{price}, payment_date = #{startDate},
+		payment_expriration = #{endDate}, payment_interest = #{lend}
+		where bill_r_code = #{noteCode}
 	</update> -->
 	
 	<!-- 받을어음 삭제 -->
@@ -966,8 +941,8 @@
 	</delete>
 	
 	<delete id="FT_NoteDelete" parameterType = "java.util.Map">
-		delete from bank_account_tbl
-		where BA_CODE = #{key}
+		delete from bill_receivable_tbl
+		where bill_r_code = #{key}
 	</delete> -->
 	
 	<!-- 단기대여금 가져오기 -->

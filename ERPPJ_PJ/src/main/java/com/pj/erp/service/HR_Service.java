@@ -131,4 +131,7 @@ public interface HR_Service {
 	//지각, 조퇴 정보 가져오기
 	public List<HR_Time_VO> LateDateSelect(HttpServletRequest req, Model model);
 	
+	//NFC 체크박스 지우기
+	public int deleteNfcSelect(HttpServletRequest req, Model model);
+	
 }

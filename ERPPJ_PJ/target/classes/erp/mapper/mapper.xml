@@ -18,8 +18,8 @@
 	
 	<!-- nfc 등록 -->
 	<insert id="nfc" parameterType="String">
-		insert into nfc_log_tbl(nfc_code)
-		values(#{nfcid})
+		insert into nfc_log_tbl(nfc_code, tag_code)
+		values(#{nfcid}, lpad(NFC_CODE_SEQ.nextval,8,'NFC_'))
 	</insert>
 	
 	<!-- NFC로 출퇴근 사람 username가져오기 -->

@@ -221,9 +221,12 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<table class="table mb-0 table-bordered table-hover"
-									style="table-layout: fixed;">
-									<thead class="thead-light">
+								<div class="card-body">
+									<div class="table-rep-plugin">
+										<div class="" data-pattern="priority-columns">
+											<table id="datatable"
+												class="table table-striped table-bordered dt-responsive nowrap">
+												<thead class="bg-primary text-white">
 										<tr>
 											<th>판매계획코드</th>
 											<th>품명</th>
@@ -259,7 +262,9 @@
 				</div>
 				<!-- end row -->
 
-
+			</div>
+			</div>
+			</div>
 			</div>
 			<div id="result"></div>
 
@@ -277,16 +282,30 @@
 
 	<!-- END wrapper -->
 
+	</div>
+	<!-- END wrapper -->
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-	<!-- Datatable plugin js -->
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
 	<script
-		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
 	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script
+		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
-
-
-
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 </body>
 </html>

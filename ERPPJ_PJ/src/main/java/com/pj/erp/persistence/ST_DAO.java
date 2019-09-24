@@ -7,6 +7,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.ST_department;
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
@@ -105,6 +106,9 @@ public interface ST_DAO {
 	
 	// saleList 게시글 삭제
 	public int deleteSaleList(String salelist_code);
+	
+	// ST_contrast 검색 조회
+	public List<ST_contrast> getContrast(Map<String, Object> map);
 	
 	
 	

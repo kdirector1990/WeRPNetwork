@@ -2,6 +2,7 @@ package com.pj.erp.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.ST_department;
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
@@ -630,6 +632,20 @@ public class ST_ServiceImpl implements ST_Service {
 
 		model.addAttribute("cnt", cnt);
 	}
+	
+	// ST_contrast_pp 검색 기능
+	@Override
+	public List<ST_contrast> getcontrast(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<ST_contrast> list = dao.getContrast(map);
+		System.out.println(list);
+		for(int i = 0 ; i <list.size();i++) {
+			System.out.println("salecode"+i+":"+list.get(i).getSale_code());
+		}
+		return list;
+	}
+	
+	
+	
 	
 	// Customer 검색
 	@Override
