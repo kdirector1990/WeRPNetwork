@@ -364,7 +364,7 @@
 		And tc_leave_time is not null
 		And tc_leave_time Like #{year}||'/'||#{month}||'%'
 		And tc_come_time Like #{year}||'/'||#{month}||'%'
-		And tc_state = '3'
+		and (tc_state = '3' or tc_state2 = '3')
 	</select>
 	
 	<!-- 지각/조퇴(월, 시간, 갯수) -->
@@ -377,7 +377,7 @@
 		And tc_leave_time is not null
 		And tc_leave_time Like #{year}||'/'||#{month}||'%'
 		And tc_come_time Like #{year}||'/'||#{month}||'%'
-		And tc_state = '3'
+		and (tc_state = '3' or tc_state2 = '3')
 		Group by tc_leave_time, tc_come_time, To_char(tc_come_time, 'mm')
 	</select>
 	
