@@ -60,41 +60,70 @@
 							<div class="card-body table-responsive">
 								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap">
+									<col style="width: 12%;">
+	                                <col style="width: 12%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
+									<col style="width: 5%;">
+									<col style="width: 5%;">
+									<col style="width: 6%;">
+									<col style="width: 10%;">
+									<col style="width: 10%;">
 									<thead>
 										<tr>
 											<th>단기매매증권코드</th>
-											<th>계정코드</th>
+											<th>단기매매증권명</th>
 											<th>거래처코드</th>
-											<th>증권종류</th>
+											<th>거래처명</th>
+	                                        <th>증권종류</th>
 											<th>유가증권번호</th>
 											<th>발생일</th>
 											<th>만기일</th>
 											<th>수량</th>
 											<th>액면가</th>
 											<th>이자율</th>
-											<th>평가방법</th>
-											<th>최근 평가일</th>
-											<th>최근 평가액</th>
 										</tr>
 									</thead>
-									<tbody>
-										<c:forEach var="va" begin="1" end="200" step="1">
-											<tr>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-												<td>${va}</td>
-											</tr>
-										</c:forEach>
+	  									
+	                                <tbody>
+	                                    <c:set var="cnt" value="0"/> 
+	                                    <c:if test="${Securities != null}">                              
+	                                      	<c:forEach var="se" items="${Securities}">
+	                                      		<tr>												
+	                                               <td>${se.securitiesCode}</td>
+	                                               <td>${se.securitiesName}</td>
+	                                               <td>${se.customer_code}</td>
+	                                               <td>${se.customer_name}</td>
+	                                               <td>${se.ts_type}</td>
+	                                               <td>${se.ts_number}</td>
+	                                               <td>${se.ts_date.substring(0,10)}</td>
+	                                               <td>${se.ts_expriration.substring(0,10)}</td>
+	                                               <td>${se.ts_amount}</td>
+	                                               <td>${se.ts_money}</td>
+	                                               <td>${se.ts_interest}</td>
+	                                           </tr>
+	                                           <c:set var="cnt" value="${cnt+1}"/>
+	                                      	</c:forEach>
+                                  		</c:if>
+                                  		<c:if test="${Securities == null}">
+	                                		<c:forEach var = "depo" begin="1" end="100">
+	                                    		<tr>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+													<td>${depo}</td>
+	                                       			<c:set var="cnt" value="${cnt+1}"/>
+	                                       		</tr>
+	                                   		</c:forEach>
+	                               		</c:if>
 									</tbody>
 								</table>
 							</div>

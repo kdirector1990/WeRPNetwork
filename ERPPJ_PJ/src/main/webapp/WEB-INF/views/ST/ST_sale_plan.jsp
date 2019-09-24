@@ -65,7 +65,6 @@
     		$('#search').click(function(){
     			var param = new Object();
     			var jsonData;
-    			
     						
     			param.productName = $("#productName").val();
     					

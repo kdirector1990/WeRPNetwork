@@ -193,7 +193,7 @@ public class FT_Controller {
 	public String FT_apply_input_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input_pro");
 		service.FT_applyinput(req, model);
-		return "FT/FT_apply_input_pro";
+		return "FT/FT_apply_input";
 	}
 
 	// 거래처 관리
@@ -225,7 +225,7 @@ public class FT_Controller {
 		return "FT/FT_Deposit";
 	}
 	
-	// 예금관리
+	// 받을어음관리
 	@RequestMapping("FT_note")
 	public String FT_note(HttpServletRequest req, Model model) {
 		logger.info("log => FT_note");
@@ -249,7 +249,7 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_NoteUpdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_NoteUpdate(@RequestBody Map<String, Object> map) throws Exception {
 		logger.info("url : FT_NoteUpdate 호출중");
-		String result = service.FT_NoteInsert(map);
+		String result = service.FT_NoteUpdate(map);
 		return result;
 	}
 	
@@ -261,6 +261,77 @@ public class FT_Controller {
 		return result;
 	}
 	
+	// 단기대여금 관리
+	@RequestMapping("FT_short_Loan")
+	public String FT_short_Loan(HttpServletRequest req, Model model) {
+		logger.info("log => FT_short_Loan");
+
+		service.FT_LoanAllSelect(req, model);
+
+		return "FT/FT_short_Loan";
+	}
+	
+	// 예금 추가
+	@RequestMapping(value = "FT_LoanInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LoanInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LoanInsert 호출중");
+
+		String result = service.FT_LoanInsert(map);
+
+		return result;
+	}
+
+	// 예금 수정
+	@RequestMapping(value = "FT_LoanUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LoanUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LoanUpdate 호출중");
+		String result = service.FT_LoanUpdate(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_LoanDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LoanDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LoanDelete 호출중");
+		String result = service.FT_LoanDelete(map);
+		return result;
+	}
+	
+	// 단기매매증권 관리
+	@RequestMapping("FT_short_Securities")
+	public String FT_short_Securities(HttpServletRequest req, Model model) {
+		logger.info("log => FT_short_Securities");
+
+		service.FT_SecuritiesAllSelect(req, model);
+
+		return "FT/FT_short_Securities";
+	}
+	
+	// 예금 추가
+	@RequestMapping(value = "FT_SecuritiesInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SecuritiesInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SecuritiesInsert 호출중");
+
+		String result = service.FT_SecuritiesInsert(map);
+
+		return result;
+	}
+
+	// 예금 수정
+	@RequestMapping(value = "FT_SecuritiesUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SecuritiesUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SecuritiesUpdate 호출중");
+		String result = service.FT_SecuritiesUpdate(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_SecuritiesDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SecuritiesDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SecuritiesDelete 호출중");
+		String result = service.FT_SecuritiesDelete(map);
+		return result;
+	}
 
 	// 카드관리
 	@RequestMapping("FT_CardManagement")
@@ -295,6 +366,7 @@ public class FT_Controller {
 	@RequestMapping("FT_short_Loan_list")
 	public String FT_short_Loan_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Loan_list");
+		service.FT_LoanAllSelect(req, model);
 
 		return "FT/FT_short_Loan_list";
 	}
@@ -303,6 +375,7 @@ public class FT_Controller {
 	@RequestMapping("FT_short_Securities_list")
 	public String FT_short_Securities_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Securities_list");
+		service.FT_SecuritiesAllSelect(req, model);
 
 		return "FT/FT_short_Securities_list";
 	}
@@ -311,6 +384,8 @@ public class FT_Controller {
 	@RequestMapping("FT_Note_list")
 	public String FT_Note_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_Note_list");
+
+		service.FT_NoteAllSelect(req, model);
 		
 		return "FT/FT_Note_list";
 	}
@@ -368,8 +443,9 @@ public class FT_Controller {
 
 	// 건물목록
 	@RequestMapping("FT_building_management")
-	public String FT_building_management(Locale locale, Model model) {
+	public String FT_building_management(HttpServletRequest req, Model model) {
 		logger.info("log => FT_building_management");
+		service.FT_BuildingAllSelect(req, model);
 
 		return "FT/FT_building_management";
 	}
@@ -428,6 +504,16 @@ public class FT_Controller {
 		return "FT/FT_Subject_list";
 	}
 	
+	// 계정 목록
+	@RequestMapping("FT_department_list")
+	public String FT_department_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_department_list");
+		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
+		service.FT_DepartmentAllSelect(req, model);
+		return "FT/FT_department_list";
+	}
+	
 	// 증계정 목록
 	@RequestMapping("FT_AccSubject_list")
 	public String FT_AccSubject_list(HttpServletRequest req, Model model) {
@@ -443,6 +529,7 @@ public class FT_Controller {
 	public String FT_users_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_users_list");
 		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
 		service.FT_UsersAllSelect(req, model);
 		return "FT/FT_users_list";
 	}
@@ -526,9 +613,17 @@ public class FT_Controller {
 	// 계정과목 검색 가져오기
 	@RequestMapping(value = "FT_SubjectSelect")
 	public @ResponseBody List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
-		logger.info("url : FT_AccountSelect 호출중");
+		logger.info("url : FT_SubjectSelect 호출중");
 
 		return service.FT_SubjectSelect(req, model);
+	}
+	
+	// 계정과목 검색 가져오기
+	@RequestMapping(value = "FT_DepartmentSelect")
+	public @ResponseBody List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model) {
+		logger.info("url : FT_AccountSelect 호출중");
+
+		return service.FT_DepartmentSelect(req, model);
 	}
 	
 	// 계정과목 검색 가져오기

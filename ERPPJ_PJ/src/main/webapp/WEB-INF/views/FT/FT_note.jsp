@@ -38,7 +38,7 @@
         			$(this).parent().parent().children().css("background-color", "#D6EAF8");
         			$(this).css("background-color", "");
         			$(this).parent().css("background-color", "");
-        			if(!$("input[name=depositCode" + keyval + "]").val()) {
+        			if(!$("input[name=noteCode" + keyval + "]").val()) {
         				focusval = "";
         			} else {
         				focusval = keyval;	
@@ -134,14 +134,14 @@
 					return false;
         		} else if(window.event.which == 13) {
 	        		// 자바스크립트 객체 생성
-	        		obj.depositCode = $("input[name=depositCode" + vv + "]").val();
-	        		obj.depositName = $("input[name=depositName" + vv + "]").val();
-	        		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
-	        		obj.AccName = $("input[name=AccName" + vv + "]").val();
-	        		obj.SubjectCode = $("input[name=SubjectCode" + vv + "]").val();
-	        		obj.SubjectName = $("input[name=SubjectName" + vv + "]").val();
-	        		obj.AccountNo = $("input[name=AccountNo" + vv + "]").val();
-	        		obj.AccountHolder = $("input[name=AccountHolder" + vv + "]").val();
+	         		obj.noteCode = $("input[name=noteCode" + vv + "]").val();
+	         		obj.noteNumber = $("input[name=noteNumber" + vv + "]").val();
+	         		obj.AccCode = $("input[name=AccCode" + vv + "]").val();
+	         		obj.AccName = $("input[name=AccName" + vv + "]").val();
+	         		obj.price = $("input[name=basePrice" + vv + "]").val();
+	         		obj.startDate = $("input[name=startDay" + vv + "]").val();
+	         		obj.endDate = $("input[name=endDay" + vv + "]").val();
+	         		obj.lend = $("input[name=lend" + vv + "]").val();
 	        		
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -155,16 +155,6 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                             /*  if (data.answer == 'success') {
-	                                      alert(data.name + '님 환영합니다.');
-	                                      var map = new MapArray();
-	                                      postData('/News/index.do', map);
-	                              } else if (data.answer == 'fail') {
-	                                      alert('아이디와 비번이 일치하지 않습니다.');
-	                              } else if (data.answer == 'error') {
-	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                              } */
 	                              alert(data);
 	                              if(updatekey == 0){
 	                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
@@ -176,6 +166,8 @@
 	                            	 }
 	                            	 updatekey = 0;
 	                              }
+
+	                              location.reload();
 	                       },
 	                       error : function(e) {
 	                              alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -228,13 +220,13 @@
             		var jsonData;
 	                 
 	              	// 자바스크립트 객체 생성
-	         		obj.depositName = $("input[name=depositName" + cc + "]").val();
+	         		obj.noteNumber = $("input[name=noteNumber" + cc + "]").val();
 	         		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
 	         		obj.AccName = $("input[name=AccName" + cc + "]").val();
-	         		obj.SubjectCode = $("input[name=SubjectCode" + cc + "]").val();
-	         		obj.SubjectName = $("input[name=SubjectName" + cc + "]").val();
-	         		obj.AccountNo = $("input[name=AccountNo" + cc + "]").val();
-	         		obj.AccountHolder = $("input[name=AccountHolder" + cc + "]").val();
+	         		obj.price = $("input[name=basePrice" + cc + "]").val();
+	         		obj.startDate = $("input[name=startDay" + cc + "]").val();
+	         		obj.endDate = $("input[name=endDay" + cc + "]").val();
+	         		obj.lend = $("input[name=lend" + cc + "]").val();
 	         		
 	         		// json 객체를 String 객체로 변환 -- 
 	         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -248,45 +240,30 @@
 	                        data : jsonData,
 	                        contentType : 'application/json;charset=UTF-8',
 	                        success : function(data) {
-	                               // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                              /*  if (data.answer == 'success') {
-	                                       alert(data.name + '님 환영합니다.');
-	                                       var map = new MapArray();
-	                                       postData('/News/index.do', map);
-	                               } else if (data.answer == 'fail') {
-	                                       alert('아이디와 비번이 일치하지 않습니다.');
-	                               } else if (data.answer == 'error') {
-	                                       alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                               } */
+	                        	/* 
 		           	       			 $("input[name=depositCode" + cc + "]").val(data);
 	                               frontcursor = $(".chit-table-bordered-primary tbody #enter" + cc).attr("name");
 		           	       			$(".chit-table-bordered-primary tbody #enter" + cc).attr("onkeydown", "enterupdate(" + cc + ");");
 		           	       			$(".chit-table-bordered-primary tbody").append('<tr>' +
 		           	       					 '<td><input type="text" onfocus = "focuse(' + count + ');" name = "noteCode' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
-                                             '<td><input type="text" onfocus = "focuse(' + count + ');" id = "first' + count + '" name = "AccCode' + count + '" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
+		           	       					 '<td><input type="text" onfocus = "focuse(' + count + ');" id = "first' + count + '" name = "noteNumber' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td>' +
+                                             '<td><input type="text" onfocus = "focuse(' + count + ');" name = "AccCode' + count + '" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                                              '<td><input type="text" onfocus = "focuse(' + count + ');" name = "AccName' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                                              '<td><input type="text" onfocus = "focuse(' + count + ');" name = "basePrice' + count + '" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                                              '<td><input type="date" onfocus = "focuse(' + count + ');" name = "startDay' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>' +
                                              '<td><input type="date" onfocus = "focuse(' + count + ');" name = "endDay' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>' +
                                              '<td><input type="text" id = "enter' + count + '" onfocus = "focuse(' + count + ');" name = "lend' + count + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(' + count + ');"></td>' +
 		           	                       '</tr>');
-		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
-		           	                 count = count + 1;
+		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus(); 
+		           	                 count = count + 1;*/
 	                               alert(data);
+	                               location.reload();
 	                        },
 	                        error : function(e) {
 	                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
 	                        }
 	                });
         		}
-        	}
-        	
-        	function subjectlist(subjectcode) {
-            	var popupX = Math.ceil((window.screen.width - 363)/2);
-            	var popupY = Math.ceil((window.screen.height - 528)/2);
-        		var url = "FT_AccSubject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
-        		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
-        		
         	}
         	
         	function accountlist(accountcode) {
@@ -302,12 +279,12 @@
         		if(!focusval){
         			alert("등록되어 있는 분개를 선택해주세요!")
         		} else {
-            		alert($("input[name=depositCode" + focusval + "]").val());
+            		alert($("input[name=noteCode" + focusval + "]").val());
 	        		var obj = new Object();
 	        		var jsonData;
 	        	
 	        		// 자바스크립트 객체 생성
-	        		obj.key = $("input[name=depositCode" + focusval + "]").val();
+	        		obj.key = $("input[name=noteCode" + focusval + "]").val();
 	        		
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -321,7 +298,7 @@
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
 	                    	   alert(data);
-	                    	   $("input[name=depositCode" + focusval + "]").parent().parent().remove();
+	                    	   $("input[name=noteCode" + focusval + "]").parent().parent().remove();
 	                       },
 	                       error : function(e) {
 	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -398,16 +375,18 @@
     									</div>
                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-                                                <col style="width: 20%;">
+                                                <col style="width: 15%;">
+                                                <col style="width: 10%;">
 												<col style="width: 10%">
 												<col style="width: 20%;">
 												<col style="width: 15%;">
 												<col style="width: 10%;">
 												<col style="width: 10%;">
-												<col style="width: 15%;">
+												<col style="width: 10%;">
 												<thead>
 													<tr>
 														<th>받을어음관리코드</th>
+														<th>받을어음번호</th>
 														<th>거래처코드</th>
 		                                                <th>거래처명</th>
 														<th>액면가</th>
@@ -422,22 +401,24 @@
 		                                        	<c:forEach var="no" items="${note}">
 		                                        		<tr>																			
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "noteCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${no.bill_r_code}"></td>
-			                                                <td><input type="text" id = "first${cnt}" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.customer_code}"></td>
+			                                                <td><input type="text" id = "first${cnt}" onfocus = "focuse(${cnt});" name = "noteNumber${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.noteNumber}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.customer_code}"></td>
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${no.customer_name}"></td>
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "basePrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_price}"></td>
-			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.payment_date}"></td>
-			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.payment_expriration}"></td>
-			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.payment_interest}"></td>
+			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_date.substring(0,10)}"></td>
+			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_expriration.substring(0,10)}"></td>
+			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enterupdate(${cnt});" value = "${no.payment_interest}"></td>
 			                                            </tr>
 			                                            <c:set var="cnt" value="${cnt+1}"/>
 		                                        	</c:forEach>
 		                                            <tr>
 		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "noteCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-		                                                <td><input type="text" id = "first${cnt}" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" id = "first${cnt}" onfocus = "focuse(${cnt});" name = "noteNumber${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "basePrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>
 		                                            </tr>
 		                                        </tbody>

@@ -48,7 +48,7 @@ public class MS_Controller {
 		return "MS/MS_planInquiry";
 	}
 	
-	//기획서 조회 - 사원이름으로 검색 결과
+	//사원이름으로 검색 결과
 	@RequestMapping("MS_planInquiry_result")
 	@ResponseBody
 	public List<MS_plan> MS_planInquiry_result(HttpServletRequest req, Model model) {
@@ -58,33 +58,50 @@ public class MS_Controller {
 		return vo;
 	}
 	
+	//기획서 상세 조회버튼
+	@RequestMapping("MS_planDetail_result")
+	public String MS_planDetail_result(HttpServletRequest req, Model model) {
+		logger.info("log => MS_planDetail_result");
+		service.selectPlanDetail(req, model);
+		
+		return "MS/MS_planDetail_result";
+	}
+	
 	//기획서 관리 목록 가져오기
 	@RequestMapping("MS_planManagement")
 	public String planManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planManagement");
-		//service.selectPlan(req, model);
 		
 		return "MS/MS_planManagement";
 	}
 	
+	//기획서 수정 상세조회
+	@RequestMapping("MS_planUpdateDelete")
+	public String MS_planUpdateDelete(HttpServletRequest req, Model model) {
+		logger.info("log => MS_planUpdateDelete");
+		service.selectPlanDetail(req, model);
+		
+		return "MS/MS_planUpdateDelete";
+	}
+		
 	//기획서 수정 처리
 	@RequestMapping("MS_updatePlanPro")
 	@ResponseBody
-	public int MS_updatePlanPro(HttpServletRequest req, Model model) {
+	public String MS_updatePlanPro(HttpServletRequest req, Model model) {
 		logger.info("log => MS_updatePlanPro");
-		int updateCnt = service.updatePlan(req, model);
+		service.updatePlan(req, model);
 		
-		return updateCnt;
+		return "MS/MS_planManagement";
 	}
 	
 	//기획서 삭제 처리
 	@RequestMapping("MS_deletePlanPro")
 	@ResponseBody
-	public int MS_deletePlanPro(HttpServletRequest req, Model model) {
+	public String MS_deletePlanPro(HttpServletRequest req, Model model) {
 		logger.info("log => MS_deletePlanPro");
-		int deleteCnt = service.deletePlan(req, model);
+		service.deletePlan(req, model);
 		
-		return deleteCnt;
+		return "MS/MS_planManagement";
 	}
 	//기획서 등록 - username 검색창
 	@RequestMapping("MS_searchUsername")

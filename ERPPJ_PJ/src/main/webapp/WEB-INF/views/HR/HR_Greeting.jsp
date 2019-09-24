@@ -9,18 +9,16 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-        /* var count = 0;
-    	
+        var count = 0;    	
     	
     	
     	function enterinsert() {
    			
    			$(".chit-table-bordered-primary tbody").append('<tr id = "tr'+count+'">' +   					
-                    '<td><input type="text" name = "position_record_code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" name = "'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" name = "record_title'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" name = "record_division'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" class="form-control" placeholder="mm/dd/yyyy" name = "record_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
+                    /* '<td><input type="text" name = "ap_code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+ */
+                    '<td><input type="text" name = "ap_name'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" name = "ap_content'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
+                    '<td><input type="text" class="form-control" placeholder="mm-dd-yyyy" name = "ap_reg_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
                    '</tr>');
                 count = count + 1;
                 
@@ -32,7 +30,7 @@
     		
    			$("#tr"+count).remove();
 
-    	} */
+    	}
     	
     </script>
 <!-- Table datatable css -->
@@ -97,7 +95,7 @@
 						<div class="col-sm-12">							
 							<div class="card">
 								<div class="card-body">
-									<h4 class="header-title">발령공고 등록</h4>
+									<h4 class="header-title">직책변경공고</h4>
 									<p class="sub-header"></p>
 
 									<form class="form-horizontal" action="HR_recordinput"
@@ -164,13 +162,11 @@
 														취소</button>
 												</div>
 											</div>
-
 											<!-- end row -->
-
 										</div>
 									</form>
 								</div>
-							</div>							
+							</div>														
 						</div>
 					</div>
 
@@ -198,15 +194,7 @@
 														<input type="text" id="ap_content" class="form-control"
 															name="ap_content">
 													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label" for="simpleinput">공고등록일</label>
-													<div class="col-md-10">
-														<input type="date" name="ap_reg_date"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
-													</div>
-												</div>
+												</div>												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고시행일</label>
 													<div class="col-md-10">
@@ -221,11 +209,11 @@
 													<div class="col-md-10">
 														<select class="form-control select2" name="ap_status"
 															onchange="">
-															<option value="1">1. 공고예정</option>
-															<option value="2">2. 공고중</option>
-															<option value="3">3. 시행완료</option>
-															<option value="4">4. 시행취소</option>
-															<option value="5">5. 삭제</option>
+															<option value="1"> 공고예정</option>
+															<option value="2"> 공고중</option>
+															<option value="3"> 시행완료</option>
+															<option value="4"> 시행취소</option>
+															<option value="5"> 삭제</option>
 														</select>
 													</div>
 												</div>
@@ -258,29 +246,29 @@
 															<tbody>
 																<tr>
 																	<th></th>
-																	<td>20000601</td>
-																	<td>이수희</td>
-																	<td>국내영업부</td>
-																	<td>전무</td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
 																</tr>
 															</tbody>
 
 															<tbody>
 																<tr>
 																	<th></th>
-																	<td>20001101</td>
-																	<td>박용덕</td>
-																	<td>국내영업부</td>
-																	<td>부장</td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
 																</tr>
 															</tbody>
 
 															<tbody>
 																<tr>
 																	<th></th>
-																	<td>20020603</td>
-																	<td>이준상</td>
-																	<td>총무부</td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
 																	<td></td>
 																</tr>
 															</tbody>

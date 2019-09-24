@@ -3,7 +3,9 @@ package com.pj.erp.vo.FT;
 public class FT_Building {
 	private String buildingCode; // 건물 코드
 	private String buildingName; // 건물명
-	private String Address; // 건물주소
+	private String departmentCode; // 건물주소
+	private String departmentName; // 구매일자
+	private String address; // 건물주소
 	private String buyDate; // 구매일자
 	private String buyPrice; // 구매가격
 	private String thinkYear; // 예상감가연수
@@ -23,11 +25,23 @@ public class FT_Building {
 	public void setBuildingName(String buildingName) {
 		this.buildingName = buildingName;
 	}
+	public String getDepartmentCode() {
+		return departmentCode;
+	}
+	public void setDepartmentCode(String departmentCode) {
+		this.departmentCode = departmentCode;
+	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 	public String getBuyDate() {
 		return buyDate;
