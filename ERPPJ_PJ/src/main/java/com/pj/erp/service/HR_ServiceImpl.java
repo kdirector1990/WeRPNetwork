@@ -604,7 +604,7 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String position_record_code = dao.getPositionRecord();
 		String username = req.getParameter("username");
-		String ap_code = dao.getAP_code();
+		String ap_code = req.getParameter("ap_code");	
 		String position_code = req.getParameter("position_code");
 		String position_code_after = req.getParameter("position_code_after");
 		String department_code = req.getParameter("department_code");
@@ -631,6 +631,23 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);		
+	}
+	
+	@Override
+	public void searchUsername(HttpServletRequest req, Model model) {
+		String e_name = req.getParameter("e_name");
+		
+		System.out.println("e_name : " + e_name); 
+		int cnt = dao.selectEname(e_name); 
+		
+		System.out.println("cnt: "+cnt);
+		
+		if(cnt > 0) {
+			List<HR_VO> dto = dao.getUsernameList(e_name);
+			model.addAttribute("dto", dto);
+		}
+
+		model.addAttribute("cnt", cnt);
 	}
 	
 	@Override
@@ -862,6 +879,26 @@ public class HR_ServiceImpl implements HR_Service{
 			updateCnt = dao.deleteNfc(tag_code[i]);
 		}
 		return updateCnt;
+	}
+
+
+	// ap_name으로 ap_code 검색하기
+	@Override
+	public void searchAp_code(HttpServletRequest req, Model model) {
+		String ap_name = req.getParameter("ap_name");
+		
+		System.out.println("ap_name : " + ap_name); 
+		int cnt = dao.selectAp_name(ap_name); 
+		
+		System.out.println("cnt: "+cnt);
+		
+		if(cnt > 0) {
+			List<HR_ApVO> dto = dao.getAp_codeList(ap_name);
+			model.addAttribute("dto", dto);
+		}
+
+		model.addAttribute("cnt", cnt);
+		
 	}
 
 }

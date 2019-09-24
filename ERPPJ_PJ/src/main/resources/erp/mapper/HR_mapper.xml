@@ -129,10 +129,27 @@
 		select username, e_name, department_code, position_code from users where e_name like '%'||#{e_name}||'%'
 	</select>
 	
+	<!-- e_name(사원명)검색  -->
+	<select id="selectEname" resultType="int" parameterType="String" >
+		select COUNT(*) from users where e_name like '%'||#{e_name}||'%'
+	</select>
+	
+	<!-- 공고 검색 목록 가져오기 -->
+	<select id="getAp_codeList" resultType="com.pj.erp.vo.HR.HR_ApVO" parameterType="String">
+		select ap_code, ap_name, ap_content from appointment_tbl where ap_name like '%'||#{ap_name}||'%'
+	</select>
+	
+	<!-- ap_name(공고명) 검색 -->
+	<select id="selectAp_name" resultType="int" parameterType="String" >
+		select COUNT(*) from appointment_tbl where ap_name like '%'||#{ap_name}||'%'
+	</select>
+	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_code, department_name from department_tbl
 	</select>
+	
+	
 	
 	<!-- 직책 목록 -->
 	<select id="getPositionList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
@@ -317,13 +334,13 @@
 	
 	<!-- 공고내용 가져오기 -->
 	<select id="getApInfo" parameterType="String" resultType="com.pj.erp.vo.HR.HR_ApVO">
-		select * from appointment_tbl where ap_code = #{ap_code}
+		select ap_name, ap_content_, ap_reg_date, ap_est_date, ap_status from appointment_tbl where ap_code = #{ap_code}
 	</select>
 	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
-		insert into position_record_tbl(position_record_code, username, record_date)
-		VALUES(#{position_record_code}, ${username}, #{recore_date})
+		insert into position_record_tbl(position_record_code, username, record_date, record_date_after, position_code, position_code_after, department_code, department_code_after, ap_code)
+		VALUES(#{position_record_code}, #{username}, #{record_date}, #{record_date_after}, #{position_code}, #{position_code_after}, #{department_code}, #{department_code_after}, #{ap_code})
 	</insert>
 	
 	<!-- 발령공고 등록 -->
