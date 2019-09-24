@@ -886,8 +886,8 @@ public class HR_ServiceImpl implements HR_Service{
 		int updateCnt = 0;
 		
 		String[] tag_code = req.getParameterValues("tag_code");
-		
 		for(int i = 0; i < tag_code.length; i++) {
+			System.out.println("tag_code : " + tag_code[i]);
 			updateCnt = dao.deleteNfc(tag_code[i]);
 		}
 		return updateCnt;
