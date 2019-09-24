@@ -24,14 +24,13 @@
 <link
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
-
 <script type="text/javascript">
 
 </script>
 </head>
 <body>
 			<form id= "datatable2">
-				<table class="table table-bordered table-hover"
+				<table class="table table-bordered"
 					style="height: 550px;">
 					<tbody>
 						<!--  있으면 -->
@@ -57,7 +56,7 @@
 						</tr>
 						<tr>
 							<th>시작예정일</th>
-							<td><input type="text" name="plan_regdate" class="form-control" data-provide="datepicker" data-date-autoclose="true" value="${dto.plan_startdate}"></td>
+							<td><input type="text" name="plan_startdate" class="form-control" data-provide="datepicker" data-date-autoclose="true" value="${dto.plan_startdate}"></td>
 						</tr>
 						<tr>
 							<th>종료예정일</th>

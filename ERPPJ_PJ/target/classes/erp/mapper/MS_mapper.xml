@@ -11,7 +11,7 @@
 	
 	<!-- 기획서 목록  -->
 	<select id="getPlanList" resultType="com.pj.erp.vo.MS.MS_plan" parameterType="String">
-		SELECT * FROM plan_list_tbl where username like '%'||#{username}||'%'
+		SELECT * FROM ms_plan_script_view where username like '%'||#{username}||'%'
 	</select>
 	
 	<!-- 기획서 상세조회 -->

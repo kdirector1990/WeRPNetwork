@@ -127,18 +127,29 @@ public interface FT_Service {
 	// 받을어음 삭제
 	public String FT_NoteDelete(Map<String, Object> map);
 	
-	// 받을어음 가져오기
+	// 단기대여금 가져오기
 	public void FT_LoanAllSelect(HttpServletRequest req, Model model);
 	
-	// 받을어음 추가
+	// 단기대여금 추가
 	public String FT_LoanInsert(Map<String, Object> map);
 	
-	// 받을어음 수정
+	// 단기대여금 수정
 	public String FT_LoanUpdate(Map<String, Object> map);
 	
-	// 받을어음 삭제
+	// 단기대여금 삭제
 	public String FT_LoanDelete(Map<String, Object> map);
 	
+	// 단기매매증권 가져오기
+	public void FT_SecuritiesAllSelect(HttpServletRequest req, Model model);
+	
+	// 단기매매증권 추가
+	public String FT_SecuritiesInsert(Map<String, Object> map);
+	
+	// 단기매매증권 수정
+	public String FT_SecuritiesUpdate(Map<String, Object> map);
+	
+	// 단기매매증권 삭제
+	public String FT_SecuritiesDelete(Map<String, Object> map);
 	
 	// 카드 가져오기
 	public void FT_CardManagementSelect(HttpServletRequest req, Model model);

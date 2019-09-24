@@ -38,7 +38,7 @@
         			$(this).parent().parent().children().css("background-color", "#D6EAF8");
         			$(this).css("background-color", "");
         			$(this).parent().css("background-color", "");
-        			if(!$("input[name=depositCode" + keyval + "]").val()) {
+        			if(!$("input[name=noteCode" + keyval + "]").val()) {
         				focusval = "";
         			} else {
         				focusval = keyval;	
@@ -155,16 +155,6 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                              // data는 서버로부터 전송받은 결과(JSON)이므로 바로 사용한다
-	                             /*  if (data.answer == 'success') {
-	                                      alert(data.name + '님 환영합니다.');
-	                                      var map = new MapArray();
-	                                      postData('/News/index.do', map);
-	                              } else if (data.answer == 'fail') {
-	                                      alert('아이디와 비번이 일치하지 않습니다.');
-	                              } else if (data.answer == 'error') {
-	                                      alert('원활한 접속이 이루어 지지 못했습니다. 관리자에게 문의하십시오.');
-	                              } */
 	                              alert(data);
 	                              if(updatekey == 0){
 	                  				$(".chitsub-table-bordered-primary tbody #firstsub").focus();
@@ -385,14 +375,14 @@
     									</div>
                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
                                             <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
-                                                <col style="width: 10%;">
+                                                <col style="width: 15%;">
                                                 <col style="width: 10%;">
 												<col style="width: 10%">
 												<col style="width: 20%;">
 												<col style="width: 15%;">
 												<col style="width: 10%;">
 												<col style="width: 10%;">
-												<col style="width: 15%;">
+												<col style="width: 10%;">
 												<thead>
 													<tr>
 														<th>받을어음관리코드</th>
@@ -415,9 +405,9 @@
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.customer_code}"></td>
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${no.customer_name}"></td>
 			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "basePrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_price}"></td>
-			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.payment_date}"></td>
-			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.payment_expriration}"></td>
-			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${depo.payment_interest}"></td>
+			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_date.substring(0,10)}"></td>
+			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_expriration.substring(0,10)}"></td>
+			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.payment_interest}"></td>
 			                                            </tr>
 			                                            <c:set var="cnt" value="${cnt+1}"/>
 		                                        	</c:forEach>
@@ -427,8 +417,8 @@
 		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
 		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "basePrice${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-		                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 		                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterinsert(${cnt});"></td>
 		                                            </tr>
 		                                        </tbody>

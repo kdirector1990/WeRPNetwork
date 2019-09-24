@@ -123,6 +123,7 @@ public class ERPServiceImpl implements ERPService{
 		int todays = Integer.parseInt(today);
 		int comeDays = Integer.parseInt(comeDay);
 		
+		int Hour = c.get(Calendar.HOUR_OF_DAY);
 		System.out.println("파스했음.");
 		
 		if(todays == comeDays) {
@@ -134,7 +135,6 @@ public class ERPServiceImpl implements ERPService{
 					int insertCnt2 = dao2.ealryWorkEnd(username);
 					System.out.println("조퇴합니다.");
 					if(insertCnt2 == 0) {
-						int Hour = c.get(Calendar.HOUR_OF_DAY);
 						if(Hour > 9) {
 							dao2.lateWorkStart(username);
 							System.out.println("지각했습니다.");
@@ -143,6 +143,16 @@ public class ERPServiceImpl implements ERPService{
 							dao2.StartWork(username);
 							System.out.println("정상출근입니다.");
 						}
+					}
+				}
+				else if(selectCnt2 == 1) {
+					if(Hour > 18) {
+						System.out.println("정상퇴근처리");
+						dao2.EndWork(username);
+					}
+					else {
+						System.out.println("여전히 조퇴");
+						dao2.ealryWorkEnd(username);
 					}
 				}
 			}

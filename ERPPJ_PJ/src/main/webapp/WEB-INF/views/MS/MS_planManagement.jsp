@@ -17,13 +17,14 @@ function updatePlan(){
 	var param = $("#datatable2").serializeArray();
 	alert(JSON.stringify(param));
 	$.ajax({
-		url: '/erp/MS_updatePlanPro',
+		url: '/erp/MS_updatePlanPro?${_csrf.parameterName}=${_csrf.token }',
 		type: 'POST',
 		data : param,
 		dataTpye: 'json',
 		success: function(param){
 			alert("수정되었습니다.");
-			location.reload();
+			$('#result').empty();
+			searchCus();
 		},
 		error : function(){
 			alert("수정에 실패하였습니다.");
@@ -35,13 +36,14 @@ function deletePlan(){
 	var param = $("#datatable2").serializeArray();
 	alert(JSON.stringify(param));
 	$.ajax({
-		url: '/erp/MS_deletePlanPro',
+		url: '/erp/MS_deletePlanPro?${_csrf.parameterName}=${_csrf.token }',
 		type: 'POST',
 		data : param,
 		dataTpye: 'json',
 		success: function(param){
 			alert("삭제되었습니다.");
-			location.reload();
+			$('#result').empty();
+			searchCus();
 		},
 		error : function(){
 			alert("삭제 실패하였습니다.");
@@ -78,12 +80,9 @@ function callback() {
 			var datas = httpRequest.responseText;
 			document.getElementById("updatePlan").style.display="block";
 			result.innerHTML = datas;
-			
 		} else {
 			result.innerHTML = "에러발생";
-			
 		}
-	
 	} else {
 		result.innerHTML = "상태 : " + httpRequest.readyState;
 	}
@@ -121,9 +120,9 @@ function searchCus() {
 							'<td>'+ plan_name+ '</td>' +
 							'<td>'+ username + '</td>' +
 							'<td>'+ position_code + '</td>' +
-							'<td>'+ plan_regdate + '</td>' +
-							'<td>'+ plan_startdate + '</td>' +
-							'<td>'+ plan_enddate + '</td>' +
+							'<td>'+ vo[i].plan_regdate_s + '</td>' +
+							'<td>'+ vo[i].plan_startdate_s + '</td>' +
+							'<td>'+ vo[i].plan_enddate_s + '</td>' +
 							'<td>'+ plan_state + '</td>' +
 							'<td>'+ plan_objective + '</td>' +
 							'<td>' + plan_proposal + '</td></tr>' 
@@ -219,7 +218,7 @@ function searchCus() {
 								<h4 class="header-title">기획서 관리</h4>
 								<hr>
 								<table id="datatable"
-									class="table m-0 table-bordered table-hover"
+									class="table m-0 table-bordered"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 									<thead class="bg-primary text-white">
 										<tr>

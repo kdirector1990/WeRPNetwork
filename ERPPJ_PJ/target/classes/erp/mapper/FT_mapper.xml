@@ -889,28 +889,28 @@
 	</update>
 	
 	<!-- 받을어음 가져오기 -->
-	<!-- <select id="FT_NoteAllSelect" resultType="com.pj.erp.vo.FT.FT_Note">
+	<select id="FT_NoteAllSelect" resultType="com.pj.erp.vo.FT.FT_Note">
 		SELECT
 		b.bill_r_code, a.account_name as noteNumber, 
 		c.customer_code, c.customer_name, b.payment_price,
 		b.payment_date, b.payment_expriration, b.payment_interest
-		FROM detail_ac_tbl a, bill_receivable_tbl b, customer_list_tbl c, accounts_tbl ac
+		FROM detail_ac_tbl a, bill_receivable_tbl b, customer_list_tbl c
 		where a.DETAIL_AC_CODE = b.bill_r_code
 		and b.customer_code = c.customer_code
 		order by b.bill_r_code asc
-	</select> -->
+	</select>
 	
 	<!-- 받을어음 key 가져오기 -->
-	<!-- <select id="FT_NoteKeySelect" resultType="String">
+	<select id="FT_NoteKeySelect" resultType="String">
 		select bill_r_code from bill_receivable_tbl
 		where ROWNUM = 1
 		ORDER BY bill_r_code desc
-	</select> -->
+	</select>
 	
 	<!-- 받을어음 추가 -->
-	<!-- <insert id="FT_NotePrevInsert" parameterType = "java.util.Map">
+	<insert id="FT_NotePrevInsert" parameterType = "java.util.Map">
 		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
-		values (받을어음 코드번호, 'NT_' || note_seq.nextval, #{noteNumber} || '(받을어음)', 받을어음 관련 테이블명)
+		values ('qa_01100', 'NT_' || note_seq.nextval, #{noteNumber} || '(받을어음)', 'BILL_RECEIVABLE_TBL')
 	</insert>
 	
 	<insert id="FT_NoteInsert" parameterType = "java.util.Map">
@@ -918,10 +918,10 @@
 		payment_expriration, payment_interest)
 		values ('NT_' || note_seq.currval, #{AccCode}, #{price}, #{startDate},
 		#{endDate}, #{lend})
-	</insert> -->
+	</insert>
 	
 	<!-- 받을어음 수정 -->
-	<!-- <update id="FT_NotePrevUpdate" parameterType = "java.util.Map">
+	<update id="FT_NotePrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
 		set ACCOUNT_NAME = #{noteNumber} || '(받을어음)'
 		where DETAIL_AC_CODE = #{noteCode}
@@ -932,10 +932,10 @@
 		set CUSTOMER_CODE = #{AccCode}, payment_price = #{price}, payment_date = #{startDate},
 		payment_expriration = #{endDate}, payment_interest = #{lend}
 		where bill_r_code = #{noteCode}
-	</update> -->
+	</update>
 	
 	<!-- 받을어음 삭제 -->
-	<!-- <delete id="FT_NotePrevDelete" parameterType = "java.util.Map">
+	<delete id="FT_NotePrevDelete" parameterType = "java.util.Map">
 		delete from detail_ac_tbl
 		where DETAIL_AC_CODE = #{key}
 	</delete>
@@ -943,171 +943,122 @@
 	<delete id="FT_NoteDelete" parameterType = "java.util.Map">
 		delete from bill_receivable_tbl
 		where bill_r_code = #{key}
-	</delete> -->
+	</delete>
 	
 	<!-- 단기대여금 가져오기 -->
-	<!-- <select id="FT_NoteAllSelect" resultType="com.pj.erp.vo.FT.FT_Note">
+	<select id="FT_LoanAllSelect" resultType="com.pj.erp.vo.FT.FT_Loan">
 		SELECT
-		b.BA_CODE as depositCode, a.account_name as depositName, 
-		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		b.loan_s_code as loanCode, a.account_name as loanName, 
+		c.customer_code, c.customer_name, u.username, u.e_name ename,
+		b.loan_s_price, b.loan_s_date, b.loan_s_expriration, b.loan_s_interest
+		FROM detail_ac_tbl a, shortterm_loan_tbl b, customer_list_tbl c, users u
+		where a.DETAIL_AC_CODE = b.loan_s_code
+		and b.username = u.username
 		and b.customer_code = c.customer_code
-		order by b.BA_CODE asc
-	</select> -->
-	
-	<!-- 단기대여금 개수 가져오기 -->
-	<!-- <select id="FT_NoteCntSelect" parameterType="String" resultType="int">
-		select count(b.BA_CODE)
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
-		and b.customer_code = c.customer_code
-		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
-	</select> -->
-	
-	<!-- 단기대여금 검색한 것 가져오기 -->
-	<!-- <select id="FT_NoteSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Note">
-		SELECT
-		b.BA_CODE as depositCode, a.account_name as depositName, 
-		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
-		and b.customer_code = c.customer_code
-		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
-	</select> -->
+		order by b.loan_s_code asc
+	</select>
 	
 	<!-- 단기대여금 key 가져오기 -->
-	<!-- <select id="FT_NoteKeySelect" resultType="String">
-		select ba_code from bank_account_tbl
+	<select id="FT_LoanKeySelect" resultType="String">
+		select loan_s_code from shortterm_loan_tbl
 		where ROWNUM = 1
-		ORDER BY ba_code desc
-	</select> -->
+		ORDER BY loan_s_code desc
+	</select>
 	
 	<!-- 단기대여금 추가 -->
-	<!-- <insert id="FT_NotePrevInsert" parameterType = "java.util.Map">
-		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
-		values (#{SubjectCode}, 'DE_' || accounts_seq.nextval, #{depositName})
+	<insert id="FT_LoanPrevInsert" parameterType = "java.util.Map">
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
+		values ('qa_01400', 'LA_' || loan_seq.nextval, #{loanName}, 'SHORTTERM_LOAN_TBL')
 	</insert>
 	
-	<insert id="FT_NoteInsert" parameterType = "java.util.Map">
-		insert into bank_account_tbl(BA_CODE, CUSTOMER_CODE, BA_NUMBER, BA_HOLDER)
-		values ('DE_' || accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder})
-	</insert> -->
+	<insert id="FT_LoanInsert" parameterType = "java.util.Map">
+		insert into shortterm_loan_tbl(loan_s_code, customer_code, username, loan_s_price,
+		loan_s_date, loan_s_expriration, loan_s_interest)
+		values ('LA_' || loan_seq.currval, #{AccCode}, #{username}, #{price}, #{startDate}, #{endDate}, #{lend})
+	</insert>
 	
 	<!-- 단기대여금 수정 -->
-	<!-- <update id="FT_NotePrevUpdate" parameterType = "java.util.Map">
+	<update id="FT_LoanPrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
-		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{depositName}
-		where DETAIL_AC_CODE = #{depositCode}
+		set ACCOUNT_NAME = #{loanName}
+		where DETAIL_AC_CODE = #{loanCode}
 	</update>
 	
-	<update id="FT_NoteUpdate" parameterType = "java.util.Map">
-		update bank_account_tbl
-		set CUSTOMER_CODE = #{AccCode}, BA_NUMBER = #{AccountNo}, BA_HOLDER = #{AccountHolder}
-		where BA_CODE = #{depositCode}
-	</update> -->
+	<update id="FT_LoanUpdate" parameterType = "java.util.Map">
+		update shortterm_loan_tbl
+		set customer_code = #{AccCode}, username = #{username}, loan_s_price = #{price},
+		loan_s_date = #{startDate}, loan_s_expriration = #{endDate}, loan_s_interest = #{lend}
+		where loan_s_code = #{loanCode}
+	</update>
 	
 	<!-- 단기대여금 삭제 -->
-	<!-- <delete id="FT_NotePrevDelete" parameterType = "java.util.Map">
+	<delete id="FT_LoanPrevDelete" parameterType = "java.util.Map">
 		delete from detail_ac_tbl
 		where DETAIL_AC_CODE = #{key}
 	</delete>
 	
-	<delete id="FT_NoteDelete" parameterType = "java.util.Map">
-		delete from bank_account_tbl
-		where BA_CODE = #{key}
-	</delete> -->
+	<delete id="FT_LoanDelete" parameterType = "java.util.Map">
+		delete from shortterm_loan_tbl
+		where loan_s_code = #{key}
+	</delete>
 	
 	<!-- 단기매매증권 가져오기 -->
-	<!-- <select id="FT_NoteAllSelect" resultType="com.pj.erp.vo.FT.FT_Note">
+	<select id="FT_SecuritiesAllSelect" resultType="com.pj.erp.vo.FT.FT_Securities">
 		SELECT
-		b.BA_CODE as depositCode, a.account_name as depositName, 
-		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
+		b.ts_code as securitiesCode, a.account_name as securitiesName, 
+		c.customer_code, c.customer_name, b.ts_type, b.ts_number,
+		b.ts_date, b.ts_expriration, b.ts_amount, b.ts_money, b.ts_interest
+		FROM detail_ac_tbl a, trading_securities_tbl b, customer_list_tbl c
+		where a.DETAIL_AC_CODE = b.ts_code
 		and b.customer_code = c.customer_code
-		order by b.BA_CODE asc
-	</select> -->
-	
-	<!-- 단기매매증권 개수 가져오기 -->
-	<!-- <select id="FT_NoteCntSelect" parameterType="String" resultType="int">
-		select count(b.BA_CODE)
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
-		and b.customer_code = c.customer_code
-		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
-	</select> -->
-	
-	<!-- 단기매매증권 검색한 것 가져오기 -->
-	<!-- <select id="FT_NoteSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Note">
-		SELECT
-		b.BA_CODE as depositCode, a.account_name as depositName, 
-		c.customer_code as accCode, c.customer_name as accName, a.ACCOUNTS_CODE as subjectCode,
-		ac.ACCOUNTS_NAME as subjectName, b.ba_number as accountNo, b.ba_holder as accountHolder
-		FROM detail_ac_tbl a, bank_account_tbl b, customer_list_tbl c, accounts_tbl ac
-		where a.DETAIL_AC_CODE = b.ba_code
-		and a.ACCOUNTS_CODE = ac.ACCOUNTS_CODE
-		and b.customer_code = c.customer_code
-		and (b.BA_CODE like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or a.account_name like '%' || #{srhval, jdbcType=VARCHAR} || '%'
-		or b.ba_number like '%' || #{srhval, jdbcType=VARCHAR} || '%')
-	</select> -->
+		order by b.ts_code asc
+	</select>
 	
 	<!-- 단기매매증권 key 가져오기 -->
-	<!-- <select id="FT_NoteKeySelect" resultType="String">
-		select ba_code from bank_account_tbl
+	<select id="FT_SecuritiesKeySelect" resultType="String">
+		select ts_code from trading_securities_tbl
 		where ROWNUM = 1
-		ORDER BY ba_code desc
-	</select> -->
+		ORDER BY ts_code desc
+	</select>
 	
 	<!-- 단기매매증권 추가 -->
-	<!-- <insert id="FT_NotePrevInsert" parameterType = "java.util.Map">
-		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME)
-		values (#{SubjectCode}, 'DE_' || accounts_seq.nextval, #{depositName})
+	<insert id="FT_SecuritiesPrevInsert" parameterType = "java.util.Map">
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
+		values ('qa_00700', 'SE_' || securities_seq.nextval, #{SecuritiesName}, 'TRADING_SECURITIES_TBL')
 	</insert>
 	
-	<insert id="FT_NoteInsert" parameterType = "java.util.Map">
-		insert into bank_account_tbl(BA_CODE, CUSTOMER_CODE, BA_NUMBER, BA_HOLDER)
-		values ('DE_' || accounts_seq.currval, #{AccCode}, #{AccountNo}, #{AccountHolder})
-	</insert> -->
+	<insert id="FT_SecuritiesInsert" parameterType = "java.util.Map">
+		insert into trading_securities_tbl(ts_code, CUSTOMER_CODE, ts_type, ts_number,
+		ts_date, ts_expriration, ts_amount, ts_money, ts_interest)
+		values ('SE_' || securities_seq.currval, #{AccCode}, #{type}, #{number},
+		#{startDate}, #{endDate}, #{amount}, #{price}, #{lend})
+	</insert>
 	
 	<!-- 단기매매증권 수정 -->
-	<!-- <update id="FT_NotePrevUpdate" parameterType = "java.util.Map">
+	<update id="FT_SecuritiesPrevUpdate" parameterType = "java.util.Map">
 		update detail_ac_tbl
-		set ACCOUNTS_CODE = #{SubjectCode}, ACCOUNT_NAME = #{depositName}
-		where DETAIL_AC_CODE = #{depositCode}
+		set ACCOUNT_NAME = #{SecuritiesName}
+		where DETAIL_AC_CODE = #{SecuritiesCode}
 	</update>
 	
-	<update id="FT_NoteUpdate" parameterType = "java.util.Map">
-		update bank_account_tbl
-		set CUSTOMER_CODE = #{AccCode}, BA_NUMBER = #{AccountNo}, BA_HOLDER = #{AccountHolder}
-		where BA_CODE = #{depositCode}
-	</update> -->
+	<update id="FT_SecuritiesUpdate" parameterType = "java.util.Map">
+		update trading_securities_tbl
+		set CUSTOMER_CODE = #{AccCode}, ts_type = #{type}, ts_number = #{number},
+		ts_date = #{startDate}, ts_expriration = #{endDate}, ts_amount = #{amount}, 
+		ts_money = #{price}, ts_interest = #{lend}
+		where ts_code = #{SecuritiesCode}
+	</update>
 	
 	<!-- 단기매매증권 삭제 -->
-	<!-- <delete id="FT_NotePrevDelete" parameterType = "java.util.Map">
+	<delete id="FT_SecuritiesPrevDelete" parameterType = "java.util.Map">
 		delete from detail_ac_tbl
 		where DETAIL_AC_CODE = #{key}
 	</delete>
 	
-	<delete id="FT_NoteDelete" parameterType = "java.util.Map">
-		delete from bank_account_tbl
-		where BA_CODE = #{key}
-	</delete> -->
+	<delete id="FT_SecuritiesDelete" parameterType = "java.util.Map">
+		delete from trading_securities_tbl
+		where ts_code = #{key}
+	</delete>
 	
 	<!-- 재무상태표 계정별 합계_권순용 -->
 	<select id="FT_getAssetsList" resultType="com.pj.erp.vo.FT.FT_accounts_balance">

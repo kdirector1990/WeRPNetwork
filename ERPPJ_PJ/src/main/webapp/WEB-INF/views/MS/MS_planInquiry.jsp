@@ -6,6 +6,10 @@
 .result {
 	display: none;
 }
+
+#selectPlan{
+	display: none;
+}
 </style>
 <%@ include file="../setting.jsp"%>
 <script src="/erp/resources/assets/css/js/request.js"></script>
@@ -36,7 +40,7 @@ function callback() {
 			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
 			
 			var datas = httpRequest.responseText;
-			
+			document.getElementById("selectPlan").style.display="block";
 			result.innerHTML = datas;
 			
 		} else {
@@ -81,9 +85,9 @@ function searchCus() {
 							'<td>'+ plan_name+ '</td>' +
 							'<td>'+ username + '</td>' +
 							'<td>'+ position_code + '</td>' +
-							'<td>'+ plan_regdate + '</td>' +
-							'<td>'+ plan_startdate + '</td>' +
-							'<td>'+ plan_enddate + '</td>' +
+							'<td>'+ vo[i].plan_regdate_s + '</td>' +
+							'<td>'+ vo[i].plan_startdate_s + '</td>' +
+							'<td>'+ vo[i].plan_enddate_s + '</td>' +
 							'<td>'+ plan_state + '</td>' +
 							'<td>'+ plan_objective + '</td>' +
 							'<td>' + plan_proposal + '</td></tr>');
@@ -149,27 +153,26 @@ function searchCus() {
 								<form id="search" onsubmit="return false">
 									<table class="col-12">
 										<tr class="form-group row">
-											<tr class="form-group row">		
-												<th class="col-md-1 col-form-label">사원</th>
-												<td class="col-md-2 input-group">
-												<input type="text" name="username" id="username"
-												class="form-control" onclick="ST_searchUsername();"  onkeyup="enterkey();">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">사원</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="username" id="username" class="form-control"
+												onclick="ST_searchUsername();" onkeyup="enterkey();">
 												<input type="text" name="e_name" id="e_name"
-												class="form-control" readonly>
-												</td>
-												
-											</tr>
-										</table>
-									</form>
-									<div align="right">
-										<button type="button"
+												class="form-control" readonly></td>
+
+										</tr>
+									</table>
+								</form>
+								<div align="right">
+									<button type="button"
 										class="btn btn-dark waves-effect waves-light"
 										onclick="searchCus();">조회</button>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -177,7 +180,7 @@ function searchCus() {
 							<div class="card-body">
 								<h4 class="header-title">기획서 조회</h4>
 								<hr>
-								<table id="datatable1"
+								<table id="datatable"
 									class="table m-0 table-bordered table-hover"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 									<thead class="bg-primary text-white">
@@ -196,25 +199,20 @@ function searchCus() {
 									</thead>
 
 									<tbody id="result1">
-									
+
 									</tbody>
 								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 
-								<div id="result">
-									<%-- <br>
-									<form>
-										<input type='hidden' name="${_csrf.parameterName }"
-											value="${_csrf.token }"> <br>
-										<table id="datatable2"
-											class="table table-striped dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0;">
-											<thead>
-											</thead>
-
-											<tbody>
-											</tbody>
-										</table>
-									</form> --%>
+				<div id="selectPlan">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result"></div>
 								</div>
 							</div>
 						</div>

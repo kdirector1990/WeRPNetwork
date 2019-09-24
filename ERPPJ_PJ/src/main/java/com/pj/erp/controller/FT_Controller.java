@@ -225,7 +225,7 @@ public class FT_Controller {
 		return "FT/FT_Deposit";
 	}
 	
-	// 예금관리
+	// 받을어음관리
 	@RequestMapping("FT_note")
 	public String FT_note(HttpServletRequest req, Model model) {
 		logger.info("log => FT_note");
@@ -261,7 +261,7 @@ public class FT_Controller {
 		return result;
 	}
 	
-	// 예금관리
+	// 단기대여금 관리
 	@RequestMapping("FT_short_Loan")
 	public String FT_short_Loan(HttpServletRequest req, Model model) {
 		logger.info("log => FT_short_Loan");
@@ -274,7 +274,7 @@ public class FT_Controller {
 	// 예금 추가
 	@RequestMapping(value = "FT_LoanInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_LoanInsert(@RequestBody Map<String, Object> map) throws Exception {
-		logger.info("url : FT_NoteInsert 호출중");
+		logger.info("url : FT_LoanInsert 호출중");
 
 		String result = service.FT_LoanInsert(map);
 
@@ -292,8 +292,44 @@ public class FT_Controller {
 	// 예금 삭제
 	@RequestMapping(value = "FT_LoanDelete", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_LoanDelete(@RequestBody Map<String, Object> map) throws Exception {
-		logger.info("url : FT_NoteDelete 호출중");
+		logger.info("url : FT_LoanDelete 호출중");
 		String result = service.FT_LoanDelete(map);
+		return result;
+	}
+	
+	// 단기매매증권 관리
+	@RequestMapping("FT_short_Securities")
+	public String FT_short_Securities(HttpServletRequest req, Model model) {
+		logger.info("log => FT_short_Securities");
+
+		service.FT_SecuritiesAllSelect(req, model);
+
+		return "FT/FT_short_Securities";
+	}
+	
+	// 예금 추가
+	@RequestMapping(value = "FT_SecuritiesInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SecuritiesInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SecuritiesInsert 호출중");
+
+		String result = service.FT_SecuritiesInsert(map);
+
+		return result;
+	}
+
+	// 예금 수정
+	@RequestMapping(value = "FT_SecuritiesUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SecuritiesUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SecuritiesUpdate 호출중");
+		String result = service.FT_SecuritiesUpdate(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_SecuritiesDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_SecuritiesDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_SecuritiesDelete 호출중");
+		String result = service.FT_SecuritiesDelete(map);
 		return result;
 	}
 
@@ -478,6 +514,7 @@ public class FT_Controller {
 	public String FT_users_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_users_list");
 		model.addAttribute("key", req.getParameter("key"));
+		model.addAttribute("keyname", req.getParameter("keyname"));
 		service.FT_UsersAllSelect(req, model);
 		return "FT/FT_users_list";
 	}

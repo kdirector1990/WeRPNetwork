@@ -1,64 +1,80 @@
 package com.pj.erp.vo.FT;
 
 public class FT_Loan {
-	private String depositCode; // key
-	private String depositName; // 적금명
-	private String accCode; // 거래처
-	private String accName; // 거래처명
-	private String subjectCode; // 계정
-	private String subjectName; // 계정명
-	private String accountNo; // 계좌번호
-	private String accountHolder; // 예금주
+	private String loanCode; // key
+	private String loanName; // 적금명
+	private String customer_code; // 거래처
+	private String customer_name; // 거래처명
+	private String username; // 계정
+	private String ename;
+	private String loan_s_price; // 계정명
+	private String loan_s_date; // 계좌번호
+	private String loan_s_expriration; // 예금주
+	private String loan_s_interest; // 예금주
 	
 	
-	public String getDepositCode() {
-		return depositCode;
+	public String getLoanCode() {
+		return loanCode;
 	}
-	public void setDepositCode(String depositCode) {
-		this.depositCode = depositCode;
+	public void setLoan_s_code(String loanCode) {
+		this.loanCode = loanCode;
 	}
-	public String getDepositName() {
-		return depositName;
+	public String getLoanName() {
+		return loanName;
 	}
-	public void setDepositName(String depositName) {
-		this.depositName = depositName;
+	public void setLoanName(String loanName) {
+		this.loanName = loanName;
 	}
-	public String getAccCode() {
-		return accCode;
+	public String getCustomer_code() {
+		return customer_code;
 	}
-	public void setAccCode(String accCode) {
-		this.accCode = accCode;
+	public void setCustomer_code(String customer_code) {
+		this.customer_code = customer_code;
 	}
-	public String getAccName() {
-		return accName;
+	public String getCustomer_name() {
+		return customer_name;
 	}
-	public void setAccName(String accName) {
-		this.accName = accName;
+	public void setCustomer_name(String customer_name) {
+		this.customer_name = customer_name;
 	}
-	public String getSubjectCode() {
-		return subjectCode;
+	public String getUsername() {
+		return username;
 	}
-	public void setSubjectCode(String subjectCode) {
-		this.subjectCode = subjectCode;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public String getSubjectName() {
-		return subjectName;
+	public String getEname() {
+		return ename;
 	}
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
+	public void setEname(String ename) {
+		this.ename = ename;
 	}
-	public String getAccountNo() {
-		return accountNo;
+	public String getLoan_s_price() {
+		return loan_s_price;
 	}
-	public void setAccountNo(String accountNo) {
-		this.accountNo = accountNo;
+	public void setLoan_s_price(String loan_s_price) {
+		this.loan_s_price = loan_s_price;
 	}
-	public String getAccountHolder() {
-		return accountHolder;
+	public String getLoan_s_date() {
+		return loan_s_date;
 	}
-	public void setAccountHolder(String accountHolder) {
-		this.accountHolder = accountHolder;
+	public void setLoan_s_date(String loan_s_date) {
+		this.loan_s_date = loan_s_date;
 	}
+	public String getLoan_s_expriration() {
+		return loan_s_expriration;
+	}
+	public void setLoan_s_expriration(String loan_s_expriration) {
+		this.loan_s_expriration = loan_s_expriration;
+	}
+	public String getLoan_s_interest() {
+		return loan_s_interest;
+	}
+	public void setLoan_s_interest(String loan_s_interest) {
+		this.loan_s_interest = loan_s_interest;
+	}
+	
+	
 	
 	
 	

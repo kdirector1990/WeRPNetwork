@@ -30,11 +30,8 @@
 </script>
 </head>
 <body>
-	<div class="card-body"
-		style="padding-bottom: 0px; padding-bottom: 24px;">
-		<div style="width: 100%; height: 310px; overflow: auto" class="plandiv">
 			<form>
-				<table id="datatable" class="table table-bordered table-hover"
+				<table id="datatable" class="table table-bordered"
 					style="height: 550px;">
 					<tbody>
 						<!--  있으면 -->
