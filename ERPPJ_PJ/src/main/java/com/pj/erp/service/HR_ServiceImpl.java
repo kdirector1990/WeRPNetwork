@@ -490,13 +490,22 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String [] username = req.getParameterValues("username");
 		
+		Calendar c = Calendar.getInstance();
+		int Hour = c.get(Calendar.HOUR_OF_DAY);
+		
 		for(int i = 0; i < username.length; i ++) {
 			map.put("username", username[i]);
 			int users = dao.selectWork(map);
 			System.out.println("작동");
 			if(users == 0) {
-				System.out.println("작동2");
-				insertCnt = dao.StartWork(username[i]);
+				if(Hour > 9) {
+					System.out.println("정상출근");
+					insertCnt = dao.StartWork(username[i]);
+				}
+				else {
+					System.out.println("지각입니다.");
+					insertCnt = dao.lateWorkStart(username[i]);
+				}
 			}
 		}
 		
@@ -512,12 +521,22 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String [] username = req.getParameterValues("username");
 		
+		Calendar c = Calendar.getInstance();
+		int Hour = c.get(Calendar.HOUR_OF_DAY);
+		
 		for(int i = 0; i < username.length; i++) {
 			map.put("username", username[i]);
 			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
-				updateCnt = dao.EndWork(username[i]);
+				if(Hour < 18) {
+					System.out.println("조퇴합니다.");
+					updateCnt = dao.ealryWorkEnd(username[i]);
+				}
+				else {
+					System.out.println("정상퇴근");
+					updateCnt = dao.EndWork(username[i]);
+				}
 			}
 		}
 		
@@ -764,10 +783,19 @@ public class HR_ServiceImpl implements HR_Service{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("username", username);
+		
+		Calendar c = Calendar.getInstance();
+		int Hour = c.get(Calendar.HOUR_OF_DAY);
+		
 		int users = dao.selectWork(map);		
 		if(users == 0) {
-			System.out.println("작동2");
-			insertCnt = dao.StartWork(username);
+			if(Hour > 9) {
+				insertCnt = dao.lateWorkStart(username);
+			}
+			else {
+				System.out.println("정상출근");
+				insertCnt = dao.StartWork(username);
+			}
 		}
 		
 		return insertCnt;
@@ -783,10 +811,20 @@ public class HR_ServiceImpl implements HR_Service{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("username", username);
+		Calendar c = Calendar.getInstance();
+		int Hour = c.get(Calendar.HOUR_OF_DAY);
+		
 		int users = dao.selectEndWork(map);
 		
 		if(users == 0) {
-			updateCnt = dao.EndWork(username);
+			if(Hour < 18) {
+				System.out.println("조퇴");
+				updateCnt = dao.ealryWorkEnd(username);
+			}
+			else {
+				System.out.println("정상퇴근");
+				updateCnt = dao.EndWork(username);
+			}
 		}
 		
 		return updateCnt;

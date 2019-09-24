@@ -14,15 +14,15 @@
 	
 	<!-- 상세계정테이블에 등록하기 -->
 	<insert id="InsertAC" parameterType="com.pj.erp.vo.FT.FT_Detail_ac">
-		Insert Into detail_ac_tbl(accounts_code, detail_ac_code, account_name)
-		Values(#{accounts_code}, #{detail_ac_code}, #{account_name})
+		Insert Into detail_ac_tbl(accounts_code, detail_ac_code, account_name, di_table)
+		Values(#{accounts_code}, lpad(DETAIL_AC_SEQ.nextval,10,'04ta_'), #{account_name}, 'COMPUTER_EQUIPMENT_TBL')
 		
 	</insert>
 	
 	<!-- 고정자산 입력 -->
 	<insert id="InsertCT" parameterType="com.pj.erp.vo.CT.CT_VO">
 		Insert into computer_equipment_tbl(ceq_code, ceq_name, ceq_type, ceq_acquire_date, department_code, ceq_location, ceq_prime_cost, ceq_durable, ceq_depreciation, ceq_depreciation_type)
-		Values(#{ceq_code}, #{ceq_name}, #{ceq_type}, #{ceq_acquire_date}, #{department_code}, #{ceq_location}, #{ceq_prime_cost}, #{ceq_durable}, #{ceq_depreciation}, #{ceq_depreciation_type})
+		Values(lpad(DETAIL_AC_SEQ.CURRVAL,10,'04ta_'), #{ceq_name}, #{ceq_type}, #{ceq_acquire_date}, #{department_code}, #{ceq_location}, #{ceq_prime_cost}, #{ceq_durable}, #{ceq_depreciation}, #{ceq_depreciation_type})
 	</insert>
 	
 	<!-- 고정자산 목록 갯수 구하기 -->
