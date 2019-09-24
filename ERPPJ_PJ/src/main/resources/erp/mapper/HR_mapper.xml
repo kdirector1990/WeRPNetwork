@@ -315,6 +315,11 @@
 		select appointment_seq.nextval from dual
 	</select>
 	
+	<!-- 공고내용 가져오기 -->
+	<select id="getApInfo" parameterType="String" resultType="com.pj.erp.vo.HR.HR_ApVO">
+		select * from appointment_tbl where ap_code = #{ap_code}
+	</select>
+	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
 		insert into position_record_tbl(position_record_code, username, record_date)
@@ -346,8 +351,8 @@
 	<!-- 부서조회 -->
 	<select id="getDepartmentCodeName" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_name, department_code
-		from department_tbl	
-		where department_name like '%'||#{department_name}||'%' 
+		from department_tbl
+		where department_name like '%'||#{department_name}||'%'
 	</select>
 	
 	<!-- 지각/조퇴 갯수 -->
