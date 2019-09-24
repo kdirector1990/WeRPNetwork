@@ -53,8 +53,11 @@ public interface FT_DAO {
 	// 전표삭제
 	public int FT_chitDelete(Map<String, Object> map);
 	
+	//상세계정입력
+	public int FT_Detailinput(Map<String, Object> map);
+	
 	//예산신청입력처리
-	public int FT_applyinput();
+	public int FT_applyinput(Map<String, Object> map);
 	
 	// 적금 가져오기
 	public List<FT_Savings> FT_SavingsSelect();

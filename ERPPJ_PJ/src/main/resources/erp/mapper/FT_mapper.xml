@@ -4,6 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace = "com.pj.erp.persistence.FT_DAO">
+	<!-- 상세계정입력 -->
+	<insert id = "FT_Detailinput" parameterType="java.util.Map">
+		insert into detail_ac_tbl(accounts_code, detail_ac_code, account_name, di_table)
+		values('qa_00400','01qa_00400_'||dept_budget_seq.nextval,'예산('||#{subject}||')' ,'BUDGET_TBL')
+	</insert>
+	
+	<!-- 예산신청입력 -->
+	<insert id = "FT_applyinput" parameterType="java.util.Map">
+		insert into budget_tbl(budget_code, department_code, budget_subject, budget_amount, eas_code, e_approval_code)
+		values('01qa_00400_'||dept_budget_seq.currval,#{dept} ,'예산('||#{subject}||#{purpose}||')' ,#{money},'1','1000')
+	</insert>
+
 	<!-- 날짜 검색 분개 가져오기 -->
 	<select id="FT_DateChitCnt" parameterType="java.util.Map" resultType="int">
 		select count(journal_number) 

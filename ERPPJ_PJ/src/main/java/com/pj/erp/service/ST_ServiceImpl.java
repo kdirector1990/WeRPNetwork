@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ST_DAO;
-import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
@@ -354,6 +353,8 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
 		vo.setCustomer_code(req.getParameter("customer_code"));
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
+		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
+		
 		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
 		
@@ -366,6 +367,30 @@ public class ST_ServiceImpl implements ST_Service {
 	public List<Release> getRelease(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
 		List<Release> list = dao.getreleaseResult(map);
 		System.out.println("작동");
+		return list;
+	}
+	
+	// ST_refund 검색 조회
+	@Override
+	public List<Release> getrefund(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<Release> list = dao.getrefundList(map);
+		return list;
+	}
+	
+	// ST_delay_state 출고 지연 현황 검색 조회
+	@Override
+	public List<SaleList> getDelay(Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+			List<SaleList> list = null;
+			String a = (String) map.get("release");
+			int aa = Integer.parseInt(a);
+			
+			if(aa == 2) {
+				list = dao.getDelaystate(map);
+			}
+			if(aa == 3) {
+				list = dao.getDelaystate2(map);
+			}
+			
 		return list;
 	}
 		
@@ -495,6 +520,7 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setCustomer_code(req.getParameter("customer_code"));
 		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
 		vo.setRelease_state(req.getParameter("release_state"));
+		
 		
 		int saleListWrite = dao.insertsaleList(vo);
 		

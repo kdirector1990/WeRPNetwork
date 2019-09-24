@@ -156,4 +156,16 @@ public interface HR_DAO {
 	
 	//NFC 지우기
 	public int deleteNfc(String tag_code);
+	
+	// 사원이름 검색 확인
+	public int selectEname(String e_name);
+		
+	//검색 목록 가져오기
+	public List<HR_VO> getUsernameList(String e_name);
+	
+	// 공고명 검색 확인
+	public int selectAp_name(String ap_name);
+	
+	// 공고코드 목록 가져오기
+	public List<HR_ApVO> getAp_codeList(String ap_name);
 }

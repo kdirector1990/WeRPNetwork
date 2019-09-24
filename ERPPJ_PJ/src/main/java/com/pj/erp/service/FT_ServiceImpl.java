@@ -569,9 +569,29 @@ public class FT_ServiceImpl implements FT_Service{
 		return tf;
 	}
 	
+	//예산신청입력처리
 	@Override
 	public void FT_applyinput(HttpServletRequest req, Model model) {
-		dao.FT_applyinput();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int count = Integer.parseInt(req.getParameter("count"));
+		System.out.println(count);
+		for(int i = 0 ; i <= count ; i++) {
+			String dept_name = req.getParameter("dept_name"+i);
+			String money = req.getParameter("money"+i);
+			String dept_code = req.getParameter("dept_code"+i);
+			String purpose = req.getParameter("purpose"+i);
+			
+			map.put("subject", dept_name);
+			map.put("money", money);
+			map.put("dept", dept_code);
+			map.put("purpose", purpose);
+			
+		
+			dao.FT_Detailinput(map);
+			dao.FT_applyinput(map);
+			
+		}
 	}
 
 	//단기차입금목록검색결과

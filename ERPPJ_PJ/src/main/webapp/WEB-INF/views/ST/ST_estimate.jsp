@@ -98,7 +98,7 @@
 											</div>
 
 											<div class="col-xl-6">
-
+    
 
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">품명</label>

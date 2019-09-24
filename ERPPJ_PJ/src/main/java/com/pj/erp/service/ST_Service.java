@@ -63,8 +63,14 @@ public interface ST_Service {
 	// ST_release 검색 기능
 	public List<Release> getRelease(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// ST_delay_state 지연 현황 검색 기능
+	public List<SaleList> getDelay(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	// ST_release 상세 페이지
 	public void releaseWriteForm(HttpServletRequest req, Model model);
+	
+	// ST_refund 반품
+	public List<Release> getrefund(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
 	// ST_release 수정 처리 페이지
 	public void releaseModifyPro(HttpServletRequest req, Model model);
