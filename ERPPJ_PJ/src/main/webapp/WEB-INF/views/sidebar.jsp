@@ -526,7 +526,7 @@
 	                          				<li><a href="FT_insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
 						                    <li><a href="FT_IS">손익계산서</a></li>
-						                    <li><a href="FT_p_cost">원가보고서</a></li>
+						                   <!--  <li><a href="FT_p_cost">원가보고서</a></li> -->
 	                          		</ul>
 	                          	</li>
 	                          	

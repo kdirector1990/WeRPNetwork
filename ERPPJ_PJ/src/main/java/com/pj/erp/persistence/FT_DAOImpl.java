@@ -670,9 +670,9 @@ public class FT_DAOImpl implements FT_DAO{
 	
 	// 손익계산서 - 권순용 
 	@Override
-	public List<FT_accounts_balance> FT_getIsList(String typename) {
+	public List<FT_accounts_balance> FT_getIsList(String aacounts_name) {
 		 
-		return null;
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_getIsList", aacounts_name);
 	}
 	
 	

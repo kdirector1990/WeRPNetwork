@@ -616,19 +616,61 @@ public class FT_ServiceImpl implements FT_Service{
 			throws ParseException {
 		Map<String, Object> is_result = new HashMap<String, Object>();
 		
-		String typename = "수익"; 
-		List<FT_accounts_balance> income_list = dao.FT_getAssetsList(typename);
-		is_result.put("income_list", income_list);
-		System.out.println(income_list.get(0).getAccount_name());
+		String typename = "매출이익"; 
+		List<FT_accounts_balance> income_list = dao.FT_getIsList(typename);
+		  
+		typename = "제품"; 
+		List<FT_accounts_balance> cost_list = dao.FT_getIsList(typename);
+		
+		 
+		
+		double total_income = 0;
+		double total_cost = 0;
+		for(int i=0; i<income_list.size();i++) {
+			total_income += income_list.get(i).getCreditor_total();
+		}
+		for(int i=0; i<cost_list.size();i++) {
+			total_cost += cost_list.get(i).getCreditor_total();
+		}
+		
+		
+		double total_sale_income = total_income+total_cost;
+		/*	매출총이익, 매출원가, 매출이익*/
+		is_result.put("total_sale_income", total_sale_income);
+		is_result.put("total_income", total_income);
+		is_result.put("total_cost", total_cost);
+		
+		//판관비
+		typename = "판매비와관리비"; 
+		List<FT_accounts_balance> sale_expense = dao.FT_getIsList(typename);
+		is_result.put("sale_expense", sale_expense);
 		
 		
 		
+		typename = "영업외수익"; 
+		List<FT_accounts_balance> etc_income = dao.FT_getIsList(typename);
+		
+		typename = "영업외비용"; 
+		List<FT_accounts_balance> etc_cost = dao.FT_getIsList(typename);
+		
+		double total_etc_income=0;
+		for(int i=0; i<etc_income.size();i++) {
+			total_etc_income += etc_income.get(i).getCreditor_total();
+		}
+		
+		double total_etc_cost=0;
+		for(int i=0; i<etc_cost.size();i++) {
+			total_etc_cost += etc_cost.get(i).getDebtor_total();			
+		}
+		
+		is_result.put("total_etc_income",total_etc_income); // 영업 외 수익 합계
+		is_result.put("total_etc_cost",total_etc_cost); // 영업 외 비용
 		
 		
+		typename = "법인세"; 
+		List<FT_accounts_balance> tax_cost = dao.FT_getIsList(typename); 
+		is_result.put("tax_cost",tax_cost); // 법인세
 		
-		typename = "비용"; 
-		List<FT_accounts_balance> cost_list = dao.FT_getAssetsList(typename);
-		is_result.put("cost_list", cost_list);
 		
 		
 		return is_result;

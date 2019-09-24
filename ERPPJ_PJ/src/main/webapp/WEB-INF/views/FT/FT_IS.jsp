@@ -21,24 +21,37 @@
 					dataType : "json",
 					contentType : "application/json;charset=UTF-8",
 					success : function(is_map) { 
-						var income = is_map.income_list;
-						var cost = is_map.cost_list; 
+						var total_sale_income = is_map.total_sale_income;
+						var income = is_map.total_income;
+						var cost = is_map.total_cost; 
 						
-						$('#is_result').empty();
+						var sale_expense = is_map.sale_expense;
 						
+						var bs_income = income-sale_expense;
 						
-						$('#is_result').append('<tr><td><h4>1. 수익</h4></td></tr>');
-						for(var i=0; i<income.length; i++){
-							var result_val = income[i].creditor_total-income[i].debtor_total;
-							$('#is_result').append('<tr>'+
-									'<td colspan="2">'+income[i].account_name+'</td>'+
-									
-									'<td>'+result_val+'</td>'+ 
-									
-									'</tr>');
-							
-						}  
-
+						var total_etc_income = is_map.total_etc_income;
+						var total_etc_cost = is_map.total_etc_cost;
+						
+						var nontax_income = bs_income+total_etc_income-total_etc_cost;
+						
+						var tax_cost = is_map.tax_cost;
+						
+						var net_profit = nontax_income-tax_cost;
+						
+						$('#is_result').empty(); 
+						$('#is_result').append('<tr><td><h4>총매출액</h4></td><td>'+total_sale_income+'</td></tr>');  
+						$('#is_result').append('<tr><td>매출원가</td><td>'+cost+'</td></tr>');  
+						$('#is_result').append('<tr><td><h4>매출총이익</h4></td><td>'+income+'</td></tr>');  
+						$('#is_result').append('<tr><td>판매비와 관리비</td><td>'+sale_expense+'</td></tr>');
+						$('#is_result').append('<tr><td><h4>영업이익</h4></td><td>'+bs_income+'</td></tr>');  
+						
+						$('#is_result').append('<tr><td>영업외 수익</td><td>'+total_etc_income+'</td></tr>');  
+						$('#is_result').append('<tr><td>영업외 비용</td><td>'+total_etc_cost+'</td></tr>');   
+						$('#is_result').append('<tr><td><h4>법인세차감전순이익</h4></td><td>'+nontax_income +'</td></tr>');
+						
+						$('#is_result').append('<tr><td>법인세</td><td>'+tax_cost+'</td></tr>');  
+						
+						$('#is_result').append('<tr><td><h4>당기순이익</h4></td><td>'+net_profit +'</td></tr>');
 					},
 					error : function() {
 						alert("에러, 관리자에게 문의하세요\n에러코드: FT_BS - search_bs - ajax error")
@@ -166,7 +179,7 @@
 															<table class="table mb-0">
 																<thead class="thead-light">
 																	<tr>
-																		<th rowspan="2" colspan="2">과목</th>
+																		<th rowspan="2" style="width: 30%;">과목</th>
 																		<th colspan="2">제 1 당기</th>
 																		 
 																	</tr>
