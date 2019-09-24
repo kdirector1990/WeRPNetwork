@@ -146,6 +146,10 @@
 															<th>발령후정보</th>
 														</tr>
 													</thead>
+													
+													<tbody id="result">
+													
+													</tbody>
 												</table>
 											</div>
 										</div>
