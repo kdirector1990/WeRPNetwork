@@ -19,6 +19,7 @@ import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_accounts_balance;
@@ -103,47 +104,68 @@ public interface FT_DAO {
 	
 	public int FT_DepositUpdate(Map<String, Object> map);
 
-	// 예금 가져오기
+	// 단기대여금 가져오기
 	public List<FT_Loan> FT_LoanAllSelect();
 	
-	// 예금 key 가져오기
+	// 단기대여금 key 가져오기
 	public String FT_LoanKeySelect();
 	
-	// 예금추가
+	// 단기대여금추가
 	public int FT_LoanPrevInsert(Map<String, Object> map);
 	
 	public int FT_LoanInsert(Map<String, Object> map);
 	
-	// 예금수정
-	public int FT_LoanPrevDelete(Map<String, Object> map);
-	
-	public int FT_LoanDelete(Map<String, Object> map);
-	
-	// 예금삭제
+	// 단기대여금수정
 	public int FT_LoanPrevUpdate(Map<String, Object> map);
 	
 	public int FT_LoanUpdate(Map<String, Object> map);
+	
+	// 단기대여금삭제
+	public int FT_LoanPrevDelete(Map<String, Object> map);
+	
+	public int FT_LoanDelete(Map<String, Object> map);
 
-	// 예금 가져오기
+	// 받을어음 가져오기
 	public List<FT_Note> FT_NoteAllSelect();
 	
-	// 예금 key 가져오기
+	// 받을어음 key 가져오기
 	public String FT_NoteKeySelect();
 	
-	// 예금추가
+	// 받을어음추가
 	public int FT_NotePrevInsert(Map<String, Object> map);
 	
 	public int FT_NoteInsert(Map<String, Object> map);
 	
-	// 예금수정
+	// 받을어음수정
+	public int FT_NotePrevUpdate(Map<String, Object> map);
+	
+	public int FT_NoteUpdate(Map<String, Object> map);
+	
+	// 받을어음삭제
 	public int FT_NotePrevDelete(Map<String, Object> map);
 	
 	public int FT_NoteDelete(Map<String, Object> map);
 	
-	// 예금삭제
-	public int FT_NotePrevUpdate(Map<String, Object> map);
+	// 단기매매증권 가져오기
+	public List<FT_Securities> FT_SecuritiesAllSelect();
 	
-	public int FT_NoteUpdate(Map<String, Object> map);
+	// 단기매매증권 key 가져오기
+	public String FT_SecuritiesKeySelect();
+	
+	// 단기매매증권추가
+	public int FT_SecuritiesPrevInsert(Map<String, Object> map);
+	
+	public int FT_SecuritiesInsert(Map<String, Object> map);
+	
+	// 단기매매증권수정
+	public int FT_SecuritiesPrevUpdate(Map<String, Object> map);
+	
+	public int FT_SecuritiesUpdate(Map<String, Object> map);
+	
+	// 단기매매증권삭제
+	public int FT_SecuritiesPrevDelete(Map<String, Object> map);
+	
+	public int FT_SecuritiesDelete(Map<String, Object> map);
 	
 	// 카드 가져오기
 	public List<FT_Card> FT_CardManagementSelect();
@@ -237,6 +259,15 @@ public interface FT_DAO {
 	
 	// 계정과목 검색한 것 가져오기
 	public List<FT_Subject> FT_AccSubjectSelect(String srhval);
+	
+	// 부서가져오기
+	public List<HR_VO> FT_DepartmentAllSelect();
+	
+	// 부서 검색 한 것 개수 가져오기
+	public int FT_DepartmentCntSelect(String srhval);
+	
+	// 부서 검색한 것 가져오기
+	public List<HR_VO> FT_DepartmentSelect(String srhval);
 	
 	// 사원 가져오기
 	public List<HR_VO> FT_UsersAllSelect();

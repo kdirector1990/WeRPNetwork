@@ -62,7 +62,7 @@ public class MS_ServiceImpl implements MS_Service {
 
 	// 기획서 수정
 	@Override
-	public int updatePlan(HttpServletRequest req, Model model) {
+	public void updatePlan(HttpServletRequest req, Model model) {
 		
 		MS_plan vo = new MS_plan();
 		vo.setPlan_code(req.getParameter("plan_code"));
@@ -93,18 +93,15 @@ public class MS_ServiceImpl implements MS_Service {
 		System.out.println(vo.getPlan_objective());
 		System.out.println(vo.getPlan_proposal());
 		
-		int updateCnt = dao.updatePlan(vo);
-		
-		return updateCnt;
+		dao.updatePlan(vo);
 	}
 
 	//기획서 삭제
 	@Override
-	public int deletePlan(HttpServletRequest req, Model model) {
+	public void deletePlan(HttpServletRequest req, Model model) {
 		String plan_code = req.getParameter("plan_code");
 		
-		int deleteCnt = dao.deletePlan(plan_code);
-		return deleteCnt;
+		dao.deletePlan(plan_code);
 	}
 
 	//e_name(사원명)으로 username 찾기
@@ -123,6 +120,15 @@ public class MS_ServiceImpl implements MS_Service {
 		}
 
 		model.addAttribute("cnt", cnt);
+	}
+
+	//상세조회
+	@Override
+	public void selectPlanDetail(HttpServletRequest req, Model model) {
+		String plan_code = req.getParameter("plan_code");
+		MS_plan vo = dao.getPlanDetail(plan_code);
+		
+		model.addAttribute("dto", vo);
 	}
 
 }
