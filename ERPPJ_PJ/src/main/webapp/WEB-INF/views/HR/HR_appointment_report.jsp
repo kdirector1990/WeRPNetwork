@@ -56,27 +56,7 @@
 												<span class="d-block d-sm-none"><i
 													class="fa fa-individual"></i></span> <span
 												class="d-none d-sm-block">개인별</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link"
-											id="Classification-tab" data-toggle="tab"
-											href="#Classification" role="tab"
-											aria-controls="Classification" aria-selected="true"> <span
-												class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-												<span class="d-none d-sm-block">발령구분별</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link"
-											id="appointment-tab" data-toggle="tab" href="#appointment"
-											role="tab" aria-controls="appointment" aria-selected="false">
-												<span class="d-block d-sm-none"><i
-													class="fa fa-envelope-o"></i></span> <span
-												class="d-none d-sm-block">발령호수별</span>
-										</a></li>
-										<li class="nav-item"><a class="nav-link" id="history-tab"
-											data-toggle="tab" href="#history" role="tab"
-											aria-controls="history" aria-selected="false"> <span
-												class="d-block d-sm-none"><i class="fa fa-envelope-o"></i></span>
-												<span class="d-none d-sm-block">발령내역별</span>
-										</a></li>
+										</a></li>										
 									</ul>
 
 									<div class="card-body table-responsive">
@@ -105,7 +85,7 @@
 											</tr>
 											<tr class="form-group row">
 												<th class="col-md-1 col-form-label">발령구분
-												</td>
+												
 												<td class="col-md-2 input-group"><input type="text"
 													class="form-control" name="" placeholder="발령구분">
 													<div class="input-group-append">
@@ -115,7 +95,7 @@
 														</button>
 													</div></td>
 												<th class="col-md-1 col-form-label">발령호수
-												</td>
+												
 												<td class="col-md-2 input-group"><input type="text"
 													class="form-control" name="" placeholder="발령호수">
 													<div class="input-group-append">
@@ -125,7 +105,7 @@
 														</button>
 													</div></td>
 												<th class="col-md-1 col-form-label">발령내역
-												</td>
+												
 												<td class="col-md-2 input-group"><input type="text"
 													class="form-control" name="" placeholder="발령내역">
 													<div class="input-group-append">
@@ -166,14 +146,18 @@
 															<th>발령후정보</th>
 														</tr>
 													</thead>
+													
+													<tbody id="result">
+													
+													</tbody>
 												</table>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<!-- 발령구분별 -->
-								<div class="tab-pane" id="Classification" role="tabpanel"
+								
+								<!-- <div class="tab-pane" id="Classification" role="tabpanel"
 									aria-labelledby="Classification-tab">
 									<div class="col-sm-12">
 										<div class="card-body table-responsive">
@@ -201,7 +185,7 @@
 									</div>
 								</div>
 
-								<!-- 발령호수별 -->
+								발령호수별
 								<div class="tab-pane" id="appointment" role="tabpanel"
 									aria-labelledby="appointment-tab">
 									<div class="col-sm-12">
@@ -230,7 +214,7 @@
 									</div>
 								</div>
 
-								<!-- 발령내역별 -->
+								발령내역별
 								<div class="tab-pane" id="history" role="tabpanel"
 									aria-labelledby="history-tab">
 									<div class="col-sm-12">
@@ -257,7 +241,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --> 
 							</div>
 
 							<!--  -->

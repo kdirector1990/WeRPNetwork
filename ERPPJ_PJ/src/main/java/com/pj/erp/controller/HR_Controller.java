@@ -242,8 +242,50 @@ public class HR_Controller {
 	@RequestMapping("HR_Greeting")
 	public String HR_Greeting(HttpServletRequest req, Model model) {
 		logger.info("log => HR_Greeting");
+		service.departmentList(req, model);
+		service.positionList(req, model);
 		
 		return "HR/HR_Greeting";
+	}
+	
+	@RequestMapping("HR_searchUsername")
+	public String HR_searchUsername(HttpServletRequest req, Model model) {
+		logger.info("log => HR_searchUsername");
+		
+		return "HR/HR_searchUsername";
+	}
+	
+	// 검색목록가져오기
+	@RequestMapping("HR_searchUsername_result")
+	public String HR_searchUsername_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_searchUsername_result");
+		service.searchUsername(req, model);
+		
+		return "HR/HR_searchUsername_result";
+	}
+	
+	@RequestMapping("HR_searchAp_code")
+	public String HR_searchAp_code(HttpServletRequest req, Model model) {
+		logger.info("log => HR_searchAp_code");
+		
+		return "HR/HR_searchAp_code";
+	}
+	
+	// 검색목록가져오기
+	@RequestMapping("HR_searchAp_code_result")
+	public String HR_searchAp_code_result(HttpServletRequest req, Model model) {
+		logger.info("log => HR_searchAp_code_result");
+		service.searchAp_code(req, model);
+		
+		return "HR/HR_searchAp_code_result";
+	}
+	
+	@RequestMapping("HR_recordinput")
+	public String HR_recordinput(HttpServletRequest req, Model model) {
+		logger.info("log => HR_recordinput");
+		service.HR_recordinput(req, model);
+		
+		return "index";
 	}
 	
 	@RequestMapping("HR_record_input_pro")
