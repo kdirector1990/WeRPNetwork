@@ -224,6 +224,78 @@ public class FT_Controller {
 
 		return "FT/FT_Deposit";
 	}
+	
+	// 예금관리
+	@RequestMapping("FT_note")
+	public String FT_note(HttpServletRequest req, Model model) {
+		logger.info("log => FT_note");
+
+		service.FT_NoteAllSelect(req, model);
+
+		return "FT/FT_note";
+	}
+	
+	// 예금 추가
+	@RequestMapping(value = "FT_NoteInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_NoteInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteInsert 호출중");
+
+		String result = service.FT_NoteInsert(map);
+
+		return result;
+	}
+
+	// 예금 수정
+	@RequestMapping(value = "FT_NoteUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_NoteUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteUpdate 호출중");
+		String result = service.FT_NoteUpdate(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_NoteDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_NoteDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteDelete 호출중");
+		String result = service.FT_NoteDelete(map);
+		return result;
+	}
+	
+	// 예금관리
+	@RequestMapping("FT_short_Loan")
+	public String FT_short_Loan(HttpServletRequest req, Model model) {
+		logger.info("log => FT_short_Loan");
+
+		service.FT_LoanAllSelect(req, model);
+
+		return "FT/FT_short_Loan";
+	}
+	
+	// 예금 추가
+	@RequestMapping(value = "FT_LoanInsert", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LoanInsert(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteInsert 호출중");
+
+		String result = service.FT_LoanInsert(map);
+
+		return result;
+	}
+
+	// 예금 수정
+	@RequestMapping(value = "FT_LoanUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LoanUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LoanUpdate 호출중");
+		String result = service.FT_LoanUpdate(map);
+		return result;
+	}
+	
+	// 예금 삭제
+	@RequestMapping(value = "FT_LoanDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LoanDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_NoteDelete 호출중");
+		String result = service.FT_LoanDelete(map);
+		return result;
+	}
 
 	// 카드관리
 	@RequestMapping("FT_CardManagement")

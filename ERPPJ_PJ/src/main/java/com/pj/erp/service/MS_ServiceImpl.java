@@ -51,18 +51,13 @@ public class MS_ServiceImpl implements MS_Service {
 		model.addAttribute("insertCnt", insertCnt);
 	}
 
-	//기획서 목록가져오기
+	//기획서 조회 - 사원이름으로 검색 결과가져오기
 	@Override
-	public void selectPlan(HttpServletRequest req, Model model) {
-		int cnt = 0; 			//글의 갯수
-		
-		cnt = dao.getPlanListCnt();
-		
-		System.out.println("cnt : "+ cnt);
-		
-		List<MS_plan> dto = dao.getPlanList();
-		model.addAttribute("dto", dto);
-		model.addAttribute("cnt", cnt);
+	public List<MS_plan> selectPlan(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		List<MS_plan> vo = dao.getPlanList(username);
+		model.addAttribute("vo", vo);
+		return vo;
 	}
 
 	// 기획서 수정

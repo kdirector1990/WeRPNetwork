@@ -25,14 +25,8 @@ public class MS_DAOImpl implements MS_DAO{
 
 	//기획서 조회
 	@Override
-	public List<MS_plan> getPlanList() {
-		return sqlSession.selectList("com.pj.erp.persistence.MS_DAO.getPlanList");
-	}
-
-	//기획서 목록 갯수
-	@Override
-	public int getPlanListCnt() {
-		return sqlSession.selectOne("com.pj.erp.persistence.MS_DAO.getPlanListCnt");
+	public List<MS_plan> getPlanList(String username) {
+		return sqlSession.selectList("com.pj.erp.persistence.MS_DAO.getPlanList", username);
 	}
 
 	//기획서 수정

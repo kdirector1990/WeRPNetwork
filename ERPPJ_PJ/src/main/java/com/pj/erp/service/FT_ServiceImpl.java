@@ -28,7 +28,9 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
+import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -327,6 +329,88 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public String FT_DepositDelete(Map<String, Object> map) {
 		if(dao.FT_DepositPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
+	// 예금가져오기
+	@Override
+	public void FT_NoteAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Note> savings = dao.FT_NoteAllSelect();
+		System.out.println(savings);
+		System.out.println(savings.size());
+		model.addAttribute("deposit", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+
+	// 예금추가
+	@Override
+	public String FT_NoteInsert(Map<String, Object> map) {
+		int result = dao.FT_NoteInsert(map);
+		if(result != 0) {
+			return dao.FT_NoteKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 예금수정
+	@Override
+	public String FT_NoteUpdate(Map<String, Object> map) {
+		if(dao.FT_NoteUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
+	// 예금삭제
+	@Override
+	public String FT_NoteDelete(Map<String, Object> map) {
+		if(dao.FT_NotePrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
+	// 예금가져오기
+	@Override
+	public void FT_LoanAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Loan> savings = dao.FT_LoanAllSelect();
+		System.out.println(savings);
+		System.out.println(savings.size());
+		model.addAttribute("deposit", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+
+	// 예금추가
+	@Override
+	public String FT_LoanInsert(Map<String, Object> map) {
+		int result = dao.FT_LoanInsert(map);
+		if(result != 0) {
+			return dao.FT_LoanKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 예금수정
+	@Override
+	public String FT_LoanUpdate(Map<String, Object> map) {
+		if(dao.FT_LoanUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
+	// 예금삭제
+	@Override
+	public String FT_LoanDelete(Map<String, Object> map) {
+		if(dao.FT_LoanPrevDelete(map) != 0) {
 			return "성공";
 		} else {
 			return "실패";

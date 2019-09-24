@@ -10,7 +10,8 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-		var searchCount = 1;
+	
+var searchCount = 1;
 	$(function() {
 		$('#search').click(
 						
@@ -67,6 +68,7 @@
 			});
 		});
 	});
+	
 </script>
 </head>
 <body>
@@ -108,22 +110,13 @@
 									<form class="search">
 										<table class="col-12">
 											<tr class="form-group row">
-												<th class="col-md-1 col-form-label">부서코드 검색</th>
-												<td><input type="text" class="form-control"
-													name="department_code" id="department_code"></td>
-												<th class="col-md-1 col-form-label">&nbsp;</th>
+												
+												<th class="col-md-1 col-form-label">부서명 검색</th>
 
-												<th class="col-md-1 col-form-label">부서명</th>
-												<td><select class="form-control" id="department_name"
-													name="department_name">
-														<option value=""></option>
-														<option value="인사">인사</option>
-														<option value="기획">기획</option>
-														<option value="영업">영업</option>
-														<option value="재무">재무</option>
-														<option value="전산">전산</option>
-														<option value="제조">제조</option>
-												</select></td>
+												<td><input type="text" class="form-control"
+													name="department_name" id="department_name"></td>
+												<th class="col-md-1 col-form-label">&nbsp;</th>												
+
 												<td><button type="button"
 														class="btn btn-primary waves-effect waves-light"
 														id="search">검색</button></td>

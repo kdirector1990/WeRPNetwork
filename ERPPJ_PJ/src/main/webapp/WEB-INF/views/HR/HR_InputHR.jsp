@@ -170,7 +170,7 @@
 																	<label class="col-lg-2 col-form-label"
 																		for="simpleinput">성명<span class="text-danger">*</span></label>
 																	<div class="col-lg-8">
-																		<input type="text" class="form-control" name="e_name"
+																		<input type="text" class="form-control" name="e_name" id = "e_name"
 																			placeholder="한글이름">
 																	</div>
 																</div>
@@ -185,7 +185,7 @@
 																					name="e_gender" class="custom-control-input"
 																					value="1" checked> <label
 																					class="custom-control-label"
-																					for="customRadioInline1">남성</label>
+																					for="customRadioInline1" id = "g_male">남성</label>
 																			</div>
 																			<div
 																				class="custom-control custom-radio custom-control-inline mb-2">
@@ -193,7 +193,7 @@
 																					name="e_gender" class="custom-control-input"
 																					value="2"> <label
 																					class="custom-control-label"
-																					for="customRadioInline2">여성</label>
+																					for="customRadioInline2" id = "g_female">여성</label>
 																			</div>
 																		</div>
 																	</div>
@@ -208,7 +208,7 @@
 																					name="e_type" class="custom-control-input"
 																					value="local" checked> <label
 																					class="custom-control-label"
-																					for="customRadioInline7">내국인</label>
+																					for="customRadioInline7" id = "local">내국인</label>
 																			</div>
 																			<div
 																				class="custom-control custom-radio custom-control-inline mb-2">
@@ -216,7 +216,7 @@
 																					name="e_type" class="custom-control-input"
 																					value="foreign"> <label
 																					class="custom-control-label"
-																					for="customRadioInline8">외국인</label>
+																					for="customRadioInline8" id = "foreign">외국인</label>
 																			</div>
 																		</div>
 																	</div>
@@ -277,7 +277,8 @@
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
 																<select class="form-control select2"
-																	name="department_code" onchange="">
+																	name="department_code" id = "department_code" onchange="">
+																		<option value="">부서를 선택하세요</option>
 																	<c:forEach var="dep" items="${dep}">
 																		<option value="${dep.department_code}">${dep.department_name}</option>
 																	</c:forEach>
@@ -288,7 +289,8 @@
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
 																<select class="form-control select2"
-																	name="position_code" onchange="">
+																	name="position_code" id = "position_code" onchange="">
+																	<option value="">직책을 선택하세요</option>
 																	<c:forEach var="poi" items="${poi}">
 																		<option value="${poi.position_code}">${poi.position_name}</option>
 																	</c:forEach>
@@ -300,8 +302,9 @@
 															<label class="col-md-1 col-form-label" for="simpleinput">직급<span
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
-																<select class="form-control select2" name="rank_code"
+																<select class="form-control select2" name="rank_code" id = "rank_code"
 																	onchange="">
+																	<option value="">직급을 선택하세요</option>
 																	<c:forEach var="rank" items="${rank}">
 																		<option value="${rank.rank_code}">${rank.rank_name}(${rank.rank_code})</option>
 																	</c:forEach>
@@ -311,13 +314,13 @@
 															<label class="col-md-1 col-form-label" for="simpleinput">호봉<span
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
-																<input type="text" class="form-control"
+																<input type="text" class="form-control" id = "level_step"
 																	name="level_step" placeholder="호봉">
 															</div>
 														</div>
 														<div class="form-group text-right mb-0">
 															<button
-																class="btn btn-primary waves-effect waves-light mr-1"
+																class="btn btn-primary waves-effect waves-light mr-1" id = "submit"
 																type="submit">Submit</button>
 															<button type="reset"
 																class="btn btn-secondary waves-effect">Cancel</button>

@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import com.pj.erp.vo.ST.Estimate;
 
 import com.pj.erp.vo.ST.Release;
-
+import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
@@ -93,6 +93,9 @@ public interface ST_Service {
 	// ST_saleList 상세 페이지 삭제
 	public void saleListDeletePro(HttpServletRequest req, Model model);
 	
+	// ST_contrast_pp 검색 기능
+	public List<ST_contrast> getcontrast (Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	
 	
 	
@@ -124,4 +127,7 @@ public interface ST_Service {
 	//매출 - 부서
 	public List<ST_searchDepartmentCode> searchDepartmentCode(HttpServletRequest req, Model model);
 
+	//부서조회 팝업창 검색
+	public void searchDepCode(HttpServletRequest req, Model model);
+	
 }

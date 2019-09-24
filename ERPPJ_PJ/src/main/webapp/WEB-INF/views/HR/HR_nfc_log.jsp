@@ -55,13 +55,16 @@
 						var nfc_code = nfclog[i].nfc_code;
 						var username = nfclog[i].username;
 						var e_name = nfclog[i].e_name;
+						var tag_code = nfclog[i].tag_code;
 						
-					$('#result').append('<tr>'+                         	
+						alert(tag_code);
+						
+					$('#result').append('<tr>'+
+							'<td><input type="checkbox" name="tag_code" value="\''+tag_code+'\'" class="checklist"></td>' +
 							'<td>'+ tag_date +'</td>'+
 							'<td>'+ nfc_code +'</td>'+
 							'<td>'+ username +'</td>'+ 
 							'<td>'+ e_name +'</td>'+
-							
                  		'</tr>');
 					
 					if(searchCount == 1){
@@ -99,8 +102,32 @@
 			});			
 		}); 
 	 });
+
+	 function delteNfcList(){
+		 var param = $("#deleteNfc").serializeArray();
+		 $.ajax({
+				url: '/erp/HR_NFC_Delete',
+				type: 'POST',
+				data : param,
+				dataTpye: 'json',
+				success: function(updateCnt){
+					if(updateCnt == 1){
+						alert("폐기처리를 수정하였습니다.")
+					}
+				},
+				error : function(){
+					alert("전산 오류로 인하여 완료처리 수정에 실패하였습니다.");
+				}
+			});
+	 }
 	 
- 
+	 function allcheck() {
+			if ($("#allChecked").prop("checked")) {
+				$(".checklist").prop("checked", true);
+			} else {
+				$(".checklist").prop("checked", false);
+			}
+		}
 </script>
 </head>
 
@@ -208,34 +235,37 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-body table-responsive">
-														<table id="datatable"
-															class="table table-striped table-bordered dt-responsive nowrap">
-
-															<thead>
-																<tr>
-																	<th>nfc접촉시간</th>
-																	<th>nfc고유번호</th>
-																	<th>사번</th>
-																	<th>사원명</th> 
-																</tr>
-															</thead>
-
-															<tbody id="result">
-
-															</tbody>
-														</table>
-
+													<form id="deleteNfc">
+													<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+															<table id="datatable"
+																class="table table-striped table-bordered dt-responsive nowrap">
+	
+																<thead>
+																	<tr>
+																		<th><input type="checkbox" id="allChecked"
+																onclick="allcheck();"></th>
+																		<th>nfc접촉시간</th>
+																		<th>nfc고유번호</th>
+																		<th>사번</th>
+																		<th>사원명</th> 
+																	</tr>
+																</thead>
+																
+																<tbody id="result">
+	
+																</tbody>
+																
+															</table>	
+														</form>
 														<div align="right">
 															<br>
 														</div>
 
 														<div class="form-group text-right mb-0">
-															<button
-																class="btn btn-primary waves-effect waves-light mr-1"
-																type="button" onclick="">수정</button>
 															<button type="reset"
 																class="btn btn-secondary waves-effect" type="button"
-																onclick="">삭제</button>
+																onclick="delteNfcList();">삭제</button>
 														</div>
 													</div>
 												</div>

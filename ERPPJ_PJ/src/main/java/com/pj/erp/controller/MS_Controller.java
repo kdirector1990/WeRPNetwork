@@ -1,5 +1,7 @@
 package com.pj.erp.controller;
 
+import java.util.List;
+
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pj.erp.service.MS_Service;
+import com.pj.erp.vo.MS.MS_plan;
+import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 
 @Controller
 public class MS_Controller {
@@ -40,19 +44,27 @@ public class MS_Controller {
 	@RequestMapping("MS_planInquiry")
 	public String planInquiry(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planInquiry");
-		service.selectPlan(req, model);
 		
 		return "MS/MS_planInquiry";
 	}
 	
-	//기획서 목록 가져오기
+	//기획서 조회 - 사원이름으로 검색 결과
+	@RequestMapping("MS_planInquiry_result")
+	@ResponseBody
+	public List<MS_plan> MS_planInquiry_result(HttpServletRequest req, Model model) {
+		logger.info("log => MS_planInquiry_result");
+		List<MS_plan> vo = service.selectPlan(req, model);
+		
+		return vo;
+	}
+	
+	//기획서 관리 목록 가져오기
 	@RequestMapping("MS_planManagement")
 	public String planManagement(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planManagement");
-		service.selectPlan(req, model);
+		//service.selectPlan(req, model);
 		
 		return "MS/MS_planManagement";
-
 	}
 	
 	//기획서 수정 처리

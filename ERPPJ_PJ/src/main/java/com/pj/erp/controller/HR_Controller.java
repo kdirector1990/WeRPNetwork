@@ -172,14 +172,14 @@ public class HR_Controller {
 		return "HR/HR_EmployeePhysicaly";
 	}
 	
-	//책정임금현황 검색결과
+	//신체정보 검색결과
 	@RequestMapping(value = "HR_EmployeePhysicaly_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public  List<HR_PhysicalVO> HR_EmployeePhysicaly(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_EmployeePhysicaly");
 		List<HR_PhysicalVO> list = service.getPhysical(map, req, model);
 		return list;
-	}
+	}	
 	
 	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")
@@ -480,5 +480,28 @@ public class HR_Controller {
 		
 		return updateCnt;
 	}
+	
+	//지각,조퇴 일수 가져오기 
+	@RequestMapping("HR_Late_Check")
+	@ResponseBody
+	public List<HR_Time_VO> HR_Late_Check(HttpServletRequest req, Model model) {
+		logger.info("log => HR_Late_Check");
+		
+		List<HR_Time_VO> vo = service.LateDateSelect(req, model);
+		
+		return vo;
+	}
+	
+	//NFC데이터 체크박스 지우기
+	@RequestMapping("HR_NFC_Delete")
+	@ResponseBody
+	public int HR_NFC_Delete(HttpServletRequest req, Model model) {
+		logger.info("log => HR_NFC_Delete");
+		
+		int deleteCnt = service.deleteNfcSelect(req, model);
+		
+		return deleteCnt;
+	}
+	
 	
 }

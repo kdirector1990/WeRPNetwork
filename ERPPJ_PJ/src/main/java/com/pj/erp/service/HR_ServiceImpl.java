@@ -94,10 +94,10 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO vo = new HR_VO();		
 		
 		String username = dao.getUsername();
-		String e_name = req.getParameter("e_name");
+		String e_name = "1234";
 		// String e_picture = file.getOriginalFilename();
 		
-		String password = passwordEncoder.encode("1234");
+		String password = passwordEncoder.encode(e_name);
 		System.out.println(e_name);				
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
@@ -496,15 +496,7 @@ public class HR_ServiceImpl implements HR_Service{
 			System.out.println("작동");
 			if(users == 0) {
 				System.out.println("작동2");
-				Calendar c = Calendar.getInstance();
-				int Hour = c.get(Calendar.HOUR_OF_DAY);
-				
-				if(Hour > 9) {
-					insertCnt = dao.lateWorkStart(username[i]);
-				}
-				else {
-					insertCnt = dao.StartWork(username[i]);
-				}
+				insertCnt = dao.StartWork(username[i]);
 			}
 		}
 		
@@ -525,17 +517,7 @@ public class HR_ServiceImpl implements HR_Service{
 			int users = dao.selectEndWork(map);
 			
 			if(users == 0) {
-				
-				Calendar c = Calendar.getInstance();
-				int Hour = c.get(Calendar.HOUR_OF_DAY);
-				
-				if(Hour < 18) {
-					updateCnt = dao.ealryWorkEnd(username[i]);
-				}
-				else {
-					updateCnt = dao.EndWork(username[i]);
-				}
-				
+				updateCnt = dao.EndWork(username[i]);
 			}
 		}
 		
@@ -618,23 +600,30 @@ public class HR_ServiceImpl implements HR_Service{
 	@Override
 	public void HR_recordinput(HttpServletRequest req, Model model) {
 		
-		HR_RecordVO vo = new HR_RecordVO();		
+		HR_RecordVO vo = new HR_RecordVO();
 		
+		String position_record_code = dao.getPositionRecord();
 		String username = req.getParameter("username");
+		String ap_code = dao.getAP_code();
 		String position_code = req.getParameter("position_code");
 		String position_code_after = req.getParameter("position_code_after");
-		String position_record_code = dao.getPositionRecord();
-		Date record_date = (Date.valueOf(req.getParameter("record_date")));
-		Date record_date_after = (Date.valueOf(req.getParameter("record_date_after")));
-		String ap_code = "";
+		String department_code = req.getParameter("department_code");
+		String department_code_after = req.getParameter("department_code_after");
 		
+		String sDate = req.getParameter("record_date");
+		sDate = sDate.replace("/", "-");		
+		String eDate = req.getParameter("record_date_after");
+		eDate = eDate.replace("/", "-");
 		
 		vo.setUsername(username);
+		vo.setAp_code(ap_code);
 		vo.setPosition_code(position_code);
 		vo.setPosition_code_after(position_code_after);
 		vo.setPosition_record_code(position_record_code);
-		vo.setRecord_date(record_date);		
-		vo.setRecord_date_after(record_date_after);
+		vo.setDepartment_code(department_code);
+		vo.setDepartment_code_after(department_code_after);
+		vo.setRecord_date(Date.valueOf(sDate));		
+		vo.setRecord_date_after(Date.valueOf(eDate));
 		
 		int cnt = 0;
 		
@@ -645,24 +634,23 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 	
 	@Override
-	public void HR_APinput(HttpServletRequest req, Model model) {
-		int i = 0;
+	public void HR_APinput(HttpServletRequest req, Model model) {		
 		
 		HR_ApVO ap = new HR_ApVO();
 		
 		String ap_code = dao.getAP_code();
 		String ap_name = req.getParameter("ap_name");
-		String ap_content = req.getParameter("ap_content");	
-		
-		System.out.println(req.getParameter("ap_reg_date"));
-		System.out.println(req.getParameter("ap_est_date"));
+		String ap_content = req.getParameter("ap_content");				
 		
 		ap.setAp_code(ap_code);
 		ap.setAp_name(ap_name);
 		ap.setAp_content(ap_content);
-		ap.setAp_reg_date(Date.valueOf(req.getParameter("ap_reg_date"))); 
+		ap.setAp_reg_date(new Timestamp(System.currentTimeMillis())); 
 		ap.setAp_est_date(Date.valueOf(req.getParameter("ap_est_date")));
-		ap.setAp_status(req.getParameter("ap_status"));		
+		ap.setAp_status(req.getParameter("ap_status"));
+		
+		System.out.println(ap_name);
+		System.out.println(ap_content);
 		
 		int cnt = 0;		
 		
@@ -758,11 +746,9 @@ public class HR_ServiceImpl implements HR_Service{
 	public List<HR_VO> getDepartment(HttpServletRequest req, Model model){
 		
 		String department_name = req.getParameter("department_name");
-		String department_code = req.getParameter("department_code");
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("department_name", department_name);
-		map.put("department_code", department_code);
 		
 		List<HR_VO> list = dao.getDepartmentCodeName(map);
 		
@@ -781,16 +767,7 @@ public class HR_ServiceImpl implements HR_Service{
 		int users = dao.selectWork(map);		
 		if(users == 0) {
 			System.out.println("작동2");
-			Calendar c = Calendar.getInstance();
-			int Hour = c.get(Calendar.HOUR_OF_DAY);
-			System.out.println(Hour);
-			if(Hour > 9) {
-				insertCnt = dao.lateWorkStart(username);
-			}
-			else {
-				insertCnt = dao.StartWork(username);
-			}
-			
+			insertCnt = dao.StartWork(username);
 		}
 		
 		return insertCnt;
@@ -809,18 +786,81 @@ public class HR_ServiceImpl implements HR_Service{
 		int users = dao.selectEndWork(map);
 		
 		if(users == 0) {
-			
-			Calendar c = Calendar.getInstance();
-			int Hour = c.get(Calendar.HOUR_OF_DAY);
-			
-			if(Hour < 18) {
-				updateCnt = dao.ealryWorkEnd(username);
-			}
-			else {
-				updateCnt = dao.EndWork(username);
-			}
+			updateCnt = dao.EndWork(username);
 		}
 		
+		return updateCnt;
+	}
+
+	//지각, 조퇴 정보 가져오기
+	@Override
+	public List<HR_Time_VO> LateDateSelect(HttpServletRequest req, Model model) {		
+		
+		int cnt = 0;
+		int i = 1;
+		
+		String month;
+		List<HR_Time_VO> dto = new ArrayList<>();
+		List<HR_Time_VO> dtos = null;
+
+		String username = req.getParameter("username");
+
+		Calendar c = Calendar.getInstance();
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		System.out.println(year);
+		String years= year.substring(2);
+		
+		do {
+			if(i < 10) {
+				month = "0"+i;
+			}
+			else {
+				month = ""+i;
+			}
+			HR_Time_VO vo = new HR_Time_VO();
+			vo.setUsername(username);
+			vo.setYear(years);
+			vo.setMonth(month);
+			cnt = dao.LateEearlyer(vo);
+			if(cnt != 0) {
+				System.out.println();
+				System.out.println("갯수 : " + cnt);
+				System.out.println("년도 : " + vo.getYear());
+				System.out.println("사원번호 : " + vo.getUsername());
+				System.out.println("월 : " + vo.getMonth());
+				dtos = dao.selectLateEearlyEnd(vo);
+
+				System.out.println(" -------------------- 구분선 ----------------------");
+				System.out.println(" dtos.size() : " + dtos.size());
+				System.out.println(" -------------------- 구분선 ---------- ------------");
+
+				for (int j = 0; j < dtos.size(); j++) {
+					HR_Time_VO temp = dtos.get(j);
+
+					dto.add(temp);
+				}
+
+				System.out.println("작동");
+				cnt = 0;
+			}
+			i++;
+		}while(i < 13);
+		
+		return dto;
+	}
+
+	
+
+	@Override
+	public int deleteNfcSelect(HttpServletRequest req, Model model) {
+		
+		int updateCnt = 0;
+		
+		String[] tag_code = req.getParameterValues("tag_code");
+		
+		for(int i = 0; i < tag_code.length; i++) {
+			updateCnt = dao.deleteNfc(tag_code[i]);
+		}
 		return updateCnt;
 	}
 

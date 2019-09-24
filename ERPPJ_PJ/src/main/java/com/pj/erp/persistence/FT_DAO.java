@@ -15,7 +15,9 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
+import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
@@ -101,6 +103,48 @@ public interface FT_DAO {
 	
 	public int FT_DepositUpdate(Map<String, Object> map);
 
+	// 예금 가져오기
+	public List<FT_Loan> FT_LoanAllSelect();
+	
+	// 예금 key 가져오기
+	public String FT_LoanKeySelect();
+	
+	// 예금추가
+	public int FT_LoanPrevInsert(Map<String, Object> map);
+	
+	public int FT_LoanInsert(Map<String, Object> map);
+	
+	// 예금수정
+	public int FT_LoanPrevDelete(Map<String, Object> map);
+	
+	public int FT_LoanDelete(Map<String, Object> map);
+	
+	// 예금삭제
+	public int FT_LoanPrevUpdate(Map<String, Object> map);
+	
+	public int FT_LoanUpdate(Map<String, Object> map);
+
+	// 예금 가져오기
+	public List<FT_Note> FT_NoteAllSelect();
+	
+	// 예금 key 가져오기
+	public String FT_NoteKeySelect();
+	
+	// 예금추가
+	public int FT_NotePrevInsert(Map<String, Object> map);
+	
+	public int FT_NoteInsert(Map<String, Object> map);
+	
+	// 예금수정
+	public int FT_NotePrevDelete(Map<String, Object> map);
+	
+	public int FT_NoteDelete(Map<String, Object> map);
+	
+	// 예금삭제
+	public int FT_NotePrevUpdate(Map<String, Object> map);
+	
+	public int FT_NoteUpdate(Map<String, Object> map);
+	
 	// 카드 가져오기
 	public List<FT_Card> FT_CardManagementSelect();
 	

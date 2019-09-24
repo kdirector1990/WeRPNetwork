@@ -11,6 +11,8 @@ import com.pj.erp.vo.ST.CustomerList;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.ProductList;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_contrast;
+import com.pj.erp.vo.ST.ST_department;
 import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
@@ -193,7 +195,12 @@ public class ST_DAOImpl implements ST_DAO {
 	public int deleteSaleList(String salelist_code) {
 		return sqlSession.delete("com.pj.erp.persistence.ST_DAO.deleteSaleList", salelist_code);
 	}
-
+	
+	// ST_contrast 검색 조회
+	@Override
+	public List<ST_contrast> getContrast(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getContrast", map);
+	}
 	
 	
 	
@@ -225,8 +232,8 @@ public class ST_DAOImpl implements ST_DAO {
 
 	// 사원 이름 검색 확인
 	@Override
-	public int selectName(String username) {
-		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectName", username);
+	public int selectName(String e_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectName", e_name);
 	}
 	
 	// 사원 검색 목록
@@ -257,6 +264,18 @@ public class ST_DAOImpl implements ST_DAO {
 	@Override
 	public List<ST_searchDepartmentCode> getDepartmentCode(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getDepartmentCode", map);
+	}
+
+	//팝업창 부서조회 목록 유무
+	@Override
+	public int selectDepName(String department_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectDepName", department_name);
+	}
+
+	//팝업창 부서조회 목록
+	@Override
+	public List<ST_department> getDepartmentList(String department_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getDepartmentList", department_name);
 	}
 	
 

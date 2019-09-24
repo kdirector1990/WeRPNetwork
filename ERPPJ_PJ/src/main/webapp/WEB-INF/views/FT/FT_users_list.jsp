@@ -64,8 +64,8 @@
     	}
     	
 	    function setvalue(val){
-			$("#usercode", opener.document).val(scode);
-    		$("#username", opener.document).val(sname);
+			$("input[name=username${keyname}]", opener.document).val(scode);
+    		$("input[name=ename${keyname}]", opener.document).val(sname);
     		
    			self.close();
 		}

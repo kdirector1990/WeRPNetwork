@@ -4,16 +4,26 @@ import java.sql.Date;
 
 public class HR_RecordVO {
 	
+	private String position_record_code;
 	private String username;
 	private String position_code;
 	private String position_code_after;
-	private String position_record_code;
+	private String department_code;
+	private String department_code_after;
 	private Date record_date_after;
 	private Date record_date;
-	private String ap_code;
-	
+	private String ap_code;	
 	
 	public HR_RecordVO() {}
+
+	public String getPosition_record_code() {
+		return position_record_code;
+	}
+
+
+	public void setPosition_record_code(String position_record_code) {
+		this.position_record_code = position_record_code;
+	}
 
 
 	public String getUsername() {
@@ -25,15 +35,17 @@ public class HR_RecordVO {
 		this.username = username;
 	}
 
+
 	public String getPosition_code() {
 		return position_code;
 	}
-	
+
+
 	public void setPosition_code(String position_code) {
 		this.position_code = position_code;
 	}
-	
-	
+
+
 	public String getPosition_code_after() {
 		return position_code_after;
 	}
@@ -44,13 +56,23 @@ public class HR_RecordVO {
 	}
 
 
-	public String getPosition_record_code() {
-		return position_record_code;
+	public String getDepartment_code() {
+		return department_code;
 	}
 
 
-	public void setPosition_record_code(String position_record_code) {
-		this.position_record_code = position_record_code;
+	public void setDepartment_code(String department_code) {
+		this.department_code = department_code;
+	}
+
+
+	public String getDepartment_code_after() {
+		return department_code_after;
+	}
+
+
+	public void setDepartment_code_after(String department_code_after) {
+		this.department_code_after = department_code_after;
 	}
 
 
@@ -82,6 +104,6 @@ public class HR_RecordVO {
 	public void setAp_code(String ap_code) {
 		this.ap_code = ap_code;
 	}
-	
+
 	
 }

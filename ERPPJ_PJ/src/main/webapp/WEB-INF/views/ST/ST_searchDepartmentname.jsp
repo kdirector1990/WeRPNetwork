@@ -15,24 +15,31 @@
 
 // 검색창 포커스	 
 function searchNameFocus(){
-	document.searchName.customer_name.focus();
+	document.searchName.department_name.focus();
+}
+
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 실행할 내용
+         load1();
+    }
 }
 
 // 결과
-function load1(customer_name) {
-	var url = document.searchName.customer_name.value;
+function load1(department_name) {
+	var url = document.searchName.department_name.value;
 	
-	sendRequest(callback, "ST_searchCustomername_result", "post", "customer_name="+url);
+	sendRequest(callback, "ST_searchDepartmentname_result", "post", "department_name="+url);
 }
 
 function callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.customer_name.value){
-			alert("거래처명을 입력하세요.");
+		if(!document.searchName.department_name.value){
+			alert("부서명을 입력하세요.");
 			location.reload();
-			document.searchName.customer_name.focus();
+			document.searchName.department_name.focus();
 			return false;
 		}
 	
@@ -55,21 +62,19 @@ function callback() {
 } 
 
 
-function setName(customer_name, deal_state, customer_code) {
-	opener.document.getElementById("customer_nameP").value = customer_name;
-	opener.document.getElementById("deal_stateP").value = deal_state;
-	opener.document.getElementById("customer_codeP").value = customer_code;
+function setName(department_name, department_code) {
+	opener.document.getElementById("department_name").value = department_name;
+	opener.document.getElementById("department_code").value = department_code;
+
 	//test alert
-	alert(customer_name, deal_state, customer_code);
+	alert(department_name, department_code);
 	
-	$("#customer_nameP", opener.document).val(customer_name); //jquery 이용
-	$(opener.document).find("#customer_nameP").val(customer_name); //find를 이용한 jquery
+	$("#department_name", opener.document).val(department_name); //jquery 이용
+	$(opener.document).find("#department_name").val(department_name); //find를 이용한 jquery
 	
-	$("#deal_stateP", opener.document).val(deal_state); //jquery 이용
-	$(opener.document).find("#deal_stateP").val(deal_state); //find를 이용한 jquery
+	$("#department_code", opener.document).val(department_code); //jquery 이용
+	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
 	
-	$("#customer_codeP", opener.document).val(customer_code); //jquery 이용
-	$(opener.document).find("#customer_codeP").val(customer_code); //find를 이용한 jquery
 	self.close();
 	
 }
@@ -92,7 +97,7 @@ function setName(customer_name, deal_state, customer_code) {
 					<div class="col-12">
 						<div class="page-title-box" style="text-align: center;">
 							<h4>
-								<b>계정목록</b>
+								<b>부서목록</b>
 							</h4>
 						</div>
 					</div>
@@ -104,12 +109,12 @@ function setName(customer_name, deal_state, customer_code) {
 						<div class="card">
 							<div class="card-body"
 								style="margin-bottom: 0px; padding-bottom: 44px;">
-								<form action="" name="searchName">
+								<form name="searchName" onsubmit="return false">
 									<table>
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
-											<td><input type="text" name="customer_name"
-												class="form-control form-control-sm"
+											<td><input onkeyup="enterkey();" type="text"
+												name="department_name" class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
 										</tr>

@@ -315,6 +315,11 @@
 		select appointment_seq.nextval from dual
 	</select>
 	
+	<!-- 공고내용 가져오기 -->
+	<select id="getApInfo" parameterType="String" resultType="com.pj.erp.vo.HR.HR_ApVO">
+		select * from appointment_tbl where ap_code = #{ap_code}
+	</select>
+	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
 		insert into position_record_tbl(position_record_code, username, record_date)
@@ -346,8 +351,40 @@
 	<!-- 부서조회 -->
 	<select id="getDepartmentCodeName" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_name, department_code
-		from department_tbl	
-		where department_name like '%'||#{department_name}||'%' 
-		or department_code like '%'||#{department_code}||'%'
+		from department_tbl
+		where department_name like '%'||#{department_name}||'%'
 	</select>
+	
+	<!-- 지각/조퇴 갯수 -->
+	<select id="LateEearlyer" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="int">
+		select Count(tc_code)
+		From time_card_tbl
+		Where username = #{username}
+		And tc_come_time is not null
+		And tc_leave_time is not null
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time Like #{year}||'/'||#{month}||'%'
+		And tc_state = '3'
+	</select>
+	
+	<!-- 지각/조퇴(월, 시간, 갯수) -->
+	<select id="selectLateEearlyEnd" parameterType="com.pj.erp.vo.HR.HR_Time_VO" resultType="com.pj.erp.vo.HR.HR_Time_VO">
+		select count(*) as count, To_char(tc_come_time, 'mm') as month,
+    		tc_leave_time, tc_come_time 
+            from time_card_tbl
+		Where username = #{username}
+		And tc_come_time is not null
+		And tc_leave_time is not null
+		And tc_leave_time Like #{year}||'/'||#{month}||'%'
+		And tc_come_time Like #{year}||'/'||#{month}||'%'
+		And tc_state = '3'
+		Group by tc_leave_time, tc_come_time, To_char(tc_come_time, 'mm')
+	</select>
+	
+	<!-- NFC체크박스 지우기 -->
+	<delete id="deleteNfc" parameterType="String">
+		Delete nfc_log_tbl
+		Where tag_code = #{tag_code}
+	</delete>
+	
 </mapper>
