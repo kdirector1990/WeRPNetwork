@@ -46,7 +46,7 @@ public class MateralServiceImpl {
     // 이더를 전송하는 메소드
     @SuppressWarnings("deprecation")
 	public void payCreateClub(HttpServletRequest req) throws Exception {
-    	// 구매하는 부서의 이름으로 구매하게 만든다. 
+    	// 구매하는 부서의 코드로 구매하게 만든다. 
     	String deptcode = (String) req.getSession().getAttribute("department_code");
     	// 2번째 계정의 primary key를 접속한 동호회 개설자에게 부여한다.
     	Credentials new_credentials = Credentials.create("e1bc6e0fc06696e454b1c42286b0b5b0ddcf4eba190976a24e9645924f70485a");
