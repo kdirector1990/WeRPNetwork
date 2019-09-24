@@ -135,7 +135,7 @@
         		} else if(window.event.which == 13) {
 	        		// 자바스크립트 객체 생성
 	         		obj.loanCode = $("input[name=loanCode" + cc + "]").val();
-	         		obj.loanNumber = $("input[name=loanName" + cc + "]").val();
+	         		obj.loanName = $("input[name=loanName" + cc + "]").val();
 	         		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
 	         		obj.AccName = $("input[name=AccName" + cc + "]").val();
 	         		obj.username = $("input[name=username" + cc + "]").val();
@@ -230,9 +230,9 @@
         		} else if(window.event.which == 13) {
         			var obj = new Object();
             		var jsonData;
-	                 
+            		
 	              	// 자바스크립트 객체 생성
-	         		obj.noteNumber = $("input[name=loanName" + cc + "]").val();
+	         		obj.loanName = $("input[name=loanName" + cc + "]").val();
 	         		obj.AccCode = $("input[name=AccCode" + cc + "]").val();
 	         		obj.AccName = $("input[name=AccName" + cc + "]").val();
 	         		obj.username = $("input[name=username" + cc + "]").val();
@@ -380,10 +380,10 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                            <li class="breadcrumb-item active">받을어음관리</li>
+                                            <li class="breadcrumb-item active">단기대여금관리</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">받을어음관리</h4>
+                                    <h4 class="page-title">단기대여금관리</h4>
                                 </div>
                             </div>
                         </div>     
@@ -428,15 +428,15 @@
 		                                            <c:set var="cnt" value="0"/>                               
 		                                        	<c:forEach var="lo" items="${loan}">
 		                                        		<tr>																			
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "loanCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${no.loan_r_code}"></td>
-			                                                <td><input type="text" id = "first${cnt}" onfocus = "focuse(${cnt});" name = "loanName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.loanName}"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.customer_code}"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${no.customer_name}"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "username${cnt}" class="form-control" onclick = "userslist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.username}"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "ename${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.e_name}"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "price${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${no.loan_s_price}"></td>
-			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.loan_s_date}"></td>
-			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.loan_s_expriration}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "loanCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lo.loanCode}"></td>
+			                                                <td><input type="text" id = "first${cnt}" onfocus = "focuse(${cnt});" name = "loanName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.loanName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.customer_code}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lo.customer_name}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "username${cnt}" class="form-control" onclick = "userslist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.username}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "ename${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.ename}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "price${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${lo.loan_s_price}"></td>
+			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.loan_s_date.substring(0,10)}"></td>
+			                                                <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.loan_s_expriration.substring(0,10)}"></td>
 			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${lo.loan_s_interest}"></td>
 			                                            </tr>
 			                                            <c:set var="cnt" value="${cnt+1}"/>
@@ -451,7 +451,7 @@
 			                                            <td><input type="text" onfocus = "focuse(${cnt});" name = "price${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 			                                            <td><input type="date" onfocus = "focuse(${cnt});" name = "startDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
 			                                            <td><input type="date" onfocus = "focuse(${cnt});" name = "endDay${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-			                                            <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+			                                            <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "lend${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enterinsert(${cnt});"></td>
 		                                            </tr>
 		                                        </tbody>
                                             </table>
