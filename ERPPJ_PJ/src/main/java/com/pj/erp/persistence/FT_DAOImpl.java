@@ -15,9 +15,11 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
+import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_accounts_balance;
@@ -233,36 +235,79 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_DepositDelete",map);
 	}
 	
-	// 예금 가져오기
+	// 단기대여금 가져오기
+	@Override
+	public List<FT_Loan> FT_LoanAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_LoanAllSelect");
+	}
+	
+	// 단기대여금 키 가져오기
+	@Override
+	public String FT_LoanKeySelect() {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_LoanKeySelect");
+	}
+
+	// 단기대여금 추가
+	@Override
+	public int FT_LoanPrevInsert(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LoanPrevInsert",map);
+	}
+
+	@Override
+	public int FT_LoanInsert(Map<String, Object> map) {
+		int previnsertCnt = FT_LoanPrevInsert(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LoanInsert",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 단기대여금 수정
+	@Override
+	public int FT_LoanPrevUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LoanPrevUpdate",map);
+	}
+
+	@Override
+	public int FT_LoanUpdate(Map<String, Object> map) {
+		int previnsertCnt = FT_LoanPrevUpdate(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LoanUpdate",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 단기대여금 삭제
+	@Override
+	public int FT_LoanPrevDelete(Map<String, Object> map) {
+		int previnsertCnt = FT_LoanDelete(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LoanPrevDelete",map);
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int FT_LoanDelete(Map<String, Object> map) {
+		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LoanDelete",map);
+	}
+	
+	// 받을어음 가져오기
 	@Override
 	public List<FT_Note> FT_NoteAllSelect() {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_NoteAllSelect");
 	}
-
-	// 예금 검색 한 것 개수 가져오기
-	@Override
-	public int FT_NoteCntSelect(String srhval) {
-		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
-		return dao.FT_NoteCntSelect(srhval);
-	}
 	
-	// 예금 검색한 것 가져오기
-	@Override
-	public List<FT_Note> FT_NoteSelect(String srhval) {
-		if(FT_NoteCntSelect(srhval) == 0) {
-			return null;
-		} else {
-			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_NoteSelect", srhval);
-		}
-	}
-	
-	// 예금 키 가져오기
+	// 받을어음 키 가져오기
 	@Override
 	public String FT_NoteKeySelect() {
 		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NoteKeySelect");
 	}
 
-	// 예금추가
+	// 받을어음 추가
 	@Override
 	public int FT_NotePrevInsert(Map<String, Object> map) {
 		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_NotePrevInsert",map);
@@ -278,7 +323,7 @@ public class FT_DAOImpl implements FT_DAO{
 		}
 	}
 
-	// 예금수정
+	// 받을어음 수정
 	@Override
 	public int FT_NotePrevUpdate(Map<String, Object> map) {
 		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_NotePrevUpdate",map);
@@ -294,7 +339,7 @@ public class FT_DAOImpl implements FT_DAO{
 		}
 	}
 
-	// 예금삭제
+	// 받을어음 삭제
 	@Override
 	public int FT_NotePrevDelete(Map<String, Object> map) {
 		int previnsertCnt = FT_NoteDelete(map);
@@ -308,6 +353,66 @@ public class FT_DAOImpl implements FT_DAO{
 	@Override
 	public int FT_NoteDelete(Map<String, Object> map) {
 		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_NoteDelete",map);
+	}
+	
+	// 단기매매증권 가져오기
+	@Override
+	public List<FT_Securities> FT_SecuritiesAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_SecuritiesAllSelect");
+	}
+	
+	// 단기매매증권 키 가져오기
+	@Override
+	public String FT_SecuritiesKeySelect() {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_SecuritiesKeySelect");
+	}
+
+	// 단기매매증권 추가
+	@Override
+	public int FT_SecuritiesPrevInsert(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_SecuritiesPrevInsert",map);
+	}
+
+	@Override
+	public int FT_SecuritiesInsert(Map<String, Object> map) {
+		int previnsertCnt = FT_SecuritiesPrevInsert(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_SecuritiesInsert",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 단기매매증권 수정
+	@Override
+	public int FT_SecuritiesPrevUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_SecuritiesPrevUpdate",map);
+	}
+
+	@Override
+	public int FT_SecuritiesUpdate(Map<String, Object> map) {
+		int previnsertCnt = FT_SecuritiesPrevUpdate(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_SecuritiesUpdate",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 단기매매증권 삭제
+	@Override
+	public int FT_SecuritiesPrevDelete(Map<String, Object> map) {
+		int previnsertCnt = FT_SecuritiesDelete(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_SecuritiesPrevDelete",map);
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int FT_SecuritiesDelete(Map<String, Object> map) {
+		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_SecuritiesDelete",map);
 	}
 	
 	// 카드 가져오기
@@ -517,6 +622,29 @@ public class FT_DAOImpl implements FT_DAO{
 			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_UsersSelect", srhval);
 		}
 	}	
+
+	// 부서 가져오기
+	@Override
+	public List<HR_VO> FT_DepartmentAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepartmentAllSelect");
+	}
+	
+	// 부서 검색 한 것 개수 가져오기
+	@Override
+	public int FT_DepartmentCntSelect(String srhval) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_DepartmentCntSelect(srhval);
+	}
+	
+	// 부서 검색한 것 가져오기
+	@Override
+	public List<HR_VO> FT_DepartmentSelect(String srhval) {
+		if(FT_DepartmentCntSelect(srhval) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_DepartmentSelect", srhval);
+		}
+	}
 	
 	//단기차입금 검색
 	@Override

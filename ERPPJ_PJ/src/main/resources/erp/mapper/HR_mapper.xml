@@ -206,14 +206,14 @@
 	
 	<!-- 근태(출근입력) -->
 	<insert id="StartWork" parameterType="String">
-		Insert Into time_card_tbl(tc_code, username, tc_come_time)
-		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate)
+		Insert Into time_card_tbl(tc_code, username, tc_come_time, tc_state2)
+		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate, '1')
 	</insert>
 	
 	<!-- 근태(지각 출근입력) -->
 	<insert id="lateWorkStart" parameterType="String">
-		Insert Into time_card_tbl(tc_code, username, tc_come_time, tc_state)
-		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate, '3')
+		Insert Into time_card_tbl(tc_code, username, tc_come_time, tc_state, tc_state2)
+		Values(lpad(STARTWORK.nextval,7,'TC_'), #{username}, sysdate, '3', '1')
 	</insert>
 	
 	<!-- 퇴근자 확인 -->
@@ -226,7 +226,7 @@
 	<!-- 근태(퇴근입력) -->
 	<update id="EndWork" parameterType="String">
 		Update time_card_tbl
-		Set tc_leave_time = sysdate, tc_state = 2
+		Set tc_leave_time = sysdate, tc_state2 = 2
 		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
 		And username = #{username}
 	</update>
@@ -234,7 +234,7 @@
 	<!-- 근태(조퇴입력) -->
 	<update id="ealryWorkEnd" parameterType="String">
 		Update time_card_tbl
-		Set tc_leave_time = sysdate, tc_state = 3
+		Set tc_leave_time = sysdate, tc_state2 = 3
 		Where TO_Char(tc_come_time, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
 		And username = #{username}
 	</update>
@@ -315,6 +315,11 @@
 		select appointment_seq.nextval from dual
 	</select>
 	
+	<!-- 공고내용 가져오기 -->
+	<select id="getApInfo" parameterType="String" resultType="com.pj.erp.vo.HR.HR_ApVO">
+		select * from appointment_tbl where ap_code = #{ap_code}
+	</select>
+	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
 		insert into position_record_tbl(position_record_code, username, record_date)
@@ -346,8 +351,8 @@
 	<!-- 부서조회 -->
 	<select id="getDepartmentCodeName" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
 		select department_name, department_code
-		from department_tbl	
-		where department_name like '%'||#{department_name}||'%' 
+		from department_tbl
+		where department_name like '%'||#{department_name}||'%'
 	</select>
 	
 	<!-- 지각/조퇴 갯수 -->
@@ -359,7 +364,7 @@
 		And tc_leave_time is not null
 		And tc_leave_time Like #{year}||'/'||#{month}||'%'
 		And tc_come_time Like #{year}||'/'||#{month}||'%'
-		And tc_state = '3'
+		and (tc_state = '3' or tc_state2 = '3')
 	</select>
 	
 	<!-- 지각/조퇴(월, 시간, 갯수) -->
@@ -372,8 +377,14 @@
 		And tc_leave_time is not null
 		And tc_leave_time Like #{year}||'/'||#{month}||'%'
 		And tc_come_time Like #{year}||'/'||#{month}||'%'
-		And tc_state = '3'
+		and (tc_state = '3' or tc_state2 = '3')
 		Group by tc_leave_time, tc_come_time, To_char(tc_come_time, 'mm')
 	</select>
+	
+	<!-- NFC체크박스 지우기 -->
+	<delete id="deleteNfc" parameterType="String">
+		delete nfc_log_tbl
+		Where tag_code = #{tag_code}
+	</delete>
 	
 </mapper>

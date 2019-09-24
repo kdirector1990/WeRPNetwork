@@ -110,10 +110,12 @@ var searchCount = 1;
 									<form class="search">
 										<table class="col-12">
 											<tr class="form-group row">
+												
 												<th class="col-md-1 col-form-label">부서명 검색</th>
+
 												<td><input type="text" class="form-control"
 													name="department_name" id="department_name"></td>
-												<th class="col-md-1 col-form-label">&nbsp;</th>
+												<th class="col-md-1 col-form-label">&nbsp;</th>												
 
 												<td><button type="button"
 														class="btn btn-primary waves-effect waves-light"

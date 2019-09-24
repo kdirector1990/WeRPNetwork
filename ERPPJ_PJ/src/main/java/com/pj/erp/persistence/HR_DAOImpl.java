@@ -288,5 +288,15 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.selectLateEearlyEnd", vo);
 	}
 
+	@Override
+	public int deleteNfc(String tag_code) {
+		return sqlSession.delete("com.pj.erp.persistence.HR_DAO.deleteNfc", tag_code);
+	}
+
+	@Override
+	public HR_ApVO getApInfo(String ap_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getApInfo", ap_code);
+	}
+
 
 }

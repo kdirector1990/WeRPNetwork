@@ -28,9 +28,11 @@ import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Ledger;
+import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Savings;
+import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_accounts_balance;
@@ -334,27 +336,17 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 	
-	// 예금가져오기
+	// 받을어음 가져오기
 	@Override
 	public void FT_NoteAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Note> savings = dao.FT_NoteAllSelect();
 		System.out.println(savings);
 		System.out.println(savings.size());
-		model.addAttribute("deposit", savings);
+		model.addAttribute("note", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
 
-	// 예금 검색한 것 가져오기
-	@Override
-	public List<FT_Note> FT_NoteSelect(HttpServletRequest req, Model model) {
-		List<FT_Note> tf = dao.FT_NoteSelect(req.getParameter("srhval"));
-		System.out.println(tf);
-		System.out.println(req.getParameter("srhval"));
-		return tf;
-	}
-	
-
-	// 예금추가
+	// 받을어음 추가
 	@Override
 	public String FT_NoteInsert(Map<String, Object> map) {
 		int result = dao.FT_NoteInsert(map);
@@ -365,7 +357,7 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 
-	// 예금수정
+	// 받을어음 수정
 	@Override
 	public String FT_NoteUpdate(Map<String, Object> map) {
 		if(dao.FT_NoteUpdate(map) != 0) {
@@ -375,7 +367,7 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 
-	// 예금삭제
+	// 받을어음 삭제
 	@Override
 	public String FT_NoteDelete(Map<String, Object> map) {
 		if(dao.FT_NotePrevDelete(map) != 0) {
@@ -385,7 +377,89 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 	
-	// 예금가져오기
+	// 단기대여금 가져오기
+	@Override
+	public void FT_LoanAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Loan> savings = dao.FT_LoanAllSelect();
+		System.out.println(savings);
+		System.out.println(savings.size());
+		model.addAttribute("loan", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+
+	// 단기대여금 추가
+	@Override
+	public String FT_LoanInsert(Map<String, Object> map) {
+		int result = dao.FT_LoanInsert(map);
+		if(result != 0) {
+			return dao.FT_LoanKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 단기대여금 수정
+	@Override
+	public String FT_LoanUpdate(Map<String, Object> map) {
+		if(dao.FT_LoanUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
+	// 단기대여금 삭제
+	@Override
+	public String FT_LoanDelete(Map<String, Object> map) {
+		if(dao.FT_LoanPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
+	// 단기매매증권 가져오기
+	@Override
+	public void FT_SecuritiesAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Securities> savings = dao.FT_SecuritiesAllSelect();
+		System.out.println(savings);
+		System.out.println(savings.size());
+		model.addAttribute("Securities", savings);
+		model.addAttribute("listsize", savings.size() + 1);
+	}
+
+	// 단기매매증권 추가
+	@Override
+	public String FT_SecuritiesInsert(Map<String, Object> map) {
+		int result = dao.FT_SecuritiesInsert(map);
+		if(result != 0) {
+			return dao.FT_SecuritiesKeySelect();
+		} else {
+			return "insert 실패";
+		}
+	}
+
+	// 단기매매증권 수정
+	@Override
+	public String FT_SecuritiesUpdate(Map<String, Object> map) {
+		if(dao.FT_SecuritiesUpdate(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+
+	// 단기매매증권 삭제
+	@Override
+	public String FT_SecuritiesDelete(Map<String, Object> map) {
+		if(dao.FT_SecuritiesPrevDelete(map) != 0) {
+			return "성공";
+		} else {
+			return "실패";
+		}
+	}
+	
+	// 카드 가져오기
 	@Override
 	public void FT_CardManagementSelect(HttpServletRequest req, Model model) {
 		List<FT_Card> savings = dao.FT_CardManagementSelect();
@@ -393,7 +467,7 @@ public class FT_ServiceImpl implements FT_Service{
 		model.addAttribute("listsize", savings.size() + 1);
 	}
 	
-	// 예금추가
+	// 카드 추가
 	@Override
 	public String FT_CardManagementInsert(Map<String, Object> map) {
 		int result = dao.FT_CardManagementInsert(map);
@@ -404,7 +478,7 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 
-	// 예금수정
+	// 카드 수정
 	@Override
 	public String FT_CardManagementUpdate(Map<String, Object> map) {
 		if(dao.FT_CardManagementUpdate(map) != 0) {
@@ -414,7 +488,7 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 	}
 
-	// 예금삭제
+	// 카드 삭제
 	@Override
 	public String FT_CardManagementDelete(Map<String, Object> map) {
 		if(dao.FT_CardManagementPrevDelete(map) != 0) {
@@ -437,6 +511,23 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> tf = dao.FT_SubjectSelect(req.getParameter("srhval"));
+		System.out.println(tf);
+		System.out.println(req.getParameter("srhval"));
+		return tf;
+	}
+	
+	// 계정과목 가져오기
+	@Override
+	public void FT_DepartmentAllSelect(HttpServletRequest req, Model model) {
+		List<HR_VO> subject = dao.FT_DepartmentAllSelect();
+		model.addAttribute("subject", subject);
+		model.addAttribute("listsize", subject.size() + 1);
+	}
+	
+	// 계정과목 검색한 것 가져오기
+	@Override
+	public List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model) {
+		List<HR_VO> tf = dao.FT_DepartmentSelect(req.getParameter("srhval"));
 		System.out.println(tf);
 		System.out.println(req.getParameter("srhval"));
 		return tf;
@@ -687,14 +778,17 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
     public void FT_BuildingInsert(HttpServletRequest req, Model model) {
         FT_Building vo = new FT_Building();
+        vo.setBuildingName(req.getParameter("buildingName"));
+        vo.setAddress(req.getParameter("Address"));
+        vo.setBuyDate(req.getParameter("buyDate"));
+        vo.setBuyPrice(req.getParameter("buyPrice"));
+        vo.setDepartmentCode(req.getParameter("departmentCode"));
+        vo.setThinkYear(req.getParameter("thinkYear"));
+        vo.setGamga(req.getParameter("gamga"));
+        vo.setGamgaWay(req.getParameter("gamgaWay"));
         int insertCnt = dao.FT_BuildingInsert(vo);
-        
+
         model.addAttribute("cnt", insertCnt);
-            
-		/*
-		 * } catch(IOException e) { e.printStackTrace(); }
-		 */
-        
     }
 	
 	// 건물 수정

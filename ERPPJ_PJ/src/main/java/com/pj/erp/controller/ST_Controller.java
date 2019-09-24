@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.ST.Estimate;
 import com.pj.erp.vo.ST.Release;
+import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.ST_searchProductCode;
@@ -292,6 +293,17 @@ public class ST_Controller {
 		
 		return "ST/ST_contrast_pp";
 	}
+	
+	// 판매계획 대비 출고 현황
+	@RequestMapping(value = "ST_contrast_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<ST_contrast> ST_contrast_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_contrast_result");
+		List<ST_contrast> list = service.getcontrast(map, req, model);
+		return list;
+}  
+		 
+	
 	@RequestMapping("ST_contrast_pPro")
 	public String ST_contrast_pPro(Locale locale, Model model) {
 		logger.info("log => ST_contrast_pPro");
@@ -314,7 +326,7 @@ public class ST_Controller {
 		
 		return "ST/ST_delay_state_result";
 	}
-	
+	 
 	@RequestMapping("ST_tex_invoice_list")
 	public String ST_tex_invoice_list(Locale locale, Model model) {
 		logger.info("log => ST_tex_invoice_list");
@@ -366,6 +378,7 @@ public class ST_Controller {
 		
 		return "ST/ST_estimate_deletePro";
 	}
+	
 	
 	//매출 집계표(월별)
 	@RequestMapping("ST_salesTotal")
