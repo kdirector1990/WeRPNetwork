@@ -124,13 +124,13 @@
 	 });
 	 
 	 function updatePHY(code){
-		 alert(code);
+		 
 		  $.ajax({
 	  			url: '/erp/HR_update_Phy?${_csrf.parameterName}=${_csrf.token }&username='+code,
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
-	  				alert("작동");
+	  				
 	  				var username = data.username;	  					  				
 	  				var e_height = data.e_height;
 	  				var e_weight = data.e_weight;
@@ -146,8 +146,7 @@
 	  				var e_disability_type = data.e_disability_type;
 	  				var e_disability_level = data.e_disability_level;
 	  				
-	  				$('#result2').empty();
-	  				alert(username);	  				
+	  				$('#result2').empty();	  					  				
 	  				
 	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
   						+'<div class="form-group row">'
@@ -298,7 +297,7 @@
 	 
 	 function HR_modifyPhysicalyPro(){
          var param = $("#updatePhysicaly").serializeArray();
- 		 alert(JSON.stringify(param));
+ 		 
  		 $.ajax({
  			 url: '/erp/HR_modifyPhysicalyPro',
  			 type: 'POST',

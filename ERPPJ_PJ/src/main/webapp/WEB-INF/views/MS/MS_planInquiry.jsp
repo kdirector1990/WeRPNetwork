@@ -63,7 +63,7 @@ function searchCus() {
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
-				
+				$('#result').empty();
 				$('#result1').empty();
 				$('#bodyappend').empty();
 	

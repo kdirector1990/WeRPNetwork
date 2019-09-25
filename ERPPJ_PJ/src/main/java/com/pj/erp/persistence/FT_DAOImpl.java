@@ -820,19 +820,49 @@ public class FT_DAOImpl implements FT_DAO{
 	}
 	
 
-	// 거래처 추가
+	// 건물 추가
+	@Override
+	public int FT_BuildingPrevInsert(FT_Building vo) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_BuildingPrevInsert",vo);
+	}
+
 	@Override
 	public int FT_BuildingInsert(FT_Building vo) {
-		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_BuildingInsert",vo);
+		int previnsertCnt = FT_BuildingPrevInsert(vo);
+		if(previnsertCnt != 0) {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_BuildingInsert",vo);
+		} else {
+			return 0;
+		}
 	}
-	
-	// 거래처 수정
+
+	// 건물 수정
+	@Override
+	public int FT_BuildingPrevUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_BuildingPrevUpdate",map);
+	}
+
 	@Override
 	public int FT_BuildingUpdate(Map<String, Object> map) {
-		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_BuildingUpdate",map);
+		int previnsertCnt = FT_BuildingPrevUpdate(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_BuildingUpdate",map);
+		} else {
+			return 0;
+		}
 	}
-	
-	// 거래처 삭제
+
+	// 건물 삭제
+	@Override
+	public int FT_BuildingPrevDelete(Map<String, Object> map) {
+		int previnsertCnt = FT_BuildingDelete(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_BuildingPrevDelete",map);
+		} else {
+			return 0;
+		}
+	}
+
 	@Override
 	public int FT_BuildingDelete(Map<String, Object> map) {
 		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_BuildingDelete",map);

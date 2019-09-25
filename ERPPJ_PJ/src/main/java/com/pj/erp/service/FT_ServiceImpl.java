@@ -516,15 +516,15 @@ public class FT_ServiceImpl implements FT_Service{
 		return tf;
 	}
 	
-	// 계정과목 가져오기
+	// 부서 가져오기
 	@Override
 	public void FT_DepartmentAllSelect(HttpServletRequest req, Model model) {
 		List<HR_VO> subject = dao.FT_DepartmentAllSelect();
-		model.addAttribute("subject", subject);
+		model.addAttribute("department", subject);
 		model.addAttribute("listsize", subject.size() + 1);
 	}
 	
-	// 계정과목 검색한 것 가져오기
+	// 부서 검색한 것 가져오기
 	@Override
 	public List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model) {
 		List<HR_VO> tf = dao.FT_DepartmentSelect(req.getParameter("srhval"));
@@ -692,11 +692,16 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println("listM : " + listM);
 		System.out.println("listS : " + listS);
 		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
-		list.add(listL);
-		list.add(listM);
-		list.add(listS);
+		if(listL != null || listM != null || listS != null) {
+			list.add(listL);
+			list.add(listM);
+			list.add(listS);
+		} else {
+			list = null;
+		}
 		String rootPath = System.getProperty("user.dir");
         System.out.println("현재 프로젝트의 경로 : "+rootPath );
+        System.out.println("list : " + list);
 
 		return list;
 	}
@@ -717,9 +722,14 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println("listM : " + listM);
 		System.out.println("listS : " + listS);
 		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
-		list.add(listL);
-		list.add(listM);
-		list.add(listS);
+		if(listL != null || listM != null || listS != null) {
+			list.add(listL);
+			list.add(listM);
+			list.add(listS);
+		} else {
+			list = null;
+		}
+        System.out.println("list : " + list);
 		return list;
 	}
 	
@@ -798,18 +808,18 @@ public class FT_ServiceImpl implements FT_Service{
 		if(result != 0) {
 			return "성공";
 		} else {
-			return "insert 실패";
+			return "update 실패";
 		}
 	}
 	
 	// 건물 삭제
 	@Override
 	public String FT_BuildingDelete(Map<String, Object> map) {
-		int result = dao.FT_BuildingDelete(map);
+		int result = dao.FT_BuildingPrevDelete(map);
 		if(result != 0) {
 			return "성공";
 		} else {
-			return "insert 실패";
+			return "delete 실패";
 		}
 	}
 
@@ -817,7 +827,9 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_BuildingAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Building> account = dao.FT_BuildingAllSelect();
-		model.addAttribute("account", account);
+		System.out.println("building : " + account);
+		System.out.println("buildingSize : " + account.size());
+		model.addAttribute("building", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}
 	

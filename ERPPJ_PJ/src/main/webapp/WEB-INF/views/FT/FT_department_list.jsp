@@ -109,7 +109,7 @@
 					<div class="col-12">
 						<div class="page-title-box" style="text-align: center;">
 							<h4>
-								<b>사원목록</b>
+								<b>부서목록</b>
 							</h4>
 						</div>
 					</div>
@@ -141,8 +141,8 @@
 									</colgroup>
 									<thead>
 										<tr class="table-info">
-											<th>사원코드</th>
-											<th>사원명</th>
+											<th>부서코드</th>
+											<th>부서명</th>
 										</tr>
 									</thead>
 									<tbody style="overflow: auto;">

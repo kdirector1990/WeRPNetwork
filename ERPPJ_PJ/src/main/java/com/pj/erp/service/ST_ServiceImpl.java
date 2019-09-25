@@ -334,7 +334,6 @@ public class ST_ServiceImpl implements ST_Service {
 	// ST_sale_plan 검색
 	@Override
 	public List<SalePlan> getsalePlan(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
-		System.out.println(map.get("productName"));
 		List<SalePlan> list = dao.getSalePlanResult(map);
 		return list;
 	}
