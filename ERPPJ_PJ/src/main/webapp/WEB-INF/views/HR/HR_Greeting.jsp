@@ -93,14 +93,14 @@ function ap_nameList() {
 													<div class="col-md-10">
 														<input type="text" name="username"
 															class="form-control" id=username value=""
-															style="width: 350px;" onclick="usernameList()">
+															 onclick="usernameList()">
 													</div>
 												</div>											
 
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">현재 직책</label>
 													<div class="col-md-10">
-														<select class="form-control select2"
+														<select class="selectpicker" data-live-search="true" 
 															name="position_code" id = "position_code" onchange="">
 															<option value="">직책을 선택하세요</option>
 															<c:forEach var="poi" items="${poi}">
@@ -113,7 +113,7 @@ function ap_nameList() {
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">현재 부서</label>
 													<div class="col-md-10">
-														<select class="form-control select2"
+														<select class="selectpicker" data-live-search="true" 
 															name="department_code" id = "department_code" onchange="">
 																<option value="">부서를 선택하세요</option>
 															<c:forEach var="dep" items="${dep}">
@@ -126,18 +126,30 @@ function ap_nameList() {
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">직급 변경일</label>
 													<div class="col-md-10">
-														<input type="date" name="record_date"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
+														<div class="input-group">
+															<input type="date" name="record_date"
+																placeholder="yyyy/mm/dd" style="size: 100px;"
+																class="form-control">
+															<div class="input-group-append">
+																<span class="input-group-text bg-primary text-white b-0"><i
+																	class="mdi mdi-calendar"></i></span>
+															</div>
+														</div>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 직급 변경일</label>
 													<div class="col-md-10">
-														<input type="date" name="record_date_after"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
+														<div class="input-group">
+															<input type="date" name="record_date_after"
+																placeholder="yyyy/mm/dd" style="size: 100px;"
+																class="form-control">
+															<div class="input-group-append">
+																<span class="input-group-text bg-primary text-white b-0"><i
+																	class="mdi mdi-calendar"></i></span>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -147,14 +159,14 @@ function ap_nameList() {
 													<label class="col-md-2 col-form-label">공고 코드</label>
 													<div class="col-md-10">
 														<input type="text" name="ap_code" class="form-control"
-															value="" style="width: 350px;" onclick="ap_nameList()">
+															value="" onclick="ap_nameList()">
 													</div>
 												</div>
 												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 직책</label>
 													<div class="col-md-10">
-														<select class="form-control select2"
+														<select class="selectpicker" data-live-search="true" 
 															name="position_code_after" id = "position_code_after" onchange="">
 															<option value="">직책을 선택하세요</option>
 															<c:forEach var="poi" items="${poi}">
@@ -167,7 +179,7 @@ function ap_nameList() {
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 부서</label>
 													<div class="col-md-10">
-														<select class="form-control select2"
+														<select class="selectpicker" data-live-search="true" 
 															name="department_code_after" id = "department_code_after" onchange="">
 																<option value="">부서를 선택하세요</option>
 															<c:forEach var="dep" items="${dep}">
@@ -220,15 +232,14 @@ function ap_nameList() {
 													<label class="col-md-2 col-form-label" for="simpleinput">공고시행일</label>
 													<div class="col-md-10">
 														<input type="date" name="ap_est_date"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
+															placeholder="mm/dd/yyyy" style="size: 100px;" class="form-control"> 
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label"
 														for="example-textarea">공고상태</label>
 													<div class="col-md-10">
-														<select class="form-control select2" name="ap_status"
+														<select class="selectpicker form-control" name="ap_status" data-live-search="true"
 															onchange="">
 															<option value="1"> 공고예정</option>
 															<option value="2"> 공고중</option>
@@ -241,8 +252,8 @@ function ap_nameList() {
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고내용</label>
 													<div class="col-md-10">
-														<textarea class="" rows="10" cols="40"
-													name="ap_content" style="width: 500px"
+														<textarea id ="textarea" class="form-control" rows="10"
+													name="ap_content"
 													placeholder="글내용을 입력하세요 !" word-break:break-all></textarea>
 													</div>
 												</div>
@@ -252,18 +263,17 @@ function ap_nameList() {
 												</div>
 											</form>
 										</div>
-
+										
 										<div class="col-xl-6">
 											<form class="form-horizontal">
-
 												<div class="card">
-													<div class="card-body table-responsive">
+													<div class="card-body">
 														<br>
 														<table id="datatable"
-															class="table table-striped table-bordered dt-responsive nowrap"
+															class="table table-hover table-bordered dt-responsive nowrap"
 															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-															<thead>
-																<tr>
+															<thead class="table-info">
+																<tr style="text-align: center; pointer-events: none;">
 																	<th></th>
 																	<th>사원코드</th>
 																	<th>사원명</th>
@@ -280,9 +290,6 @@ function ap_nameList() {
 																	<td></td>
 																	<td></td>
 																</tr>
-															</tbody>
-
-															<tbody>
 																<tr>
 																	<th></th>
 																	<td></td>
@@ -290,9 +297,6 @@ function ap_nameList() {
 																	<td></td>
 																	<td></td>
 																</tr>
-															</tbody>
-
-															<tbody>
 																<tr>
 																	<th></th>
 																	<td></td>

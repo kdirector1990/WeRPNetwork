@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Facility;
+import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Building;
@@ -130,7 +132,7 @@ public class FT_Controller {
 	@ResponseBody
 	public Map<String, Object> FT_search_IS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => FT_search_IS");
-		Map<String, Object> is_map = service.getBsshit(map, req, model);
+		Map<String, Object> is_map = service.getIsshit(map, req, model);
 		return is_map; 
 	}
 	
@@ -243,7 +245,7 @@ public class FT_Controller {
 		String result = service.FT_NoteInsert(map);
 
 		return result;
-	}
+	} 
 
 	// 예금 수정
 	@RequestMapping(value = "FT_NoteUpdate", produces = "application/text; charset=utf8")
@@ -448,40 +450,6 @@ public class FT_Controller {
 		service.FT_BuildingAllSelect(req, model);
 
 		return "FT/FT_building_management";
-	}
-
-	// 토지 목록
-	@RequestMapping("FT_land_list")
-	public String FT_land_list(Locale locale, Model model) {
-		logger.info("log => FT_land_list");
-
-		return "FT/FT_land_list";
-	}
-	
-	//토지목록 검색결과
-	@RequestMapping(value = "FT_land_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-	@ResponseBody
-	public  List<FT_land_list_VO> FT_land_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
-		logger.info("log => FT_land_list_result");
-		List<FT_land_list_VO> list = service.getLandList(map, req, model);
-		return list;
-	}
-
-	// 설비 목록
-	@RequestMapping("FT_facility_list")
-	public String FT_facility_list(HttpServletRequest req, Model model) {
-		logger.info("log => FT_facility_list");
-
-		return "FT/FT_facility_list";
-	}
-
-	//설비목록 검색결과
-	@RequestMapping(value = "FT_facility_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-	@ResponseBody
-	public  List<FT_facility_list_VO> FT_facility_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
-		logger.info("log => FT_facility_list_result");
-		List<FT_facility_list_VO> list = service.getFacilityList(map, req, model);
-		return list;
 	}	
 
 	// 거래처 목록
@@ -794,15 +762,6 @@ public class FT_Controller {
         
         return "FT/FT_BuildingComplete";
     }
-
-	// 건물 검색 가져오기
-	@RequestMapping(value = "FT_BuildingSelect")
-	public @ResponseBody List<FT_Building> FT_BuildingSelect(HttpServletRequest req) {
-		logger.info("url : FT_AccountSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
-
-		return service.FT_BuildingSelect(req);
-	}
 	
 	// 건물 수정
 	@RequestMapping(value = "FT_BuildingUpdate", produces = "application/text; charset=utf8")
@@ -827,5 +786,112 @@ public class FT_Controller {
 		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_BuildingOneSelect(req);
+	}
+	
+	// 설비 목록
+	@RequestMapping("FT_facility_list")
+	public String FT_facility_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_facility_list");
+		service.FT_FacilityAllSelect(req, model);
+
+		return "FT/FT_facility_list";
+	}
+
+	//설비목록 검색결과
+	@RequestMapping(value = "FT_facility_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_facility_list_VO> FT_facility_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_facility_list_result");
+		List<FT_facility_list_VO> list = service.getFacilityList(map, req, model);
+		return list;
+	}
+	
+	// 토지 추가    
+    @RequestMapping(value="FT_FacilityInsert")
+    public String FT_FacilityInsert(HttpServletRequest req, Model model) {
+    	logger.info("url : FT_FacilityInsert 호출중");
+        
+        service.FT_FacilityInsert(req, model);
+        
+        return "FT/FT_FacilityComplete";
+    }
+	
+	// 토지 수정
+	@RequestMapping(value = "FT_FacilityUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_FacilityUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_FacilityUpdate 호출중");
+
+		return service.FT_FacilityUpdate(map);
+	}
+	
+	// 토지 삭제
+	@RequestMapping(value = "FT_FacilityDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_FacilityDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LandDelete 호출중");
+
+		return service.FT_FacilityDelete(map);
+	}
+	
+	// 토지 검색 가져오기
+	@RequestMapping(value = "FT_FacilityOneSelect")
+	public @ResponseBody FT_Facility FT_FacilityOneSelect(HttpServletRequest req) {
+		logger.info("url : FT_FacilityOneSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_FacilityOneSelect(req);
+	}
+	
+
+	// 토지 목록
+	@RequestMapping("FT_land_list")
+	public String FT_land_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_land_list");
+
+		service.FT_LandAllSelect(req, model);
+		return "FT/FT_land_list";
+	}
+	
+	//토지목록 검색결과
+	@RequestMapping(value = "FT_land_list_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<FT_land_list_VO> FT_land_list_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_land_list_result");
+		List<FT_land_list_VO> list = service.getLandList(map, req, model);
+		return list;
+	}
+	
+	// 토지 추가    
+    @RequestMapping(value="FT_LandInsert")
+    public String FT_LandInsert(HttpServletRequest req, Model model) {
+    	logger.info("url : FT_LandInsert 호출중");
+        
+        service.FT_LandInsert(req, model);
+        
+        return "FT/FT_LandComplete";
+    }
+	
+	// 토지 수정
+	@RequestMapping(value = "FT_LandUpdate", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LandUpdate(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LandUpdate 호출중");
+
+		return service.FT_LandUpdate(map);
+	}
+	
+	// 토지 삭제
+	@RequestMapping(value = "FT_LandDelete", produces = "application/text; charset=utf8")
+	public @ResponseBody String FT_LandDelete(@RequestBody Map<String, Object> map) throws Exception {
+		logger.info("url : FT_LandDelete 호출중");
+
+		return service.FT_LandDelete(map);
+	}
+	
+	// 토지 검색 가져오기
+	@RequestMapping(value = "FT_LandOneSelect")
+	public @ResponseBody FT_Land FT_LandOneSelect(HttpServletRequest req) {
+		logger.info("url : FT_LandOneSelect 호출중");
+		System.out.println("value = " + req.getParameter("srhval"));
+
+		return service.FT_LandOneSelect(req);
 	}
 }

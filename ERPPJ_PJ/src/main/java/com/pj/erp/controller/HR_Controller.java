@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR.HR_GreetingVO;
 import com.pj.erp.vo.HR.HR_PaystepVO;
 import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
 import com.pj.erp.vo.HR.HR_SalaryVO;
 import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -40,7 +42,7 @@ public class HR_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HR_Controller.class);
 	
-	
+	 
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
@@ -52,8 +54,9 @@ public class HR_Controller {
 	}
 	
 
-	@RequestMapping("HR_inputFoundation")
-	public String inputFoundation(HttpServletRequest req, Model model) {
+ 
+	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
+	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
 		
@@ -71,8 +74,8 @@ public class HR_Controller {
 		return "HR/HR_modifyFoundation";
 	}
 	
-	@RequestMapping("HR_modifyFoundationPro")
-	public String HR_modifyFoundationPro(HttpServletRequest req, Model model) {
+	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST)
+	public String HR_modifyFoundationPro(MultipartHttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
 				
@@ -195,6 +198,15 @@ public class HR_Controller {
 	public  List<HR_SalaryVO> HR_EmployeeSalary_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_EmployeeSalary_result");
 		List<HR_SalaryVO> list = service.getSalary(map, req, model);
+		return list;
+	}
+	
+	//발령공고 검색결과
+	@RequestMapping(value = "HR_appointment_report_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_RecordVO> HR_appointment_report_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_appointment_report_result");
+		List<HR_RecordVO> list = service.getRecord(map, req, model);
 		return list;
 	}
 	

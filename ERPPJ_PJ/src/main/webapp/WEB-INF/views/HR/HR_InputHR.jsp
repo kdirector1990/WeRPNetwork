@@ -151,8 +151,8 @@
 										<div class="tab-pane show active" id="employee"
 											role="tabpanel" aria-labelledby="employee-tab">
 											<div class="col-sm-12">
-												<form action="HR_inputFoundation" class="form-horizontal"
-													id="foundation" method="post">
+												<form action="HR_inputFoundation?${_csrf.parameterName}=${_csrf.token}" class="form-horizontal"
+													id="foundation" method="post" enctype="multipart/form-data">
 													<input type="hidden" name="${_csrf.parameterName}"
 														value="${_csrf.token}">
 
@@ -160,10 +160,14 @@
 														<h4 class="header-title">기초 정보</h4>
 														<h4 class="header-title">&nbsp;</h4>
 														<div class="form-group row">
-															<!-- <label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
+															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
+<<<<<<< HEAD
 																	<input type="file" class="dropify" name="e_picture"/>
-																</div> -->
+=======
+																	<input type="file" class="dropify" name="e_picture" />
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+																</div>
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 															<div class="col-md-6">
 																<div class="form-group row">
@@ -264,11 +268,11 @@
 																	name="e_mailcode" placeholder="우편번호">
 															</div>
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-															<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span
+															<label class="col-md-1 col-form-label" for="simpleinput">nfc코드<span
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
 																<input type="text" class="form-control"
-																	name="e_nfcCodeNFC" placeholder="출입카드No.">
+																	name="e_nfcCodeNFC" placeholder="nfc코드">
 															</div>
 														</div>
 

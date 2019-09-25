@@ -51,7 +51,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<div class="form-group row">
 										<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
 										<div class="col-md-4 input-group">

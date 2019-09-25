@@ -6,19 +6,35 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
+			var d = new Date();
+			$(function(){
+				if((d.getMonth() + 1) < 10){
+					$(".lastdate0").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+					$(".firstdate0").val(d.getFullYear()+'-0'+(d.getMonth() + 1)+'-'+d.getDate());
+					$(".lastdate1").val(d.getFullYear()+'-0'+(d.getMonth() + 1));
+					$(".firstdate1").val(d.getFullYear()+'-0'+(d.getMonth() + 1));
+				} else {
+					$(".lastdate0").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+					$(".firstdate0").val(d.getFullYear()+'-'+(d.getMonth() + 1)+'-'+d.getDate());
+					$(".lastdate1").val(d.getFullYear()+'-'+(d.getMonth() + 1));
+					$(".firstdate1").val(d.getFullYear()+'-'+(d.getMonth() + 1));
+				}
+			});
+
 	       	function ajaxload(cc) {
         		var obj = new Object();
         		var jsonData;
         		
-        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
-        			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate" + cc).focus();
-        			return false;
-        		} else if(window.event.which == 13){
+        		if(window.event.which == 13){
 	        		// 자바스크립트 객체 생성
 	        		obj.firstday = $(".firstdate" + cc).val();
 	        		obj.lastday = $(".lastdate" + cc).val();
 	        		
+	        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+	        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+	        			$(".firstdate" + cc).focus();
+	        			return false;
+	        		}
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
 	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
@@ -31,7 +47,7 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                    	   if(data != null){
+	                    	   if(data != null && data != ""){
 	                    		   var listL = data[0];
 	                    		   var listM = data[1];
 	                    		   var listS = data[2];
@@ -54,7 +70,7 @@
 					                                '</tr>');
 											}
 											for(var l = 0; l < listS.length; l++) {
-												if(listM[k].ag_name == listS[l].ag_name){
+												if(listM[k].ag_name == listS[l].ag_name && listL[j].lg_name == listM[k].lg_name){
 													$("#onepage").append('<tr>' +
 					                                        '<td scope="row">' + listS[l].debtorsum + '</td>' +
 					                                        '<td>' + listS[l].debtorsum + '</td>' +
@@ -67,6 +83,8 @@
 										}
 										
 									}
+		                    	} else {
+		                    		alert("해당 날짜에 데이터가 없습니다.");
 		                    	}
 	                       },
 	                       error : function(e) {
@@ -80,15 +98,16 @@
         		var obj = new Object();
         		var jsonData;
         		var balance = 0;
-        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
-        			alert("두 날짜의 사이값이 존재하도록 해주세요");
-        			$(".firstdate" + cc).focus();
-        			return false;
-        		} else if(window.event.which == 13){
+        		if(window.event.which == 13){
 	        		// 자바스크립트 객체 생성
 	        		obj.firstday = $(".firstdate" + cc).val();
 	        		obj.lastday = $(".lastdate" + cc).val();
 	        		
+	        		if(parseInt($(".firstdate" + cc).val()) > parseInt($(".lastdate" + cc).val())){
+	        			alert("두 날짜의 사이값이 존재하도록 해주세요");
+	        			$(".firstdate" + cc).focus();
+	        			return false;
+	        		} 
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
 	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
@@ -101,7 +120,7 @@
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
-	                    	   if(data != null){
+	                    	   if(data != null && data != ""){
 	                    		   var listL = data[0];
 	                    		   var listM = data[1];
 	                    		   var listS = data[2];
@@ -124,7 +143,7 @@
 					                                '</tr>');
 											}
 											for(var l = 0; l < listS.length; l++) {
-												if(listM[k].ag_name == listS[l].ag_name){
+												if(listM[k].ag_name == listS[l].ag_name && listL[j].lg_name == listM[k].lg_name){
 													$("#twopage").append('<tr>' +
 					                                        '<td scope="row">' + listS[l].debtorsum + '</td>' +
 					                                        '<td>' + listS[l].debtorsum + '</td>' +
@@ -137,6 +156,8 @@
 										}
 										
 									}
+		                    	} else {
+		                    		alert("해당 날짜에 데이터가 없습니다.");
 		                    	}
 	                       },
 	                       error : function(e) {
@@ -215,10 +236,8 @@
 															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 															<tr>
 																<td>기표기간</td>
-																<td><input type="date" class="firstdate0"
-																	value="2011-01-01" max="9999-12-31"> ~ <input
-																	type="date" class="lastdate0" value="2011-12-31"
-																	onkeydown="ajaxload(0);" max="9999-12-31"></td>
+																<td><input type="date" class="firstdate0" max="9999-12-31"> ~ <input
+																	type="date" class="lastdate0" onkeydown="ajaxload(0);" max="9999-12-31"></td>
 															</tr>
 														</table>
 
@@ -262,10 +281,8 @@
 															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 															<tr>
 																<td>기표기간</td>
-																<td><input type="month" class="firstdate1"
-																	value="2011-01-01"> ~ <input type="month"
-																	class="lastdate1" value="2011-12-31"
-																	onkeydown="twoajaxload(1);"></td>
+																<td><input type="month" class="firstdate1"> ~ <input type="month"
+																	class="lastdate1" onkeydown="twoajaxload(1);"></td>
 															</tr>
 														</table>
 
