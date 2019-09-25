@@ -103,7 +103,7 @@
     						var year = pa.getFullYear();
     						var month = (1+pa.getMonth());
     						var day = pa.getDate(); 
-    						var end_datess = year + "/" + month +"/"+day;
+    						var edate = year + "/" + month +"/"+day;
     						
     						$('#result_2').append('<tr onclick="salePlanWriteForm(\''+saleplan_code+'\')">'+
     	                         	'<td>'+ saleplan_code +'</td>'+
@@ -112,7 +112,7 @@
     								'<td>'+ ef_price +'</td>'+
     								'<td>'+ ef_amount +'</td>'+
     								'<td>'+ start_datess +'</td>'+
-    								'<td>'+ end_datess +'</td>'+
+    								'<td>'+ edate +'</td>'+
     								'<td>'+ sp_note +'</td>'+
     	                 		'</tr>');
     					
