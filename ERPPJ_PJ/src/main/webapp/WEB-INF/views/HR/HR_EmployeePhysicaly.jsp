@@ -146,6 +146,7 @@
 	  				var e_disability_type = data.e_disability_type;
 	  				var e_disability_level = data.e_disability_level;
 	  				
+	  				$('#result2').empty();
 	  				alert(username);	  				
 	  				
 	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
