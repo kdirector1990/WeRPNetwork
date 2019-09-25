@@ -38,6 +38,10 @@
 
 <script type="text/javascript">
 	var searchCount = 1;
+	
+	function Comma(inputNumber) {
+		   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 
 	function searchWork() {
 		var param = $("#select_user_time").serializeArray();
@@ -98,7 +102,6 @@
 
 	function startWork() {
 		var param = $("#timeRecordTbl").serializeArray();
-		alert(JSON.stringify(param));
 		$.ajax({
 			url : '/erp/HR_Start_Work',
 			type : 'POST',
@@ -119,14 +122,12 @@
 
 	function endWork() {
 		var param = $("#timeRecordTbl").serializeArray();
-		alert(JSON.stringify(param));
 		$.ajax({
 			url : '/erp/HR_End_Work',
 			type : 'POST',
 			data : param,
 			dataTpye : 'json',
 			success : function(updateCnt) {
-				alert(updateCnt);
 				if (updateCnt == 1) {
 					alert("사원의 퇴근을 기록하였습니다.");
 				} else if (updateCnt == 0) {
@@ -177,8 +178,6 @@
 					dataTpye : 'json',
 					success : function(vo) {
 						$('#result2').empty();
-						alert(vo.length);
-
 						var Count = 0;
 						var count = 0;
 						var resultHr = 0;
@@ -650,7 +649,6 @@
 							var cmMonth = (1 + cm.getMonth());
 
 							if (cmMonth == 10) {
-								alert("10월");
 								count = vo[i].count;
 
 								var cmHour = cm.getHours();
@@ -671,8 +669,7 @@
 								Count += count;
 								resultHour += resultHr;
 								resultMin += resultMm;
-								alert(resultHour + " 10월 시간");
-								alert(resultMin + " 10월 분");
+								
 
 								if (resultMin > 60) {
 									resultHour = resultHour + 1;
@@ -862,7 +859,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -914,7 +911,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -966,7 +963,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1018,7 +1015,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1070,7 +1067,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1122,7 +1119,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1174,7 +1171,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1226,7 +1223,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1266,6 +1263,7 @@
 							money = (resultHr * 8350);
 						}
 						
+						money += money;
 						Count += count;
 						resultHour += resultHr;
 						resultMin += resultMm;
@@ -1281,7 +1279,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1336,7 +1334,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1388,7 +1386,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;
@@ -1440,7 +1438,7 @@
 							"<tr><td>" + s + "월</td><td>" + Count
 									+ "일</td><td>" + resultHour + "시간"
 									+ resultMin + "분</td><td>"
-									+ money + "원</td></tr>");
+									+ Comma(money) + "원</td></tr>");
 					s++;
 					Count = 0;
 					count = 0;

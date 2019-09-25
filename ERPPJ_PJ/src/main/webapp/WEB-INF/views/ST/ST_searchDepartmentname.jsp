@@ -62,9 +62,9 @@ function callback() {
 } 
 
 
-function setName(department_name, department_code) {
-	opener.document.getElementById("department_name").value = department_name;
+function setName(department_code, department_name) {
 	opener.document.getElementById("department_code").value = department_code;
+	opener.document.getElementById("department_name").value = department_name;
 
 	//test alert
 	alert(department_name, department_code);

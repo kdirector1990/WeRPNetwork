@@ -152,8 +152,7 @@
 													<div class="col-md-10">
 														<select class="form-control" name="sar_type" style="width: 330px;">
 															<option value="1">1. 입고</option>
-															<option value="2">2. 판매</option>
-															<option value="3">3. 재입고</option>
+															<option value="2">2. 출고(판매)</option>
 														</select>
 													</div>
 												</div>

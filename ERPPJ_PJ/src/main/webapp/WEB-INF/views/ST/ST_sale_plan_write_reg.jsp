@@ -67,18 +67,22 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">기간 시작</label>
 													<div class="col-md-10">
-														<input type="date" name="s_plan_start"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
+													<div style="display: inline-block;">
+														<i class="mdi mdi-calendar" style="float: right;"><input type="date" name="s_plan_start" class="form-control" style="width: 350px; float: left;"
+															placeholder="mm/dd/yyyy" >
+														</i>
+													</div>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">기간 종료</label>
 													<div class="col-md-10">
-														<input type="date" name="s_plan_end"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
+													<div style="display: inline-block;">
+														<i class="mdi mdi-calendar" style="float: right;"><input type="date" name="s_plan_end" class="form-control" style="width: 350px; float: left;"
+															placeholder="mm/dd/yyyy">
+														</i>
+													</div>
 													</div>
 												</div>
 
@@ -87,7 +91,7 @@
 													<label class="col-md-2 col-form-label"
 														for="example-textarea">비고</label>
 													<div class="col-md-10">
-														<textarea class="" rows="7" cols="200" name="sp_note"></textarea>
+														<textarea class="form-control" rows="8" cols="200" name="sp_note" id="example-textarea"></textarea>
 													</div>
 												</div>
 
@@ -128,8 +132,6 @@
 											</div>
 											<!-- end col -->
 
-
-
 											<div class="form-group mb-0">
 												<div>
 													<button type="submit"
@@ -144,6 +146,7 @@
 											<!-- end row -->
 
 										</div>
+									
 									</form>
 								</div>
 							</div>
@@ -166,11 +169,9 @@
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
 	<!-- Vendor js -->
-	<script src="/erp/resources/assets/js/vendor.min.js"></script>
 
 	<!-- Bootstrap select plugin -->
-	<script
-		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+	
 
 	<!-- Table Editable plugin-->
 	<script

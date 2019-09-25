@@ -77,16 +77,32 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="item" items="${note}">
+	                                <c:set var="cnt" value="0"/>  
+	                                <c:if test="${note != null}">                             
+	                                   	<c:forEach var="item" items="${note}">
 											<tr>
 												<td>${item.bill_r_code}</td>
 												<td>${item.customer_code}</td>
 												<td>${item.payment_price}</td>
-												<td>${item.payment_date}</td>
-												<td>${item.payment_expriration}</td>
+												<td>${item.payment_date.substring(0,10)}</td>
+												<td>${item.payment_expriration.substring(0,10)}</td>
 												<td>${item.payment_interest}</td>
 											</tr>
 										</c:forEach>
+                                  	</c:if>
+                                  	<c:if test="${note == null}">
+                                		<c:forEach var = "depo" begin="1" end="100">
+                                    		<tr>
+												<td>${depo}</td>
+												<td>${depo}</td>
+												<td>${depo}</td>
+												<td>${depo}</td>
+												<td>${depo}</td>
+												<td>${depo}</td>
+                                       			<c:set var="cnt" value="${cnt+1}"/>
+                                       		</tr>
+                                   		</c:forEach>
+                               		</c:if>
 									</tbody>
 								</table>
 							</div>

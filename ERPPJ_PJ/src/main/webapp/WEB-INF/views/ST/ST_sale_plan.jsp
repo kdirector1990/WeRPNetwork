@@ -65,9 +65,9 @@
     		$('#search').click(function(){
     			var param = new Object();
     			var jsonData;
-    			
     						
     			param.productName = $("#productName").val();
+    			param.dateu = $("#user_date").val();
     					
     			jsonData = JSON.stringify(param);
     			
@@ -80,7 +80,6 @@
     				success : function(list){
     					
     					$('#result_2').empty();
-    					
     					
     					
     					for(var i = 0 ; i < list.length; i++){
@@ -104,7 +103,7 @@
     						var year = pa.getFullYear();
     						var month = (1+pa.getMonth());
     						var day = pa.getDate(); 
-    						var end_datess = year + "/" + month +"/"+day;
+    						var edate = year + "/" + month +"/"+day;
     						
     						$('#result_2').append('<tr onclick="salePlanWriteForm(\''+saleplan_code+'\')">'+
     	                         	'<td>'+ saleplan_code +'</td>'+
@@ -113,7 +112,7 @@
     								'<td>'+ ef_price +'</td>'+
     								'<td>'+ ef_amount +'</td>'+
     								'<td>'+ start_datess +'</td>'+
-    								'<td>'+ end_datess +'</td>'+
+    								'<td>'+ edate +'</td>'+
     								'<td>'+ sp_note +'</td>'+
     	                 		'</tr>');
     					
@@ -139,7 +138,6 @@
     					);
     					searchCount = searchCount + 1;
     					}
-    					
     					
     					}
     					
@@ -205,8 +203,8 @@
 											<td>&nbsp;&nbsp;</td>
 
 											<th>계획년도</th>
-											<td class="col-md-2 input-group"><input type="month"
-												class="form-control" name="userdate" id="userdate">
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="user_date" id="user_date">
 											</td>
 
 											<th class="col-md-1 col-form-label"></th>

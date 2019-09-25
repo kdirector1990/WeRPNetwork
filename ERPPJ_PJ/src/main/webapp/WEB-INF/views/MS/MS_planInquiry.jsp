@@ -6,8 +6,13 @@
 .result {
 	display: none;
 }
+
+#selectPlan{
+	display: none;
+}
 </style>
 <%@ include file="../setting.jsp"%>
+<script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
 function ST_searchUsername() {
 	window.open("ST_searchUsername", "ST_searchUsername", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
@@ -20,6 +25,34 @@ function enterkey() {
     }
 }
 
+//결과
+function MS_planDetail_result(url) { 
+	sendRequest(callback, "MS_planDetail_result", "post", "${_csrf.parameterName }=${_csrf.token }&plan_code="+url);
+}
+
+function callback() {
+	var result = document.getElementById("result");
+	
+	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+	
+		if(httpRequest.status == 200){	// 200 : 정상 종료
+			result.innerHTML = "정상종료";
+			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
+			
+			var datas = httpRequest.responseText;
+			document.getElementById("selectPlan").style.display="block";
+			result.innerHTML = datas;
+			
+		} else {
+			result.innerHTML = "에러발생";
+			
+		}
+	
+	} else {
+		result.innerHTML = "상태 : " + httpRequest.readyState;
+	}
+} 
+
 var searchCount = 1;
 function searchCus() {
 	 var param = $("#search").serializeArray();
@@ -30,7 +63,7 @@ function searchCus() {
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
-				
+				$('#result').empty();
 				$('#result1').empty();
 				$('#bodyappend').empty();
 	
@@ -47,14 +80,14 @@ function searchCus() {
 					var plan_objective = vo[i].plan_objective;
 					var plan_proposal = vo[i].plan_proposal;
 					
-					$("#result1").append('<tr>' +
+					$("#result1").append('<tr onclick="MS_planDetail_result(\''+plan_code+'\')">' +
 							'<td>'+ plan_code+ '</td>' +
 							'<td>'+ plan_name+ '</td>' +
 							'<td>'+ username + '</td>' +
 							'<td>'+ position_code + '</td>' +
-							'<td>'+ plan_regdate + '</td>' +
-							'<td>'+ plan_startdate + '</td>' +
-							'<td>'+ plan_enddate + '</td>' +
+							'<td>'+ vo[i].plan_regdate_s + '</td>' +
+							'<td>'+ vo[i].plan_startdate_s + '</td>' +
+							'<td>'+ vo[i].plan_enddate_s + '</td>' +
 							'<td>'+ plan_state + '</td>' +
 							'<td>'+ plan_objective + '</td>' +
 							'<td>' + plan_proposal + '</td></tr>');
@@ -82,13 +115,13 @@ function searchCus() {
 						searchCount = searchCount + 1;
 						}
 				}
-				
 			},
 			error : function(){
 				alert("실패.");
 			}
 		});
 }
+
 </script>
 </head>
 <body>
@@ -120,27 +153,26 @@ function searchCus() {
 								<form id="search" onsubmit="return false">
 									<table class="col-12">
 										<tr class="form-group row">
-											<tr class="form-group row">		
-												<th class="col-md-1 col-form-label">사원</th>
-												<td class="col-md-2 input-group">
-												<input type="text" name="username" id="username"
-												class="form-control" onclick="ST_searchUsername();"  onkeyup="enterkey();">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">사원</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="username" id="username" class="form-control"
+												onclick="ST_searchUsername();" onkeyup="enterkey();">
 												<input type="text" name="e_name" id="e_name"
-												class="form-control" readonly>
-												</td>
-												
-											</tr>
-										</table>
-									</form>
-									<div align="right">
-										<button type="button"
+												class="form-control" readonly></td>
+
+										</tr>
+									</table>
+								</form>
+								<div align="right">
+									<button type="button"
 										class="btn btn-dark waves-effect waves-light"
 										onclick="searchCus();">조회</button>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -148,7 +180,7 @@ function searchCus() {
 							<div class="card-body">
 								<h4 class="header-title">기획서 조회</h4>
 								<hr>
-								<table id="datatable1"
+								<table id="datatable"
 									class="table m-0 table-bordered table-hover"
 									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 									<thead class="bg-primary text-white">
@@ -166,26 +198,21 @@ function searchCus() {
 										</tr>
 									</thead>
 
-
 									<tbody id="result1">
+
 									</tbody>
 								</table>
+							</div>
+						</div>
+					</div>
+				</div>
 
-								<div class="result2">
-									<br>
-									<form>
-										<input type='hidden' name="${_csrf.parameterName }"
-											value="${_csrf.token }"> <br>
-										<table id="datatable2"
-											class="table table-striped dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0;">
-											<thead>
-											</thead>
-
-											<tbody>
-											</tbody>
-										</table>
-									</form>
+				<div id="selectPlan">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result"></div>
 								</div>
 							</div>
 						</div>
@@ -210,116 +237,6 @@ function searchCus() {
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
 
-	<script type="text/javascript">
-     $("#datatable1 tbody tr").click(function(){
-    	 
-			if($(".plandiv") != null){
-				$(".plandiv").remove();
-			}
-			
-			var tdArr = new Array();	// 배열 선언
-			
-			// 현재 클릭된 Row(<tr>)
-			var tr = $(this);
-			var td = tr.children();
-			
-			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-			td.each(function(i){
-				tdArr.push(td.eq(i).text());
-			});
-			
-			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var plan_code = td.eq(1).text();
-   			var plan_name = td.eq(2).text();
-   			var username = td.eq(3).text();
-   			var position_code = td.eq(4).text();
-   			var plan_regdate = td.eq(5).text();
-   			var plan_startdate = td.eq(6).text();
-   			var plan_enddate = td.eq(7).text();
-   			var plan_state = td.eq(8).text();
-   			var plan_objective = td.eq(9).text();
-   			var plan_proposal = td.eq(10).text();
-			
-   			tdArr.push(plan_code);
-   			tdArr.push(plan_name);
-   			tdArr.push(username);
-   			tdArr.push(position_code);
-   			tdArr.push(plan_regdate);
-   			tdArr.push(plan_startdate);
-   			tdArr.push(plan_enddate);
-   			tdArr.push(plan_state);
-   			tdArr.push(plan_objective);
-   			tdArr.push(plan_proposal);
-   			
-   			$('.result2').show();
-   			
-   			$('#datatable2 > tbody:last').append('<div class="plandiv">'+'<input type="hidden" name="plan_code" value="'+tdArr[0]+'"><div class="form-group row">'
- 					+ '<label class="col-md-2 col-form-label" for="example-email">기획서 코드</label>'        
- 						+ '<div class="col-md-10">'
- 				    		+ '<input type="text" name="plan_code" value="'+tdArr[0]+'" class="form-control" disabled>' 
- 				        +'</div>'
- 				    +'</div>'
- 				    +'<div class="form-group row">'
- 			        +'<label class="col-md-2 col-form-label" for="example-email">기획명</label>'
- 			        	+ '<div class="col-md-10">'
- 			            	+ '<input type="text" name="plan_name" value="'+tdArr[1]+'" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>'
- 				    + '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="simpleinput">기획제안자</label>' 
- 			        	+ '<div class="col-md-10">'
- 			            	+ '<input type="text" name="username" value="'+tdArr[2]+'" id="simpleinput" class="form-control" disabled>' 
- 			        	+ '</div>'
- 			    	+'</div>'
- 			    	+ '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="example-textarea">책임자</label>'
- 			        	+ '<div class="col-md-10">'
- 			        	+ '<input type="text" name="position_code" value="'+tdArr[3]+'" id="simpleinput" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>'
- 			    	+ '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="simpleinput">기획등록일</label>'
- 			        	+ '<div class="col-md-10">'
- 			            	+ '<input type="text" name="plan_regdate" value="'+tdArr[4]+'" id="simpleinput" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>'
- 			    	+  '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="example-textarea">시작예정일</label>'
- 			        	+'<div class="col-md-10">'
- 			            	+ '<input type="text" name="plan_startdate" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[5]+'" id="simpleinput" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>' 
- 			    	+  '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="example-textarea">종료예정일</label>'
- 			        	+'<div class="col-md-10">'
- 			            	+ '<input type="text" name="plan_enddate" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[6]+'" id="simpleinput" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>' 
- 			    	+  '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획상태</label>'
- 			        	+'<div class="col-md-10">'
- 			            	+ '<input type="text" name="plan_state" value="'+tdArr[7]+'" id="simpleinput" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>' 
- 			    	+  '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="example-textarea">기획목표</label>'
- 			        	+'<div class="col-md-10">'
- 			        		+ '<textarea name="plan_objective" class="form-control" rows="5" id="example-textarea" disabled>'+tdArr[8]+'</textarea>'
- 			        	+ '</div>'
- 			    	+ '</div>' 
- 			    	+  '<div class="form-group row">'
- 			        + '<label class="col-md-2 col-form-label" for="example-textarea">상세 기획안 파일</label>'
- 			        	+'<div class="col-md-10">'
- 			            	+ '<input type="text" name="plan_proposal" value="'+tdArr[9]+'" id="simpleinput" class="form-control" disabled>'
- 			        	+ '</div>'
- 			    	+ '</div>' 
- 					+'</div>'
- 				    );
-   			var offset = $(".plandiv").offset();
-            $('html, body').animate({scrollTop : offset.top}, 200); 
-   			
-		});
-    </script>
     <div id="bodyappend"></div>
 </body>
 </html>

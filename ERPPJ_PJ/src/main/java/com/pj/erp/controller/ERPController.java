@@ -598,7 +598,11 @@ public class ERPController {
 		return "denied"; 
 	}
 	
-
-	
+	@RequestMapping("productList")
+	public String productList(Locale locale, Model model) {
+		logger.info("log => productList");
+		
+		return "productList"; 
+	}
 	
 }

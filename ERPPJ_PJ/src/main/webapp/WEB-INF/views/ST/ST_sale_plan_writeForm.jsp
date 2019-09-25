@@ -36,12 +36,12 @@
 									<table class="table table-bordered mb-0">
 										<tr>
 											<th>품번</th>
-											<td><input class="input" type="text"
+											<td><input class="form-control" type="text"
 												name="detail_ac_code" value="${dto.detail_ac_code}"
 												id="product_codeP" onclick="ProductName();"></td>
 
 											<th>품명</th>
-											<td><input class="input" type="text" name="product_name"
+											<td><input class="form-control" type="text" name="product_name"
 												value="${dto.product_name}" id="product_nameP"></td>
 
 											<td class="display:none;"><input type="hidden"
@@ -50,43 +50,43 @@
 
 										<tr>
 											<th>예상 수량</th>
-											<td><input class="input" type="text" name="ef_amount"
+											<td><input class="form-control" type="text" name="ef_amount"
 												value="${dto.ef_amount }"></td>
 
 											<th>에상 금액</th>
-											<td><input class="input" type="text" name="ef_price"
+											<td><input class="form-control" type="text" name="ef_price"
 												value="${dto.ef_price}"></td>
 										</tr>
 
 										<tr>
 											<th>단위</th>
-											<td><input class="input" type="text" name="sp_unit"
+											<td><input class="form-control" type="text" name="sp_unit"
 												value="${dto.sp_unit }"></td>
 
 											<th>시작 기간</th>
-											<td><input class="input" type="date" name="s_plan_start"
+											<td><input class="form-control" type="date" name="s_plan_start"
 												value="${dto.s_plan_start }"></td>
 										</tr>
 
 										<tr>
 											<th>종료 기간</th>
-											<td><input class="input" type="date" name="s_plan_end"
+											<td><input class="form-control" type="date" name="s_plan_end"
 												value="${dto.s_plan_end }"></td>
 											<td></td>
 										</tr>
 
 										<tr>
 											<th>비고</th>
-											<td colspan="3"><textarea class="input" rows="7"
+											<td colspan="3"><textarea class="form-control" rows="7"
 													cols="150" name="sp_note">${dto.sp_note }</textarea></td>
 										</tr>
 
 										<tr>
-											<th><input class="inputButton" type="submit" value="수정"
+											<th><input class="btn btn-success waves-effect waves-light" type="submit" value="수정"
 												formaction="ST_sale_Plan_modifyPro"> <input
-												class="inputButton" type="submit" value="삭제"
+												class="btn btn-danger waves-effect waves-light" type="submit" value="삭제"
 												formaction="ST_sale_Plan_deletePro"> <input
-												class="inputButton" type="button" value="수정 취소"
+												class="btn btn-dark waves-effect waves-light" type="button" value="수정 취소"
 												onClick="window.location.reload()">
 										</tr>
 

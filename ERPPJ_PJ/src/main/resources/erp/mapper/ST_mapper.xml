@@ -35,10 +35,11 @@
  	
  	<select id="getSalePlanResult" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.ST.SalePlan">
  		<![CDATA[
- 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code, s.detail_ac_code
- 		from saleplan_tbl s, product_list_tbl p
- 		where s.detail_ac_code = p.product_code
- 		and product_name like '%'||#{productName}||'%'
+ 		   select s.saleplan_code, s.ef_amount, s.sp_unit,s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code, s.detail_ac_code
+           from saleplan_tbl s, product_list_tbl p
+           where s.detail_ac_code = p.product_code
+           and p.product_name like '%'||#{productName}||'%'
+           and to_char(s.s_plan_end,'YYYY/MM/DD') like #{dateu}||'%/%'
  		]]>
  	</select>
  	
@@ -141,6 +142,60 @@
  		]]>
  	</select>
  	
+ 	<select id="getDelaystate" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
+ 		<![CDATA[
+ 			 select s.salelist_code as salelist_code, 
+					 s.release_o_date as release_o_date, 
+					 s.unit as unit,
+					 s.amount as amount,
+					 s.price as price,
+					 s.username as username, 
+					 s.note as note,
+					 s.release_state as release_state,
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and p.product_name like '%'||#{productName}||'%'
+				and s.release_state like '%'||#{release}||'%'
+				and to_date(to_char(sysdate, 'YYYY/MM/DD')) > release_o_date
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="getDelaystate2" parameterType = "java.util.Map" resultType="com.pj.erp.vo.ST.SaleList">
+ 		<![CDATA[
+ 			      select s.salelist_code as salelist_code, 
+					 s.release_o_date as release_o_date, 
+					 s.unit as unit,
+					 s.amount as amount,
+					 s.price as price,
+					 s.username as username, 
+					 s.note as note,
+					 s.release_state as release_state,
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name,
+                     a.release_date as release_date
+				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u,  sar_list_tbl a
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+                and s.detail_ac_code = a.detail_ac_code
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and p.product_name like '%'||#{productName}||'%'
+				and to_date(to_char(a.release_date, 'YYYY/MM/DD')) > s.release_o_date
+				and s.release_state = '1'
+                and a.sar_type = '2'
+ 		]]>
+ 	</select>
+ 	
+ 	
  	<select id="getReleaseList" resultType="com.pj.erp.vo.ST.Release" parameterType="java.util.Map">
  		SELECT * FROM sar_list_tbl
  	</select>
@@ -166,6 +221,34 @@
 				 And s.detail_ac_code = p.product_code
 				 And s.username = u.username
 				 and sar_code=#{sar_code}
+ 	</select>
+ 	
+ 	<select id="getrefundList" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.Release">
+ 		<![CDATA[
+ 				select s.sar_code as sar_code, 
+					 s.unit_cost as unit_cost, 
+					 s.customer_code as customer_code,
+					 s.stored_count as stored_count, 
+					 s.release_count as release_count, 
+					 s.stored_name as stored_name, 
+					 s.username as username, 
+					 s.stored_name as stored_name,
+					 s.release_name as release_name, 
+					 s.release_date as release_date,
+					 s.sar_type as sar_type, 
+					 p.product_code as detail_ac_code, 
+					 p.product_name as product_name, 
+					 c.customer_name as customer_name,
+					 u.e_name as e_name
+				 from sar_list_tbl s, customer_list_tbl c, product_list_tbl p, users u
+				 Where s.customer_code = c.customer_code
+				 And s.detail_ac_code = p.product_code
+				 And s.username = u.username
+				and c.customer_name like '%'||#{customer_name}||'%'
+				and s.username like '%'||#{username}||'%'
+				and p.product_name like '%'||#{product_name}||'%'
+				and s.sar_type ='3'
+ 		]]>
  	</select>
  	
  	<update id="updateRelease" parameterType="com.pj.erp.vo.ST.Release">
@@ -251,7 +334,7 @@
  	</delete>
  	
  	<select id="getContrast" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.ST_contrast">
- 		   select * from ST_contrast_pp_View where sale_pname like '%'||#{productName}||'%'
+ 		   select * from ST_contrast_pp_View where sale_pname like '%'||#{productName}||'%' and sale_date like '%'||#{year}||'%/%'||#{mon}
  	</select>
  	
  	
