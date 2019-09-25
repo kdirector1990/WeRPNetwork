@@ -69,6 +69,9 @@ public interface HR_DAO {
 	//책정임금현황 검색결과
 	public List<HR_SalaryVO> getSalary(Map<String, Object> map);
 	
+	//발령공고 검색결과
+	public List<HR_RecordVO> getRecord(Map<String, Object> map);
+	
 	// 부서 목록
 	public List<HR_VO> getDepartmentList(Map<String, Object> map);
 	

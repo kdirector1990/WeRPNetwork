@@ -264,11 +264,11 @@
 																	name="e_mailcode" placeholder="우편번호">
 															</div>
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-															<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span
+															<label class="col-md-1 col-form-label" for="simpleinput">nfc코드<span
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
 																<input type="text" class="form-control"
-																	name="e_nfcCodeNFC" placeholder="출입카드No.">
+																	name="e_nfcCodeNFC" placeholder="nfc코드">
 															</div>
 														</div>
 

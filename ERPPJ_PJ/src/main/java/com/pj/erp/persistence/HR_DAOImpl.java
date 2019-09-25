@@ -318,5 +318,10 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getAp_codeList", ap_name);
 	}
 
+	@Override
+	public List<HR_RecordVO> getRecord(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getRecord", map);
+	}
+
 
 }

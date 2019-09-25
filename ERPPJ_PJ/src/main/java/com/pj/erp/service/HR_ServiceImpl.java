@@ -94,10 +94,10 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO vo = new HR_VO();		
 		
 		String username = dao.getUsername();
-		String e_name = "1234";
+		String e_name = req.getParameter("e_name");
 		// String e_picture = file.getOriginalFilename();
 		
-		String password = passwordEncoder.encode(e_name);
+		String password = passwordEncoder.encode("1234");
 		System.out.println(e_name);				
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
@@ -291,6 +291,14 @@ public class HR_ServiceImpl implements HR_Service{
 	}
 	
 	@Override
+	public List<HR_RecordVO> getRecord(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		
+		List<HR_RecordVO> list = dao.getRecord(map);
+		
+		return list;
+	}
+	
+	@Override
 	public void departmentList(HttpServletRequest req, Model model) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();		
@@ -345,9 +353,11 @@ public class HR_ServiceImpl implements HR_Service{
 	public void modifyFoundationPro(HttpServletRequest req, Model model) {
 		HR_VO vo = new HR_VO();
 		String username = req.getParameter("username");
+		String e_name = req.getParameter("e_name");
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
-		vo.setUsername(username);		
+		vo.setUsername(username);
+		vo.setE_name(e_name);
 		vo.setE_gender(e_gender);
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
