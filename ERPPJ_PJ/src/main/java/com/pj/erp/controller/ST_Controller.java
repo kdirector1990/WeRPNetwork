@@ -182,7 +182,7 @@ public class ST_Controller {
 		service.salePlan(req, model);
 		
 		return "ST/ST_sale_plan";
-	}   
+	}    
 	
 	// ST_sale_plan_result
 	@RequestMapping(value = "ST_sale_plan_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)

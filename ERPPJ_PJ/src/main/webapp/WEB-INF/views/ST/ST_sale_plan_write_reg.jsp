@@ -67,18 +67,22 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">기간 시작</label>
 													<div class="col-md-10">
-														<input type="date" name="s_plan_start" class="form-control" style="width: 350px;"
-															placeholder="mm/dd/yyyy"> 
-															<i class="mdi mdi-calendar"></i>
+													<div style="display: inline-block;">
+														<i class="mdi mdi-calendar" style="float: right;"><input type="date" name="s_plan_start" class="form-control" style="width: 350px; float: left;"
+															placeholder="mm/dd/yyyy" >
+														</i>
+													</div>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">기간 종료</label>
 													<div class="col-md-10">
-														<input type="date" name="s_plan_end" class="form-control" style="width: 350px;"
+													<div style="display: inline-block;">
+														<i class="mdi mdi-calendar" style="float: right;"><input type="date" name="s_plan_end" class="form-control" style="width: 350px; float: left;"
 															placeholder="mm/dd/yyyy">
-															<i class="mdi mdi-calendar"></i>
+														</i>
+													</div>
 													</div>
 												</div>
 
