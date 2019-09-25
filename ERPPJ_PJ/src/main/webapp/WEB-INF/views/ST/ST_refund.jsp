@@ -34,7 +34,7 @@
 	    	sendRequest(callback, "ST_releaseDetail", "post", "${_csrf.parameterName }=${_csrf.token }&sar_code="+url);
 	    }
 	    
-	    function callback() {
+	   function callback() {
 	    	var result = document.getElementById("result");
 	    	
 	    	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태

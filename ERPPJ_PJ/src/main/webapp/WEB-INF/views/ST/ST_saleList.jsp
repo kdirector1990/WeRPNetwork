@@ -249,7 +249,7 @@ function usernameList() {
 										<a
 											onclick="window.open('ST_saleList_write', '_blank', 'width=1500 height=600')">
 											<button type="button"
-												class="btn btn-success waves-effect waves-light">추가</button>
+												class="btn btn-light waves-effect">추가</button>
 										</a>
 									</div>
 								</div>

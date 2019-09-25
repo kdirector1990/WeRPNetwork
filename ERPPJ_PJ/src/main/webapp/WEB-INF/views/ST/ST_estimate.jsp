@@ -79,9 +79,10 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">납품 예정일</label>
 													<div class="col-md-10">
-														<input type="date" name="ep_deliver_date"
-															placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-															class="mdi mdi-calendar"></i>
+													<div style="display: inline-block;">
+														<i class="mdi mdi-calendar" style="float: right;"><input type="date" class="form-control" name="ep_deliver_date"
+															placeholder="mm/dd/yyyy" style="width: 350px; float: left;"></i>
+													</div>
 													</div>
 												</div>
 

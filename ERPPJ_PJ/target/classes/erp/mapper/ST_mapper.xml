@@ -337,6 +337,11 @@
  		   select * from ST_contrast_pp_View where sale_pname like '%'||#{productName}||'%' and sale_date like '%'||#{year}||'%/%'||#{mon}
  	</select>
  	
+ 	<select id="getTransaction" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.TransactionDetails">
+ 		<![CDATA[
+ 		
+ 		]]>
+ 	</select>
  	
  	<!-- Product 검색 -->
 	<select id="selectProduct" resultType="int" parameterType="String" >
@@ -396,6 +401,30 @@
 	<!-- 팝업창 부서검색 목록조회 -->
 	<select id="getDepartmentList" resultType="com.pj.erp.vo.ST.ST_department" parameterType="String">
 		select department_name,department_code from department_tbl where department_name like '%'||#{department_name}||'%'
+	</select>
+	
+	<!-- 팝업창 판매 리스트 조회 -->
+	<select id="selectSale" resultType="int" parameterType="String">
+		        select COUNT(*)
+                 from salelist_tbl s, customer_list_tbl c 
+                 where s.customer_code = c.customer_code
+                 and c.customer_name like '%'||#{customer_name}||'%'
+	</select>
+	
+	<!-- 팝업창 판매 리스트 -->
+	<select id="selectSaleList" parameterType="String" resultType="com.pj.erp.vo.ST.SaleList">
+		        select s.salelist_code as salelist_code,
+                            c.customer_name as customer_name,
+                            p.product_name as product_name,
+                            s.release_o_date as release_o_date,
+                            s.price as price,
+                            s.amount as amount,
+                            p.product_code as product_code
+                        from salelist_tbl s, customer_list_tbl c,product_list_tbl p
+                        where s.customer_code = c.customer_code
+                        and s.detail_ac_code = p.product_code
+                        and release_state = '2'
+                        and c.customer_name like '%'||#{customer_name}||'%'
 	</select>
 	
  </mapper>

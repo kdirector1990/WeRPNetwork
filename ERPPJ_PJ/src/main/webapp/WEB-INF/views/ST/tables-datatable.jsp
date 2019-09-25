@@ -26,6 +26,97 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 </head>
+<script type="text/javascript">
+var searchCount = 1;
+$(function(){
+	$('#search').click(function(){
+		var param = new Object();
+		var jsonData;
+					
+		param.customer_name = $("#customerName").val();
+		param.username = $("#username_2").val();
+		param.product_name = $("#ProductName").val();
+				
+		jsonData = JSON.stringify(param); 
+		$.ajax({
+			url : '${pageContext.request.contextPath}/tables_datatable_result?${_csrf.parameterName}=${_csrf.token }',
+			type : 'POST',
+			data : jsonData, 
+			dataType : "json",
+			contentType:"application/json;charset=UTF-8", 
+			success : function(list){
+				
+				$('#result_2').empty();
+				
+				for(var i = 0 ; i < list.length; i++){
+					var sar_code = list[i].sar_code;
+					var unit_cost = list[i].unit_cost;						
+					var stored_count = list[i].stored_count;
+					var release_count = list[i].release_count;
+					var stored_name = list[i].stored_name;
+					var release_name = list[i].release_name;
+					
+					var sar_type = list[i].sar_type;
+				
+					var e_name = list[i].e_name;
+					var product_name = list[i].product_name;
+					
+					var release_date = list[i].release_date;
+					var pa = new Date(release_date);
+					var year = pa.getFullYear();
+					var month = (1+pa.getMonth());
+					var day = pa.getDate(); 
+					var rel_date = year + "/" + month +"/"+day;
+					
+					$('#result_2').append('<tr onclick="ST_releaseDetailForm(\''+sar_code+'\')">'+
+							'<td>'+ sar_code +'</td>'+ 
+                        	'<td>'+ product_name +'</td>'+ 
+                        	'<td>'+ release_name +'</td>'+
+                        	'<td>'+ rel_date +'</td>'+ 
+							'<td>'+ release_count +'</td>'+ 
+							'<td>'+ stored_name +'</td>'+
+							'<td>'+ stored_count +'</td>'+
+							'<td>'+ e_name + '</td>'+
+							'<td>'+ sar_type +'</td>'+
+							'<td>'+ unit_cost +'</td>'+
+							'<td>'+ unit_cost*release_count +'</td>'+
+                		'</tr>');
+				
+				if(searchCount == 1){
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+				searchCount = searchCount + 1;
+				}
+				
+				
+				}
+				
+			},
+			error : function(){
+				alert("에러");
+			}
+		});
+	}); 
+});
+
+</script>
 
 <body>
 
@@ -68,93 +159,47 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<h4 class="header-title">거래 명세서 발행</h4>
-									<p class="sub-header">거래 명세서 발행하는 기능입니다.</p>
+									<table class="col-12">
+										<tr class="form-group row">
+											<th>거래처</th>
+											<td class="col-md-2 input-group"><input type="text" name="customerName" id="customerName" class="form-control"></td>
 
-									<table id="datatable"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-										<tr>
-											<td>사업장</td>
-											<td><input type="text" class="">&nbsp;<a
-												href="#"><i class="dripicons-zoom-in"></i></a><input
-												type="text" class=""></td>
-
-											<td>부서</td>
-											<td><input type="text" class="">&nbsp;<a
-												href="#"><i class="dripicons-zoom-in"></i></a><input
-												type="text" class="">
-											<td>사원 <input type="text" class="">&nbsp;<a
-												href="#"><i class="dripicons-zoom-in"></i></a><input
-												type="text" class="">
-											</td>
+											<th>담당자</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="username_2" id="username_2" class="form-control">
+				
+											<th>출고 기간</th>
+											<td class="col-md-2 input-group">
+											<input type="date" id="userdate" name="userdate" class="form-control">&nbsp;&nbsp;&nbsp;__</td>
+											<td class="col-md-2 input-group"><input type="date" id="userdate" name="userdate" class="form-control"></td>
+											
+												
+												<td class="col-md-2 input-group"><button type="button" 
+														class="btn btn-primary waves-effect waves-light" id="search">조회</button></td>
 										</tr>
-
-										<tr>
-											<td>출고 기간</td>
-											<td><input type="date" id="userdate" name="userdate"
-												value="sysdate">&nbsp;~&nbsp;<input type="date"
-												id="userdate" name="userdate" value="sysdate"></td>
-											<td>납품처</td>
-											<td><input type="text" class="">&nbsp;<a
-												href="#"><i class="dripicons-zoom-in"></i></a><input
-												type="text" class=""></td>
-										</tr>
-
-										<tr>
-											<td>출고창고</td>
-											<td><input type="text" class="">&nbsp;<a
-												href="#"><i class="dripicons-zoom-in"></i></a></td>
-											<td>출고구분</td>
-											<td><select class="form-control select2">
-													<option>전체</option>
-													<option value="">--</option>
-											</select></td>
-
-											<td><select class="form-control select2">
-													<option>2. 실적담당</option>
-													<option value="">--</option>
-											</select></td>
-											<td><select class="form-control select2">
-													<option></option>
-													<option value="">--</option>
-											</select></td>
-										</tr>
-
-										<tr>
-											<td>전표구분</td>
-											<td><select class="form-control select2">
-													<option>전체</option>
-													<option value="">--</option>
-											</select></td>
-
-										</tr>
-
 									</table>
 
 									<table id="datatable-buttons"
 										class="table table-striped table-bordered dt-responsive nowrap"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
 										<thead>
 											<tr>
-												<th>선택 <input type="checkbox" name="chk"></th>
-												<th>출고번호</th>
-												<th>출고일자</th>
-												<th>거래처</th>
-												<th>창고</th>
+												<th>출고 코드</th>
+												<th>품목</th>
+												<th>거래 요청일</th><!-- 판매 대장 등록일 -->
+												<th>출고일자</th><!-- 출고 리스트 등록일 -->
+												<th>입고처</th>
+												<th>출고처</th>
 												<th>출고구분</th>
-												<th>과세구분</th>
 												<th>단가구분</th>
-												<th>납품처</th>
+												<th>수량</th>
 												<th>담당자</th>
-												<th>출력횟수</th>
-												<th>비고</th>
 											</tr>
 										</thead>
 
 
-										<tbody>
-											<tr>
+										<tbody id="result_2">
+											<!-- <tr>
 												<td><input type="checkbox" name="chk"></td>
 												<td>001</td>
 												<td>2019-08-19</td>
@@ -167,7 +212,7 @@
 												<th>납품처1</th>
 												<th>담당자1</th>
 												<th></th>
-											</tr>
+											</tr> -->
 										</tbody>
 									</table>
 								</div>
@@ -176,7 +221,7 @@
 					</div>
 				</div>
 				<!-- end content -->
-
+				</div>
 
 
 				<%@ include file="../footer.jsp"%>
@@ -187,11 +232,6 @@
 		<%@ include file="../rightbar.jsp"%>
 		<%@ include file="../setting2.jsp"%>
 		<!-- Vendor js -->
-		<script src="/erp/resources/assets/js/vendor.min.js"></script>
-
-		<!-- Bootstrap select plugin -->
-		<script
-			src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 
 		<!-- Datatable plugin js -->
 		<script
@@ -229,7 +269,6 @@
 		<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
 		<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
 
-		<script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
 
 		<!-- App js -->
 		<script src="/erp/resources/assets/js/app.min.js"></script>
