@@ -14,6 +14,8 @@ import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Facility;
+import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
@@ -239,17 +241,56 @@ public interface FT_DAO {
 	public int FT_BuildingDelete(Map<String, Object> map);
 	
 	
-	// 건물 검색 한 것 개수 가져오기
-	public int FT_BuildingCntSelect(String srhval);
-	
 	// 건물 검색 한 것 하나 가져오기
 	public FT_Building FT_BuildingOneSelect(String srhval);
 	
-	// 건물 검색 한 것 가져오기
-	public List<FT_Building> FT_BuildingSelect(String srhval);
-	
 	// 건물가져오기
 	public List<FT_Building> FT_BuildingAllSelect();
+	
+
+	// 토지 추가
+	public int FT_LandPrevInsert(FT_Land vo);
+	
+	public int FT_LandInsert(FT_Land vo);
+	
+	// 토지 수정
+	public int FT_LandPrevUpdate(Map<String, Object> map);
+	
+	public int FT_LandUpdate(Map<String, Object> map);
+	
+	// 토지 삭제
+	public int FT_LandPrevDelete(Map<String, Object> map);
+	
+	public int FT_LandDelete(Map<String, Object> map);
+	
+	// 토지 검색 한 것 하나 가져오기
+	public FT_Land FT_LandOneSelect(String srhval);
+	
+	// 토지가져오기
+	public List<FT_Land> FT_LandAllSelect();
+	
+
+	// 토지 추가
+	public int FT_FacilityPrevInsert(FT_Facility vo);
+	
+	public int FT_FacilityInsert(FT_Facility vo);
+	
+	// 토지 수정
+	public int FT_FacilityPrevUpdate(Map<String, Object> map);
+	
+	public int FT_FacilityUpdate(Map<String, Object> map);
+	
+	// 토지 삭제
+	public int FT_FacilityPrevDelete(Map<String, Object> map);
+	
+	public int FT_FacilityDelete(Map<String, Object> map);
+	
+	// 토지 검색 한 것 하나 가져오기
+	public FT_Facility FT_FacilityOneSelect(String srhval);
+	
+	// 토지가져오기
+	public List<FT_Facility> FT_FacilityAllSelect();
+	
 	
 	// 계정과목가져오기
 	public List<FT_Subject> FT_SubjectAllSelect();

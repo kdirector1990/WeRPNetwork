@@ -9,6 +9,8 @@ import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Facility;
+import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
@@ -85,8 +87,35 @@ public interface FT_Service {
 	// 건물 검색한 것 가져오기
 	public FT_Building FT_BuildingOneSelect(HttpServletRequest req);
 	
-	// 건물 검색한 것 가져오기
-	public List<FT_Building> FT_BuildingSelect(HttpServletRequest req);
+	// 토지 추가
+	public void FT_LandInsert(HttpServletRequest req, Model model);
+
+	// 토지 수정
+	public String FT_LandUpdate(Map<String, Object> map);
+
+	// 토지 삭제
+	public String FT_LandDelete(Map<String, Object> map);
+	
+	// 토지 모두 가져오기
+	public void FT_LandAllSelect(HttpServletRequest req, Model model);
+	
+	// 토지 검색한 것 가져오기
+	public FT_Land FT_LandOneSelect(HttpServletRequest req);
+
+	// 토지 추가
+	public void FT_FacilityInsert(HttpServletRequest req, Model model);
+
+	// 토지 수정
+	public String FT_FacilityUpdate(Map<String, Object> map);
+
+	// 토지 삭제
+	public String FT_FacilityDelete(Map<String, Object> map);
+	
+	// 토지 모두 가져오기
+	public void FT_FacilityAllSelect(HttpServletRequest req, Model model);
+	
+	// 토지 검색한 것 가져오기
+	public FT_Facility FT_FacilityOneSelect(HttpServletRequest req);
 	
 	// 적금 가져오기
 	public void FT_SavingsSelect(HttpServletRequest req, Model model);

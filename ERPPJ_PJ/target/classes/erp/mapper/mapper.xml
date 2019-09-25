@@ -31,7 +31,11 @@
 		Group by e_name, username, nfc_code
 	</select>
 	
-	<!-- NFC 시간 입력하기 -->
-
+	<!-- 블록체인을 위한 department_group_Code select -->
+	<select id="getGroupCode" resultType="com.pj.erp.vo.BlockChainVO">
+		Select * From department_tbl 
+		Where department_code = #{department_code} 
+	</select>
+	
 
 </mapper>

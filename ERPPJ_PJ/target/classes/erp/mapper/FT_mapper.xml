@@ -194,6 +194,66 @@
 		and b.building_code = #{srhval, jdbcType=VARCHAR}
 	</select>
 	
+	<!-- 토지 추가 -->
+	<insert id="FT_LandPrevInsert" parameterType = "com.pj.erp.vo.FT.FT_Land">
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
+		values ('ta_00200', 'LD_' || land_seq.nextval, #{landName}, 'LAND_TBL')
+	</insert>
+	
+	<insert id="FT_LandInsert" parameterType = "com.pj.erp.vo.FT.FT_Land">
+		insert into land_tbl(land_code, department_code, land_name, land_address,
+		land_regdate, land_cost, use_year, use_yn)
+		values('LD_' || land_seq.currval, #{departmentCode}, #{landName}, #{address},
+		#{buyDate}, #{buyPrice}, #{thinkYear}, #{gamga})
+	</insert>
+	
+	<!-- 토지 수정 -->
+	<update id="FT_LandPrevUpdate" parameterType = "java.util.Map">
+		update detail_ac_tbl
+		set ACCOUNT_NAME =  #{landName}
+		where DETAIL_AC_CODE = #{landCode}
+	</update>
+	
+	<update id="FT_LandUpdate" parameterType = "java.util.Map">
+		update land_tbl
+		set department_code = #{departmentCode}, land_name = #{landName},
+		land_address = #{Address}, land_regdate = #{buyDate},
+		land_cost = #{buyPrice}, use_year = #{thinkYear}, use_yn = #{gamga}
+		where land_code = #{landCode}
+	</update>
+	
+	<!-- 토지 삭제 -->
+	<delete id="FT_LandPrevDelete" parameterType = "java.util.Map">
+		delete from detail_ac_tbl
+		where DETAIL_AC_CODE = #{key}
+	</delete>
+	
+	<delete id="FT_LandDelete" parameterType = "java.util.Map">
+		delete from land_tbl
+		where land_code = #{key}
+	</delete>
+	
+	<!-- 토지 가져오기 -->
+	<select id="FT_LandAllSelect" resultType="com.pj.erp.vo.FT.FT_Land">
+		SELECT
+	    land_code landCode, b.department_code departmentCode, d.department_name departmentName, 
+	    land_name landName, land_address address,
+		land_regdate buyDate, land_cost buyPrice, use_year thinkYear, use_yn gamga
+		FROM land_tbl b, department_tbl d
+		where b.department_code = d.department_code
+	</select>
+	
+	<!-- 토지 한개 가져오기 -->
+	<select id="FT_LandOneSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Land">
+		SELECT
+	    land_code landCode, b.department_code departmentCode, d.department_name departmentName, 
+	    land_name landName, land_address Address,
+		land_regdate buyDate, land_cost buyPrice, use_year thinkYear, use_yn gamga
+		FROM land_tbl b, department_tbl d
+		where b.department_code = d.department_code
+		and b.land_code = #{srhval, jdbcType=VARCHAR}
+	</select>
+	
 	<!-- 적금 가져오기 -->
 	<select id="FT_SavingsSelect" resultType="com.pj.erp.vo.FT.FT_Savings">
 		SELECT

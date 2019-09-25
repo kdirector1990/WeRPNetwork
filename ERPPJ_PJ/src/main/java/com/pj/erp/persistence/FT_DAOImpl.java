@@ -14,6 +14,8 @@ import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Facility;
+import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
@@ -868,32 +870,138 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_BuildingDelete",map);
 	}
 	
-	// 거래처 검색 한 것 개수 가져오기
-	public int FT_BuildingCntSelect(String srhval) {
-		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
-		return dao.FT_BuildingCntSelect(srhval);
-	}
-	
-	// 거래처 검색한 것 가져오기
+	// 건물 검색한 것 가져오기
 	@Override
 	public FT_Building FT_BuildingOneSelect(String srhval) {
 		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BuildingOneSelect", srhval);
 	}
-	
-	// 거래처 검색한 것 가져오기
-	@Override
-	public List<FT_Building> FT_BuildingSelect(String srhval) {
-		if(FT_BuildingCntSelect(srhval) == 0) {
-			return null;
-		} else {
-			return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_BuildingSelect", srhval);
-		}
-	}
 
-	// 거래처 가져오기
+	// 건물 가져오기
 	@Override
 	public List<FT_Building> FT_BuildingAllSelect() {
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_BuildingAllSelect");
+	}
+	
+
+	// 토지 추가
+	@Override
+	public int FT_LandPrevInsert(FT_Land vo) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LandPrevInsert",vo);
+	}
+
+	@Override
+	public int FT_LandInsert(FT_Land vo) {
+		int previnsertCnt = FT_LandPrevInsert(vo);
+		if(previnsertCnt != 0) {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LandInsert",vo);
+		} else {
+			return 0;
+		}
+	}
+
+	// 토지 수정
+	@Override
+	public int FT_LandPrevUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LandPrevUpdate",map);
+	}
+
+	@Override
+	public int FT_LandUpdate(Map<String, Object> map) {
+		int previnsertCnt = FT_LandPrevUpdate(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LandUpdate",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 토지 삭제
+	@Override
+	public int FT_LandPrevDelete(Map<String, Object> map) {
+		int previnsertCnt = FT_LandDelete(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LandPrevDelete",map);
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int FT_LandDelete(Map<String, Object> map) {
+		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LandDelete",map);
+	}
+	
+	// 토지 검색한 것 가져오기
+	@Override
+	public FT_Land FT_LandOneSelect(String srhval) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_LandOneSelect", srhval);
+	}
+
+	// 토지 가져오기
+	@Override
+	public List<FT_Land> FT_LandAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_LandAllSelect");
+	}
+	
+
+	// 토지 추가
+	@Override
+	public int FT_FacilityPrevInsert(FT_Facility vo) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LandPrevInsert",vo);
+	}
+
+	@Override
+	public int FT_FacilityInsert(FT_Facility vo) {
+		int previnsertCnt = FT_FacilityPrevInsert(vo);
+		if(previnsertCnt != 0) {
+			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LandInsert",vo);
+		} else {
+			return 0;
+		}
+	}
+
+	// 토지 수정
+	@Override
+	public int FT_FacilityPrevUpdate(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LandPrevUpdate",map);
+	}
+
+	@Override
+	public int FT_FacilityUpdate(Map<String, Object> map) {
+		int previnsertCnt = FT_LandPrevUpdate(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LandUpdate",map);
+		} else {
+			return 0;
+		}
+	}
+
+	// 토지 삭제
+	@Override
+	public int FT_FacilityPrevDelete(Map<String, Object> map) {
+		int previnsertCnt = FT_LandDelete(map);
+		if(previnsertCnt != 0) {
+			return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LandPrevDelete",map);
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int FT_FacilityDelete(Map<String, Object> map) {
+		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LandDelete",map);
+	}
+	
+	// 토지 검색한 것 가져오기
+	@Override
+	public FT_Facility FT_FacilityOneSelect(String srhval) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_LandOneSelect", srhval);
+	}
+
+	// 토지 가져오기
+	@Override
+	public List<FT_Facility> FT_FacilityAllSelect() {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_LandAllSelect");
 	}
 	
 	// 전표승인처리

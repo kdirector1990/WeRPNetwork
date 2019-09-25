@@ -49,12 +49,12 @@
     			
     			$.ajax({
                     type : "POST",
-                    url : "/erp/FT_BuildingOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).html(),
+                    url : "/erp/FT_FacilityOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).html(),
                     success : function(data) {
                         alert(data);
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
-	                   	$("input[name=buildingName]").val(data.buildingName);
+	                   	$("input[name=facilityName]").val(data.facilityName);
 	                   	$("input[name=Address]").val(data.address);
 	                   	$("input[name=buyDate]").val(data.buyDate.substring(0,10));
 	                   	$("input[name=buyPrice]").val(data.buyPrice);
@@ -77,7 +77,7 @@
         		focusval = "";
                	$("#update").css("display", "none");
                	$("#submit").css("display", "");
-        		$("input[name=buildingName]").val("");
+        		$("input[name=facilityName]").val("");
         		$("input[name=Address]").val("");
         		$("input[name=buyDate]").val("");
         		$("input[name=buyPrice]").val("");
@@ -90,8 +90,8 @@
         	function update() {
         		var obj = new Object();
         		var jsonData;
-        		obj.buildingCode = $("#code" + focusval).html();
-        		obj.buildingName = $("input[name=buildingName]").val();
+        		obj.facilityCode = $("#code" + focusval).html();
+        		obj.facilityName = $("input[name=facilityName]").val();
         		obj.Address = $("input[name=Address]").val();
         		obj.buyDate = $("input[name=buyDate]").val();
         		obj.buyPrice = $("input[name=buyPrice]").val();
@@ -108,12 +108,12 @@
         		
         		$.ajax({
                        type : "POST",
-                       url : "/erp/FT_BuildingUpdate?${_csrf.parameterName }=${_csrf.token }",
+                       url : "/erp/FT_FacilityUpdate?${_csrf.parameterName }=${_csrf.token }",
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
                               alert(data);
-                              $("#name" + focusval).val($("input[name=buildingName]").val());
+                              $("#name" + focusval).val($("input[name=facilityName]").val());
                        },
                        error : function(e) {
                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -134,7 +134,7 @@
         		
         		$.ajax({
                        type : "POST",
-                       url : "/erp/FT_BuildingDelete?${_csrf.parameterName }=${_csrf.token }",
+                       url : "/erp/FT_FacilityDelete?${_csrf.parameterName }=${_csrf.token }",
                        data : jsonData,
                        contentType : 'application/json;charset=UTF-8',
                        success : function(data) {
@@ -197,7 +197,7 @@
                                        <li class="breadcrumb-item active">Datatables</li>
 									</ol>
 								</div>
-								<h4 class="page-title">건물 관리</h4>
+								<h4 class="page-title">토지 관리</h4>
 							</div>
 						</div>
 					</div>
@@ -210,7 +210,7 @@
 	                                <div class="card-header bg-primary" style = "display:inline-block;">
 	                                    <h4 class="card-title font-14 mb-0">
 	                                        <a href="#" class="collapsed text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-	                                           	건물 목록
+	                                           	토지 목록
 	                                        </a>
 	                                    	<button type="button" class="btn btn-light waves-effect" onclick = "insertready();" style = "position: absolute; right:15px; top:5px;">insert</button>
 	                                    </h4>
@@ -224,30 +224,30 @@
                                                 <thead>
                                                     <tr>
 		                                                <th>코드</th>
-		                                                <th>건물명</th>
+		                                                <th>설비명</th>
 		                                            </tr>
 		                                        </thead>
 		    
 		                                        <tbody>
 		                                            <c:set var="count" value="0"/>
-				                                  	<c:if test="${building != null}">
-				                                   		<c:forEach var = "sub" items="${building}">
+				                                  	<c:if test="${land != null}">
+				                                   		<c:forEach var = "sub" items="${land}">
 				                                    		<tr>
-				                                    			<td id = "code${count}" onclick="focuse(${count});" style = "height: calc(1.5em + .9rem + 2px);
+																<td id = "code${count}" onclick="focuse(${count});" style = "height: calc(1.5em + .9rem + 2px);
 																padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;
 																background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;
 																-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 																transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">${sub.buildingCode}</td>
+																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">${sub.facilityCode}</td>
 				                                    			<td id = "name${count}" onclick="focuse(${count});" style = "height: calc(1.5em + .9rem + 2px);
 																padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;
 																background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;
 																-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 																transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">${sub.buildingName}</td>
-				                                    			<c:set var="count" value="${count+1}"/>
+																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">${sub.facilityName}</td>
+				                                    			<c:set var="count" value="${count+1}"/>				                                    		
 				                                    		</tr>
 				                                   		</c:forEach>
 				                                  	</c:if>
@@ -261,29 +261,29 @@
 							<div class="card">
 								<div class="card-body">
 									<!-- 인적정보 -->
-									<form action="FT_BuildingInsert" method="post">
+									<form action="FT_FacilityInsert" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 										<div class="col-sm-12">
 											<div class="card-body table-responsive">
-												<h4 class="header-title">건물 추가</h4>
+												<h4 class="header-title">토지 추가</h4>
 												<div class="form-group row">
 													<div class="col-md-5">
 														<div class="form-group row">
-															<label class="col-lg-4 col-form-label" for="simpleinput">건물명<span
+															<label class="col-lg-4 col-form-label" for="simpleinput">토지명<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
 																<input type="text" class="form-control"
-																	name="buildingName" placeholder="건물명">
+																	name="facilityName" placeholder="토지명">
 															</div>
 														</div>
 
 														<div class="form-group row">
-															<label class="col-lg-4 col-form-label" for="simpleinput">건물주소<span
+															<label class="col-lg-4 col-form-label" for="simpleinput">토지주소<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
 																<input type="text" class="form-control" name="Address"
-																	placeholder="건물주소">
+																	placeholder="토지주소">
 															</div>
 														</div>
 
@@ -333,8 +333,8 @@
 															<label class="col-lg-4 col-form-label" for="simpleinput">감가상각여부<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type = "radio" id = "yes" name = "gamga" value = "1"><label for="yes">상각함</label>
-																<input type = "radio" id = "no" name = "gamga" value = "0"><label for="no">상각안함</label>
+																<input type = "radio" id = "yes" name = "gamga" value = "1"><label for="yes">여</label>
+																<input type = "radio" id = "no" name = "gamga" value = "0"><label for="no">부</label>
 															</div>
 														</div>
 														

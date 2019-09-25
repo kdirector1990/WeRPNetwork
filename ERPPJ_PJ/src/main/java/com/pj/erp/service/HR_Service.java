@@ -61,7 +61,7 @@ public interface HR_Service {
 	public void modifyFoundationView(HttpServletRequest req, Model model);
 	
 	// 사원정보 수정처리
-	public void modifyFoundationPro(HttpServletRequest req, Model model);
+	public void modifyFoundationPro(MultipartHttpServletRequest req, Model model);
 	
 	// 신체정보 상세페이지
 	public void modifyPhysicalyView(HttpServletRequest req, Model model);

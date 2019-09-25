@@ -4,6 +4,10 @@ package com.pj.erp.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -47,13 +51,21 @@ public class HR_ServiceImpl implements HR_Service{
 	HR_DAO dao;
 	
 	// 인사정보등록
+<<<<<<< HEAD
 	@Override
+=======
+	@Override
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
         
-        String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
+        String saveDir = req.getRealPath("/resources/hr_img/"); 
         
+<<<<<<< HEAD
         String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+=======
+        String realDir= "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; /*"F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
@@ -67,11 +79,16 @@ public class HR_ServiceImpl implements HR_Service{
                 fos.write(data);
             }
             fis.close();
+<<<<<<< HEAD
             fos.close();
         }catch(Exception e) {
         	 e.printStackTrace();
         }
 		 
+=======
+            fos.close();		
+				
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		
 		HR_VO vo = new HR_VO();		
 		
@@ -135,7 +152,17 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);		
+<<<<<<< HEAD
 		 
+=======
+		
+		
+		
+        } catch(IOException e) {
+            e.printStackTrace();
+        }	
+				
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	}	
 	
 	
@@ -299,7 +326,27 @@ public class HR_ServiceImpl implements HR_Service{
 
 
 	@Override
-	public void modifyFoundationPro(HttpServletRequest req, Model model) {
+	public void modifyFoundationPro(MultipartHttpServletRequest req, Model model) {
+		MultipartFile file = req.getFile("e_picture");
+        
+        String saveDir = req.getRealPath("/resources/hr_img/"); 
+        
+        String realDir= "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; /*"F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */
+        
+        try {
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
+            
+            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            
+            int data = 0;
+            
+            while((data = fis.read()) != -1) {
+                fos.write(data);
+            }
+            fis.close();
+            fos.close();
+		
 		HR_VO vo = new HR_VO();
 		String username = req.getParameter("username");
 		String e_name = req.getParameter("e_name");
@@ -336,6 +383,10 @@ public class HR_ServiceImpl implements HR_Service{
         
         model.addAttribute("updateCnt", updateCnt);
         model.addAttribute("username", username);
+        
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 

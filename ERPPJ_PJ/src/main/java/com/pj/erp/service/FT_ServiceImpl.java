@@ -27,6 +27,8 @@ import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Facility;
+import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
@@ -905,12 +907,121 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println(ac);
 		return ac;
 	}
+	
 
-	// 건물 검색한 것 가져오기
+	// 토지 추가
 	@Override
-	public List<FT_Building> FT_BuildingSelect(HttpServletRequest req) {
-		List<FT_Building> ac = dao.FT_BuildingSelect(req.getParameter("srhval"));
+    public void FT_LandInsert(HttpServletRequest req, Model model) {
+        FT_Land vo = new FT_Land();
+        vo.setLandName(req.getParameter("buildingName"));
+        vo.setAddress(req.getParameter("Address"));
+        vo.setBuyDate(req.getParameter("buyDate"));
+        vo.setBuyPrice(req.getParameter("buyPrice"));
+        vo.setDepartmentCode(req.getParameter("departmentCode"));
+        vo.setThinkYear(req.getParameter("thinkYear"));
+        vo.setGamga(req.getParameter("gamga"));
+        vo.setGamgaWay(req.getParameter("gamgaWay"));
+        int insertCnt = dao.FT_LandInsert(vo);
+
+        model.addAttribute("cnt", insertCnt);
+    }
+	
+	// 토지 수정
+	@Override
+	public String FT_LandUpdate(Map<String, Object> map) {
+		int result = dao.FT_LandUpdate(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "update 실패";
+		}
+	}
+	
+	// 토지 삭제
+	@Override
+	public String FT_LandDelete(Map<String, Object> map) {
+		int result = dao.FT_LandPrevDelete(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "delete 실패";
+		}
+	}
+
+	// 토지 가져오기
+	@Override
+	public void FT_LandAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Land> account = dao.FT_LandAllSelect();
+		System.out.println("building : " + account);
+		System.out.println("buildingSize : " + account.size());
+		model.addAttribute("building", account);
+		model.addAttribute("listsize", account.size() + 1);
+	}
+	
+	// 토지 검색한 것 가져오기
+	@Override
+	public FT_Land FT_LandOneSelect(HttpServletRequest req) {
+		FT_Land ac = dao.FT_LandOneSelect(req.getParameter("srhval"));
 		System.out.println(ac);
 		return ac;
 	}
+
+
+	// 토지 추가
+	@Override
+    public void FT_FacilityInsert(HttpServletRequest req, Model model) {
+        FT_Facility vo = new FT_Facility();
+        vo.setFacilityName(req.getParameter("buildingName"));
+        vo.setAddress(req.getParameter("Address"));
+        vo.setBuyDate(req.getParameter("buyDate"));
+        vo.setBuyPrice(req.getParameter("buyPrice"));
+        vo.setDepartmentCode(req.getParameter("departmentCode"));
+        vo.setThinkYear(req.getParameter("thinkYear"));
+        vo.setGamga(req.getParameter("gamga"));
+        vo.setGamgaWay(req.getParameter("gamgaWay"));
+        int insertCnt = dao.FT_FacilityInsert(vo);
+
+        model.addAttribute("cnt", insertCnt);
+    }
+	
+	// 토지 수정
+	@Override
+	public String FT_FacilityUpdate(Map<String, Object> map) {
+		int result = dao.FT_FacilityUpdate(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "update 실패";
+		}
+	}
+	
+	// 토지 삭제
+	@Override
+	public String FT_FacilityDelete(Map<String, Object> map) {
+		int result = dao.FT_FacilityPrevDelete(map);
+		if(result != 0) {
+			return "성공";
+		} else {
+			return "delete 실패";
+		}
+	}
+
+	// 토지 가져오기
+	@Override
+	public void FT_FacilityAllSelect(HttpServletRequest req, Model model) {
+		List<FT_Facility> account = dao.FT_FacilityAllSelect();
+		System.out.println("building : " + account);
+		System.out.println("buildingSize : " + account.size());
+		model.addAttribute("building", account);
+		model.addAttribute("listsize", account.size() + 1);
+	}
+	
+	// 토지 검색한 것 가져오기
+	@Override
+	public FT_Facility FT_FacilityOneSelect(HttpServletRequest req) {
+		FT_Facility ac = dao.FT_FacilityOneSelect(req.getParameter("srhval"));
+		System.out.println(ac);
+		return ac;
+	}
+
 }

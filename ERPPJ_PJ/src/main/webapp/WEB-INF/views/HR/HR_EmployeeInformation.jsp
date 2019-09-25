@@ -119,10 +119,7 @@
 					);
 					searchCount = searchCount + 1;
 					}
-					
-					
 					}
-					
 				},
 				error : function(){
 					alert("에러");
@@ -131,16 +128,15 @@
 		}); 
 	 });
 	 
-	 
 	 function updateINFO(code){
-		 
 		  $.ajax({
 	  			url: '/erp/HR_update_Fou?${_csrf.parameterName}=${_csrf.token }&username='+code,
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
-	  				
-	  				var username = data.username;	  					  				
+
+	  				var username = data.username;	
+	  				var e_picture = data.e_picture
 	  				var e_name = data.e_name;
 	  				var e_gender = data.e_gender;
 	  				var e_type = data.e_type;
@@ -157,6 +153,12 @@
 	  				
 	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
 	  					+'<div class="form-group row">'
+		  					+ '<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4">'
+									+'<input type="file" class="dropify" name="e_picture" />'
+								+'</div>'
+	  					+'</div>'	
+	  					+'<div class="form-group row">'	  						
 	  						+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
 	  							+'<div class="col-lg-8">'
 	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control">' 
@@ -332,7 +334,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 											<td class="col-md-1 col-form-label">사원번호</td>
@@ -399,7 +401,7 @@
 											role="tabpanel" aria-labelledby="foundation-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body table-responsive">
+													<div class="card-body">
 														<table id="datatable"
 															class="table table-striped table-bordered dt-responsive nowrap">
 
@@ -441,6 +443,7 @@
 														</div>
 													</div>
 												</div>
+
 												<div id="result2" class="card-body">
 													<!-- 상세 페이지 출력 위치 -->
 												</div>

@@ -54,7 +54,11 @@ public class HR_Controller {
 	}
 	
 
+<<<<<<< HEAD
 	@RequestMapping("HR_inputFoundation")
+=======
+	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST)
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
@@ -73,8 +77,8 @@ public class HR_Controller {
 		return "HR/HR_modifyFoundation";
 	}
 	
-	@RequestMapping("HR_modifyFoundationPro")
-	public String HR_modifyFoundationPro(HttpServletRequest req, Model model) {
+	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST)
+	public String HR_modifyFoundationPro(MultipartHttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
 				
