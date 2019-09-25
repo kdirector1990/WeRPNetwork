@@ -31,8 +31,7 @@
 		style="padding-bottom: 0px; padding-bottom: 24px;">
 		<div style="width: 100%; height: 310px; overflow: auto">
 			<form>
-				<table id="datatable" class="table table-bordered table-hover"
-					style="height: 550px;">
+				<table id="datatable" class="table table-bordered table-hover">
 					<thead class="table-info">
 						<tr style="text-align: center; pointer-events: none;">
 							<th>공고코드</th>
@@ -46,17 +45,17 @@
 						<c:if test="${cnt != 0}">
 							<c:forEach var="list" items="${dto}">
 								<tr
-									onclick="setName(${list.ap_code},'${list.ap_name}','${list.ap_content}');">
+									onclick="setName(${list.ap_code},'${list.ap_name}');">
 									<td>${list.ap_code}</td>
 									<td>${list.ap_name}</td>
-									<td>${list.ap_content}</td>									
+									<td>${list.ap_content}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
 						<!--  없으면 -->
 						<c:if test="${cnt == 0}">
 							<tr>
-								<td colspan="6" align="center">조회결과 없음
+								<td colspan="3" align="center">조회결과 없음
 							</tr>
 						</c:if>
 					</tbody>

@@ -1,5 +1,6 @@
 package com.pj.erp.vo.HR;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class HR_FamilyVO {
@@ -8,7 +9,7 @@ public class HR_FamilyVO {
 	private String f_name;
 	private String f_type;
 	private String f_cohabitation;
-	private Timestamp f_born;
+	private Date f_born;
 	private String f_born_type;
 	
 	public HR_FamilyVO() {}
@@ -45,11 +46,11 @@ public class HR_FamilyVO {
 		this.f_cohabitation = f_cohabitation;
 	}
 
-	public Timestamp getF_born() {
+	public Date getF_born() {
 		return f_born;
 	}
 
-	public void setF_born(Timestamp f_born) {
+	public void setF_born(Date f_born) {
 		this.f_born = f_born;
 	}
 

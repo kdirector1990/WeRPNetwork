@@ -33,6 +33,9 @@
     var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
+			$('#result').empty();
+			$('#bodyappend').empty();
+			
 			var param = new Object();
 			var jsonData;
 			
@@ -53,8 +56,6 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#bodyappend').empty();
 					
 					
 					
@@ -117,6 +118,8 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
+
+					
 					searchCount = searchCount + 1;
 					}
 					
@@ -127,6 +130,7 @@
 				error : function(){
 					alert("에러");
 				}
+				
 			});			
 		}); 
 	 });
