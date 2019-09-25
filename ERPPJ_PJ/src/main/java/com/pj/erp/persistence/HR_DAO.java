@@ -3,6 +3,7 @@ package com.pj.erp.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.HR.HR_ApVO;
 import com.pj.erp.vo.HR.HR_FamilyVO;
 import com.pj.erp.vo.HR.HR_GreetingVO;
@@ -168,4 +169,5 @@ public interface HR_DAO {
 	
 	// 공고코드 목록 가져오기
 	public List<HR_ApVO> getAp_codeList(String ap_name);
+	
 }

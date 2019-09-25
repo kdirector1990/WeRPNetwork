@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.HR.HR_ApVO;
 import com.pj.erp.vo.HR.HR_FamilyVO;
 import com.pj.erp.vo.HR.HR_GreetingVO;
@@ -317,6 +318,5 @@ public class HR_DAOImpl implements HR_DAO{
 	public List<HR_ApVO> getAp_codeList(String ap_name) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getAp_codeList", ap_name);
 	}
-
 
 }
