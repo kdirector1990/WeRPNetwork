@@ -337,7 +337,7 @@
 								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">사원번호</td>
+											<th class="col-md-1 col-form-label">사원번호</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>

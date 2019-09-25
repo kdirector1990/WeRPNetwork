@@ -184,7 +184,7 @@
 								<div class="card">
 									<div class="card-body">
 										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap table-hover"
+											class="table table-striped table-bordered dt-responsive nowrap table-hover center"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>													
@@ -211,7 +211,7 @@
 								<div class="card">
 									<div class="card-body">
 										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap"
+											class="table table-striped table-bordered dt-responsive nowrap center"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>													
@@ -242,7 +242,7 @@
 							<div class="card">
 								<div class="card-body">
 									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap"
+										class="table table-striped table-bordered dt-responsive nowrap center"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<tr>
 											<th>비고</th>
@@ -262,7 +262,7 @@
 							<div class="card">
 								<div class="card-body">
 									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap"
+										class="table table-striped table-bordered dt-responsive nowrap center"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
 
