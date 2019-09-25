@@ -48,7 +48,7 @@ public class HR_ServiceImpl implements HR_Service{
         
         String saveDir = req.getRealPath("/resources/hr_img/"); //저장 경로(C:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SPRING_BMS_Project\resources\images\)
         
-        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+        String realDir="F:\\dev50\\\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
