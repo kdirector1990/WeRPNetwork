@@ -136,13 +136,13 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<div align="right">
 										<br>
 									</div>
 									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">공고코드</td>
+											<th class="col-md-1 col-form-label">공고코드</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="ap_code" id="ap_code">
 											</td>
@@ -150,9 +150,16 @@
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 
 											<th class="col-md-1 col-form-label">공고일</th>
-											<td class="col-md-2 input-group"><input type="date" name="ap_reg_date"
-												placeholder="mm/dd/yyyy" style="size: 100px;"> <i
-												class="mdi mdi-calendar"></i></td>
+											<td class="col-md-2 input-group">
+												<div class="input-group">
+													<input type="date" class="form-control" name="ap_reg_date"
+														placeholder="yyyy/mm/dd">
+													<div class="input-group-append">
+														<span class="input-group-text bg-primary text-white b-0"><i
+															class="mdi mdi-calendar"></i></span>
+													</div>
+												</div>
+											</td>
 
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 
@@ -162,24 +169,11 @@
 												id="ap_name"></td>										
 											
 										</tr>
-										
-										<tr class="form-group row">
-
-											<th class="col-md-1 col-form-label"></th>
-											<td class="col-md-2 input-group">
-											</td>
-
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-											<th class="col-md-1 col-form-label"></th>
-											<td class="col-md-2 input-group">
-											</td>
-
-											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
-										</tr>										
 									</table>
+									<div class="form-group text-right mb-0">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">검색</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -190,7 +184,7 @@
 								<div class="card">
 									<div class="card-body">
 										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap"
+											class="table table-striped table-bordered dt-responsive nowrap table-hover"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>													
@@ -251,8 +245,8 @@
 										class="table table-striped table-bordered dt-responsive nowrap"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<tr>
-											<td>비고</td>
-											<td><textarea class="" rows="10" cols="40"
+											<th>비고</th>
+											<td><textarea class="form-control" rows="10" cols="40"
 													name="content" style="width: 500px"
 													placeholder="글내용을 입력하세요 !" word-break:break-all>
 									</textarea></td>

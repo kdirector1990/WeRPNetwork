@@ -68,7 +68,7 @@
 											aria-labelledby="standard-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body table-responsive">
+													<div class="card-body">
 														<div align="right">
 															<br>
 														</div>
@@ -206,7 +206,7 @@
 											aria-labelledby="total-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body table-responsive">
+													<div class="card-body">
 														<table id="datatable"
 															class="table table-striped table-bordered dt-responsive nowrap"
 															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
