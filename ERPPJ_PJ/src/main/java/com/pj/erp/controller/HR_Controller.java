@@ -42,7 +42,7 @@ public class HR_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HR_Controller.class);
 	
-	
+	 
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");

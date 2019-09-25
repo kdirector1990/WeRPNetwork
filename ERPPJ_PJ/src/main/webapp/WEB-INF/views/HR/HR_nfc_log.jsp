@@ -147,24 +147,26 @@
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item active">Dashboard</li>
+											href="javascript: void(0);">WeRP</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">인사</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">인사/급여관리</a></li>
 									</ol>
 								</div>
-								<h4 class="page-title">인사정보현황</h4>
+								<h4 class="page-title">근태</h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
 
-
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">사원번호</td>
+											<th class="col-md-1 col-form-label">사원번호</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>
@@ -199,16 +201,16 @@
 											</td>
 
 											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search" onclick="searchNFCLIST();">검색</button></td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button" id="search"
+											class="btn btn-primary waves-effect waves-light">조회</button>
+									</div>									
 								</div>
 							</div>
 						</div>
 					</div>
-
 
 					<div class="row">
 						<div class="col-sm-12">
@@ -228,29 +230,29 @@
 											role="tabpanel" aria-labelledby="foundation-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body table-responsive">
-													<form id="deleteNfc">
-													<input type="hidden" name="${_csrf.parameterName }"
-											value="${_csrf.token }">
+													<div class="card-body">
+														<form id="deleteNfc">
+															<input type="hidden" name="${_csrf.parameterName }"
+																value="${_csrf.token }">
 															<table id="datatable"
 																class="table table-striped table-bordered dt-responsive nowrap">
-	
+
 																<thead>
 																	<tr>
 																		<th><input type="checkbox" id="allChecked"
-																onclick="allcheck();"></th>
+																			onclick="allcheck();"></th>
 																		<th>nfc접촉시간</th>
 																		<th>nfc고유번호</th>
 																		<th>사번</th>
-																		<th>사원명</th> 
+																		<th>사원명</th>
 																	</tr>
 																</thead>
-																
+
 																<tbody id="result">
-	
+
 																</tbody>
-																
-															</table>	
+
+															</table>
 														</form>
 														<div align="right">
 															<br>
@@ -264,31 +266,7 @@
 													</div>
 												</div>
 											</div>
-
-											<div id="update">
-												<div class="col-sm-12">
-													<div class="card">
-														<div class="card-body table-responsive">
-															<div class="table-responsive"
-																style="margin: 15px 0px 50px">
-																<form id="updateFoundation" method="post"
-																	class="form-horizontal">
-																	<input type="hidden" name="${_csrf.parameterName }"
-																		value="${_csrf.token }">
-																	<div id="result2" class="card-body">
-																		<!-- 상세 페이지 출력 위치 -->
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
 										</div>
-
-
-
-
 									</div>
 								</div>
 							</div>
