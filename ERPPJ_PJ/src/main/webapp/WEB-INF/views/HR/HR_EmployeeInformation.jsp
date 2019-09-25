@@ -44,6 +44,8 @@
 			param.rank_code = $("#rank_code").val();
 					
 			jsonData = JSON.stringify(param);
+					$('#result').empty();
+					$('#bodyappend').empty();
 			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_EmployeeInformation_result?${_csrf.parameterName}=${_csrf.token }',
@@ -53,8 +55,6 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#bodyappend').empty();
 					
 					
 					
@@ -425,7 +425,7 @@
 															</thead>
 
 															<tbody id="result">
-
+		
 															</tbody>
 														</table>
 

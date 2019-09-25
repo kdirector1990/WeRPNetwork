@@ -4,7 +4,8 @@ package com.pj.erp.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
+ 
+import java.io.IOException; 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -48,13 +49,17 @@ public class HR_ServiceImpl implements HR_Service{
 	HR_DAO dao;
 	
 	// 인사정보등록
+ 
 	@Override
+ 
 	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
         
-        String realDir= "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; /*"F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */
+ 
+        String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+ 
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
@@ -68,8 +73,9 @@ public class HR_ServiceImpl implements HR_Service{
                 fos.write(data);
             }
             fis.close();
+ 
             fos.close();		
-				
+			 
 		
 		HR_VO vo = new HR_VO();		
 		
@@ -133,13 +139,14 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);		
+ 
 		
 		
 		
         } catch(IOException e) {
             e.printStackTrace();
         }	
-				
+				 
 	}	
 	
 	
