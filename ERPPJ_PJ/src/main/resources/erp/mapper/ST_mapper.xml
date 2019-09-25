@@ -35,10 +35,11 @@
  	
  	<select id="getSalePlanResult" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.ST.SalePlan">
  		<![CDATA[
- 		select s.saleplan_code, s.ef_amount, s.sp_unit, s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code, s.detail_ac_code
- 		from saleplan_tbl s, product_list_tbl p
- 		where s.detail_ac_code = p.product_code
- 		and product_name like '%'||#{productName}||'%'
+ 		   select s.saleplan_code, s.ef_amount, s.sp_unit,s.s_plan_start, s.s_plan_end, s.ef_price, s.sp_note, p.product_name, p.product_code, s.detail_ac_code
+           from saleplan_tbl s, product_list_tbl p
+           where s.detail_ac_code = p.product_code
+           and p.product_name like '%'||#{productName}||'%'
+           and to_char(s.s_plan_end,'YYYY/MM/DD') like #{dateu}||'%/%'
  		]]>
  	</select>
  	
