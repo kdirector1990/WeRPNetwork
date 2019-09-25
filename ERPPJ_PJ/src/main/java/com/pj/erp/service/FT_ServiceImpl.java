@@ -778,18 +778,18 @@ public class FT_ServiceImpl implements FT_Service{
 		if(result != 0) {
 			return "성공";
 		} else {
-			return "insert 실패";
+			return "update 실패";
 		}
 	}
 	
 	// 건물 삭제
 	@Override
 	public String FT_BuildingDelete(Map<String, Object> map) {
-		int result = dao.FT_BuildingDelete(map);
+		int result = dao.FT_BuildingPrevDelete(map);
 		if(result != 0) {
 			return "성공";
 		} else {
-			return "insert 실패";
+			return "delete 실패";
 		}
 	}
 

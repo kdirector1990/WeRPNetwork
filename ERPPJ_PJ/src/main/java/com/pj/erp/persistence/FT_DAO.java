@@ -221,12 +221,18 @@ public interface FT_DAO {
 	
 
 	// 건물 추가
+	public int FT_BuildingPrevInsert(FT_Building vo);
+	
 	public int FT_BuildingInsert(FT_Building vo);
 	
 	// 건물 수정
+	public int FT_BuildingPrevUpdate(Map<String, Object> map);
+	
 	public int FT_BuildingUpdate(Map<String, Object> map);
 	
 	// 건물 삭제
+	public int FT_BuildingPrevDelete(Map<String, Object> map);
+	
 	public int FT_BuildingDelete(Map<String, Object> map);
 	
 	
