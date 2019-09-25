@@ -134,4 +134,9 @@ public interface HR_Service {
 	//NFC 체크박스 지우기
 	public int deleteNfcSelect(HttpServletRequest req, Model model);
 	
+	// e_name으로 username 검색
+	public void searchUsername(HttpServletRequest req, Model model);
+	
+	// ap_name으로 ap_code 검색
+	public void searchAp_code(HttpServletRequest req, Model model);
 }

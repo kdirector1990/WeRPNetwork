@@ -792,7 +792,7 @@ public class FT_Controller {
         
         service.FT_BuildingInsert(req, model);
         
-        return "FT/FT_BulidingComplete";
+        return "FT/FT_BuildingComplete";
     }
 
 	// 건물 검색 가져오기

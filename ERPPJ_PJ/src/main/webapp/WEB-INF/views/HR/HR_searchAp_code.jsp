@@ -15,7 +15,7 @@
 
 // 검색창 포커스	 
 function searchNameFocus(){
-	document.searchName.department_name.focus();
+	document.searchName.ap_name.focus();
 }
 
 function enterkey() {
@@ -25,21 +25,22 @@ function enterkey() {
     }
 }
 
+
 // 결과
-function load1(department_name) {
-	var url = document.searchName.department_name.value;
+function load1(ap_name) {
+	var url = document.searchName.ap_name.value;
 	
-	sendRequest(callback, "ST_searchDepartmentname_result", "post", "department_name="+url);
+	sendRequest(loadBook_callback, "HR_searchAp_code_result", "post", "ap_name="+url);
 }
 
-function callback() {
+function loadBook_callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.department_name.value){
-			alert("부서명을 입력하세요.");
+		if(!document.searchName.ap_name.value){
+			alert("공고명을 입력하세요!");
 			location.reload();
-			document.searchName.department_name.focus();
+			document.searchName.ap_name.focus();
 			return false;
 		}
 	
@@ -62,18 +63,17 @@ function callback() {
 } 
 
 
-function setName(department_code, department_name) {
-	opener.document.getElementById("department_code").value = department_code;
-	opener.document.getElementById("department_name").value = department_name;
-
+function setName(ap_code) {
+	opener.document.getElementById("ap_code").value = ap_code;
+	opener.document.getElementById("ap_name").value = ap_name;	
 	//test alert
-	alert(department_name, department_code);
+	alert(ap_code);
 	
-	$("#department_name", opener.document).val(department_name); //jquery 이용
-	$(opener.document).find("#department_name").val(department_name); //find를 이용한 jquery
+	$("#ap_code", opener.document).val(ap_code); //jquery 이용
+	$(opener.document).find("#ap_code").val(ap_code); //find를 이용한 jquery
 	
-	$("#department_code", opener.document).val(department_code); //jquery 이용
-	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
+	$("#ap_name", opener.document).val(ap_name); //jquery 이용
+	$(opener.document).find("#ap_name").val(ap_name); //find를 이용한 jquery	
 	
 	self.close();
 	
@@ -97,7 +97,7 @@ function setName(department_code, department_name) {
 					<div class="col-12">
 						<div class="page-title-box" style="text-align: center;">
 							<h4>
-								<b>부서목록</b>
+								<b>계정목록</b>
 							</h4>
 						</div>
 					</div>
@@ -114,7 +114,7 @@ function setName(department_code, department_name) {
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
 											<td><input onkeyup="enterkey();" type="text"
-												name="department_name" class="form-control form-control-sm"
+												name="ap_name" class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
 										</tr>
@@ -132,7 +132,7 @@ function setName(department_code, department_name) {
 								</form>
 							</div>
 
-							<div id="result">
+							<div id="result" style="overflow: auto;">
 								<!-- 출력결과위치 -->
 							</div>
 

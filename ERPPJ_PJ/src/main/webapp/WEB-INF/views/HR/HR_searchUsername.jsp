@@ -15,7 +15,7 @@
 
 // 검색창 포커스	 
 function searchNameFocus(){
-	document.searchName.department_name.focus();
+	document.searchName.e_name.focus();
 }
 
 function enterkey() {
@@ -25,21 +25,22 @@ function enterkey() {
     }
 }
 
+
 // 결과
-function load1(department_name) {
-	var url = document.searchName.department_name.value;
+function load1(e_name) {
+	var url = document.searchName.e_name.value;
 	
-	sendRequest(callback, "ST_searchDepartmentname_result", "post", "department_name="+url);
+	sendRequest(loadBook_callback, "HR_searchUsername_result", "post", "e_name="+url);
 }
 
-function callback() {
+function loadBook_callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.department_name.value){
-			alert("부서명을 입력하세요.");
+		if(!document.searchName.e_name.value){
+			alert("사원이름을 입력하세요!");
 			location.reload();
-			document.searchName.department_name.focus();
+			document.searchName.e_name.focus();
 			return false;
 		}
 	
@@ -62,18 +63,25 @@ function callback() {
 } 
 
 
-function setName(department_code, department_name) {
+function setName(username,e_name,department_code,position_code) {
+	opener.document.getElementById("username").value = username;
+	opener.document.getElementById("e_name").value = e_name;
 	opener.document.getElementById("department_code").value = department_code;
-	opener.document.getElementById("department_name").value = department_name;
-
+	opener.document.getElementById("position_code").value = position_code;
 	//test alert
-	alert(department_name, department_code);
+	alert(username);
 	
-	$("#department_name", opener.document).val(department_name); //jquery 이용
-	$(opener.document).find("#department_name").val(department_name); //find를 이용한 jquery
+	$("#username", opener.document).val(username); //jquery 이용
+	$(opener.document).find("#username").val(username); //find를 이용한 jquery
+	
+	$("#e_name", opener.document).val(e_name); //jquery 이용
+	$(opener.document).find("#e_name").val(e_name); //find를 이용한 jquery
 	
 	$("#department_code", opener.document).val(department_code); //jquery 이용
 	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
+	
+	$("#position_code", opener.document).val(position_code); //jquery 이용
+	$(opener.document).find("#position_code").val(position_code); //find를 이용한 jquery
 	
 	self.close();
 	
@@ -97,7 +105,7 @@ function setName(department_code, department_name) {
 					<div class="col-12">
 						<div class="page-title-box" style="text-align: center;">
 							<h4>
-								<b>부서목록</b>
+								<b>계정목록</b>
 							</h4>
 						</div>
 					</div>
@@ -114,7 +122,7 @@ function setName(department_code, department_name) {
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
 											<td><input onkeyup="enterkey();" type="text"
-												name="department_name" class="form-control form-control-sm"
+												name="e_name" class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
 										</tr>
@@ -132,7 +140,7 @@ function setName(department_code, department_name) {
 								</form>
 							</div>
 
-							<div id="result">
+							<div id="result" style="overflow: auto;">
 								<!-- 출력결과위치 -->
 							</div>
 

@@ -298,5 +298,25 @@ public class HR_DAOImpl implements HR_DAO{
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getApInfo", ap_code);
 	}
 
+	@Override
+	public int selectEname(String e_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectEname", e_name);
+	}
+
+	@Override
+	public List<HR_VO> getUsernameList(String e_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getUsernameList", e_name);
+	}
+
+	@Override
+	public int selectAp_name(String ap_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.selectAp_name", ap_name);
+	}
+
+	@Override
+	public List<HR_ApVO> getAp_codeList(String ap_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getAp_codeList", ap_name);
+	}
+
 
 }
