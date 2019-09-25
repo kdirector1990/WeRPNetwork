@@ -31,8 +31,7 @@
 		style="padding-bottom: 0px; padding-bottom: 24px;">
 		<div style="width: 100%; height: 310px; overflow: auto">
 			<form>
-				<table id="datatable" class="table table-bordered table-hover"
-					style="height: 550px;">
+				<table id="datatable" class="table table-bordered table-hover">
 					<thead class="table-info">
 						<tr style="text-align: center; pointer-events: none;">
 							<th>사원코드</th>
