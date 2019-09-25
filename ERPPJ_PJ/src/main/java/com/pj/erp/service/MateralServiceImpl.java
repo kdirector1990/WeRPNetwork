@@ -5,14 +5,22 @@ import java.math.BigInteger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Convert;
 
+import com.pj.erp.persistence.ERPDAO;
+import com.pj.erp.vo.BlockChainVO;
+
 @Service
-public class MateralServiceImpl {	
+public class MateralServiceImpl {
+	
+	@Autowired
+	ERPDAO dao;
+	
 	// 가나슈와 연결 한다 : localhost:8545
 	private static final Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	// 호스트에 가나슈 첫번째 계정의  PRIVATE KEY 복사하여 연결
@@ -47,7 +55,12 @@ public class MateralServiceImpl {
     @SuppressWarnings("deprecation")
 	public void payMaterial(HttpServletRequest req) throws Exception {
     	// 구매하는 부서의 코드로 구매하게 만든다. 
-    	String deptcode = (String) req.getSession().getAttribute("department_code");
+    	String department_code = (String) req.getSession().getAttribute("dCode");
+    	
+    	// department_code를 통해 department_group_code를 가져온다.
+    	// 팀 코드를 통해 부서코드를 가져온다.
+    	BlockChainVO bc = dao.getGroupCode(department_code);
+    	String deptcode = bc.getDepartment_group_code();
     	
     	// 계정의 primary key를 접속한 부서별로 할당한다.
     	Credentials dept_AccountNumber = null; 
