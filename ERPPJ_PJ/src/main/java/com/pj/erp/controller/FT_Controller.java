@@ -243,7 +243,7 @@ public class FT_Controller {
 		String result = service.FT_NoteInsert(map);
 
 		return result;
-	}
+	} 
 
 	// 예금 수정
 	@RequestMapping(value = "FT_NoteUpdate", produces = "application/text; charset=utf8")

@@ -317,8 +317,8 @@
 															<label class="col-lg-4 col-form-label" for="simpleinput">감가상각여부<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type = "radio" id = "yes" name = "gamga" value = "1"><label for="yes">여</label>
-																<input type = "radio" id = "no" name = "gamga" value = "0"><label for="no">부</label>
+																<input type = "radio" id = "yes" name = "gamga" value = "1"><label for="yes">상각함</label>
+																<input type = "radio" id = "no" name = "gamga" value = "0"><label for="no">상각안함</label>
 															</div>
 														</div>
 														
