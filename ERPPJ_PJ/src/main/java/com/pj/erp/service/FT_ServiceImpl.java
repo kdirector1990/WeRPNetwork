@@ -692,11 +692,16 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println("listM : " + listM);
 		System.out.println("listS : " + listS);
 		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
-		list.add(listL);
-		list.add(listM);
-		list.add(listS);
+		if(listL != null || listM != null || listS != null) {
+			list.add(listL);
+			list.add(listM);
+			list.add(listS);
+		} else {
+			list = null;
+		}
 		String rootPath = System.getProperty("user.dir");
         System.out.println("현재 프로젝트의 경로 : "+rootPath );
+        System.out.println("list : " + list);
 
 		return list;
 	}
@@ -717,9 +722,14 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println("listM : " + listM);
 		System.out.println("listS : " + listS);
 		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
-		list.add(listL);
-		list.add(listM);
-		list.add(listS);
+		if(listL != null || listM != null || listS != null) {
+			list.add(listL);
+			list.add(listM);
+			list.add(listS);
+		} else {
+			list = null;
+		}
+        System.out.println("list : " + list);
 		return list;
 	}
 	

@@ -812,6 +812,8 @@
 		        and ac.accounts_code = de.accounts_code
 		        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
 		        group by l.lg_code, l.lg_name
+		        order by case when l.lg_name = '자산' then 1 when l.lg_name = '부채' then 2
+when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name = '비용' then 5 end
 	</select>
 	<select id="FT_DTBDayListM" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
@@ -822,6 +824,12 @@
         and ac.accounts_code = de.accounts_code
         and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
         group by a.ag_code, a.ag_name, l.lg_code, l.lg_name
+        order by case when a.ag_name = '당좌자산' then 1 when a.ag_name = '재고자산' then 2
+		when a.ag_name = '투자자산' then 3 when a.ag_name = '유형자산' then 4 when a.ag_name = '무형자산' then 5 
+		when a.ag_name = '기타비유동자산' then 6 when a.ag_name = '유동부채' then 7 when a.ag_name = '비유동부채' then 8 
+		when a.ag_name = '자본금' then 9 when a.ag_name = '자본잉여금' then 10 when a.ag_name = '자본조정' then 11 
+		when a.ag_name = '기타포괄손익누적계' then 12 when a.ag_name = '이익잉여금' then 13 when a.ag_name = '매출이익' then 14 
+		when a.ag_name = '기타수익' then 15 when a.ag_name = '판매비와관리비' then 16 end
 	</select>
 	<select id="FT_DTBDayListS" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
@@ -832,6 +840,7 @@
         and ac.accounts_code = de.accounts_code
         and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
         group by ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+        order by ag_name, accounts_code
 	</select>
 	
 	<!-- 월별 리스트 갯수 가져오기 -->
@@ -879,6 +888,8 @@
 		        and ac.accounts_code = de.accounts_code
 		        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
 		        group by l.lg_code, l.lg_name
+		        order by case when l.lg_name = '자산' then 1 when l.lg_name = '부채' then 2
+				when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name = '비용' then 5 end
 	</select>
 	<select id="FT_DTBMonthListM" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
@@ -889,6 +900,12 @@
         and ac.accounts_code = de.accounts_code
         and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
         group by a.ag_code, a.ag_name, l.lg_code, l.lg_name
+        order by case when a.ag_name = '당좌자산' then 1 when a.ag_name = '재고자산' then 2
+		when a.ag_name = '투자자산' then 3 when a.ag_name = '유형자산' then 4 when a.ag_name = '무형자산' then 5 
+		when a.ag_name = '기타비유동자산' then 6 when a.ag_name = '유동부채' then 7 when a.ag_name = '비유동부채' then 8 
+		when a.ag_name = '자본금' then 9 when a.ag_name = '자본잉여금' then 10 when a.ag_name = '자본조정' then 11 
+		when a.ag_name = '기타포괄손익누적계' then 12 when a.ag_name = '이익잉여금' then 13 when a.ag_name = '매출이익' then 14 
+		when a.ag_name = '기타수익' then 15 when a.ag_name = '판매비와관리비' then 16 end
 	</select>
 	<select id="FT_DTBMonthListS" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
