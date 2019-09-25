@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
@@ -54,7 +55,7 @@ public class HR_Controller {
 	
 
 	@RequestMapping("HR_inputFoundation")
-	public String inputFoundation(HttpServletRequest req, Model model) {
+	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
 		

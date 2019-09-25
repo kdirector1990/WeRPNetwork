@@ -160,10 +160,10 @@
 														<h4 class="header-title">기초 정보</h4>
 														<h4 class="header-title">&nbsp;</h4>
 														<div class="form-group row">
-															<!-- <label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
+															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
 																	<input type="file" class="dropify" name="e_picture"/>
-																</div> -->
+																</div>
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 															<div class="col-md-6">
 																<div class="form-group row">
