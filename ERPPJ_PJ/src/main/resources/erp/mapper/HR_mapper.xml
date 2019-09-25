@@ -6,11 +6,8 @@
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
 	<insert id="insertMember" parameterType="com.pj.erp.vo.HR.HR_VO">
-<<<<<<< HEAD
-		insert into users(username, password,e_picture, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
-=======
+ 
 		insert into users(username, password, e_picture, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 		values(#{username}, #{password}, #{e_picture}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{department_code}, #{position_code}, #{rank_code}, #{start_date}, #{enabled}) 
 	</insert>
 	
