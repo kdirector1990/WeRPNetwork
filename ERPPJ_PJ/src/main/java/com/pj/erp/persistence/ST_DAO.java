@@ -72,6 +72,16 @@ public interface ST_DAO {
 	// release 게시글 목록 조회
 	public List<Release> getReleaseList(Map<String, Object> map);
 	
+	// refund 게시글 목록 조회
+	public List<Release> getrefundList(Map<String, Object> map);
+	
+	// 출고 지연 현황 검색 조회
+	public List<SaleList> getDelaystate(Map<String, Object> map);
+	
+	// 출고 지연 현황 검색 조회 2
+	public List<SaleList> getDelaystate2(Map<String, Object> map);
+	
+	
 	// release 게시글 상세 조회
 	public Release getReleaseArticle(String sar_code);
 	

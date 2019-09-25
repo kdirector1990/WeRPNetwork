@@ -33,9 +33,14 @@ public class FT_DAOImpl implements FT_DAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int FT_applyinput() {
-		// TODO Auto-generated method stub
-		return 0;
+	//상세계정입력
+	public int FT_Detailinput(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_Detailinput",map);
+	}
+	
+	//예산신청입력
+	public int FT_applyinput(Map<String, Object> map) {
+		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_applyinput",map);
 	}
 
 	// 날짜 검색 분개 가져오기

@@ -516,15 +516,15 @@ public class FT_ServiceImpl implements FT_Service{
 		return tf;
 	}
 	
-	// 계정과목 가져오기
+	// 부서 가져오기
 	@Override
 	public void FT_DepartmentAllSelect(HttpServletRequest req, Model model) {
 		List<HR_VO> subject = dao.FT_DepartmentAllSelect();
-		model.addAttribute("subject", subject);
+		model.addAttribute("department", subject);
 		model.addAttribute("listsize", subject.size() + 1);
 	}
 	
-	// 계정과목 검색한 것 가져오기
+	// 부서 검색한 것 가져오기
 	@Override
 	public List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model) {
 		List<HR_VO> tf = dao.FT_DepartmentSelect(req.getParameter("srhval"));
@@ -569,9 +569,29 @@ public class FT_ServiceImpl implements FT_Service{
 		return tf;
 	}
 	
+	//예산신청입력처리
 	@Override
 	public void FT_applyinput(HttpServletRequest req, Model model) {
-		dao.FT_applyinput();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int count = Integer.parseInt(req.getParameter("count"));
+		System.out.println(count);
+		for(int i = 0 ; i <= count ; i++) {
+			String dept_name = req.getParameter("dept_name"+i);
+			String money = req.getParameter("money"+i);
+			String dept_code = req.getParameter("dept_code"+i);
+			String purpose = req.getParameter("purpose"+i);
+			
+			map.put("subject", dept_name);
+			map.put("money", money);
+			map.put("dept", dept_code);
+			map.put("purpose", purpose);
+			
+		
+			dao.FT_Detailinput(map);
+			dao.FT_applyinput(map);
+			
+		}
 	}
 
 	//단기차입금목록검색결과
@@ -797,7 +817,7 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_BuildingAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Building> account = dao.FT_BuildingAllSelect();
-		model.addAttribute("account", account);
+		model.addAttribute("building", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}
 	

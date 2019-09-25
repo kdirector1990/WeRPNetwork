@@ -9,28 +9,13 @@
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-        var count = 0;    	
-    	
-    	
-    	function enterinsert() {
-   			
-   			$(".chit-table-bordered-primary tbody").append('<tr id = "tr'+count+'">' +   					
-                    /* '<td><input type="text" name = "ap_code'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+ */
-                    '<td><input type="text" name = "ap_name'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" name = "ap_content'+count+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" ></td>'+
-                    '<td><input type="text" class="form-control" placeholder="mm-dd-yyyy" name = "ap_reg_date'+count+'" data-provide="datepicker" data-date-autoclose="true"></td>'+
-                   '</tr>');
-                count = count + 1;
-                
-      		
-    	}
-    	
-    	function enterdelete() {
-    		count = count - 1;
-    		
-   			$("#tr"+count).remove();
+function usernameList() {
+	window.open("HR_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
 
-    	}
+function ap_nameList() {
+	window.open("HR_searchAp_code", "ap_name_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+}
     	
     </script>
 <!-- Table datatable css -->
@@ -98,8 +83,7 @@
 									<h4 class="header-title">직책변경공고</h4>
 									<p class="sub-header"></p>
 
-									<form class="form-horizontal" action="HR_recordinput"
-										method="post">
+									<form class="form-horizontal" action="HR_recordinput" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 										<div class="row">
@@ -109,10 +93,36 @@
 													<div class="col-md-10">
 														<input type="text" name="username"
 															class="form-control" id=username value=""
-															style="width: 350px;">
+															style="width: 350px;" onclick="usernameList()">
 													</div>
-												</div>												
+												</div>											
 
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">현재 직책</label>
+													<div class="col-md-10">
+														<select class="form-control select2"
+															name="position_code" id = "position_code" onchange="">
+															<option value="">직책을 선택하세요</option>
+															<c:forEach var="poi" items="${poi}">
+																<option value="${poi.position_code}">${poi.position_name}</option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">현재 부서</label>
+													<div class="col-md-10">
+														<select class="form-control select2"
+															name="department_code" id = "department_code" onchange="">
+																<option value="">부서를 선택하세요</option>
+															<c:forEach var="dep" items="${dep}">
+																<option value="${dep.department_code}">${dep.department_name}</option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">직급 변경일</label>
 													<div class="col-md-10">
@@ -137,18 +147,36 @@
 													<label class="col-md-2 col-form-label">공고 코드</label>
 													<div class="col-md-10">
 														<input type="text" name="ap_code" class="form-control"
-															value="" style="width: 350px;">
+															value="" style="width: 350px;" onclick="ap_nameList()">
 													</div>
 												</div>
 												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 직책</label>
 													<div class="col-md-10">
-														<input type="text" name="position_code_after"
-															class="form-control" id="position_code_after"
-															style="width: 350px;">
+														<select class="form-control select2"
+															name="position_code_after" id = "position_code_after" onchange="">
+															<option value="">직책을 선택하세요</option>
+															<c:forEach var="poi" items="${poi}">
+																<option value="${poi.position_code}">${poi.position_name}</option>
+															</c:forEach>
+														</select>
 													</div>
-												</div>																								
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">변경 후 부서</label>
+													<div class="col-md-10">
+														<select class="form-control select2"
+															name="department_code_after" id = "department_code_after" onchange="">
+																<option value="">부서를 선택하세요</option>
+															<c:forEach var="dep" items="${dep}">
+																<option value="${dep.department_code}">${dep.department_name}</option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+																																				
 											</div>
 											<!-- end col -->
 
@@ -187,14 +215,7 @@
 														<input type="text" id="simpleinput" class="form-control"
 															name="ap_name">
 													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label" for="simpleinput">공고내용</label>
-													<div class="col-md-10">
-														<input type="text" id="ap_content" class="form-control"
-															name="ap_content">
-													</div>
-												</div>												
+												</div>																								
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label" for="simpleinput">공고시행일</label>
 													<div class="col-md-10">
@@ -215,6 +236,14 @@
 															<option value="4"> 시행취소</option>
 															<option value="5"> 삭제</option>
 														</select>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label" for="simpleinput">공고내용</label>
+													<div class="col-md-10">
+														<textarea class="" rows="10" cols="40"
+													name="ap_content" style="width: 500px"
+													placeholder="글내용을 입력하세요 !" word-break:break-all></textarea>
 													</div>
 												</div>
 

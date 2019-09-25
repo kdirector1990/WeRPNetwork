@@ -124,6 +124,24 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getreleaseResult", map);
 	}
 	
+	// refund 검색
+	@Override
+	public List<Release> getrefundList(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getrefundList", map);
+	}
+	
+	// 출고 지연 검색 현황
+	@Override
+	public List<SaleList> getDelaystate(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getDelaystate", map);
+	}
+	
+	// 출고 지연 검색 현황
+	@Override
+	public List<SaleList> getDelaystate2(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getDelaystate2", map);
+	}
+	
 	// release 게시글 목록 조회
 	@Override
 	public List<Release> getReleaseList(Map<String, Object> map) {

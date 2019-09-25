@@ -67,7 +67,6 @@
 	                   	$("input[name=buyPrice]").val(data.buyPrice);
 	                   	$("input[name=thinkYear]").val(data.thinkYear);
 	                   	$("input[name=gamga]").val(data.gamga);
-	                   	$("input[name=gamgaWay]").val(data.gamgaWay);
                     },
                     error : function(e) {
                            alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -111,7 +110,7 @@
         	function deleted() {
         		var obj = new Object();
         		var jsonData;
-        		obj.buildingCode = $("#code" + focusval).val();
+        		obj.key = $("#code" + focusval).val();
                	
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -217,10 +216,10 @@
 		                                        <tbody>
 		                                            <c:set var="count" value="0"/>
 				                                  	<c:if test="${account != null}">
-				                                   		<c:forEach var = "sub" items="${account}">
+				                                   		<c:forEach var = "sub" items="${building}">
 				                                    		<tr>
-				                                    			<td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_code}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
-				                                    			<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_name}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.buildingCode}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.buildingName}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
 				                                    			<c:set var="count" value="${count+1}"/>
 				                                    		</tr>
 				                                   		</c:forEach>

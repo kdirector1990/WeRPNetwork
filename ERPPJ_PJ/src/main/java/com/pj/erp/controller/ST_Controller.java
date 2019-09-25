@@ -103,6 +103,15 @@ public class ST_Controller {
 		List<Release> list = service.getRelease(map, req, model);
 		return list;
 	} 
+	 
+	// ST_release 검색 관리
+	@RequestMapping(value = "ST_refund_result2", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<Release> ST_refund_result2(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_refund_result2");
+		List<Release> list = service.getrefund(map, req, model);
+		return list;
+	} 
 	
 	// ST_release 출고 등록
 	@RequestMapping("ST_release_writePro")
@@ -140,12 +149,12 @@ public class ST_Controller {
 		return "ST/ST_release_deletePro";
 	}
 	     
-	// 諛섑뭹 愿�由� 
+	// 반품 관리
 	@RequestMapping("ST_refund")
-	public String refund(Locale locale, Model model) {
+	public String ST_refund(Locale locale, Model model) {
 		logger.info("log => refund");
 		
-		return "ST/refund";  
+		return "ST/ST_refund";  
 	}
 	
 	// ST_sale_plan 판매 계획 등록 폼
@@ -319,13 +328,14 @@ public class ST_Controller {
 		return "ST/ST_delay_state";
 	}
 	
-	// 출고 지연 결과 (표)
-	@RequestMapping("ST_delay_state_result")
-	public String ST_delay_state_result(Locale locale, Model model) {
+	// 출고 지연 현황 검색
+	@RequestMapping(value = "ST_delay_state_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<SaleList> ST_delay_state_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => ST_delay_state_result");
-		
-		return "ST/ST_delay_state_result";
-	}
+		List<SaleList> list = service.getDelay(map, req, model);
+		return list;
+	}  
 	 
 	@RequestMapping("ST_tex_invoice_list")
 	public String ST_tex_invoice_list(Locale locale, Model model) {
@@ -543,5 +553,23 @@ public class ST_Controller {
 		service.searchDepCode(req, model);
 		
 		return "ST/ST_searchDepartmentname_result";
+	}
+	
+	//부서 조회 팝업창
+	@RequestMapping("ST_searchDepartmentname2")
+	public String ST_searchDepartmentname2(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname2");
+		int count = Integer.parseInt(req.getParameter("count"));
+		req.getSession().setAttribute("count", count);
+		return "ST/ST_searchDepartmentname2";
+	}
+	
+	//부서 조회 팝업창 결과
+	@RequestMapping("ST_searchDepartmentname_result2")
+	public String ST_searchDepartmentname_result2(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname_result2");
+		service.searchDepCode(req, model);
+		
+		return "ST/ST_searchDepartmentname_result2";
 	}
 }

@@ -88,10 +88,7 @@
 	    						sar_type = "입고";
 	    					}
 	    					if(sar_type == "2"){
-	    						sar_type = "출고";
-	    					}
-	    					if(sar_type == "3"){
-	    						sar_type="재입고";
+	    						sar_type = "출고(판매)";
 	    					}
 	    					
 	    					var e_name = list[i].e_name;
@@ -233,8 +230,7 @@
 												<td class="col-md-2 input-group">
 												<select class="form-control" name="sar_type" id="sarType">
 														<option value = "1">1. 입고</option>
-														<option value="2">2. 판매</option>
-														<option value="3">3. 재입고</option>
+														<option value="2">2. 출고(판매)</option>
 													</select></td>	
 													
 												<td class="col-md-2 input-group"><button type="button" 
