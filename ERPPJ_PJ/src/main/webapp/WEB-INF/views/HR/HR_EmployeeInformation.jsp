@@ -140,7 +140,8 @@
 	  			dataTpye: 'json',
 	  			success: function(data){
 	  				
-	  				var username = data.username;	  					  				
+	  				var username = data.username;	
+	  				var e_picture = data.e_picture
 	  				var e_name = data.e_name;
 	  				var e_gender = data.e_gender;
 	  				var e_type = data.e_type;
@@ -157,6 +158,12 @@
 	  				
 	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
 	  					+'<div class="form-group row">'
+		  					+ '<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4">'
+									+'<input type="file" class="dropify" name="e_picture" />'
+								+'</div>'
+	  					+'</div>'	
+	  					+'<div class="form-group row">'	  						
 	  						+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
 	  							+'<div class="col-lg-8">'
 	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control">' 

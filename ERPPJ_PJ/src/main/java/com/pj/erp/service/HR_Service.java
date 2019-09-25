@@ -22,7 +22,7 @@ import com.pj.erp.vo.HR.HR_nfc_log;
 public interface HR_Service {
 	
 	// 인사정보등록
-	public void inputFoundation(HttpServletRequest req, Model model);
+	public void inputFoundation(MultipartHttpServletRequest req, Model model);
 		
 	// 부서코드 가져오기
 	public void departmentList(HttpServletRequest req, Model model);
@@ -61,7 +61,7 @@ public interface HR_Service {
 	public void modifyFoundationView(HttpServletRequest req, Model model);
 	
 	// 사원정보 수정처리
-	public void modifyFoundationPro(HttpServletRequest req, Model model);
+	public void modifyFoundationPro(MultipartHttpServletRequest req, Model model);
 	
 	// 신체정보 상세페이지
 	public void modifyPhysicalyView(HttpServletRequest req, Model model);
