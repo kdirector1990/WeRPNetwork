@@ -91,7 +91,7 @@
 													<label class="col-md-2 col-form-label"
 														for="example-textarea">비고</label>
 													<div class="col-md-10">
-														<textarea class="" rows="7" cols="200" name="sp_note"></textarea>
+														<textarea class="form-control" rows="8" cols="200" name="sp_note" id="example-textarea"></textarea>
 													</div>
 												</div>
 
@@ -132,8 +132,6 @@
 											</div>
 											<!-- end col -->
 
-
-
 											<div class="form-group mb-0">
 												<div>
 													<button type="submit"
@@ -148,6 +146,7 @@
 											<!-- end row -->
 
 										</div>
+									
 									</form>
 								</div>
 							</div>
@@ -170,11 +169,9 @@
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
 	<!-- Vendor js -->
-	<script src="/erp/resources/assets/js/vendor.min.js"></script>
 
 	<!-- Bootstrap select plugin -->
-	<script
-		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+	
 
 	<!-- Table Editable plugin-->
 	<script

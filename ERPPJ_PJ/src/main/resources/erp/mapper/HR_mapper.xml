@@ -6,8 +6,8 @@
 <mapper namespace = "com.pj.erp.persistence.HR_DAO">
 	
 	<insert id="insertMember" parameterType="com.pj.erp.vo.HR.HR_VO">
-		insert into users(username, password, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
-		values(#{username}, #{password}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{department_code}, #{position_code}, #{rank_code}, #{start_date}, #{enabled}) 
+		insert into users(username, password, e_picture, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date, enabled)
+		values(#{username}, #{password}, #{e_picture}, #{e_name}, #{e_gender}, #{e_type}, #{e_code}, #{e_hp}, #{e_address}, #{e_mailcode}, #{level_step}, #{e_nfcCodeNFC}, #{department_code}, #{position_code}, #{rank_code}, #{start_date}, #{enabled}) 
 	</insert>
 	
 	<insert id="insertMember2" parameterType="com.pj.erp.vo.HR.HR_VO">
@@ -72,7 +72,7 @@
 	
 	<!-- 사원 정보 수정 -->
 	<update id="updateFoundation" parameterType="com.pj.erp.vo.HR.HR_VO">
-		update users set e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode}, level_step=#{level_step}, e_nfcCodeNFC=#{e_nfcCodeNFC}, department_code=#{department_code}, position_code=#{position_code}, rank_code=#{rank_code} where username=#{username}
+		update users set e_picture =#{e_picture}, e_name =#{e_name}, e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode}, level_step=#{level_step}, e_nfcCodeNFC=#{e_nfcCodeNFC}, department_code=#{department_code}, position_code=#{position_code}, rank_code=#{rank_code} where username=#{username}
 	</update>
 	
 	<!-- 	
@@ -403,5 +403,32 @@
 		delete nfc_log_tbl
 		Where tag_code = #{tag_code}
 	</delete>
+	
+	<!-- 발령공고 검색결과 -->
+	<select id = "getRecord" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_RecordVO">
+	<![CDATA[
+		select u.username as username,
+			u.e_name as e_name,
+			r.position_record_code as position_record_code,
+			a.ap_code as ap_code,
+			a.ap_name as ap_name,
+			r.record_date as record_date,
+			r.record_date_after as record_date_after,
+			p.position_code as position_code,
+			r.position_code_after as position_code_after,
+			d.department_code as department_code,
+			r.department_code_after as department_code_after,
+			a.ap_status as ap_status
+			from users u, appointment_tbl a, position_record_tbl r, position_tbl p, department_tbl d
+			where u.username = r.username			
+			and a.ap_code = r.ap_code						
+			and p.position_code = r.position_code
+			and d.department_code = r.department_code
+			and a.ap_name = r.ap_name
+			and u.username like '%'||#{username}||'%'
+			and a.ap_code like '%'||#{ap_code}||'%'
+			and a.ap_name like '%'||#{ap_name}||'%'
+		]]>
+	</select>
 	
 </mapper>

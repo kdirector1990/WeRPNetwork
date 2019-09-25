@@ -134,7 +134,9 @@
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
-	  				var username = data.username;	  					  				
+
+	  				var username = data.username;	
+	  				var e_picture = data.e_picture
 	  				var e_name = data.e_name;
 	  				var e_gender = data.e_gender;
 	  				var e_type = data.e_type;
@@ -146,12 +148,20 @@
 	  				var position_code = data.position_code;
 	  				var rank_code = data.rank_code;
 	  				var level_step = data.level_step;
+	  					  				
+	  				$('#result2').empty();
 	  				
 	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
 	  					+'<div class="form-group row">'
+		  					+ '<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4">'
+									+'<input type="file" class="dropify" name="e_picture" />'
+								+'</div>'
+	  					+'</div>'	
+	  					+'<div class="form-group row">'	  						
 	  						+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
 	  							+'<div class="col-lg-8">'
-	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control" readonly>' 
+	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control">' 
 	  				        	+'</div>'
 	  				    +'</div>'
 	  				  	+'<div class="form-group row">'	
@@ -211,7 +221,7 @@
 								+'<input type="text" class="form-control" name="e_mailcode" value="'+e_mailcode+'">'
 							+'</div>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">출입카드No.<span class="text-danger">*</span></label>' 
+							+'<label class="col-md-1 col-form-label" for="simpleinput">nfc코드<span class="text-danger">*</span></label>' 
 							+'<div class="col-md-4">'
 								+'<input type="text" class="form-control" name="e_nfcCodeNFC" value="'+e_nfcCodeNFC+'">'
 							+'</div>'				
@@ -264,7 +274,7 @@
 	 
 	 function HR_modifyFoundationPro(){
      	var param = $("#updateFoundation").serializeArray();
- 		alert(JSON.stringify(param));
+ 		
  		$.ajax({
  			url: '/erp/HR_modifyFoundationPro',
  			type: 'POST',
@@ -433,27 +443,15 @@
 														</div>
 													</div>
 												</div>
-											</div>
 
-											<div id="update">
-												<div class="col-sm-12">
-													<div class="card">
-														<div class="card-body">
-															<div class="table-responsive"
-																style="margin: 15px 0px 50px">
-																<form id="updateFoundation" method="post"
-																	class="form-horizontal">
-																	<input type="hidden" name="${_csrf.parameterName }"
-																		value="${_csrf.token }">
-																	<div id="result2" class="card-body">
-																		<!-- 상세 페이지 출력 위치 -->
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
+												<div id="result2" class="card-body">
+													<!-- 상세 페이지 출력 위치 -->
 												</div>
 											</div>
+
+											
+												
+											
 										</div>
 
 
