@@ -4,10 +4,8 @@ package com.pj.erp.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-<<<<<<< HEAD
-=======
-import java.io.IOException;
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+ 
+import java.io.IOException; 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -51,21 +49,17 @@ public class HR_ServiceImpl implements HR_Service{
 	HR_DAO dao;
 	
 	// 인사정보등록
-<<<<<<< HEAD
+ 
 	@Override
-=======
-	@Override
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+ 
 	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
         
-<<<<<<< HEAD
+ 
         String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
-=======
-        String realDir= "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; /*"F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+ 
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
@@ -79,16 +73,9 @@ public class HR_ServiceImpl implements HR_Service{
                 fos.write(data);
             }
             fis.close();
-<<<<<<< HEAD
-            fos.close();
-        }catch(Exception e) {
-        	 e.printStackTrace();
-        }
-		 
-=======
+ 
             fos.close();		
-				
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+			 
 		
 		HR_VO vo = new HR_VO();		
 		
@@ -152,17 +139,14 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		model.addAttribute("cnt", 1);		
 		model.addAttribute("insertCnt", cnt);		
-<<<<<<< HEAD
-		 
-=======
+ 
 		
 		
 		
         } catch(IOException e) {
             e.printStackTrace();
         }	
-				
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+				 
 	}	
 	
 	
