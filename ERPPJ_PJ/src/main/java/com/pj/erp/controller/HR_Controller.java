@@ -22,6 +22,7 @@ import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR.HR_GreetingVO;
 import com.pj.erp.vo.HR.HR_PaystepVO;
 import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
 import com.pj.erp.vo.HR.HR_SalaryVO;
 import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -195,6 +196,15 @@ public class HR_Controller {
 	public  List<HR_SalaryVO> HR_EmployeeSalary_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_EmployeeSalary_result");
 		List<HR_SalaryVO> list = service.getSalary(map, req, model);
+		return list;
+	}
+	
+	//발령공고 검색결과
+	@RequestMapping(value = "HR_appointment_report_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<HR_RecordVO> HR_appointment_report_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_appointment_report_result");
+		List<HR_RecordVO> list = service.getRecord(map, req, model);
 		return list;
 	}
 	
