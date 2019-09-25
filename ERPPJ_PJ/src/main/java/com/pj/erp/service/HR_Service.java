@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.vo.HR.HR_GreetingVO;
 import com.pj.erp.vo.HR.HR_PaystepVO;
 import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
 import com.pj.erp.vo.HR.HR_SalaryVO;
 import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -139,4 +140,7 @@ public interface HR_Service {
 	
 	// ap_name으로 ap_code 검색
 	public void searchAp_code(HttpServletRequest req, Model model);
+	
+	// 발령공고 검색
+	public List<HR_RecordVO> getRecord(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
 }
