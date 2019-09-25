@@ -817,6 +817,8 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_BuildingAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Building> account = dao.FT_BuildingAllSelect();
+		System.out.println("building : " + account);
+		System.out.println("buildingSize : " + account.size());
 		model.addAttribute("building", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}

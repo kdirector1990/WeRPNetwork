@@ -62,11 +62,17 @@
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
 	                   	$("input[name=buildingName]").val(data.buildingName);
-	                   	$("input[name=Address]").val(data.Address);
-	                   	$("input[name=buyDate]").val(data.buyDate);
+	                   	$("input[name=Address]").val(data.address);
+	                   	$("input[name=buyDate]").val(data.buyDate.substring(0,10));
 	                   	$("input[name=buyPrice]").val(data.buyPrice);
+	                   	$("input[name=departmentCode]").val(data.departmentCode);
+	                   	$("input[name=departmentName]").val(data.departmentName);
 	                   	$("input[name=thinkYear]").val(data.thinkYear);
-	                   	$("input[name=gamga]").val(data.gamga);
+	                   	if(data.gamga == 1){
+	                   		$("#yes").attr("checked", "checked");
+	                   	} else {
+	                   		$("#no").attr("checked", "checked");
+	                   	}
                     },
                     error : function(e) {
                            alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -83,6 +89,7 @@
         		obj.buyDate = $("input[name=buyDate]").val();
         		obj.buyPrice = $("input[name=buyPrice]").val();
         		obj.thinkYear = $("input[name=thinkYear]").val();
+        		obj.departmentCode = $("input[name=departmentCode]").val();
         		obj.gamga = $("input[name=gamga]").val();
         		obj.gamgaWay = $("input[name=gamgaWay]").val();
                	
@@ -215,7 +222,7 @@
 		    
 		                                        <tbody>
 		                                            <c:set var="count" value="0"/>
-				                                  	<c:if test="${account != null}">
+				                                  	<c:if test="${building != null}">
 				                                   		<c:forEach var = "sub" items="${building}">
 				                                    		<tr>
 				                                    			<td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.buildingCode}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
@@ -288,12 +295,12 @@
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
 																<input type="text" class="form-control"
-																	name="departmentCode" style = "width:150px; display:inline;">
+																	name="departmentCode" style = "width:100px; display:inline;">
 																<button type="button" onclick = "departmentlist(0);" class="btn btn-icon waves-effect waves-light btn-primary">
 																	<i class="fas fa-search"></i>
 																</button>
 																<input type="text" class="form-control"
-																	name="departmentName" style = "width:150px; display:inline;">
+																	name="departmentName" style = "width:100px; display:inline;">
 															</div>
 														</div>
 													
