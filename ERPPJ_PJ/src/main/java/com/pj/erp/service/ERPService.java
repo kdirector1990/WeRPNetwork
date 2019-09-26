@@ -11,4 +11,6 @@ public interface ERPService {
 	public void testreg(HttpServletRequest req, Model model);
 	
 	public void nfc(HttpServletRequest req, Model model);
+	
+	public void productList(HttpServletRequest req, Model model);
 }

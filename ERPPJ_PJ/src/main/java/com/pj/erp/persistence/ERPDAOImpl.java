@@ -9,7 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.BlockChainVO;
+import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.MF.MF_material;
 
 @Repository
 public class ERPDAOImpl implements ERPDAO{
@@ -44,6 +46,12 @@ public class ERPDAOImpl implements ERPDAO{
 	@Override
 	public BlockChainVO getGroupCode(String department_code) {
 		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.getGroupCode", department_code);
+	}
+
+	// 구매할 때 필요한 목록
+	@Override
+	public List<ProductVO> getProductList() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getProductList");
 	}
 	
 }

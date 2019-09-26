@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,10 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.MF.MF_material;
 import com.pj.erp.vo.MS.MS_plan;
 
 @Service
@@ -181,6 +184,13 @@ public class ERPServiceImpl implements ERPService{
 			}
 		}
  
+	}
+
+	@Override
+	public void productList(HttpServletRequest req, Model model) {
+		List<ProductVO> dto = dao.getProductList();
+		
+		model.addAttribute("dto", dto);
 	}
 	
 	
