@@ -35,6 +35,7 @@ import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
@@ -185,28 +186,65 @@ public class FT_Controller {
 	}
 
 	// 예산 신청 입력
-	@RequestMapping("FT_apply_input")
-	public String FT_apply_input(Locale locale, Model model) {
-		logger.info("log => FT_apply_input");
+		@RequestMapping("FT_apply_input")
+		public String FT_apply_input(Locale locale, Model model) {
+			logger.info("log => FT_apply_input");
 
-		return "FT/FT_apply_input";
-	}
+			return "FT/FT_apply_input";
+		}
 
-	// 예산 계획 현황
-	@RequestMapping("FT_plan")
-	public String FT_plan(Locale locale, Model model) {
-		logger.info("log => FT_plan");
+		// 예산 계획 현황
+		@RequestMapping("FT_plan")
+		public String FT_plan(Locale locale, Model model) {
+			logger.info("log => FT_plan");
 
-		return "FT/FT_plan";
-	}
+			return "FT/FT_plan";
+		}
 
-	// 예산 신청 입력처리
-	@RequestMapping("FT_apply_input_pro")
-	public String FT_apply_input_pro(HttpServletRequest req, Model model) {
-		logger.info("log => FT_apply_input_pro");
-		service.FT_applyinput(req, model);
-		return "FT/FT_apply_input";
-	}
+		//예산 계획 현황 검색결과
+		@RequestMapping(value = "FT_plan_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public List<FT_Plan_Result> FT_plan_result(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => FT_plan_result");
+			List<FT_Plan_Result> list = service.getPlanResult(map, req, model);
+			return list;
+		}
+
+		//예산계획현황  상세조회
+		@RequestMapping("FT_planUpdateDelete")
+		public String FT_planUpdateDelete(HttpServletRequest req, Model model) {
+			logger.info("log => FT_planUpdateDelete");
+			service.selectPlanDetail(req, model); 
+			return "FT/FT_planUpdateDelete";
+		}
+
+		//예산계획 수정 처리
+		@RequestMapping(value = "FT_updatePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public int FT_updatePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => FT_updatePlanPro");
+			int cnt = service.updatePlan(map, req, model);
+
+			return cnt;
+		}
+
+		//예산계획 삭제 처리
+		@RequestMapping(value = "FT_deletePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public int FT_deletePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => FT_deletePlanPro");
+			int cnt = service.deletePlan(map, req, model);
+
+			return cnt;
+		}
+
+		// 예산 신청 입력처리
+		@RequestMapping("FT_apply_input_pro")
+		public String FT_apply_input_pro(HttpServletRequest req, Model model) {
+			logger.info("log => FT_apply_input_pro");
+			service.FT_applyinput(req, model);
+			return "FT/FT_apply_input";
+		}
 
 	// 거래처 관리
 	@RequestMapping("FT_BasicAccount_Input")
