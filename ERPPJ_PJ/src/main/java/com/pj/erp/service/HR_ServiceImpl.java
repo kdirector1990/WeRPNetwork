@@ -37,6 +37,7 @@ import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.MS.MS_plan;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
@@ -57,10 +58,8 @@ public class HR_ServiceImpl implements HR_Service{
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
         
- 
         String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
  
-        
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
             
@@ -128,7 +127,7 @@ public class HR_ServiceImpl implements HR_Service{
 		vo2.setUsername(username);
 		vo2.setF_name(f_name);
 		vo2.setF_type(f_type);		
-		vo2.setF_born(new Timestamp(System.currentTimeMillis()));		
+		vo2.setF_born(Date.valueOf(req.getParameter("f_born")));
 		
 		int cnt = 0;		
 		
@@ -436,8 +435,14 @@ public class HR_ServiceImpl implements HR_Service{
 		vo.setUsername(username);
 		vo.setF_name(req.getParameter("f_name"));
 		vo.setF_type(req.getParameter("f_type"));
-		vo.setF_cohabitation(req.getParameter("f_cohabitation"));		
+		vo.setF_cohabitation(req.getParameter("f_cohabitation"));
+		vo.setF_born(Date.valueOf(req.getParameter("f_born")));
 		vo.setF_born_type(req.getParameter("f_born_type"));
+		
+		int updateCnt = dao.updateFamily(vo);
+		
+		model.addAttribute("updateCnt", updateCnt);
+        model.addAttribute("username", username);
 	}
 	
 	@Override
@@ -456,7 +461,6 @@ public class HR_ServiceImpl implements HR_Service{
 		List<HR_PhysicalVO> list = dao.getPhysicaly(map);
 		return list;
 	}
-
 
 	//근태(사원목록 가져오기)
 	@Override
@@ -625,8 +629,10 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		String sDate = req.getParameter("record_date");
 		sDate = sDate.replace("/", "-");		
-		String eDate = req.getParameter("record_date_after");
-		eDate = eDate.replace("/", "-");
+		/*
+		 * String eDate = req.getParameter("record_date_after"); eDate =
+		 * eDate.replace("/", "-");
+		 */
 		
 		vo.setUsername(username);
 		vo.setAp_code(ap_code);
@@ -636,7 +642,7 @@ public class HR_ServiceImpl implements HR_Service{
 		vo.setDepartment_code(department_code);
 		vo.setDepartment_code_after(department_code_after);
 		vo.setRecord_date(Date.valueOf(sDate));		
-		vo.setRecord_date_after(Date.valueOf(eDate));
+		/* vo.setRecord_date_after(Date.valueOf(eDate)); */
 		
 		int cnt = 0;
 		
@@ -932,5 +938,14 @@ public class HR_ServiceImpl implements HR_Service{
 		model.addAttribute("cnt", cnt);
 		
 	}
+
+
+	@Override
+	public List<HR_FamilyVO> searchFamily(Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		List<HR_FamilyVO> list = dao.searchFamily(map);
+		return list;
+	}
+	
+	
 
 }

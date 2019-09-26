@@ -62,9 +62,15 @@ function callback() {
 } 
 
 
-function setName(salelist_code, customer_name) {
+function setName(salelist_code, customer_name,amount, price, product_name, detail_ac_code, customer_code) {
 	opener.document.getElementById("customerNameP").value = customer_name;
 	opener.document.getElementById("saleListCodeP").value = salelist_code;
+	opener.document.getElementById("release_countP").value = amount;
+	opener.document.getElementById("priceP").value = price;
+	opener.document.getElementById("product_nameP").value = product_name;
+	opener.document.getElementById("product_codeP").value = detail_ac_code;
+	opener.document.getElementById("customer_codeM").value = customer_code;
+	opener.document.getElementById("customer_nameM").value = customer_name;
 
 	//test alert
 	alert(salelist_code, customer_name);
@@ -74,6 +80,24 @@ function setName(salelist_code, customer_name) {
 	
 	$("#saleListCodeP", opener.document).val(salelist_code); //jquery 이용
 	$(opener.document).find("#saleListCodeP").val(salelist_code); //find를 이용한 jquery
+	
+	$("#release_countP", opener.document).val(amount); //jquery 이용
+	$(opener.document).find("#release_countP").val(amount); //find를 이용한 jquery
+	
+	$("#priceP", opener.document).val(price); //jquery 이용
+	$(opener.document).find("#priceP").val(price); //find를 이용한 jquery
+	
+	$("#product_nameP", opener.document).val(product_name); //jquery 이용
+	$(opener.document).find("#product_nameP").val(product_name); //find를 이용한 jquery
+	
+	$("#product_codeP", opener.document).val(detail_ac_code); //jquery 이용
+	$(opener.document).find("#product_codeP").val(detail_ac_code); //find를 이용한 jquery
+	
+	$("#customer_codeM", opener.document).val(customer_code); //jquery 이용
+	$(opener.document).find("#customer_codeM").val(customer_code); //find를 이용한 jquery
+	
+	$("#customer_nameM", opener.document).val(customer_name); //jquery 이용
+	$(opener.document).find("#customer_nameM").val(customer_name); //find를 이용한 jquery
 	
 	self.close();
 	
