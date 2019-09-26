@@ -58,10 +58,8 @@ public class HR_ServiceImpl implements HR_Service{
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
         
- 
         String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
  
-        
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
             
