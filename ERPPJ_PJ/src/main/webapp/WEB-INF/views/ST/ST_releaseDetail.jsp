@@ -38,7 +38,7 @@
 												<tr>
 													<th style="width: 215px;">출고 코드</th>
 													<td><input type="hidden" class="form-control" name="sar_code"
-														value="${rto.sar_code }">${rto.sar_code }</td>
+														value="${rto.sar_code }">${rto.sar_code } </td>
 													
 													<th>품명</th>
 													<td>
@@ -59,11 +59,11 @@
 													<th >출고처</th>
 													<td style="width: 500px;"><div class="col-md-10">
 													<div style="display: inline-block;">
-													<input type="text" class="form-control" name="customer_code"
-													 id = "customer_codeP" onclick="customerNameList()"style="width: 140px; float: left;" value="${rto.customer_code }">
+													<input type="text" class="form-control" name="search_release_code"
+													 id = "search_release_code" onclick="customerNameList()"style="width: 140px; float: left;" value="">
 													 
 													<input type="text" name="release_name" class="form-control"
-															id="customer_nameP" value="${rto.release_name }"style="width: 140px; float: right;">
+															id="release_name" value="${rto.release_name }"style="width: 140px; float: right;">
 													</div>
 													</div></td>
 													
@@ -76,8 +76,8 @@
 													<th>입고처</th>
 													<td><div class="col-md-10">
 													<div style="display: inline-block;">
-													<input type="text" class="form-control" name="customer_code"
-													 id = "customer_codeM" onclick="customerNameList3()" style="width: 140px; float: left;" value="${rto.customer_code }">
+													<input type="text" class="form-control" name=""
+													 id = "customer_codeM" onclick="customerNameList3()" style="width: 140px; float: left;" value="">
 													 
 													<input type="text" name="stored_name" class="form-control"
 															id="customer_nameM" value="${rto.stored_name }" style="width: 140px; float: right;">
@@ -123,11 +123,11 @@
 												</tr>
 		
 												<tr>
-													<th colspan="3"><input class="inputButton" type="submit" value="수정"
+													<th colspan="3"><input class="btn btn-success waves-effect waves-light" type="submit" value="수정"
 														formaction="ST_release_modifyPro"> 
-														<input class="inputButton" type="submit" value="삭제"
+														<input class="btn btn-danger waves-effect waves-light" type="submit" value="삭제"
 														formaction="ST_release_deletePro"> 
-														<input class="inputButton" type="button" value="수정 취소" onClick="window.location.reload()"> 
+														<input class="btn btn-dark waves-effect waves-light" type="button" value="취소" onClick="window.location.reload()"> 
 												</tr>
 		
 											</table>

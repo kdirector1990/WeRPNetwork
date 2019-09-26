@@ -91,87 +91,41 @@ function ap_nameList() {
 												<div class="form-group row">
 													<label class="col-md-1 col-form-label">사원번호</label>
 													<div class="col-md-10">
-<<<<<<< HEAD
-													 <input type="text" name="username" id="username" class="form-control" required placeholder="사원번호"
-															onclick="usernameList()" />   
-													</div>													
-=======
-														<input type="text" name="username"
-															class="form-control" id=username value=""
-															 onclick="usernameList()">
+														<input type="text" name="username" id="username"
+															class="form-control" required placeholder="사원번호"
+															onclick="usernameList()" />
 													</div>
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-												</div>											
+												</div>
 
 												<div class="form-group row">
 													<label class="col-md-1 col-form-label">사원명</label>
 													<div class="col-md-10">
-<<<<<<< HEAD
-														<input type="text" name="e_name" id="e_name" class="form-control"
-														required placeholder="사원명" disabled />
-=======
-														<select class="selectpicker" data-live-search="true" 
-															name="position_code" id = "position_code" onchange="">
-															<option value="">직책을 선택하세요</option>
-															<c:forEach var="poi" items="${poi}">
-																<option value="${poi.position_code}">${poi.position_name}</option>
-															</c:forEach>
-														</select>
-
+														<input type="text" name="e_name" id="e_name"
+															class="form-control" required placeholder="사원명" readonly />
 													</div>
 												</div>
-												
+
 												<div class="form-group row">
 													<label class="col-md-1 col-form-label">부서코드</label>
 													<div class="col-md-10">
-<<<<<<< HEAD
 														<input type="text" name="department_code" id="department_code"
-															class="form-control" required placeholder="부서코드" readonly />
+															class="form-control" required placeholder="부서" readonly />
 													</div>
 												</div>
-												
+
 												<div class="form-group row">
 													<label class="col-md-1 col-form-label">직책코드</label>
 													<div class="col-md-10">
 														<input type="text" name="position_code" id="position_code"
-															class="form-control" required placeholder="직책코드" readonly />
-=======
-														<select class="selectpicker" data-live-search="true" 
-															name="department_code" id = "department_code" onchange="">
-																<option value="">부서를 선택하세요</option>
-															<c:forEach var="dep" items="${dep}">
-																<option value="${dep.department_code}">${dep.department_name}</option>
-															</c:forEach>
-														</select>
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+															class="form-control" required placeholder="직책" readonly />
 													</div>
-												</div>
-												
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label">직급 변경일</label>
-													<div class="col-md-10">
-														<div class="input-group">
-															<input type="date" name="record_date"
-																placeholder="yyyy/mm/dd" style="size: 100px;"
-																class="form-control">
-															<div class="input-group-append">
-																<span class="input-group-text bg-primary text-white b-0"><i
-																	class="mdi mdi-calendar"></i></span>
-															</div>
-														</div>
-													</div>
-<<<<<<< HEAD
-												</div>												
-=======
 												</div>
 
 												<div class="form-group row">
-													<label class="col-md-2 col-form-label">변경 후 직급 변경일</label>
+													<label class="col-md-1 col-form-label">직급 변경일</label>
 													<div class="col-md-10">
 														<div class="input-group">
-															<input type="date" name="record_date_after"
-																placeholder="yyyy/mm/dd" style="size: 100px;"
-																class="form-control">
+															<input type="date" name="record_date" class="form-control">
 															<div class="input-group-append">
 																<span class="input-group-text bg-primary text-white b-0"><i
 																	class="mdi mdi-calendar"></i></span>
@@ -179,49 +133,59 @@ function ap_nameList() {
 														</div>
 													</div>
 												</div>
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+
+												<!-- <div class="form-group row">
+													<label class="col-md-1 col-form-label">변경 후 직급 변경일</label>
+													<div class="col-md-10">
+														<div class="input-group">
+															<input type="date" name="record_date_after" 
+																class="form-control">
+															<div class="input-group-append">
+																<span class="input-group-text bg-primary text-white b-0"><i
+																	class="mdi mdi-calendar"></i></span>
+															</div>
+														</div>
+													</div>
+												</div> -->
 											</div>
 
 											<div class="col-xl-5">
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">공고 코드</label>
 													<div class="col-md-10">
-<<<<<<< HEAD
-														<input type="text" name="ap_code" id="ap_code" class="form-control"
-															value="" style="width: 350px;" onclick="ap_nameList()">
-=======
-														<input type="text" name="ap_code" class="form-control"
-															value="" onclick="ap_nameList()">
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+														<input type="text" name="ap_code" id="ap_code"
+															class="form-control" value="" onclick="ap_nameList()">
 													</div>
 												</div>
-												
+
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">공고명</label>
 													<div class="col-md-10">
-														<input type="text" name="ap_name" id="ap_name" class="form-control"
-															required placeholder="공고명" readonly>
+														<input type="text" name="ap_name" id="ap_name"
+															class="form-control" required placeholder="공고명" readonly>
 													</div>
 												</div>
-												
+
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 부서</label>
 													<div class="col-md-10">
-														<select class="form-control select2"
-															name="department_code_after" id = "department_code_after" onchange="">
-																<option value="">부서를 선택하세요</option>
+														<select class="selectpicker" data-live-search="true"
+															name="department_code_after" id="department_code_after"
+															onchange="">
+															<option value="">부서를 선택하세요</option>
 															<c:forEach var="dep" items="${dep}">
 																<option value="${dep.department_code}">${dep.department_name}</option>
 															</c:forEach>
 														</select>
 													</div>
 												</div>
-												
+
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">변경 후 직책</label>
 													<div class="col-md-10">
-														<select class="selectpicker" data-live-search="true" 
-															name="position_code_after" id = "position_code_after" onchange="">
+														<select class="selectpicker" data-live-search="true"
+															name="position_code_after" id="position_code_after"
+															onchange="">
 															<option value="">직책을 선택하세요</option>
 															<c:forEach var="poi" items="${poi}">
 																<option value="${poi.position_code}">${poi.position_name}</option>
@@ -229,24 +193,7 @@ function ap_nameList() {
 														</select>
 													</div>
 												</div>
-												
-<<<<<<< HEAD
-												
-=======
-												<div class="form-group row">
-													<label class="col-md-2 col-form-label">변경 후 부서</label>
-													<div class="col-md-10">
-														<select class="selectpicker" data-live-search="true" 
-															name="department_code_after" id = "department_code_after" onchange="">
-																<option value="">부서를 선택하세요</option>
-															<c:forEach var="dep" items="${dep}">
-																<option value="${dep.department_code}">${dep.department_name}</option>
-															</c:forEach>
-														</select>
-													</div>
-												</div>
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
-																																				
+
 											</div>
 											<!-- end col -->
 

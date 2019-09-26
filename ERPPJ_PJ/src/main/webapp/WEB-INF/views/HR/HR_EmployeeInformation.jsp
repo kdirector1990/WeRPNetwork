@@ -57,7 +57,32 @@
 				dataType : "json",
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
+					$('#bodyappend').empty();
+					$('#resulttable').empty();
 					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+								'<thead>'+
+									'<tr>'+
+										'<th>사원번호</th>'+
+										'<th>사원명</th>'+
+										'<th>성별</th>'+
+										'<th>주민번호</th>'+
+										'<th>연락처</th>'+
+										'<th>우편번호</th>'+
+										'<th>주소</th>'+
+										'<th>내/외국인구별</th>'+
+										'<th>nfc코드</th>'+
+										'<th>부서</th>'+
+										'<th>직급</th>'+
+										'<th>직책</th>'+
+										'<th>호봉</th>'+
+										'<th>입사일</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
 					
 					
 					
@@ -82,7 +107,7 @@
 						var month = (1+pa.getMonth());
 						var day = pa.getDate(); 
 						var start_datess = year + "/" + month +"/"+day;
-						
+					
 					$('#result').append('<tr onclick="updateINFO('+usernames+');">'+                         	
 							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_names +'</td>'+
@@ -100,7 +125,7 @@
 							'<td>'+ start_datess +'</td>'+							
                  		'</tr>');
 					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -122,9 +147,8 @@
 					);
 
 					
-					searchCount = searchCount + 1;
-					}
-					}
+					
+					
 				},
 				error : function(){
 					alert("에러");
@@ -408,7 +432,8 @@
 											<div class="col-sm-12">
 												<div class="card">
 													<div class="card-body">
-														<table id="datatable"
+														<div id="resulttable">
+														<!-- <table id="datatable"
 															class="table table-striped table-bordered dt-responsive nowrap">
 
 															<thead>
@@ -433,7 +458,8 @@
 															<tbody id="result">
 		
 															</tbody>
-														</table>
+														</table> -->
+														</div>
 
 														<div align="right">
 															<br>

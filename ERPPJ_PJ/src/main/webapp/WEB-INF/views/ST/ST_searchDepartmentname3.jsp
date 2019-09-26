@@ -13,9 +13,25 @@
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
 
+var getParam = function(key){
+    var _parammap = {};
+    document.location.search.replace(/\?(?:([^=]+)=([^&]*)&?)/g,  function () {
+        function decode(s) {
+            return decodeURIComponent(s.split("+").join(" "));
+        }
+
+        _parammap[decode(arguments[1])] = decode(arguments[2]);
+    });
+
+    return _parammap[key];
+};
+
+
+출처: https://stove99.tistory.com/97 [스토브 훌로구]
+
 // 검색창 포커스	 
 function searchNameFocus(){
-	document.searchName.customer_name.focus();
+	document.searchName.department_name.focus();
 }
 
 function enterkey() {
@@ -26,20 +42,20 @@ function enterkey() {
 }
 
 // 결과
-function load1(customer_name) {
-	var url = document.searchName.customer_name.value;
+function load1(department_name) {
+	var url = document.searchName.department_name.value;
 	
-	sendRequest(callback, "ST_searchsaleList_result", "post", "customer_name="+url);
+	sendRequest(callback, "ST_searchDepartmentname_result2", "post", "department_name="+url);
 }
 
 function callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.customer_name.value){
-			alert("거래처명을 입력하세요.");
+		if(!document.searchName.department_name.value){
+			alert("부서명을 입력하세요.");
 			location.reload();
-			document.searchName.customer_name.focus();
+			document.searchName.department_name.focus();
 			return false;
 		}
 	
@@ -62,43 +78,20 @@ function callback() {
 } 
 
 
-function setName(salelist_code, customer_name,amount, price, product_name, detail_ac_code, customer_code) {
-	opener.document.getElementById("customerNameP").value = customer_name;
-	opener.document.getElementById("saleListCodeP").value = salelist_code;
-	opener.document.getElementById("release_countP").value = amount;
-	opener.document.getElementById("priceP").value = price;
-	opener.document.getElementById("product_nameP").value = product_name;
-	opener.document.getElementById("product_codeP").value = detail_ac_code;
-	opener.document.getElementById("customer_codeM").value = customer_code;
-	opener.document.getElementById("customer_nameM").value = customer_name;
+function setName(department_code, department_name,count) {
+	opener.document.getElementById("department_name"+count+"").value = department_name;
+	opener.document.getElementById("department_code"+count+"").value = department_code;
 
+	alert(count);
 	//test alert
-	alert(salelist_code, customer_name);
+	/* alert(department_name, department_code);
 	
-	$("#customerNameP", opener.document).val(customer_name); //jquery 이용
-	$(opener.document).find("#customerNameP").val(customer_name); //find를 이용한 jquery
+	$("#department_name", opener.document).val(department_name+count); //jquery 이용
+	$(opener.document).find("#department_name").val(department_name+count); //find를 이용한 jquery
 	
-	$("#saleListCodeP", opener.document).val(salelist_code); //jquery 이용
-	$(opener.document).find("#saleListCodeP").val(salelist_code); //find를 이용한 jquery
-	
-	$("#release_countP", opener.document).val(amount); //jquery 이용
-	$(opener.document).find("#release_countP").val(amount); //find를 이용한 jquery
-	
-	$("#priceP", opener.document).val(price); //jquery 이용
-	$(opener.document).find("#priceP").val(price); //find를 이용한 jquery
-	
-	$("#product_nameP", opener.document).val(product_name); //jquery 이용
-	$(opener.document).find("#product_nameP").val(product_name); //find를 이용한 jquery
-	
-	$("#product_codeP", opener.document).val(detail_ac_code); //jquery 이용
-	$(opener.document).find("#product_codeP").val(detail_ac_code); //find를 이용한 jquery
-	
-	$("#customer_codeM", opener.document).val(customer_code); //jquery 이용
-	$(opener.document).find("#customer_codeM").val(customer_code); //find를 이용한 jquery
-	
-	$("#customer_nameM", opener.document).val(customer_name); //jquery 이용
-	$(opener.document).find("#customer_nameM").val(customer_name); //find를 이용한 jquery
-	
+	$("#department_code", opener.document).val(department_code+count); //jquery 이용
+	$(opener.document).find("#department_code").val(department_code+count); //find를 이용한 jquery
+	*/
 	self.close();
 	
 }
@@ -121,7 +114,7 @@ function setName(salelist_code, customer_name,amount, price, product_name, detai
 					<div class="col-12">
 						<div class="page-title-box" style="text-align: center;">
 							<h4>
-								<b>계정목록</b>
+								<b>부서목록</b>
 							</h4>
 						</div>
 					</div>
@@ -138,7 +131,7 @@ function setName(salelist_code, customer_name,amount, price, product_name, detai
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
 											<td><input onkeyup="enterkey();" type="text"
-												name="customer_name" class="form-control form-control-sm"
+												name="department_name" class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
 										</tr>

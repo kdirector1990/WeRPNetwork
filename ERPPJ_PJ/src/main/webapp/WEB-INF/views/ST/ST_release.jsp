@@ -92,8 +92,7 @@
 											
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">품번</label>
-													<input class="form-control" type="text"
-																name="detail_ac_code" 
+													<input class="form-control" type="text" name="detail_ac_code" 
 																id="product_codeP" onclick="ProductName()"
 																style="width : 400px;"> 
 												</div>
@@ -129,8 +128,6 @@
 											</div>
 
 											<div class="col-xl-6">
-											<br>
-											<br>
 											
 											<div class="form-group row">
 												<label class="col-md-2 col-form-label">품명</label>
@@ -142,10 +139,9 @@
 												
 
 												<div class="form-group row">
-													<label class="col-md-2 col-form-label">출고
-														수량</label>
+													<label class="col-md-2 col-form-label">출고 수량</label>
 													<div class="col-md-10">
-														<input type="text" name="release_count"
+														<input type="text" name="release_count" id = "release_countP"
 															class="form-control" style="width: 370px;" >
 													</div>
 												</div>
@@ -166,17 +162,27 @@
 														</select>
 													</div>
 												</div>
+												
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">가격</label>
+													<div class="col-md-10">
+														<input type="text" class="form-control" style="width: 370px;"
+															name="price" id = "priceP">
+													</div>
+											</div>
+												
+												
+												
+												
 											</div>
 											<!-- end col -->
 
 
 											<div class="form-group mb-0">
 												<div>
-													<button type="submit"
-														class="btn btn-primary waves-effect waves-light mr-1">
+													<button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
 														Submit</button>
-													<button type="reset"
-														class="btn btn-secondary waves-effect waves-light">
+													<button type="reset" class="btn btn-secondary waves-effect waves-light">
 														Cancel</button>
 												</div>
 											</div>

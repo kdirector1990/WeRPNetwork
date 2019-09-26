@@ -20,21 +20,17 @@
 			<table id="datatable" class="table table-bordered table-hover">
 				<thead>
 					<tr class="table-info" style="text-align: center; pointer-events: none;">
-						<th>판매대장 코드</th>
-						<th>거래처명</th>
-						<th>품명</th>
-						<th>출고 요청일</th>
+						<th>부서명</th>
+						<th>부서코드</th>
 					</tr>
 				</thead>
 				<tbody style="overflow:auto;">
 					<!--  있으면 -->
 					<c:if test="${cnt != 0}">
-						<c:forEach var="sto" items="${stos}">
-							<tr onclick="setName('${sto.salelist_code}','${sto.customer_name}','${sto.amount}','${sto.price}','${sto.product_name}','${sto.detail_ac_code}','${sto.customer_code}' );">
-								<td>${sto.salelist_code}</td>
-								<td>${sto.customer_name}</td>
-								<td>${sto.product_name}</td>
-								<td>${sto.release_o_date}</td>
+						<c:forEach var="vo" items="${dto}">
+							<tr onclick="setName('${vo.department_code}','${vo.department_name}','${count }');">
+								<td>${vo.department_name }</td>
+								<td>${vo.department_code }</td>
 							</tr>
 						</c:forEach>
 					</c:if>

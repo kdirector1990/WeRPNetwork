@@ -50,9 +50,17 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+<<<<<<< HEAD
 					$('#bodyappend').empty();
 					$('#resulttable').empty();
 					$('#totals').empty();
+=======
+					
+						$('#result').empty();
+						$('#bodyappend').empty();
+						$('#resulttable').empty();
+					
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 					
 					$('#resulttable').append(
 							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
@@ -120,6 +128,10 @@
 							'<td>'+ pa_others +'</td>'+
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
+<<<<<<< HEAD
+=======
+					
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -140,7 +152,6 @@
 					);
 					
 					
-					}
 					
 				},
 				error : function(){
