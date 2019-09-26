@@ -51,11 +51,11 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					if(searchCount > 1){
+					
 						$('#result').empty();
 						$('#bodyappend').empty();
 						$('#resulttable').empty();
-					}
+					
 					
 					$('#resulttable').append(
 							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
@@ -124,7 +124,7 @@
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
 					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -144,11 +144,8 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
 					
 					
-					}
 					
 				},
 				error : function(){

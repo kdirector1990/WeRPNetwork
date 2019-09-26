@@ -54,8 +54,24 @@
 				success : function(list){
 					
 					$('#result').empty();
+					$('#bodyappend').empty();
+					$('#resulttable').empty();
 					
-					
+					$('#resulttable').append(
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<thead>'+
+								'<tr>'+
+									'<th>사원번호</th>'+
+									'<th>성명</th>'+
+									'<th>관계</th>'+
+									'<th>동거여부</th>'+
+									'<th>생년월일</th>'+
+									'<th>음력/양력</th>'+												
+								'</tr>'+
+							'</thead>'+
+							'<tbody id="result">'+
+							'</tbody>'+
+						'</table>');
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -81,8 +97,8 @@
 							'<td>'+ fborn +'</td>'+
 							'<td>'+ f_born_types +'</td>'+
                  		'</tr>');
+					}
 					
-					if(searchCount == 1){
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -102,11 +118,8 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
 					
 					
-					}
 					
 				},
 				error : function(){
@@ -397,7 +410,8 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<table id="datatable"
+									<div id="resulttable">
+									<!-- <table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
 										<thead>
 											<tr>
@@ -410,9 +424,9 @@
 											</tr>
 										</thead>
 										<tbody id="result">
-
 										</tbody>
-									</table>
+									</table> -->
+									</div>
 								</div>
 							</div>
 						</div>
