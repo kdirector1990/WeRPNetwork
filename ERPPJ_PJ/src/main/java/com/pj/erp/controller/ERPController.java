@@ -602,7 +602,7 @@ public class ERPController {
 	public String productList(Locale locale, Model model) {
 		logger.info("log => productList");
 		
-		return "productList"; 
-	}
+		return "page/productList"; 
+	} 
 	
 }

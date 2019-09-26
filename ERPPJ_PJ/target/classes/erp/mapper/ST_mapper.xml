@@ -339,7 +339,15 @@
  	
  	<select id="getTransaction" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.TransactionDetails">
  		<![CDATA[
- 		
+ 			  	select * from ST_transaction_view 
+	                       where sar_type = '2'
+	                       and stored_name like '%'||#{stored_name}||'%'
+	                       and release_name like '%'||#{release_name}||'%'
+	                       and e_name like '%'||#{username}||'%'
+	                       and kwon >= #{userdate1}
+	                       and kwon <= #{userdate2}
+	                       
+	                      
  		]]>
  	</select>
  	
@@ -347,7 +355,7 @@
 	<select id="selectProduct" resultType="int" parameterType="String" >
 		select COUNT(*) from product_list_tbl where product_name like '%'||#{product_name}||'%'
 	</select>
-	
+
 	<!-- 검색 목록 가져오기 -->
 	<select id="getProductList" resultType="com.pj.erp.vo.ST.ProductList" parameterType="String">
 		select product_code, bom_code, product_name from product_list_tbl where product_name like '%'||#{product_name}||'%'

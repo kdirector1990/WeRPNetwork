@@ -16,6 +16,8 @@ public interface ERPService {
 	
 	public void nfc(HttpServletRequest req, Model model);
 	
+	public void productList(HttpServletRequest req, Model model);
+	
 	//암호화폐 예산 편성목록 가져오기
 	public List<HashVO> selectDept(HttpServletRequest req, Model model);
 }
