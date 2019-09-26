@@ -59,14 +59,14 @@ function allcheck(){
 										<table id="datatable"
 											class="table m-0 table-bordered table-hover"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-											<col style="width: 20%;">
-											<col style="width: 20%;">
+											<col style="width: 5%;">
+											<col style="width: 35%;">
 											<col style="width: 20%">
 											<col style="width: 20%;">
 											<col style="width: 20%;">
 											<thead class="bg-primary text-white">
 												<tr>
-													<th><input type="checkbox" id="allChecked" name="material_code" onclick="allcheck();"></th>
+													<th><input type="checkbox" id="allChecked" name="salesTeam" onclick="allcheck();"></th>
 													<th>자재명</th>
 													<th>단위</th>
 													<th>가격</th>
@@ -77,7 +77,7 @@ function allcheck(){
 											<tbody>
 												<c:forEach var="list" items="${dto}">
 													<tr>
-														<td><input type="checkbox" class="checklist" name="material_code" value="${list.material_code}"></td>
+														<td><input type="checkbox" class="checklist" name="salesTeam" value="${list.material_code}"></td>
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
 														<td><input type="text" name="price"></td>

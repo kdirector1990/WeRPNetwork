@@ -314,7 +314,7 @@
                             </li>
                             
                             <li>
-                            	<a href="#">
+                            	<a href="productList">
                             		<i class="mdi mdi-spa"></i>
                             		<span>물품 구매</span>
                             	</a>

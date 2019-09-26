@@ -601,13 +601,4 @@ public class ERPController {
 		return "page/productList"; 
 	}
 	
-	// 재료 구매
-	@RequestMapping("productList_result")
-	public String productList_result(HttpServletRequest req, Model model) {
-		logger.info("log => productList_result");
-		
-		
-		return "page/productList_result"; 
-	}
-	
 }
