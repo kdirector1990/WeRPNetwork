@@ -323,7 +323,7 @@
 	 }
 	 
 	 function HR_modifyPhysicalyPro(){
-         var param = $("#updatePhysicaly").serializeArray();
+         var param = $("#updatePhy").serializeArray();
  		 
  		 $.ajax({
  			 url: '/erp/HR_modifyPhysicalyPro',
@@ -446,9 +446,12 @@
 							</div>
 							<div class="card" id="selectTable">
 								<div class="card-body">
-									<div id="result2">
+									<form id="updatePhy">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+									<div id="result2">									
 										<!-- 상세 페이지 출력 위치 -->
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>

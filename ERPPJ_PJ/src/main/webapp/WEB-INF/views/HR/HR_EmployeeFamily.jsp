@@ -198,26 +198,26 @@
 	  		}); 	 
 	 }
 	 
-	 /* function HR_modifyPhysicalyPro(){
-         var param = $("#updatePhysicaly").serializeArray();
- 		 
- 		 $.ajax({
- 			 url: '/erp/HR_modifyPhysicalyPro',
- 			 type: 'POST',
- 			 data : param,
- 			 dataTpye: 'json',
- 			 success: function(updateCnt){
- 				 if(updateCnt != 0){
- 					 $('#result2').empty();
- 					 document.getElementById("update").style.display="none";
- 					 alert("수정이 완료되었습니다.");    					
- 				 }
- 			 },
- 			 error : function(){
- 				 alert("전산 오류로 인하여 AS처리중으로 수정하지 못했습니다.");
- 			 }
- 		 });
-     } */
+	 function HR_modifyFamilyPro(){
+     	var param = $("#updateFamily").serializeArray();
+ 		
+ 		$.ajax({
+ 			url: '/erp/HR_modifyFamilyPro?${_csrf.parameterName}=${_csrf.token }',
+ 			type: 'POST',
+ 			data : param,
+ 			dataTpye: 'json',
+ 			success: function(updateCnt){
+ 				if(updateCnt != 0){update
+ 					$('#result2').empty();
+ 					document.getElementById("update").style.display="none";
+ 					alert("수정이 완료되었습니다.");    					
+ 				}
+ 			},
+ 			error : function(){
+ 				alert("전산 오류로 인하여 AS처리중으로 수정하지 못했습니다.");
+ 			}
+ 		});
+     }
 	 
 </script>
 

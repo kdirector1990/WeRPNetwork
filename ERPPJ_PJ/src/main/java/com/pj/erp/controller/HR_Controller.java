@@ -76,12 +76,12 @@ public class HR_Controller {
 		return "HR/HR_modifyFoundation";
 	}
 	
-	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST)
+	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST) 
 	public String HR_modifyFoundationPro(MultipartHttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
-				
-		return "index";
+		
+		return  "HR/HR_EmployeeInformation";
 	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
@@ -140,7 +140,7 @@ public class HR_Controller {
 		logger.info("log => HR_update_Fou");
 		
 		HR_VO data = service.HR_select_username(req, model);
-		
+		System.out.println(data.getE_picture());
 		return data;
 	}
 	
