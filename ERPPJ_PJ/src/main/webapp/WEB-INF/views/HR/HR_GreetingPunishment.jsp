@@ -29,7 +29,6 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			var param = new Object();
@@ -51,11 +50,17 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+<<<<<<< HEAD
+					$('#bodyappend').empty();
+					$('#resulttable').empty();
+					$('#totals').empty();
+=======
 					
 						$('#result').empty();
 						$('#bodyappend').empty();
 						$('#resulttable').empty();
 					
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 					
 					$('#resulttable').append(
 							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
@@ -123,7 +128,10 @@
 							'<td>'+ pa_others +'</td>'+
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
+<<<<<<< HEAD
+=======
 					
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -140,8 +148,6 @@
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
 					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
 					
@@ -235,38 +241,6 @@
 								<div class="card-body table-responsive">
 									<div = id = "resulttable">
 									</div>
-									<!-- <table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
-										<col style="width: 8%;">
-										<col style="width: 7%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 5%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<thead>
-											<tr>
-												<th>인사고과코드</th>
-												<th>사원번호</th>
-												<th>일자</th>
-												<th>인사고과 구분</th>
-												<th>인사고과명</th>
-												<th>시행처</th>
-												<th>고과 내역</th>
-												<th>계정코드</th>
-												<th>금액</th>
-												<th>비고</th>
-												<th>처리상태</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-
-										</tbody>
-									</table> -->
 								</div>
 							</div>
 						</div>
