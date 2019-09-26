@@ -149,19 +149,7 @@ public class FT_Controller {
 		return "FT/FT_p_cost";
 	}
 
-	@RequestMapping("FT_funds_state")
-	public String FT_funds_state(Locale locale, Model model) {
-		logger.info("log => FT_funds_state");
-
-		return "FT/FT_funds_state";
-	}
-
-	@RequestMapping("FT_sa_state")
-	public String FT_sa_state(Locale locale, Model model) {
-		logger.info("log => FT_sa_state");
-
-		return "FT/FT_sa_state";
-	}
+  
 
 	@RequestMapping("FT_capital_plan")
 	public String FT_capital_plan(Locale locale, Model model) {
