@@ -1,5 +1,6 @@
 package com.pj.erp.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import com.pj.erp.vo.BlockChainVO;
@@ -22,4 +23,7 @@ public interface ERPDAO {
 	
 	// 블록체인 hash블록 DB에 담음.
 	public int insertLog(HashVO vo);
+	
+	// 블록체인 암호화폐 편성내역 가져오기
+	public List<HashVO> selectHashDept(String department_code);
 }

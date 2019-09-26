@@ -51,5 +51,10 @@ public class ERPDAOImpl implements ERPDAO{
 	public int insertLog(HashVO vo) {
 		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertLog", vo);
 	}
+
+	@Override
+	public List<HashVO> selectHashDept(String department_code) {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectHashDept", department_code);
+	}
 	
 }

@@ -26,100 +26,80 @@
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 //결과
-
-	 $(function(){
-		$('#search').click(function(){
-			var param = new Object();
-			var jsonData;
-			
-			param.d_name = $("#d_name").val();
-					
-			jsonData = JSON.stringify(param);
-			
-			$.ajax({
-				url : '${pageContext.request.contextPath}/FT_plan_result?${_csrf.parameterName}=${_csrf.token }',
-				type : 'POST',
-				data : jsonData, 
-				dataType : "json",
-				contentType:"application/json;charset=UTF-8",
-				success : function(list){
-						$('#bodyappend').empty();
-						$('#resulttable').empty();
-						$('#totals').empty();
-					
-					
-					var totals = 0;
-					
-					$('#resulttable').append(
-							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
-							'<col style="width: 10%;">'+
-							'<col style="width: 20%;">'+
-							'<col style="width: 20%;">'+
-							'<col style="width: 20%;">'+
-							'<col style="width: 10%;">'+
-							'<col style="width: 20%;">'+
-								'<thead>'+
-									'<tr>'+
+	 function etherSelectDept(){
+		 var param = $("#etherSelect").serializeArray();
+ 		$.ajax({
+ 			url: '/erp/FT_Ether_SelectDept',
+ 			type: 'POST',
+ 			data : param,
+ 			dataTpye: 'json',
+ 			success: function(vo){
+ 				$('#bodyappend').empty();
+ 				$('#resulttable').empty();
+ 				
+ 				$('#resulttable').append(
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap center">'+
+							'<thead>'+
+								'<tr>'+
 									'<th>계약기록</th>'+
 									'<th>부서 이름</th>'+
 									'<th>사용목적</th>'+
 									'<th>해쉬코드</th>'+
-									'</tr>'+
-								'</thead>'+
-								'<tbody id="result">'+
-								'</tbody>'+
-							'</table>');
-					
-					
-					
-					for(var i = 0 ; i < list.length; i++){
-					
-						var budget_codes = list[i].budget_code;
-						var department_codes = list[i].department_code;
-						var department_names = list[i].department_name;
-						var budget_amounts = list[i].budget_amount;
-						var eas_codes = list[i].eas_code;
-						var e_approval_codes = list[i].e_approval_code;
-						var budget_subjects = list[i].budget_subject;
-						totals += budget_amounts;
-						
-					$('#result').append('<tr onclick="FT_planUpdateDelete(\''+budget_codes+'\')">'+
-                         	'<td>'+ budget_codes +'</td>'+
-							'<td>'+ department_names +'</td>'+
-							'<td>'+ budget_amounts +'</td>'+
-							'<td>'+ eas_codes +'</td>'+
-							'<td>'+ e_approval_codes +'</td>'+
-							'<td>'+ budget_subjects +'</td>'+
+								'</tr>'+
+							'</thead>'+
+							'<tbody id="result">'+
+							'</tbody>'+
+						'</table>');
+ 				
+ 				for(var i = 0; i < vo.length; i++){
+ 					var dept_name = vo[i].department_name;
+ 					var subject = vo[i].e_subject;
+ 					var hashcode = vo[i].e_hashcode;
+ 					
+ 					var date = vo[i].ether_rec_code;
+ 					var code = new Date(date);
+ 					
+ 					var Month = (1 + code.getMonth());
+ 					var Year = code.getFullYear();
+ 					var Day = code.getDate();
+ 					var Hour = code.getHours();
+ 					var Mm = code.getMinutes();
+ 					
+ 					var ether_rec_code = Year + "/" + Month + "/" + Day + " " + Hour + ":" + Mm;
+ 					
+ 					
+ 					
+ 					$('#result').append('<tr>'+
+                         	'<td>'+ ether_rec_code +'</td>'+
+							'<td>'+ dept_name +'</td>'+
+							'<td>'+ subject +'</td>'+
+							'<td><a href="https://ropsten.etherscan.io/search?f=0&q='+hashcode+'">'+ hashcode +'</a></td>'+
                  		'</tr>');
-					}
-					$('#bodyappend').append(
-					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-					);
-					
-					
-					
-					$('#totals').append(totals);
-					
-				},
-				error : function(){
-					alert("에러");
-				}
-			});
-		}); 
-	 });
+ 				}
+ 					
+ 				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+ 					
+ 			},
+ 			error : function(){
+ 				alert("전산 오류로 인하여 AS완료에 실패하였습니다.");
+ 			}
+ 		});
+	 }
 	 
 </script>	
 </head>
@@ -133,6 +113,7 @@
 			<!-- ============================================================== -->
 
 			<!-- 페이지 내용 입력 공간 -->
+			
 			<div class="containerfluid">
 				<!-- start page title -->
 				<div class="row">
@@ -156,17 +137,21 @@
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<table class="col-12">
-									<tr class="form-group row">
-										<th class="col-md-1 col-form-label">부서명</th>
-										<td class="col-md-2 input-group"><input type="text"
-											class="form-control" name="d_name" id="d_name"
-											placeholder="부서명"></td>
-										<td><button type="button"
-												class="btn btn-primary waves-effect waves-light"
-												id="search">검색</button></td>
-									</tr>
-								</table>
+								<form id="etherSelect">
+									<input type="hidden" name="${_csrf.parameterName }"
+													value="${_csrf.token }">
+									<table class="col-12">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">부서명</th>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="d_name" id="d_name"
+												placeholder="부서명"></td>
+											<td><button type="button"
+													class="btn btn-primary waves-effect waves-light"
+													id="search" onclick="etherSelectDept();">검색</button></td>
+										</tr>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -183,20 +168,6 @@
 						</div>
 					</div>
 				</div>
-				
-				<div id="updatePlan">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-									<div id="result1">
-										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>	
 			</div>
 
 			<!-- 페이지 내용 입력 공간 종료 -->

@@ -20,12 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.service.ERPService;
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
+import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Building;
@@ -47,6 +49,9 @@ public class FT_Controller {
 	
 	@Autowired
 	MateralServiceImpl MSI;
+	
+	@Autowired
+	ERPService ERP;
 
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 
@@ -929,6 +934,16 @@ public class FT_Controller {
 		logger.info("log => FT_plan2");
 
 		return "FT/FT_plan2";
+	}
+	
+	// 부서검색을 통한 가상화폐 편성 내역 가져오기
+	@RequestMapping("FT_Ether_SelectDept")
+	@ResponseBody
+	public List<HashVO> FT_Ether_SelectDept(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Ether_SelectDept");
+		List<HashVO> vo = ERP.selectDept(req, model);
+		
+		return vo;
 	}
 
 }

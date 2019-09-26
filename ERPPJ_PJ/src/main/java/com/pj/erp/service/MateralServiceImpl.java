@@ -124,7 +124,10 @@ public class MateralServiceImpl {
 		vos.setE_subject(purpose);
 		vos.setE_hashcode(hash);
 		
-		dao.insertLog(vos);
+		int insertCnt = dao.insertLog(vos);
+		if(insertCnt == 1) {
+			System.out.println("등록되었습니다.");
+		}
 		
     }
     
