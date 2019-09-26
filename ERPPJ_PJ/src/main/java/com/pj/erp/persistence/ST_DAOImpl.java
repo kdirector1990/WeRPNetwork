@@ -228,9 +228,6 @@ public class ST_DAOImpl implements ST_DAO {
 	}
 	
 	
-	
-	
-	
 	// 제품명 검색
 	@Override
 	public int selectProduct(String product_name) {

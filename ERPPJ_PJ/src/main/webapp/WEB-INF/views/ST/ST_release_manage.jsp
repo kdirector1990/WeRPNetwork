@@ -231,10 +231,11 @@
 												<select class="form-control" name="sar_type" id="sarType">
 														<option value = "1">1. 입고</option>
 														<option value="2">2. 출고(판매)</option>
-													</select></td>	
+													</select> &nbsp;
+													<button type="button" class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+													</td>	
 													
-												<td class="col-md-2 input-group"><button type="button" 
-														class="btn btn-primary waves-effect waves-light" id="search">조회</button></td>
+												<td></td>
 											</tr>
 										</table>
 									</form>

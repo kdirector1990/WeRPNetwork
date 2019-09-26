@@ -33,9 +33,11 @@ $(function(){
 		var param = new Object();
 		var jsonData;
 					
-		param.customer_name = $("#customerName").val();
+		param.stored_name = $("#storedName").val();
+		param.release_name = $("#releaseName").val();
 		param.username = $("#username_2").val();
-		param.product_name = $("#ProductName").val();
+		param.userdate1 = $("#userdate1").val();
+		param.userdate2 = $("#userdate2").val();
 				
 		jsonData = JSON.stringify(param); 
 		$.ajax({
@@ -161,8 +163,11 @@ $(function(){
 								<div class="card-body table-responsive">
 									<table class="col-12">
 										<tr class="form-group row">
-											<th>거래처</th>
-											<td class="col-md-2 input-group"><input type="text" name="customerName" id="customerName" class="form-control"></td>
+											<th>입고처</th>
+											<td class="col-md-2 input-group"><input type="text" name="storedName" id="storedName" class="form-control"></td>
+											
+											<th>출고처</th>
+											<td class="col-md-2 input-group"><input type="text" name="releaseName" id="releaseName" class="form-control"></td>
 
 											<th>담당자</th>
 											<td class="col-md-2 input-group"><input type="text"
@@ -170,11 +175,11 @@ $(function(){
 				
 											<th>출고 기간</th>
 											<td class="col-md-2 input-group">
-											<input type="date" id="userdate" name="userdate" class="form-control">&nbsp;&nbsp;&nbsp;__</td>
-											<td class="col-md-2 input-group"><input type="date" id="userdate" name="userdate" class="form-control"></td>
+											<input type="date" id="userdate1" name="userdate" class="form-control">&nbsp;&nbsp;&nbsp;__</td>
+											<td class="col-md-2 input-group"><input type="date" id="userdate2" name="userdate" class="form-control"></td>
 											
 												
-												<td class="col-md-2 input-group"><button type="button" 
+												<td ><button type="button" 
 														class="btn btn-primary waves-effect waves-light" id="search">조회</button></td>
 										</tr>
 									</table>
