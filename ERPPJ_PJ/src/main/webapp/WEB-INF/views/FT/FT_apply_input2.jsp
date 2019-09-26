@@ -55,7 +55,7 @@
 									<li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
 									<li class="breadcrumb-item"><a href="javascript: void(0);">재무</a></li>
 									<li class="breadcrumb-item"><a href="javascript: void(0);">예산</a></li>
-									<li class="breadcrumb-item active">예산신청입력</li>
+									<li class="breadcrumb-item active">가상화폐 입력</li>
 								</ol>
 							</div>
 							<h4 class="page-title">예산신청입력</h4>

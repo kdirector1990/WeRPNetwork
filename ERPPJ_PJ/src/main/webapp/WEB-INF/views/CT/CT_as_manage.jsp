@@ -113,7 +113,6 @@
         }
         
         function updateAS(code){
-        	alert(code);
 	         $.ajax({
 	  			url: '/erp/CT_update_ASW?${_csrf.parameterName}=${_csrf.token }&cas_code='+code,
 	  			type: 'POST',
@@ -186,7 +185,6 @@
         
         function updateState(){
         	var param = $("#updateAST").serializeArray();
-    		alert(JSON.stringify(param));
     		$.ajax({
     			url: '/erp/CT_AS_Update',
     			type: 'POST',
@@ -207,7 +205,6 @@
         
         function completeAS(){
         	var param = $("#updateAST").serializeArray();
-    		alert(JSON.stringify(param));
     		$.ajax({
     			url: '/erp/CT_AS_Complete',
     			type: 'POST',

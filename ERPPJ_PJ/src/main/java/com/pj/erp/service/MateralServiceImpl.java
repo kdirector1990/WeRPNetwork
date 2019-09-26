@@ -17,6 +17,7 @@ import org.web3j.utils.Convert;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.vo.BlockChainVO;
+import com.pj.erp.vo.HashVO;
 
 @Service
 public class MateralServiceImpl {
@@ -24,20 +25,16 @@ public class MateralServiceImpl {
 	@Autowired
 	ERPDAO dao;
 	
-	// 가나슈와 연결 한다 : localhost:8545
+	// 롭슨 Test 서버와 연결 한다 : localhost:8545
 	private static final Web3j web3j = Web3j.build(new HttpService("https://ropsten.infura.io/v3/d11459c1c17049628f462a1492c7df36"));
-	// 호스트에 가나슈 첫번째 계정의  PRIVATE KEY 복사하여 연결(재무팀)
-	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 	
-	//거래처 지갑을 변수로서 생성한다.
-	private static final Credentials account = Credentials.create("BFDE674AE42A9FA179E3E965E1DDB9EA479E63E62CB61F16C2ADC4B365314BC5");
-	private static final Credentials account2 = Credentials.create("53458B07979175D41C83DF78CA6A4B052C178E2D3EDA432C5A7D130E5716DE9F");
+	// 호스트에는 첫번째 계정(재무팀)의  PRIVATE KEY 복사하여 연결
+	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 	
 	// 가나슈의 gasLimit과 gasPrice를 적어준다.
 	private static final BigInteger gasLimit = BigInteger.valueOf(6721975L);
 	private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
 	
-	//계약자의 이름
 	String contractAddress = "";
     
 	// etherToWei
@@ -67,6 +64,7 @@ public class MateralServiceImpl {
 	public void budgetAdd(HttpServletRequest req, Model model) throws Exception {
     	
     	String department_code = req.getParameter("dept_code");
+    	int trans = 0;
     	
     	// department_code를 통해 department_group_code를 가져온다.
     	// 팀 코드를 통해 부서코드를 가져온다.
@@ -74,7 +72,7 @@ public class MateralServiceImpl {
     	String deptWallet = bc.getWallet_code();
     	String deptname = bc.getDepartment_name();
     	
-    	// 계정의 primary key를 접속한 부서별로 할당한다.
+    	// 계정의 primary key를 검색한 부서의 팀으로 할당한다.
     	Credentials dept_AccountNumber = Credentials.create(deptWallet);
     	
     	String contractAddress2 = Materal.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
@@ -112,18 +110,27 @@ public class MateralServiceImpl {
     	// 솔리디티의 budgetAdd을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		dept.buyMaterial(new BigInteger("0"), name, ethers).send();
-    		
+		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
+		
+		//DB에 내역 가상화폐 거래 내역 insert
+		String purpose = req.getParameter("purpose");
+		
+		HashVO vos = new HashVO();
+		vos.setDepartment_code(department_code);
+		vos.setE_subject(purpose);
+		vos.setE_hashcode(hash);
+		
+		int insertCnt = dao.insertLog(vos);
+		if(insertCnt == 1) {
+			System.out.println("등록되었습니다.");
+		}
+		
     }
     
-    // 이더를 전송하는 메소드
+    // 원자재 구매시 판매자에게 이더를 전송하는 메소드
     @SuppressWarnings("deprecation")
 	public void payMaterial(HttpServletRequest req) throws Exception {
-    	
-    	//계약서 작성.
-    	contractAddress = Materal.deploy(web3j, hostCredentials, gasPrice, gasLimit).send().getContractAddress();
-    	
-    	
+
     	// 구매하는 부서의 코드로 구매하게 만든다. 
     	String department_code = (String) req.getSession().getAttribute("dCode");
     	
@@ -134,7 +141,27 @@ public class MateralServiceImpl {
     	String deptname = bc.getDepartment_name();
     	
     	// 계정의 primary key를 접속한 부서별로 할당한다.
-    	Credentials dept_AccountNumber = Credentials.create(deptWallet); 
+    	Credentials dept_AccountNumber = Credentials.create(deptWallet);
+    	
+    	//원자재 구매시 이더를 보낼 거래처의 지갑 정보를 위해 판매자 아이디를 가져온다.
+    	String seller = req.getParameter("salesTeam");
+    	Credentials salesTeam = null;
+    	
+    	if(seller == "1팀") {
+    		salesTeam = Credentials.create("BFBBE8F7D376179A0FD9BE7DFF0697B1F2FC2CFCFB5FECD06291BFF0A28E52B5");
+    	}
+    	else if(seller == "2팀") {
+    		salesTeam = Credentials.create("391b50b29fc771d1fcb9bbbcd5f949b756ca6cd7ac3a51adf43102c44b068aee ");
+    	}
+    	else if(seller == "3팀") {
+    		salesTeam = Credentials.create("0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C");
+    	}
+    	else {
+    		salesTeam = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
+    	}
+    	
+    	//계약서 작성.
+    	contractAddress = Materal.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	int price = Integer.parseInt(req.getParameter("money"));
@@ -169,8 +196,7 @@ public class MateralServiceImpl {
     	// 솔리디티의 buyMaterial을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		dept.buyMaterial(new BigInteger("0"), name, ethers).send();
-		
+		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
     }
 	
 }

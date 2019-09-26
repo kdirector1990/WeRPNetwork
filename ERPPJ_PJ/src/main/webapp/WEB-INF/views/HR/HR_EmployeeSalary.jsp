@@ -43,6 +43,9 @@
 				dataType : "json",
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
+					
+					document.getElementById("searchTable").style.display="block";
+					
 						$('#bodyappend').empty();
 						$('#resulttable').empty();
 						$('#totals').empty();
@@ -61,7 +64,7 @@
 							'<col style="width: 10%;">'+
 							'<col style="width: 10%;">'+
 							'<col style="width: 10%;">'+
-								'<thead>'+
+								'<thead class="bg-primary text-white">'+
 									'<tr>'+
 									'<th>사원번호</th>'+
 									'<th>사원명</th>'+
@@ -197,23 +200,24 @@
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="e_name" id="e_name"
 												placeholder="한글이름"></td>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 											<td class="col-md-1 col-form-label">&nbsp;</td>
 											<th class="col-md-1 col-form-label">임금 총 합계 :</th>
 											<th class="col-md-2 col-form-label" id="totals"></th>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<div id = "resulttable">
 									</div>
 								</div>

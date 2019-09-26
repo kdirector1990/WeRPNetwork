@@ -25,13 +25,113 @@
 <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-	function searchdept2() {
+
+$(function(){
+	$('#search').click(function(){
+		var param = new Object();
+		var jsonData;
+		
+		param.d_name = $("#d_name").val();
+				
+		jsonData = JSON.stringify(param);
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/FT_plan_result?${_csrf.parameterName}=${_csrf.token }',
+			type : 'POST',
+			data : jsonData, 
+			dataType : "json",
+			contentType:"application/json;charset=UTF-8",
+			success : function(list){
+					$('#bodyappend').empty();
+					$('#resulttable').empty();
+					$('#totals').empty();
+				
+				
+				var totals = 0;
+				
+				$('#resulttable').append(
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+						'<col style="width: 10%;">'+
+						'<col style="width: 20%;">'+
+						'<col style="width: 20%;">'+
+						'<col style="width: 20%;">'+
+						'<col style="width: 10%;">'+
+						'<col style="width: 20%;">'+
+							'<thead>'+
+								'<tr>'+
+								'<th>예산계정코드</th>'+
+								'<th>부서명</th>'+
+								'<th>금액</th>'+
+								'<th>전결라인</th>'+
+								'<th>전결현황</th>'+
+								'<th>예산과목명</th>'+
+								'</tr>'+
+							'</thead>'+
+							'<tbody id="result">'+
+							'</tbody>'+
+						'</table>');
+				
+				
+				
+				for(var i = 0 ; i < list.length; i++){
+				
+					var budget_codes = list[i].budget_code;
+					var department_codes = list[i].department_code;
+					var department_names = list[i].department_name;
+					var budget_amounts = list[i].budget_amount;
+					var eas_codes = list[i].eas_code;
+					var e_approval_codes = list[i].e_approval_code;
+					var budget_subjects = list[i].budget_subject;
+					totals += budget_amounts;
+					
+				$('#result').append('<tr>'+
+                     	'<td onclick="FT_planUpdateDelete(\''+budget_codes+'\');">'+ budget_codes +'</td>'+
+						'<td>'+ department_names +'</td>'+
+						'<td>'+ budget_amounts +'</td>'+
+						'<td>'+ eas_codes +'</td>'+
+						'<td>'+ e_approval_codes +'</td>'+
+						'<td>'+ budget_subjects +'</td>'+
+             		'</tr>');
+				}
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+				
+				
+				
+				$('#totals').append(totals);
+				
+			},
+			error : function(){
+				alert("에러");
+			}
+		});
+	}); 
+ });
+ 
+ 
+	function dept2() {
 		window.open("ST_searchDepartmentname", "ST_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 	}
 	
 	function updatePlan(){
 		var param = new Object();
 		var jsonData;
+		var cnt = 1;
+		
 		
 		param.budget_code = $("#budget_code").val();
 		param.budget_subject = $("#budget_subject").val();
@@ -49,7 +149,7 @@
 			data : jsonData,
 			dataTpye: 'json',
 			contentType:"application/json;charset=UTF-8",
-			success: function(1){
+			success: function(cnt){
 				alert("수정되었습니다.");
 				$('#result1').empty();
 				searchCus();
@@ -63,6 +163,7 @@
 	function deletePlan(){
 		var param = new Object();
 		var jsonData;
+		var cnt = 1;
 		
 		param.budget_code = $("#budget_code").val();
 		jsonData = JSON.stringify(param);
@@ -72,7 +173,7 @@
 			data : jsonData,
 			dataTpye: 'json',
 			contentType:"application/json;charset=UTF-8",
-			success: function(1){
+			success: function(cnt){
 				alert("삭제되었습니다.");
 				$('#result1').empty();
 				searchCus();
@@ -83,7 +184,7 @@
 		});
 	}
 //결과
-	function FT_planUpdateDelete(url) { 
+	function FT_planUpdateDelete(url) {
 		sendRequest(callback, "FT_planUpdateDelete", "post", "${_csrf.parameterName }=${_csrf.token }&budget_codes="+url);
 	}
 	
@@ -107,101 +208,7 @@
 		}
 	} 
 
-	 $(function(){
-		$('#search').click(function(){
-			var param = new Object();
-			var jsonData;
-			
-			param.d_name = $("#d_name").val();
-					
-			jsonData = JSON.stringify(param);
-			
-			$.ajax({
-				url : '${pageContext.request.contextPath}/FT_plan_result?${_csrf.parameterName}=${_csrf.token }',
-				type : 'POST',
-				data : jsonData, 
-				dataType : "json",
-				contentType:"application/json;charset=UTF-8",
-				success : function(list){
-						$('#bodyappend').empty();
-						$('#resulttable').empty();
-						$('#totals').empty();
-					
-					
-					var totals = 0;
-					
-					$('#resulttable').append(
-							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
-							'<col style="width: 10%;">'+
-							'<col style="width: 20%;">'+
-							'<col style="width: 20%;">'+
-							'<col style="width: 20%;">'+
-							'<col style="width: 10%;">'+
-							'<col style="width: 20%;">'+
-								'<thead>'+
-									'<tr>'+
-									'<th>예산계정코드</th>'+
-									'<th>부서명</th>'+
-									'<th>금액</th>'+
-									'<th>전결라인</th>'+
-									'<th>전결현황</th>'+
-									'<th>예산과목명</th>'+
-									'</tr>'+
-								'</thead>'+
-								'<tbody id="result">'+
-								'</tbody>'+
-							'</table>');
-					
-					
-					
-					for(var i = 0 ; i < list.length; i++){
-					
-						var budget_codes = list[i].budget_code;
-						var department_codes = list[i].department_code;
-						var department_names = list[i].department_name;
-						var budget_amounts = list[i].budget_amount;
-						var eas_codes = list[i].eas_code;
-						var e_approval_codes = list[i].e_approval_code;
-						var budget_subjects = list[i].budget_subject;
-						totals += budget_amounts;
-						
-					$('#result').append('<tr>'+
-                         	'<td onclick="FT_planUpdateDelete(\''+budget_codes+'\');">'+ budget_codes +'</td>'+
-							'<td>'+ department_names +'</td>'+
-							'<td>'+ budget_amounts +'</td>'+
-							'<td>'+ eas_codes +'</td>'+
-							'<td>'+ e_approval_codes +'</td>'+
-							'<td>'+ budget_subjects +'</td>'+
-                 		'</tr>');
-					}
-					$('#bodyappend').append(
-					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-					);
-					
-					
-					
-					$('#totals').append(totals);
-					
-				},
-				error : function(){
-					alert("에러");
-				}
-			});
-		}); 
-	 });
+	 
 	 
 </script>	
 </head>
