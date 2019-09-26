@@ -479,12 +479,23 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setRelease_date(Timestamp.valueOf(req.getParameter("release_date"))); 
 		vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
-		vo.setStored_name(req.getParameter("stored_count"));
+		
 		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
 		vo.setSar_type(req.getParameter("sar_type"));
-		vo.setCustomer_code(req.getParameter("customer_code"));
+		
 		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
 		vo.setUsername(req.getParameter("username"));
+		
+		vo.setStored_name(req.getParameter("stored_name"));
+
+		if(vo.getSar_type().equals("3")) { 
+			vo.setCustomer_code(req.getParameter("search_release_code"));
+		}else {
+			vo.setCustomer_code(req.getParameter("customer_code"));
+		}
+		
+		
+		
 		
 		
 		int updateRelease = dao.updateRelease(vo);

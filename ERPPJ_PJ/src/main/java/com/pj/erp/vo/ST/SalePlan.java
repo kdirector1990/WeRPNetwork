@@ -17,6 +17,7 @@ public class SalePlan {
 	private String detail_ac_code;	// 상세 계정 코드
 	private String product_name;	// 제품명
 	
+	
 	// 생성자
 	public SalePlan() {}
 	
@@ -116,6 +117,7 @@ public class SalePlan {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+
 	
 	
 }
