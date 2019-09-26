@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
+<style type="text/css">
+#searchTable {
+	display: none;
+}
+</style>
 <%@ include file="../setting.jsp"%>
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
@@ -65,6 +70,8 @@
 				contentType : "application/json;charset=UTF-8",
 				success : function(list) {
 
+					document.getElementById("searchTable").style.display="block";
+					
 					$('#result').empty();
 					$('#resulttable').empty();
 					$('#bodyappend').empty();
@@ -221,38 +228,23 @@
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="day" id="day"
 												data-provide="datepicker" data-date-autoclose="true"></td>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
 									<div id="resulttable">
-									<!-- <table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-										<thead class="bg-primary text-white">
-											<tr>
-												<th>사원코드</th>
-												<th>사원명</th>
-												<th>부서</th>
-												<th>직책</th>
-												<th>입사일</th>
-												<th>년수</th>
-												<th>주민번호</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-										</tbody>
-									</table> -->
+									<!-- 조회 결과 출력 위치  -->
 									</div>
 								</div>
 							</div>

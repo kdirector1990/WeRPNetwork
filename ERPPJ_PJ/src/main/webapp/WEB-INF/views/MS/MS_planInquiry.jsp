@@ -7,7 +7,7 @@
 	display: none;
 }
 
-#selectPlan{
+#selectInfo{
 	display: none;
 }
 
@@ -44,7 +44,7 @@ function callback() {
 			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
 			
 			var datas = httpRequest.responseText;
-			document.getElementById("selectPlan").style.display="block";
+			document.getElementById("selectInfo").style.display="block";
 			result.innerHTML = datas;
 			
 		} else {
@@ -232,7 +232,7 @@ function searchCus() {
 					</div>
 				</div>
 
-				<div id="selectPlan">
+				<div id="selectInfo">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">

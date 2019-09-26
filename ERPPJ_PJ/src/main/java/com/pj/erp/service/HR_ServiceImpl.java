@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException; 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -37,7 +36,6 @@ import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
-import com.pj.erp.vo.MS.MS_plan;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Service
@@ -726,7 +724,6 @@ public class HR_ServiceImpl implements HR_Service{
 		
 		//월 카운트를 위한 변수
 		int i = 1;
-		int cnt = 0;
 		
 		do {
 			if(i < 10) {

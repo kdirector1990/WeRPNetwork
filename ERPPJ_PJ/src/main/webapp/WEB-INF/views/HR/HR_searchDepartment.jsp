@@ -9,15 +9,26 @@
 
 <script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script src="/erp/resources/assets/css/js/request.js"></script>
+<style type="text/css">
+#searchDep {
+	display: none;
+}
+</style>
 <script type="text/javascript">
 	
-var searchCount = 1;
+function enterkey() {
+    if (window.event.keyCode == 13) {
+         // 엔터키가 눌렸을 때 실행할 내용
+        $('#search').click();
+    }
+}
+
 	$(function() {
 		$('#search').click(
 						
 		function() {
 			 var param = $(".search").serializeArray();
-			 alert(JSON.stringify(param)); 
+			/*  alert(JSON.stringify(param));  */
 
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_searchDepartment_result?${_csrf.parameterName}=${_csrf.token }',
@@ -25,8 +36,25 @@ var searchCount = 1;
 				data : param,
 				success : function(list) {
 					
+					document.getElementById("searchDep").style.display="block";
+					
 					$('#result').empty();
+					$('#resulttable').empty();
 					$('#bodyappend').empty();
+					
+					$('#resulttable').append(
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<col style="width: 50%;">'+
+							'<col style="width: 50%;">'+
+								'<thead class="bg-primary text-white">'+
+									'<tr>'+
+									'<th>부서코드</th>'+
+									'<th>부서명</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+						'</table>');
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -38,7 +66,7 @@ var searchCount = 1;
 							'<td>'+ department_name +'</td>'+
                  		'</tr>');
 					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -58,9 +86,6 @@ var searchCount = 1;
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
-					}
 				},
 				error : function() {
 					alert("에러");
@@ -115,38 +140,27 @@ var searchCount = 1;
 
 												<td><input type="text" class="form-control"
 													name="department_name" id="department_name"></td>
-												<th class="col-md-1 col-form-label">&nbsp;</th>												
-
-												<td><button type="button"
-														class="btn btn-primary waves-effect waves-light"
-														id="search">검색</button></td>
 											</tr>
 										</table>
+										<div align="right">
+											<button type="button" class="btn btn-primary waves-effect waves-light"
+														id="search">조회</button>
+										</div>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap table-hover">
-										<col style="width: 50%;">
-										<col style="width: 50%;">
-
-										<thead>
-											<tr>
-												<th>부서코드</th>
-												<th>부서명</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-											<!--  -->
-										</tbody>
-									</table>
+					<div id="searchDep">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card">
+									<div class="card-body">
+										<div id="resulttable">
+											<!-- 부서 조회 목록 출력  -->
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
