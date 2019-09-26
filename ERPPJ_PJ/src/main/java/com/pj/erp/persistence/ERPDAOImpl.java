@@ -5,10 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.BlockChainVO;
+import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Repository
@@ -44,6 +45,22 @@ public class ERPDAOImpl implements ERPDAO{
 	@Override
 	public BlockChainVO getGroupCode(String department_code) {
 		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.getGroupCode", department_code);
+	}
+
+	// 구매할 때 필요한 목록
+	@Override
+	public List<ProductVO> getProductList() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getProductList");
+	}
+	
+	@Override
+	public int insertLog(HashVO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertLog", vo);
+	}
+
+	@Override
+	public List<HashVO> selectHashDept(String department_code) {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectHashDept", department_code);
 	}
 	
 }

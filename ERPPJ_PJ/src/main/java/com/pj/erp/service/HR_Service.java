@@ -149,4 +149,6 @@ public interface HR_Service {
 	// 발령공고 검색
 	public List<HR_RecordVO> getRecord(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
 	
+	// 가족정보
+	public HR_FamilyVO HR_select_family(HttpServletRequest req, Model model);
 }

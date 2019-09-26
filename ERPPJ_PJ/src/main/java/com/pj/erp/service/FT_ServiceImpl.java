@@ -27,6 +27,7 @@ import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Depreciation;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
@@ -467,7 +468,7 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_CardManagementSelect(HttpServletRequest req, Model model) {
 		List<FT_Card> savings = dao.FT_CardManagementSelect();
-		model.addAttribute("saving", savings);
+		model.addAttribute("cardlist", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
 	
@@ -915,7 +916,7 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
     public void FT_LandInsert(HttpServletRequest req, Model model) {
         FT_Land vo = new FT_Land();
-        vo.setLandName(req.getParameter("buildingName"));
+        vo.setLandName(req.getParameter("landName"));
         vo.setAddress(req.getParameter("Address"));
         vo.setBuyDate(req.getParameter("buyDate"));
         vo.setBuyPrice(req.getParameter("buyPrice"));
@@ -956,7 +957,7 @@ public class FT_ServiceImpl implements FT_Service{
 		List<FT_Land> account = dao.FT_LandAllSelect();
 		System.out.println("building : " + account);
 		System.out.println("buildingSize : " + account.size());
-		model.addAttribute("building", account);
+		model.addAttribute("land", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}
 	
@@ -967,63 +968,81 @@ public class FT_ServiceImpl implements FT_Service{
 		System.out.println(ac);
 		return ac;
 	}
-
-
-	// 토지 추가
-	@Override
-    public void FT_FacilityInsert(HttpServletRequest req, Model model) {
-        FT_Facility vo = new FT_Facility();
-        vo.setFacilityName(req.getParameter("buildingName"));
-        vo.setAddress(req.getParameter("Address"));
-        vo.setBuyDate(req.getParameter("buyDate"));
-        vo.setBuyPrice(req.getParameter("buyPrice"));
-        vo.setDepartmentCode(req.getParameter("departmentCode"));
-        vo.setThinkYear(req.getParameter("thinkYear"));
-        vo.setGamga(req.getParameter("gamga"));
-        vo.setGamgaWay(req.getParameter("gamgaWay"));
-        int insertCnt = dao.FT_FacilityInsert(vo);
-
-        model.addAttribute("cnt", insertCnt);
-    }
 	
-	// 토지 수정
+
+	// 감가 그룹 가져오기
 	@Override
-	public String FT_FacilityUpdate(Map<String, Object> map) {
-		int result = dao.FT_FacilityUpdate(map);
-		if(result != 0) {
-			return "성공";
+	public List<FT_Depreciation> FT_DepreciationList(Map<String, Object> map, Model model) {
+		List<FT_Depreciation> list = new ArrayList<FT_Depreciation>();
+		FT_Depreciation bvo = dao.FT_BDepreciationDistinct(map);
+		FT_Depreciation lvo = dao.FT_LDepreciationDistinct(map);
+		FT_Depreciation evo = dao.FT_EDepreciationDistinct(map);
+		FT_Depreciation cvo = dao.FT_CDepreciationDistinct(map);
+		System.out.println(bvo);
+		System.out.println(lvo);
+		System.out.println(evo);
+		System.out.println(cvo);
+		if(bvo != null) {
+			list.add(bvo);
+		}
+		if(lvo != null) {
+			list.add(lvo);
+		}
+		if(evo != null) {
+			list.add(evo);
+		}
+		if(cvo != null) {
+			list.add(cvo);
+		}
+		return list;
+	}
+	
+	// 감가 데이터 가져오기
+	@Override
+	public List<FT_Depreciation> FT_BDepreciationDataList(Map<String, Object> map, Model model) {
+		int number = dao.FT_BDepreciationDataCnt(map); 
+		System.out.println(number);
+		if(number == 0) {
+			return null;
 		} else {
-			return "update 실패";
+			return dao.FT_BDepreciationDataList(map);
 		}
 	}
 	
-	// 토지 삭제
+	// 감가 데이터 가져오기
 	@Override
-	public String FT_FacilityDelete(Map<String, Object> map) {
-		int result = dao.FT_FacilityPrevDelete(map);
-		if(result != 0) {
-			return "성공";
+	public List<FT_Depreciation> FT_LDepreciationDataList(Map<String, Object> map, Model model) {
+		int number = dao.FT_LDepreciationDataCnt(map); 
+		System.out.println(number);
+		if(number == 0) {
+			return null;
 		} else {
-			return "delete 실패";
+			return dao.FT_LDepreciationDataList(map);
 		}
 	}
-
-	// 토지 가져오기
+	
+	// 감가 데이터 가져오기
 	@Override
-	public void FT_FacilityAllSelect(HttpServletRequest req, Model model) {
-		List<FT_Facility> account = dao.FT_FacilityAllSelect();
-		System.out.println("building : " + account);
-		System.out.println("buildingSize : " + account.size());
-		model.addAttribute("building", account);
-		model.addAttribute("listsize", account.size() + 1);
+	public List<FT_Depreciation> FT_EDepreciationDataList(Map<String, Object> map, Model model) {
+		int number = dao.FT_EDepreciationDataCnt(map); 
+		System.out.println(number);
+		if(number == 0) {
+			return null;
+		} else {
+			return dao.FT_EDepreciationDataList(map);
+		}
 	}
 	
-	// 토지 검색한 것 가져오기
+	// 감가 데이터 가져오기
 	@Override
-	public FT_Facility FT_FacilityOneSelect(HttpServletRequest req) {
-		FT_Facility ac = dao.FT_FacilityOneSelect(req.getParameter("srhval"));
-		System.out.println(ac);
-		return ac;
+	public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map, Model model) {
+		int number = dao.FT_CDepreciationDataCnt(map); 
+		System.out.println(number);
+		if(number == 0) {
+			return null;
+		} else {
+			return dao.FT_CDepreciationDataList(map);
+		}
 	}
 
 	//예산계획현황검색결과
