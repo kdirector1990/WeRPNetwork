@@ -32,6 +32,7 @@ import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
@@ -180,6 +181,24 @@ public class FT_Controller {
 		logger.info("log => FT_plan");
 
 		return "FT/FT_plan";
+	}
+	
+	//예산 계획 현황 검색결과
+	@RequestMapping(value = "FT_plan_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<FT_Plan_Result> FT_plan_result(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_plan_result");
+		List<FT_Plan_Result> list = service.getPlanResult(map, req, model);
+		return list;
+	}
+	
+	//예산계획현황  상세조회
+	@RequestMapping("FT_planUpdateDelete")
+	public String FT_planUpdateDelete(HttpServletRequest req, Model model) {
+		logger.info("log => FT_planUpdateDelete");
+		service.selectPlanDetail(req, model);
+		
+		return "FT/FT_planUpdateDelete";
 	}
 
 	// 예산 신청 입력처리

@@ -15,6 +15,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
@@ -256,6 +257,7 @@ public interface FT_Service {
 	// 손익계산서 조회
 	public Map<String, Object> getIsshit(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
-	
+	// 예산현황 검색결과
+	public List<FT_Plan_Result> getPlanResult(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
 }

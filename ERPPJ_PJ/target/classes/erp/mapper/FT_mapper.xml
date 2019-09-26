@@ -1167,4 +1167,9 @@ when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name
 		select * from getBalanceShit_t_view where accounts_name=#{typename} order by acc_level
 	</select>
 	
+	<!-- 예산계획현황 검색결과 -->
+	<select id = "getPlanResult" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.FT.FT_Plan_Result">
+		select * from budget_list_view where department_name like '%'||#{d_name}||'%'
+	</select>
+	
 </mapper>
