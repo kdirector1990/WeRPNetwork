@@ -67,6 +67,7 @@ public class MateralServiceImpl {
 	public void budgetAdd(HttpServletRequest req, Model model) throws Exception {
     	
     	String department_code = req.getParameter("dept_code");
+    	int trans = 0;
     	
     	// department_code를 통해 department_group_code를 가져온다.
     	// 팀 코드를 통해 부서코드를 가져온다.
@@ -112,8 +113,8 @@ public class MateralServiceImpl {
     	// 솔리디티의 budgetAdd을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		dept.buyMaterial(new BigInteger("0"), name, ethers).send();
-    		
+		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
+		
     }
     
     // 이더를 전송하는 메소드
@@ -169,8 +170,7 @@ public class MateralServiceImpl {
     	// 솔리디티의 buyMaterial을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		dept.buyMaterial(new BigInteger("0"), name, ethers).send();
-		
+		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
     }
 	
 }
