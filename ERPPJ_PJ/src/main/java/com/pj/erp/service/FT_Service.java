@@ -260,4 +260,12 @@ public interface FT_Service {
 	// 예산현황 검색결과
 	public List<FT_Plan_Result> getPlanResult(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	//예산현황상세조회
+	public void selectPlanDetail(HttpServletRequest req, Model model);
+	
+	//기획서 수정
+	public int updatePlan(Map<String, Object>map,HttpServletRequest req, Model model);
+	
+	//기획서 삭제
+	public int deletePlan(Map<String, Object>map,HttpServletRequest req, Model model);
 }

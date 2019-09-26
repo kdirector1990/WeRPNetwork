@@ -50,17 +50,12 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-<<<<<<< HEAD
-					$('#bodyappend').empty();
-					$('#resulttable').empty();
-					$('#totals').empty();
-=======
+					document.getElementById("searchTable").style.display="block";
 					
 						$('#result').empty();
 						$('#bodyappend').empty();
 						$('#resulttable').empty();
 					
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 					
 					$('#resulttable').append(
 							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
@@ -75,7 +70,7 @@
 								'<col style="width: 5%;">'+
 								'<col style="width: 10%;">'+
 								'<col style="width: 10%;">'+
-								'<thead>'+
+								'<thead class="bg-primary text-white">'+
 									'<tr>'+
 										'<th>인사고과코드</th>'+
 										'<th>사원번호</th>'+
@@ -128,10 +123,6 @@
 							'<td>'+ pa_others +'</td>'+
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
-<<<<<<< HEAD
-=======
-					
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -150,7 +141,6 @@
 					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					
 					
 					
 				},
@@ -205,41 +195,45 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">인사고과코드 검색</th>
-											<td class="col-md-1 input-group"><input type="text"
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="pa_code" id="pa_code"></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">사원번호 검색</th>
-											<td class="col-md-1 input-group"><input type="text"
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>
+										</tr>
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">사원이름 검색</th>
-											<td class="col-md-1 input-group"><input type="text"
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="e_name" id="e_name"></td>
+											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">고과일자</th>
-											<td><input
+											<td class="col-md-2 input-group"><input
 												class="form-control input-daterange-datepicker" type="text"
 												name="pa_date" id="pa_date" /></td>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 										</tr>
 									</table>
-
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+									</div>
 
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-									<div = id = "resulttable">
+								<div class="card-body">
+									<div id = "resulttable">
+									<!-- 조회 결과 출력 위치  -->
 									</div>
 								</div>
 							</div>
@@ -248,8 +242,6 @@
 				</div>
 
 				<!-- 페이지 내용 입력 공간 종료 -->
-
-
 
 				<%@ include file="../footer.jsp"%>
 

@@ -30,37 +30,30 @@
 </head>
 <body>
 			<form id= "datatable2">
-				<table class="table table-bordered"
-					style="height: 550px;">
+				<table class="table table-bordered">
 					<tbody>
 						<!--  있으면 -->
 						<tr>
 							<th>예산계정코드</th>
-							<td><input type="text" name="plan_code" class="form-control" value="${dto.plan_code}" readonly></td>
+							<td><input type="text" id = "budget_code" name="budget_code" class="form-control" value="${dto.budget_code}" readonly></td>
+							<th>예산과목명</th>
+							<td><input type="text" id = "budget_subject" name="budget_subject" class="form-control" value="${dto.budget_subject}"></td>
 						</tr>
 						<tr>
 							<th>부서코드</th>
-							<td><input type="text" name="plan_name" class="form-control" value="${dto.plan_name}"></td>
-						<tr>
-						<tr>
+							<td><input type="text" id = "department_code" name="department_code" class="form-control" value="${dto.department_code}" onclick="dept2();"></td>
 							<th>부서명</th>
-							<td><input type="text" name="plan_name" class="form-control" value="${dto.plan_name}"></td>
+							<td><input type="text" id = "department_name" name="department_name" class="form-control" value="${dto.department_name}"></td>
 						</tr>
 						<tr>
 							<th>금액</th>
-							<td><input type="text" name="username" class="form-control" value="${dto.username}"></td>
+							<td colspan = "3"><input type="text" id = "budget_amount" name="budget_amount" class="form-control" value="${dto.budget_amount}"></td>
 						</tr>
 						<tr>
 							<th>전결라인</th>
-							<td><input type="text" name="position_code" class="form-control" value="${dto.position_code}"></td>
-						</tr>
-						<tr>
+							<td><input type="text" id = "eas_code" name="eas_code" class="form-control" value="${dto.eas_code}"></td>
 							<th>전결현황</th>
-							<td><input type="text" name="plan_regdate" class="form-control" value="${dto.plan_regdate}" readonly></td>
-						</tr>
-						<tr>
-							<th>예산과목명</th>
-							<td><input type="text" name="plan_startdate" class="form-control" data-provide="datepicker" data-date-autoclose="true" value="${dto.plan_startdate}"></td>
+							<td><input type="text" id = "e_approval_code" name="e_approval_code" class="form-control" value="${dto.e_approval_code}"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -69,8 +62,6 @@
 					<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>
 				</div>
 			</form>
-		</div>
-	</div>
 	<!-- Datatable plugin js -->
 	<script
 		src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>

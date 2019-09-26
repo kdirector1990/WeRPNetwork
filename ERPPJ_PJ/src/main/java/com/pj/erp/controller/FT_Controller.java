@@ -201,9 +201,28 @@ public class FT_Controller {
 	@RequestMapping("FT_planUpdateDelete")
 	public String FT_planUpdateDelete(HttpServletRequest req, Model model) {
 		logger.info("log => FT_planUpdateDelete");
-		
-		
+		service.selectPlanDetail(req, model); 
 		return "FT/FT_planUpdateDelete";
+	}
+	
+	//예산계획 수정 처리
+	@RequestMapping(value = "FT_updatePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public int FT_updatePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_updatePlanPro");
+		int cnt = service.updatePlan(map, req, model);
+		
+		return cnt;
+	}
+	
+	//예산계획 삭제 처리
+	@RequestMapping(value = "FT_deletePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public int FT_deletePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => FT_deletePlanPro");
+		int cnt = service.deletePlan(map, req, model);
+		
+		return cnt;
 	}
 
 	// 예산 신청 입력처리

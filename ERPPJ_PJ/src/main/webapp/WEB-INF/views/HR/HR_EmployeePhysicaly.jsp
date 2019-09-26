@@ -29,7 +29,6 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			$('#result').empty();
@@ -53,12 +52,16 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+					document.getElementById("searchTable").style.display="block";
+					
 					$('#bodyappend').empty();
 					$('#resulttable').empty();
 					
+					document.getElementById("selectTable").style.display="none";
+					
 					$('#resulttable').append(
 						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
-							'<thead>'+
+							'<thead class="bg-primary text-white">'+
 								'<tr>'+
 									'<th>사원번호</th>'+
 									'<th>신장</th>'+
@@ -152,6 +155,8 @@
 	  			dataTpye: 'json',
 	  			success: function(data){
 	  				
+	  				document.getElementById("selectTable").style.display="block";
+	  				
 	  				var username = data.username;	  					  				
 	  				var e_height = data.e_height;
 	  				var e_weight = data.e_weight;
@@ -226,7 +231,8 @@
                                     +'<label class="custom-control-label" for="customRadioInline14">O</label>'
                                 +'</div>'
                             +'</div>'
-                            +'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'	                               
+                            +'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+                            +'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
                             +'<label class="col-md-1 col-form-label" for="simpleinput">혈압</label>'
 								+'<div class="col-md-1">'
 									+'<input type="text" class="form-control" name="e_blood_presure1" placeholder="최저">'
@@ -381,10 +387,10 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">사원번호</td>
+											<th class="col-md-1 col-form-label">사원번호</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>
@@ -419,63 +425,36 @@
 											</td>
 
 											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
-										</tr>
 									</table>
-
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body table-responsive">
-									<div id="resulttable">
-									<!-- <table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
-										<thead>
-											<tr>
-												<th>사원번호</th>
-												<th>신장</th>
-												<th>체중</th>
-												<th>시력(좌)</th>
-												<th>시력(우)</th>
-												<th>색약</th>
-												<th>혈액형</th>
-												<th>혈압</th>
-												<th>병력</th>
-												<th>장애구분/등급</th>
-												<th>장애인 등급</th>
-												<th>보훈구분</th>
-												<th>보훈관계</th>
-												<th>보훈등급</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-
-										</tbody>
-									</table> -->
+									<div align="right">
+										<button type="button" class="btn btn-primary waves-effect waves-light"
+													id="search">조회</button>
 									</div>
 								</div>
-								<div id="result2" class="card-body">
-							<!-- 상세 페이지 출력 위치 -->
-						</div>
 							</div>
-							
-						</div>						
+						</div>
 					</div>
 
-					
+					<div class="row" id="searchTable">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="resulttable">
+										<!-- 조회 결과 출력 위치  -->
+									</div>
+								</div>
+							</div>
+							<div class="card" id="selectTable">
+								<div class="card-body">
+									<div id="result2">
+										<!-- 상세 페이지 출력 위치 -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
-
-				<!-- 페이지 내용 입력 공간 종료 -->
-
-
 
 				<%@ include file="../footer.jsp"%>
 

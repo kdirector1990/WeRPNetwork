@@ -29,7 +29,6 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			$('#result').empty();
@@ -53,13 +52,15 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+					document.getElementById("searchTable").style.display="block";
+					
 					$('#result').empty();
 					$('#bodyappend').empty();
 					$('#resulttable').empty();
 					
 					$('#resulttable').append(
 						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
-							'<thead>'+
+							'<thead class="bg-primary text-white">'+
 								'<tr>'+
 									'<th>사원번호</th>'+
 									'<th>성명</th>'+
@@ -118,8 +119,6 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					
-					
 					
 				},
 				error : function(){
@@ -356,10 +355,10 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">사원번호</td>
+											<th class="col-md-1 col-form-label">사원번호</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>
@@ -394,47 +393,31 @@
 											</td>
 
 											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 										</tr>
 									</table>
-
-
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<div id="resulttable">
-									<!-- <table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
-										<thead>
-											<tr>
-												<th>사원번호</th>
-												<th>성명</th>
-												<th>관계</th>
-												<th>동거여부</th>
-												<th>생년월일</th>
-												<th>음력/양력</th>												
-											</tr>
-										</thead>
-										<tbody id="result">
-										</tbody>
-									</table> -->
+										<!-- 조회 결과 출력 위치  -->
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>					
+					</div>
 				</div>
 
 				<!-- 페이지 내용 입력 공간 종료 -->
-
 
 
 				<%@ include file="../footer.jsp"%>

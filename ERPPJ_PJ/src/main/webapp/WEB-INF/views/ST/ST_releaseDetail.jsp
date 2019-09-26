@@ -68,7 +68,7 @@
 													</div></td>
 													
 													<th>출고 수량</th>
-													<td><input class="form-control" type="text"
+													<td><input class="form-control" type="number"
 														name="release_count" value="${rto.release_count}"></td>
 												</tr>
 		
@@ -85,7 +85,7 @@
 													</div></td>
 													
 													<th>입고 수량</th>
-													<td><input class="form-control" type="text"
+													<td><input class="form-control" type="number"
 														name="stored_count" value="${rto.stored_count}"></td>
 												
 												</tr>
@@ -107,7 +107,7 @@
 		
 												<tr>
 													<th>단가</th>
-													<td><input type="text" class="form-control" name="unit_cost"
+													<td><input type="number" class="form-control" name="unit_cost"
 														value="${rto.unit_cost}" style="width: 230px;"></td>
 													
 													

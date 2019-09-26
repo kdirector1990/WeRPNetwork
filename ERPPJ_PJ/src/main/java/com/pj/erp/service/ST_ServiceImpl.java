@@ -351,7 +351,8 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSar_type(req.getParameter("sar_type"));
 		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
-		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setCustomer_code(req.getParameter("customer_code")); 
+		
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
 		vo.setSalelist_code(req.getParameter("salelist_code"));
@@ -478,10 +479,25 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setSar_code(sar_code);
 		vo.setRelease_name(req.getParameter("release_name"));
 		vo.setRelease_date(Timestamp.valueOf(req.getParameter("release_date"))); 
-		vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
-		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
+
+		if(req.getParameter("unit_cost").equals("")) {
+			vo.setUnit_cost(0);	
+		}else {
+			vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));			
+		}
 		
-		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
+		if(req.getParameter("release_count").equals("")) {
+			vo.setRelease_count(0);
+		}else {
+			vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
+			
+		}
+		if(req.getParameter("stored_count").equals("")) {
+			vo.setStored_count(0);
+		}else {			
+			vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
+		}
+		
 		vo.setSar_type(req.getParameter("sar_type"));
 		
 		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
