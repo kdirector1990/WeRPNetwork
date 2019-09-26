@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.FT_Service;
+import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Facility;
@@ -42,6 +43,9 @@ public class FT_Controller {
 
 	@Autowired
 	FT_Service service;
+	
+	@Autowired
+	MateralServiceImpl MSI;
 
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 
@@ -894,4 +898,22 @@ public class FT_Controller {
 
 		return service.FT_LandOneSelect(req);
 	}
+	
+	// 블록체인 신청 입력
+	@RequestMapping("FT_apply_input2")
+	public String FT_apply_input2(Locale locale, Model model) {
+		logger.info("log => FT_apply_input2");
+
+		return "FT/FT_apply_input2";
+	}
+	
+	// 블록체인 신청 입력처리
+	@RequestMapping("FT_apply_input2_pro")
+	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => FT_apply_input2_pro");
+		MSI.budgetAdd(req, model);
+		
+		return "FT/FT_apply_input2";
+	}
+
 }

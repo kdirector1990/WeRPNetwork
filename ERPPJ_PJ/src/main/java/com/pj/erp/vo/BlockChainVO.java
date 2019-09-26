@@ -5,7 +5,7 @@ public class BlockChainVO {
 	//변수
 	String ether_code;
 	String department_code;
-	String Wallet_code;
+	String wallet_code;
 	String department_name;
 	
 	//생성자
@@ -21,11 +21,11 @@ public class BlockChainVO {
 	}
 
 	public String getWallet_code() {
-		return Wallet_code;
+		return wallet_code;
 	}
 
 	public void setWallet_code(String wallet_code) {
-		Wallet_code = wallet_code;
+		this.wallet_code = wallet_code;
 	}
 
 	public String getEther_code() {
