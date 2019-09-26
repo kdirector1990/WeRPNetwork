@@ -51,14 +51,13 @@ public class HR_ServiceImpl implements HR_Service{
 	
 	// 인사정보등록
  
-	@Override
- 
+	@Override 
 	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
         
-        String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
  
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
@@ -127,8 +126,9 @@ public class HR_ServiceImpl implements HR_Service{
 		vo2.setUsername(username);
 		vo2.setF_name(f_name);
 		vo2.setF_type(f_type);		
-		vo2.setF_born(Date.valueOf(req.getParameter("f_born")));
+		vo2.setF_born(new Date(new java.util.Date().getYear(), new java.util.Date().getMonth(), new java.util.Date().getDay()));
 		
+		System.out.println(new Date(new java.util.Date().getYear(), new java.util.Date().getMonth(), new java.util.Date().getDay()));
 		int cnt = 0;		
 		
 		cnt = dao.insertMember(vo);		
@@ -333,10 +333,13 @@ public class HR_ServiceImpl implements HR_Service{
 		HR_VO vo = new HR_VO();
 		String username = req.getParameter("username");
 		String e_name = req.getParameter("e_name");
+		String e_picture = file.getOriginalFilename();
+		
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 		
 		vo.setUsername(username);
 		vo.setE_name(e_name);
+		vo.setE_picture(e_picture);
 		vo.setE_gender(e_gender);
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
@@ -436,7 +439,11 @@ public class HR_ServiceImpl implements HR_Service{
 		vo.setF_name(req.getParameter("f_name"));
 		vo.setF_type(req.getParameter("f_type"));
 		vo.setF_cohabitation(req.getParameter("f_cohabitation"));
-		vo.setF_born(Date.valueOf(req.getParameter("f_born")));
+		
+		String sDate = req.getParameter("f_born");
+		sDate = sDate.replace("/", "-");
+		vo.setF_born(Date.valueOf((sDate)));
+		
 		vo.setF_born_type(req.getParameter("f_born_type"));
 		
 		int updateCnt = dao.updateFamily(vo);
@@ -755,6 +762,15 @@ public class HR_ServiceImpl implements HR_Service{
 		String username = req.getParameter("username");
 		
 		HR_PhysicalVO data = dao.physicaly(username);
+		
+		return data;
+	}
+	
+	@Override
+	public HR_FamilyVO HR_select_family(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		
+		HR_FamilyVO data = dao.getFamily(username);
 		
 		return data;
 	}
