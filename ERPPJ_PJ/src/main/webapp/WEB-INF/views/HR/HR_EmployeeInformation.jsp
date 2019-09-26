@@ -60,6 +60,8 @@
 					
 					
 					
+					$('#result').html("");
+					$('#bodyappend').html("");
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -82,7 +84,7 @@
 						var month = (1+pa.getMonth());
 						var day = pa.getDate(); 
 						var start_datess = year + "/" + month +"/"+day;
-						
+					
 					$('#result').append('<tr onclick="updateINFO('+usernames+');">'+                         	
 							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_names +'</td>'+

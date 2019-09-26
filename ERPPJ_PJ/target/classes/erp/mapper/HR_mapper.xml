@@ -430,8 +430,7 @@
 			r.position_record_code as position_record_code,
 			a.ap_code as ap_code,
 			a.ap_name as ap_name,
-			r.record_date as record_date,
-			r.record_date_after as record_date_after,
+			r.record_date as record_date,			
 			p.position_code as position_code,
 			r.position_code_after as position_code_after,
 			d.department_code as department_code,
@@ -441,8 +440,7 @@
 			where u.username = r.username			
 			and a.ap_code = r.ap_code						
 			and p.position_code = r.position_code
-			and d.department_code = r.department_code
-			and a.ap_name = r.ap_name
+			and d.department_code = r.department_code			
 			and u.username like '%'||#{username}||'%'
 			and a.ap_code like '%'||#{ap_code}||'%'
 			and a.ap_name like '%'||#{ap_name}||'%'
