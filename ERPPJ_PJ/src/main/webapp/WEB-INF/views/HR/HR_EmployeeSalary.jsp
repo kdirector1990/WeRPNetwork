@@ -26,7 +26,6 @@
 <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			var param = new Object();
@@ -44,11 +43,42 @@
 				dataType : "json",
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
+						$('#bodyappend').empty();
+						$('#resulttable').empty();
+						$('#totals').empty();
 					
-					$('#result').empty();
-					$('#totals').empty();
 					
 					var totals = 0;
+					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 15%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 15%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+								'<thead>'+
+									'<tr>'+
+									'<th>사원번호</th>'+
+									'<th>사원명</th>'+
+									'<th>부서</th>'+
+									'<th>직급</th>'+
+									'<th>입사일</th>'+
+									'<th>기본급</th>'+
+									'<th>급호수당</th>'+
+									'<th>연장수당</th>'+
+									'<th>합계</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
+					
+					
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -79,8 +109,7 @@
 							'<td>'+ extension_payments +'</td>'+
 							'<td>'+ total +'</td>'+
                  		'</tr>');
-					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -95,15 +124,11 @@
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
 					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
 					
 					
-					}
+					
 					$('#totals').append(totals);
 					
 				},
@@ -189,7 +214,9 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<table id="datatable"
+									<div id = "resulttable">
+									</div>
+									<!-- <table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
 										<col style="width: 10%;">
 										<col style="width: 10%;">
@@ -217,7 +244,7 @@
 
 										</tbody>
 
-									</table>
+									</table> -->
 
 								</div>
 							</div>
