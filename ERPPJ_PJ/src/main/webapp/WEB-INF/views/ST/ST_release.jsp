@@ -24,6 +24,10 @@
    function customerNameList3() {
 	window.open("ST_searchCustomername3", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 } 
+   
+   function saleListName() {
+		window.open("ST_searchsaleList", "searchsaleList", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+	} 
 </script>
 
 <body>
@@ -79,70 +83,76 @@
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-md-2 col-form-label">품명</label>
+													<label class="col-md-2 col-form-label">판매대장코드</label>
+													<input class="form-control" type="text" name="customer_name" id="customerNameP" onclick="saleListName()"
+																style="width : 200px;"> 
+													<input class="form-control" type="text" name="salelist_code" id="saleListCodeP"style="width : 200px;"  readonly> 			
+												</div>
+											
+											
+												<div class="form-group row">
+													<label class="col-md-2 col-form-label">품번</label>
 													<input class="form-control" type="text"
 																name="detail_ac_code" 
 																id="product_codeP" onclick="ProductName()"
-																style="width : 350px; float: left;"> 
+																style="width : 400px;"> 
 												</div>
 												
 											
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">출고처</label>
-													<div class="col-md-10">
 													<div style="display: inline-block;">
 														<input type="text" class="form-control" name="customer_code"
-													 id = "customer_codeP" onclick="customerNameList()"style="width: 220px; float: left;">
+													 id = "customer_codeP" onclick="customerNameList()"style="width: 200px; float: left;">&nbsp;
 													 
 													<input type="text" name="release_name" class="form-control"
-															id="customer_nameP" style="width: 220px; float: right;">
-													</div>
+															id="customer_nameP" style="width: 200px; float: right;">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">입고처</label>
 													<div style="display: inline-block;">
 														<input type="text" class="form-control" name="customer_code"
-													 id = "customer_codeM" onclick="customerNameList3()"style="width: 220px; float: left;">
+													 id = "customer_codeM" onclick="customerNameList3()"style="width: 200px; float: left;">&nbsp;
 													 
 													<input type="text" name="stored_name" class="form-control"
-															id="customer_nameM" style="width: 220px; float: right;">
+															id="customer_nameM" style="width: 200px; float: right;">
 													</div>
 													
 												</div>
+												
 												<div class="form-group row">
-													<label class="col-md-2 col-form-label"
-														for="example-password">단가</label>
-													<div class="col-md-10">
-														<input type="text" name="unit_cost" class="form-control" style="width: 350px;">
-													</div>
+													<label class="col-md-2 col-form-label">단가</label>
+														<input type="text" name="unit_cost" class="form-control" style="width: 400px;">
 												</div>
 
 											</div>
 
 											<div class="col-xl-6">
+											<br>
+											<br>
 											
 											<div class="form-group row">
-													<label class="col-md-2 col-form-label" for="example-static">품명</label>
+												<label class="col-md-2 col-form-label">품명</label>
 												<input class="form-control" type="text" name="product_name"
-													id="product_nameP" style="width : 350px; float: right;">
+													id="product_nameP" style="width : 370px; float: right;">
+									
 											</div>
 													
 												
 
 												<div class="form-group row">
-													<label class="col-md-2 col-form-label" for="example-static">출고
+													<label class="col-md-2 col-form-label">출고
 														수량</label>
 													<div class="col-md-10">
 														<input type="text" name="release_count"
-															class="form-control" style="width: 330px;" >
+															class="form-control" style="width: 370px;" >
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-md-2 col-form-label"
-														for="example-helping">입고 수량</label>
+													<label class="col-md-2 col-form-label">입고 수량</label>
 													<div class="col-md-10">
-														<input type="text" class="form-control" style="width: 330px;"
+														<input type="text" class="form-control" style="width: 370px;"
 															name="stored_count">
 													</div>
 												</div>
@@ -150,7 +160,7 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">구분</label>
 													<div class="col-md-10">
-														<select class="form-control" name="sar_type" style="width: 330px;">
+														<select class="form-control" name="sar_type" style="width: 370px;">
 															<option value="1">1. 입고</option>
 															<option value="2">2. 출고(판매)</option>
 														</select>

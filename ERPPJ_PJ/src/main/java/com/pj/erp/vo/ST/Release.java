@@ -21,6 +21,8 @@ public class Release {
 	private String customer_code;	// 거래처 코드
 	private String product_name;	// 품명
 	private String e_name;	// 담당자명
+	private String salelist_code;	// 판매대장코드
+	private String customer_name;	// 거래처명
 	
 	// 생성자
 	public Release() {}
@@ -161,7 +163,22 @@ public class Release {
 	public void setE_name(String e_name) {
 		this.e_name = e_name;
 	}
-	
+
+	public String getSalelist_code() {
+		return salelist_code;
+	}
+
+	public void setSalelist_code(String salelist_code) {
+		this.salelist_code = salelist_code;
+	}
+
+	public String getCustomer_name() {
+		return customer_name;
+	}
+
+	public void setCustomer_name(String customer_name) {
+		this.customer_name = customer_name;
+	}
 	
 	
 }

@@ -6,6 +6,7 @@
 #timeButton {
 	display: none;
 }
+
 </style>
 <%@ include file="../setting.jsp"%>
 <!-- c3 plugin css -->
@@ -1506,7 +1507,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<div align="right">
 										<br>
 									</div>
@@ -1542,112 +1543,117 @@
 					</div>
 
 					<div class="row">
-						<div class="row">
-							<div class="col-xl-6">
-								<div class="card">
-									<div class="card-body">
-										<form id="timeRecordTbl">
-											<input type="hidden" name="${_csrf.parameterName }"
-												value="${_csrf.token }">
-											<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-												<thead>
-													<tr>
-														<th><input type="checkbox" id="allChecked"
-															onclick="allcheck();"></th>
-														<th>N O</th>
-														<th>사 원 코 드</th>
-														<th>성 명</th>
-													</tr>
-												</thead>
-												<tbody id="result">
-												</tbody>
-											</table>
-										</form>
-										<div id="timeButton">
-											<button type="button"
-												class="btn btn-primary waves-effect waves-light"
-												onclick="startWork();">출근</button>
-											<button type="button"
-												class="btn btn-primary waves-effect waves-light"
-												onclick="endWork();">퇴근</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- end col -->
-
-							<div class="col-xl-6">
-								<div class="card">
-									<div class="card-body">
-										<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+						<div class="col-xl-6">
+							<div class="card">
+								<div class="card-body">
+									<form id="timeRecordTbl">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+										<table id="datatable-fixed-col"
+											class="table table-striped table-bordered dt-responsive nowrap center"
+											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
 												<tr>
-													<th colspan="3">근무일별 근태집계</th>
-												</tr>
-												<tr>
-													<th>구 분</th>
-													<th>일 수</th>
-													<th>시 간</th>
+													<th><input type="checkbox" id="allChecked"
+														onclick="allcheck();"></th>
+													<th>N O</th>
+													<th>사 원 코 드</th>
+													<th>성 명</th>
 												</tr>
 											</thead>
-
-											<tbody id="result2">
-
+											<tbody id="result">
 											</tbody>
 										</table>
-
+									</form>
+									<div id="timeButton">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light"
+											onclick="startWork();">출근</button>
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light"
+											onclick="endWork();">퇴근</button>
 									</div>
 								</div>
 							</div>
-							<!-- end col -->
-							<div class="col-xl-6">
-								<div class="card">
-									<div class="card-body">
-										<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-											<thead>
-												<tr>
-													<th colspan="3">근태결과일 근태집계</th>
-												</tr>
-												<tr>
-													<th>구 분</th>
-													<th>일 수</th>
-												</tr>
-											</thead>
+						</div>
+						<!-- end col -->
 
-											<tbody id="result3">
+						<div class="col-xl-6">
+							<div class="card">
+								<div class="card-body">
+									<table id="datatable-fixed-col"
+										class="table table-striped table-bordered dt-responsive nowrap center"
+										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<thead class="center">
+											<tr>
+												<th colspan="3">근무일별 근태집계</th>
+											</tr>
+											<tr>
+												<th>구 분</th>
+												<th>일 수</th>
+												<th>시 간</th>
+											</tr>
+										</thead>
 
-											</tbody>
-										</table>
-									</div>
+										<tbody id="result2">
+
+										</tbody>
+									</table>
+
 								</div>
 							</div>
+						</div>
+						<!-- end col -->
+						<div class="col-xl-6">
+							<div class="card">
+								<div class="card-body">
+									<table id="datatable-fixed-col"
+										class="table table-striped table-bordered dt-responsive nowrap center"
+										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<thead class="center">
+											<tr>
+												<th colspan="3">근태결과일 근태집계</th>
+											</tr>
+											<tr>
+												<th>구 분</th>
+												<th>일 수</th>
+											</tr>
+										</thead>
 
-							<div class="col-xl-6">
-								<div class="card">
-									<div class="card-body">
-										<table id="datatable-fixed-col" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-											<thead>
-												<tr>
-													<th colspan="4">지각조퇴/사용자정의</th>
-												</tr>
-												<tr>
-													<th>구 분</th>
-													<th>일 수</th>
-													<th>시 간</th>
-													<th>차 감 금 액</th>
-												</tr>
-											</thead>
-											
-											<tbody id="result4">
-											
-											</tbody>
-											
-										</table>
+										<tbody id="result3">
 
-									</div>
+										</tbody>
+									</table>
 								</div>
 							</div>
+						</div>
 
+						<div class="col-xl-6">
+							<div class="card">
+								<div class="card-body">
+									<table id="datatable-fixed-col"
+										class="table table-striped table-bordered dt-responsive nowrap center"
+										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<thead class="center">
+											<tr>
+												<th colspan="4">지각조퇴/사용자정의</th>
+											</tr>
+											<tr>
+												<th>구 분</th>
+												<th>일 수</th>
+												<th>시 간</th>
+												<th>차 감 금 액</th>
+											</tr>
+										</thead>
+
+										<tbody id="result4">
+
+										</tbody>
+
+									</table>
+
+								</div>
+							</div>
 						</div>
 					</div>
 

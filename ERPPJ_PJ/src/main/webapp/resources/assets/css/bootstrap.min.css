@@ -11869,3 +11869,7 @@ p {
 	padding: 0rem;
 	background-color: #ecfd8e;
 }
+
+/* text 가운데 정렬  */
+ .center thead th {
+	text-align:center; }

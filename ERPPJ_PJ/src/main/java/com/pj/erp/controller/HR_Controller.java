@@ -43,7 +43,7 @@ public class HR_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HR_Controller.class);
 	
-	
+	 
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
@@ -55,7 +55,8 @@ public class HR_Controller {
 	}
 	
 
-	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST)
+ 
+	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		

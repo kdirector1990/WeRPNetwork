@@ -1009,11 +1009,19 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_CheckFormal", map);
 	}
 	
-	// 재무상태표_자산   - 권순용
+	// 재무상태표   - 권순용
 	@Override
 	public List<FT_accounts_balance> FT_getAssetsList(String typename) {
 		
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_getAssetsList", typename);
+	}
+	
+	
+	// 손익계산서 - 권순용 
+	@Override
+	public List<FT_accounts_balance> FT_getIsList(String aacounts_name) {
+		 
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_getIsList", aacounts_name);
 	}
 	
 	

@@ -132,7 +132,7 @@ public class FT_Controller {
 	@ResponseBody
 	public Map<String, Object> FT_search_IS(@RequestBody Map<String, Object> map, Locale locale, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => FT_search_IS");
-		Map<String, Object> is_map = service.getBsshit(map, req, model);
+		Map<String, Object> is_map = service.getIsshit(map, req, model);
 		return is_map; 
 	}
 	
@@ -245,7 +245,7 @@ public class FT_Controller {
 		String result = service.FT_NoteInsert(map);
 
 		return result;
-	}
+	} 
 
 	// 예금 수정
 	@RequestMapping(value = "FT_NoteUpdate", produces = "application/text; charset=utf8")
