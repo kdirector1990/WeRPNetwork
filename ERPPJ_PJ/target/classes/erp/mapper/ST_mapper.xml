@@ -260,8 +260,8 @@
  	</delete>
  	
  	<insert id="insertRelease" parameterType="com.pj.erp.vo.ST.Release">
- 		INSERT INTO sar_list_tbl(sar_code,release_name, stored_name, unit_cost, release_count, stored_count,  release_date, detail_ac_code, sar_type, username, customer_code)
- 			VALUES('sar_'||release_seq.nextval, #{release_name} ,#{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, sysdate, #{detail_ac_code},  #{sar_type}, #{username}, #{customer_code})
+ 		INSERT INTO sar_list_tbl(sar_code,release_name, stored_name, unit_cost, release_count, stored_count,  release_date, detail_ac_code, sar_type, username, customer_code, salelist_code)
+ 			VALUES('sar_'||release_seq.nextval, #{release_name} ,#{stored_name}, #{unit_cost},#{release_count}, #{stored_count}, sysdate, #{detail_ac_code},  #{sar_type}, #{username}, #{customer_code}, #{salelist_code})
  	</insert>
  	
  	<!-- saleList -->
@@ -416,10 +416,14 @@
 		        select s.salelist_code as salelist_code,
                             c.customer_name as customer_name,
                             p.product_name as product_name,
-                            s.release_o_date as release_o_date,
+                            s.release_o_date as release_o_date, 
                             s.price as price,
                             s.amount as amount,
-                            p.product_code as product_code
+                            s.price as price,
+                            s.amount as amount,
+                            p.product_code as detail_ac_code,
+                            p.product_name as product_name,
+                            c.customer_code as customer_code
                         from salelist_tbl s, customer_list_tbl c,product_list_tbl p
                         where s.customer_code = c.customer_code
                         and s.detail_ac_code = p.product_code

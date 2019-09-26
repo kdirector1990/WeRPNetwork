@@ -122,7 +122,7 @@ public class ST_Controller {
 		
 		return "ST/ST_release_writePro";
 	}
-	
+	       
 	// ST_release 출고 관리 상세 페이지
 	@RequestMapping("ST_releaseDetail")
 	public String ST_releaseDetail(HttpServletRequest req, Model model) {
@@ -599,4 +599,23 @@ public class ST_Controller {
 		
 		return "ST/ST_searchsaleList_result";
 	}
+	
+	
+	//부서 조회 팝업창
+	@RequestMapping("ST_searchDepartmentname3")
+	public String ST_searchDepartmentname3(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname3");
+		return "ST/ST_searchDepartmentname3";
+	}
+	
+	//부서 조회 팝업창 결과
+	@RequestMapping("ST_searchDepartmentname_result3")
+	public String ST_searchDepartmentname_result3(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchDepartmentname_result3");
+		service.searchDepCode(req, model);
+		
+		return "ST/ST_searchDepartmentname_result3";
+	}
+	
+	
 }

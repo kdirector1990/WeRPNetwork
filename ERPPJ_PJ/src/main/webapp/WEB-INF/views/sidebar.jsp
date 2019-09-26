@@ -534,6 +534,7 @@
 	                          		</a>
 	                          		<ul>
 					                    <li><a href="FT_apply_input">예산신청입력</a></li>
+					                    <li><a href="FT_apply_input2">가상화폐 입력</a></li>
 					                    <li><a href="FT_adjustment_input">예산조정입력</a></li>
 					                    <li><a href="FT_plan">예산계획현황</a></li>
 	                          		</ul>

@@ -354,6 +354,7 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setCustomer_code(req.getParameter("customer_code"));
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
+		vo.setSalelist_code(req.getParameter("salelist_code"));
 		
 		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
