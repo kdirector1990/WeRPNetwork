@@ -62,22 +62,22 @@ public class Materal extends Contract {
         super(BINARY, contractAddress, web3j, credentials, gasPrice, gasLimit);
     }
 
-	/*
-	 * protected Materal(String contractAddress, Web3j web3j, Credentials
-	 * credentials, ContractGasProvider contractGasProvider) { super(BINARY,
-	 * contractAddress, web3j, credentials, contractGasProvider); }
-	 */
+	
+	 protected Materal(String contractAddress, Web3j web3j, Credentials
+	 credentials, ContractGasProvider contractGasProvider) { super(BINARY,
+	 contractAddress, web3j, credentials, contractGasProvider); }
+	 
 
     //@Deprecated
     protected Materal(String contractAddress, Web3j web3j, TransactionManager transactionManager, BigInteger gasPrice, BigInteger gasLimit) {
         super(BINARY, contractAddress, web3j, transactionManager, gasPrice, gasLimit);
     }
 
-	/*
-	 * protected Materal(String contractAddress, Web3j web3j, TransactionManager
-	 * transactionManager, ContractGasProvider contractGasProvider) { super(BINARY,
-	 * contractAddress, web3j, transactionManager, contractGasProvider); }
-	 */
+	
+	 protected Materal(String contractAddress, Web3j web3j, TransactionManager
+	  transactionManager, ContractGasProvider contractGasProvider) { super(BINARY,
+	  contractAddress, web3j, transactionManager, contractGasProvider); }
+	 
 
     public RemoteCall<TransactionReceipt> buyMaterial(BigInteger _id, byte[] _name, BigInteger weiValue) {
         final Function function = new Function(
@@ -210,17 +210,17 @@ public class Materal extends Contract {
         return new Materal(contractAddress, web3j, transactionManager, gasPrice, gasLimit);
     }
 
-	/*
-	 * public static Materal load(String contractAddress, Web3j web3j, Credentials
-	 * credentials, ContractGasProvider contractGasProvider) { return new Materal(contractAddress, web3j, credentials, contractGasProvider); }
-	 */
+	
+	 public static Materal load(String contractAddress, Web3j web3j, Credentials
+	 credentials, ContractGasProvider contractGasProvider) { return new Materal(contractAddress, web3j, credentials, contractGasProvider); }
+	 
 
-	/*
-	 * public static Materal load(String contractAddress, Web3j web3j,
-	 * TransactionManager transactionManager, ContractGasProvider
-	 * contractGasProvider) { return new Materal(contractAddress, web3j,
-	 * transactionManager, contractGasProvider); }
-	 */
+	
+	  public static Materal load(String contractAddress, Web3j web3j,
+	 TransactionManager transactionManager, ContractGasProvider
+	 contractGasProvider) { return new Materal(contractAddress, web3j,
+	 transactionManager, contractGasProvider); }
+	 
 
     public static class LogBuyerEventResponse {
         public Log log;

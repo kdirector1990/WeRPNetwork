@@ -123,7 +123,6 @@
 							'<td>'+ pa_others +'</td>'+
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
-					
 					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -140,8 +139,6 @@
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
 					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
 					

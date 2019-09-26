@@ -231,6 +231,7 @@
 												<select class="form-control" name="sar_type" id="sarType">
 														<option value = "1">1. 입고</option>
 														<option value="2">2. 출고(판매)</option>
+														<option value="3">3. 반품(재입고)</option>
 													</select></td>	
 													
 												<td class="col-md-2 input-group"><button type="button" 
