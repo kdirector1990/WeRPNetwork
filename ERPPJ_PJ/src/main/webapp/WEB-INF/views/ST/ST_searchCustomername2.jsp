@@ -56,17 +56,17 @@ function callback() {
 
 
 function setName(customer_name, customer_code) {
-	opener.document.getElementById("customer_nameP").value = customer_name;
-	opener.document.getElementById("customer_codeP").value = customer_code;
+	opener.document.getElementById("release_name").value = customer_name;
+	opener.document.getElementById("search_release_code").value = customer_code;
 
 	//test alert
 	alert(customer_name, customer_code);
 	
-	$("#customer_nameP", opener.document).val(customer_name); //jquery 이용
-	$(opener.document).find("#customer_nameP").val(customer_name); //find를 이용한 jquery
+	$("#release_name", opener.document).val(customer_name); //jquery 이용
+	$(opener.document).find("#release_name").val(customer_name); //find를 이용한 jquery
 	
-	$("#customer_codeP", opener.document).val(customer_code); //jquery 이용
-	$(opener.document).find("#customer_codeP").val(customer_code); //find를 이용한 jquery
+	$("#search_release_code", opener.document).val(customer_code); //jquery 이용
+	$(opener.document).find("#search_release_code").val(customer_code); //find를 이용한 jquery
 	self.close();
 	
 }

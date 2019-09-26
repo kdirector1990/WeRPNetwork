@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.MS.MS_plan;
@@ -34,6 +36,9 @@ public class ERPServiceImpl implements ERPService{
 	
 	@Autowired
 	HR_DAO dao2;
+	
+	@Autowired
+	ERPDAO dao3;
 	
 	Map<String, Object> map = new HashMap<String, Object>();
 
@@ -181,6 +186,13 @@ public class ERPServiceImpl implements ERPService{
 			}
 		}
  
+	}
+
+	@Override
+	public List<HashVO> selectDept(HttpServletRequest req, Model model) {
+		String department_code = req.getParameter("d_name");
+		List<HashVO> vo = dao.selectHashDept(department_code);
+		return vo;
 	}
 	
 	

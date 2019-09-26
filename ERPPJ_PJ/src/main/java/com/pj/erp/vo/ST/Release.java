@@ -179,6 +179,7 @@ public class Release {
 	public void setCustomer_name(String customer_name) {
 		this.customer_name = customer_name;
 	}
+
 	
 	
 }

@@ -7,6 +7,12 @@
 <meta content="Coderthemes" name="author" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+<style type="text/css">
+#searchTable {
+	display: none;
+}
+</style>
+
 		<!-- App favicon -->
 		<link rel="shortcut icon" href="/erp/resources/assets/images/favicon.ico">
 		

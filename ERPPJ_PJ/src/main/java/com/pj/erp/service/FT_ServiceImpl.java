@@ -33,6 +33,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -40,7 +41,8 @@ import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO; 
-import com.pj.erp.vo.HR.HR_VO; 
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.MS.MS_plan; 
 
 @Service
 public class FT_ServiceImpl implements FT_Service{
@@ -1022,6 +1024,41 @@ public class FT_ServiceImpl implements FT_Service{
 		FT_Facility ac = dao.FT_FacilityOneSelect(req.getParameter("srhval"));
 		System.out.println(ac);
 		return ac;
+	}
+
+	//예산계획현황검색결과
+	@Override
+	public List<FT_Plan_Result> getPlanResult(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+		List<FT_Plan_Result> list = dao.getPlanResult(map);
+		return list;
+	}
+	
+	//예산현황상세조회
+	@Override
+	public void selectPlanDetail(HttpServletRequest req, Model model) {
+		String budget_codes = req.getParameter("budget_codes");
+		FT_Plan_Result vo = dao.getPlanDetail(budget_codes);
+		
+		model.addAttribute("dto", vo);
+	}
+	
+	// 기획서 수정
+	@Override
+	public int updatePlan(Map<String, Object> map,HttpServletRequest req, Model model) {
+		
+		int cnt = dao.updatePlan(map);
+		
+		return cnt;
+	}
+
+	//기획서 삭제
+	@Override
+	public int deletePlan(Map<String, Object> map,HttpServletRequest req, Model model) {
+		
+		int cnt = dao.deletePlan(map);
+		
+		return cnt;
 	}
 
 }
