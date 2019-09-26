@@ -44,22 +44,31 @@ public class ST_Controller {
 		logger.info("log => index");
 		
 		return "index";
-	}
-	
-	// 嫄곕옒 紐낆꽭�꽌 諛쒗뻾
-	@RequestMapping("ST_tables-datatable")
-	public String tablesdatatable(Locale locale, Model model) {
-		logger.info("log => ST_tables-datatable");
-		
-		return "ST/tables-datatable";
 	} 
-	
-	// �꽭湲� 紐낆꽭�꽌 諛쒗뻾
-	@RequestMapping("ST_tax-statements")
-	public String taxstatements(Locale locale, Model model) {
-		logger.info("log => ST_tax-statements");
+	  
+	// 거래 명세서
+	@RequestMapping("ST_transaction")
+	public String ST_transaction(HttpServletRequest req, Model model) {
+		logger.info("log => ST_transaction");
 		
-		return "ST/tax-statements";
+		return "ST/ST_transaction";
+	}    
+	
+	// 거래 명세서 발행
+	@RequestMapping(value = "ST_tables_datatable_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<TransactionDetails> tables_datatable_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_tables_datatable_result");
+		List<TransactionDetails> list = service.getdate(map, req, model);
+		return list;
+	} 
+	  
+	// 세금 명세서
+	@RequestMapping("ST_tax_statements")
+	public String taxstatements(HttpServletRequest req, Model model) {
+		logger.info("log => ST_tax_statements");
+		
+		return "ST/ST_tax_statements";
 	}    
 	
 	// 견적 등록 (ST_estimate)
@@ -451,15 +460,6 @@ public class ST_Controller {
 		logger.info("log => ST_unpaidOrders");
 		
 		return "ST/ST_unpaidOrders";
-	} 
-	
-	// 거래 명세서 발행
-	@RequestMapping(value = "tables-datatable_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-	@ResponseBody
-	public  List<TransactionDetails> tables_datatable_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
-		logger.info("log => tables-datatable_result");
-		List<TransactionDetails> list = service.getdate(map, req, model);
-		return list;
 	} 
 
 	// ProductName 검색

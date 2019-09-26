@@ -25,6 +25,7 @@ import com.pj.erp.service.FT_Service;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Depreciation;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.HashVO;
@@ -155,7 +156,19 @@ public class FT_Controller {
 		return "FT/FT_p_cost";
 	}
 
-  
+	@RequestMapping("FT_funds_state")
+	public String FT_funds_state(Locale locale, Model model) {
+		logger.info("log => FT_funds_state");
+
+		return "FT/FT_funds_state";
+	}
+
+	@RequestMapping("FT_sa_state")
+	public String FT_sa_state(Locale locale, Model model) {
+		logger.info("log => FT_sa_state");
+
+		return "FT/FT_sa_state";
+	}
 
 	@RequestMapping("FT_capital_plan")
 	public String FT_capital_plan(Locale locale, Model model) {
@@ -173,65 +186,65 @@ public class FT_Controller {
 	}
 
 	// 예산 신청 입력
-	@RequestMapping("FT_apply_input")
-	public String FT_apply_input(Locale locale, Model model) {
-		logger.info("log => FT_apply_input");
+		@RequestMapping("FT_apply_input")
+		public String FT_apply_input(Locale locale, Model model) {
+			logger.info("log => FT_apply_input");
 
-		return "FT/FT_apply_input";
-	}
+			return "FT/FT_apply_input";
+		}
 
-	// 예산 계획 현황
-	@RequestMapping("FT_plan")
-	public String FT_plan(Locale locale, Model model) {
-		logger.info("log => FT_plan");
+		// 예산 계획 현황
+		@RequestMapping("FT_plan")
+		public String FT_plan(Locale locale, Model model) {
+			logger.info("log => FT_plan");
 
-		return "FT/FT_plan";
-	}
-	
-	//예산 계획 현황 검색결과
-	@RequestMapping(value = "FT_plan_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-	@ResponseBody
-	public List<FT_Plan_Result> FT_plan_result(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
-		logger.info("log => FT_plan_result");
-		List<FT_Plan_Result> list = service.getPlanResult(map, req, model);
-		return list;
-	}
-	
-	//예산계획현황  상세조회
-	@RequestMapping("FT_planUpdateDelete")
-	public String FT_planUpdateDelete(HttpServletRequest req, Model model) {
-		logger.info("log => FT_planUpdateDelete");
-		service.selectPlanDetail(req, model); 
-		return "FT/FT_planUpdateDelete";
-	}
-	
-	//예산계획 수정 처리
-	@RequestMapping(value = "FT_updatePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-	@ResponseBody
-	public int FT_updatePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
-		logger.info("log => FT_updatePlanPro");
-		int cnt = service.updatePlan(map, req, model);
-		
-		return cnt;
-	}
-	
-	//예산계획 삭제 처리
-	@RequestMapping(value = "FT_deletePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
-	@ResponseBody
-	public int FT_deletePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
-		logger.info("log => FT_deletePlanPro");
-		int cnt = service.deletePlan(map, req, model);
-		
-		return cnt;
-	}
+			return "FT/FT_plan";
+		}
 
-	// 예산 신청 입력처리
-	@RequestMapping("FT_apply_input_pro")
-	public String FT_apply_input_pro(HttpServletRequest req, Model model) {
-		logger.info("log => FT_apply_input_pro");
-		service.FT_applyinput(req, model);
-		return "FT/FT_apply_input";
-	}
+		//예산 계획 현황 검색결과
+		@RequestMapping(value = "FT_plan_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public List<FT_Plan_Result> FT_plan_result(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => FT_plan_result");
+			List<FT_Plan_Result> list = service.getPlanResult(map, req, model);
+			return list;
+		}
+
+		//예산계획현황  상세조회
+		@RequestMapping("FT_planUpdateDelete")
+		public String FT_planUpdateDelete(HttpServletRequest req, Model model) {
+			logger.info("log => FT_planUpdateDelete");
+			service.selectPlanDetail(req, model); 
+			return "FT/FT_planUpdateDelete";
+		}
+
+		//예산계획 수정 처리
+		@RequestMapping(value = "FT_updatePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public int FT_updatePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => FT_updatePlanPro");
+			int cnt = service.updatePlan(map, req, model);
+
+			return cnt;
+		}
+
+		//예산계획 삭제 처리
+		@RequestMapping(value = "FT_deletePlanPro", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+		@ResponseBody
+		public int FT_deletePlanPro(@RequestBody Map<String, Object>map, HttpServletRequest req, Model model) throws ParseException {
+			logger.info("log => FT_deletePlanPro");
+			int cnt = service.deletePlan(map, req, model);
+
+			return cnt;
+		}
+
+		// 예산 신청 입력처리
+		@RequestMapping("FT_apply_input_pro")
+		public String FT_apply_input_pro(HttpServletRequest req, Model model) {
+			logger.info("log => FT_apply_input_pro");
+			service.FT_applyinput(req, model);
+			return "FT/FT_apply_input";
+		}
 
 	// 거래처 관리
 	@RequestMapping("FT_BasicAccount_Input")
@@ -372,9 +385,10 @@ public class FT_Controller {
 
 	// 카드관리
 	@RequestMapping("FT_CardManagement")
-	public String FT_CardManagement(Locale locale, Model model) {
+	public String FT_CardManagement(HttpServletRequest req, Model model) {
 		logger.info("log => FT_CardManagement");
-
+		service.FT_CardManagementSelect(req, model);
+		
 		return "FT/FT_CardManagement";
 	}
 
@@ -827,7 +841,6 @@ public class FT_Controller {
 	@RequestMapping("FT_facility_list")
 	public String FT_facility_list(HttpServletRequest req, Model model) {
 		logger.info("log => FT_facility_list");
-		service.FT_FacilityAllSelect(req, model);
 
 		return "FT/FT_facility_list";
 	}
@@ -840,42 +853,6 @@ public class FT_Controller {
 		List<FT_facility_list_VO> list = service.getFacilityList(map, req, model);
 		return list;
 	}
-	
-	// 토지 추가    
-    @RequestMapping(value="FT_FacilityInsert")
-    public String FT_FacilityInsert(HttpServletRequest req, Model model) {
-    	logger.info("url : FT_FacilityInsert 호출중");
-        
-        service.FT_FacilityInsert(req, model);
-        
-        return "FT/FT_FacilityComplete";
-    }
-	
-	// 토지 수정
-	@RequestMapping(value = "FT_FacilityUpdate", produces = "application/text; charset=utf8")
-	public @ResponseBody String FT_FacilityUpdate(@RequestBody Map<String, Object> map) throws Exception {
-		logger.info("url : FT_FacilityUpdate 호출중");
-
-		return service.FT_FacilityUpdate(map);
-	}
-	
-	// 토지 삭제
-	@RequestMapping(value = "FT_FacilityDelete", produces = "application/text; charset=utf8")
-	public @ResponseBody String FT_FacilityDelete(@RequestBody Map<String, Object> map) throws Exception {
-		logger.info("url : FT_LandDelete 호출중");
-
-		return service.FT_FacilityDelete(map);
-	}
-	
-	// 토지 검색 가져오기
-	@RequestMapping(value = "FT_FacilityOneSelect")
-	public @ResponseBody FT_Facility FT_FacilityOneSelect(HttpServletRequest req) {
-		logger.info("url : FT_FacilityOneSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
-
-		return service.FT_FacilityOneSelect(req);
-	}
-	
 
 	// 토지 목록
 	@RequestMapping("FT_land_list")
@@ -904,7 +881,7 @@ public class FT_Controller {
         
         return "FT/FT_LandComplete";
     }
-	
+    
 	// 토지 수정
 	@RequestMapping(value = "FT_LandUpdate", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_LandUpdate(@RequestBody Map<String, Object> map) throws Exception {
@@ -928,6 +905,54 @@ public class FT_Controller {
 		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_LandOneSelect(req);
+	}
+	
+	// 감가 상각 현황
+	@RequestMapping("FT_Depreciation_list")
+	public String FT_Depreciation_list(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Depreciation_list");
+
+		return "FT/FT_Depreciation_list";
+	}
+	
+	// 감가상각 전체 불러오기
+	@RequestMapping(value = "FT_DepreciationList")
+	public @ResponseBody List<FT_Depreciation> FT_DepreciationList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_DepreciationList 호출중");
+
+		return service.FT_DepreciationList(map, model);
+	}
+	
+	// 감가상각 세부 불러오기
+	@RequestMapping(value = "FT_BDepreciationDataList")
+	public @ResponseBody List<FT_Depreciation> FT_BDepreciationDataList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_BDepreciationDataList 호출중");
+
+		return service.FT_BDepreciationDataList(map, model);
+	}
+	
+	// 감가상각 세부 불러오기
+	@RequestMapping(value = "FT_LDepreciationDataList")
+	public @ResponseBody List<FT_Depreciation> FT_LDepreciationDataList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_LDepreciationDataList 호출중");
+
+		return service.FT_LDepreciationDataList(map, model);
+	}
+	
+	// 감가상각 세부 불러오기
+	@RequestMapping(value = "FT_EDepreciationDataList")
+	public @ResponseBody List<FT_Depreciation> FT_EDepreciationDataList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_EDepreciationDataList 호출중");
+
+		return service.FT_EDepreciationDataList(map, model);
+	}
+	
+	// 감가상각 세부 불러오기
+	@RequestMapping(value = "FT_CDepreciationDataList")
+	public @ResponseBody List<FT_Depreciation> FT_CDepreciationDataList(@RequestBody Map<String, Object> map, Model model) {
+		logger.info("url : FT_CDepreciationDataList 호출중");
+
+		return service.FT_CDepreciationDataList(map, model);
 	}
 	
 	// 블록체인 신청 입력
@@ -964,5 +989,4 @@ public class FT_Controller {
 		
 		return vo;
 	}
-
 }

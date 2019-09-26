@@ -9,6 +9,7 @@ import com.pj.erp.vo.FT.FT_Building;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Depreciation;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
@@ -103,21 +104,6 @@ public interface FT_Service {
 	// 토지 검색한 것 가져오기
 	public FT_Land FT_LandOneSelect(HttpServletRequest req);
 
-	// 토지 추가
-	public void FT_FacilityInsert(HttpServletRequest req, Model model);
-
-	// 토지 수정
-	public String FT_FacilityUpdate(Map<String, Object> map);
-
-	// 토지 삭제
-	public String FT_FacilityDelete(Map<String, Object> map);
-	
-	// 토지 모두 가져오기
-	public void FT_FacilityAllSelect(HttpServletRequest req, Model model);
-	
-	// 토지 검색한 것 가져오기
-	public FT_Facility FT_FacilityOneSelect(HttpServletRequest req);
-	
 	// 적금 가져오기
 	public void FT_SavingsSelect(HttpServletRequest req, Model model);
 	
@@ -257,8 +243,20 @@ public interface FT_Service {
 	// 손익계산서 조회
 	public Map<String, Object> getIsshit(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 분개 데이터 가져오기
+	public List<FT_Depreciation> FT_DepreciationList(Map<String, Object> map, Model model);
+	
 	// 예산현황 검색결과
 	public List<FT_Plan_Result> getPlanResult(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	// 분개 데이터 가져오기
+	public List<FT_Depreciation> FT_BDepreciationDataList(Map<String, Object> map, Model model);
+	// 분개 데이터 가져오기
+	public List<FT_Depreciation> FT_LDepreciationDataList(Map<String, Object> map, Model model);
+	// 분개 데이터 가져오기
+	public List<FT_Depreciation> FT_EDepreciationDataList(Map<String, Object> map, Model model);
+	// 분개 데이터 가져오기
+	public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map, Model model);
 	
 	//예산현황상세조회
 	public void selectPlanDetail(HttpServletRequest req, Model model);

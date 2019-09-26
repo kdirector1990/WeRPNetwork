@@ -477,7 +477,7 @@
 										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_release">출고 등록</a></li>
 										<li><a href="ST_saleList">판매 관리</a></li>
-										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
+										<li><a href="ST_transaction">거래 명세서 발행</a></li>
 										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
 	                          		</ul>
 	                          	</li>
@@ -597,7 +597,7 @@
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="FT_material_list">자재 목록</a></li>
                     					<li><a href="CT_equip_list">전산설비 목록</a></li>
-                    					<li><a href="#">감가상각 현황</a></li>
+                    					<li><a href="FT_Depreciation_list">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
