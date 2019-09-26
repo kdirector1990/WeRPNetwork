@@ -25,28 +25,85 @@
 <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
+	function searchdept2() {
+		window.open("ST_searchDepartmentname", "ST_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+	}
+	
+	function updatePlan(){
+		var param = new Object();
+		var jsonData;
+		
+		param.budget_code = $("#budget_code").val();
+		param.budget_subject = $("#budget_subject").val();
+		param.department_code = $("#department_code").val();
+		param.department_name = $("#department_name").val();
+		param.budget_amount = $("#budget_amount").val();
+		param.eas_code = $("#eas_code").val();
+		param.e_approval_code = $("#e_approval_code").val();
+		
+		jsonData = JSON.stringify(param);
+		
+		$.ajax({
+			url: '/erp/FT_updatePlanPro?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : jsonData,
+			dataTpye: 'json',
+			contentType:"application/json;charset=UTF-8",
+			success: function(1){
+				alert("수정되었습니다.");
+				$('#result1').empty();
+				searchCus();
+			},
+			error : function(){
+				alert("수정에 실패하였습니다.");
+			}
+		});
+	}
+	
+	function deletePlan(){
+		var param = new Object();
+		var jsonData;
+		
+		param.budget_code = $("#budget_code").val();
+		jsonData = JSON.stringify(param);
+		$.ajax({
+			url: '/erp/FT_deletePlanPro?${_csrf.parameterName}=${_csrf.token }',
+			type: 'POST',
+			data : jsonData,
+			dataTpye: 'json',
+			contentType:"application/json;charset=UTF-8",
+			success: function(1){
+				alert("삭제되었습니다.");
+				$('#result1').empty();
+				searchCus();
+			},
+			error : function(){
+				alert("삭제 실패하였습니다.");
+			}
+		});
+	}
 //결과
-	function MS_planUpdateDelete(url) { 
-		sendRequest(callback, "FT_planUpdateDelete", "post", "${_csrf.parameterName }=${_csrf.token }&plan_code="+url);
+	function FT_planUpdateDelete(url) { 
+		sendRequest(callback, "FT_planUpdateDelete", "post", "${_csrf.parameterName }=${_csrf.token }&budget_codes="+url);
 	}
 	
 	function callback() {
-		var result = document.getElementById("result1");
+		var result1 = document.getElementById("result1");
 		
 		if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
 		
 			if(httpRequest.status == 200){	// 200 : 정상 종료
-				result.innerHTML = "정상종료";
+				result1.innerHTML = "정상종료";
 				// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
 				
 				var datas = httpRequest.responseText;
 				document.getElementById("updatePlan").style.display="block";
-				result.innerHTML = datas;
+				result1.innerHTML = datas;
 			} else {
-				result.innerHTML = "에러발생";
+				result1.innerHTML = "에러발생";
 			}
 		} else {
-			result.innerHTML = "상태 : " + httpRequest.readyState;
+			result1.innerHTML = "상태 : " + httpRequest.readyState;
 		}
 	} 
 
@@ -108,8 +165,8 @@
 						var budget_subjects = list[i].budget_subject;
 						totals += budget_amounts;
 						
-					$('#result').append('<tr onclick="FT_planUpdateDelete(\''+budget_codes+'\')">'+
-                         	'<td>'+ budget_codes +'</td>'+
+					$('#result').append('<tr>'+
+                         	'<td onclick="FT_planUpdateDelete(\''+budget_codes+'\');">'+ budget_codes +'</td>'+
 							'<td>'+ department_names +'</td>'+
 							'<td>'+ budget_amounts +'</td>'+
 							'<td>'+ eas_codes +'</td>'+
