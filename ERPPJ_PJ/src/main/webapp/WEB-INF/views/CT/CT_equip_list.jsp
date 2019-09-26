@@ -80,6 +80,7 @@
 
 									<tbody>
 										<c:forEach var="vo" items="${dto }">
+										<tr>
 											<td>${vo.ceq_code }</td>
 											<td>${vo.ceq_name }</td>
 											<td>${vo.ceq_type }</td>
@@ -90,6 +91,7 @@
 											<td><fmt:formatNumber value="${vo.ceq_prime_cost }"
 													pattern="#,###" /></td>
 											<td>${vo.ceq_durable }</td>
+										</tr>
 										</c:forEach>
 
 									</tbody>

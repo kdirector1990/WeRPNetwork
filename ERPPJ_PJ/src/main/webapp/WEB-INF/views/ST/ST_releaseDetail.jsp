@@ -38,7 +38,7 @@
 												<tr>
 													<th style="width: 215px;">출고 코드</th>
 													<td><input type="hidden" class="form-control" name="sar_code"
-														value="${rto.sar_code }">${rto.sar_code }</td>
+														value="${rto.sar_code }">${rto.sar_code } </td>
 													
 													<th>품명</th>
 													<td>
@@ -59,16 +59,16 @@
 													<th >출고처</th>
 													<td style="width: 500px;"><div class="col-md-10">
 													<div style="display: inline-block;">
-													<input type="text" class="form-control" name="customer_code"
-													 id = "customer_codeP" onclick="customerNameList()"style="width: 140px; float: left;" value="${rto.customer_code }">
+													<input type="text" class="form-control" name="search_release_code"
+													 id = "search_release_code" onclick="customerNameList()"style="width: 140px; float: left;" value="">
 													 
 													<input type="text" name="release_name" class="form-control"
-															id="customer_nameP" value="${rto.release_name }"style="width: 140px; float: right;">
+															id="release_name" value="${rto.release_name }"style="width: 140px; float: right;">
 													</div>
 													</div></td>
 													
 													<th>출고 수량</th>
-													<td><input class="form-control" type="text"
+													<td><input class="form-control" type="number"
 														name="release_count" value="${rto.release_count}"></td>
 												</tr>
 		
@@ -85,7 +85,7 @@
 													</div></td>
 													
 													<th>입고 수량</th>
-													<td><input class="form-control" type="text"
+													<td><input class="form-control" type="number"
 														name="stored_count" value="${rto.stored_count}"></td>
 												
 												</tr>
@@ -107,7 +107,7 @@
 		
 												<tr>
 													<th>단가</th>
-													<td><input type="text" class="form-control" name="unit_cost"
+													<td><input type="number" class="form-control" name="unit_cost"
 														value="${rto.unit_cost}" style="width: 230px;"></td>
 													
 													

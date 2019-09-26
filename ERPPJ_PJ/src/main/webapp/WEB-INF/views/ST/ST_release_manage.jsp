@@ -231,9 +231,14 @@
 												<select class="form-control" name="sar_type" id="sarType">
 														<option value = "1">1. 입고</option>
 														<option value="2">2. 출고(판매)</option>
+<<<<<<< HEAD
 													</select> &nbsp;
 													<button type="button" class="btn btn-primary waves-effect waves-light" id="search">조회</button>
 													</td>	
+=======
+														<option value="3">3. 반품(재입고)</option>
+													</select></td>	
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 													
 												<td></td>
 											</tr>

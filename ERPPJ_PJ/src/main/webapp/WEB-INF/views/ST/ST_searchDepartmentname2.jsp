@@ -45,7 +45,7 @@ function enterkey() {
 function load1(department_name) {
 	var url = document.searchName.department_name.value;
 	
-	sendRequest(callback, "ST_searchDepartmentname_result2", "post", "department_name="+url);
+	sendRequest(callback, "ST_searchDepartmentname_result3", "post", "department_name="+url);
 }
 
 function callback() {
