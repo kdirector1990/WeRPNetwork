@@ -41,7 +41,7 @@
 						</tr>
 						<tr>
 							<th>부서코드</th>
-							<td><input type="text" id = "department_code" name="department_code" class="form-control" value="${dto.department_code}" onclick="searchdept2();"></td>
+							<td><input type="text" id = "department_code" name="department_code" class="form-control" value="${dto.department_code}" onclick="dept2();"></td>
 							<th>부서명</th>
 							<td><input type="text" id = "department_name" name="department_name" class="form-control" value="${dto.department_name}"></td>
 						</tr>
