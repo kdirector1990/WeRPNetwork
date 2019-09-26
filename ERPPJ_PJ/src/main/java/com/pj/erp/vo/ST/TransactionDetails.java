@@ -1,5 +1,6 @@
 package com.pj.erp.vo.ST;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class TransactionDetails {
@@ -7,7 +8,7 @@ public class TransactionDetails {
 	
 	private String sar_code;	// 입출고 코드
 	private Timestamp reg_date;	// 거래 요청일
-	private Timestamp release_date;	// 출고일자
+	private String release_date;	// 출고일자
 	private String stored_name;	// 입고처
 	private String release_name;	// 출고처
 	private String sar_type;	// 출고 구분
@@ -34,11 +35,11 @@ public class TransactionDetails {
 		this.reg_date = reg_date;
 	}
 
-	public Timestamp getRelease_date() {
+	public String getRelease_date() {
 		return release_date;
 	}
 
-	public void setRelease_date(Timestamp release_date) {
+	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
 	}
 

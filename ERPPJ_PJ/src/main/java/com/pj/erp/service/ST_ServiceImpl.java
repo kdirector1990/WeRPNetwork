@@ -698,14 +698,20 @@ public class ST_ServiceImpl implements ST_Service {
 		return list;
 	}
 	
-	// 세금 명세서 검색 기능
+	// 거래  명세서 검색 기능
 	@Override
 	public List<TransactionDetails> getdate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		/*
+		 * Date userdate1 =Date.valueOf((String)map.get("userdate1")); Date userdate2
+		 * =Date.valueOf((String)map.get("userdate2")); map.replace("userdate1",
+		 * userdate1); map.replace("userdate2", userdate2);
+		 */
+		
 		List<TransactionDetails> list = dao.getTransaction(map);
+		System.out.println(map.get("userdate1"));
+		System.out.println(map.get("userdate2"));
 		return list;
 	}
-	
-	
 	
 	// Customer 검색
 	@Override
