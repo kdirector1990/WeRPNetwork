@@ -17,6 +17,7 @@ import org.web3j.utils.Convert;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.vo.BlockChainVO;
+import com.pj.erp.vo.HashVO;
 
 @Service
 public class MateralServiceImpl {
@@ -114,6 +115,16 @@ public class MateralServiceImpl {
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
 		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
+		
+		//DB에 내역 가상화폐 거래 내역 insert
+		String purpose = req.getParameter("purpose");
+		
+		HashVO vos = new HashVO();
+		vos.setDepartment_code(department_code);
+		vos.setE_subject(purpose);
+		vos.setE_hashcode(hash);
+		
+		dao.insertLog(vos);
 		
     }
     

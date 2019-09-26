@@ -40,10 +40,10 @@
 		Where e.department_code = #{department_code} 
 	</select>
 	
-	<!-- 해쉬저장을 위한  -->
-	<insert id="insertLog" parameterType="">
-	
+	<!-- 가상화폐 예산편성 내역 insert -->
+	<insert id="insertLog" parameterType="com.pj.erp.vo.HashVO">
+		Insert Into ether_rec_tbl(department_code, e_subject, e_hashcode)
+		Values (#{department_code}, #{e_subject}, #{e_hashcode})
 	</insert>
-	
 
 </mapper>

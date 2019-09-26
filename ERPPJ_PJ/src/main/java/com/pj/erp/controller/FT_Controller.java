@@ -922,5 +922,13 @@ public class FT_Controller {
 		
 		return "FT/FT_apply_input2";
 	}
+	
+	// 암호화폐 편성 내역
+	@RequestMapping("FT_plan2")
+	public String FT_plan2(Locale locale, Model model) {
+		logger.info("log => FT_plan2");
+
+		return "FT/FT_plan2";
+	}
 
 }

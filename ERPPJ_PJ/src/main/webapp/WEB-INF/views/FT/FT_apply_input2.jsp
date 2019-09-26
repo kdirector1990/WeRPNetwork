@@ -109,16 +109,6 @@
 						</div>
 					</div>
 				</div>
-				
-				<c:if test="${trans = 1 }">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<a href="${hash }"> 전송값 확인 </a>	
-						</div>
-					</div>
-				</div>
-				</c:if>
 			</div>
 			<!-- 페이지 내용 입력 공간 종료 -->
 

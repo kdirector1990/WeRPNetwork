@@ -21,5 +21,5 @@ public interface ERPDAO {
 	public BlockChainVO getGroupCode(String department_code);
 	
 	// 블록체인 hash블록 DB에 담음.
-	public HashVO insertLog();
+	public int insertLog(HashVO vo);
 }

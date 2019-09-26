@@ -48,9 +48,8 @@ public class ERPDAOImpl implements ERPDAO{
 	}
 
 	@Override
-	public HashVO insertLog() {
-		// TODO Auto-generated method stub
-		return null;
+	public int insertLog(HashVO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertLog", vo);
 	}
 	
 }
