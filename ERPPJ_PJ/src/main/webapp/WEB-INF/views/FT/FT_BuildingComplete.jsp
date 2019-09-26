@@ -10,14 +10,14 @@
 <body>
 	<c:if test="${cnt == 0}">
 		<script type="text/javascript">
-			alert("거래처가 등록되지 못했습니다.");
+			alert("건물을 등록하지 못했습니다.");
 			location.href="FT_building_management";
 		</script>
 	</c:if>
 	
 	<c:if test="${cnt != 0}">
 		<script type="text/javascript">
-			alert("거래처가 등록되었습니다.");
+			alert("건물이 등록되었습니다.");
 			location.href="FT_building_management";
 		</script>
 	</c:if>

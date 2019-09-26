@@ -162,7 +162,11 @@
 														<div class="form-group row">
 															<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>
 																<div class="col-md-4">
+<<<<<<< HEAD
+																	<input type="file" class="dropify" name="e_picture"/>
+=======
 																	<input type="file" class="dropify" name="e_picture" />
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 																</div>
 															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
 															<div class="col-md-6">

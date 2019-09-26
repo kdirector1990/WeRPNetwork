@@ -282,10 +282,7 @@
                     <li class="dropdown d-none d-lg-block ">
                         <div class="lang-option">
                             <select class="selectpicker form-control" title="" data-width="110px">
-                                <option> English </option>
-                                <option> French </option>
-                                <option> Germany </option>
-                                <option> Spanish</option>
+                                <option> 본사 </option> 
                             </select>
                         </div>
             
@@ -351,11 +348,12 @@
 	                          			<li><a href="HR_InputHR" id = "2">인사정보등록</a></li>
 										<li><a href="HR_EmployeeInformation">인사정보현황</a></li>
 										<li><a href="HR_EmployeePhysicaly">신체정보현황</a></li>
+										<li><a href="HR_EmployeeFamily">가족정보현황</a></li>
 										<li><a href="HR_GreetingPunishment">인사고과/상벌현황</a></li>
 										<li><a href="HR_EmployeeSalary">책정임금 현황</a></li>
 										<li><a href="HR_Yearsofservice">근속년수현황</a></li>
 										<li><a href="HR_HrSalaryEnvironment">인사/급여환경설정</a></li>
-										<li><a href="HR_PersonnelBasicCode">인사기초코드등록</a></li>
+										<!-- <li><a href="HR_PersonnelBasicCode">인사기초코드등록</a></li> -->
 	                          		</ul>
 	                          	</li>
 	
@@ -374,7 +372,7 @@
 	                          			<li><a href="HR_work_record">근태결과입력</a></li>
 	                          			<li><a href="HR_nfc">근태(nfc)</a></li>
 	                          			<li><a href="HR_GoodPay">호봉테이블입력</a></li>
-					                	<li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
+					                	<!-- <li><a href="coming_soon">!상용직급여 입력 및 계산</a></li>
 					                	<li><a href="coming_soon">!급여대장</a></li>
 					                	<li><a href="coming_soon">!급여명세</a></li>
 					                	<li><a href="coming_soon">!급/상여 이체현황</a></li>
@@ -385,11 +383,11 @@
 					                	<li><a href="coming_soon">!급여통계현황</a></li>
 					                	<li><a href="coming_soon">!급/상여 증감현황</a></li>
 					                	<li><a href="coming_soon">!연갑금여현황</a></li>
-					                	<li><a href="coming_soon">!수당별 연간급여현황</a></li>
+					                	<li><a href="coming_soon">!수당별 연간급여현황</a></li> -->
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">!사회보험관리<span class="menu-arrow"></span></a>
+	                          	<!-- <li><a href="javascript: void(0);" aria-expanded="false">!사회보험관리<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="coming_soon">!사회보험취득관리</a></li>
 										<li><a href="coming_soon">!사회보험상실관리</a></li>
@@ -443,7 +441,7 @@
 										<li><a href="coming_soon">!일용직급여지급일자등록</a></li>
 										<li><a href="coming_soon">!일용직급여입력 및 계산</a></li>
 	                          		</ul>
-	                          	</li>
+	                          	</li> -->
 	                          </ul>
 	                          
 	                          
@@ -476,14 +474,14 @@
 	                          		<ul>
 										<li><a href="ST_contrast_pp">판매계획 대비 출고 현황</a></li>
 										<li><a href="ST_estimate_price">견적 현황</a></li>
-										<li><a href="ST_contrast_pPro">견적 대비 생산 현황</a></li>
+										<!-- <li><a href="ST_contrast_pPro">견적 대비 생산 현황</a></li> -->
 										<li><a href="ST_delay_state">출고 지연 현황</a></li>
 										<li><a href="ST_release_manage">출고 관리</a></li>
 										<li><a href="ST_refund">반품 관리</a></li>
-										<li><a href="ST_tex_invoice_list">세금계산서 발행 대장</a></li>
+										<!-- <li><a href="ST_tex_invoice_list">세금계산서 발행 대장</a></li>
 										<li><a href="coming_soon">!받을 어음 현황</a></li>
 										<li><a href="coming_soon">!미수 채권 집계</a></li>
-										<li><a href="coming_soon">!미수 채권 상세 현황</a></li>	
+										<li><a href="coming_soon">!미수 채권 상세 현황</a></li>	 -->
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -491,10 +489,10 @@
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
-	                          				<li><a href="ST_unpaidOrders">!출고 지연 집계</a></li>						                   
+	                          				<!-- <li><a href="ST_unpaidOrders">!출고 지연 집계</a></li>	 -->					                   
 						                    <li><a href="ST_salesTotal">매출 집계표(월별)</a></li>
-						                    <li><a href="coming_soon">!매출 순위표</a></li>
-											<li><a href="coming_soon">!추정 매출원가</a></li>
+						                   <!--  <li><a href="coming_soon">!매출 순위표</a></li>
+											<li><a href="coming_soon">!추정 매출원가</a></li> -->
 	                          		</ul>
 	                          	</li>
 	                          </ul>
@@ -526,7 +524,7 @@
 	                          				<li><a href="FT_insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
 						                    <li><a href="FT_IS">손익계산서</a></li>
-						                    <li><a href="FT_p_cost">원가보고서</a></li>
+						                   <!--  <li><a href="FT_p_cost">원가보고서</a></li> -->
 	                          		</ul>
 	                          	</li>
 	                          	

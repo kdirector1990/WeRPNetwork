@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.vo.HR.HR_ApVO;
+import com.pj.erp.vo.HR.HR_FamilyVO;
 import com.pj.erp.vo.HR.HR_GreetingVO;
 import com.pj.erp.vo.HR.HR_PaystepVO;
 import com.pj.erp.vo.HR.HR_PhysicalVO;
@@ -81,6 +83,9 @@ public interface HR_Service {
 	// 신체정보 조회
 	public List<HR_PhysicalVO> getPhysical(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 가족정보 조회
+	public List<HR_FamilyVO> searchFamily(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	// 인사발령등록
 	public void HR_recordinput(HttpServletRequest req, Model model); 
 	
@@ -143,4 +148,5 @@ public interface HR_Service {
 	
 	// 발령공고 검색
 	public List<HR_RecordVO> getRecord(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
+	
 }

@@ -207,7 +207,7 @@
 												class="form-control" name="user_date" id="user_date">
 											</td>
 
-											<th class="col-md-1 col-form-label"></th>
+											<th></th>
 											<td><button type="button"
 													class="btn btn-primary waves-effect waves-light"
 													id="search">조회</button></td>

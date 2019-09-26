@@ -391,6 +391,9 @@ public interface FT_DAO {
 	 public List<FT_DTB> FT_DTBMonthListS(Map<String, Object> map);
 	 
 	 
-	 // 재무상태표_자산   - 권순용
+	 // 재무상태표   - 권순용
 	 public List<FT_accounts_balance> FT_getAssetsList(String typename);
+	 
+	 // 손익계산서   - 권순용
+	 public List<FT_accounts_balance> FT_getIsList(String typename);
 }

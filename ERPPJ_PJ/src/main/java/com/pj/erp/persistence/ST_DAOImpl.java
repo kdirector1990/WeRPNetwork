@@ -19,6 +19,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TransactionDetails;
 import com.pj.erp.vo.ST.UserName;
 
 @Repository
@@ -220,6 +221,12 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getContrast", map);
 	}
 	
+	// 세금 명세서 검색 조회
+	@Override
+	public List<TransactionDetails> getTransaction(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getTransaction", map);
+	}
+	
 	
 	
 	
@@ -296,5 +303,16 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getDepartmentList", department_name);
 	}
 	
+	// 팝업창 판매 목록 유무
+	@Override
+	public int selectSale(String customer_name) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ST_DAO.selectSale",customer_name);
+	}
+	
+	// 팝업창 판매 목록 
+	@Override
+	public List<SaleList> selectSaleList(String customer_name) {
+		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.selectSaleList", customer_name);
+	}
 
 }

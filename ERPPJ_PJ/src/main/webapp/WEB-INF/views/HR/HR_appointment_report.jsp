@@ -206,7 +206,7 @@
 										</a></li>										
 									</ul>
 
-									<div class="card-body table-responsive">
+									<div class="card-body">
 										<div align="right">
 											<br>
 										</div>

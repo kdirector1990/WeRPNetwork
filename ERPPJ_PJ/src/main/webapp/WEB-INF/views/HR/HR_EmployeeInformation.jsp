@@ -33,6 +33,9 @@
     var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
+			$('#result').empty();
+			$('#bodyappend').empty();
+			
 			var param = new Object();
 			var jsonData;
 			
@@ -44,6 +47,8 @@
 			param.rank_code = $("#rank_code").val();
 					
 			jsonData = JSON.stringify(param);
+					$('#result').empty();
+					$('#bodyappend').empty();
 			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_EmployeeInformation_result?${_csrf.parameterName}=${_csrf.token }',
@@ -53,8 +58,6 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#bodyappend').empty();
 					
 					
 					
@@ -117,29 +120,27 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
+
+					
 					searchCount = searchCount + 1;
 					}
-					
-					
 					}
-					
 				},
 				error : function(){
 					alert("에러");
 				}
+				
 			});			
 		}); 
 	 });
 	 
-	 
 	 function updateINFO(code){
-		 
 		  $.ajax({
 	  			url: '/erp/HR_update_Fou?${_csrf.parameterName}=${_csrf.token }&username='+code,
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
-	  				
+
 	  				var username = data.username;	
 	  				var e_picture = data.e_picture
 	  				var e_name = data.e_name;
@@ -339,10 +340,10 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<td class="col-md-1 col-form-label">사원번호</td>
+											<th class="col-md-1 col-form-label">사원번호</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>
@@ -406,7 +407,7 @@
 											role="tabpanel" aria-labelledby="foundation-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body table-responsive">
+													<div class="card-body">
 														<table id="datatable"
 															class="table table-striped table-bordered dt-responsive nowrap">
 
@@ -430,7 +431,7 @@
 															</thead>
 
 															<tbody id="result">
-
+		
 															</tbody>
 														</table>
 
@@ -448,6 +449,7 @@
 														</div>
 													</div>
 												</div>
+
 												<div id="result2" class="card-body">
 													<!-- 상세 페이지 출력 위치 -->
 												</div>

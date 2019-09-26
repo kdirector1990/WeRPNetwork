@@ -15,7 +15,7 @@
 
 // 검색창 포커스	 
 function searchNameFocus(){
-	document.searchName.ap_name.focus();
+	document.searchName.customer_name.focus();
 }
 
 function enterkey() {
@@ -25,22 +25,21 @@ function enterkey() {
     }
 }
 
-
 // 결과
-function load1(ap_name) {
-	var url = document.searchName.ap_name.value;
+function load1(customer_name) {
+	var url = document.searchName.customer_name.value;
 	
-	sendRequest(loadBook_callback, "HR_searchAp_code_result", "post", "ap_name="+url);
+	sendRequest(callback, "ST_searchsaleList_result", "post", "customer_name="+url);
 }
 
-function loadBook_callback() {
+function callback() {
 	var result = document.getElementById("result");
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
-		if(!document.searchName.ap_name.value){
-			alert("공고명을 입력하세요!");
+		if(!document.searchName.customer_name.value){
+			alert("거래처명을 입력하세요.");
 			location.reload();
-			document.searchName.ap_name.focus();
+			document.searchName.customer_name.focus();
 			return false;
 		}
 	
@@ -63,17 +62,18 @@ function loadBook_callback() {
 } 
 
 
-function setName(ap_code, ap_name) {
-	opener.document.getElementById("ap_code").value = ap_code;
-	opener.document.getElementById("ap_name").value = ap_name;	
+function setName(salelist_code, customer_name) {
+	opener.document.getElementById("customerNameP").value = customer_name;
+	opener.document.getElementById("saleListCodeP").value = salelist_code;
+
 	//test alert
-	alert(ap_name);
+	alert(salelist_code, customer_name);
 	
-	$("#ap_code", opener.document).val(ap_code); //jquery 이용
-	$(opener.document).find("#ap_code").val(ap_code); //find를 이용한 jquery
+	$("#customerNameP", opener.document).val(customer_name); //jquery 이용
+	$(opener.document).find("#customerNameP").val(customer_name); //find를 이용한 jquery
 	
-	$("#ap_name", opener.document).val(ap_name); //jquery 이용
-	$(opener.document).find("#ap_name").val(ap_name); //find를 이용한 jquery	
+	$("#saleListCodeP", opener.document).val(salelist_code); //jquery 이용
+	$(opener.document).find("#saleListCodeP").val(salelist_code); //find를 이용한 jquery
 	
 	self.close();
 	
@@ -114,7 +114,7 @@ function setName(ap_code, ap_name) {
 										<tr>
 											<th style="text-align: center; padding-right: 10px;">Search</th>
 											<td><input onkeyup="enterkey();" type="text"
-												name="ap_name" class="form-control form-control-sm"
+												name="customer_name" class="form-control form-control-sm"
 												aria-controls="datatable"
 												style="display: inline-block; width: 150px;"></td>
 										</tr>
@@ -132,7 +132,7 @@ function setName(ap_code, ap_name) {
 								</form>
 							</div>
 
-							<div id="result" style="overflow: auto;">
+							<div id="result">
 								<!-- 출력결과위치 -->
 							</div>
 

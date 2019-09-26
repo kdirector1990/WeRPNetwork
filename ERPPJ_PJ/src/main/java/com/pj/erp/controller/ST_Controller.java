@@ -28,10 +28,11 @@ import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TransactionDetails;
 
 @Controller
 public class ST_Controller {
-
+  
 	@Autowired
 	ST_Service service;
 	
@@ -192,7 +193,7 @@ public class ST_Controller {
 		List<SalePlan> list = service.getsalePlan(map, req, model);
 		return list;
 	}
-	
+	 
 	// ST_sale_plan 상세 정보
 	@RequestMapping("ST_sale_plan_writeForm")
 	public String ST_sale_plan_writeForm(HttpServletRequest req, Model model) {
@@ -452,6 +453,15 @@ public class ST_Controller {
 		return "ST/ST_unpaidOrders";
 	} 
 	
+	// 거래 명세서 발행
+	@RequestMapping(value = "tables-datatable_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<TransactionDetails> tables_datatable_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => tables-datatable_result");
+		List<TransactionDetails> list = service.getdate(map, req, model);
+		return list;
+	} 
+
 	// ProductName 검색
 	@RequestMapping("ST_searchProductname")
 	public String ST_searchProductname(HttpServletRequest req, Model model) {
@@ -571,5 +581,22 @@ public class ST_Controller {
 		service.searchDepCode(req, model);
 		
 		return "ST/ST_searchDepartmentname_result2";
+	}
+	
+	// 판매 테이블 팝업창
+	@RequestMapping("ST_searchsaleList")
+	public String ST_searchsaleList(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchsaleList");
+		
+		return "ST/ST_searchsaleList";
+	}
+	
+	// 판매 테이블 목록
+	@RequestMapping("ST_searchsaleList_result")
+	public String ST_searchsaleList_result(HttpServletRequest req, Model model) {
+		logger.info("log => ST_searchsaleList_result");
+		service.searchSaleList(req, model);
+		
+		return "ST/ST_searchsaleList_result";
 	}
 }

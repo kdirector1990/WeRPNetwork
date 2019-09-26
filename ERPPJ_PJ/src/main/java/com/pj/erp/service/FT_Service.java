@@ -253,4 +253,9 @@ public interface FT_Service {
 	//재무상태표 조회
 	public Map<String, Object> getBsshit(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 손익계산서 조회
+	public Map<String, Object> getIsshit(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
+	
+	
 }

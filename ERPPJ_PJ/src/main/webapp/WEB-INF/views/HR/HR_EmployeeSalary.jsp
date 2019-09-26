@@ -185,7 +185,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
@@ -216,36 +216,6 @@
 								<div class="card-body table-responsive">
 									<div id = "resulttable">
 									</div>
-									<!-- <table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 15%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 15%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<thead>
-											<tr>
-												<th>사원번호</th>
-												<th>사원명</th>
-												<th>부서</th>
-												<th>직급</th>
-												<th>입사일</th>
-												<th>기본급</th>
-												<th>급호수당</th>
-												<th>연장수당</th>
-												<th>합계</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-
-										</tbody>
-
-									</table> -->
-
 								</div>
 							</div>
 						</div>

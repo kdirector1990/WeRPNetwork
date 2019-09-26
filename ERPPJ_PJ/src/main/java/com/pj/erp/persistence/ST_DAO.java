@@ -15,6 +15,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TransactionDetails;
 import com.pj.erp.vo.ST.UserName;
 
 public interface ST_DAO {
@@ -120,6 +121,9 @@ public interface ST_DAO {
 	// ST_contrast 검색 조회
 	public List<ST_contrast> getContrast(Map<String, Object> map);
 	
+	// 세금 명세서 검색 조회
+	public List<TransactionDetails> getTransaction(Map<String, Object> map);
+	
 	
 	
 	
@@ -160,4 +164,10 @@ public interface ST_DAO {
 	
 	//팝업창 부서조회 목록 
 	public List<ST_department> getDepartmentList(String department_name);
+	
+	// 팝업창 거래처 목록 유무
+	public int selectSale(String customer_name);
+	
+	// 팝업창 거래처 목록
+	public List<SaleList> selectSaleList(String customer_name);
 }

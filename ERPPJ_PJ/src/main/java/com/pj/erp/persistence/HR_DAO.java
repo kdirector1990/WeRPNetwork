@@ -94,6 +94,9 @@ public interface HR_DAO {
 	// 사원정보 검색 폼
 	public List<HR_PhysicalVO> getPhysicaly(Map<String, Object> map);
 	
+	// 가족정보 검색 폼
+	public List<HR_FamilyVO> searchFamily(Map<String, Object> map);
+	
 	//근태(사원정보 검색)
 	public List<HR_Time_VO> selectUserTime(Map<String, Object> map);
 	
@@ -172,5 +175,8 @@ public interface HR_DAO {
 	
 	// 공고코드 목록 가져오기
 	public List<HR_ApVO> getAp_codeList(String ap_name);
+	
+	// 가족정보 수정
+	public int updateFamily(HR_FamilyVO vo); 
 	
 }
