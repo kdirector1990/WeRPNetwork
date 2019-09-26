@@ -33,7 +33,10 @@
 	
 	<!-- 블록체인을 위한 department_group_Code select -->
 	<select id="getGroupCode" resultType="com.pj.erp.vo.BlockChainVO">
-		Select * From department_tbl 
+		Select e.ether_code, e.department_code department_code  
+		    , e.wallet_code wallet_code, d.department_name deparment_name
+		From ether_tbl e Join department_tbl d
+		On e.department_code = d.department_code
 		Where department_code = #{department_code} 
 	</select>
 	
