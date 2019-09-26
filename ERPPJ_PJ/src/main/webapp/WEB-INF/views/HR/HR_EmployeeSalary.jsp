@@ -213,7 +213,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<div id = "resulttable">
 									</div>
 								</div>

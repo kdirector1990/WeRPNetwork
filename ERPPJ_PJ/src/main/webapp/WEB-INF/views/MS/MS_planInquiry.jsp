@@ -10,6 +10,10 @@
 #selectPlan{
 	display: none;
 }
+
+#searchTable {
+	display: none;
+}
 </style>
 <%@ include file="../setting.jsp"%>
 <script src="/erp/resources/assets/css/js/request.js"></script>
@@ -53,7 +57,6 @@ function callback() {
 	}
 } 
 
-var searchCount = 1;
 function searchCus() {
 	 var param = $("#search").serializeArray();
 	 /* alert(JSON.stringify(param));  */
@@ -63,10 +66,47 @@ function searchCus() {
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
+				
+				document.getElementById("searchTable").style.display="block";
+				
 				$('#result').empty();
 				$('#result1').empty();
+				
+				document.getElementById("selectPlan").style.display="none";
+				
+				$('#resulttable').empty();
 				$('#bodyappend').empty();
 	
+				$('#resulttable').append(
+					'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+					'<col style="width: 10%;">'+
+						'<thead class="bg-primary text-white">'+
+							'<tr>'+
+							'<th>기획서코드</th>'+
+							'<th>기획명</th>'+
+							'<th>기획제안자</th>'+
+							'<th>책임자</th>'+
+							'<th>기획등록일</th>'+
+							'<th>시작예정일</th>'+
+							'<th>종료예정일</th>'+
+							'<th>기획상태</th>'+
+							'<th>기획목표</th>'+
+							'<th>상세 기획안 파일</th>'+
+							'</tr>'+
+						'</thead>'+
+						'<tbody id="result1">'+
+						'</tbody>'+
+					'</table>');
+				
 				for(var i = 0; i < vo.length; i++){
 					
 					var plan_code = vo[i].plan_code;
@@ -92,29 +132,26 @@ function searchCus() {
 							'<td>'+ plan_objective + '</td>' +
 							'<td>' + plan_proposal + '</td></tr>');
 					
-					if(searchCount == 1){
-						$('#bodyappend').append(
-						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-						);
-						searchCount = searchCount + 1;
-						}
 				}
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
 			},
 			error : function(){
 				alert("실패.");
@@ -181,34 +218,15 @@ function searchCus() {
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="card-body">
-								<h4 class="header-title">기획서 조회</h4>
-								<hr>
-								<table id="datatable"
-									class="table m-0 table-bordered table-hover"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead class="bg-primary text-white">
-										<tr>
-											<th>기획서 코드</th>
-											<th>기획명</th>
-											<th>기획제안자</th>
-											<th>책임자</th>
-											<th>기획등록일</th>
-											<th>시작예정일</th>
-											<th>종료예정일</th>
-											<th>기획상태</th>
-											<th>기획목표</th>
-											<th>상세 기획안 파일</th>
-										</tr>
-									</thead>
-
-									<tbody id="result1">
-
-									</tbody>
-								</table>
+				<div id="searchTable">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="resulttable">
+										<!-- 검색 목록 출력  -->
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -219,7 +237,9 @@ function searchCus() {
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<div id="result"></div>
+									<div id="result">
+									<!-- 상세 페이지 출력 -->
+									</div>
 								</div>
 							</div>
 						</div>

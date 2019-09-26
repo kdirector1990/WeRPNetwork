@@ -6,7 +6,12 @@
 .result {
 	display: none;
 }
-#updatePlan{
+
+#updatePlan {
+	display: none;
+}
+
+#searchTable {
 	display: none;
 }
 </style>
@@ -99,7 +104,12 @@ function searchCus() {
 			dataTpye: 'json',
 			success: function(vo){
 				
+				document.getElementById("searchTable").style.display="block";
+				
 				$('#result1').empty();
+				$('#result').empty();
+				
+				document.getElementById("updatePlan").style.display="none";
 				
 				$('#resulttable').empty();
 				$('#bodyappend').empty();
@@ -148,19 +158,18 @@ function searchCus() {
 					var plan_proposal = vo[i].plan_proposal;
 					
 					$("#datatable").append('<tr onclick="MS_planUpdateDelete(\''+plan_code+'\')">' +
-							'<td>'+ plan_code+ '</td>' +
-							'<td>'+ plan_name+ '</td>' +
-							'<td>'+ username + '</td>' +
-							'<td>'+ position_code + '</td>' +
-							'<td>'+ vo[i].plan_regdate_s + '</td>' +
-							'<td>'+ vo[i].plan_startdate_s + '</td>' +
-							'<td>'+ vo[i].plan_enddate_s + '</td>' +
-							'<td>'+ plan_state + '</td>' +
-							'<td>'+ plan_objective + '</td>' +
-							'<td>' + plan_proposal + '</td></tr>' 
-							);
+						'<td>'+ plan_code+ '</td>' +
+						'<td>'+ plan_name+ '</td>' +
+						'<td>'+ username + '</td>' +
+						'<td>'+ position_code + '</td>' +
+						'<td>'+ vo[i].plan_regdate_s + '</td>' +
+						'<td>'+ vo[i].plan_startdate_s + '</td>' +
+						'<td>'+ vo[i].plan_enddate_s + '</td>' +
+						'<td>'+ plan_state + '</td>' +
+						'<td>'+ plan_objective + '</td>' +
+						'<td>' + plan_proposal + '</td></tr>' 
+					);
 					
-					 
 				}
 				$('#bodyappend').append(
 				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
@@ -226,76 +235,54 @@ function searchCus() {
 								<form id="search" onsubmit="return false">
 									<table class="col-12">
 										<tr class="form-group row">
-											<tr class="form-group row">		
-												<th class="col-md-1 col-form-label">사원</th>
-												<td class="col-md-2 input-group">
-												<input type="text" name="username" id="username"
-												class="form-control" onclick="ST_searchUsername();"  onkeyup="enterkey();">
+										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">사원</th>
+											<td class="col-md-2 input-group"><input type="text"
+												name="username" id="username" class="form-control"
+												onclick="ST_searchUsername();" onkeyup="enterkey();">
 												<input type="text" name="e_name" id="e_name"
-												class="form-control" readonly>
-												</td>
-												
-											</tr>
-										</table>
-									</form>
-									<div align="right">
-										<button type="button"
+												class="form-control" readonly></td>
+
+										</tr>
+									</table>
+								</form>
+								<div align="right">
+									<button type="button"
 										class="btn btn-dark waves-effect waves-light"
 										onclick="searchCus();">조회</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="searchTable">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="resulttable">
+										<!-- 검색 목록 출력  -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="card-body">
-								<div id="resulttable">
-									<!-- 검색 목록 출력  -->
-								</div>
-								<!-- <table id="datatable"
-									class="table m-0 table-bordered"
-									style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<thead class="bg-primary text-white">
-										<tr>
-											<th>기획서 코드</th>
-											<th>기획명</th>
-											<th>기획제안자</th>
-											<th>책임자</th>
-											<th>기획등록일</th>
-											<th>시작예정일</th>
-											<th>종료예정일</th>
-											<th>기획상태</th>
-											<th>기획목표</th>
-											<th>상세 기획안 파일</th>
-										</tr>
-									</thead>
-
-									<tbody id="result1">
-									
-									</tbody>
-								</table> -->
-
-							</div>
-						</div>
-					</div>
 				</div>
-				
-			<div id="updatePlan">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="card-body">
-								<div id="result">
-									
+
+				<div id="updatePlan">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result">
+										<!-- 수정/삭제 가능한 상세 페이지 출력 -->
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>	
 			</div>
 			<!-- end container-fluid -->
 
