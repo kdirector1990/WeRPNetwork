@@ -108,27 +108,16 @@ function ap_nameList() {
 												<div class="form-group row">
 													<label class="col-md-1 col-form-label">부서코드</label>
 													<div class="col-md-10">
-														<select class="selectpicker" data-live-search="true"
-															name="department_code" id="department_code" onchange="">
-															<option value="">부서를 선택하세요</option>
-															<c:forEach var="dep" items="${dep}">
-																<option value="${dep.department_code}">${dep.department_name}</option>
-															</c:forEach>
-														</select>
+														<input type="text" name="department_code" id="department_code"
+															class="form-control" required placeholder="부서" readonly />
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-1 col-form-label">직책코드</label>
 													<div class="col-md-10">
-														<select class="selectpicker" data-live-search="true"
-															name="position_code" id="position_code" onchange="">
-															<option value="">직책을 선택하세요</option>
-															<c:forEach var="poi" items="${poi}">
-																<option value="${poi.position_code}">${poi.position_name}</option>
-															</c:forEach>
-														</select>
-
+														<input type="text" name="position_code" id="position_code"
+															class="form-control" required placeholder="직책" readonly />
 													</div>
 												</div>
 
@@ -145,7 +134,7 @@ function ap_nameList() {
 													</div>
 												</div>
 
-												<div class="form-group row">
+												<!-- <div class="form-group row">
 													<label class="col-md-1 col-form-label">변경 후 직급 변경일</label>
 													<div class="col-md-10">
 														<div class="input-group">
@@ -157,7 +146,7 @@ function ap_nameList() {
 															</div>
 														</div>
 													</div>
-												</div>
+												</div> -->
 											</div>
 
 											<div class="col-xl-5">
