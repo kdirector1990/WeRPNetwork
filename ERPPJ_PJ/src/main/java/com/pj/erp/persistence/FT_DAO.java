@@ -21,6 +21,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -28,7 +29,8 @@ import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
-import com.pj.erp.vo.HR.HR_VO; 
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.MS.MS_plan; 
 
 public interface FT_DAO {
 	
@@ -375,7 +377,6 @@ public interface FT_DAO {
 	 // 손익계산서   - 권순용
 	 public List<FT_accounts_balance> FT_getIsList(String typename);
 	 
-	 
 	// 분개 가지고 와라
 	 public int FT_BDepreciationDistinctCnt(Map<String, Object> map);
 	 
@@ -423,4 +424,16 @@ public interface FT_DAO {
 	
 	 // 분개 데이터 가져오기
 	 public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map);
+
+	 //예산 계획현황 검색결과
+	 public List<FT_Plan_Result> getPlanResult(Map<String, Object> map);
+	 
+	//예산 계획 상세조회
+	public FT_Plan_Result getPlanDetail(String budget_codes);
+	
+	//예산 계획 수정
+	public int updatePlan(Map<String, Object> map);
+	
+	//예산 계획 삭제
+	public int deletePlan(Map<String, Object> map);
 }

@@ -16,6 +16,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
@@ -245,6 +246,9 @@ public interface FT_Service {
 	// 분개 데이터 가져오기
 	public List<FT_Depreciation> FT_DepreciationList(Map<String, Object> map, Model model);
 	
+	// 예산현황 검색결과
+	public List<FT_Plan_Result> getPlanResult(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	// 분개 데이터 가져오기
 	public List<FT_Depreciation> FT_BDepreciationDataList(Map<String, Object> map, Model model);
 	// 분개 데이터 가져오기
@@ -254,4 +258,12 @@ public interface FT_Service {
 	// 분개 데이터 가져오기
 	public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map, Model model);
 	
+	//예산현황상세조회
+	public void selectPlanDetail(HttpServletRequest req, Model model);
+	
+	//기획서 수정
+	public int updatePlan(Map<String, Object>map,HttpServletRequest req, Model model);
+	
+	//기획서 삭제
+	public int deletePlan(Map<String, Object>map,HttpServletRequest req, Model model);
 }

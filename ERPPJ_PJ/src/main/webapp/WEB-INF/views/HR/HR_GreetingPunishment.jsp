@@ -29,7 +29,6 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			var param = new Object();
@@ -51,8 +50,44 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#bodyappend').empty();
+					document.getElementById("searchTable").style.display="block";
+					
+						$('#result').empty();
+						$('#bodyappend').empty();
+						$('#resulttable').empty();
+					
+					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+								'<col style="width: 8%;">'+
+								'<col style="width: 7%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 5%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<thead class="bg-primary text-white">'+
+									'<tr>'+
+										'<th>인사고과코드</th>'+
+										'<th>사원번호</th>'+
+										'<th>일자</th>'+
+										'<th>인사고과 구분</th>'+
+										'<th>인사고과명</th>'+
+										'<th>시행처</th>'+
+										'<th>고과 내역</th>'+
+										'<th>계정코드</th>'+
+										'<th>금액</th>'+
+										'<th>비고</th>'+
+										'<th>처리상태</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
 					
 					
 					
@@ -88,8 +123,7 @@
 							'<td>'+ pa_others +'</td>'+
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
-					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -105,15 +139,9 @@
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
 					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
 					
-					
-					}
 					
 				},
 				error : function(){
@@ -167,72 +195,46 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">인사고과코드 검색</th>
-											<td class="col-md-1 input-group"><input type="text"
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="pa_code" id="pa_code"></td>
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">사원번호 검색</th>
-											<td class="col-md-1 input-group"><input type="text"
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="username" id="username">
 											</td>
+										</tr>
+										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">사원이름 검색</th>
-											<td class="col-md-1 input-group"><input type="text"
+											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="e_name" id="e_name"></td>
+											<th class="col-md-1 col-form-label">&nbsp;</th>
 											<th class="col-md-1 col-form-label">고과일자</th>
-											<td><input
+											<td class="col-md-2 input-group"><input
 												class="form-control input-daterange-datepicker" type="text"
 												name="pa_date" id="pa_date" /></td>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 										</tr>
 									</table>
-
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+									</div>
 
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
-										<col style="width: 8%;">
-										<col style="width: 7%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 5%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<thead>
-											<tr>
-												<th>인사고과코드</th>
-												<th>사원번호</th>
-												<th>일자</th>
-												<th>인사고과 구분</th>
-												<th>인사고과명</th>
-												<th>시행처</th>
-												<th>고과 내역</th>
-												<th>계정코드</th>
-												<th>금액</th>
-												<th>비고</th>
-												<th>처리상태</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-
-										</tbody>
-									</table>
+								<div class="card-body">
+									<div id = "resulttable">
+									<!-- 조회 결과 출력 위치  -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -240,8 +242,6 @@
 				</div>
 
 				<!-- 페이지 내용 입력 공간 종료 -->
-
-
 
 				<%@ include file="../footer.jsp"%>
 

@@ -26,7 +26,6 @@
 <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			var param = new Object();
@@ -45,10 +44,44 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#totals').empty();
+					document.getElementById("searchTable").style.display="block";
+					
+						$('#bodyappend').empty();
+						$('#resulttable').empty();
+						$('#totals').empty();
+					
 					
 					var totals = 0;
+					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 15%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 15%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+							'<col style="width: 10%;">'+
+								'<thead class="bg-primary text-white">'+
+									'<tr>'+
+									'<th>사원번호</th>'+
+									'<th>사원명</th>'+
+									'<th>부서</th>'+
+									'<th>직급</th>'+
+									'<th>입사일</th>'+
+									'<th>기본급</th>'+
+									'<th>급호수당</th>'+
+									'<th>연장수당</th>'+
+									'<th>합계</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
+					
+					
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -79,8 +112,7 @@
 							'<td>'+ extension_payments +'</td>'+
 							'<td>'+ total +'</td>'+
                  		'</tr>');
-					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -95,15 +127,11 @@
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
 					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
 					
 					
-					}
+					
 					$('#totals').append(totals);
 					
 				},
@@ -172,53 +200,26 @@
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="e_name" id="e_name"
 												placeholder="한글이름"></td>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 											<td class="col-md-1 col-form-label">&nbsp;</td>
 											<th class="col-md-1 col-form-label">임금 총 합계 :</th>
 											<th class="col-md-2 col-form-label" id="totals"></th>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<table id="datatable"
-										class="table table-bordered dt-responsive nowrap table-hover">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 15%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 15%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<col style="width: 10%;">
-										<thead class="bg-primary text-white">
-											<tr>
-												<th>사원번호</th>
-												<th>사원명</th>
-												<th>부서</th>
-												<th>직급</th>
-												<th>입사일</th>
-												<th>기본급</th>
-												<th>급호수당</th>
-												<th>연장수당</th>
-												<th>합계</th>
-											</tr>
-										</thead>
-										<tbody id="result">
-
-										</tbody>
-
-									</table>
-
+									<div id = "resulttable">
+									</div>
 								</div>
 							</div>
 						</div>

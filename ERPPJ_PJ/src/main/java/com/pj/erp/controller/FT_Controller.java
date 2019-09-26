@@ -20,12 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.service.ERPService;
 import com.pj.erp.service.FT_Service;
+import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
 import com.pj.erp.vo.FT.FT_Depreciation;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
+import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
 import com.pj.erp.vo.FT.FT_Building;
@@ -43,6 +46,12 @@ public class FT_Controller {
 
 	@Autowired
 	FT_Service service;
+	
+	@Autowired
+	MateralServiceImpl MSI;
+	
+	@Autowired
+	ERPService ERP;
 
 	private static final Logger logger = LoggerFactory.getLogger(CT_Controller.class);
 
@@ -906,5 +915,40 @@ public class FT_Controller {
 		logger.info("url : FT_CDepreciationDataList 호출중");
 
 		return service.FT_CDepreciationDataList(map, model);
+	}
+	
+	// 블록체인 신청 입력
+	@RequestMapping("FT_apply_input2")
+	public String FT_apply_input2(Locale locale, Model model) {
+		logger.info("log => FT_apply_input2");
+
+		return "FT/FT_apply_input2";
+	}
+	
+	// 블록체인 신청 입력처리
+	@RequestMapping("FT_apply_input2_pro")
+	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => FT_apply_input2_pro");
+		MSI.budgetAdd(req, model);
+		
+		return "FT/FT_apply_input2";
+	}
+	
+	// 암호화폐 편성 내역
+	@RequestMapping("FT_plan2")
+	public String FT_plan2(Locale locale, Model model) {
+		logger.info("log => FT_plan2");
+
+		return "FT/FT_plan2";
+	}
+	
+	// 부서검색을 통한 가상화폐 편성 내역 가져오기
+	@RequestMapping("FT_Ether_SelectDept")
+	@ResponseBody
+	public List<HashVO> FT_Ether_SelectDept(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Ether_SelectDept");
+		List<HashVO> vo = ERP.selectDept(req, model);
+		
+		return vo;
 	}
 }

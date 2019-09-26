@@ -513,7 +513,7 @@
 					                    <li><a href="FT_journal">분개장</a></li>
 					                    <li><a href="FT_ledger">거래처원장</a></li>
 					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
-					                    <li><a href="coming_soon">!계정별 변동추이 분석</a></li>
+					                    
                           			</ul>
 	                          	</li>
 	                          	
@@ -527,23 +527,16 @@
 						                   <!--  <li><a href="FT_p_cost">원가보고서</a></li> -->
 	                          		</ul>
 	                          	</li>
-	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">자금
-	                          			<span class="menu-arrow"></span>
-	                          		</a>
-	                          		<ul>
-	                          				<li><a href="FT_funds_state">자금현황</a></li>
-                    						<li><a href="FT_sa_state">주요예적금 현황</a></li>
-	                          		</ul>
-	                          	</li>
+	                          	 
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
 	                          		<ul>
 					                    <li><a href="FT_apply_input">예산신청입력</a></li>
-					                    <li><a href="FT_adjustment_input">예산조정입력</a></li>
-					                    <li><a href="FT_plan">예산계획현황</a></li>
+					                    <li><a href="FT_apply_input2">가상화폐 입력</a></li>
+										<li><a href="FT_plan">예산계획현황 및 수정</a></li>
+					                    <li><a href="FT_plan2">가상화폐 집행내역</a></li>
 	                          		</ul>
 	                          	</li>
 

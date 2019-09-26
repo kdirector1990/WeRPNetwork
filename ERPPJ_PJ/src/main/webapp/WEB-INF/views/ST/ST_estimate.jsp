@@ -172,38 +172,7 @@
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-	<!-- Vendor js -->
-	<script src="/erp/resources/assets/js/vendor.min.js"></script>
-
-	<!-- Bootstrap select plugin -->
-	<script
-		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-	<!-- Table Editable plugin-->
-	<script
-		src="/erp/resources/assets/libs/jquery-tabledit/jquery.tabledit.min.js"></script>
-
-	<!-- Table editable init-->
-	<script src="/erp/resources/assets/js/pages/tabledit.init.js"></script>
-
-	<!-- App js -->
-	<script src="/erp/resources/assets/js/app.min.js"></script>
-
-	<!-- plugins -->
-	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script
-		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-
-	<!-- Init js-->
-	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	 
 
 </body>
 </html>

@@ -21,6 +21,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -28,7 +29,8 @@ import com.pj.erp.vo.FT.FT_Subject;
 import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO; 
-import com.pj.erp.vo.HR.HR_VO; 
+import com.pj.erp.vo.HR.HR_VO;
+import com.pj.erp.vo.MS.MS_plan; 
 
 @Repository
 public class FT_DAOImpl implements FT_DAO{
@@ -962,6 +964,30 @@ public class FT_DAOImpl implements FT_DAO{
 	public List<FT_accounts_balance> FT_getIsList(String aacounts_name) {
 		 
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_getIsList", aacounts_name);
+	}
+
+	//예산계획현황검색결과
+	@Override
+	public List<FT_Plan_Result> getPlanResult(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.getPlanResult", map);
+	}
+	
+	//예산계획 상세조회
+	@Override
+	public FT_Plan_Result getPlanDetail(String budget_codes) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.getPlanDetail", budget_codes);
+	}
+	
+	//기획서 수정
+	@Override
+	public int updatePlan(Map<String, Object> map) {
+		return sqlSession.update("com.pj.erp.persistence.FT_DAO.updatePlan", map);
+	}
+
+	//기획서 삭제
+	@Override
+	public int deletePlan(Map<String, Object> map) {
+		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.deletePlan", map);
 	}
 	
 	// 날짜 검색 분개 가져오기

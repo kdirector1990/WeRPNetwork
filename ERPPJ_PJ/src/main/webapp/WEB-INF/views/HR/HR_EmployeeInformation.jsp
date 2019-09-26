@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
-
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
@@ -30,7 +29,6 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
 			$('#result').empty();
@@ -38,7 +36,6 @@
 			
 			var param = new Object();
 			var jsonData;
-			
 						
 			param.username = $("#username").val();
 			param.e_name = $("#e_name").val();
@@ -47,8 +44,6 @@
 			param.rank_code = $("#rank_code").val();
 					
 			jsonData = JSON.stringify(param);
-					$('#result').empty();
-					$('#bodyappend').empty();
 			
 			$.ajax({
 				url : '${pageContext.request.contextPath}/HR_EmployeeInformation_result?${_csrf.parameterName}=${_csrf.token }',
@@ -58,6 +53,38 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+					document.getElementById("searchTable").style.display="block";
+					
+					$('#result').empty();
+					
+					document.getElementById("result2").style.display="none";
+					
+					$('#resulttable').empty();
+					$('#bodyappend').empty();
+					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+								'<thead class="bg-primary text-white">'+
+									'<tr>'+
+										'<th>사원번호</th>'+
+										'<th>사원명</th>'+
+										'<th>성별</th>'+
+										'<th>주민번호</th>'+
+										'<th>연락처</th>'+
+										'<th>우편번호</th>'+
+										'<th>주소</th>'+
+										'<th>내/외국인구별</th>'+
+										'<th>nfc코드</th>'+
+										'<th>부서</th>'+
+										'<th>직급</th>'+
+										'<th>직책</th>'+
+										'<th>호봉</th>'+
+										'<th>입사일</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
 					
 					
 					
@@ -82,8 +109,8 @@
 						var month = (1+pa.getMonth());
 						var day = pa.getDate(); 
 						var start_datess = year + "/" + month +"/"+day;
-						
-					$('#result').append('<tr onclick="updateINFO('+usernames+');">'+                         	
+					
+					$('#result').append('<tr onclick="updateINFO('+usernames+');">'+       
 							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_names +'</td>'+
 							'<td>'+ e_genders +'</td>'+
@@ -99,8 +126,8 @@
 							'<td>'+ level_steps +'</td>'+
 							'<td>'+ start_datess +'</td>'+							
                  		'</tr>');
+					}
 					
-					if(searchCount == 1){
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -120,11 +147,6 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-
-					
-					searchCount = searchCount + 1;
-					}
-					}
 				},
 				error : function(){
 					alert("에러");
@@ -141,6 +163,8 @@
 	  			dataTpye: 'json',
 	  			success: function(data){
 
+	  				document.getElementById("result2").style.display="block";
+	  				
 	  				var username = data.username;	
 	  				var e_picture = data.e_picture
 	  				var e_name = data.e_name;
@@ -287,7 +311,7 @@
  			data : param,
  			dataTpye: 'json',
  			success: function(updateCnt){
- 				if(updateCnt != 0){
+ 				if(updateCnt != 0){update
  					$('#result2').empty();
  					document.getElementById("update").style.display="none";
  					alert("수정이 완료되었습니다.");    					
@@ -378,91 +402,61 @@
 											</td>
 
 											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button" class="btn btn-primary waves-effect waves-light"
+													id="search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
+					<div id="searchTable">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card">
+									<div class="card-body">
+										<ul class="nav nav-tabs" role="tablist">
+											<li class="nav-item"><a class="nav-link active"
+												id="foundation-tab" data-toggle="tab" href="#foundation"
+												role="tab" aria-controls="foundation" aria-selected="true">
+													<span class="d-block d-sm-none"><i
+														class="fa fa-study"></i></span> <span class="d-none d-sm-block">사원정보</span>
+											</a></li>
+										</ul>
+										<div class="tab-content">
+											<!-- 잔액 -->
+											<div class="tab-pane show active" id="foundation"
+												role="tabpanel" aria-labelledby="foundation-tab">
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body">
+															<div id="resulttable">
+																<!-- 조회 결과 출력  -->
+															</div>
 
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-									<ul class="nav nav-tabs" role="tablist">
-										<li class="nav-item"><a class="nav-link active"
-											id="foundation-tab" data-toggle="tab" href="#foundation"
-											role="tab" aria-controls="foundation" aria-selected="true">
-												<span class="d-block d-sm-none"><i
-													class="fa fa-study"></i></span> <span class="d-none d-sm-block">사원정보</span>
-										</a></li>
-									</ul>
-									<div class="tab-content">
-										<!-- 잔액 -->
-										<div class="tab-pane show active" id="foundation"
-											role="tabpanel" aria-labelledby="foundation-tab">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body">
-														<table id="datatable"
-															class="table table-striped table-bordered dt-responsive nowrap">
+															<div align="right">
+																<br>
+															</div>
 
-															<thead>
-																<tr>
-																	<th>사원번호</th>
-																	<th>사원명</th>
-																	<th>성별</th>
-																	<th>주민번호</th>
-																	<th>연락처</th>
-																	<th>우편번호</th>
-																	<th>주소</th>
-																	<th>내/외국인구별</th>
-																	<th>nfc코드</th>
-																	<th>부서</th>
-																	<th>직급</th>
-																	<th>직책</th>
-																	<th>호봉</th>
-																	<th>입사일</th>
-																</tr>
-															</thead>
-
-															<tbody id="result">
-		
-															</tbody>
-														</table>
-
-														<div align="right">
-															<br>
-														</div>
-
-														<div class="form-group text-right mb-0">
-															<button
-																class="btn btn-primary waves-effect waves-light mr-1"
-																type="button" onclick="">수정</button>
-															<button type="reset"
-																class="btn btn-secondary waves-effect" type="button"
-																onclick="">삭제</button>
+															<div class="form-group text-right mb-0">
+																<button
+																	class="btn btn-primary waves-effect waves-light mr-1"
+																	type="button" onclick="">수정</button>
+																<button type="reset"
+																	class="btn btn-secondary waves-effect" type="button"
+																	onclick="">삭제</button>
+															</div>
 														</div>
 													</div>
-												</div>
-
-												<div id="result2" class="card-body">
-													<!-- 상세 페이지 출력 위치 -->
+													<div id="result2" class="card-body table-responsive">
+														<!-- 상세 페이지 출력 위치 -->
+													</div>
 												</div>
 											</div>
-
-											
-												
-											
 										</div>
-
-
-
-
 									</div>
 								</div>
 							</div>

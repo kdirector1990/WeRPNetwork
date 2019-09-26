@@ -1167,7 +1167,6 @@ when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name
 		select * from getBalanceShit_t_view where accounts_name=#{typename} order by acc_level
 	</select>
 	
-	
 	<!-- 건물 감가상각 갯수 가져오기 -->
 	<select id="FT_BDepreciationDataCnt" parameterType="java.util.Map" resultType="int">
 	<![CDATA[
@@ -1641,4 +1640,28 @@ when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name
 		GROUP BY a.accounts_code, a.accounts_name
 		]]>
 	</select>
+	
+	<!-- 예산계획현황 검색결과 -->
+	<select id = "getPlanResult" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.FT.FT_Plan_Result">
+		select * from budget_list_view where department_name like '%'||#{d_name}||'%'
+	</select>
+	
+	<!-- 예산계획현황 상세조회 -->
+	<select id = "getPlanDetail" resultType = "com.pj.erp.vo.FT.FT_Plan_Result" parameterType = "String">
+		select * from budget_list_view where budget_code like '%'||#{budget_codes}||'%'
+	</select>
+	
+	<!-- 예산계획현황 수정 -->
+	<update id="updatePlan" parameterType="java.util.Map">
+		update budget_tbl 
+		set budget_code=#{budget_code}, department_code=#{department_code}, budget_amount=#{budget_amount},
+			eas_code=#{eas_code}, e_approval_code=#{e_approval_code}, budget_subject=#{budget_subject}
+		where budget_code=#{budget_code}
+	</update>
+	
+	<!-- 예산계획현황 삭제 -->
+	<delete id="deletePlan" parameterType="java.util.Map">
+		delete from budget_tbl where budget_code=#{budget_code}
+	</delete>
+	
 </mapper>
