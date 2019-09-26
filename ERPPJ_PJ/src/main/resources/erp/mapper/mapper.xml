@@ -41,9 +41,9 @@
 	</select>
 	
 	<!-- 구매할 때 필요한 목록 -->
-	<!-- <select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
-		select * from material_tbl where material_name like '%'||원재료||'%'
-	</select> -->
+	<select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
+		select * from material_tbl
+	</select>
 	
 	<!-- 가상화폐 예산편성 내역 insert -->
 	<insert id="insertLog" parameterType="com.pj.erp.vo.HashVO">

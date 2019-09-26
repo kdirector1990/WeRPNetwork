@@ -1,23 +1,18 @@
 package com.pj.erp.controller;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
@@ -598,11 +593,21 @@ public class ERPController {
 		return "denied"; 
 	}
 	
+	// 재료 구매하는 페이지
 	@RequestMapping("productList")
-	public String productList(Locale locale, Model model) {
+	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
+		service.productList(req, model);
+		return "page/productList"; 
+	}
+	
+	// 재료 구매
+	@RequestMapping("productList_result")
+	public String productList_result(HttpServletRequest req, Model model) {
+		logger.info("log => productList_result");
 		
-		return "productList"; 
+		
+		return "page/productList_result"; 
 	}
 	
 }
