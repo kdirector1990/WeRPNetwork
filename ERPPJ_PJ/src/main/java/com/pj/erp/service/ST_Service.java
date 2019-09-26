@@ -18,6 +18,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TransactionDetails;
 
 public interface ST_Service {
 	
@@ -102,6 +103,8 @@ public interface ST_Service {
 	// ST_contrast_pp 검색 기능
 	public List<ST_contrast> getcontrast (Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 거래 명세서 검색 기능
+	public List<TransactionDetails> getdate (Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
 	
 	
@@ -135,5 +138,8 @@ public interface ST_Service {
 
 	//부서조회 팝업창 검색
 	public void searchDepCode(HttpServletRequest req, Model model);
+	
+	// 판매 대장 팝업창 검색
+	public void searchSaleList(HttpServletRequest req, Model model);
 	
 }

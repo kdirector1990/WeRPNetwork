@@ -160,7 +160,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">부서</th>
@@ -188,9 +188,9 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
+										class="table table-bordered dt-responsive nowrap table-hover">
 										<col style="width: 10%;">
 										<col style="width: 10%;">
 										<col style="width: 15%;">
@@ -200,7 +200,7 @@
 										<col style="width: 10%;">
 										<col style="width: 10%;">
 										<col style="width: 10%;">
-										<thead>
+										<thead class="bg-primary text-white">
 											<tr>
 												<th>사원번호</th>
 												<th>사원명</th>

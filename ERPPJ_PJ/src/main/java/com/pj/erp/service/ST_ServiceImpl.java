@@ -26,6 +26,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TransactionDetails;
 import com.pj.erp.vo.ST.UserName;
 
 @Service
@@ -334,7 +335,6 @@ public class ST_ServiceImpl implements ST_Service {
 	// ST_sale_plan 검색
 	@Override
 	public List<SalePlan> getsalePlan(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
-		System.out.println(map.get("productName"));
 		List<SalePlan> list = dao.getSalePlanResult(map);
 		return list;
 	}
@@ -670,6 +670,12 @@ public class ST_ServiceImpl implements ST_Service {
 		return list;
 	}
 	
+	// 세금 명세서 검색 기능
+	@Override
+	public List<TransactionDetails> getdate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<TransactionDetails> list = dao.getTransaction(map);
+		return list;
+	}
 	
 	
 	
@@ -723,7 +729,6 @@ public class ST_ServiceImpl implements ST_Service {
 		
 		model.addAttribute("cnt", cnt);
 	}
-	
 	
 	@Override
 	public void transaction(HttpServletRequest req, Model model) {
@@ -799,6 +804,24 @@ public class ST_ServiceImpl implements ST_Service {
 		}
 		
 		model.addAttribute("cnt", cnt);		
+	}
+	
+	// 판매 팝업창 검색
+	@Override
+	public void searchSaleList(HttpServletRequest req, Model model) {
+		String customer_name = req.getParameter("customer_name");
+		System.out.println(customer_name);
+		
+		int cnt = dao.selectSale(customer_name);
+		System.out.println(cnt);
+		
+		if (cnt > 0) {
+			List<SaleList> stos = dao.selectSaleList(customer_name);
+			model.addAttribute("stos", stos);
+		}
+		
+		model.addAttribute("cnt", cnt);
+		
 	}
 
 }

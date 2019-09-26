@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.pj.erp.vo.HR.HR_GreetingVO;
 import com.pj.erp.vo.HR.HR_PaystepVO;
 import com.pj.erp.vo.HR.HR_PhysicalVO;
+import com.pj.erp.vo.HR.HR_RecordVO;
 import com.pj.erp.vo.HR.HR_SalaryVO;
 import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -21,7 +22,7 @@ import com.pj.erp.vo.HR.HR_nfc_log;
 public interface HR_Service {
 	
 	// 인사정보등록
-	public void inputFoundation(HttpServletRequest req, Model model);
+	public void inputFoundation(MultipartHttpServletRequest req, Model model);
 		
 	// 부서코드 가져오기
 	public void departmentList(HttpServletRequest req, Model model);
@@ -60,7 +61,7 @@ public interface HR_Service {
 	public void modifyFoundationView(HttpServletRequest req, Model model);
 	
 	// 사원정보 수정처리
-	public void modifyFoundationPro(HttpServletRequest req, Model model);
+	public void modifyFoundationPro(MultipartHttpServletRequest req, Model model);
 	
 	// 신체정보 상세페이지
 	public void modifyPhysicalyView(HttpServletRequest req, Model model);
@@ -139,4 +140,7 @@ public interface HR_Service {
 	
 	// ap_name으로 ap_code 검색
 	public void searchAp_code(HttpServletRequest req, Model model);
+	
+	// 발령공고 검색
+	public List<HR_RecordVO> getRecord(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
 }

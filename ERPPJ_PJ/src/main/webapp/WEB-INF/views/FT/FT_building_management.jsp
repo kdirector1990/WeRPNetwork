@@ -45,29 +45,27 @@
     			$("#code" + cc).css("background-color", "#D6EAF8");
     			$("#name" + cc).parent().css("background-color", "#D6EAF8");
     			$("#name" + cc).css("background-color", "#D6EAF8");
-    			if(!$("#code" + cc).val()){
-    				focusval = "";
-                   	$("#update").css("display", "none");
-                   	$("#submit").css("display", "");
-    				return false;
-    			} else {
-    				focusval = cc;
-    			}
+    			focusval = cc;
     			
     			$.ajax({
                     type : "POST",
-                    url : "/erp/FT_BuildingOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).val(),
+                    url : "/erp/FT_BuildingOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).html(),
                     success : function(data) {
                         alert(data);
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
 	                   	$("input[name=buildingName]").val(data.buildingName);
-	                   	$("input[name=Address]").val(data.Address);
-	                   	$("input[name=buyDate]").val(data.buyDate);
+	                   	$("input[name=Address]").val(data.address);
+	                   	$("input[name=buyDate]").val(data.buyDate.substring(0,10));
 	                   	$("input[name=buyPrice]").val(data.buyPrice);
+	                   	$("input[name=departmentCode]").val(data.departmentCode);
+	                   	$("input[name=departmentName]").val(data.departmentName);
 	                   	$("input[name=thinkYear]").val(data.thinkYear);
-	                   	$("input[name=gamga]").val(data.gamga);
-	                   	$("input[name=gamgaWay]").val(data.gamgaWay);
+	                   	if(data.gamga == 1){
+	                   		$("#yes").attr("checked", "checked");
+	                   	} else {
+	                   		$("#no").attr("checked", "checked");
+	                   	}
                     },
                     error : function(e) {
                            alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -75,15 +73,30 @@
             	});
     		}
         	
+        	function insertready() {
+        		focusval = "";
+               	$("#update").css("display", "none");
+               	$("#submit").css("display", "");
+        		$("input[name=buildingName]").val("");
+        		$("input[name=Address]").val("");
+        		$("input[name=buyDate]").val("");
+        		$("input[name=buyPrice]").val("");
+        		$("input[name=thinkYear]").val("");
+        		$("input[name=departmentCode]").val("");
+        		$("input[name=departmentName]").val("");
+        		$("#yes").attr("checked", "checked");
+        	}
+        	
         	function update() {
         		var obj = new Object();
         		var jsonData;
-        		obj.buildingCode = $("#code" + focusval).val();
+        		obj.buildingCode = $("#code" + focusval).html();
         		obj.buildingName = $("input[name=buildingName]").val();
         		obj.Address = $("input[name=Address]").val();
         		obj.buyDate = $("input[name=buyDate]").val();
         		obj.buyPrice = $("input[name=buyPrice]").val();
         		obj.thinkYear = $("input[name=thinkYear]").val();
+        		obj.departmentCode = $("input[name=departmentCode]").val();
         		obj.gamga = $("input[name=gamga]").val();
         		obj.gamgaWay = $("input[name=gamgaWay]").val();
                	
@@ -111,7 +124,7 @@
         	function deleted() {
         		var obj = new Object();
         		var jsonData;
-        		obj.buildingCode = $("#code" + focusval).val();
+        		obj.key = $("#code" + focusval).html();
                	
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -194,17 +207,18 @@
 						<div class="col-sm-12">
 							<div class="accordion" id="accordion-test">
 								<div class="card mb-2">
-	                                <div class="card-header bg-primary">
+	                                <div class="card-header bg-primary" style = "display:inline-block;">
 	                                    <h4 class="card-title font-14 mb-0">
 	                                        <a href="#" class="collapsed text-white" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 	                                           	건물 목록
 	                                        </a>
+	                                    	<button type="button" class="btn btn-light waves-effect" onclick = "insertready();" style = "position: absolute; right:15px; top:5px;">insert</button>
 	                                    </h4>
 	                                </div>
 	                                <div id="collapseOne" class="collapse" data-parent="#accordion-test">
 	                                    <div class="card-body">
 	                                        <div class="table-responsive" style = "margin: 15px 0px 15px">
-                                            <table class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
+                                            <table id="datatable" class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered">
                                                 <col>
                                                 <col>
                                                 <thead>
@@ -216,19 +230,27 @@
 		    
 		                                        <tbody>
 		                                            <c:set var="count" value="0"/>
-				                                  	<c:if test="${account != null}">
-				                                   		<c:forEach var = "sub" items="${account}">
+				                                  	<c:if test="${building != null}">
+				                                   		<c:forEach var = "sub" items="${building}">
 				                                    		<tr>
-				                                    			<td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_code}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
-				                                    			<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" value = "${sub.customer_name}" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
+				                                    			<td id = "code${count}" onclick="focuse(${count});" style = "height: calc(1.5em + .9rem + 2px);
+																padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;
+																background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;
+																-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+																transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">${sub.buildingCode}</td>
+				                                    			<td id = "name${count}" onclick="focuse(${count});" style = "height: calc(1.5em + .9rem + 2px);
+																padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;
+																background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;
+																-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+																transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+																transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">${sub.buildingName}</td>
 				                                    			<c:set var="count" value="${count+1}"/>
 				                                    		</tr>
 				                                   		</c:forEach>
 				                                  	</c:if>
-		                                            <tr>
-		                                                <td><input type="text" id = "code${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
-				                                    	<td><input type="text" id = "name${count}" class="form-control" data-toggle="input-mask" readonly onclick="focuse(${count});" style = "width: 100%; -webkit-appearance: none; border:0px;"></td>
-		                                            </tr>
 		                                        </tbody>
                                             </table>
                                         </div>
@@ -289,12 +311,12 @@
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
 																<input type="text" class="form-control"
-																	name="departmentCode" style = "width:150px; display:inline;">
+																	name="departmentCode" style = "width:100px; display:inline;">
 																<button type="button" onclick = "departmentlist(0);" class="btn btn-icon waves-effect waves-light btn-primary">
 																	<i class="fas fa-search"></i>
 																</button>
 																<input type="text" class="form-control"
-																	name="departmentName" style = "width:150px; display:inline;">
+																	name="departmentName" style = "width:100px; display:inline;">
 															</div>
 														</div>
 													
@@ -311,8 +333,8 @@
 															<label class="col-lg-4 col-form-label" for="simpleinput">감가상각여부<span
 																class="text-danger">*</span></label>
 															<div class="col-lg-8">
-																<input type = "radio" id = "yes" name = "gamga" value = "1"><label for="yes">여</label>
-																<input type = "radio" id = "no" name = "gamga" value = "0"><label for="no">부</label>
+																<input type = "radio" id = "yes" name = "gamga" value = "1"><label for="yes">상각함</label>
+																<input type = "radio" id = "no" name = "gamga" value = "0"><label for="no">상각안함</label>
 															</div>
 														</div>
 														
@@ -367,6 +389,23 @@
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-
+		
+	<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
+    <script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
+    <script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
+    <script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
+    <script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
+    <script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
 </body>
 </html>

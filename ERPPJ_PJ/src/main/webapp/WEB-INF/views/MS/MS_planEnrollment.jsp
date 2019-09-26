@@ -48,12 +48,17 @@
 			<div class="content">
 
 				<!-- Start Content-->
-				<div class="container-fluid">
-
-					<!-- start page title -->
-					<div class="row">
-						<div class="col-12">
-							<h4 class="page-title">기획서등록</h4>
+				<div class="row">
+					<div class="col-12">
+						<div class="page-title-box">
+							<div class="page-title-right">
+								<ol class="breadcrumb m-0">
+									<li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">경영지원</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">기획서</a></li>
+								</ol>
+							</div>
+							<h4 class="page-title">기획서 등록</h4>
 						</div>
 					</div>
 				</div>
@@ -96,8 +101,6 @@
 											<option value="기획단계">기획단계</option>
 											<option value="준비중">준비중</option>
 											<option value="진행중">진행중</option>
-											<option value="완료">완료</option>
-											<option value="페기">페기</option>
 										</select>
 									</div>
 									<div class="form-group">

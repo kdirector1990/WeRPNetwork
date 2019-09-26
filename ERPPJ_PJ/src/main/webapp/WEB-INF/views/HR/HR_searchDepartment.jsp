@@ -133,7 +133,7 @@ var searchCount = 1;
 							<div class="card">
 								<div class="card-body">
 									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap">
+										class="table table-striped table-bordered dt-responsive nowrap table-hover">
 										<col style="width: 50%;">
 										<col style="width: 50%;">
 

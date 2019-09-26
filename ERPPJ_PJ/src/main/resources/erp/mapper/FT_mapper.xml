@@ -135,14 +135,25 @@
 	</delete>
 	
 	<!-- 건물 추가 -->
+	<insert id="FT_BuildingPrevInsert" parameterType = "com.pj.erp.vo.FT.FT_Building">
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
+		values ('ta_00300', 'BD_' || building_seq.nextval, #{buildingName}, 'BUILDING_TBL')
+	</insert>
+	
 	<insert id="FT_BuildingInsert" parameterType = "com.pj.erp.vo.FT.FT_Building">
 		insert into building_tbl(building_code, department_code, building_name, building_address,
 		building_regdate, building_cost, use_year, use_yn)
-		values('BD_' || building_seq.nextval, #{departmentCode}, #{buildingName}, #{address},
+		values('BD_' || building_seq.currval, #{departmentCode}, #{buildingName}, #{address},
 		#{buyDate}, #{buyPrice}, #{thinkYear}, #{gamga})
 	</insert>
 	
 	<!-- 건물 수정 -->
+	<update id="FT_BuildingPrevUpdate" parameterType = "java.util.Map">
+		update detail_ac_tbl
+		set ACCOUNT_NAME =  #{buildingName}
+		where DETAIL_AC_CODE = #{buildingCode}
+	</update>
+	
 	<update id="FT_BuildingUpdate" parameterType = "java.util.Map">
 		update building_tbl
 		set department_code = #{departmentCode}, building_name = #{buildingName},
@@ -152,9 +163,14 @@
 	</update>
 	
 	<!-- 건물 삭제 -->
+	<delete id="FT_BuildingPrevDelete" parameterType = "java.util.Map">
+		delete from detail_ac_tbl
+		where DETAIL_AC_CODE = #{key}
+	</delete>
+	
 	<delete id="FT_BuildingDelete" parameterType = "java.util.Map">
 		delete from building_tbl
-		where building_code = #{buildingCode}
+		where building_code = #{key}
 	</delete>
 	
 	<!-- 건물 가져오기 -->
@@ -175,7 +191,67 @@
 		building_regdate buyDate, building_cost buyPrice, use_year thinkYear, use_yn gamga
 		FROM building_tbl b, department_tbl d
 		where b.department_code = d.department_code
-		and b._code = #{srhval, jdbcType=VARCHAR}
+		and b.building_code = #{srhval, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 토지 추가 -->
+	<insert id="FT_LandPrevInsert" parameterType = "com.pj.erp.vo.FT.FT_Land">
+		insert into detail_ac_tbl(ACCOUNTS_CODE, DETAIL_AC_CODE, ACCOUNT_NAME, di_table)
+		values ('ta_00200', 'LD_' || land_seq.nextval, #{landName}, 'LAND_TBL')
+	</insert>
+	
+	<insert id="FT_LandInsert" parameterType = "com.pj.erp.vo.FT.FT_Land">
+		insert into land_tbl(land_code, department_code, land_name, land_address,
+		land_regdate, land_cost, use_year, use_yn)
+		values('LD_' || land_seq.currval, #{departmentCode}, #{landName}, #{address},
+		#{buyDate}, #{buyPrice}, #{thinkYear}, #{gamga})
+	</insert>
+	
+	<!-- 토지 수정 -->
+	<update id="FT_LandPrevUpdate" parameterType = "java.util.Map">
+		update detail_ac_tbl
+		set ACCOUNT_NAME =  #{landName}
+		where DETAIL_AC_CODE = #{landCode}
+	</update>
+	
+	<update id="FT_LandUpdate" parameterType = "java.util.Map">
+		update land_tbl
+		set department_code = #{departmentCode}, land_name = #{landName},
+		land_address = #{Address}, land_regdate = #{buyDate},
+		land_cost = #{buyPrice}, use_year = #{thinkYear}, use_yn = #{gamga}
+		where land_code = #{landCode}
+	</update>
+	
+	<!-- 토지 삭제 -->
+	<delete id="FT_LandPrevDelete" parameterType = "java.util.Map">
+		delete from detail_ac_tbl
+		where DETAIL_AC_CODE = #{key}
+	</delete>
+	
+	<delete id="FT_LandDelete" parameterType = "java.util.Map">
+		delete from land_tbl
+		where land_code = #{key}
+	</delete>
+	
+	<!-- 토지 가져오기 -->
+	<select id="FT_LandAllSelect" resultType="com.pj.erp.vo.FT.FT_Land">
+		SELECT
+	    land_code landCode, b.department_code departmentCode, d.department_name departmentName, 
+	    land_name landName, land_address address,
+		land_regdate buyDate, land_cost buyPrice, use_year thinkYear, use_yn gamga
+		FROM land_tbl b, department_tbl d
+		where b.department_code = d.department_code
+	</select>
+	
+	<!-- 토지 한개 가져오기 -->
+	<select id="FT_LandOneSelect" parameterType="String" resultType="com.pj.erp.vo.FT.FT_Land">
+		SELECT
+	    land_code landCode, b.department_code departmentCode, d.department_name departmentName, 
+	    land_name landName, land_address Address,
+		land_regdate buyDate, land_cost buyPrice, use_year thinkYear, use_yn gamga
+		FROM land_tbl b, department_tbl d
+		where b.department_code = d.department_code
+		and b.land_code = #{srhval, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 적금 가져오기 -->
@@ -796,6 +872,8 @@
 		        and ac.accounts_code = de.accounts_code
 		        and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
 		        group by l.lg_code, l.lg_name
+		        order by case when l.lg_name = '자산' then 1 when l.lg_name = '부채' then 2
+when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name = '비용' then 5 end
 	</select>
 	<select id="FT_DTBDayListM" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
@@ -806,6 +884,12 @@
         and ac.accounts_code = de.accounts_code
         and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
         group by a.ag_code, a.ag_name, l.lg_code, l.lg_name
+        order by case when a.ag_name = '당좌자산' then 1 when a.ag_name = '재고자산' then 2
+		when a.ag_name = '투자자산' then 3 when a.ag_name = '유형자산' then 4 when a.ag_name = '무형자산' then 5 
+		when a.ag_name = '기타비유동자산' then 6 when a.ag_name = '유동부채' then 7 when a.ag_name = '비유동부채' then 8 
+		when a.ag_name = '자본금' then 9 when a.ag_name = '자본잉여금' then 10 when a.ag_name = '자본조정' then 11 
+		when a.ag_name = '기타포괄손익누적계' then 12 when a.ag_name = '이익잉여금' then 13 when a.ag_name = '매출이익' then 14 
+		when a.ag_name = '기타수익' then 15 when a.ag_name = '판매비와관리비' then 16 end
 	</select>
 	<select id="FT_DTBDayListS" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
@@ -816,6 +900,7 @@
         and ac.accounts_code = de.accounts_code
         and j.journal_date between to_date(#{firstday}) and to_date(#{lastday})
         group by ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
+        order by ag_name, accounts_code
 	</select>
 	
 	<!-- 월별 리스트 갯수 가져오기 -->
@@ -863,6 +948,8 @@
 		        and ac.accounts_code = de.accounts_code
 		        and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
 		        group by l.lg_code, l.lg_name
+		        order by case when l.lg_name = '자산' then 1 when l.lg_name = '부채' then 2
+				when l.lg_name = '자본' then 3 when l.lg_name = '수익' then 4 when l.lg_name = '비용' then 5 end
 	</select>
 	<select id="FT_DTBMonthListM" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, a.ag_code, a.ag_name, l.lg_code, l.lg_name
@@ -873,6 +960,12 @@
         and ac.accounts_code = de.accounts_code
         and j.journal_date between to_date(#{firstday} || '-01') and to_date(#{lastday} || '-' || #{day})
         group by a.ag_code, a.ag_name, l.lg_code, l.lg_name
+        order by case when a.ag_name = '당좌자산' then 1 when a.ag_name = '재고자산' then 2
+		when a.ag_name = '투자자산' then 3 when a.ag_name = '유형자산' then 4 when a.ag_name = '무형자산' then 5 
+		when a.ag_name = '기타비유동자산' then 6 when a.ag_name = '유동부채' then 7 when a.ag_name = '비유동부채' then 8 
+		when a.ag_name = '자본금' then 9 when a.ag_name = '자본잉여금' then 10 when a.ag_name = '자본조정' then 11 
+		when a.ag_name = '기타포괄손익누적계' then 12 when a.ag_name = '이익잉여금' then 13 when a.ag_name = '매출이익' then 14 
+		when a.ag_name = '기타수익' then 15 when a.ag_name = '판매비와관리비' then 16 end
 	</select>
 	<select id="FT_DTBMonthListS" parameterType="java.util.Map" resultType="com.pj.erp.vo.FT.FT_DTB">
 		select sum(j.debtor_value) debtorsum, sum(j.creditor_value) creditorsum, ac.accounts_code, ac.accounts_name, a.ag_code, a.ag_name
@@ -1068,6 +1161,10 @@
 	<!-- 재무상태표 계정별 합계_권순용 -->
 	<select id="FT_getAssetsList" resultType="com.pj.erp.vo.FT.FT_accounts_balance">
 		select * from getBalanceShit_t_view where lg_name=#{typename} order by acc_level
+	</select>
+	
+	<select id="FT_getIsList" resultType="com.pj.erp.vo.FT.FT_accounts_balance">
+		select * from getBalanceShit_t_view where accounts_name=#{typename} order by acc_level
 	</select>
 	
 </mapper>

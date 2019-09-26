@@ -36,12 +36,16 @@
                                         </ol>
                                     </div>
                                     <sec:authorize access="isAuthenticated()">
-                                    	<h4 class="page-title">${name }&nbsp; : 사원명 &nbsp;,&nbsp;${pCode }&nbsp; : 직책코드&nbsp;,&nbsp;${pName }&nbsp; : 직책명&nbsp;</h4>
-                                    	<h4 class="page-title">${dCode }&nbsp; : 부서코드&nbsp;,&nbsp;${dName }&nbsp; : 부서명&nbsp;,&nbsp;${username }&nbsp; : 사번&nbsp;</h4>
-                                    	<h4 class="page-title">${auth }&nbsp; : 권한</h4>&nbsp;
+                                    	<h4 class="page-title">사원명 : ${name }</h4>
+                                    	<h4 class="page-title">직책코드: ${pCode }</h4>
+                                    	<h4 class="page-title">직책명: ${pName }</h4>
+                                    	<h4 class="page-title">부서코드: ${dCode }</h4>
+                                    	<h4 class="page-title">부서명: ${dName }</h4>
+                                    	<h4 class="page-title">사번: ${username }</h4>
+                                    	<h4 class="page-title">권한: ${auth }</h4>
                                     </sec:authorize>
                                     <sec:authorize access="isAnonymous()">
-                                 	   <h4 class="page-title">Welcome! 방문해 주셔서 감사합니다.</h4>
+                                 	   <h4 class="page-title">부정한 접근 감지</h4>
                                     </sec:authorize>
                                 </div>
                             </div>
@@ -49,7 +53,7 @@
                         <!-- end page title --> 
 
                         
-                        <div class="row">
+                        <!-- <div class="row">
 
                             <div class="col-xl-3 col-md-6">
                                 <div class="card widget-box-two bg-purple">
@@ -64,7 +68,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end col -->
+                            </div>end col
         
                             <div class="col-xl-3 col-md-6">
                                 <div class="card widget-box-two bg-info">
@@ -80,7 +84,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end col -->
+                            </div>end col
         
                             <div class="col-xl-3 col-md-6">
                                 <div class="card widget-box-two bg-pink">
@@ -95,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end col -->
+                            </div>end col
         
                             <div class="col-xl-3 col-md-6">
                                 <div class="card widget-box-two bg-success">
@@ -110,12 +114,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- end col -->
+                            </div>end col
         
-                        </div>
+                        </div> -->
                         <!-- end row -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-xl-4">
                                 <div class="card">
                                     <div class="card-body">
@@ -148,11 +152,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- end row -->
 
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-xl-6">
                                 <div class="card">
                                     <div class="card-body">
@@ -323,11 +327,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end row -->
+                                end row
                             </div>
-                            <!-- end col -->
+                            end col
 
-                        </div>
+                        </div> -->
                         <!-- end row -->
                         
                     </div> <!-- end container-fluid -->

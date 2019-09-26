@@ -98,7 +98,7 @@ function searchCus() {
 			data : param,
 			dataTpye: 'json',
 			success: function(vo){
-				
+				$('#result').empty();
 				$('#result1').empty();
 				$('#bodyappend').empty();
 	
@@ -176,7 +176,14 @@ function searchCus() {
 				<div class="row">
 					<div class="col-12">
 						<div class="page-title-box">
-							<h4 class="page-title">경영지원</h4>
+							<div class="page-title-right">
+								<ol class="breadcrumb m-0">
+									<li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">경영지원</a></li>
+									<li class="breadcrumb-item"><a href="javascript: void(0);">기획서</a></li>
+								</ol>
+							</div>
+							<h4 class="page-title">기획서 관리</h4>
 						</div>
 					</div>
 				</div>

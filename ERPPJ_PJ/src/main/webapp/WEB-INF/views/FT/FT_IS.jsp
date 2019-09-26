@@ -4,7 +4,73 @@
 <head>
 <%@ include file="../setting.jsp"%>
 </head>
+<script type="text/javascript">
+	function search_bs() {
+		var param = new Object();
+		var jsonData;
 
+		param.fiscalyear = $("#fiscalyear").val();
+
+		jsonData = JSON.stringify(param);
+
+		$
+				.ajax({
+					url : '${pageContext.request.contextPath}/FT_search_IS?${_csrf.parameterName}=${_csrf.token }',
+					type : 'POST',
+					data : jsonData,
+					dataType : "json",
+					contentType : "application/json;charset=UTF-8",
+					success : function(is_map) { 
+						var total_sale_income = is_map.total_sale_income;
+						var income = is_map.total_income;
+						var cost = is_map.total_cost; 
+						
+						var sale_expense = is_map.sale_expense;
+						
+						var bs_income = income-sale_expense;
+						
+						var total_etc_income = is_map.total_etc_income;
+						var total_etc_cost = is_map.total_etc_cost;
+						
+						var nontax_income = bs_income+total_etc_income-total_etc_cost;
+						
+						var tax_cost = is_map.tax_cost;
+						
+						var net_profit = nontax_income-tax_cost;
+						
+						$('#is_result').empty(); 
+						$('#is_result').append('<tr><td><h4>총매출액</h4></td><td>'+total_sale_income+'</td></tr>');  
+						$('#is_result').append('<tr><td>매출원가</td><td>'+cost+'</td></tr>');  
+						$('#is_result').append('<tr><td><h4>매출총이익</h4></td><td>'+income+'</td></tr>');  
+						$('#is_result').append('<tr><td>판매비와 관리비</td><td>'+sale_expense+'</td></tr>');
+						$('#is_result').append('<tr><td><h4>영업이익</h4></td><td>'+bs_income+'</td></tr>');  
+						
+						$('#is_result').append('<tr><td>영업외 수익</td><td>'+total_etc_income+'</td></tr>');  
+						$('#is_result').append('<tr><td>영업외 비용</td><td>'+total_etc_cost+'</td></tr>');   
+						$('#is_result').append('<tr><td><h4>법인세차감전순이익</h4></td><td>'+nontax_income +'</td></tr>');
+						
+						$('#is_result').append('<tr><td>법인세</td><td>'+tax_cost+'</td></tr>');  
+						
+						$('#is_result').append('<tr><td><h4>당기순이익</h4></td><td>'+net_profit +'</td></tr>');
+					},
+					error : function() {
+						alert("에러, 관리자에게 문의하세요\n에러코드: FT_BS - search_bs - ajax error")
+					}
+				});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	};
+</script>
 <body>
 
 	<!-- Begin page -->
@@ -60,28 +126,24 @@
 									<table id="datatable"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">회계단위</th>
+											<th class="col-md-1 col-form-label">회계년도</th>
 											<td class="col-md-2 input-group"><select
-												class="form-control" name="" onchange="">
-													<option>전체선택</option>
-													<option>1000(주)한국생상 본점</option>
-											</select>
-												<div class="input-group-append">
-													<button type="button"
-														class="btn btn-icon waves-effect waves-light btn-primary">
-														<i class="fas fa-search"></i>
-													</button>
-												</div></td>
+												class="form-control" id="fiscalyear" onchange=""
+												style="width: 200px;">
+													<option value="2019">2019년_제 1기</option>
+													<option value="2018">2018</option>
+											</select></td>
 											<th class="col-md-1 col-form-label">조회기간</th>
 											<td><input
 												class="form-control input-daterange-datepicker" type="text"
 												name="daterange" /></td>
-											<th class="col-md-1 col-form-label">단위</th>
-											<td class="col-md-2 input-group"><select
-												class="form-control" name="" onchange="">
-													<option>전체선택</option>
-													<option></option>
-											</select></td>
+											 <td><div class="input-group-append">
+													<button type="button"
+														class="btn btn-icon waves-effect waves-light btn-primary"
+														onclick="search_bs();">
+														<i class="fas fa-search"></i>
+													</button>
+												</div></td>
 										</tr>
 									</table>
 									<hr>
@@ -117,508 +179,16 @@
 															<table class="table mb-0">
 																<thead class="thead-light">
 																	<tr>
-																		<th rowspan="2" colspan="2">과목</th>
-																		<th colspan="2">제 16 (당)기</th>
-																		<th colspan="2">제 15 (전)기</th>
+																		<th rowspan="2" style="width: 30%;">과목</th>
+																		<th colspan="2">제 1 당기</th>
+																		 
 																	</tr>
-
 																	<tr>
 																		<th colspan="2">금액</th>
-																		<th colspan="2">금액</th>
-																	</tr>
-
+																	</tr> 
 																</thead>
-																<tbody>
-																	<tr>
-																		<td colspan="2">자산</td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">1.유동자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<th colspan="2">(1)당좌자산</th>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">현금</td>
-																		<td></td>
-																		<td>-810,450,474</td>
-																		<td></td>
-																		<td>5,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">당좌예금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">제예금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">정기예적금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">단기매매증권</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">외상매출금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">대손충당금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">미수금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">대손충당금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">소모품</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">선급비용</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">부가세대급금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">선납세금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(2)재고자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">상품</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">제품</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">원재료</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(3)임대주택자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">임대주택</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">2. 비유동자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(1)투자자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(2)유형자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">토지</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">건물</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">감가 상각 누계액</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">기계장치</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">감가 상각 누계액</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">차량운반구</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">감가 상각 누계액</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">비품</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">감가 상각 누계액</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(3)무형자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">소프트웨어</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(4)기타 비유동자산</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">임차보증금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">자산총계</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">부채</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">1. 유동부채</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">외상매입금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">지급어음</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">미지급금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">예수금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">부가세예수금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">가수금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">선수금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">단기차입금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">미지급세금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">미지급비용</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">2. 비유동부채</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">장기차입금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">퇴직 급여 충당금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">부채총계</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">자 본</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">1. 자본금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">자본금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">2.자본잉여금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">3. 자본조정</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">주식 할인발행 차금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">4. 기타포괄손익누계액</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">5.이익잉여금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">이익준비금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">미처분 이익 잉여금</td>
-																		<td></td>
-																		<td>6,010,450,474</td>
-																		<td></td>
-																		<td>5,581,274,274</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">(단기순이익)</td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">당기 : 0</td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">전기 : 0</td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																		<td></td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">자본총계</td>
-																		<td></td>
-																		<td>5.132.111.111</td>
-																		<td></td>
-																		<td>5,185,295,411</td>
-																	</tr>
-																	<tr>
-																		<td colspan="2">부재및자본총계</td>
-																		<td></td>
-																		<td>6,152,366,222</td>
-																		<td></td>
-																		<td>6,185,295,411</td>
-																	</tr>
+																<tbody id="is_result">
+																	
 																</tbody>
 															</table>
 														</div>
