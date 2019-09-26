@@ -5,13 +5,12 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.HR.HR_nfc_log;
-import com.pj.erp.vo.MF.MF_material;
 
 @Repository
 public class ERPDAOImpl implements ERPDAO{
@@ -52,6 +51,16 @@ public class ERPDAOImpl implements ERPDAO{
 	@Override
 	public List<ProductVO> getProductList() {
 		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getProductList");
+	}
+	
+	@Override
+	public int insertLog(HashVO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertLog", vo);
+	}
+
+	@Override
+	public List<HashVO> selectHashDept(String department_code) {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectHashDept", department_code);
 	}
 	
 }

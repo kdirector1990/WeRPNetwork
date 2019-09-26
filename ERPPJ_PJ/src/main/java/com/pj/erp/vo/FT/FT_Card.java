@@ -12,7 +12,6 @@ public class FT_Card {
 	private String owner; // 소유자
 	private String payCode; // 결제코드
 	private String accountNo; // 계좌번호
-	private String accountHolder; // 예금주
 	
 	
 	public String getCardCode() {
@@ -80,12 +79,6 @@ public class FT_Card {
 	}
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
-	}
-	public String getAccountHolder() {
-		return accountHolder;
-	}
-	public void setAccountHolder(String accountHolder) {
-		this.accountHolder = accountHolder;
 	}
 	
 	

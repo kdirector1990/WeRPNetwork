@@ -535,7 +535,8 @@
 	                          		<ul>
 					                    <li><a href="FT_apply_input">예산신청입력</a></li>
 					                    <li><a href="FT_apply_input2">가상화폐 입력</a></li>
-					                    <li><a href="FT_plan">예산계획현황 및 수정</a></li>
+										<li><a href="FT_plan">예산계획현황 및 수정</a></li>
+					                    <li><a href="FT_plan2">가상화폐 집행내역</a></li>
 	                          		</ul>
 	                          	</li>
 
@@ -582,7 +583,7 @@
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="FT_material_list">자재 목록</a></li>
                     					<li><a href="CT_equip_list">전산설비 목록</a></li>
-                    					<li><a href="#">감가상각 현황</a></li>
+                    					<li><a href="FT_Depreciation_list">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
