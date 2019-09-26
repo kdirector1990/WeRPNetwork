@@ -32,6 +32,8 @@
     var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
+			$('#result').empty();
+			
 			var param = new Object();
 			var jsonData;			
 			
@@ -51,9 +53,32 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
+					$('#bodyappend').empty();
+					$('#resulttable').empty();
 					
-					
+					$('#resulttable').append(
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<thead>'+
+								'<tr>'+
+									'<th>사원번호</th>'+
+									'<th>신장</th>'+
+									'<th>체중</th>'+
+									'<th>시력(좌)</th>'+
+									'<th>시력(우)</th>'+
+									'<th>색약</th>'+
+									'<th>혈액형</th>'+
+									'<th>혈압</th>'+
+									'<th>병력</th>'+
+									'<th>장애구분/등급</th>'+
+									'<th>장애인 등급</th>'+
+									'<th>보훈구분</th>'+
+									'<th>보훈관계</th>'+
+									'<th>보훈등급</th>'+
+								'</tr>'+
+							'</thead>'+
+							'<tbody id="result">'+
+							'</tbody>'+
+						'</table>');
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -88,8 +113,8 @@
 							'<td>'+ e_disability_types +'</td>'+
 							'<td>'+ e_disability_levels +'</td>'+
                  		'</tr>');
+					}
 					
-					if(searchCount == 1){
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -108,12 +133,8 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-					);
-					searchCount = searchCount + 1;
-					}
+					);				
 					
-					
-					}
 					
 				},
 				error : function(){
@@ -414,7 +435,8 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<table id="datatable"
+									<div id="resulttable">
+									<!-- <table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
 										<thead>
 											<tr>
@@ -437,30 +459,18 @@
 										<tbody id="result">
 
 										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div id="update">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body table-responsive">
-									<div class="table-responsive" style="margin: 15px 0px 50px">
-										<form id="updatePhysicaly" method="post"
-											class="form-horizontal">
-											<input type="hidden" name="${_csrf.parameterName }"
-												value="${_csrf.token }">
-											<div id="result2" class="card-body">
-												<!-- 상세 페이지 출력 위치 -->
-											</div>
-										</form>
+									</table> -->
 									</div>
 								</div>
-							</div>
+								<div id="result2" class="card-body">
+							<!-- 상세 페이지 출력 위치 -->
 						</div>
+							</div>
+							
+						</div>						
 					</div>
+
+					
 				</div>
 
 				<!-- 페이지 내용 입력 공간 종료 -->

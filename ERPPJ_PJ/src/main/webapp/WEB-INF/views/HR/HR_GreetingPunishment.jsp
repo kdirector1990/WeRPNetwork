@@ -51,8 +51,43 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#bodyappend').empty();
+					if(searchCount > 1){
+						$('#result').empty();
+						$('#bodyappend').empty();
+						$('#resulttable').empty();
+					}
+					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+								'<col style="width: 8%;">'+
+								'<col style="width: 7%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 5%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<thead>'+
+									'<tr>'+
+										'<th>인사고과코드</th>'+
+										'<th>사원번호</th>'+
+										'<th>일자</th>'+
+										'<th>인사고과 구분</th>'+
+										'<th>인사고과명</th>'+
+										'<th>시행처</th>'+
+										'<th>고과 내역</th>'+
+										'<th>계정코드</th>'+
+										'<th>금액</th>'+
+										'<th>비고</th>'+
+										'<th>처리상태</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
 					
 					
 					
@@ -201,7 +236,9 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<table id="datatable"
+									<div = id = "resulttable">
+									</div>
+									<!-- <table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
 										<col style="width: 8%;">
 										<col style="width: 7%;">
@@ -232,7 +269,7 @@
 										<tbody id="result">
 
 										</tbody>
-									</table>
+									</table> -->
 								</div>
 							</div>
 						</div>

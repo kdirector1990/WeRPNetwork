@@ -109,14 +109,13 @@
 										</tr>
 
 										<tr>
-											<th><input class="inputButton" type="submit" value="수정"
+											<th>
+											<input class="btn btn-success waves-effect waves-light" type="submit" value="수정"
 												formaction="ST_saleList_modifyPro"> <input
-												class="inputButton" type="submit" value="삭제"
-												formaction="ST_saleList_deletePro"> <input
-												class="inputButton" type="button" value="수정 취소"
-												onClick="window.location.reload()">
+												class="btn btn-danger waves-effect waves-light" type="submit" value="삭제"
+												formaction="ST_saleList_deletePro"> <input class="btn btn-dark waves-effect waves-light" value="취소"
+												 type="button" onClick="window.location.reload()">
 										</tr>
-
 									</table>
 								</form>
 							</c:if>

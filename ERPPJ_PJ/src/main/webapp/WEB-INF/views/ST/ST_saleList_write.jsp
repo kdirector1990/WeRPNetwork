@@ -47,9 +47,9 @@
 											<div class="col-md-10">
 											<div style="display: inline-block;">
 											<input class="form-control" type="text" name="detail_ac_code" value="${sto.detail_ac_code }"
-												id="product_codeP" onclick="ProductName()" style="width: 120px; float: left;">
+												id="product_codeP" onclick="ProductName()" style="width: 173px; float: left;">&nbsp;
 											<input class="form-control" type="text" name="product_name" value="${sto.product_name }"
-												id="product_nameP"  style="width: 120px; float: right;"></div>
+												id="product_nameP"  style="width: 173px; float: right;"></div>
 											</div>
 										</div>
 
@@ -73,7 +73,7 @@
 											<label class="col-md-2 col-form-label">출고 여부</label>
 											<div class="col-md-10">
 												<select class="form-control select" name="release_state"
-													onchange="" style="width: 150px;">
+													onchange="" style="width: 350px;">
 													<option value="1">출고</option>
 													<option value="2">미출고</option>
 												</select>
@@ -115,11 +115,11 @@
 											<div class="col-md-10">
 											<div style="display: inline-block;">
 											<input type="text" class="form-control" name="customer_code"
-											 id = "customer_codeP" onclick="CustomerName()" style="width: 120px; float: left;">
+											 id = "customer_codeP" onclick="CustomerName()" style="width: 173px; float: left;">&nbsp;
 											 
 											<input type="text" name="customer_code" class="form-control"
 													value=""  id="customer_nameP"
-													onclick="CustomerName()" style="width: 120px; float: right;">
+													onclick="CustomerName()" style="width: 173px; float: right;">
 											</div>
 											</div>
 										</div>

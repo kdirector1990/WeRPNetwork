@@ -32,6 +32,8 @@
     var searchCount = 1;
 	 $(function(){
 		$('#search').click(function(){
+			$('#result').empty();
+			
 			var param = new Object();
 			var jsonData;			
 			

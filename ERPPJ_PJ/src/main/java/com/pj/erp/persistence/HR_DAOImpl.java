@@ -323,4 +323,14 @@ public class HR_DAOImpl implements HR_DAO{
 	public List<HR_RecordVO> getRecord(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getRecord", map);
 	}
+
+	@Override
+	public List<HR_FamilyVO> searchFamily(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.searchFamily", map);
+	}
+
+	@Override
+	public int updateFamily(HR_FamilyVO vo) {
+		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updateFamily", vo);
+	}
 }
