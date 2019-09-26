@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.vo.HR.HR_FamilyVO;
 import com.pj.erp.vo.HR.HR_GreetingVO;
 import com.pj.erp.vo.HR.HR_PaystepVO;
 import com.pj.erp.vo.HR.HR_PhysicalVO;
@@ -182,7 +183,24 @@ public class HR_Controller {
 		logger.info("log => HR_EmployeePhysicaly");
 		List<HR_PhysicalVO> list = service.getPhysical(map, req, model);
 		return list;
-	}	
+	}
+	
+	// 가족정보현황
+	@RequestMapping("HR_EmployeeFamily")
+	public String HR_EmployeeFamily(HttpServletRequest req, Model model) {
+		logger.info("log => HR_EmployeeFamily");
+		
+		return "HR/HR_EmployeeFamily";
+	}
+	
+	//가족정보 검색결과
+	@RequestMapping(value = "HR_EmployeeFamily_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_FamilyVO> HR_EmployeeFamily_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_EmployeeFamily_result");
+		List<HR_FamilyVO> list = service.searchFamily(map, req, model);
+		return list;
+	}
 	
 	//책정임금현황
 	@RequestMapping("HR_EmployeeSalary")

@@ -51,8 +51,43 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#bodyappend').empty();
+					
+						$('#result').empty();
+						$('#bodyappend').empty();
+						$('#resulttable').empty();
+					
+					
+					$('#resulttable').append(
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+								'<col style="width: 8%;">'+
+								'<col style="width: 7%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 5%;">'+
+								'<col style="width: 10%;">'+
+								'<col style="width: 10%;">'+
+								'<thead>'+
+									'<tr>'+
+										'<th>인사고과코드</th>'+
+										'<th>사원번호</th>'+
+										'<th>일자</th>'+
+										'<th>인사고과 구분</th>'+
+										'<th>인사고과명</th>'+
+										'<th>시행처</th>'+
+										'<th>고과 내역</th>'+
+										'<th>계정코드</th>'+
+										'<th>금액</th>'+
+										'<th>비고</th>'+
+										'<th>처리상태</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id="result">'+
+								'</tbody>'+
+							'</table>');
 					
 					
 					
@@ -89,7 +124,7 @@
 							'<td>'+ jr_states +'</td>'+
                  		'</tr>');
 					
-					if(searchCount == 1){
+					}
 					$('#bodyappend').append(
 					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -109,11 +144,8 @@
 					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 					);
-					searchCount = searchCount + 1;
-					}
 					
 					
-					}
 					
 				},
 				error : function(){
@@ -201,7 +233,9 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<table id="datatable"
+									<div = id = "resulttable">
+									</div>
+									<!-- <table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
 										<col style="width: 8%;">
 										<col style="width: 7%;">
@@ -232,7 +266,7 @@
 										<tbody id="result">
 
 										</tbody>
-									</table>
+									</table> -->
 								</div>
 							</div>
 						</div>

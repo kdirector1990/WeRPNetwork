@@ -125,6 +125,23 @@
 	]]>
 	</select>
 	
+	<!-- 사원가족정보 조회 -->
+	<select id ="searchFamily" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_FamilyVO">
+	<![CDATA[
+		select u.username as username, f.f_name as f_name, f.f_type as f_type, f.f_cohabitation as f_cohabitation, f.f_born as f_born, f.f_born_type as f_born_type  
+		from users u, family_info f, department_tbl d, rank_tbl r, position_tbl p
+		where u.username = f.username
+		and u.department_code = d.department_code
+		and u.rank_code = r.rank_code
+		and u.position_code = p.position_code 
+		and u.username like '%'||#{username}||'%' 
+		and u.e_name like '%'||#{e_name}||'%' 
+		and d.department_code like '%'||#{department_code}||'%' 
+		and p.position_code like '%'||#{position_code}||'%'
+		and r.rank_code like '%'||#{rank_code}||'%'
+		]]>
+	</select>
+	
 	<!-- 검색 목록 가져오기 -->
 	<select id="getUsernameList" resultType="com.pj.erp.vo.HR.HR_VO" parameterType="String">
 		select username, e_name, department_code, position_code from users where e_name like '%'||#{e_name}||'%'
@@ -340,8 +357,8 @@
 	
 	<!-- 직책변경 등록 -->
 	<insert id="recordInput" parameterType="com.pj.erp.vo.HR.HR_RecordVO">
-		insert into position_record_tbl(position_record_code, username, record_date, record_date_after, position_code, position_code_after, department_code, department_code_after, ap_code)
-		VALUES(#{position_record_code}, #{username}, #{record_date}, #{record_date_after}, #{position_code}, #{position_code_after}, #{department_code}, #{department_code_after}, #{ap_code})
+		insert into position_record_tbl(position_record_code, username, record_date, position_code, position_code_after, department_code, department_code_after, ap_code)
+		VALUES(#{position_record_code}, #{username}, #{record_date}, #{position_code}, #{position_code_after}, #{department_code}, #{department_code_after}, #{ap_code})
 	</insert>
 	
 	<!-- 발령공고 등록 -->
@@ -413,8 +430,7 @@
 			r.position_record_code as position_record_code,
 			a.ap_code as ap_code,
 			a.ap_name as ap_name,
-			r.record_date as record_date,
-			r.record_date_after as record_date_after,
+			r.record_date as record_date,			
 			p.position_code as position_code,
 			r.position_code_after as position_code_after,
 			d.department_code as department_code,
@@ -424,8 +440,7 @@
 			where u.username = r.username			
 			and a.ap_code = r.ap_code						
 			and p.position_code = r.position_code
-			and d.department_code = r.department_code
-			and a.ap_name = r.ap_name
+			and d.department_code = r.department_code			
 			and u.username like '%'||#{username}||'%'
 			and a.ap_code like '%'||#{ap_code}||'%'
 			and a.ap_name like '%'||#{ap_name}||'%'

@@ -46,106 +46,119 @@
 <script type="text/javascript">
 	var searchCount = 1;
 	$(function() {
-		$('#search')
-				.click(
-						function() {
-							var param = new Object();
-							var jsonData;
+		$('#search').click(function() {
+			var param = new Object();
+			var jsonData;
 
-							param.department_name = $("#department_name").val();
-							param.e_state_code = $("#e_state_code").val();
-							param.username = $("#e_name").val();
-							param.day = $("#day").val();
+			param.department_name = $("#department_name").val();
+			param.e_state_code = $("#e_state_code").val();
+			param.username = $("#e_name").val();
+			param.day = $("#day").val();
 
-							jsonData = JSON.stringify(param);
+			jsonData = JSON.stringify(param);
 
-							$
-									.ajax({
-										url : '${pageContext.request.contextPath}/HR_Yearsofservice_result?${_csrf.parameterName}=${_csrf.token }',
-										type : 'POST',
-										data : jsonData,
-										dataType : "json",
-										contentType : "application/json;charset=UTF-8",
-										success : function(list) {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/HR_Yearsofservice_result?${_csrf.parameterName}=${_csrf.token }',
+				type : 'POST',
+				data : jsonData,
+				dataType : "json",
+				contentType : "application/json;charset=UTF-8",
+				success : function(list) {
 
-											$('#result').empty();
+					$('#result').empty();
+					$('#resulttable').empty();
+					$('#bodyappend').empty();
+					
+					$('#resulttable').append(
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
+							'<thead class="bg-primary text-white">'+
+								'<tr>'+
+									'<th>사원코드</th>'+
+									'<th>사원명</th>'+
+									'<th>부서</th>'+
+									'<th>직책</th>'+
+									'<th>입사일</th>'+
+									'<th>년수</th>'+
+									'<th>주민번호</th>'+
+								'</tr>'+
+							'</thead>'+
+							'<tbody id="result">'+
+							'</tbody>'+
+						'</table>');
+					
+					for (var i = 0; i < list.length; i++) {
 
-											for (var i = 0; i < list.length; i++) {
+						var usernames = list[i].username;
+						var e_names = list[i].e_name;
+						var department_names = list[i].department_name;
+						var position_names = list[i].position_name;
+						var pa_dates = list[i].start_date;
+						var pa = new Date(pa_dates);
+						var year = pa.getFullYear();
+						var month = (1 + pa.getMonth());
+						var day = pa.getDate();
+						var start_dates = year + "/"
+								+ month + "/" + day;
+						var service_years = list[i].service_year;
+						var service_months = list[i].service_month;
+						var e_codes = list[i].e_code;
 
-												var usernames = list[i].username;
-												var e_names = list[i].e_name;
-												var department_names = list[i].department_name;
-												var position_names = list[i].position_name;
-												var pa_dates = list[i].start_date;
-												var pa = new Date(pa_dates);
-												var year = pa.getFullYear();
-												var month = (1 + pa.getMonth());
-												var day = pa.getDate();
-												var start_dates = year + "/"
-														+ month + "/" + day;
-												var service_years = list[i].service_year;
-												var service_months = list[i].service_month;
-												var e_codes = list[i].e_code;
+						$('#result')
+								.append(
+										'<tr>' + '<td>'
+												+ usernames
+												+ '</td>'
+												+ '<td>'
+												+ e_names
+												+ '</td>'
+												+ '<td>'
+												+ department_names
+												+ '</td>'
+												+ '<td>'
+												+ position_names
+												+ '</td>'
+												+ '<td>'
+												+ start_dates
+												+ '</td>'
+												+ '<td>'
+												+ service_years
+												+ '년'
+												+ service_months
+												+ '개월'
+												+ '</td>'
+												+ '<td>'
+												+ e_codes
+												+ '</td>'
+												+ '</tr>');
 
-												$('#result')
-														.append(
-																'<tr>' + '<td>'
-																		+ usernames
-																		+ '</td>'
-																		+ '<td>'
-																		+ e_names
-																		+ '</td>'
-																		+ '<td>'
-																		+ department_names
-																		+ '</td>'
-																		+ '<td>'
-																		+ position_names
-																		+ '</td>'
-																		+ '<td>'
-																		+ start_dates
-																		+ '</td>'
-																		+ '<td>'
-																		+ service_years
-																		+ '년'
-																		+ service_months
-																		+ '개월'
-																		+ '</td>'
-																		+ '<td>'
-																		+ e_codes
-																		+ '</td>'
-																		+ '</tr>');
+							}
+							$('#bodyappend')
+									.append(
+											'<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>'
+													+ '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>'
+													+ '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>'
+													+ '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>');
+							
 
-												if (searchCount == 1) {
-													$('#bodyappend')
-															.append(
-																	'<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>'
-																			+ '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>'
-																			+ '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>');
-													searchCount = searchCount + 1;
-												}
-
-											}
-
-										},
-										error : function() {
-											alert("에러");
-										}
-									});
-						});
+				},
+				error : function() {
+					alert("에러");
+				}
+			});
+		});
 	});
 </script>
 </head>
@@ -222,7 +235,8 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<table id="datatable"
+									<div id="resulttable">
+									<!-- <table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<thead class="bg-primary text-white">
@@ -238,7 +252,8 @@
 										</thead>
 										<tbody id="result">
 										</tbody>
-									</table>
+									</table> -->
+									</div>
 								</div>
 							</div>
 						</div>
