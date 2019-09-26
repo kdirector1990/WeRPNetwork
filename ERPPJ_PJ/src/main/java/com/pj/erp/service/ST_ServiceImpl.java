@@ -351,7 +351,8 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setRelease_date(new Timestamp(System.currentTimeMillis()));
 		vo.setSar_type(req.getParameter("sar_type"));
 		vo.setDetail_ac_code(req.getParameter("detail_ac_code"));
-		vo.setCustomer_code(req.getParameter("customer_code"));
+		vo.setCustomer_code(req.getParameter("customer_code")); 
+		
 		vo.setUsername((String)req.getSession().getAttribute("username")); 
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
 		vo.setSalelist_code(req.getParameter("salelist_code"));

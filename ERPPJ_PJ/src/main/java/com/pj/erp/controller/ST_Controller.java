@@ -119,7 +119,7 @@ public class ST_Controller {
 	public String ST_release_writePro(HttpServletRequest req, Model model) {
 		logger.info("log => ST_release_writePro");
 		service.releaseWritePro(req, model);
-		
+		 
 		return "ST/ST_release_writePro";
 	}
 	       
