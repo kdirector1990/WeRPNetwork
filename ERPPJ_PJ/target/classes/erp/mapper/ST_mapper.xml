@@ -339,23 +339,15 @@
  	
  	<select id="getTransaction" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.TransactionDetails">
  		<![CDATA[
- 			  	select s.sar_code as sar_code, 
-                       p.product_name as product_name,
-                       a.reg_date as reg_date,
-                       s.release_date as release_date,
-                       s.stored_name as stored_name,
-                       s.release_name as release_name,
-                       s.sar_type as sar_type,
-                       s.unit_cost as unit_cost,
-                       u.e_name as e_name
-	                       from sar_list_tbl s join product_list_tbl p on s.detail_ac_code = p.product_code
-	                       join users u on s.username = u.username 
-	                       join salelist_tbl a on s.salelist_code = a.salelist_code
-	                       where s.stored_name = '삼성전자'
-	                       and s.release_name = '창고1'
-	                       and u.e_name = '김보민'
-	                       and to_char(s.release_date, 'YYYY/MM/DD') >= '2019/09/25'
-	                       and to_char(s.release_date, 'YYYY/MM/DD') <= '2019/09/27'
+ 			  	select * from ST_transaction_view 
+	                       where sar_type = '2'
+	                       and stored_name like '%'||#{stored_name}||'%'
+	                       and release_name like '%'||#{release_name}||'%'
+	                       and e_name like '%'||#{username}||'%'
+	                       and kwon >= #{userdate1}
+	                       and kwon <= #{userdate2}
+	                       
+	                      
  		]]>
  	</select>
  	
@@ -363,7 +355,7 @@
 	<select id="selectProduct" resultType="int" parameterType="String" >
 		select COUNT(*) from product_list_tbl where product_name like '%'||#{product_name}||'%'
 	</select>
-	
+
 	<!-- 검색 목록 가져오기 -->
 	<select id="getProductList" resultType="com.pj.erp.vo.ST.ProductList" parameterType="String">
 		select product_code, bom_code, product_name from product_list_tbl where product_name like '%'||#{product_name}||'%'

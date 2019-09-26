@@ -221,7 +221,7 @@ public class ST_DAOImpl implements ST_DAO {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getContrast", map);
 	}
 	
-	// 세금 명세서 검색 조회
+	// 거래 명세서 검색 조회
 	@Override
 	public List<TransactionDetails> getTransaction(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.ST_DAO.getTransaction", map);
