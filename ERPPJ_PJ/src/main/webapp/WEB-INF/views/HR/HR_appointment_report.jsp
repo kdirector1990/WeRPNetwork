@@ -68,17 +68,10 @@
 						var year = pa.getFullYear();
 						var month = (1+pa.getMonth());
 						var day = pa.getDate();
-						var record_date = year + "/" + month +"/"+day;
-						
-						var record_date_afters = list[i].record_date_after;
-						var pa = new Date(record_date_afters);
-						var year = pa.getFullYear();
-						var month = (1+pa.getMonth());
-						var day = pa.getDate();
-						var record_date_after = year + "/" + month +"/"+day;
+						var record_date = year + "/" + month +"/"+day;	
 						
 						var position_codes = list[i].position_code;
-						var position_code_afters = list[i].position_code_afters;						
+						var position_code_afters = list[i].position_code_after;						
 						
 						var department_codes = list[i].department_code;
 						var department_code_afters = list[i].department_code_after;
@@ -107,8 +100,7 @@
 							'<td>'+ e_names +'</td>'+
 							'<td>'+ position_record_codes +'</td>'+
 							'<td>'+ ap_codes +'</td>'+
-							'<td>'+ record_date +'</td>'+
-							'<td>'+ record_date_after +'</td>'+
+							'<td>'+ record_date +'</td>'+							
 							'<td>'+ ap_names +'</td>'+
 							'<td>'+ position_codes +'</td>'+
 							'<td>'+ position_code_afters +'</td>'+
@@ -275,8 +267,7 @@
 															<th>사원명</th>
 															<th>발령기록코드</th>
 															<th>공고코드</th>
-															<th>발령일자</th>
-															<th>적용일자</th>
+															<th>발령일자</th>															
 															<th>공고명</th>														
 															<th>직책</th>
 															<th>변경 후 직책</th>
