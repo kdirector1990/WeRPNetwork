@@ -20,6 +20,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -396,4 +397,7 @@ public interface FT_DAO {
 	 
 	 // 손익계산서   - 권순용
 	 public List<FT_accounts_balance> FT_getIsList(String typename);
+	 
+	 //예산 계획현황 검색결과
+	 public List<FT_Plan_Result> getPlanResult(Map<String, Object> map);
 }

@@ -33,6 +33,7 @@ import com.pj.erp.vo.FT.FT_Ledger;
 import com.pj.erp.vo.FT.FT_Loan;
 import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Note;
+import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
@@ -1022,6 +1023,14 @@ public class FT_ServiceImpl implements FT_Service{
 		FT_Facility ac = dao.FT_FacilityOneSelect(req.getParameter("srhval"));
 		System.out.println(ac);
 		return ac;
+	}
+
+	//예산계획현황검색결과
+	@Override
+	public List<FT_Plan_Result> getPlanResult(Map<String, Object> map, HttpServletRequest req, Model model)
+			throws ParseException {
+		List<FT_Plan_Result> list = dao.getPlanResult(map);
+		return list;
 	}
 
 }
