@@ -479,18 +479,23 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setRelease_name(req.getParameter("release_name"));
 		vo.setRelease_date(Timestamp.valueOf(req.getParameter("release_date"))); 
 
-		if(req.getParameter("unit_cost")==null) {
+		if(req.getParameter("unit_cost").equals("")) {
 			vo.setUnit_cost(0);	
 		}else {
 			vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));			
 		}
 		
-		if(req.getParameter("release_count")==null) {
+		if(req.getParameter("release_count").equals("")) {
 			vo.setRelease_count(0);
 		}else {
-			vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));			
+			vo.setRelease_count(Integer.parseInt(req.getParameter("release_count")));
+			
 		}
-		vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
+		if(req.getParameter("stored_count").equals("")) {
+			vo.setStored_count(0);
+		}else {			
+			vo.setStored_count(Integer.parseInt(req.getParameter("stored_count")));
+		}
 		
 		vo.setSar_type(req.getParameter("sar_type"));
 		
