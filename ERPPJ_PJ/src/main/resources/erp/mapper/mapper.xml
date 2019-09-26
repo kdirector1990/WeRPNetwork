@@ -40,7 +40,10 @@
 		Where e.department_code = #{department_code} 
 	</select>
 	
+	<!-- 해쉬저장을 위한  -->
+	<insert id="insertLog" parameterType="">
 	
+	</insert>
 	
 
 </mapper>
