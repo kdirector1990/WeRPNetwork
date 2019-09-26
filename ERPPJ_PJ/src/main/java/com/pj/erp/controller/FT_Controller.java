@@ -196,7 +196,7 @@ public class FT_Controller {
 	@RequestMapping("FT_planUpdateDelete")
 	public String FT_planUpdateDelete(HttpServletRequest req, Model model) {
 		logger.info("log => FT_planUpdateDelete");
-		service.selectPlanDetail(req, model);
+		/* service.selectPlanDetail(req, model); */
 		
 		return "FT/FT_planUpdateDelete";
 	}

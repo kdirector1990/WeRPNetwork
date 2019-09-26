@@ -101,7 +101,7 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">출고처</label>
 													<div style="display: inline-block;">
-														<input type="text" class="form-control" name="customer_code"
+														<input type="text" class="form-control" name="customer_code2"
 													 id = "customer_codeP" onclick="customerNameList()"style="width: 200px; float: left;">&nbsp;
 													 
 													<input type="text" name="release_name" class="form-control"
@@ -218,21 +218,7 @@
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-	<!-- Vendor js -->
-	<script src="/erp/resources/assets/js/vendor.min.js"></script>
 
-	<!-- Bootstrap select plugin -->
-	<script
-		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-	<!-- Responsive Table js -->
-	<script src="/erp/resources/assets/libs/rwd-table/rwd-table.min.js"></script>
-
-	<!-- Init js -->
-	<script src="/erp/resources/assets/js/pages/responsive-table.init.js"></script>
-
-	<!-- App js -->
-	<script src="/erp/resources/assets/js/app.min.js"></script>
 
 </body>
 </html>
