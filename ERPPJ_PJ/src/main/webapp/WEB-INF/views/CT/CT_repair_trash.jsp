@@ -156,7 +156,7 @@
 			success: function(updateCnt){
 				if(updateCnt == 1){
 					alert("폐기처리를 수정하였습니다.")
-					window.location.href="http://localhost:8087/erp/CT_repair_trash";
+					window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_repair_trash";
 				}
 			},
 			error : function(){

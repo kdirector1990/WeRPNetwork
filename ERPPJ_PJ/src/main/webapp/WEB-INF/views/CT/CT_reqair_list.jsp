@@ -229,7 +229,7 @@
   				if(updateCnt == 1){
   					document.getElementById("seoncdR").style.display="none";
   	  				alert("수리일지를 수정하였습니다.");
-  	  				window.location.href="http://localhost:8087/erp/CT_reqair_list";
+  	  				window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_reqair_list";
   				}
   			},
   			error : function(){
@@ -250,7 +250,7 @@
   				if(deleteCnt == 1){
   					document.getElementById("seoncdR").style.display="none";
   	  				alert("수리일지를 폐기하였습니다.");
-  	  			window.location.href="http://localhost:8087/erp/CT_reqair_list";
+  	  			window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_reqair_list";
   				}
   			},
   			error : function(){
