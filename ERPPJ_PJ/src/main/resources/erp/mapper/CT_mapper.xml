@@ -165,4 +165,9 @@
 		Set rr_state = 2
 		Where rr_code = #{rr_code}
 	</update>
+	
+	<!-- A/S 수정 폼 부서가져오기 -->
+	<select id="selectDEPTVO" resultType="com.pj.erp.vo.CT.CT_Depart_VO">
+		Select * from department_tbl
+	</select>
 </mapper>
