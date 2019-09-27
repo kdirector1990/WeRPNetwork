@@ -66,9 +66,7 @@ function loadBook_callback() {
 function setName(username, e_name) {
 	opener.document.getElementById("username").value = username;
 	opener.document.getElementById("e_name").value = e_name;
-	//test alert
-	alert(username);
-	alert(e_name);
+
 	$("#username", opener.document).val(username); //jquery 이용
 	$(opener.document).find("#username").val(username); //find를 이용한 jquery
 	

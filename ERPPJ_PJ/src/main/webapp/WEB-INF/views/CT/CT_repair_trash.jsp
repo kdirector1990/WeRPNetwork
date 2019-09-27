@@ -49,7 +49,6 @@
 		param.rr_title = $("#rr_title").val();
 		
 		jsonData = JSON.stringify(param);
-		alert(jsonData);
 		$.ajax({
   			url: '/erp/CT_repairDelete_list?${_csrf.parameterName}=${_csrf.token }',
   			type: 'POST',
@@ -157,6 +156,7 @@
 			success: function(updateCnt){
 				if(updateCnt == 1){
 					alert("폐기처리를 수정하였습니다.")
+					window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_repair_trash";
 				}
 			},
 			error : function(){

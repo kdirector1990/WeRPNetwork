@@ -639,8 +639,18 @@ public class ERPController {
 	@RequestMapping("productList")
 	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
-		service.productList(req, model);
+		service.materialList(req, model);
 		return "page/productList"; 
+	}
+	
+	//물품판매
+	// 페이지 해놓을게요 생
+	@RequestMapping("shop")
+	public String home(HttpServletRequest req, Model model) {
+		logger.info("log => home");
+		service.productList(req, model);
+		
+		return "page/home"; 
 	}
 	
 	// 재료 구매.
