@@ -5,6 +5,7 @@ public class ProductVO {
 	private String material_name;
 	private String material_unit;
 	
+	
 	public String getMaterial_code() {
 		return material_code;
 	}

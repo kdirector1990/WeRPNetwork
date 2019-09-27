@@ -436,4 +436,54 @@ public interface FT_DAO {
 	
 	//예산 계획 삭제
 	public int deletePlan(Map<String, Object> map);
+	
+	// 갯수
+	public int FT_ProductSaleCnt(int year);
+
+	public int FT_JepumSaleCnt(int year);
+
+	public int FT_BaseProductCnt(int lastyear);
+
+	public int FT_NowProductCnt(int year);
+
+	public int FT_BaseSourceCnt(int lastyear);
+
+	public int FT_NowSourceCnt(int year);
+
+	public int FT_BaseJegongCnt(int lastyear);
+
+	public int FT_BaseJepumCnt(int lastyear);
+
+	public int FT_BaseCostCnt(int year);
+
+	public int FT_SaleProfitCnt(int year);
+
+	public int FT_UnsaleProfitCnt(int year);
+
+	public int FT_UnsaleCostCnt(int year);
+	
+	// 목록
+	public int FT_ProductSale(int year);
+
+	public int FT_JepumSale(int year);
+
+	public int FT_BaseProduct(int lastyear);
+
+	public int FT_NowProduct(int year);
+
+	public int FT_BaseSource(int lastyear);
+
+	public int FT_NowSource(int year);
+
+	public int FT_BaseJegong(int lastyear);
+
+	public int FT_BaseJepum(int lastyear);
+
+	public int FT_BaseCost(int year);
+
+	public int FT_SaleProfit(int year);
+
+	public int FT_UnsaleProfit(int year);
+
+	public int FT_UnsaleCost(int year);
 }

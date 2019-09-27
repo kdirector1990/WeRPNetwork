@@ -81,7 +81,7 @@
 	        		var jsonData;
 	        		
 	        		if(window.event.which == 13){
-	        			if(!$("#usercode").val()) {
+	        			if(!$("input[name=username0]").val()) {
 	        				alert("작성자 검색 해주세요!");
 	        				return false;
 	        			} else if(parseInt($(".firstdate").val()) > parseInt($(".lastdate").val())){
@@ -91,7 +91,7 @@
 		        		}
 	        			
 		        		// 자바스크립트 객체 생성
-		        		obj.usercode = $("#usercode").val();
+		        		obj.usercode = $("input[name=username0]").val();
 		        		obj.firstday = $(".firstdate").val();
 		        		obj.lastday = $(".lastdate").val();
 		        		
@@ -148,7 +148,7 @@
         	function userslist() {
             	var popupX = Math.ceil((window.screen.width - 363)/2);
             	var popupY = Math.ceil((window.screen.height - 528)/2);
-        		var url = "FT_users_list?key=" + $("#usercode").val();
+        		var url = "FT_users_list?key=" + $("input[name=username0]").val() + "&keyname=0";
         		window.open(url, "users_list", "menubar=no, width=363px, height = 528px, left=" + popupX + ", top=" + popupY);
         	}
         </script>
@@ -227,11 +227,11 @@
 												<td><input type="date" class="firstdate"> ~ <input type="date"
 													class="lastdate"></td>
 												<td>작성자</td>
-												<td><input type="text" class="" id="usercode"
+												<td><input type="text" class="" name="username0"
 													style="width: 100px;" onkeyup="ajaxload();">&nbsp;<a
 													href="#" onclick="userslist();"><i
 														class="dripicons-zoom-in"></i></a> <input type="text" class=""
-													id="username" readonly style="width: 100px;"></td>
+													name="ename0" readonly style="width: 100px;"></td>
 											</tr>
 										</table>
 
