@@ -192,7 +192,7 @@
 	  			success: function(updateCnt){
 	  				document.getElementById("update").style.display="none";
 	  				alert("자산을 수정했습니다.");
-	  				window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_equip_manage";
+	  				window.location.href="http://localhost:8087/erp/CT_equip_manage";
 	  			},
 	  			error : function(){
 	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
@@ -210,7 +210,7 @@
   			success: function(deleteCnt){
   				document.getElementById("update").style.display="none";
   				alert("자산을 폐기하였습니다.");
-  				window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_equip_manage";
+  				window.location.href="http://localhost:8087/erp/CT_equip_manage";
   			},
   			error : function(){
   				alert("전산 오류로 인하여 폐기에 실패하였습니다.");
