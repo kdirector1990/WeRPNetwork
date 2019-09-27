@@ -39,6 +39,7 @@ import com.pj.erp.vo.FT.FT_Savings;
 import com.pj.erp.vo.FT.FT_Securities;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_Total;
 import com.pj.erp.vo.FT.FT_accounts_balance;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO; 
@@ -1080,4 +1081,36 @@ public class FT_ServiceImpl implements FT_Service{
 		return cnt;
 	}
 
+	// 결산자료입력 리스트
+	public FT_Total FT_TotalSelect(HttpServletRequest req, Model model) {
+		int year = Integer.parseInt(req.getParameter("year"));
+		int lastyear = Integer.parseInt(req.getParameter("year"))-1;
+		int productsale = dao.FT_ProductSale(year);
+		int jepumsale = dao.FT_JepumSale(year);
+		int baseproduct = dao.FT_BaseProduct(lastyear);
+		int nowproduct = dao.FT_NowProduct(year);
+		int basesource = dao.FT_BaseSource(lastyear);
+		int nowsource = dao.FT_NowSource(year);
+		int basejegong = dao.FT_BaseJegong(lastyear);
+		int basejepum = dao.FT_BaseJepum(lastyear);
+		int basecost = dao.FT_BaseCost(year);
+		int saleprofit = dao.FT_SaleProfit(year);
+		int unsaleprofit = dao.FT_UnsaleProfit(year);
+		int unsalecost = dao.FT_UnsaleCost(year);
+		
+		FT_Total list = new FT_Total();
+		list.setProductsale(productsale);
+		list.setJepumsale(jepumsale);
+		list.setBaseproduct(baseproduct);
+		list.setNowproduct(nowproduct);
+		list.setBasesource(basesource);
+		list.setNowsource(nowsource);
+		list.setBasejegong(basejegong);
+		list.setBasejepum(basejepum);
+		list.setBasecost(basecost);
+		list.setSaleprofit(unsaleprofit);
+		list.setUnsaleprofit(unsaleprofit);
+		list.setUnsalecost(unsalecost);
+		return list;
+	}
 }
