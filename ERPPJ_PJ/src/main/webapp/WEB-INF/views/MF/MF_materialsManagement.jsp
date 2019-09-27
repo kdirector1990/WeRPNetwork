@@ -34,7 +34,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body table-responsive">
+							<div class="card-body table-responsive" style="margin-bottom: 0px;">
 
 								<h4 class="header-title">자재관리</h4>
 

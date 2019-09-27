@@ -45,103 +45,107 @@ public class HR_ServiceImpl implements HR_Service {
 
 	@Autowired
 	HR_DAO dao;
-
+	
 	// 인사정보등록
-
-	@Override
-	public void inputFoundation(MultipartHttpServletRequest req, Model model) {
+ 
+	@Override 
+	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
-
-		String saveDir = req.getRealPath("/resources/hr_img/");
-
-		String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
-
-		try {
-			file.transferTo(new File(saveDir + file.getOriginalFilename()));
-
-			FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
-			FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
-
-			int data = 0;
-
-			while ((data = fis.read()) != -1) {
-				fos.write(data);
-			}
-			fis.close();
-
-			fos.close();
-
-			HR_VO vo = new HR_VO();
-
-			String username = dao.getUsername();
-			String e_name = req.getParameter("e_name");
-			String e_picture = file.getOriginalFilename();
-
-			String password = passwordEncoder.encode("1234");
-			System.out.println(e_name);
-			int e_gender = Integer.parseInt(req.getParameter("e_gender"));
-
-			vo.setUsername(username);
-			vo.setPassword(password);
-			vo.setE_picture(e_picture);
-			vo.setE_name(e_name);
-			vo.setE_gender(e_gender);
-			vo.setE_type(req.getParameter("e_type"));
-			vo.setE_code(req.getParameter("e_code"));
-			vo.setE_hp(req.getParameter("e_hp"));
-
-			String e_address = "";
-			String e_address1 = req.getParameter("e_address1");
-			String e_address2 = req.getParameter("e_address2");
-
-			e_address = e_address1 + "/" + e_address2;
-			vo.setE_address(e_address);
-
-			vo.setE_mailcode(req.getParameter("e_mailcode"));
-
-			vo.setLevel_step(Integer.parseInt(req.getParameter("level_step")));
-
-			vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));
-			vo.setStart_date(new Timestamp(System.currentTimeMillis()));
-			String department_code = req.getParameter("department_code");
-			String position_code = req.getParameter("position_code");
-			String rank_code = req.getParameter("rank_code");
-
-			vo.setDepartment_code(department_code);
-			vo.setPosition_code(position_code);
-			vo.setRank_code(rank_code);
-
-			int enabled = 1;
-			vo.setEnabled(enabled);
-
-			HR_FamilyVO vo2 = new HR_FamilyVO();
-
-			String f_name = " ";
-			String f_type = " ";
-
-			vo2.setUsername(username);
-			vo2.setF_name(f_name);
-			vo2.setF_type(f_type);
-			vo2.setF_born(new Date(new java.util.Date().getYear(), new java.util.Date().getMonth(),
-					new java.util.Date().getDay()));
-
-			System.out.println(new Date(new java.util.Date().getYear(), new java.util.Date().getMonth(),
-					new java.util.Date().getDay()));
-			int cnt = 0;
-
-			cnt = dao.insertMember(vo);
-			dao.insertAuth();
-			dao.insertPhysical(username);
-			dao.insertFamily(vo2);
-
-			model.addAttribute("cnt", 1);
-			model.addAttribute("insertCnt", cnt);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
+        
+        String saveDir = req.getRealPath("/resources/hr_img/"); 
+        
+        String realDir="C:\\Users\\YooJoonSeon\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+ 
+        try {
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
+            
+            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            
+            int data = 0;
+            
+            while((data = fis.read()) != -1) {
+                fos.write(data);
+            }
+            fis.close();
+ 
+            fos.close();		
+			 
+		
+		HR_VO vo = new HR_VO();		
+		
+		String username = dao.getUsername();
+		String e_name = req.getParameter("e_name");
+		String e_picture = file.getOriginalFilename();
+		
+		String password = passwordEncoder.encode("1234");
+		System.out.println(e_name);				
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
+		
+		vo.setUsername(username);
+		vo.setPassword(password);
+		vo.setE_picture(e_picture);
+		vo.setE_name(e_name);
+		vo.setE_gender(e_gender);
+		vo.setE_type(req.getParameter("e_type"));
+		vo.setE_code(req.getParameter("e_code"));
+		vo.setE_hp(req.getParameter("e_hp"));
+		
+		String e_address = "";
+		String e_address1 = req.getParameter("e_address1");
+		String e_address2 = req.getParameter("e_address2");
+		
+		e_address = e_address1 + "/" + e_address2;
+		vo.setE_address(e_address);
+		
+		vo.setE_mailcode(req.getParameter("e_mailcode"));
+		
+		vo.setLevel_step(Integer.parseInt(req.getParameter("level_step")));		
+		
+		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
+		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		String department_code = req.getParameter("department_code");
+		String position_code = req.getParameter("position_code");
+		String rank_code = req.getParameter("rank_code");
+		
+		vo.setDepartment_code(department_code);
+		vo.setPosition_code(position_code);
+		vo.setRank_code(rank_code);
+		
+		int enabled = 1;
+		vo.setEnabled(enabled);
+		
+		HR_FamilyVO vo2 = new HR_FamilyVO();
+		
+		String f_name = " ";
+		String f_type = " ";		
+		
+		vo2.setUsername(username);
+		vo2.setF_name(f_name);
+		vo2.setF_type(f_type);		
+		vo2.setF_born(new Date(new java.util.Date().getYear(), new java.util.Date().getMonth(), new java.util.Date().getDay()));
+		
+		System.out.println(new Date(new java.util.Date().getYear(), new java.util.Date().getMonth(), new java.util.Date().getDay()));
+		int cnt = 0;		
+		
+		cnt = dao.insertMember(vo);		
+		dao.insertAuth();
+		dao.insertPhysical(username);
+		dao.insertFamily(vo2);
+		
+		model.addAttribute("cnt", 1);		
+		model.addAttribute("insertCnt", cnt);		
+ 
+		
+		
+		
+        } catch(IOException e) {
+            e.printStackTrace();
+        }	
+				 
+	}	
+	
+	
 
 	// 호봉테이블(직급)
 	@Override

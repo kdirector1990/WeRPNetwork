@@ -716,6 +716,7 @@
 										<li><a href="#">자재사용현황(작업별)</a></li>
 										<li><a href="#">자재사용현황(자재별)</a></li>
 										<li><a href="#">자재사용현황(제품별)</a></li>
+										<li><a href="MF_materialsManagement2">자재관리(가상화폐)</a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>

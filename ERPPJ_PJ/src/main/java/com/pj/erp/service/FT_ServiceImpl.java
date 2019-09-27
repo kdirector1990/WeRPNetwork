@@ -1108,7 +1108,7 @@ public class FT_ServiceImpl implements FT_Service{
 		list.setBasejegong(basejegong);
 		list.setBasejepum(basejepum);
 		list.setBasecost(basecost);
-		list.setSaleprofit(unsaleprofit);
+		list.setSaleprofit(saleprofit);
 		list.setUnsaleprofit(unsaleprofit);
 		list.setUnsalecost(unsalecost);
 		return list;

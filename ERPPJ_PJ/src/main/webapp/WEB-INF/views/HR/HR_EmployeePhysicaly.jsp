@@ -60,7 +60,7 @@
 					document.getElementById("selectTable").style.display="none";
 					
 					$('#resulttable').append(
-						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
 							'<thead class="bg-primary text-white">'+
 								'<tr>'+
 									'<th>사원번호</th>'+

@@ -59,7 +59,7 @@
 					$('#resulttable').empty();
 					
 					$('#resulttable').append(
-						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
 							'<thead class="bg-primary text-white">'+
 								'<tr>'+
 									'<th>사원번호</th>'+
@@ -315,7 +315,7 @@
 					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body">
+								<div class="card-body table-responsive" style="margin-bottom: 0px;">
 									<div id="resulttable">
 										<!-- 조회 결과 출력 위치  -->
 									</div>

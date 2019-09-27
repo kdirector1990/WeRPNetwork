@@ -231,7 +231,7 @@
 					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body">
+								<div class="card-body table-responsive" style="margin-bottom: 0px;">
 									<div id = "resulttable">
 									<!-- 조회 결과 출력 위치  -->
 									</div>

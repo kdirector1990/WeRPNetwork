@@ -58,7 +58,7 @@
 									<li class="breadcrumb-item active">가상화폐 입력</li>
 								</ol>
 							</div>
-							<h4 class="page-title">예산신청입력</h4>
+							<h4 class="page-title">가상화폐 입력</h4>
 						</div>
 					</div>
 				</div>
