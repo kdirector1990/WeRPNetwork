@@ -312,6 +312,20 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
+                            
+                            <li>
+                            	<a href="productList">
+                            		<i class="mdi mdi-spa"></i>
+                            		<span>물품 구매</span>
+                            	</a>
+                            </li>
+                            
+                            <li>
+                            	<a href="#">
+                            		<i class="mdi mdi-spa-outline"></i>
+                            		<span>물품 판매</span>
+                            	</a>
+                            </li>
                            
                            	<li> 
 	                          <a href="javascript: void(0);">

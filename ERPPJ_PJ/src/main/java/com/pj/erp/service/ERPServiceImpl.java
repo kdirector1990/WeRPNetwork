@@ -187,13 +187,15 @@ public class ERPServiceImpl implements ERPService{
  
 	}
 
+	//구매
 	@Override
 	public void productList(HttpServletRequest req, Model model) {
 		List<ProductVO> dto = dao.getProductList();
 		
 		model.addAttribute("dto", dto);
 	}
-		public List<HashVO> selectDept(HttpServletRequest req, Model model) {
+	
+	public List<HashVO> selectDept(HttpServletRequest req, Model model) {
 		String department_code = req.getParameter("d_name");
 		List<HashVO> vo = dao.selectHashDept(department_code);
 		return vo;
