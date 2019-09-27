@@ -165,7 +165,11 @@ public class CT_DAOImpl implements CT_DAO{
 		return sqlSession.update("com.pj.erp.persistence.CT_DAO.RPdeleteRemove", code);
 	}
 
-
+	//부서목록 가져오기
+	@Override
+	public List<CT_Depart_VO> selectDEPTVO() {
+		return sqlSession.selectList("com.pj.erp.persistence.CT_DAO.selectDEPTVO");
+	}
 	
 	
 
