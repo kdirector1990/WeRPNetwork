@@ -45,6 +45,11 @@
 		select * from material_tbl
 	</select>
 	
+	<!-- 물품판매목록 getProductList -->
+	<select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
+		select * from product_list_tbl
+	</select>
+	
 	<!-- 가상화폐 예산편성 내역 insert -->
 	<insert id="insertLog" parameterType="com.pj.erp.vo.HashVO">
 		Insert Into ether_rec_tbl(department_code, e_subject, e_hashcode)
@@ -64,9 +69,9 @@
 	</select>
 	
 	<!-- 물품판매목록 getProductList -->
-	<select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
+	<!-- <select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
 		select * from product_list_tbl
-	</select>
+	</select> -->
 	
 	<!-- 물품 상세페이지 -->
 	<!-- <select id="gerProductDetail" resultType="com.pj.erp.vo.ProductVO" parameterType="String">

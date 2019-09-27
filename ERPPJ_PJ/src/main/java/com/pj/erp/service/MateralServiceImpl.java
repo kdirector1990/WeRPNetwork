@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.Ethereum;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
@@ -36,6 +37,7 @@ public class MateralServiceImpl {
 	// 가나슈의 gasLimit과 gasPrice를 적어준다.
 	private static final BigInteger gasLimit = BigInteger.valueOf(6721975L);
 	private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
+	
 	
 	String contractAddress = "";
     
@@ -64,9 +66,8 @@ public class MateralServiceImpl {
     //편성한 가상화폐 예산 보내기.
     @SuppressWarnings("deprecation")
 	public void budgetAdd(HttpServletRequest req, Model model) throws Exception {
-    	
+    	stringToBytes32(req.getParameter("dept_code"));
     	String department_code = req.getParameter("dept_code");
-    	int trans = 0;
     	
     	// department_code를 통해 department_group_code를 가져온다.
     	// 팀 코드를 통해 부서코드를 가져온다.
