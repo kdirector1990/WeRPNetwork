@@ -71,7 +71,7 @@
 					 '</select></td><td>' +
 					 '<input type="date" name="ceq_acquire_date" value="'+ceq_acquire_date+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td><td>' +
 					 '<select name = "department_code" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;">' +
-					 	'<option value="'+voC.department_name+'">선택</option>' +
+					 	'<option value="'+voC.department_code+'">선택</option>' +
 					 	'<option value="hr_01">인사</option>' +
 					 	'<option value="ms_01">기획</option>' +
 					 	'<option value="st_01">영업</option>' +
