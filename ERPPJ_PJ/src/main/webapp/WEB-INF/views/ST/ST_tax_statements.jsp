@@ -79,8 +79,6 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
-									<h4 class="header-title">세금 명세서 발행</h4>
-									<p class="sub-header">세금 명세서 발행하는 기능입니다.</p>
 
 									<div class="table-responsive">
 										<table id="datatable"

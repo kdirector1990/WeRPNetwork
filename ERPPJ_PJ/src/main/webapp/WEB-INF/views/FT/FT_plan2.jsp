@@ -24,6 +24,11 @@
 	rel="stylesheet" type="text/css" />
 <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
 	rel="stylesheet" type="text/css" />
+<style type="text/css">
+	#etherSelect2{
+		display : none;
+	}
+</style>
 <script type="text/javascript">
 //결과
 	 function etherSelectDept(){
@@ -36,6 +41,7 @@
  			success: function(vo){
  				$('#bodyappend').empty();
  				$('#resulttable').empty();
+ 				document.getElementById("etherSelect2").style.display="block";
  				
  				$('#resulttable').append(
 						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap center">'+
@@ -57,15 +63,32 @@
  					var hashcode = vo[i].e_hashcode;
  					
  					var date = vo[i].ether_rec_code;
+ 					
+ 					
  					var code = new Date(date);
  					
- 					var Month = (1 + code.getMonth());
  					var Year = code.getFullYear();
+ 					var Month = (1 + code.getMonth());
+ 					if(Month < 10){
+ 						Month = "0"+Month;
+ 					}
  					var Day = code.getDate();
+ 					if(Day < 10){
+ 						Day = "0" + Day;
+ 					}
  					var Hour = code.getHours();
+ 					if(Hour < 10){
+ 						Hour = "0" + Hour;
+ 					}
  					var Mm = code.getMinutes();
+ 					if(Mm < 10){
+ 						Mm = "0" + Mm;
+ 					}
  					
- 					var ether_rec_code = Year + "/" + Month + "/" + Day + " " + Hour + ":" + Mm;
+ 					var date_2 = Year + "-" + Month + "-" + Day;
+ 					var time = Hour+":"+Mm;
+ 					
+ 					var ether_rec_code = date_2 + " " + time;
  					
  					
  					
@@ -133,30 +156,33 @@
 				</div>
 				<!-- end page title -->
 
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="card-body">
-								<form id="etherSelect">
-									<input type="hidden" name="${_csrf.parameterName }"
-													value="${_csrf.token }">
-									<table class="col-12">
-										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">부서명</th>
-											<td class="col-md-2 input-group"><input type="text"
-												class="form-control" name="d_name" id="d_name"
-												placeholder="부서명"></td>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search" onclick="etherSelectDept();">검색</button></td>
-										</tr>
-									</table>
-								</form>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<form id="etherSelect">
+										<input type="hidden" name="${_csrf.parameterName }"
+														value="${_csrf.token }">
+										<table class="col-12">
+											<tr class="form-group row">
+												<th class="col-md-1 col-form-label">부서명</th>
+												<td class="col-md-2 input-group"><input type="text"
+													class="form-control" name="d_name" id="d_name"
+													placeholder="부서명"></td>
+												<td><button type="button"
+														class="btn btn-primary waves-effect waves-light"
+														id="search" onclick="etherSelectDept();">검색</button></td>
+											</tr>
+										</table>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-					
+				
+				
+			<div id="etherSelect2">		
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">

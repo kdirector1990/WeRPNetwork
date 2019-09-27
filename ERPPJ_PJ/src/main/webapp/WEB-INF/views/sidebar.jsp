@@ -312,6 +312,20 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
+                            
+                            <li>
+                            	<a href="productList">
+                            		<i class="mdi mdi-spa"></i>
+                            		<span>물품 구매</span>
+                            	</a>
+                            </li>
+                            
+                            <li>
+                            	<a href="#">
+                            		<i class="mdi mdi-spa-outline"></i>
+                            		<span>물품 판매</span>
+                            	</a>
+                            </li>
                            
                            	<li> 
 	                          <a href="javascript: void(0);">
@@ -463,7 +477,7 @@
 										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_release">출고 등록</a></li>
 										<li><a href="ST_saleList">판매 관리</a></li>
-										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
+										<li><a href="ST_transaction">거래 명세서 발행</a></li>
 										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
 	                          		</ul>
 	                          	</li>

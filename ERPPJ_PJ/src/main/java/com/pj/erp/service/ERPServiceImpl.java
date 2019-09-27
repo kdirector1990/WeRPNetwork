@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,10 +19,10 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
-import com.pj.erp.vo.MS.MS_plan;
 
 @Service
 public class ERPServiceImpl implements ERPService{
@@ -188,7 +187,14 @@ public class ERPServiceImpl implements ERPService{
  
 	}
 
+	//구매
 	@Override
+	public void productList(HttpServletRequest req, Model model) {
+		List<ProductVO> dto = dao.getProductList();
+		
+		model.addAttribute("dto", dto);
+	}
+	
 	public List<HashVO> selectDept(HttpServletRequest req, Model model) {
 		String department_code = req.getParameter("d_name");
 		List<HashVO> vo = dao.selectHashDept(department_code);

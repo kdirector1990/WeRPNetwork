@@ -40,6 +40,11 @@
 		Where e.department_code = #{department_code} 
 	</select>
 	
+	<!-- 구매할 때 필요한 목록 -->
+	<select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
+		select * from material_tbl
+	</select>
+	
 	<!-- 가상화폐 예산편성 내역 insert -->
 	<insert id="insertLog" parameterType="com.pj.erp.vo.HashVO">
 		Insert Into ether_rec_tbl(department_code, e_subject, e_hashcode)
@@ -48,7 +53,7 @@
 	
 	<!-- 가상화폐 예산편성 내역 select -->
 	<select id="selectHashDept" parameterType="String" resultType="com.pj.erp.vo.HashVO">
-		Select e.ether_rec_code as ehter_rec_code,
+		Select e.ether_rec_code as ether_rec_code,
 	        e.department_code as department_code,
 	        e.e_subject as e_subject,
 	        e.e_hashcode as e_hashcode,
