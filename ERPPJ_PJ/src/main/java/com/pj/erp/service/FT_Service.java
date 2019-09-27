@@ -19,6 +19,7 @@ import com.pj.erp.vo.FT.FT_Note;
 import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_Total;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -266,4 +267,8 @@ public interface FT_Service {
 	
 	//기획서 삭제
 	public int deletePlan(Map<String, Object>map,HttpServletRequest req, Model model);
+	
+	// 결산자료입력 리스트
+	public FT_Total FT_TotalSelect(HttpServletRequest req, Model model);
+	
 }

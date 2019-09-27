@@ -49,11 +49,8 @@ function allcheck(){
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<h4 class="header-title">구매페이지</h4>
-								<p class="sub-header">구매페이지</p>
-								<hr>
 								<div class="form-horizontal">
-									<form id="manageMF_plan" method="post">
+									<form id="manageMF_plan" action="InsertMaterialIo" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 										<table id="datatable"
@@ -82,11 +79,10 @@ function allcheck(){
 														<td><input type="checkbox" class="checklist" name="material_code" value="${list.material_code}"></td>
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
-														<td><input type="text" name="price"></td>
-														<td><input type="text" name="num" value="1" id="" class="num"/>
+														<td><input type="text" name="price" onkeyup="removeChar(event); inputNumberFormat(this);"></td>
+														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
 														<td>
 														<select name="salesTeam">
-															<option value="" disabled>선택</option>
 															<option value="1팀">(주)심장</option>
 															<option value="2팀">(주)북두칠성</option>
 															<option value="3팀">(주)창공</option>
@@ -100,7 +96,7 @@ function allcheck(){
 										
 										<hr>
 										<div align="right">
-											<button type="button"
+											<button type="submit"
 												class="btn btn-dark waves-effect waves-light"
 												onclick=";">구매</button>
 										</div>
@@ -146,6 +142,43 @@ function allcheck(){
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
+	
+	<script type="text/javascript">
+		
+	//문자 지우기
+    function removeChar(event) {
+   	    event = event || window.event;
+   	    var keyID = (event.which) ? event.which : event.keyCode;
+   	    if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+   	        return;
+   	    else
+   	    	 event.target.value = event.target.value.replace(/[^-\.0-9]/g, "");
+   }
+   
+  //콤마 찍기
+    function comma(obj) {
+        var regx = new RegExp(/(-?\d+)(\d{3})/);
+        var bExists = obj.indexOf(".", 0);//0번째부터 .을 찾는다.
+        var strArr = obj.split('.');
+        while (regx.test(strArr[0])) {//문자열에 정규식 특수문자가 포함되어 있는지 체크
+            //정수 부분에만 콤마 달기 
+            strArr[0] = strArr[0].replace(regx, "$1,$2");//콤마추가하기
+        }
+        if (bExists > -1) {
+            //. 소수점 문자열이 발견되지 않을 경우 -1 반환
+            obj = strArr[0] + "." + strArr[1];
+        } else { //정수만 있을경우 //소수점 문자열 존재하면 양수 반환 
+            obj = strArr[0];
+        }
+        return obj;//문자열 반환
+    }
+  
+  //input 태그 콤마 달기
+    function inputNumberFormat(obj) {
+   	    obj.value = comma(obj.value);
+   	}
+	
+	</script>
 
 	<!-- Datatable plugin js -->
 	<script

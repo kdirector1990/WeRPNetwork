@@ -26,6 +26,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TaxDetails;
 import com.pj.erp.vo.ST.TransactionDetails;
 import com.pj.erp.vo.ST.UserName;
 
@@ -713,6 +714,14 @@ public class ST_ServiceImpl implements ST_Service {
 		return list;
 	}
 	
+	// 세금 명세서 검색 기능
+	@Override
+	public List<TaxDetails> getTax(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<TaxDetails> list = dao.getTaxList(map);
+		return list;
+	}
+
+	
 	// Customer 검색
 	@Override
 	public void searchCustomer(HttpServletRequest req, Model model) {
@@ -764,11 +773,7 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("cnt", cnt);
 	}
 	
-	@Override
-	public void transaction(HttpServletRequest req, Model model) {
-
-	}
-
+	
 	//매출 - 고객
 	@Override
 	public List<ST_searchCustomerCode> searchCustomerCode(HttpServletRequest req, Model model) {
