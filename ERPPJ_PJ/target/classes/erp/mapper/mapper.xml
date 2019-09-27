@@ -73,4 +73,25 @@
 		select * from product_list_tbl where product_code=${product_code}
 	</select> -->
 	
+	<!-- 가상화폐를 통해 구매한 자재 DB Insert -->
+	<insert id="InsertMaterial_IO" parameterType="com.pj.erp.vo.Material_VO">
+		Insert Into material_io_rec(m_io_code, material_code, m_io_regdate, m_price, m_amount, m_note)
+		values(lpad(M_IO_CODE_SEQ.nextval, 4,'IO_'), #{material_code}, sysdate, #{m_price}, #{m_amount}, #{m_note})
+	</insert>
+	
+	<select id="selectMateral" resultType="com.pj.erp.vo.Material_VO">
+		Select i.m_io_code as m_io_code,
+	        i.material_code as material_code,
+	        i.m_io_regdate as m_io_regdate,
+	        i.m_price as m_price,
+	        i.m_amount as m_amount,
+	        i.m_type as m_type,
+	        i.m_note as m_note,
+	        i.m_note as m_note,
+	        m.material_name as material_name,
+	        m.material_unit as material_unit
+	    From material_io_rec i Join material_tbl m
+	    On i.material_code = m.material_code
+	</select>
+
 </mapper>

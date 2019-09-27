@@ -346,8 +346,17 @@
 	                       and e_name like '%'||#{username}||'%'
 	                       and kwon >= #{userdate1}
 	                       and kwon <= #{userdate2}
-	                       
-	                      
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="getTaxList" parameterType ="java.util.Map" resultType="com.pj.erp.vo.ST.TaxDetails">
+ 		<![CDATA[
+ 			  	 select * from ST_tax_view
+                      where sar_type = '2'
+                      and stored_name like '%'||#{stored_name}||'%'
+                      and e_name like '%'||#{username}||'%'
+                      and release_date >= #{userdate1}
+                      and release_date <= #{userdate2}
  		]]>
  	</select>
  	

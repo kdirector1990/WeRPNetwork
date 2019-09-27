@@ -11,6 +11,7 @@ import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
 @Repository
@@ -75,4 +76,15 @@ public class ERPDAOImpl implements ERPDAO{
 	public ProductVO gerProductDetail(String product_code) {
 		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.gerProductDetail", product_code);
 	}
+	
+	@Override
+	public int InsertMaterial_IO(Material_VO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.InsertMaterial_IO", vo);
+	}
+	
+	@Override
+	public List<Material_VO> selectMateral() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectMateral");
+	}
+	
 }

@@ -141,7 +141,7 @@ public interface HR_DAO {
 	public List<HR_nfc_log> getNfcLog();
 	
 	// 사원 직책 검색 
-	public List<HR_VO> getPositions(Map<String, Object> map);
+	public List<HR_RecordVO> getPositions(Map<String, Object> map);
 	
 	// 부서조회
 	public List<HR_VO> getDepartmentCodeName(Map<String, Object> map);

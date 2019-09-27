@@ -2,6 +2,7 @@ package com.pj.erp.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.service.MateralServiceImpl;
+import com.pj.erp.vo.HashVO;
 
 @Controller
 public class ERPController {
@@ -25,6 +29,9 @@ public class ERPController {
 	
 	@Autowired 
 	HR_Service service2;
+	
+	@Autowired
+	MateralServiceImpl MSI;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -593,7 +600,42 @@ public class ERPController {
 		return "denied"; 
 	}
 	
-	// 물품 구매하는 페이지
+	// 블록체인 신청 입력
+	@RequestMapping("FT_apply_input2")
+	public String FT_apply_input2(Locale locale, Model model) {
+		logger.info("log => FT_apply_input2");
+
+		return "FT/FT_apply_input2";
+	}
+	
+	// 블록체인 신청 입력처리
+	@RequestMapping("FT_apply_input2_pro")
+	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => FT_apply_input2_pro");
+		MSI.budgetAdd(req, model);
+		
+		return "FT/FT_apply_input2";
+	}
+	
+	// 암호화폐 편성 내역
+	@RequestMapping("FT_plan2")
+	public String FT_plan2(Locale locale, Model model) {
+		logger.info("log => FT_plan2");
+
+		return "FT/FT_plan2";
+	}
+	
+	// 부서검색을 통한 가상화폐 편성 내역 가져오기
+	@RequestMapping("FT_Ether_SelectDept")
+	@ResponseBody
+	public List<HashVO> FT_Ether_SelectDept(HttpServletRequest req, Model model) {
+		logger.info("log => FT_Ether_SelectDept");
+		List<HashVO> vo = service.selectDept(req, model);
+		
+		return vo;
+	}
+	
+	// 재료 구매하는 페이지
 	@RequestMapping("productList")
 	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
@@ -611,4 +653,25 @@ public class ERPController {
 		return "page/home"; 
 	}
 	
+	// 재료 구매.
+	@RequestMapping("InsertMaterialIo")
+	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => InsertMaterialIo");
+		
+		MSI.payMaterial(req, model);
+		
+		logger.info("log => productList");
+		service.productList(req, model);
+		return "page/productList"; 
+	}
+	
+	// 재료 구매하는 페이지
+	@RequestMapping("MF_materialsManagement2")
+	public String MF_materialsManagement2(HttpServletRequest req, Model model) {
+		logger.info("log => MF_materialsManagement2");
+		
+		service.selectMaterals(req, model);
+		
+		return "MF/MF_materialsManagement2"; 
+	}
 }

@@ -478,7 +478,7 @@
 										<li><a href="ST_release">출고 등록</a></li>
 										<li><a href="ST_saleList">판매 관리</a></li>
 										<li><a href="ST_transaction">거래 명세서 발행</a></li>
-										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
+										<li><a href="ST_tax_statements">세금 계산서 발행</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -716,6 +716,7 @@
 										<li><a href="#">자재사용현황(작업별)</a></li>
 										<li><a href="#">자재사용현황(자재별)</a></li>
 										<li><a href="#">자재사용현황(제품별)</a></li>
+										<li><a href="MF_materialsManagement2">자재관리(가상화폐)</a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>

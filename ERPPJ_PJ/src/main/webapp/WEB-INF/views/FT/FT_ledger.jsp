@@ -158,6 +158,8 @@
 	                                        '<td>' + balance + '</td>' +
 		                                '</tr>');
 									}
+		                    	   } else {
+		                    		   alert("데이터가 없습니다.");
 		                    	   }
 	                       },
 	                       error : function(e) {

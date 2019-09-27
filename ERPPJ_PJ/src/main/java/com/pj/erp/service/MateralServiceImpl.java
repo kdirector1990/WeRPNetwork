@@ -18,6 +18,8 @@ import org.web3j.utils.Convert;
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.Material_VO;
+import com.pj.erp.vo.ProductVO;
 
 @Service
 public class MateralServiceImpl {
@@ -129,78 +131,103 @@ public class MateralServiceImpl {
     
     // 원자재 구매시 판매자에게 이더를 전송하는 메소드
     @SuppressWarnings("deprecation")
-	public void payMaterial(HttpServletRequest req) throws Exception {
+	public void payMaterial(HttpServletRequest req, Model model) throws Exception {
+    	
+    	// 체크박스를 통한 정보를 통해 구매 
+    	String[] code = req.getParameterValues("material_code");
+    	
+    	for(int i = 0; i < code.length; i++) {
+    		
+    		
+    		// 구매하는 부서의 코드로 구매하게 만든다. 
+        	String department_code = "ft_01"; 
+        	
+        	// department_code를 통해 department_group_code를 가져온다.
+        	// 팀 코드를 통해 부서코드를 가져온다.
+        	BlockChainVO bc = dao.getGroupCode(department_code);
+        	String deptWallet = bc.getWallet_code();
+        	String deptname = bc.getDepartment_name();
+        	
+        	// 계정의 primary key를 접속한 부서별로 할당한다.
+        	Credentials dept_AccountNumber = Credentials.create(deptWallet);
+        	
+        	//원자재 구매시 이더를 보낼 거래처의 지갑 정보를 위해 판매자 아이디를 가져온다.
+        	String seller = req.getParameter("salesTeam");
+        	Credentials salesTeam = null;
+        	
+        	if(seller == "1팀") {
+        		salesTeam = Credentials.create("BFBBE8F7D376179A0FD9BE7DFF0697B1F2FC2CFCFB5FECD06291BFF0A28E52B5");
+        	}
+        	else if(seller == "2팀") {
+        		salesTeam = Credentials.create("391b50b29fc771d1fcb9bbbcd5f949b756ca6cd7ac3a51adf43102c44b068aee ");
+        	}
+        	else if(seller == "3팀") {
+        		salesTeam = Credentials.create("0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C");
+        	}
+        	else {
+        		salesTeam = Credentials.create("3F1E2BD4EF8941731D244359F0CDF1EF079E5EAFFD57EA6D31ADDEB55E20D426"); //st_01
+        	}
+        	
+        	//계약서 작성.
+        	contractAddress = Materal.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
+        	
+        	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
+        	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
+      
+        	String prices = req.getParameter("price");
+        	int nums = Integer.parseInt(req.getParameter("num"));
+        	
+        	int pricece = Integer.parseInt(prices.replace(",", ""));
+        	
+        	int price = pricece * nums;
+        	
+        	BigInteger ethers = null;
+        	
+        	//가격에 해당하는 이더 설정.
+        	if(price < 100000) {
+        		ethers = etherToWei(new BigDecimal(1));
+        	}
+        	else if((100000 < price) && (price < 300000)) {
+        		ethers = etherToWei(new BigDecimal(2));
+        	}
+        	else if ((300000 < price) && (price < 500000)) {
+        		ethers = etherToWei(new BigDecimal(3));
+        	}
+        	else if ((500000 < price) && (price < 800000)) {
+        		ethers = etherToWei(new BigDecimal(4));
+        	}
+        	else if ((800000 < price) && (price < 1000000)) {
+        		ethers = etherToWei(new BigDecimal(5));
+        	}
+        	else {
+        		ethers = etherToWei(new BigDecimal(6));
+        	}
 
-    	// 구매하는 부서의 코드로 구매하게 만든다. 
-    	String department_code = "ft_01"; 
-    	
-    	// department_code를 통해 department_group_code를 가져온다.
-    	// 팀 코드를 통해 부서코드를 가져온다.
-    	BlockChainVO bc = dao.getGroupCode(department_code);
-    	String deptWallet = bc.getWallet_code();
-    	String deptname = bc.getDepartment_name();
-    	
-    	// 계정의 primary key를 접속한 부서별로 할당한다.
-    	Credentials dept_AccountNumber = Credentials.create(deptWallet);
-    	
-    	//원자재 구매시 이더를 보낼 거래처의 지갑 정보를 위해 판매자 아이디를 가져온다.
-    	String seller = req.getParameter("salesTeam");
-    	Credentials salesTeam = null;
-    	
-    	if(seller == "1팀") {
-    		salesTeam = Credentials.create("BFBBE8F7D376179A0FD9BE7DFF0697B1F2FC2CFCFB5FECD06291BFF0A28E52B5");
-    	}
-    	else if(seller == "2팀") {
-    		salesTeam = Credentials.create("391b50b29fc771d1fcb9bbbcd5f949b756ca6cd7ac3a51adf43102c44b068aee ");
-    	}
-    	else if(seller == "3팀") {
-    		salesTeam = Credentials.create("0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C");
-    	}
-    	else {
-    		salesTeam = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
-    	}
-    	
-    	//계약서 작성.
-    	contractAddress = Materal.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
-    	
-    	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
-    	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
-  
-    	String prices = req.getParameter("price");
-    	int price = Integer.parseInt(prices.replace(",", ""));
-    	
-    	BigInteger ethers = null;
-    	
-    	//가격에 해당하는 이더 설정.
-    	if(price < 100000) {
-    		ethers = etherToWei(new BigDecimal(1));
-    	}
-    	else if((100000 < price) && (price < 300000)) {
-    		ethers = etherToWei(new BigDecimal(2));
-    	}
-    	else if ((300000 < price) && (price < 500000)) {
-    		ethers = etherToWei(new BigDecimal(3));
-    	}
-    	else if ((500000 < price) && (price < 800000)) {
-    		ethers = etherToWei(new BigDecimal(4));
-    	}
-    	else if ((800000 < price) && (price < 1000000)) {
-    		ethers = etherToWei(new BigDecimal(5));
-    	}
-    	else {
-    		ethers = etherToWei(new BigDecimal(6));
-    	}
+        	byte[] name = stringToBytes32(deptname); 
+        	
+        	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
+        	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소 
+        	Materal dept = Materal.load(contractAddress, web3j, dept_AccountNumber, gasPrice, gasLimit);
 
-    	byte[] name = stringToBytes32(deptname); 
-    	
-    	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
-    	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소 
-    	Materal dept = Materal.load(contractAddress, web3j, dept_AccountNumber, gasPrice, gasLimit);
+        	// 솔리디티의 buyMaterial을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
+        	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
+        	// 두번째 매개변수는 현재 접속한 부서코드 이름.
+    		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
 
-    	// 솔리디티의 buyMaterial을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
-    	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
-    	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
+    		System.out.println(nums);
+    		// 자재를 구매했기에 DB에 입력.
+    		Material_VO mat = new Material_VO();
+    		mat.setMaterial_code(code[i]);
+    		mat.setM_price(pricece);
+    		mat.setM_amount(nums);
+    		mat.setM_note(hash);
+    		
+    		int updateCnt = dao.InsertMaterial_IO(mat);
+    		if(updateCnt == 1) {
+    			System.out.println("구매 후 DB에 등록하였습니다.");
+    		}
+    	}
+    	
     }
 	
 }

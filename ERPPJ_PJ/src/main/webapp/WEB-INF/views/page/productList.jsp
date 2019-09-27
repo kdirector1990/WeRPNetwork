@@ -49,11 +49,8 @@ function allcheck(){
 					<div class="col-sm-12">
 						<div class="card">
 							<div class="card-body">
-								<h4 class="header-title">구매페이지</h4>
-								<p class="sub-header">구매페이지</p>
-								<hr>
 								<div class="form-horizontal">
-									<form id="manageMF_plan" method="post">
+									<form id="manageMF_plan" action="InsertMaterialIo" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 										<table id="datatable"
@@ -83,7 +80,7 @@ function allcheck(){
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
 														<td><input type="text" name="price" onkeyup="removeChar(event); inputNumberFormat(this);"></td>
-														<td><input type="text" name="num" onkeyup="removeChar(event); inputNumberFormat(this);"/>
+														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
 														<td>
 														<select name="salesTeam">
 															<option value="1팀">(주)심장</option>
@@ -99,7 +96,7 @@ function allcheck(){
 										
 										<hr>
 										<div align="right">
-											<button type="button"
+											<button type="submit"
 												class="btn btn-dark waves-effect waves-light"
 												onclick=";">구매</button>
 										</div>

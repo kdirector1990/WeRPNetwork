@@ -35,6 +35,7 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_Total;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -92,10 +93,19 @@ public class FT_Controller {
 	}
 
 	@RequestMapping("FT_insertTotal")
-	public String insertTotal(Locale locale, Model model) {
+	public String insertTotal(HttpServletRequest req, Model model) {
 		logger.info("log => FT_insertTotal");
 
 		return "FT/FT_insertTotal";
+	}
+	
+	// 결산자료
+	@RequestMapping(value = "FT_insertTotalList")
+	public @ResponseBody FT_Total FT_insertTotalList(HttpServletRequest req, Model model) {
+		logger.info("url : FT_insertTotalList 호출중");
+		System.out.println("value = " + req.getParameter("year"));
+
+		return service.FT_TotalSelect(req, model);
 	}
 
 	@RequestMapping("FT_Chit_Manager")
@@ -952,38 +962,4 @@ public class FT_Controller {
 		return service.FT_CDepreciationDataList(map, model);
 	}
 	
-	// 블록체인 신청 입력
-	@RequestMapping("FT_apply_input2")
-	public String FT_apply_input2(Locale locale, Model model) {
-		logger.info("log => FT_apply_input2");
-
-		return "FT/FT_apply_input2";
-	}
-	
-	// 블록체인 신청 입력처리
-	@RequestMapping("FT_apply_input2_pro")
-	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
-		logger.info("log => FT_apply_input2_pro");
-		MSI.budgetAdd(req, model);
-		
-		return "FT/FT_apply_input2";
-	}
-	
-	// 암호화폐 편성 내역
-	@RequestMapping("FT_plan2")
-	public String FT_plan2(Locale locale, Model model) {
-		logger.info("log => FT_plan2");
-
-		return "FT/FT_plan2";
-	}
-	
-	// 부서검색을 통한 가상화폐 편성 내역 가져오기
-	@RequestMapping("FT_Ether_SelectDept")
-	@ResponseBody
-	public List<HashVO> FT_Ether_SelectDept(HttpServletRequest req, Model model) {
-		logger.info("log => FT_Ether_SelectDept");
-		List<HashVO> vo = ERP.selectDept(req, model);
-		
-		return vo;
-	}
 }
