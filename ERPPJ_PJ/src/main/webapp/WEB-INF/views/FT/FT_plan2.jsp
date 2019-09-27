@@ -124,10 +124,10 @@
 									<li class="breadcrumb-item"><a href="javascript: void(0);">WeRP</a></li>
 									<li class="breadcrumb-item"><a href="javascript: void(0);">재무</a></li>
 									<li class="breadcrumb-item"><a href="javascript: void(0);">예산</a></li>
-									<li class="breadcrumb-item active">암호화폐 편성 내역</li>
+									<li class="breadcrumb-item active">가상화폐 편성 내역</li>
 								</ol>
 							</div>
-							<h4 class="page-title">예산계획현황</h4>
+							<h4 class="page-title">가상화폐 편성 내역</h4>
 						</div>
 					</div>
 				</div>
