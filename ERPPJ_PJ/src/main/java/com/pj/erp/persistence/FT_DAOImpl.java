@@ -1108,5 +1108,174 @@ public class FT_DAOImpl implements FT_DAO{
 			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_CDepreciationDistinct", map);
 		}
 	}
+
+	// 승인처리 할 리스트
+	@Override
+	public int FT_ProductSaleCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_ProductSaleCnt", year);
+	}
+	
+	@Override
+	public int FT_ProductSale(int year) {
+		if(FT_ProductSaleCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_ProductSale", year);
+		}
+	}
+
+	@Override
+	public int FT_JepumSaleCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_JepumSaleCnt", year);
+	}
+	
+	@Override
+	public int FT_JepumSale(int year) {
+		if(FT_JepumSaleCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_JepumSale", year);
+		}
+	}
+
+	@Override
+	public int FT_BaseProductCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseProductCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseProduct(int lastyear) {
+		if(FT_BaseProductCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseProduct", lastyear);
+		}
+	}
+
+	@Override
+	public int FT_NowProductCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowProductCnt", year);
+	}
+	
+	@Override
+	public int FT_NowProduct(int year) {
+		if(FT_NowProductCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowProduct", year);
+		}
+	}
+
+	@Override
+	public int FT_BaseSourceCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseSourceCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseSource(int lastyear) {
+		if(FT_BaseSourceCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseSource", lastyear);
+		}
+	}
+	
+	@Override
+	public int FT_NowSourceCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowSourceCnt", year);
+	}
+	
+	@Override
+	public int FT_NowSource(int year) {
+		if(FT_NowSourceCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowSource", year);
+		}
+	}
+
+	@Override
+	public int FT_BaseJegongCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJegongCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseJegong(int lastyear) {
+		if(FT_BaseJegongCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJegong", lastyear);
+		}
+	}
+
+	@Override
+	public int FT_BaseJepumCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJepumCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseJepum(int lastyear) {
+		if(FT_BaseJepumCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJepum", lastyear);
+		}
+	}
+
+	@Override
+	public int FT_BaseCostCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseCostCnt", year);
+	}
+	
+	@Override
+	public int FT_BaseCost(int year) {
+		if(FT_BaseCostCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseCost", year);
+		}
+	}
+
+	@Override
+	public int FT_SaleProfitCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_SaleProfitCnt", year);
+	}
+	
+	@Override
+	public int FT_SaleProfit(int year) {
+		if(FT_SaleProfitCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_SaleProfit", year);
+		}
+	}
+
+	@Override
+	public int FT_UnsaleProfitCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleProfitCnt", year);
+	}
+	
+	@Override
+	public int FT_UnsaleProfit(int year) {
+		if(FT_UnsaleProfitCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleProfit", year);
+		}
+	}
+
+	@Override
+	public int FT_UnsaleCostCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleCostCnt", year);
+	}
+	
+	@Override
+	public int FT_UnsaleCost(int year) {
+		if(FT_UnsaleCostCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleCost", year);
+		}
+	}
 	
 }

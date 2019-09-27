@@ -10,17 +10,13 @@
 #updatePlan {
 	display: none;
 }
-
-#searchTable {
-	display: none;
-}
 </style>
 <%@ include file="../setting.jsp"%>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
 function updatePlan(){
 	var param = $("#datatable2").serializeArray();
-	alert(JSON.stringify(param));
+	/* alert(JSON.stringify(param)); */
 	$.ajax({
 		url: '/erp/MS_updatePlanPro?${_csrf.parameterName}=${_csrf.token }',
 		type: 'POST',
@@ -32,14 +28,14 @@ function updatePlan(){
 			searchCus();
 		},
 		error : function(){
-			alert("수정에 실패하였습니다.");
+			alert("전산 오류로 인하여 수정에 실패하였습니다.");
 		}
 	});
 }
 
 function deletePlan(){
 	var param = $("#datatable2").serializeArray();
-	alert(JSON.stringify(param));
+	/* alert(JSON.stringify(param)); */
 	$.ajax({
 		url: '/erp/MS_deletePlanPro?${_csrf.parameterName}=${_csrf.token }',
 		type: 'POST',
@@ -51,7 +47,7 @@ function deletePlan(){
 			searchCus();
 		},
 		error : function(){
-			alert("삭제 실패하였습니다.");
+			alert("전산 오류로 인하여 삭제에 실패하였습니다.");
 		}
 	});
 }
@@ -115,7 +111,7 @@ function searchCus() {
 				$('#bodyappend').empty();
 				
 				$('#resulttable').append(
-						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
 						'<col style="width: 10%;">'+
 						'<col style="width: 10%;">'+
 						'<col style="width: 10%;">'+
@@ -192,7 +188,7 @@ function searchCus() {
 				);
 			},
 			error : function(){
-				alert("실패.");
+				alert("전산 오류로 인하여 불러오기에 실패하였습니다.");
 			}
 		});
 }
@@ -237,10 +233,11 @@ function searchCus() {
 										<tr class="form-group row">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">사원</th>
-											<td class="col-md-2 input-group"><input type="text"
-												name="username" id="username" class="form-control"
+											<td class="col-md-2 input-group">
+											<input type="text" name="username" id="username" class="form-control"
 												onclick="ST_searchUsername();" onkeyup="enterkey();">
-												<input type="text" name="e_name" id="e_name"
+											</td>
+											<td class="col-md-2 input-group"><input type="text" name="e_name" id="e_name"
 												class="form-control" readonly></td>
 
 										</tr>
@@ -248,7 +245,7 @@ function searchCus() {
 								</form>
 								<div align="right">
 									<button type="button"
-										class="btn btn-dark waves-effect waves-light"
+										class="btn btn-primary waves-effect waves-light"
 										onclick="searchCus();">조회</button>
 								</div>
 							</div>

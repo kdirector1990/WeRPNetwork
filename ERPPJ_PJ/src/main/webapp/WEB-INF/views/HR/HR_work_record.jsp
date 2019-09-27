@@ -1531,11 +1531,12 @@
 												<th class="col-md-1 col-form-label">사원이름</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="e_name" class="form-control"></td>
-												<td class="col-md-2 input-group"><button type="button"
-														class="btn btn-primary waves-effect waves-light"
-														onclick="searchWork();">검색</button></td>
 											</tr>
 										</table>
+										<div align="right">
+											<button type="button"
+												class="btn btn-primary waves-effect waves-light" onclick="searchWork();">조회</button>
+										</div>
 									</form>
 								</div>
 							</div>
