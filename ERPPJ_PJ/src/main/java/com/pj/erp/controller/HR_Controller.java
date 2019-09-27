@@ -544,9 +544,9 @@ public class HR_Controller {
 	// 인사발령공고들
 	@RequestMapping(value = "HR_position_record_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
-	public List<HR_VO> HR_position_record_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+	public List<HR_RecordVO> HR_position_record_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_position_record_result");
-		List<HR_VO> list = service.getPositions(map, req, model);
+		List<HR_RecordVO> list = service.getPositions(map, req, model);
 		return list;
 	}
 	

@@ -164,7 +164,7 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <div class="card">
+                                <div classs="card">
                                     <div class="card-body">
         
                                         <h5 class="header-title">Inline edit with Button</h5>

@@ -35,6 +35,7 @@ import com.pj.erp.vo.FT.FT_Long_Borrow_List;
 import com.pj.erp.vo.FT.FT_Plan_Result;
 import com.pj.erp.vo.FT.FT_Short_Borrow_List;
 import com.pj.erp.vo.FT.FT_Subject;
+import com.pj.erp.vo.FT.FT_Total;
 import com.pj.erp.vo.FT.FT_facility_list_VO;
 import com.pj.erp.vo.FT.FT_land_list_VO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -92,10 +93,19 @@ public class FT_Controller {
 	}
 
 	@RequestMapping("FT_insertTotal")
-	public String insertTotal(Locale locale, Model model) {
+	public String insertTotal(HttpServletRequest req, Model model) {
 		logger.info("log => FT_insertTotal");
 
 		return "FT/FT_insertTotal";
+	}
+	
+	// 결산자료
+	@RequestMapping(value = "FT_insertTotalList")
+	public @ResponseBody FT_Total FT_insertTotalList(HttpServletRequest req, Model model) {
+		logger.info("url : FT_insertTotalList 호출중");
+		System.out.println("value = " + req.getParameter("year"));
+
+		return service.FT_TotalSelect(req, model);
 	}
 
 	@RequestMapping("FT_Chit_Manager")
