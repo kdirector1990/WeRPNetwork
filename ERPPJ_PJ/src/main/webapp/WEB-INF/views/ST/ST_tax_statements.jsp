@@ -5,6 +5,10 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <!-- Table datatable css -->
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
 <link
 	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
@@ -25,18 +29,146 @@
 <link
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
-</head>
-
 <script type="text/javascript">
-    function multiSelect(value){
-
-    	 if(value=="OPEN") Div.style.visibility="visible";
-
-    	 else Div.style.visibility="hidden";
-
-    	}
+var searchCount = 1;
+$(function(){
+	$('#search').click(function(){
+		var param = new Object();
+		var jsonData;
+		
+		param.stored_name = $("#storedName").val();
+		param.release_name = $("#releaseName").val();
+		param.username = $("#username_2").val();
+		
+		var temp = new Date($("#userdate1").val());
+		var year = temp.getFullYear();
+		var temp_month = (1+temp.getMonth());
+		var month = "0";
+		if(temp_month<10){
+			month = "0"+temp_month
+		}else{
+			month = temp_month;
+		}
+		var day = "1";
+		var temp_day = temp.getDate();
+		if(temp_day<10){
+			day = "0"+temp_day;
+		}else{
+			day = temp_day;
+		}
+		
+		var date1 = year+"-"+month+"-"+day; 
+		
+		param.userdate1 = date1;
+		
+		var temp2 = new Date($("#userdate2").val());
+		var year2 = temp2.getFullYear();
+		var temp_month2 = (1+temp2.getMonth());
+		var month2 = "0";
+		if(temp_month2<10){
+			month2 = "0"+temp_month2
+		}else{
+			month2 = temp_month2;
+		}
+		var day2 = "1";
+		var temp_day2 = temp2.getDate();
+		if(temp_day2<10){
+			day2 = "0"+temp_day2;
+		}else{
+			day2 = temp_day2;
+		}
+		
+		var date2 = year2+"-"+month2+"-"+day2; 
+		param.userdate2 = date2; 
+		  
+				
+		jsonData = JSON.stringify(param); 
+		$.ajax({
+			url : '${pageContext.request.contextPath}/ST_tax_result?${_csrf.parameterName}=${_csrf.token }',
+			type : 'POST',
+			data : jsonData, 
+			dataType : "json",
+			contentType:"application/json;charset=UTF-8", 
+			success : function(list){
+				
+				$('#resulttable').empty();
+				$('#bodyappend').empty();
+				
+				$('#resulttable').append(
+				'<table id="datatable-buttons"	class="table table-striped table-bordered dt-responsive nowrap"	style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
+					'<thead class="bg-primary text-white">'+
+						'<tr>'+
+							'<th>거래처명</th>'+
+							'<th>사업자 번호</th>'+
+							'<th>대표자명</th>'+
+							'<th>등록일자</th>'+
+							'<th>사업부문</th>'+
+							'<th>담당자</th>'+
+							'<th>금액</th>'+
+						'</tr>'+
+					'</thead>'+
+					'<tbody id="result_2">'+
+					'</tbody>'+
+				'</table>' );
+				
+				for(var i = 0 ; i < list.length; i++){
+					var stored_name = list[i].stored_name;
+					var license_number = list[i].license_number;
+					var bs_name = list[i].bs_name;
+					var release_date = list[i].release_date;
+					var bs_condition = list[i].bs_condition;
+					var unit_cost = list[i].unit_cost;
+					var e_name = list[i].e_name;
+					
+					var unit_cost = list[i].unit_cost;
+				
+					var release_count = list[i].release_count;
+					var sar_type = list[i].sar_type;
+					var release_count = list[i].release_count;
+					var co = unit_cost*release_count;
+					var re = co*0.1;
+					 
+					$('#result_2').append('<tr>'+
+							'<td>'+ stored_name +'</td>'+ 
+                        	'<td>'+ license_number +'</td>'+ 
+                        	'<td>'+ bs_name +'</td>'+
+                        	'<td>'+ release_date +'</td>'+ 
+							'<td>'+ bs_condition +'</td>'+ 
+							'<td>'+ e_name +'</td>'+
+							'<td>'+ re +'원</td>'+
+                		'</tr>');
+				}
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
+				
+				
+				
+			},
+			error : function(){
+				alert("에러");
+			}
+		});
+	}); 
+});
     
-    </script>
+</script>
 
 <body>
 
@@ -79,96 +211,41 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
+									<table class="col-12">
+										<tr class="form-group row">
+												<th>거래처명</th>
+												<td class="col-md-2 input-group"><input type="text" name="storedName" id="storedName" class="form-control"></td>
 
-									<div class="table-responsive">
-										<table id="datatable"
-											style="border-collapse: 10px; border-spacing: 10px; width: 100%; padding: 10px;">
-											<tr>
-												<td>사업장</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-
-												<td>부서</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class="">
-												<td>담당자 <input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class="">
-												</td>
-											</tr>
-
-											<tr>
-												<td>발행기간</td>
-												<td><input type="date" id="userdate" name="userdate"
-													value="sysdate">&nbsp;~&nbsp;<input type="date"
-													id="userdate" name="userdate" value="sysdate"></td>
-												<td>납품처</td>
-												<td><input type="text" class="">&nbsp;<a
-													href="#"><i class="dripicons-zoom-in"></i></a><input
-													type="text" class=""></td>
-
-												<td>거래구분
-													<table style="cursor: pointer"
-														onClick="multiSelect('OPEN')">
-														<tr>
-															<td>&nbsp;&nbsp;&nbsp;<input type="button" value="▼"
-																onclick=""></td>
-														</tr>
-													</table>
-													<div id="Div"
-														style="position: absolute; visibility: hidden; font-size: 12px;">
-														<ul>
-															<li><input type="checkbox" name="chk1" id="chk1">0.
-																DOMESTIC</li>
-															<li><input type="checkbox" name="chk2" id="chk2">1.
-																LOCAL L/C</li>
-															<li><input type="checkbox" name="chk3" id="chk3">2.
-																구매승인서</li>
-															<li><input type="checkbox" name="chk4" id="chk4">7.
-																유상사급</li>
-														</ul>
-														<div style="padding-top: 3px; text-align: right">
-															<input type="button" value="확인"
-																onClick="multiSelect('CLOSE')">
-														</div>
-													</div>
-												</td>
-											</tr>
-
-											<tr>
-												<td><select class="" name="">
-														<option value="">0.계산서 번호</option>
-														<option value="">1. 비 고</option>
-												</select></td>
-												<td><input type="text" class=""></td>
+												<th>담당자</th>
+												<td class="col-md-2 input-group"><input type="text" name="username_2" id="username_2" class="form-control">
+												
+												<th>등록 기간</th>
+												<td class="col-md-2 input-group">
+												<input type="date" id="userdate1" pattern="YYYY-MM-DD" name="userdate1" class="form-control" value="2019-01-01">&nbsp;&nbsp;&nbsp;__</td>
+												<td class="col-md-2 input-group"><input type="date" id="userdate2" name="userdate2" class="form-control" value="2019-12-31"></td>
+												
+												<td><button type="button" class="btn btn-primary waves-effect waves-light" id="search" name="search">조회</button></td>
 											</tr>
 										</table>
-									</div>
-
-									<table id="datatable-buttons"
+										
+								<div id = "resulttable">
+								</div>
+								<!-- 	<table id="datatable-buttons"
 										class="table table-striped table-bordered dt-responsive nowrap"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
 										<thead>
 											<tr>
-												<th>선택 <input type="checkbox" name="chk"></th>
-												<th>순번</th>
-												<th>거래처명</th>
+												<th>거래처명</th>입고처
 												<th>사업자 번호</th>
 												<th>대표자명</th>
-												<th>등록일자</th>
+												<th>등록일자</th>release_date
 												<th>사업 부문</th>
 												<th>담당자</th>
-												<th>부가세 처리</th>
-												<th>상세</th>
+												<th>금액</th>
 											</tr>
 										</thead>
-
-
 										<tbody>
-											<tr>
+											 <tr>
 												<td><input type="checkbox" name="chk"></td>
 												<td>001</td>
 												<td>무한상사</td>
@@ -179,24 +256,9 @@
 												<td>권돼지</td>
 												<td>별도 10%</td>
 												<td><a href="#">보기</a></td>
-												<!-- json으로 밑 부분에 세금 상세 내역서를 표시하거나 새로운 페이지를 띄워서 확인할 수 있게 만들어야 할 것 같아요 -->
 											</tr>
-
-											<tr>
-												<td><input type="checkbox" name="chk"></td>
-												<td>002</td>
-												<td>유한상사</td>
-												<td>001-12-554812</td>
-												<td>박명수</td>
-												<td>2018-04-06</td>
-												<td>개발</td>
-												<td>이은미</td>
-												<td>면세</td>
-												<td><a href="#">보기</a></td>
-											</tr>
-
 										</tbody>
-									</table>
+									</table> -->
 								</div>
 							</div>
 						</div>
@@ -214,53 +276,22 @@
 
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-	<!-- Vendor js -->
-	<script src="/erp/resources/assets/js/vendor.min.js"></script>
+	
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-	<!-- Bootstrap select plugin -->
-	<script
-		src="/erp/resources/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
-
-	<!-- Datatable plugin js -->
-	<script
-		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
-
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-	<script
-		src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
-
-	<script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-	<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-	<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
-
-	<script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
-
-	<!-- App js -->
-	<script src="/erp/resources/assets/js/app.min.js"></script>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 
 </body>
 </html>

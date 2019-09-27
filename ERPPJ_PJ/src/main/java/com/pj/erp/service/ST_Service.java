@@ -18,6 +18,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TaxDetails;
 import com.pj.erp.vo.ST.TransactionDetails;
 
 public interface ST_Service {
@@ -106,6 +107,9 @@ public interface ST_Service {
 	// 거래 명세서 검색 기능
 	public List<TransactionDetails> getdate (Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
 	
+	// 세금 명세서 검색 기능
+	public List<TaxDetails> getTax (Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException;
+	
 	
 	
 	// Product 검색
@@ -119,10 +123,6 @@ public interface ST_Service {
 	
 	// Customer 검색
 	public void searchCustomer2(HttpServletRequest req, Model model);
-	
-	
-	// tables-datatable (거래 명세서) 목록
-	public void transaction(HttpServletRequest req, Model model);
 	
 	//매출 - 고객
 	public List<ST_searchCustomerCode> searchCustomerCode(HttpServletRequest req, Model model);

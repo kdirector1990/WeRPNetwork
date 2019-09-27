@@ -1,6 +1,5 @@
 package com.pj.erp.vo.ST;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class TransactionDetails {
@@ -16,6 +15,7 @@ public class TransactionDetails {
 	private String e_name;	// 담당자
 	private int unit_cost;	// 단가
 	private String product_name;	// 품목
+	
 	
 	public TransactionDetails() {}
 
