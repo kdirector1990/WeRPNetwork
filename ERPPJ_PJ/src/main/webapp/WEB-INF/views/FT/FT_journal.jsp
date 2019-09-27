@@ -136,6 +136,8 @@
 	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_name + '" name = "AccName' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly></td>' +
 	                                            '</tr>');
 										}
+			                    	   } else {
+			                    		   alert("데이터가 없습니다.");
 			                    	   }
 		                       },
 		                       error : function(e) {
