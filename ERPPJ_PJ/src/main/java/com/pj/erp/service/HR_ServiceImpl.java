@@ -767,10 +767,9 @@ public class HR_ServiceImpl implements HR_Service {
 	}
 
 	@Override
-	public List<HR_VO> getPositions(Map<String, Object> map, HttpServletRequest req, Model model)
-			throws ParseException {
+	public List<HR_RecordVO> getPositions(Map<String, Object> map, HttpServletRequest req, Model model)	throws ParseException {
 
-		List<HR_VO> list = dao.getPositions(map);
+		List<HR_RecordVO> list = dao.getPositions(map);
 		return list;
 
 	}
