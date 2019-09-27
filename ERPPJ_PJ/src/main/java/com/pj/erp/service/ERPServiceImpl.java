@@ -21,6 +21,7 @@ import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 
@@ -201,7 +202,13 @@ public class ERPServiceImpl implements ERPService{
 		return vo;
 	}
 	
-	
-	
+	//암호화폐로 산 목록 뿌리기
+	@Override
+	public void selectMaterals(HttpServletRequest req, Model model) {
+		
+		List<Material_VO> vo = dao.selectMateral();
+		
+		model.addAttribute("dto", vo);
+	}
 	
 }

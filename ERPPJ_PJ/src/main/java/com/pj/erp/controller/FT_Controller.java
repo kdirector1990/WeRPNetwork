@@ -952,38 +952,4 @@ public class FT_Controller {
 		return service.FT_CDepreciationDataList(map, model);
 	}
 	
-	// 블록체인 신청 입력
-	@RequestMapping("FT_apply_input2")
-	public String FT_apply_input2(Locale locale, Model model) {
-		logger.info("log => FT_apply_input2");
-
-		return "FT/FT_apply_input2";
-	}
-	
-	// 블록체인 신청 입력처리
-	@RequestMapping("FT_apply_input2_pro")
-	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
-		logger.info("log => FT_apply_input2_pro");
-		MSI.budgetAdd(req, model);
-		
-		return "FT/FT_apply_input2";
-	}
-	
-	// 암호화폐 편성 내역
-	@RequestMapping("FT_plan2")
-	public String FT_plan2(Locale locale, Model model) {
-		logger.info("log => FT_plan2");
-
-		return "FT/FT_plan2";
-	}
-	
-	// 부서검색을 통한 가상화폐 편성 내역 가져오기
-	@RequestMapping("FT_Ether_SelectDept")
-	@ResponseBody
-	public List<HashVO> FT_Ether_SelectDept(HttpServletRequest req, Model model) {
-		logger.info("log => FT_Ether_SelectDept");
-		List<HashVO> vo = ERP.selectDept(req, model);
-		
-		return vo;
-	}
 }
