@@ -132,7 +132,7 @@ public class MateralServiceImpl {
 	public void payMaterial(HttpServletRequest req) throws Exception {
 
     	// 구매하는 부서의 코드로 구매하게 만든다. 
-    	String department_code = (String) req.getSession().getAttribute("dCode");
+    	String department_code = "ft_01"; 
     	
     	// department_code를 통해 department_group_code를 가져온다.
     	// 팀 코드를 통해 부서코드를 가져온다.
@@ -164,7 +164,11 @@ public class MateralServiceImpl {
     	contractAddress = Materal.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
-    	int price = Integer.parseInt(req.getParameter("money"));
+    	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
+  
+    	String prices = req.getParameter("price");
+    	int price = Integer.parseInt(prices.replace(",", ""));
+    	
     	BigInteger ethers = null;
     	
     	//가격에 해당하는 이더 설정.
