@@ -40,7 +40,6 @@
     var searchCount = 1;
     
     function SelectRR(type){
-    	alert(type);
     	$.ajax({
   			url: '/erp/CT_Select_RP?${_csrf.parameterName }=${_csrf.token }',
   			type: 'POST',
@@ -125,13 +124,11 @@
     }
     
     function RepairUp(code){
-    	alert(code);
     	$.ajax({
   			url: '/erp/CT_update_RPW?${_csrf.parameterName}=${_csrf.token }&rr_code='+code,
   			type: 'POST',
   			dataTpye: 'json',
   			success: function(vo){
-  				alert("작동");
   				
   				$('#result2').empty();
   				document.getElementById("seoncdR").style.display="block";
@@ -231,7 +228,8 @@
   				
   				if(updateCnt == 1){
   					document.getElementById("seoncdR").style.display="none";
-  	  				alert("수리일지를 수정하였습니다.");  					
+  	  				alert("수리일지를 수정하였습니다.");
+  	  				window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_reqair_list";
   				}
   			},
   			error : function(){
@@ -251,7 +249,8 @@
   				
   				if(deleteCnt == 1){
   					document.getElementById("seoncdR").style.display="none";
-  	  				alert("수리일지를 폐기하였습니다.");  					
+  	  				alert("수리일지를 폐기하였습니다.");
+  	  			window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_reqair_list";
   				}
   			},
   			error : function(){
