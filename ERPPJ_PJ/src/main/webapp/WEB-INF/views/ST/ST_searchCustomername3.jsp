@@ -37,7 +37,7 @@ function callback() {
 	
 	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
 		if(!document.searchName.customer_name.value){
-			alert("거래처명을 입력하세요.");
+			alert("거래처명을  입력하세요.");
 			location.reload();
 			document.searchName.customer_name.focus();
 			return false;
@@ -67,7 +67,10 @@ function setName(customer_name, customer_code) {
 	opener.document.getElementById("customer_codeM").value = customer_code;
 
 	//test alert
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	$("#customer_nameM", opener.document).val(customer_name); //jquery 이용
 	$(opener.document).find("#customer_nameM").val(customer_name); //find를 이용한 jquery
 	
