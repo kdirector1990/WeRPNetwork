@@ -54,7 +54,7 @@
 					var totals = 0;
 					
 					$('#resulttable').append(
-							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
 							'<col style="width: 10%;">'+
 							'<col style="width: 10%;">'+
 							'<col style="width: 15%;">'+
@@ -224,9 +224,8 @@
 							</div>
 						</div>
 					</div>
+				
 				</div>
-
-
 
 				<%@ include file="../footer.jsp"%>
 
