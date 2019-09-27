@@ -432,5 +432,12 @@ public class CT_ServiceImpl implements CT_Service{
 		return updateCnt;
 	}
 
+	//부서검색 파트
+	@Override
+	public void selectDeptS(HttpServletRequest req, Model model) {
+		List<CT_Depart_VO> vo = dao.selectDEPTVO();
+		model.addAttribute("vo", vo);
+	}
+
 
 }

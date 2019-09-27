@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.CT.CT_AS_VO;
+import com.pj.erp.vo.CT.CT_Depart_VO;
 import com.pj.erp.vo.CT.CT_RP_VO;
 import com.pj.erp.vo.CT.CT_VO;
 
@@ -79,4 +80,7 @@ public interface CT_Service {
 	
 	//수리일지 폐기처리 하기
 	public int RpDelUpdate(HttpServletRequest req, Model model);
+	
+	//부서검색 가져오기
+	public void selectDeptS(HttpServletRequest req, Model model);
 }
