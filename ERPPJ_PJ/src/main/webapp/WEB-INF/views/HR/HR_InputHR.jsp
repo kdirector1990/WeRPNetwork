@@ -78,8 +78,11 @@
         		var url = "HR_userChk?username=" + document.inputPhysicaly.username.value;
         		window.open(url, "confirm", "menubar=no, width=300, height=200");
         		// -> confirmId.do 서블릿 지정
-        	}
-        </script>
+        	}   	
+        	
+        		
+        	
+</script>
 </head>
 
 <body>
@@ -185,7 +188,7 @@
 																					name="e_gender" class="custom-control-input"
 																					value="1" checked> <label
 																					class="custom-control-label"
-																					for="customRadioInline1" id = "g_male">남성</label>
+																					for="customRadioInline1" id="g_male">남성</label>
 																			</div>
 																			<div
 																				class="custom-control custom-radio custom-control-inline mb-2">
@@ -193,7 +196,7 @@
 																					name="e_gender" class="custom-control-input"
 																					value="2"> <label
 																					class="custom-control-label"
-																					for="customRadioInline2" id = "g_female">여성</label>
+																					for="customRadioInline2" id="g_female">여성</label>
 																			</div>
 																		</div>
 																	</div>
@@ -242,19 +245,12 @@
 															</div>
 														</div>
 														<div class="form-group row">
-															<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span
+															<label class="col-md-1 col-form-label" for="simpleinput">주소<span
 																class="text-danger">*</span></label>
-															<div class="col-md-4">
+															<div class="col-md-10">
 																<input type="text" class="form-control"
-																	name="e_address1" placeholder="주민등록주소" size="13">
-															</div>
-															<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>
-															<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span
-																class="text-danger">*</span></label>
-															<div class="col-md-4">
-																<input type="text" class="form-control"
-																	name="e_address2" placeholder="상세주소" size="13">
-															</div>
+																	name="e_address" placeholder="주소" >
+															</div>															
 														</div>
 														<div class="form-group row">
 															<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span
