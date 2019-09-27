@@ -60,8 +60,6 @@ function setName(customer_name, deal_state, customer_code) {
 	opener.document.getElementById("deal_stateP").value = deal_state;
 	opener.document.getElementById("customer_codeP").value = customer_code;
 	//test alert
-	alert(customer_name, deal_state, customer_code);
-	
 	$("#customer_nameP", opener.document).val(customer_name); //jquery 이용
 	$(opener.document).find("#customer_nameP").val(customer_name); //find를 이용한 jquery
 	

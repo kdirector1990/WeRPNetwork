@@ -9,7 +9,7 @@
 
 	
 			function searchdept() {
-				window.open("ST_searchDepartmentname", "ST_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+				window.open("ST_searchDepartmentname3", "ST_searchDepartmentname3", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 			}
 			
         </script>
