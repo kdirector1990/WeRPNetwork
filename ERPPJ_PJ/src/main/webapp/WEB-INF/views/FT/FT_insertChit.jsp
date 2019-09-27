@@ -302,7 +302,6 @@
 	        		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임
 	        		jsonData = JSON.stringify(obj);
 	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
-	        		alert((new Date(obj.year, obj.month, 0)).getDate());
 	        		$.ajax({
 	                       type : "POST",
 	                       url : "/erp/FT_chitMaxNumber?${_csrf.parameterName }=${_csrf.token }",
@@ -488,7 +487,6 @@
         		} else if(window.event.which == 38) {
                 	updatekey = 1;
                 	selectval = $("#enter" + cc).val();
-                	alert("#enter" + (cc-1));
                 	$("#enter" + (cc-1)).focus();
 					return false;
         		} else if(window.event.which == 39) {
@@ -578,11 +576,9 @@
         	}
         	
         	function chitdelete() {
-        		alert(focusval);
         		if(!focusval){
         			alert("등록되어 있는 분개를 선택해주세요!")
         		} else {
-            		alert($("input[name=key" + focusval + "]").val());
 	        		var obj = new Object();
 	        		var jsonData;
 	        	
