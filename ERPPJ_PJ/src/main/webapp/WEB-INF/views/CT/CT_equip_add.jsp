@@ -16,8 +16,8 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         	
         	function focuse(s) {
         		var name = s;
-        		$(".spoat-table-bordered-primary tbody *").focus(function() {
-        			$(".spoat-table-bordered-primary tbody *").css("background-color", "");
+        		$(".table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered *").focus(function() {
+        			$(".table m-0 chit-table-colored-bordered chit-table-bordered-primary tbody *").css("background-color", "");
         			$(this).parent().parent().children().children().css("background-color", "#E8F8F5");
         			$(this).parent().parent().children().css("background-color", "#E8F8F5");
         			$(this).css("background-color", "");
@@ -49,46 +49,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         						return false;
         					}
         				}
-        			} }/*  else if(window.event.which == 9){
-        				$("*[name=" + dd +"]").parent().prev().children().focus();
-        				return false;
-        			}
-        			else if(window.event.which == 37){
-        				alert("동작2")
-        				for(var i = 0; i < $("input[name=" + dd + "]").parent().prevAll().children().length; i++){
-        					nowme = nowme.prev();
-        					if(!nowme.children().attr("readonly")){
-        						nowme.children().focus();
-        						return false;
-        					}
-        				}
-        			}
-        			else if(window.event.which == 38){
-        				alert("동작3")
-        				$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1,dd.length)) -1) + "]").focus();
-        			}
-        			else if(window.event.which == 39){
-        				alert("동작4")
-        				for(var i = 0; i < $("input[name=" + dd +"]").parent().nextAll().children().length; i++){
-        					nowme = nowme.next();
-        					if(!nowme.children().attr("readonly")){
-        						nowme.children().focus();
-        						return false;
-        					}
-        				}
-        			}
-        			else if(window.event.which == 40){
-        				alert("동작5")
-        				$("input[name=" + dd.substring(0, dd.length-1) + (parseInt(dd.substring(dd.length-1, dd.length)) + 1) +"]").focus();
-        			} */
-        		/* }
-        		 else if(cc == "SELECT"){
-    				if(window.event.which == 9){
-    					$("select[name=" + dd +"]").parent().prev().children().focus();
-    				} 	
-    			}
-        		/* alert(window.event.which) */
-    			/* $("input[name=" + cc + "]").parent().next().children().focus(); */
+        			} }
         	}
         	
         	function change(cc){
@@ -98,14 +59,13 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         	$(document).ready(function(){
         		$("#enter").keydown(function(key){
         			if(key.keyCode == 13){
-        				alert("엔터키 작동합니다.");
         				enterinsert(cc);
         			}
         		});
         	});
         	
         	function add(){
-        		$(".spoat-table-bordered-primary tbody").append('<tr>' +
+        		$("#addtable tbody").append('<tr>' +
         					'<td><input type="text" onfocus = "focuse();" name = "ceq_name' + count + '" id="first" onkeyup = "enter(this.tagName, this.name);" class="form-control"  placeholder = "ex)전산처리기계" style = "width: 100%; border:0px;" autofocus></td>' +
                             '<td><select class="form-control" onfocus = "focuse();" name = "ceq_type' + count + '" style = "width: 100%; -webkit-appearance: none; border:0px;" onchange="enter(this.tagName, this.name);">' +
                             	'<option value="">선택</option>' +
@@ -132,7 +92,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
                    			'<option value="정액법">정액법' +
                    			'</select> </td>' +
                        '</tr>');
-       			 $(".spoat-table-bordered-primary tbody #first").focus();
+       			 $(".table m-0 chit-table-colored-bordered chit-table-bordered-primary #first").focus();
        			count = count + 1;
         	}
         	
@@ -143,7 +103,6 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
         	
         	function Insert(){
         		var param = $("#CTinsert").serializeArray();
-        		alert(JSON.stringify(param));
         		$.ajax({
         			url: '/erp/CT_subject_add',
         			type: 'POST',
@@ -214,7 +173,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 									<input type="hidden" name="${_csrf.parameterName }"
 										value="${_csrf.token }">
 									<table
-										class="table m-0 spoat-table-colored-bordered spoat-table-bordered-primary table-bordered" id="addtable">
+										class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered" id="addtable">
 										<!-- <col style="width: 12%">
 										<col style="width: 13%;">
 										<col style="width: 7%">
