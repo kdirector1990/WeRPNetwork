@@ -5,6 +5,10 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <!-- Table datatable css -->
+<link rel="stylesheet" type="text/css"
+	href="/erp/resources/assets/libs/c3/c3.min.css">
+<script src="/erp/resources/assets/css/js/jquery-3.4.1.min.js"></script>
+<script src="/erp/resources/assets/css/js/request.js"></script>
 <link
 	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
@@ -25,64 +29,132 @@
 <link
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
-</head>
 <script type="text/javascript">
 var searchCount = 1;
 $(function(){
 	$('#search').click(function(){
 		var param = new Object();
 		var jsonData;
-					
-		param.customer_name = $("#customerName").val();
+		
+		param.stored_name = $("#storedName").val();
+		param.release_name = $("#releaseName").val();
 		param.username = $("#username_2").val();
-		param.product_name = $("#ProductName").val();
+		
+		var temp = new Date($("#userdate1").val());
+		var year = temp.getFullYear();
+		var temp_month = (1+temp.getMonth());
+		var month = "0";
+		if(temp_month<10){
+			month = "0"+temp_month
+		}else{
+			month = temp_month;
+		}
+		var day = "1";
+		var temp_day = temp.getDate();
+		if(temp_day<10){
+			day = "0"+temp_day;
+		}else{
+			day = temp_day;
+		}
+		
+		var date1 = year+"-"+month+"-"+day; 
+		
+		param.userdate1 = date1;
+		
+		var temp2 = new Date($("#userdate2").val());
+		var year2 = temp2.getFullYear();
+		var temp_month2 = (1+temp2.getMonth());
+		var month2 = "0";
+		if(temp_month2<10){
+			month2 = "0"+temp_month2
+		}else{
+			month2 = temp_month2;
+		}
+		var day2 = "1";
+		var temp_day2 = temp2.getDate();
+		if(temp_day2<10){
+			day2 = "0"+temp_day2;
+		}else{
+			day2 = temp_day2;
+		}
+		
+		var date2 = year2+"-"+month2+"-"+day2; 
+		param.userdate2 = date2; 
+		  
 				
 		jsonData = JSON.stringify(param); 
 		$.ajax({
-			url : '${pageContext.request.contextPath}/tables_datatable_result?${_csrf.parameterName}=${_csrf.token }',
+			url : '${pageContext.request.contextPath}/ST_tables_datatable_result?${_csrf.parameterName}=${_csrf.token }',
 			type : 'POST',
 			data : jsonData, 
 			dataType : "json",
 			contentType:"application/json;charset=UTF-8", 
 			success : function(list){
 				
-				$('#result_2').empty();
+				$('#resulttable').empty();
+				$('#bodyappend').empty();
+				
+				$('#resulttable').append(
+				'<table id="datatable-buttons"	class="table table-striped table-bordered dt-responsive nowrap"	style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
+					'<thead class="bg-primary text-white">'+
+						'<tr>'+
+							'<th>출고 코드</th>'+
+							'<th>품목</th>'+
+							'<th>거래 요청일</th>'+
+							'<th>출고일자</th>'+
+							'<th>입고처</th>'+
+							'<th>출고처</th>'+
+							'<th>출고구분</th>'+
+							'<th>단가구분</th>'+
+							'<th>수량</th>'+
+							'<th>담당자</th>'+
+						'</tr>'+
+					'</thead>'+
+					'<tbody id="result_2">'+
+					'</tbody>'+
+				'</table>' );
 				
 				for(var i = 0 ; i < list.length; i++){
 					var sar_code = list[i].sar_code;
-					var unit_cost = list[i].unit_cost;						
 					var stored_count = list[i].stored_count;
 					var release_count = list[i].release_count;
 					var stored_name = list[i].stored_name;
 					var release_name = list[i].release_name;
+					var unit_cost = list[i].unit_cost;
+					var amount = list[i].amount;
 					
 					var sar_type = list[i].sar_type;
 				
 					var e_name = list[i].e_name;
 					var product_name = list[i].product_name;
 					
-					var release_date = list[i].release_date;
-					var pa = new Date(release_date);
+					var regdate = list[i].reg_date;
+					var pa = new Date(regdate);
 					var year = pa.getFullYear();
 					var month = (1+pa.getMonth());
 					var day = pa.getDate(); 
 					var rel_date = year + "/" + month +"/"+day;
 					
-					$('#result_2').append('<tr onclick="ST_releaseDetailForm(\''+sar_code+'\')">'+
+					var releasedate = list[i].release_date;
+					var pa = new Date(releasedate);
+					var year = pa.getFullYear();
+					var month = (1+pa.getMonth());
+					var day = pa.getDate(); 
+					var rele_date = year + "/" + month +"/"+day;
+					 
+					$('#result_2').append('<tr>'+
 							'<td>'+ sar_code +'</td>'+ 
                         	'<td>'+ product_name +'</td>'+ 
-                        	'<td>'+ release_name +'</td>'+
-                        	'<td>'+ rel_date +'</td>'+ 
-							'<td>'+ release_count +'</td>'+ 
-							'<td>'+ stored_name +'</td>'+
-							'<td>'+ stored_count +'</td>'+
-							'<td>'+ e_name + '</td>'+
+                        	'<td>'+ rel_date +'</td>'+
+                        	'<td>'+ rele_date +'</td>'+ 
+							'<td>'+ stored_name +'</td>'+ 
+							'<td>'+ release_name +'</td>'+
 							'<td>'+ sar_type +'</td>'+
-							'<td>'+ unit_cost +'</td>'+
-							'<td>'+ unit_cost*release_count +'</td>'+
+							'<td>'+ unit_cost + '</td>'+
+							'<td>'+ amount +'</td>'+
+							'<td>'+ e_name +'</td>'+
                 		'</tr>');
-				
-				if(searchCount == 1){
+				}
 				$('#bodyappend').append(
 				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -102,11 +174,8 @@ $(function(){
 				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 				);
-				searchCount = searchCount + 1;
-				}
 				
 				
-				}
 				
 			},
 			error : function(){
@@ -161,8 +230,11 @@ $(function(){
 								<div class="card-body table-responsive">
 									<table class="col-12">
 										<tr class="form-group row">
-											<th>거래처</th>
-											<td class="col-md-2 input-group"><input type="text" name="customerName" id="customerName" class="form-control"></td>
+											<th>입고처</th>
+											<td class="col-md-2 input-group"><input type="text" name="storedName" id="storedName" class="form-control"></td>
+											
+											<th>출고처</th>
+											<td class="col-md-2 input-group"><input type="text" name="releaseName" id="releaseName" class="form-control"></td>
 
 											<th>담당자</th>
 											<td class="col-md-2 input-group"><input type="text"
@@ -170,24 +242,23 @@ $(function(){
 				
 											<th>출고 기간</th>
 											<td class="col-md-2 input-group">
-											<input type="date" id="userdate" name="userdate" class="form-control">&nbsp;&nbsp;&nbsp;__</td>
-											<td class="col-md-2 input-group"><input type="date" id="userdate" name="userdate" class="form-control"></td>
-											
-												
-												<td class="col-md-2 input-group"><button type="button" 
-														class="btn btn-primary waves-effect waves-light" id="search">조회</button></td>
+											<input type="date" id="userdate1" pattern="YYYY-MM-DD" name="userdate1" class="form-control" value="2019-01-01">&nbsp;&nbsp;&nbsp;__</td>
+											<td class="col-md-2 input-group"><input type="date" id="userdate2" name="userdate2" class="form-control" value="2019-12-31"></td>
+												<td ><button type="button" 
+														class="btn btn-primary waves-effect waves-light" id="search" name="search">조회</button></td>
 										</tr>
 									</table>
-
-									<table id="datatable-buttons"
+									<div id = "resulttable">
+									</div>
+									<!-- <table id="datatable-buttons"
 										class="table table-striped table-bordered dt-responsive nowrap"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-										<thead>
+										<thead class="bg-primary text-white">
 											<tr>
 												<th>출고 코드</th>
 												<th>품목</th>
-												<th>거래 요청일</th><!-- 판매 대장 등록일 -->
-												<th>출고일자</th><!-- 출고 리스트 등록일 -->
+												<th>거래 요청일</th>판매 대장 등록일
+												<th>출고일자</th>출고 리스트 등록일
 												<th>입고처</th>
 												<th>출고처</th>
 												<th>출고구분</th>
@@ -196,10 +267,8 @@ $(function(){
 												<th>담당자</th>
 											</tr>
 										</thead>
-
-
 										<tbody id="result_2">
-											<!-- <tr>
+											<tr>
 												<td><input type="checkbox" name="chk"></td>
 												<td>001</td>
 												<td>2019-08-19</td>
@@ -212,9 +281,9 @@ $(function(){
 												<th>납품처1</th>
 												<th>담당자1</th>
 												<th></th>
-											</tr> -->
+											</tr>
 										</tbody>
-									</table>
+									</table> -->
 								</div>
 							</div>
 						</div>
@@ -229,48 +298,23 @@ $(function(){
 		</div>
 		<!-- END wrapper -->
 
-		<%@ include file="../rightbar.jsp"%>
-		<%@ include file="../setting2.jsp"%>
-		<!-- Vendor js -->
+	<%@ include file="../rightbar.jsp"%>
+	<%@ include file="../setting2.jsp"%>
+		<!-- plugins -->
+	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
+	<!-- plugins -->
+	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-		<!-- Datatable plugin js -->
-		<script
-			src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
-
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
-
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
-
-		<script
-			src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/buttons.print.min.js"></script>
-
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"></script>
-		<script
-			src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"></script>
-
-		<script src="/erp/resources/assets/libs/jszip/jszip.min.js"></script>
-		<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"></script>
-		<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"></script>
-
-
-		<!-- App js -->
-		<script src="/erp/resources/assets/js/app.min.js"></script>
+	<!-- dashboard init -->
+	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
+	<!-- Init js-->
+	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
+	<div id="bodyappend"></div>
 </body>
 </html>

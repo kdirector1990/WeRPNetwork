@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +19,10 @@ import org.springframework.ui.Model;
 
 import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
+import com.pj.erp.vo.MaterialVO;
+import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.MS.MS_plan;
@@ -188,14 +190,46 @@ public class ERPServiceImpl implements ERPService{
  
 	}
 
+	//물품구매 목록
 	@Override
+	public void materialList(HttpServletRequest req, Model model) {
+		List<MaterialVO> dto = dao.getMaterialList();
+		
+		model.addAttribute("dto", dto);
+	}
+	
+	//암호화폐 예산 편성목록 가져오기
 	public List<HashVO> selectDept(HttpServletRequest req, Model model) {
 		String department_code = req.getParameter("d_name");
 		List<HashVO> vo = dao.selectHashDept(department_code);
 		return vo;
 	}
+
+	//물품판매목록
+	@Override
+	public void productList(HttpServletRequest req, Model model) {
+		List<ProductVO> shop = dao.getProductList();
+		
+		model.addAttribute("shop", shop);
+	}
+
+	//물품 상세페이지
+	@Override
+	public void productDetailList(HttpServletRequest req, Model model) {
+		String product_code = req.getParameter("product_code");
+		ProductVO vo = dao.gerProductDetail(product_code);
+		
+		model.addAttribute("detail", vo);
+	}
 	
 	
-	
+	//암호화폐로 산 목록 뿌리기
+	@Override
+	public void selectMaterals(HttpServletRequest req, Model model) {
+		
+		List<Material_VO> vo = dao.selectMateral();
+		
+		model.addAttribute("dto", vo);
+	}
 	
 }

@@ -259,7 +259,7 @@ public class HR_DAOImpl implements HR_DAO{
 	}
 
 	@Override
-	public List<HR_VO> getPositions(Map<String, Object> map) {
+	public List<HR_RecordVO> getPositions(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getPositions", map);
 	}
 

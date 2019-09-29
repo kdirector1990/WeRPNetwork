@@ -60,10 +60,11 @@
 					document.getElementById("selectTable").style.display="none";
 					
 					$('#resulttable').append(
-						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
 							'<thead class="bg-primary text-white">'+
 								'<tr>'+
 									'<th>사원번호</th>'+
+									'<th>사원명</th>'+
 									'<th>신장</th>'+
 									'<th>체중</th>'+
 									'<th>시력(좌)</th>'+
@@ -86,22 +87,51 @@
 					for(var i = 0 ; i < list.length; i++){
 					
 						var usernames = list[i].username;
+						var e_names = list[i].e_name;
 						var e_heights = list[i].e_height;
 						var e_weights = list[i].e_weight;
 						var e_left_sights = list[i].e_left_sight;
 						var e_right_sights = list[i].e_right_sight;
 						var e_color_blinds = list[i].e_color_blind;
+						if(e_color_blinds == "blind") {
+							e_color_blinds = "유";
+						}
+						if(e_color_blinds == "common") {
+							e_color_blinds = "무";
+						}
 						var e_blood_types = list[i].e_blood_type;
 						var e_blood_presures = list[i].e_blood_presure;
 						var e_medical_infos = list[i].e_medical_info;
+						
 						var e_veteran_types = list[i].e_veteran_type;
+						if(e_veteran_types == "0") {
+							e_veteran_types = "비해당";
+						}
+						if(e_veteran_types == "1") {
+							e_veteran_types = "해당";
+						}
+						
 						var e_veteran_infos = list[i].e_veteran_info;
+						if(e_veteran_infos == "0") {
+							e_veteran_infos = "비해당";
+						}
+						if(e_veteran_infos == "1") {
+							e_veteran_infos = "할아버지";
+						}
+						if(e_veteran_infos == "2") {
+							e_veteran_infos = "아버지";
+						}
+						if(e_veteran_infos == "3") {
+							e_veteran_infos = "본인";
+						}
+						
 						var e_veteran_levels = list[i].e_veteran_level;
 						var e_disability_types = list[i].e_disability_type;
 						var e_disability_levels = list[i].e_disability_level;
 						
 					$('#result').append('<tr onclick="updatePHY('+usernames+');">'+                         	
 							'<td>'+ usernames +'</td>'+
+							'<td>'+ e_names +'</td>'+
 							'<td>'+ e_heights +'</td>'+
 							'<td>'+ e_weights +'</td>'+
 							'<td>'+ e_left_sights +'</td>'+
@@ -291,22 +321,22 @@
 							+'<label class="col-md-1 col-form-label" for="simpleinput">보훈관계<span class="text-danger">*</span></label>'
 							+'<div class="col-md-4">'
 								+'<select class="form-control select2" name="e_veteran_info" onchange="">'
-									+'<option value="비해당">0. 비해당</option>'
-									+'<option value="할아버지">1. 할아버지</option>'
-									+'<option value="아버지">2. 아버지</option>'
-									+'<option value="본인">3. 본인</option>'																																							
+									+'<option value="0">0. 비해당</option>'
+									+'<option value="1">1. 할아버지</option>'
+									+'<option value="2">2. 아버지</option>'
+									+'<option value="3">3. 본인</option>'																																							
 								+'</select>'
 							+'</div>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">보훈등급<span class="text-danger">*</span></label>'
 							+'<div class="col-md-4">'
 								+'<select class="form-control select2" name="e_veteran_level" onchange="">'
-									+'<option value="비해당">0. 비해당</option>'
-									+'<option value="국가유공자">1. 국가유공자</option>'
-									+'<option value="고엽제후유증환자">2. 고엽제 후유증 및 고엽제 후유증 2세환자</option>'
-									+'<option value="5.18 민주유공자">3. 5.18 민주유공자</option>'
-									+'<option value="특수임무수행자">4. 특수임무수행자</option>'
-									+'<option value="중장기복무제대군인">5. 중장기복무제대군인</option>'																							
+									+'<option value="0">0. 비해당</option>'
+									+'<option value="1">1. 국가유공자</option>'
+									+'<option value="2">2. 고엽제 후유증 및 고엽제 후유증 2세환자</option>'
+									+'<option value="3">3. 5.18 민주유공자</option>'
+									+'<option value="4">4. 특수임무수행자</option>'
+									+'<option value="5">5. 중장기복무제대군인</option>'																							
 								+'</select>'
 							+'</div>'																
 						+'</div>'						
@@ -323,7 +353,7 @@
 	 }
 	 
 	 function HR_modifyPhysicalyPro(){
-         var param = $("#updatePhysicaly").serializeArray();
+         var param = $("#updatePhy").serializeArray();
  		 
  		 $.ajax({
  			 url: '/erp/HR_modifyPhysicalyPro',
@@ -446,9 +476,12 @@
 							</div>
 							<div class="card" id="selectTable">
 								<div class="card-body">
-									<div id="result2">
+									<form id="updatePhy">
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+									<div id="result2">									
 										<!-- 상세 페이지 출력 위치 -->
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>

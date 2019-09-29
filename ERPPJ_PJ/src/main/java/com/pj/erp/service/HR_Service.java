@@ -123,7 +123,7 @@ public interface HR_Service {
 	public List<HR_nfc_log> getNfcLog(HttpServletRequest req, Model model);
  
 	// 직책목록 조회
-	public List<HR_VO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException; 
+	public List<HR_RecordVO> getPositions(Map<String,Object> map, HttpServletRequest req, Model model) throws ParseException; 
 	
 	//부서조회
 	public List<HR_VO> getDepartment(HttpServletRequest req, Model model);
@@ -149,4 +149,6 @@ public interface HR_Service {
 	// 발령공고 검색
 	public List<HR_RecordVO> getRecord(Map<String,Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
 	
+	// 가족정보
+	public HR_FamilyVO HR_select_family(HttpServletRequest req, Model model);
 }

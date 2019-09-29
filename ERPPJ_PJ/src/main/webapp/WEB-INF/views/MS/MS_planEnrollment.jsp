@@ -14,7 +14,7 @@
         
         function insertPlan(){
     		var param = $("#insertPlan").serializeArray();
-    		alert(JSON.stringify(param));
+    		/* alert(JSON.stringify(param)); */
     		$.ajax({
     			url: '/erp/MS_insertPlanPro',
     			type: 'POST',

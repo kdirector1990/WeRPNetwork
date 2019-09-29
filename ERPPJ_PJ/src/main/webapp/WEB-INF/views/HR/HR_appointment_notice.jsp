@@ -24,9 +24,9 @@
 			var jsonData;
 			
 						
-			param.username = $("#ap_code").val();
-			param.e_name = $("#ap_reg_date").val();
-			param.department_code = $("#ap_name").val();			
+			param.username = $("#username").val();
+			param.ap_code = $("#ap_code").val();
+			param.ap_name = $("#ap_name").val();			
 					
 			jsonData = JSON.stringify(param);
 			
@@ -40,24 +40,43 @@
 					
 					$('#result').empty();
 					$('#result2').empty();
-					$('#bodyappend').empty();
-					
-					
+					$('#bodyappend').empty();		
 					
 					for(var i = 0 ; i < list.length; i++){
 					
 						var usernames = list[i].username;
-						var e_names = list[i].e_name;						
+						var position_record_codes = list[i].position_record_code;
+						var e_names = list[i].e_name;
 						var department_codes = list[i].department_code;
-						var position_codes = list[i].position_code;											
+						var position_codes = list[i].position_code;
 						
+						var department_names = list[i].department_name;
+						var position_names = list[i].position_name;											
 						
-					$('#result').append('<tr onclick="recordList('+usernames+');">'+                         	
+						var ap_name = list[i].ap_name;
+						var position_code_after = list[i].position_code_after;
+						var department_code_after = list[i].department_code_after;
+						
+						var record_dates = list[i].record_date;
+						var pa = new Date(record_dates);
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var record_date = year + "/" + month +"/"+day;
+						
+					$('#result').append('<tr>'+                         	
 							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_names +'</td>'+							
-							'<td>'+ department_codes +'</td>'+
-							'<td>'+ position_codes +'</td>'+								
+							'<td>'+ department_names +'</td>'+
+							'<td>'+ position_names +'</td>'+								
                  		'</tr>');
+					
+					$('#result2').append('<tr>'+
+							'<td>'+ ap_name +'</td>'+
+							'<td>'+ position_code_after +'</td>'+
+							'<td>'+ department_code_after +'</td>'+
+							'<td>'+ record_date +'</td>'+
+						'</tr>');
 					
 					if(searchCount == 1){
 					$('#bodyappend').append(
@@ -142,25 +161,17 @@
 									</div>
 									<table class="col-12">
 										<tr class="form-group row">
+											<th class="col-md-1 col-form-label">사원번호</th>
+											<td class="col-md-2 input-group"><input type="text"
+												class="form-control" name="username" id="username">
+											</td>										
+											<th class="col-md-1 col-form-label">&nbsp;</th>
+											
 											<th class="col-md-1 col-form-label">공고코드</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="ap_code" id="ap_code">
-											</td>
-
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-
-											<th class="col-md-1 col-form-label">공고일</th>
-											<td class="col-md-2 input-group">
-												<div class="input-group">
-													<input type="date" class="form-control" name="ap_reg_date"
-														placeholder="yyyy/mm/dd">
-													<div class="input-group-append">
-														<span class="input-group-text bg-primary text-white b-0"><i
-															class="mdi mdi-calendar"></i></span>
-													</div>
-												</div>
-											</td>
-
+											</td>				
+											
 											<th class="col-md-1 col-form-label">&nbsp;</th>
 
 											<th class="col-md-1 col-form-label">공고명</th>
@@ -218,10 +229,10 @@
 													<th colspan="4">발령내역</th>
 												</tr>
 												<tr>
-													<th>발령내역</th>
-													<th>현재 직책</th>
+													<th>공고명</th>
 													<th>변경 후 직책</th>
-													<th>비고</th>
+													<th>변경 후 부서</th>
+													<th>발령일</th>
 												</tr>
 											</thead>
 											

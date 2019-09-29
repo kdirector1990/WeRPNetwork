@@ -42,10 +42,7 @@
         	
         	param2.cas_state = $("#cas_state").val();
         	
-        	alert(param2.cas_state);
-        	
         	jsonData = JSON.stringify(param2);
-        	alert(jsonData);
         	 $.ajax({
         		url : '${pageContext.request.contextPath}/CT_select_as2?${_csrf.parameterName}=${_csrf.token }',
         		type : 'POST',
@@ -76,11 +73,13 @@
     					
     					var hours = pa.getHours();
     					var Minutes = pa.getMinutes();
+    					if(Minutes < 10){
+    						Minutes = "0"+Minutes;
+    					}
     					var Second = pa.getSeconds();
     					
     					var time = hours+":"+Minutes+":"+Second;
-    					alert(time);
-    					
+						    					
     					var cas_date = year + "-" + month + "-" +day;
     					
     					var tr = '<tr><td>'+cas_code+'</td><td>'+department_code+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';

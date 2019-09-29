@@ -14,6 +14,7 @@ import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Depreciation;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
@@ -271,29 +272,6 @@ public interface FT_DAO {
 	// 토지가져오기
 	public List<FT_Land> FT_LandAllSelect();
 	
-
-	// 토지 추가
-	public int FT_FacilityPrevInsert(FT_Facility vo);
-	
-	public int FT_FacilityInsert(FT_Facility vo);
-	
-	// 토지 수정
-	public int FT_FacilityPrevUpdate(Map<String, Object> map);
-	
-	public int FT_FacilityUpdate(Map<String, Object> map);
-	
-	// 토지 삭제
-	public int FT_FacilityPrevDelete(Map<String, Object> map);
-	
-	public int FT_FacilityDelete(Map<String, Object> map);
-	
-	// 토지 검색 한 것 하나 가져오기
-	public FT_Facility FT_FacilityOneSelect(String srhval);
-	
-	// 토지가져오기
-	public List<FT_Facility> FT_FacilityAllSelect();
-	
-	
 	// 계정과목가져오기
 	public List<FT_Subject> FT_SubjectAllSelect();
 	
@@ -350,7 +328,7 @@ public interface FT_DAO {
 	 
 	 // 분개 가지고 와라
 	 public List<FT_Chit> FT_ChitDistinct(Map<String, Object> map);
-	 
+
 	 // 전표승인처리
 	 public int FT_CheckFormal(Map<String, Object> map);
 	 
@@ -399,6 +377,54 @@ public interface FT_DAO {
 	 // 손익계산서   - 권순용
 	 public List<FT_accounts_balance> FT_getIsList(String typename);
 	 
+	// 분개 가지고 와라
+	 public int FT_BDepreciationDistinctCnt(Map<String, Object> map);
+	 
+	 // 분개 가지고 와라
+	 public FT_Depreciation FT_BDepreciationDistinct(Map<String, Object> map);
+
+	 // 날짜 검색 분개 갯수 가져오기
+	 public int FT_BDepreciationDataCnt(Map<String, Object> map);
+	
+	 // 분개 데이터 가져오기
+	 public List<FT_Depreciation> FT_BDepreciationDataList(Map<String, Object> map);
+	 
+	// 분개 가지고 와라
+	 public int FT_LDepreciationDistinctCnt(Map<String, Object> map);
+	 
+	 // 분개 가지고 와라
+	 public FT_Depreciation FT_LDepreciationDistinct(Map<String, Object> map);
+
+	 // 날짜 검색 분개 갯수 가져오기
+	 public int FT_LDepreciationDataCnt(Map<String, Object> map);
+	
+	 // 분개 데이터 가져오기
+	 public List<FT_Depreciation> FT_LDepreciationDataList(Map<String, Object> map);
+	 
+	// 분개 가지고 와라
+	 public int FT_EDepreciationDistinctCnt(Map<String, Object> map);
+	 
+	 // 분개 가지고 와라
+	 public FT_Depreciation FT_EDepreciationDistinct(Map<String, Object> map);
+
+	 // 날짜 검색 분개 갯수 가져오기
+	 public int FT_EDepreciationDataCnt(Map<String, Object> map);
+	
+	 // 분개 데이터 가져오기
+	 public List<FT_Depreciation> FT_EDepreciationDataList(Map<String, Object> map);
+	 
+	// 분개 가지고 와라
+	 public int FT_CDepreciationDistinctCnt(Map<String, Object> map);
+	 
+	 // 분개 가지고 와라
+	 public FT_Depreciation FT_CDepreciationDistinct(Map<String, Object> map);
+
+	 // 날짜 검색 분개 갯수 가져오기
+	 public int FT_CDepreciationDataCnt(Map<String, Object> map);
+	
+	 // 분개 데이터 가져오기
+	 public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map);
+
 	 //예산 계획현황 검색결과
 	 public List<FT_Plan_Result> getPlanResult(Map<String, Object> map);
 	 
@@ -410,4 +436,54 @@ public interface FT_DAO {
 	
 	//예산 계획 삭제
 	public int deletePlan(Map<String, Object> map);
+	
+	// 갯수
+	public int FT_ProductSaleCnt(int year);
+
+	public int FT_JepumSaleCnt(int year);
+
+	public int FT_BaseProductCnt(int lastyear);
+
+	public int FT_NowProductCnt(int year);
+
+	public int FT_BaseSourceCnt(int lastyear);
+
+	public int FT_NowSourceCnt(int year);
+
+	public int FT_BaseJegongCnt(int lastyear);
+
+	public int FT_BaseJepumCnt(int lastyear);
+
+	public int FT_BaseCostCnt(int year);
+
+	public int FT_SaleProfitCnt(int year);
+
+	public int FT_UnsaleProfitCnt(int year);
+
+	public int FT_UnsaleCostCnt(int year);
+	
+	// 목록
+	public int FT_ProductSale(int year);
+
+	public int FT_JepumSale(int year);
+
+	public int FT_BaseProduct(int lastyear);
+
+	public int FT_NowProduct(int year);
+
+	public int FT_BaseSource(int lastyear);
+
+	public int FT_NowSource(int year);
+
+	public int FT_BaseJegong(int lastyear);
+
+	public int FT_BaseJepum(int lastyear);
+
+	public int FT_BaseCost(int year);
+
+	public int FT_SaleProfit(int year);
+
+	public int FT_UnsaleProfit(int year);
+
+	public int FT_UnsaleCost(int year);
 }

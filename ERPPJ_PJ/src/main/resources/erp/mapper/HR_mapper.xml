@@ -73,7 +73,7 @@
 	
 	<!-- 사원 정보 수정 -->
 	<update id="updateFoundation" parameterType="com.pj.erp.vo.HR.HR_VO">
-		update users set e_picture =#{e_picture}, e_name =#{e_name}, e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode}, level_step=#{level_step}, e_nfcCodeNFC=#{e_nfcCodeNFC}, department_code=#{department_code}, position_code=#{position_code}, rank_code=#{rank_code} where username=#{username}
+		update users set e_picture=#{e_picture}, e_name =#{e_name}, e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode}, level_step=#{level_step}, e_nfcCodeNFC=#{e_nfcCodeNFC}, department_code=#{department_code}, position_code=#{position_code}, rank_code=#{rank_code} where username=#{username}
 	</update>
 	
 	<!-- 	
@@ -99,19 +99,23 @@
 	<!-- 사원정보 조회  -->
 	<select id ="getUsers" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_VO">
 	<![CDATA[
-		select username, e_name, e_gender, e_type, e_code, e_hp, e_address, e_mailcode, level_step, e_nfcCodeNFC, department_code, position_code, rank_code, start_date from users 
-		where username like '%'||#{username}||'%' 
-		and e_name like '%'||#{e_name}||'%' 
-		and department_code like '%'||#{department_code}||'%' 
-		and position_code like '%'||#{position_code}||'%'
-		and rank_code like '%'||#{rank_code}||'%'
+		select u.username as username, u.e_name as e_name, u.e_gender as e_gender, u.e_type as e_type, u.e_code as e_code, u.e_hp as e_hp, u.e_address as e_address, u.e_mailcode as e_mailcode, u.level_step as level_step, u.e_nfcCodeNFC as e_nfcCodeNFC, d.department_name as department_name, p.position_name as position_name, r.rank_name as rank_name, u.start_date as start_date
+		from users u, department_tbl d, position_tbl p, rank_tbl r 
+		where d.department_code = u.department_code
+		and p.position_code = u.position_code
+		and r.rank_code = u.rank_code
+		and u.username like '%'||#{username}||'%' 
+		and u.e_name like '%'||#{e_name}||'%' 
+		and d.department_code like '%'||#{department_code}||'%' 
+		and p.position_code like '%'||#{position_code}||'%'
+		and r.rank_code like '%'||#{rank_code}||'%'
 		]]>
 	</select>
 	
 	<!-- 사원신체정보 조회  -->
 	<select id ="getPhysicaly" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_PhysicalVO">
 	<![CDATA[
-		select u.username AS username, p.e_height as e_height, p.e_weight as e_weight, p.e_left_sight as e_left_sight, p.e_right_sight as e_right_sight, p.e_color_blind as e_color_blind, p.e_blood_type as e_blood_type, p.e_blood_presure as e_blood_presure, p.e_medical_info as e_medical_info, p.e_veteran_type as e_veteran_type, p.e_veteran_info as e_veteran_info , p.e_veteran_level as e_veteran_level, p.e_disability_type as e_disability_type, p.e_disability_level as e_disability_level 
+		select u.username AS username, u.e_name as e_name, p.e_height as e_height, p.e_weight as e_weight, p.e_left_sight as e_left_sight, p.e_right_sight as e_right_sight, p.e_color_blind as e_color_blind, p.e_blood_type as e_blood_type, p.e_blood_presure as e_blood_presure, p.e_medical_info as e_medical_info, p.e_veteran_type as e_veteran_type, p.e_veteran_info as e_veteran_info , p.e_veteran_level as e_veteran_level, p.e_disability_type as e_disability_type, p.e_disability_level as e_disability_level 
 		from users u ,department_tbl d ,rank_tbl r , position_tbl o, physicaly_info_tbl p
 		where u.username = p.username
 		and u.department_code = d.department_code
@@ -164,7 +168,7 @@
 	
 	<!-- 부서 목록 -->
 	<select id="getDepartmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_VO">
-		select department_code, department_name from department_tbl
+		select department_code, department_name, department_group_code from department_tbl
 	</select>
 	
 	
@@ -372,14 +376,18 @@
 		select * from hr_nfc_view
 	</select>
 	
-	<!-- 사원 직책 목록 조회 -->
-	<select id ="getPositions" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_VO">
+	<!-- 사원 발령 목록 조회 -->
+	<select id ="getPositions" parameterType = "java.util.Map" resultType = "com.pj.erp.vo.HR.HR_RecordVO">
 	<![CDATA[
-		select username, department_code, position_code 
-		from users u, appointment_tbl a
-		where ap_code like '%'||#{ap_code}||'%' 
-		and ap_name like '%'||#{ap_name}||'%' 		
-		and rank_code like '%'||#{rank_code}||'%'
+		select u.username as username, u.e_name as e_name, d.department_name as department_name, p.position_name as position_name, a.ap_name as ap_name, r.position_code_after as position_code_after, r.department_code_after as department_code_after, r.record_date as record_date
+		from users u, appointment_tbl a, position_record_tbl r, department_tbl d, position_tbl p 
+		where u.username = r.username
+		and p.position_code = r.position_code
+		and d.department_code = r.department_code
+		and a.ap_code = r.ap_code		
+		and u.username like '%'||#{username}||'%'
+		and a.ap_code like '%'||#{ap_code}||'%' 
+		and a.ap_name like '%'||#{ap_name}||'%'		
 		]]>
 	</select>
 	

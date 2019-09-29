@@ -102,10 +102,10 @@
 													<label class="col-md-2 col-form-label">출고처</label>
 													<div style="display: inline-block;">
 														<input type="text" class="form-control" name="customer_code2"
-													 id = "customer_codeP" onclick="customerNameList()"style="width: 200px; float: left;">&nbsp;
+													 id = "search_release_code" onclick="customerNameList()"style="width: 200px; float: left;">&nbsp;
 													 
 													<input type="text" name="release_name" class="form-control"
-															id="customer_nameP" style="width: 200px; float: right;">
+															id="release_name" style="width: 200px; float: right;">
 													</div>
 												</div>
 												<div class="form-group row">

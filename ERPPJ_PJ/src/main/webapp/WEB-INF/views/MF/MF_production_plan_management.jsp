@@ -37,11 +37,11 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body table-responsive" style="margin-bottom: 0px;">
 								<h4 class="header-title">생산계획</h4>
 								<p class="sub-header">관리</p>
 								<hr>
-								<div class="form-horizontal" style="overflow-y: auto;">
+								<div class="form-horizontal" >
 									<form id="manageMF_plan" action="" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">

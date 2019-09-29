@@ -26,6 +26,7 @@ import com.pj.erp.vo.ST.ST_searchCustomerCode;
 import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TaxDetails;
 import com.pj.erp.vo.ST.TransactionDetails;
 import com.pj.erp.vo.ST.UserName;
 
@@ -698,14 +699,28 @@ public class ST_ServiceImpl implements ST_Service {
 		return list;
 	}
 	
-	// 세금 명세서 검색 기능
+	// 거래  명세서 검색 기능
 	@Override
 	public List<TransactionDetails> getdate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		/*
+		 * Date userdate1 =Date.valueOf((String)map.get("userdate1")); Date userdate2
+		 * =Date.valueOf((String)map.get("userdate2")); map.replace("userdate1",
+		 * userdate1); map.replace("userdate2", userdate2);
+		 */
+		
 		List<TransactionDetails> list = dao.getTransaction(map);
+		System.out.println(map.get("userdate1"));
+		System.out.println(map.get("userdate2"));
 		return list;
 	}
 	
-	
+	// 세금 명세서 검색 기능
+	@Override
+	public List<TaxDetails> getTax(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+		List<TaxDetails> list = dao.getTaxList(map);
+		return list;
+	}
+
 	
 	// Customer 검색
 	@Override
@@ -758,11 +773,7 @@ public class ST_ServiceImpl implements ST_Service {
 		model.addAttribute("cnt", cnt);
 	}
 	
-	@Override
-	public void transaction(HttpServletRequest req, Model model) {
-
-	}
-
+	
 	//매출 - 고객
 	@Override
 	public List<ST_searchCustomerCode> searchCustomerCode(HttpServletRequest req, Model model) {

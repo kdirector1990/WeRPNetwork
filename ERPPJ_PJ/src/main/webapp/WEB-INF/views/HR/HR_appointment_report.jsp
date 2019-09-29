@@ -93,7 +93,7 @@
 							ap_status = "삭제";
 						}
 						
-						alert(position_record_codes);
+						
 						
 					$('#result').append('<tr>'+                         	
 							'<td>'+ usernames +'</td>'+

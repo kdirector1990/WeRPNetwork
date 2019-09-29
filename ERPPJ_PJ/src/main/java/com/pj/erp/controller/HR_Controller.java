@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,12 +76,12 @@ public class HR_Controller {
 		return "HR/HR_modifyFoundation";
 	}
 	
-	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST)
+	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST) 
 	public String HR_modifyFoundationPro(MultipartHttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
-				
-		return "index";
+		
+		return  "HR/HR_EmployeeInformation";
 	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
@@ -97,7 +98,15 @@ public class HR_Controller {
 		service.modifyPhysicalyPro(req, model);
 		
 		return "index";
-	}	
+	}
+	
+	@RequestMapping("HR_modifyFamilyPro")
+	public String HR_modifyFamilyPro(HttpServletRequest req, Model model) {
+		logger.info("log => HR_modifyFamilyPro");
+		service.modifyFamilyPro(req, model);
+		
+		return "index";
+	}
 	
 	/*
 	// 중복확인 페이지
@@ -131,7 +140,7 @@ public class HR_Controller {
 		logger.info("log => HR_update_Fou");
 		
 		HR_VO data = service.HR_select_username(req, model);
-		
+		System.out.println(data.getE_picture());
 		return data;
 	}
 	
@@ -145,7 +154,17 @@ public class HR_Controller {
 		
 		return data;
 	}
-
+	
+	// 가족정보
+	@RequestMapping("HR_update_Fam")
+	@ResponseBody
+	public HR_PhysicalVO HR_update_Fam(HttpServletRequest req, Model model) {
+		logger.info("log => HR_update_Fam");
+		
+		HR_PhysicalVO data = service.HR_select_physical(req, model);
+		
+		return data;
+	}
 
 	@RequestMapping("HR_EmployeeInformation")
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
@@ -525,9 +544,9 @@ public class HR_Controller {
 	// 인사발령공고들
 	@RequestMapping(value = "HR_position_record_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
-	public List<HR_VO> HR_position_record_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+	public List<HR_RecordVO> HR_position_record_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_position_record_result");
-		List<HR_VO> list = service.getPositions(map, req, model);
+		List<HR_RecordVO> list = service.getPositions(map, req, model);
 		return list;
 	}
 	

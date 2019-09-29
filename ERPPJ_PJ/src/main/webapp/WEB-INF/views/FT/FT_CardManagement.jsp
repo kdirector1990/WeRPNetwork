@@ -12,7 +12,7 @@
         	var frontcursor;
         	var updatekey = 0;
         	var selectval = "";
-        	var focusval;
+        	var focusval = "";
         	function notfocus(dd){
     			var nowme = $("*[name=" + dd + "]").parent();
         		for(var i = 0; i < $("*[name=" + dd + "]").parent().nextAll().children().length; i++){
@@ -39,7 +39,7 @@
         			$(this).parent().parent().children().css("background-color", "#D6EAF8");
         			$(this).css("background-color", "");
         			$(this).parent().css("background-color", "");
-        			if(!$("input[name=savingsCode" + keyval + "]").val()) {
+        			if(!$("input[name=CardCode" + keyval + "]").val()) {
         				focusval = "";
         			} else {
         				focusval = keyval;	
@@ -330,15 +330,15 @@
         	
         	function deleted() {
         		alert(focusval);
-        		if(!focusval){
-        			alert("등록되어 있는 분개를 선택해주세요!")
+        		if(focusval == "" && focusval != "0"){
+        			alert("등록되어 있는 분개를 선택해주세요!");
         		} else {
-            		alert($("input[name=savingsCode" + focusval + "]").val());
+            		alert($("input[name=CardCode" + focusval + "]").val());
 	        		var obj = new Object();
 	        		var jsonData;
 	        	
 	        		// 자바스크립트 객체 생성
-	        		obj.key = $("input[name=savingsCode" + focusval + "]").val();
+	        		obj.key = $("input[name=CardCode" + focusval + "]").val();
 	        		
 	        		// json 객체를 String 객체로 변환 -- 
 	        		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
@@ -347,12 +347,12 @@
 	        		/* sendRequest(load_insert, "FT_chitupdate", "post", jsonData); */
 	        		$.ajax({
 	                       type : "POST",
-	                       url : "/erp/FT_SavingsDelete?${_csrf.parameterName }=${_csrf.token }",
+	                       url : "/erp/FT_CardManagementDelete?${_csrf.parameterName }=${_csrf.token }",
 	                       data : jsonData,
 	                       contentType : 'application/json;charset=UTF-8',
 	                       success : function(data) {
 	                    	   alert(data);
-	                    	   $("input[name=savingsCode" + focusval + "]").parent().parent().remove();
+	                    	   $("input[name=CardCode" + focusval + "]").parent().parent().remove();
 	                       },
 	                       error : function(e) {
 	                       		alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
@@ -458,22 +458,28 @@
 		                                        <tbody>
 		                                       		<c:set var="cnt" value="0"/>
 		                                        	<c:forEach var="card" items="${cardlist}">
-		                                        		<tr>																			
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "CardCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" id = "first${cnt}" name = "CardName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
+		                                        		<tr>							
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "CardCode${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${card.cardCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" id = "first${cnt}" name = "CardName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${card.cardName}"></td>
 			                                                <td><select class="form-control" onfocus = "focuse(${cnt});" name = "CardType${cnt}" style = "width: 100%; -webkit-appearance: none; border:0px;" onkeydown = "enter(this.tagName,this.name);">
 			                                                <option value="0">== 선택 ==</option>
-			                                                <option value="1">체크카드</option>
+			                                                <c:if test="${card.cardType == 1}">
+			                                                <option value="1" selected="selected">체크카드</option>
 			                                                <option value="2">신용카드</option>
+			                                                </c:if>
+			                                                <c:if test="${card.cardType == 2}">
+			                                                <option value="1">체크카드</option>
+			                                                <option value="2" selected="selected">신용카드</option>
+			                                                </c:if>
 				                                       		</select></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
-				                                       		<td><input type="text" onfocus = "focuse(${cnt});" name = "CardPurpose${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "Owner${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);"></td>
-			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "PayCode${cnt}" class="form-control" onclick = "depositlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterupdate(${cnt});"></td>
-				                                            <td><input type="text" onfocus = "focuse(${cnt});" name = "PayNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccCode${cnt}" class="form-control" onclick = "accountlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${card.accCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "AccName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${card.accName}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectCode${cnt}" class="form-control" onclick = "subjectlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${card.subjectCode}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "SubjectName${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${card.subjectName}"></td>
+				                                       		<td><input type="text" onfocus = "focuse(${cnt});" name = "CardPurpose${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${card.cardPurpose}"></td>
+			                                                <td><input type="text" onfocus = "focuse(${cnt});" name = "Owner${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" value = "${card.owner}"></td>
+			                                                <td><input type="text" id = "enter${cnt}" onfocus = "focuse(${cnt});" name = "PayCode${cnt}" class="form-control" onclick = "depositlist(${cnt})" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown="enterupdate(${cnt});" value = "${card.payCode}"></td>
+				                                            <td><input type="text" onfocus = "focuse(${cnt});" name = "PayNo${cnt}" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onclick = "notfocus(this.name);" value = "${card.accountNo}"></td>
 			                                            </tr>
 			                                            <c:set var="cnt" value="${cnt+1}"/>
 		                                        	</c:forEach>

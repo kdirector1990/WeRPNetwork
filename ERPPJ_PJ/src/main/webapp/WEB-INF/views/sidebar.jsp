@@ -312,6 +312,20 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
+                            
+                            <li>
+                            	<a href="productList">
+                            		<i class="mdi mdi-spa"></i>
+                            		<span>물품 구매</span>
+                            	</a>
+                            </li>
+                            
+                            <li>
+                            	<a href="shop">
+                            		<i class="mdi mdi-spa-outline"></i>
+                            		<span>물품 판매</span>
+                            	</a>
+                            </li>
                            
                            	<li> 
 	                          <a href="javascript: void(0);">
@@ -463,8 +477,8 @@
 										<li><a href="ST_estimate">견적 등록</a></li>
 										<li><a href="ST_release">출고 등록</a></li>
 										<li><a href="ST_saleList">판매 관리</a></li>
-										<li><a href="ST_tables-datatable">거래 명세서 발행</a></li>
-										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
+										<li><a href="ST_transaction">거래 명세서 발행</a></li>
+										<li><a href="ST_tax_statements">세금 계산서 발행</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -583,7 +597,7 @@
 	                          			<li><a href="#">제공품 목록</a></li>
                     					<li><a href="FT_material_list">자재 목록</a></li>
                     					<li><a href="CT_equip_list">전산설비 목록</a></li>
-                    					<li><a href="#">감가상각 현황</a></li>
+                    					<li><a href="FT_Depreciation_list">감가상각 현황</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	
@@ -702,6 +716,7 @@
 										<li><a href="#">자재사용현황(작업별)</a></li>
 										<li><a href="#">자재사용현황(자재별)</a></li>
 										<li><a href="#">자재사용현황(제품별)</a></li>
+										<li><a href="MF_materialsManagement2">자재관리(가상화폐)</a></li>
 	                          		</ul>
 	                          	</li>
 	                          </ul>

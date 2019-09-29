@@ -59,7 +59,7 @@
 					$('#resulttable').empty();
 					
 					$('#resulttable').append(
-						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
 							'<thead class="bg-primary text-white">'+
 								'<tr>'+
 									'<th>사원번호</th>'+
@@ -128,8 +128,7 @@
 		}); 
 	 });
 	 
-	 /* function updateFAM(code){
-		 
+	 function updateFAM(code){		 
 		  $.ajax({
 	  			url: '/erp/HR_update_Fam?${_csrf.parameterName}=${_csrf.token }&username='+code,
 	  			type: 'POST',
@@ -159,127 +158,36 @@
 						+'</div>'
 						+'<div class="form-group row">'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">동거여부</label>'
-							+'<div class="col-md-1">'
-								+'<input type="text" class="form-control" name="f_cohabitation" value="'+f_cohabitation+'">'
-							+'</div>'
+							+'<div class="col-md-3 col-form-label">'
+	                            +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+	                                +'<input type="radio" id="customRadioInline9" name="f_cohabitation" class="custom-control-input" value="1" checked>'
+	                                +'<label class="custom-control-label" for="customRadioInline9">유</label>'
+	                            +'</div>'
+	                            +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+	                                +'<input type="radio" id="customRadioInline10" name="f_cohabitation" class="custom-control-input" value="2">'
+	                                +'<label class="custom-control-label" for="customRadioInline10">무</label>'
+	                            +'</div>'
+	                        +'</div>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">생년원일</label>'
 							+'<div class="col-md-1">'
-								+'<input type="text" class="form-control" name="e_right_sight" value="'+e_right_sight+'">'
+								+'<input type="date" class="form-control" name="f_born" value="'+f_born+'">'
 							+'</div>'							
 							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">색약</label>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">음력/양력</label>'
 								+'<div class="col-md-3 col-form-label">'
 	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline9" name="e_color_blind" class="custom-control-input" value="blind" checked>'
-	                                    +'<label class="custom-control-label" for="customRadioInline9">유</label>'
+	                                    +'<input type="radio" id="customRadioInline9" name="f_born_type" class="custom-control-input" value="음력" checked>'
+	                                    +'<label class="custom-control-label" for="customRadioInline9">음력</label>'
 	                                +'</div>'
 	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline10" name="e_color_blind" class="custom-control-input" value="common">'
-	                                    +'<label class="custom-control-label" for="customRadioInline10">무</label>'
+	                                    +'<input type="radio" id="customRadioInline10" name="f_born_type" class="custom-control-input" value="양력">'
+	                                    +'<label class="custom-control-label" for="customRadioInline10">양력</label>'
 	                                +'</div>'
 	                            +'</div>'
-						+'</div>'
-						+'<div class="form-group row">'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">혈액형</label>'
-							+'<div class="col-md-3 col-form-label">'
-                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                    +'<input type="radio" id="customRadioInline11" name="e_blood_type" class="custom-control-input" value="A" checked>'
-                                    +'<label class="custom-control-label" for="customRadioInline11">A</label>'
-                                +'</div>'
-                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                    +'<input type="radio" id="customRadioInline12" name="e_blood_type" class="custom-control-input" value="B">'
-                                    +'<label class="custom-control-label" for="customRadioInline12">B</label>'
-                                +'</div>'
-                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                    +'<input type="radio" id="customRadioInline13" name="e_blood_type" class="custom-control-input" value="AB" checked>'
-                                    +'<label class="custom-control-label" for="customRadioInline13">AB</label>'
-                                +'</div>'
-                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                    +'<input type="radio" id="customRadioInline14" name="e_blood_type" class="custom-control-input" value="O">'
-                                    +'<label class="custom-control-label" for="customRadioInline14">O</label>'
-                                +'</div>'
-                            +'</div>'
-                            +'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'	                               
-                            +'<label class="col-md-1 col-form-label" for="simpleinput">혈압</label>'
-								+'<div class="col-md-1">'
-									+'<input type="text" class="form-control" name="e_blood_presure1" placeholder="최저">'
-								+'</div>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">mmHg ~</label>'
-								+'<div class="col-md-1">'
-									+'<input type="text" class="form-control" name="e_blood_presure2" placeholder="최고">'
-								+'</div>'																		
-							+'<label class="col-md-1 col-form-label" for="simpleinput">mmHg</label>'
-					    +'</div>'
-					    +'<div class="form-group row">'																	
-							+'<label class="col-md-1 col-form-label" for="simpleinput">병력</label>'
-							+'<div class="col-md-5">'
-								+'<input type="text" class="form-control" name="e_medical_info" value="'+e_medical_info+'">'
-							+'</div>'							
-						+'</div>'
-						+'<div class="form-group row">'																	
-							+'<label class="col-md-1 col-form-label" for="simpleinput">장애 구분/등급<span class="text-danger">*</span></label>' 
-							+'<div class="col-md-3 col-form-label">'
-								+'<div>'
-	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline3" name="e_disability_type" class="custom-control-input" value="1" checked>'
-	                                    +'<label class="custom-control-label" for="customRadioInline3">비해당</label>'
-	                                +'</div>'
-	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline4" name="e_disability_type" class="custom-control-input" value="2">'
-	                                    +'<label class="custom-control-label" for="customRadioInline4">장애인</label>'
-	                                +'</div>'
-	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline5" name="e_disability_type" class="custom-control-input" value="3">'
-	                                    +'<label class="custom-control-label" for="customRadioInline5">국가유공자</label>'
-	                                +'</div>'
-	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline6" name="e_disability_type" class="custom-control-input" value="4">'
-	                                    +'<label class="custom-control-label" for="customRadioInline6">중증</label>'
-	                                +'</div>'
-	                            +'</div>'
-							+'</div>'
-							+'<div class="col-md-1">'
-								+'<input type="text" class="form-control" name="e_disability_level" placeholder="장애인 등급">'
-							+'</div>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'							
-							+'<label class="col-md-1 col-form-label" for="simpleinput">보훈구분<span class="text-danger">*</span></label>'
-							+'<div class="col-md-3 col-form-label">'
-	                            +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                +'<input type="radio" id="customRadioInline9" name="e_veteran_type" class="custom-control-input" value="0" checked>'
-	                                +'<label class="custom-control-label" for="customRadioInline9">비해당</label>'
-	                            +'</div>'
-	                            +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                +'<input type="radio" id="customRadioInline10" name="e_veteran_type" class="custom-control-input" value="1">'
-	                                +'<label class="custom-control-label" for="customRadioInline10">해당</label>'
-	                            +'</div>'
-	                        +'</div>'	                          
-						+'</div>'
-						+'<div class="form-group row">'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">보훈관계<span class="text-danger">*</span></label>'
-							+'<div class="col-md-4">'
-								+'<select class="form-control select2" name="e_veteran_info" onchange="">'
-									+'<option value="비해당">0. 비해당</option>'
-									+'<option value="할아버지">1. 할아버지</option>'
-									+'<option value="아버지">2. 아버지</option>'
-									+'<option value="본인">3. 본인</option>'																																							
-								+'</select>'
-							+'</div>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">보훈등급<span class="text-danger">*</span></label>'
-							+'<div class="col-md-4">'
-								+'<select class="form-control select2" name="e_veteran_level" onchange="">'
-									+'<option value="비해당">0. 비해당</option>'
-									+'<option value="국가유공자">1. 국가유공자</option>'
-									+'<option value="고엽제후유증환자">2. 고엽제 후유증 및 고엽제 후유증 2세환자</option>'
-									+'<option value="5.18 민주유공자">3. 5.18 민주유공자</option>'
-									+'<option value="특수임무수행자">4. 특수임무수행자</option>'
-									+'<option value="중장기복무제대군인">5. 중장기복무제대군인</option>'																							
-								+'</select>'
-							+'</div>'																
 						+'</div>'						
 						+'<div class="form-group text-right mb-0">'
-							+'<button onclick="HR_modifyPhysicalyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+							+'<button onclick="HR_modifyFamilyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
 						+'</div>'
 	  				);
 	  			},
@@ -288,28 +196,28 @@
 	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
 	  			}
 	  		}); 	 
-	 } */
+	 }
 	 
-	 /* function HR_modifyPhysicalyPro(){
-         var param = $("#updatePhysicaly").serializeArray();
- 		 
- 		 $.ajax({
- 			 url: '/erp/HR_modifyPhysicalyPro',
- 			 type: 'POST',
- 			 data : param,
- 			 dataTpye: 'json',
- 			 success: function(updateCnt){
- 				 if(updateCnt != 0){
- 					 $('#result2').empty();
- 					 document.getElementById("update").style.display="none";
- 					 alert("수정이 완료되었습니다.");    					
- 				 }
- 			 },
- 			 error : function(){
- 				 alert("전산 오류로 인하여 AS처리중으로 수정하지 못했습니다.");
- 			 }
- 		 });
-     } */
+	 function HR_modifyFamilyPro(){
+     	var param = $("#updateFamily").serializeArray();
+ 		
+ 		$.ajax({
+ 			url: '/erp/HR_modifyFamilyPro?${_csrf.parameterName}=${_csrf.token }',
+ 			type: 'POST',
+ 			data : param,
+ 			dataTpye: 'json',
+ 			success: function(updateCnt){
+ 				if(updateCnt != 0){update
+ 					$('#result2').empty();
+ 					document.getElementById("update").style.display="none";
+ 					alert("수정이 완료되었습니다.");    					
+ 				}
+ 			},
+ 			error : function(){
+ 				alert("전산 오류로 인하여 AS처리중으로 수정하지 못했습니다.");
+ 			}
+ 		});
+     }
 	 
 </script>
 
@@ -346,7 +254,7 @@
 										<li class="breadcrumb-item active">사원가족정보현황</li>
 									</ol>
 								</div>
-								<h4 class="page-title">사원신체정보현황</h4>
+								<h4 class="page-title">사원가족정보현황</h4>
 							</div>
 						</div>
 					</div>
@@ -407,13 +315,21 @@
 					<div class="row" id="searchTable">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body">
+								<div class="card-body table-responsive" style="margin-bottom: 0px;">
 									<div id="resulttable">
 										<!-- 조회 결과 출력 위치  -->
 									</div>
 								</div>
 							</div>
+							<div class="card" id="selectTable">
+								<div class="card-body">
+									<div id="result2">
+										<!-- 상세 페이지 출력 위치 -->
+									</div>
+								</div>
+							</div>
 						</div>
+					</div>
 					</div>
 				</div>
 
@@ -423,7 +339,7 @@
 				<%@ include file="../footer.jsp"%>
 
 			</div>
-		</div>
+		
 		<!-- ============================================================== -->
 		<!-- End Page content -->
 		<!-- ============================================================== -->

@@ -83,4 +83,7 @@ public interface CT_DAO {
 	//수리일지 폐기취소
 	public int RPdeleteRemove(String code);
 	
+	//CT_Write_Form의 부서가져오기
+	public List<CT_Depart_VO> selectDEPTVO();
+	
 }

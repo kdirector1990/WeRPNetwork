@@ -38,7 +38,11 @@
         		obj.year = $("input[name=date" + s + "]").val().substring(0,4);
         		obj.month = $("input[name=date" + s + "]").val().substring(5,7);
         		obj.day = $("input[name=date" + s + "]").val().substring(8,10);
-        		
+        		if($("input[name=confirmname" + s + "]").val() == "null") {
+        			obj.state = 1;
+        		} else {
+        			obj.state = 2;
+        		}
         		// json 객체를 String 객체로 변환 -- 
         		// 제이슨은 안드로이드에서 이제는 jsp로 하지 않고 안드로이드에서 뿌려줄 때 json 형식으로 불러와서 활용한다.
         		// 빅데이터 00데이터들은 실제 값들을 XML로 많이 사용할 것임

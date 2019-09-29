@@ -86,12 +86,11 @@
 					</tbody>
 				</table>
 				<div class="form-group text-right mb-0">
-					<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>
-					<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>
+					<button type="button" id="btnRe" class="btn btn-success waves-effect waves-light" onclick="updatePlan();">수정</button>
+					<button type="button" id="btnDel" class="btn btn-danger waves-effect waves-light" onclick="deletePlan();">폐기</button>
+					<button type="button" class="btn btn-dark waves-effect waves-light">목록보기</button>
 				</div>
 			</form>
-		</div>
-	</div>
 	<!-- Datatable plugin js -->
 	<script
 		src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>

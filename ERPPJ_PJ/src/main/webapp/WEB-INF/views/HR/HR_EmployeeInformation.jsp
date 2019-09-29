@@ -63,28 +63,28 @@
 					$('#bodyappend').empty();
 					
 					$('#resulttable').append(
-							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
-								'<thead class="bg-primary text-white">'+
-									'<tr>'+
-										'<th>사원번호</th>'+
-										'<th>사원명</th>'+
-										'<th>성별</th>'+
-										'<th>주민번호</th>'+
-										'<th>연락처</th>'+
-										'<th>우편번호</th>'+
-										'<th>주소</th>'+
-										'<th>내/외국인구별</th>'+
-										'<th>nfc코드</th>'+
-										'<th>부서</th>'+
-										'<th>직급</th>'+
-										'<th>직책</th>'+
-										'<th>호봉</th>'+
-										'<th>입사일</th>'+
-									'</tr>'+
-								'</thead>'+
-								'<tbody id="result">'+
-								'</tbody>'+
-							'</table>');
+						'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+							'<thead class="bg-primary text-white">'+
+								'<tr>'+
+									'<th>사원번호</th>'+
+									'<th>사원명</th>'+
+									'<th>성별</th>'+
+									'<th>주민번호</th>'+
+									'<th>연락처</th>'+
+									'<th>우편번호</th>'+
+									'<th>주소</th>'+
+									'<th>내/외국인구별</th>'+
+									'<th>nfc코드</th>'+
+									'<th>부서</th>'+
+									'<th>직책</th>'+
+									'<th>직급</th>'+
+									'<th>호봉</th>'+
+									'<th>입사일</th>'+
+								'</tr>'+
+							'</thead>'+
+							'<tbody id="result">'+
+							'</tbody>'+
+						'</table>');
 					
 					
 					
@@ -92,16 +92,31 @@
 					
 						var usernames = list[i].username;
 						var e_names = list[i].e_name;
-						var e_genders = list[i].e_gender;						
+						var e_genders = list[i].e_gender;
+						if(e_genders == 1) {
+							e_genders = "남자";
+						}
+						if(e_genders == 2) {
+							e_genders = "여자";
+						}
 						var e_codes = list[i].e_code;
 						var e_hps = list[i].e_hp;
 						var e_mailcodes = list[i].e_mailcode;
 						var e_addresse = list[i].e_address;
 						var e_types = list[i].e_type;
+						if(e_types == "local") {
+							e_types = "내국인";
+						}
+						if(e_types == "foreign") {
+							e_types = "외국인";
+						}
 						var e_nfcCodeNFC = list[i].e_nfcCodeNFC;
 						var department_codes = list[i].department_code;
 						var position_codes = list[i].position_code;
+						var department_names = list[i].department_name;
+						var position_names = list[i].position_name;
 						var rank_codes = list[i].rank_code;
+						var rank_names = list[i].rank_name;
 						var level_steps = list[i].level_step;
 						var start_dates = list[i].start_date;
 						var pa = new Date(start_dates);
@@ -120,9 +135,9 @@
 							'<td>'+ e_addresse +'</td>'+
 							'<td>'+ e_types +'</td>'+
 							'<td>'+ e_nfcCodeNFC +'</td>'+
-							'<td>'+ department_codes +'</td>'+
-							'<td>'+ position_codes +'</td>'+
-							'<td>'+ rank_codes +'</td>'+
+							'<td>'+ department_names +'</td>'+
+							'<td>'+ position_names +'</td>'+
+							'<td>'+ rank_names +'</td>'+
 							'<td>'+ level_steps +'</td>'+
 							'<td>'+ start_datess +'</td>'+							
                  		'</tr>');
@@ -165,15 +180,16 @@
 
 	  				document.getElementById("result2").style.display="block";
 	  				
-	  				var username = data.username;	
-	  				var e_picture = data.e_picture
+	  				var username = data.username;
+	  				var e_picture = data.e_picture;
 	  				var e_name = data.e_name;
 	  				var e_gender = data.e_gender;
 	  				var e_type = data.e_type;
 	  				var e_code = data.e_code;
 	  				var e_hp = data.e_hp;
+	  				var e_address = data.e_address;	  				
 	  				var e_mailcode = data.e_mailcode;
-	  				var e_nfcCodeNFC = data.e_nfcCodeNFC
+	  				var e_nfcCodeNFC = data.e_nfcCodeNFC;
 	  				var department_code = data.department_code;
 	  				var position_code = data.position_code;
 	  				var rank_code = data.rank_code;
@@ -181,69 +197,68 @@
 	  					  				
 	  				$('#result2').empty();
 	  				
-	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'
-	  					+'<div class="form-group row">'
-		  					+ '<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>'
-								+'<div class="col-md-4">'
-									+'<input type="file" class="dropify" name="e_picture" />'
-								+'</div>'
-	  					+'</div>'	
-	  					+'<div class="form-group row">'	  						
-	  						+ '<label class="col-lg-2 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
-	  							+'<div class="col-lg-8">'
-	  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control">' 
-	  				        	+'</div>'
-	  				    +'</div>'
-	  				  	+'<div class="form-group row">'	
-							+'<label class="col-md-2 col-form-label" for="simpleinput">성별<span class="text-danger">*</span></label>'
-						+'<div class="col-md-3  col-form-label">'
-                   	    	+'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                  	        	+'<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>'
-                 	         	+'<label class="custom-control-label" for="customRadioInline1">남성</label>'
-                      		+'</div>'
-                           +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                               +'<input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">'
-                               +'<label class="custom-control-label" for="customRadioInline2">여성</label>'
-                           +'</div>'
-                   		+'</div>'
-                   		+'</div>'
-                   		+'<div class="form-group row">'
-                   			+'<label class="col-md-2 col-form-label" for="simpleinput">내/외국인<span class="text-danger">*</span></label>'
-								+'<div class="col-md-4  col-form-label">'
-									+'<div>'
-                             			+'<div class="custom-control custom-radio custom-control-inline mb-2">'
-                                 			+'<input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>'
-                                 			+'<label class="custom-control-label" for="customRadioInline7">내국인</label>'
-                             			+'</div>'
-	                             		+'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                 		+'<input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">'
-	                                 		+'<label class="custom-control-label" for="customRadioInline8">외국인</label>'                                            
-	                             		+'</div>'
-                         			+'</div>'
-							+'</div>'
-						+ '</div>'
-						+'<div class="form-group row">'
-							+'<label class="col-md-2 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
-							+'<div class="col-md-8">'
-								+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
-							+'</div>'
-						+'</div>'
-						+'<div class="form-group row">'	
-							+'<label class="col-md-2 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
-							+'<div class="col-md-8">'
-								+'<input type="text" class="form-control" name="e_hp" value="'+e_hp+'" size="13">'
-							+'</div>'
-						+'</div>'
-						+'<div class="form-group row">'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span class="text-danger">*</span></label>'
-							+'<div class="col-md-4">'
-								+'<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">'
-							+'</div>'
+	  				$("#result2").append('<input type="hidden" name="username" value="'+username+'">'			
+	  					
+	  					+'<div class="col-md-12">'
+		  					+'<div class="form-group row">'	  	
+			  					+'<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>'
+									+'<div class="col-md-4">'
+										+'<input type="file" class="dropify" name="e_picture" value="/erp/resources/hr_img/'+e_picture+'">'
+									+'</div>'
+								+'<label class="col-md-1 col-form-label" for="simpleinput">현재사진<span class="text-danger">*</span></label>'
+									+'<div class="col-md-4">'
+										+'<img src = "/erp/resources/hr_img/'+e_picture+'" style="width:40%; height:auto;">'
+									+'</div>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span class="text-danger">*</span></label>'
-							+'<div class="col-md-4">'
-								+'<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">'
 							+'</div>'
+		  					+'<div class="form-group row">'
+		  						+ '<label class="col-md-1 col-form-label" for="simpleinput">사원명<span class="text-danger">*</span></label>'        
+		  							+'<div class="col-md-4">'
+		  				    			+'<input type="text" name="e_name" value="'+e_name+'" class="form-control">' 
+		  				        	+'</div>'
+		  				        	+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+								+'<label class="col-md-1 col-form-label" for="simpleinput">성별<span class="text-danger">*</span></label>'
+								+'<div class="col-md-2  col-form-label">'
+		                   	    	+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+		                  	        	+'<input type="radio" id="customRadioInline1" name="e_gender" class="custom-control-input" value="1" checked>'
+		                 	         	+'<label class="custom-control-label" for="customRadioInline1">남성</label>'
+		                      		+'</div>'
+		                           +'<div class="custom-control custom-radio custom-control-inline mb-2">'
+		                               +'<input type="radio" id="customRadioInline2" name="e_gender" class="custom-control-input" value="2">'
+		                               +'<label class="custom-control-label" for="customRadioInline2">여성</label>'
+		                           +'</div>'
+		                   		+'</div>'
+	                   			+'<label class="col-md-1 col-form-label" for="simpleinput">내/외국인<span class="text-danger">*</span></label>'
+									+'<div class="col-md-2  col-form-label">'
+										+'<div>'
+	                             			+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+	                                 			+'<input type="radio" id="customRadioInline7" name="e_type" class="custom-control-input" value="local" checked>'
+	                                 			+'<label class="custom-control-label" for="customRadioInline7">내국인</label>'
+	                             			+'</div>'
+		                             		+'<div class="custom-control custom-radio custom-control-inline mb-2">'
+		                                 		+'<input type="radio" id="customRadioInline8" name="e_type" class="custom-control-input" value="foreign">'
+		                                 		+'<label class="custom-control-label" for="customRadioInline8">외국인</label>'                                            
+		                             		+'</div>'
+	                         			+'</div>'
+								+'</div>'
+							+ '</div>'
+							+'<div class="form-group row">'
+								+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4">'
+									+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
+								+'</div>'
+								+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
+								+'<label class="col-md-1 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
+								+'<div class="col-md-4">'
+									+'<input type="text" class="form-control" name="e_hp" value="'+e_hp+'" size="13">'
+								+'</div>'
+							+'</div>'
+						+'</div>'	
+						+'<div class="form-group row">'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">주소<span class="text-danger">*</span></label>'
+							+'<div class="col-md-10">'
+								+'<input type="text" class="form-control" name="e_address" value="'+e_address+'">'
+							+'</div>'							
 						+'</div>'
 						+'<div class="form-group row">'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span class="text-danger">*</span></label>'
@@ -270,7 +285,7 @@
 							+'<div class="col-md-4">'
 								+'<select class="form-control select2" name="position_code" onchange="">'
 									+'<c:forEach var="poi" items="${poi}">'
-									+'<option value="${poi.position_code}">${poi.position_code}</option>'	
+									+'<option value="${poi.position_code}">${poi.position_name}</option>'	
 									+'</c:forEach>'																							
 								+'</select>'
 							+'</div>'																
@@ -280,7 +295,7 @@
 							+'<div class="col-md-4">'
 								+'<select class="form-control select2" name="rank_code" onchange="">'
 									+'<c:forEach var="rank" items="${rank}">'
-									+'<option value="${rank.rank_code}">${rank.rank_code}</option>'	
+									+'<option value="${rank.rank_code}">${rank.rank_name}</option>'	
 									+'</c:forEach>'																							
 								+'</select>'
 							+'</div>'
@@ -291,8 +306,12 @@
 							+'</div>'																
 						+'</div>'
 						+'<div class="form-group text-right mb-0">'
-							+'<button onclick="HR_modifyFoundationPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+							+'<input type="submit" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" value="처리시작">'
 						+'</div>'
+	  				);
+	  				$('#bodyappend').append(
+	  				'<script src="/erp/resources/assets/libs/dropify/dropify.min.js"/>'+
+	  				'<script src="/erp/resources/assets/js/pages/form-fileuploads.init.js"/>'
 	  				);
 	  			},
 	  			 
@@ -302,11 +321,11 @@
 	  		}); 	 
 	 }
 	 
-	 function HR_modifyFoundationPro(){
-     	var param = $("#updateFoundation").serializeArray();
- 		
+	 function HR_modifyFoundationPro2(){
+     	var param = $("#updateFou").serializeArray();
+ 		alert(JSON.stringify(param));
  		$.ajax({
- 			url: '/erp/HR_modifyFoundationPro',
+ 			url: '/erp/HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }',
  			type: 'POST',
  			data : param,
  			dataTpye: 'json',
@@ -432,7 +451,7 @@
 												role="tabpanel" aria-labelledby="foundation-tab">
 												<div class="col-sm-12">
 													<div class="card">
-														<div class="card-body">
+														<div class="card-body table-responsive" style="margin-bottom: 0px;">
 															<div id="resulttable">
 																<!-- 조회 결과 출력  -->
 															</div>
@@ -451,9 +470,12 @@
 															</div>
 														</div>
 													</div>
+													<form id="updateFou" method="post" enctype="multipart/form-data">
+													 													
 													<div id="result2" class="card-body table-responsive">
 														<!-- 상세 페이지 출력 위치 -->
 													</div>
+													</form>
 												</div>
 											</div>
 										</div>

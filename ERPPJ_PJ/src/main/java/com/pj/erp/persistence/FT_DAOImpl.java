@@ -14,6 +14,7 @@ import com.pj.erp.vo.FT.FT_Card;
 import com.pj.erp.vo.FT.FT_Chit;
 import com.pj.erp.vo.FT.FT_DTB;
 import com.pj.erp.vo.FT.FT_Deposit;
+import com.pj.erp.vo.FT.FT_Depreciation;
 import com.pj.erp.vo.FT.FT_Facility;
 import com.pj.erp.vo.FT.FT_Land;
 import com.pj.erp.vo.FT.FT_Ledger;
@@ -945,67 +946,6 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_LandAllSelect");
 	}
 	
-
-	// 토지 추가
-	@Override
-	public int FT_FacilityPrevInsert(FT_Facility vo) {
-		return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LandPrevInsert",vo);
-	}
-
-	@Override
-	public int FT_FacilityInsert(FT_Facility vo) {
-		int previnsertCnt = FT_FacilityPrevInsert(vo);
-		if(previnsertCnt != 0) {
-			return sqlSession.insert("com.pj.erp.persistence.FT_DAO.FT_LandInsert",vo);
-		} else {
-			return 0;
-		}
-	}
-
-	// 토지 수정
-	@Override
-	public int FT_FacilityPrevUpdate(Map<String, Object> map) {
-		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LandPrevUpdate",map);
-	}
-
-	@Override
-	public int FT_FacilityUpdate(Map<String, Object> map) {
-		int previnsertCnt = FT_LandPrevUpdate(map);
-		if(previnsertCnt != 0) {
-			return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_LandUpdate",map);
-		} else {
-			return 0;
-		}
-	}
-
-	// 토지 삭제
-	@Override
-	public int FT_FacilityPrevDelete(Map<String, Object> map) {
-		int previnsertCnt = FT_LandDelete(map);
-		if(previnsertCnt != 0) {
-			return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LandPrevDelete",map);
-		} else {
-			return 0;
-		}
-	}
-
-	@Override
-	public int FT_FacilityDelete(Map<String, Object> map) {
-		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.FT_LandDelete",map);
-	}
-	
-	// 토지 검색한 것 가져오기
-	@Override
-	public FT_Facility FT_FacilityOneSelect(String srhval) {
-		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_LandOneSelect", srhval);
-	}
-
-	// 토지 가져오기
-	@Override
-	public List<FT_Facility> FT_FacilityAllSelect() {
-		return sqlSession.selectList("com.pj.erp.persistence.FT_DAO.FT_LandAllSelect");
-	}
-	
 	// 전표승인처리
 	public int FT_CheckFormal(Map<String, Object> map) {
 		return sqlSession.update("com.pj.erp.persistence.FT_DAO.FT_CheckFormal", map);
@@ -1050,6 +990,292 @@ public class FT_DAOImpl implements FT_DAO{
 		return sqlSession.delete("com.pj.erp.persistence.FT_DAO.deletePlan", map);
 	}
 	
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_BDepreciationDataCnt(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_BDepreciationDataCnt(map);
+	}
 	
+	// 분개 데이터 가져오기
+	@Override
+	public List<FT_Depreciation> FT_BDepreciationDataList(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_BDepreciationDataList(map);
+	}
+	
+	@Override
+	public int FT_BDepreciationDistinctCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BDepreciationDistinctCnt", map);
+	}
+	
+	// 승인처리 할 리스트
+	@Override
+	public FT_Depreciation FT_BDepreciationDistinct(Map<String, Object> map) {
+		if(FT_BDepreciationDistinctCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BDepreciationDistinct", map);
+		}
+	}
+	
+
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_LDepreciationDataCnt(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_LDepreciationDataCnt(map);
+	}
+	
+	// 분개 데이터 가져오기
+	@Override
+	public List<FT_Depreciation> FT_LDepreciationDataList(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_LDepreciationDataList(map);
+	}
+	
+	@Override
+	public int FT_LDepreciationDistinctCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_LDepreciationDistinctCnt", map);
+	}
+	
+	// 승인처리 할 리스트
+	@Override
+	public FT_Depreciation FT_LDepreciationDistinct(Map<String, Object> map) {
+		if(FT_LDepreciationDistinctCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_LDepreciationDistinct", map);
+		}
+	}
+	
+
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_EDepreciationDataCnt(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_EDepreciationDataCnt(map);
+	}
+	
+	// 분개 데이터 가져오기
+	@Override
+	public List<FT_Depreciation> FT_EDepreciationDataList(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_EDepreciationDataList(map);
+	}
+	
+	@Override
+	public int FT_EDepreciationDistinctCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_EDepreciationDistinctCnt", map);
+	}
+	
+	// 승인처리 할 리스트
+	@Override
+	public FT_Depreciation FT_EDepreciationDistinct(Map<String, Object> map) {
+		if(FT_EDepreciationDistinctCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_EDepreciationDistinct", map);
+		}
+	}
+	
+
+	// 날짜 검색 분개 가져오기
+	@Override
+	public int FT_CDepreciationDataCnt(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_CDepreciationDataCnt(map);
+	}
+	
+	// 분개 데이터 가져오기
+	@Override
+	public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map) {
+		FT_DAO dao = sqlSession.getMapper(FT_DAO.class);
+		return dao.FT_CDepreciationDataList(map);
+	}
+	
+	@Override
+	public int FT_CDepreciationDistinctCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_CDepreciationDistinctCnt", map);
+	}
+	
+	// 승인처리 할 리스트
+	@Override
+	public FT_Depreciation FT_CDepreciationDistinct(Map<String, Object> map) {
+		if(FT_CDepreciationDistinctCnt(map) == 0) {
+			return null;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_CDepreciationDistinct", map);
+		}
+	}
+
+	// 승인처리 할 리스트
+	@Override
+	public int FT_ProductSaleCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_ProductSaleCnt", year);
+	}
+	
+	@Override
+	public int FT_ProductSale(int year) {
+		if(FT_ProductSaleCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_ProductSale", year);
+		}
+	}
+
+	@Override
+	public int FT_JepumSaleCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_JepumSaleCnt", year);
+	}
+	
+	@Override
+	public int FT_JepumSale(int year) {
+		if(FT_JepumSaleCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_JepumSale", year);
+		}
+	}
+
+	@Override
+	public int FT_BaseProductCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseProductCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseProduct(int lastyear) {
+		if(FT_BaseProductCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseProduct", lastyear);
+		}
+	}
+
+	@Override
+	public int FT_NowProductCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowProductCnt", year);
+	}
+	
+	@Override
+	public int FT_NowProduct(int year) {
+		if(FT_NowProductCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowProduct", year);
+		}
+	}
+
+	@Override
+	public int FT_BaseSourceCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseSourceCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseSource(int lastyear) {
+		if(FT_BaseSourceCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseSource", lastyear);
+		}
+	}
+	
+	@Override
+	public int FT_NowSourceCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowSourceCnt", year);
+	}
+	
+	@Override
+	public int FT_NowSource(int year) {
+		if(FT_NowSourceCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_NowSource", year);
+		}
+	}
+
+	@Override
+	public int FT_BaseJegongCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJegongCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseJegong(int lastyear) {
+		if(FT_BaseJegongCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJegong", lastyear);
+		}
+	}
+
+	@Override
+	public int FT_BaseJepumCnt(int lastyear) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJepumCnt", lastyear);
+	}
+	
+	@Override
+	public int FT_BaseJepum(int lastyear) {
+		if(FT_BaseJepumCnt(lastyear) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseJepum", lastyear);
+		}
+	}
+
+	@Override
+	public int FT_BaseCostCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseCostCnt", year);
+	}
+	
+	@Override
+	public int FT_BaseCost(int year) {
+		if(FT_BaseCostCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_BaseCost", year);
+		}
+	}
+
+	@Override
+	public int FT_SaleProfitCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_SaleProfitCnt", year);
+	}
+	
+	@Override
+	public int FT_SaleProfit(int year) {
+		if(FT_SaleProfitCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_SaleProfit", year);
+		}
+	}
+
+	@Override
+	public int FT_UnsaleProfitCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleProfitCnt", year);
+	}
+	
+	@Override
+	public int FT_UnsaleProfit(int year) {
+		if(FT_UnsaleProfitCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleProfit", year);
+		}
+	}
+
+	@Override
+	public int FT_UnsaleCostCnt(int year) {
+		return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleCostCnt", year);
+	}
+	
+	@Override
+	public int FT_UnsaleCost(int year) {
+		if(FT_UnsaleCostCnt(year) == 0) {
+			return 0;
+		} else {
+			return sqlSession.selectOne("com.pj.erp.persistence.FT_DAO.FT_UnsaleCost", year);
+		}
+	}
 	
 }

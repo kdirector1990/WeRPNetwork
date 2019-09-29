@@ -5,8 +5,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
-		<security:http pattern = "/resources/**" security = "none"/> 
+		<security:http pattern = "/resources/**" security = "none"/>  
 		<security:http auto-config = "true" use-expressions="true" create-session="never">
+		<security:intercept-url 
+				pattern = "/productList"  
+				access = "permitAll" 
+			/>
+		
 			<security:intercept-url 
 				pattern = "/index2"  
 				access = "permitAll" 
@@ -63,6 +68,8 @@
 				pattern = "/*"
 				access = "hasRole('ROLE_ADMIN')" 
 			/>
+			
+			
 			
 			<security:form-login 
 						login-page="/login"
