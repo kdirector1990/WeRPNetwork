@@ -644,7 +644,6 @@ public class ERPController {
 	}
 	
 	//물품판매
-	// 페이지 해놓을게요 생
 	@RequestMapping("shop")
 	public String home(HttpServletRequest req, Model model) {
 		logger.info("log => home");
@@ -673,5 +672,14 @@ public class ERPController {
 		service.selectMaterals(req, model);
 		
 		return "MF/MF_materialsManagement2"; 
+	}
+	
+	//판매 상품 상세 productDetail
+	@RequestMapping("productDetail")
+	public String productDetail(HttpServletRequest req, Model model) {
+		logger.info("log => productDetail");
+		service.productDetailList(req, model);
+		
+		return "page/productDetail"; 
 	}
 }
