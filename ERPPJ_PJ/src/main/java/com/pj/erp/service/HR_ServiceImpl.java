@@ -47,7 +47,6 @@ public class HR_ServiceImpl implements HR_Service {
 	HR_DAO dao;
 	
 	// 인사정보등록
- 
 	@Override 
 	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
@@ -55,7 +54,7 @@ public class HR_ServiceImpl implements HR_Service {
         String saveDir = req.getRealPath("/resources/hr_img/"); 
 		/* F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\   
 		 * 서버용 저장 경로*/
-        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
+        String realDir="C:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
  
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            

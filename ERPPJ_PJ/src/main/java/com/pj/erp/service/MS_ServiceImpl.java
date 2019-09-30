@@ -1,17 +1,20 @@
 package com.pj.erp.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.persistence.MS_DAO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -26,7 +29,31 @@ public class MS_ServiceImpl implements MS_Service {
 	
 	//기획서등록
 	@Override
-	public void insertPlan(HttpServletRequest req, Model model) {
+	public int insertPlan(MultipartHttpServletRequest req, Model model) {
+		int insertCnt = 0;
+		
+		MultipartFile file = req.getFile("plan_proposal");
+		
+		String saveDir = req.getRealPath("/resources/ms_file/"); 
+		/* F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\   
+		 * 서버용 저장 경로*/
+        String realDir="C:\\dev50\\workspace_PJ\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\ms_file\\"; // 저장 경로
+ 
+        try {
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
+            
+            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            
+            int data = 0;
+            
+            while((data = fis.read()) != -1) {
+                fos.write(data);
+            }
+            fis.close();
+ 
+            fos.close();		
+			 
 		
 		MS_plan vo = new MS_plan();
 		vo.setPlan_name(req.getParameter("plan_name"));
@@ -45,10 +72,13 @@ public class MS_ServiceImpl implements MS_Service {
 		vo.setUsername(req.getParameter("username"));
 		vo.setPosition_code(req.getParameter("position_code"));
 		vo.setPlan_objective(req.getParameter("plan_objective"));
+		vo.setPlan_proposal(file.getOriginalFilename());
 		
-		int insertCnt = dao.insertPlan(vo);
-		
-		model.addAttribute("insertCnt", insertCnt);
+		dao.insertPlan(vo);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }	
+        return insertCnt;
 	}
 
 	//기획서 조회 - 사원이름으로 검색 결과가져오기

@@ -18,7 +18,7 @@ function updatePlan(){
 	var param = $("#datatable2").serializeArray();
 	/* alert(JSON.stringify(param)); */
 	$.ajax({
-		url: '/erp/MS_updatePlanPro?${_csrf.parameterName}=${_csrf.token }',
+		url: '/erp/MS_updatePlanPro',
 		type: 'POST',
 		data : param,
 		dataTpye: 'json',

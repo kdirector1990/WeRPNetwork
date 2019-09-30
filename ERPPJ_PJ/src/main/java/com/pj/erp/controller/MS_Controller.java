@@ -8,12 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pj.erp.service.MS_Service;
 import com.pj.erp.vo.MS.MS_plan;
-import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 
 @Controller
 public class MS_Controller {
@@ -27,17 +28,19 @@ public class MS_Controller {
 	@RequestMapping("MS_planEnrollment")
 	public String planEnrollment(HttpServletRequest req, Model model) {
 		logger.info("log => MS_planEnrollment");
-		
+			
 		return "MS/MS_planEnrollment";
 	}
 	
-	// 기획서 등록 처리
-	@RequestMapping("MS_insertPlanPro")
-	public String MS_insertPlan(HttpServletRequest req, Model model) {
+	// 기획서 등록 처리	
+	@RequestMapping(value="MS_insertPlanPro", method = RequestMethod.POST)
+	@ResponseBody
+	public int MS_insertPlan(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => MS_insertPlanPro");
-		service.insertPlan(req, model);
 		
-		return "MS/MS_planEnrollment";
+		int insertCnt = service.insertPlan(req, model);
+			 
+		return insertCnt;
 	}
 	
 	//기획서 조회

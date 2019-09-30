@@ -13,23 +13,27 @@
     	}
         
         function insertPlan(){
-    		var param = $("#insertPlan").serializeArray();
-    		/* alert(JSON.stringify(param)); */
-    		$.ajax({
-    			url: '/erp/MS_insertPlanPro',
-    			type: 'POST',
-    			data : param,
-    			dataTpye: 'json',
-    			success: function(param){
-    				alert("기획서가 등록되었습니다.");
-    				location.reload();
-    			},
-    			error : function(){
-    				alert("기획서 등록에 실패하였습니다.");
-    			}
-    		});
-    	}
-        
+   		 var param = $("#insertPlan").serializeArray();
+   		 $.ajax({
+   				url: '/erp/MS_insertPlanPro',
+   				type: 'POST',
+   				data : param,
+   				dataTpye: 'json',
+   				success: function(deleteCnt){
+   					if(insertCnt == 1){
+   						alert("기획서 등록에 성공하였습니다.");
+   						window.location="MS_planEnrollment";
+   					} else if (insertCnt == 0) {
+   						alert("실패야.");
+   						window.location="MS_planEnrollment";
+   						
+   					}
+   				},
+   				error : function(){
+   					alert("전산 오류로 인하여 등록에 실패하였습니다.");
+   				}
+   			});
+   	 }
         </script>
 </head>
 
@@ -71,10 +75,9 @@
 								<h4 class="header-title">등록</h4>
 								<p class="sub-header">기획서 등록</p>
 
-								<form action="MS_insertPlanPro" id="insertPlan">
+								<form action="MS_insertPlanPro?${_csrf.parameterName}=${_csrf.token}" id="insertPlan" method="post" enctype="multipart/form-data">
 									<input type='hidden' name="${_csrf.parameterName }"
-										value="${_csrf.token }"> <input type="hidden"
-										name="hiddenId" value="0">
+										value="${_csrf.token }">
 									<div class="form-group">
 										<label class="col-md-1 col-form-label">기획명</label> <input
 											type="text" name="plan_name" class="form-control" required
@@ -144,14 +147,26 @@
 												rows="7" placeholder="기획목표"></textarea>
 										</div>
 									</div>
-									<div class="form-group mb-0">
-										<div>
+									<div class="form-group">
+										<label class="col-md-1 col-form-label" for="simpleinput">파일등록 </label>
+										<div class="col-md-4">
+											<input type="file" class="dropify" name="plan_proposal" />
+										</div>
+									</div>
+									<div class="form-group">
+										<!-- <div>
 											<button type="submit" onclick="insertPlan();"
 												class="btn btn-primary waves-effect waves-light mr-1">
 												Submit</button>
 											<button type="reset"
 												class="btn btn-secondary waves-effect waves-light">
-												Cancel</button>
+												Cancel</button>  
+										</div> -->
+										<div>
+											<input type="submit" value="Submit"
+												class="btn btn-primary waves-effect waves-light mr-1">
+											<input type="reset" value="Cancel"
+												class="btn btn-secondary waves-effect waves-light">
 										</div>
 									</div>
 								</form>

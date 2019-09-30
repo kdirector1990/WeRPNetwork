@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +30,6 @@ import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
-import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 
 @Controller
 public class HR_Controller {
@@ -54,8 +52,6 @@ public class HR_Controller {
 		 
 		return "HR/HR_InputHR";
 	}
-	
-
  
 	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {

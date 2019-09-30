@@ -6,7 +6,7 @@
 	<!-- 기획서 등록 -->
  	<insert id="insertPlan" parameterType = "com.pj.erp.vo.MS.MS_plan">
 		insert into plan_list_tbl(plan_code, plan_name, username, position_code, plan_regdate, plan_startdate, plan_enddate, plan_objective, plan_state, plan_proposal)
-		values(ms_pc_seq.nextval, #{plan_name}, #{username} ,#{position_code} , #{plan_regdate}, #{plan_startdate}, #{plan_enddate}, #{plan_objective}, #{plan_state},'파일') 
+		values(ms_pc_seq.nextval, #{plan_name}, #{username} ,#{position_code} , #{plan_regdate}, #{plan_startdate}, #{plan_enddate}, #{plan_objective}, #{plan_state}, #{plan_proposal}) 
 	</insert>
 	
 	<!-- 기획서 목록  -->

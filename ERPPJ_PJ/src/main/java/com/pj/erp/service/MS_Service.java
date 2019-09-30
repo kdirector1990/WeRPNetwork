@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.pj.erp.vo.MS.MS_plan;
 
@@ -12,7 +13,7 @@ import com.pj.erp.vo.MS.MS_plan;
 public interface MS_Service {
 
 	//기획서 등록
-	public void insertPlan(HttpServletRequest req, Model model);
+	public int insertPlan(MultipartHttpServletRequest req, Model model);
 	
 	//기획서 조회
 	public List<MS_plan> selectPlan(HttpServletRequest req, Model model);
