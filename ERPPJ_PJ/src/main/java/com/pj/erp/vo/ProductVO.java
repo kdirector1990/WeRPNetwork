@@ -6,12 +6,6 @@ public class ProductVO {
 	private String bom_code;
 	private int price;
 	
-	public String getBom_code() {
-		return bom_code;
-	}
-	public void setBom_code(String bom_code) {
-		this.bom_code = bom_code;
-	}
 	public String getProduct_code() {
 		return product_code;
 	}
@@ -23,6 +17,12 @@ public class ProductVO {
 	}
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
+	}
+	public String getBom_code() {
+		return bom_code;
+	}
+	public void setBom_code(String bom_code) {
+		this.bom_code = bom_code;
 	}
 	public int getPrice() {
 		return price;

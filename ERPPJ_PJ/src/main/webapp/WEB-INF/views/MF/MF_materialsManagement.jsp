@@ -161,7 +161,6 @@
      
      function updateMaterial(){
 		 var param = $("#updateMaterial").serializeArray();
-		 alert(JSON.stringify(param));
 		$.ajax({
 			url: '/erp/MF_materialUpdate',
 			type: 'POST',
@@ -180,7 +179,6 @@
      
      function deleteMaterial(){
 		 var param = $("#updateMaterial").serializeArray();
-		 alert(JSON.stringify(param));
 		$.ajax({
 			url: '/erp/MF_materialDelete',
 			type: 'POST',

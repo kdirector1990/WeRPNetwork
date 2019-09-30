@@ -216,7 +216,6 @@
         		} else if(window.event.which == 38) {
                 	updatekey = 1;
                 	selectval = $("#enter" + cc).val();
-                	alert("#enter" + (cc-1));
                 	$("#enter" + (cc-1)).focus();
 					return false;
         		} else if(window.event.which == 39) {
@@ -329,11 +328,9 @@
         	}
         	
         	function deleted() {
-        		alert(focusval);
         		if(focusval == "" && focusval != "0"){
         			alert("등록되어 있는 분개를 선택해주세요!");
         		} else {
-            		alert($("input[name=CardCode" + focusval + "]").val());
 	        		var obj = new Object();
 	        		var jsonData;
 	        	

@@ -32,17 +32,12 @@ public class CT_ServiceImpl implements CT_Service{
 		List<CT_Depart_VO> dto = null; 
 		dto = dao.selectDP();
 		
-		System.out.println(dto.get(0).getDepartment_name());
-		System.out.println(dto.get(0).getDepartment_code());
-		
 		model.addAttribute("dto", dto);
 	}
 	
 	//고정자산 입력
 	@Override
 	public int CT_insert(HttpServletRequest req, Model model) {
-		
-		System.out.println("동작");
 		
 		int i = 0;
 		int insertAC = 0;
@@ -87,12 +82,9 @@ public class CT_ServiceImpl implements CT_Service{
 				
 				insertCnt = dao.InsertCT(vo);
 				
-				System.out.println("다 돌아갔다.");
-				
 				i++;
 			}
 			else {
-				System.out.println("안돌아감."); 
 			}
 			
 			//전산설비테이블에 담는다.
@@ -125,8 +117,6 @@ public class CT_ServiceImpl implements CT_Service{
 		String type = req.getParameter("ceq_type");
 		List<CT_VO> vo = null;
 		vo = dao.SelectCT(type);
-		System.out.println(vo.get(0).getCeq_code());
-		System.out.println(vo.get(0).getDepartment_name());
 		return vo;
 	}
 	
@@ -144,10 +134,6 @@ public class CT_ServiceImpl implements CT_Service{
 	public CT_VO CT_select_code(HttpServletRequest req, Model model) {
 		String code = req.getParameter("ceq_code");
 		CT_VO vo = dao.selectCode(code);
-		System.out.println(code);
-		System.out.println(vo.getCeq_code());
-		System.out.println(vo.getCeq_name());
-		System.out.println(vo.getCeq_type());
 		return vo;
 	}
 
@@ -161,7 +147,6 @@ public class CT_ServiceImpl implements CT_Service{
 		String ceq_acquire_date = req.getParameter("ceq_acquire_date");
 		Date col = Date.valueOf(ceq_acquire_date);
 		String deparment_code = req.getParameter("department_code");
-		System.out.println("부서번호 : " + deparment_code);
 		String location = req.getParameter("ceq_location");
 		
 		//콤마제거(매입가, 예상연수내용)
@@ -189,7 +174,6 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		int updateCnt = dao.updateCT(vo);
 		
-		System.out.println(updateCnt);
 		return updateCnt;
 	}
 
@@ -225,12 +209,6 @@ public class CT_ServiceImpl implements CT_Service{
 		vo.setCas_content(cas_content);
 		vo.setCas_uri(cas_url);
 		
-		System.out.println(vo.getDepartment_code());
-		System.out.println(vo.getUsername());
-		System.out.println(vo.getCas_title());
-		System.out.println(vo.getCas_content());
-		System.out.println(vo.getCas_uri());
-		
 		int insertCnt = dao.insertAS(vo);
 		
 		return insertCnt;
@@ -252,10 +230,8 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		String cas_state = (String)map.get("cas_state");
 		
-		System.out.println(cas_state);
 		
 		map.put("cas_state", cas_state);
-		System.out.println(map.get("cas_state"));
 		
 		List<CT_AS_VO> data = dao.selectAS2(map);
 		
@@ -268,7 +244,6 @@ public class CT_ServiceImpl implements CT_Service{
 
 		String cas_code = req.getParameter("cas_code");
 		
-		System.out.println(cas_code);
 		
 		CT_AS_VO data = dao.selectAScode(cas_code);
 		
@@ -280,9 +255,7 @@ public class CT_ServiceImpl implements CT_Service{
 	public int CT_update_as(HttpServletRequest req, Model model) {
 		int updateCnt = 0;
 		String cas_code = req.getParameter("cas_code");
-		System.out.println(cas_code);
 		updateCnt= dao.updateAS(cas_code);
-		System.out.println(updateCnt);
 		return updateCnt;
 	}
 	
@@ -311,14 +284,12 @@ public class CT_ServiceImpl implements CT_Service{
 		int cnt = 0;
 		String department_code = req.getParameter("department_code");
 		
-		System.out.println(department_code);
 		
 		cnt = dao.selectCEQ(department_code);
 		
 		if(cnt != 0) {
 			List<CT_VO> dto = dao.selectCeqS(department_code);
 			model.addAttribute("dtos", dto);
-			System.out.println("if 작동");
 		}
 		
 		model.addAttribute("cnt", cnt);
@@ -413,7 +384,6 @@ public class CT_ServiceImpl implements CT_Service{
 		
 		List<CT_RP_VO> vo = dao.delRpList(map);
 		
-		System.out.println(vo.get(0).getCeq_code());
 		
 		return vo;
 	}
@@ -430,6 +400,13 @@ public class CT_ServiceImpl implements CT_Service{
 			updateCnt = dao.RPdeleteRemove(code[i]);
 		}
 		return updateCnt;
+	}
+
+	//부서검색 파트
+	@Override
+	public void selectDeptS(HttpServletRequest req, Model model) {
+		List<CT_Depart_VO> vo = dao.selectDEPTVO();
+		model.addAttribute("vo", vo);
 	}
 
 

@@ -76,8 +76,8 @@
 									'<th>내/외국인구별</th>'+
 									'<th>nfc코드</th>'+
 									'<th>부서</th>'+
-									'<th>직급</th>'+
 									'<th>직책</th>'+
+									'<th>직급</th>'+
 									'<th>호봉</th>'+
 									'<th>입사일</th>'+
 								'</tr>'+
@@ -92,16 +92,31 @@
 					
 						var usernames = list[i].username;
 						var e_names = list[i].e_name;
-						var e_genders = list[i].e_gender;						
+						var e_genders = list[i].e_gender;
+						if(e_genders == 1) {
+							e_genders = "남자";
+						}
+						if(e_genders == 2) {
+							e_genders = "여자";
+						}
 						var e_codes = list[i].e_code;
 						var e_hps = list[i].e_hp;
 						var e_mailcodes = list[i].e_mailcode;
 						var e_addresse = list[i].e_address;
 						var e_types = list[i].e_type;
+						if(e_types == "local") {
+							e_types = "내국인";
+						}
+						if(e_types == "foreign") {
+							e_types = "외국인";
+						}
 						var e_nfcCodeNFC = list[i].e_nfcCodeNFC;
 						var department_codes = list[i].department_code;
 						var position_codes = list[i].position_code;
+						var department_names = list[i].department_name;
+						var position_names = list[i].position_name;
 						var rank_codes = list[i].rank_code;
+						var rank_names = list[i].rank_name;
 						var level_steps = list[i].level_step;
 						var start_dates = list[i].start_date;
 						var pa = new Date(start_dates);
@@ -120,9 +135,9 @@
 							'<td>'+ e_addresse +'</td>'+
 							'<td>'+ e_types +'</td>'+
 							'<td>'+ e_nfcCodeNFC +'</td>'+
-							'<td>'+ department_codes +'</td>'+
-							'<td>'+ position_codes +'</td>'+
-							'<td>'+ rank_codes +'</td>'+
+							'<td>'+ department_names +'</td>'+
+							'<td>'+ position_names +'</td>'+
+							'<td>'+ rank_names +'</td>'+
 							'<td>'+ level_steps +'</td>'+
 							'<td>'+ start_datess +'</td>'+							
                  		'</tr>');
@@ -172,8 +187,9 @@
 	  				var e_type = data.e_type;
 	  				var e_code = data.e_code;
 	  				var e_hp = data.e_hp;
+	  				var e_address = data.e_address;	  				
 	  				var e_mailcode = data.e_mailcode;
-	  				var e_nfcCodeNFC = data.e_nfcCodeNFC
+	  				var e_nfcCodeNFC = data.e_nfcCodeNFC;
 	  				var department_code = data.department_code;
 	  				var position_code = data.position_code;
 	  				var rank_code = data.rank_code;
@@ -239,15 +255,10 @@
 							+'</div>'
 						+'</div>'	
 						+'<div class="form-group row">'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록주소<span class="text-danger">*</span></label>'
-							+'<div class="col-md-4">'
-								+'<input type="text" class="form-control" name="e_address1" placeholder="주민등록주소" size="13">'
-							+'</div>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">상세주소<span class="text-danger">*</span></label>'
-							+'<div class="col-md-4">'
-								+'<input type="text" class="form-control" name="e_address2" placeholder="상세주소" size="13">'
-							+'</div>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">주소<span class="text-danger">*</span></label>'
+							+'<div class="col-md-10">'
+								+'<input type="text" class="form-control" name="e_address" value="'+e_address+'">'
+							+'</div>'							
 						+'</div>'
 						+'<div class="form-group row">'
 						+'<label class="col-md-1 col-form-label" for="simpleinput">우편번호<span class="text-danger">*</span></label>'
@@ -274,7 +285,7 @@
 							+'<div class="col-md-4">'
 								+'<select class="form-control select2" name="position_code" onchange="">'
 									+'<c:forEach var="poi" items="${poi}">'
-									+'<option value="${poi.position_code}">${poi.position_code}</option>'	
+									+'<option value="${poi.position_code}">${poi.position_name}</option>'	
 									+'</c:forEach>'																							
 								+'</select>'
 							+'</div>'																
@@ -284,7 +295,7 @@
 							+'<div class="col-md-4">'
 								+'<select class="form-control select2" name="rank_code" onchange="">'
 									+'<c:forEach var="rank" items="${rank}">'
-									+'<option value="${rank.rank_code}">${rank.rank_code}</option>'	
+									+'<option value="${rank.rank_code}">${rank.rank_name}</option>'	
 									+'</c:forEach>'																							
 								+'</select>'
 							+'</div>'
@@ -312,7 +323,6 @@
 	 
 	 function HR_modifyFoundationPro2(){
      	var param = $("#updateFou").serializeArray();
- 		alert(JSON.stringify(param));
  		$.ajax({
  			url: '/erp/HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }',
  			type: 'POST',

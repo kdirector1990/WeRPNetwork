@@ -71,13 +71,13 @@
 					 '</select></td><td>' +
 					 '<input type="date" name="ceq_acquire_date" value="'+ceq_acquire_date+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td><td>' +
 					 '<select name = "department_code" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;">' +
-					 	'<option value="'+voC.department_name+'">선택</option>' +
-					 	'<option value="인사">인사</option>' +
-					 	'<option value="plan_depart">기획</option>' +
-					 	'<option value="영업">영업</option>' +
-					 	'<option value="재무">재무</option>' +
-					 	'<option value="전산">전산</option>' +
-					 	'<option value="제조">제조</option>' +
+					 	'<option value="'+voC.department_code+'">선택</option>' +
+					 	'<option value="hr_01">인사</option>' +
+					 	'<option value="ms_01">기획</option>' +
+					 	'<option value="st_01">영업</option>' +
+					 	'<option value="ft_01">재무</option>' +
+					 	'<option value="ct_01">전산</option>' +
+					 	'<option value="mf_01">제조</option>' +
 					 '</select></td><td>' +
 					 '<input type="text" name="ceq_location" value="'+voC.ceq_location+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td><td>' +
 					 '<input type="text" name="ceq_prime_cost" value="'+voC.ceq_prime_cost+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);"></td><td>' +

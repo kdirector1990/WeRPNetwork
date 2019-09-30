@@ -137,8 +137,8 @@ function allcheck(){
 				<c:forEach var="shop" items="${shop}">
 				<div class="col-md-4 col-sm-6 portfolio-item">
 					<%-- <input type="checkbox" class="checklist" name="product_code" value="${shop.product_code}"> --%>
-					<a class="portfolio-link" data-toggle="modal"
-						href="#portfolioModal1">
+					<a class="portfolio-link"
+						href='public_productDetail?product_code=${shop.product_code}'>
 						<div class="portfolio-hover">
 							<div class="portfolio-hover-content">
 								<i class="fas fa-plus fa-3x"></i>
@@ -147,91 +147,15 @@ function allcheck(){
 						<img class="img-fluid"
 						src="/erp/resources/shop/img/portfolio/01-thumbnail.jpg" alt="">
 					</a>
-					
 					<div class="portfolio-caption">
 						<h4>${shop.product_name}</h4>
 						<p class="text-muted">${shop.price}</p>
 					</div>
 				</div>
 				</c:forEach>
-				<div>
+				<!-- <div>
 					<button type="button" class="btn btn-dark waves-effect waves-light"
 						onclick="">구매</button>
-				</div>
-				<!-- <div class="col-md-4 col-sm-6 portfolio-item">
-					<a class="portfolio-link" data-toggle="modal"
-						href="#portfolioModal2">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div> <img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/02-thumbnail.jpg" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Explore</h4>
-						<p class="text-muted">Graphic Design</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
-					<a class="portfolio-link" data-toggle="modal"
-						href="#portfolioModal3">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div> <img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/03-thumbnail.jpg" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Finish</h4>
-						<p class="text-muted">Identity</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
-					<a class="portfolio-link" data-toggle="modal"
-						href="#portfolioModal4">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div> <img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/04-thumbnail.jpg" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Lines</h4>
-						<p class="text-muted">Branding</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
-					<a class="portfolio-link" data-toggle="modal"
-						href="#portfolioModal5">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div> <img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/05-thumbnail.jpg" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Southwest</h4>
-						<p class="text-muted">Website Design</p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 portfolio-item">
-					<a class="portfolio-link" data-toggle="modal"
-						href="#portfolioModal6">
-						<div class="portfolio-hover">
-							<div class="portfolio-hover-content">
-								<i class="fas fa-plus fa-3x"></i>
-							</div>
-						</div> <img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/06-thumbnail.jpg" alt="">
-					</a>
-					<div class="portfolio-caption">
-						<h4>Window</h4>
-						<p class="text-muted">Photography</p>
-					</div>
 				</div> -->
 			</div>
 		</div>
@@ -625,7 +549,7 @@ function allcheck(){
 						<div class="col-lg-8 mx-auto">
 							<div class="modal-body">
 								<!-- Project Details Go Here -->
-								<h2 class="text-uppercase">Product Name</h2>
+								<h2 class="text-uppercase">product_name</h2>
 								<p class="item-intro text-muted">Lorem ipsum dolor sit amet
 									consectetur.</p>
 								<img class="img-fluid d-block mx-auto"
@@ -657,7 +581,7 @@ function allcheck(){
 	</div>
 
 	<!-- Modal 2 -->
-	<div class="portfolio-modal modal fade" id="portfolioModal2"
+	<!-- <div class="portfolio-modal modal fade" id="portfolioModal2"
 		tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -670,8 +594,8 @@ function allcheck(){
 					<div class="row">
 						<div class="col-lg-8 mx-auto">
 							<div class="modal-body">
-								<!-- Project Details Go Here -->
-								<h2 class="text-uppercase">Project Name</h2>
+								Project Details Go Here
+								<h2 class="text-uppercase">TV</h2>
 								<p class="item-intro text-muted">Lorem ipsum dolor sit amet
 									consectetur.</p>
 								<img class="img-fluid d-block mx-auto"
@@ -696,10 +620,10 @@ function allcheck(){
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Modal 3 -->
-	<div class="portfolio-modal modal fade" id="portfolioModal3"
+	<!-- <div class="portfolio-modal modal fade" id="portfolioModal3"
 		tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -712,8 +636,8 @@ function allcheck(){
 					<div class="row">
 						<div class="col-lg-8 mx-auto">
 							<div class="modal-body">
-								<!-- Project Details Go Here -->
-								<h2 class="text-uppercase">Project Name</h2>
+								Project Details Go Here
+								<h2 class="text-uppercase">Note10+</h2>
 								<p class="item-intro text-muted">Lorem ipsum dolor sit amet
 									consectetur.</p>
 								<img class="img-fluid d-block mx-auto"
@@ -739,7 +663,7 @@ function allcheck(){
 			</div>
 		</div>
 	</div>
-
+ -->
 	<!-- Modal 4 -->
 	<div class="portfolio-modal modal fade" id="portfolioModal4"
 		tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">

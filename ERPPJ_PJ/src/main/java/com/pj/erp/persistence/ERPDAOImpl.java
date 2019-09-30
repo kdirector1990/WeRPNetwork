@@ -52,7 +52,7 @@ public class ERPDAOImpl implements ERPDAO{
 	// 구매할 때 필요한 목록
 	@Override
 	public List<MaterialVO> getMaterialList() {
-		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getProductList");
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getMaterialList");
 	}
 	
 	@Override
