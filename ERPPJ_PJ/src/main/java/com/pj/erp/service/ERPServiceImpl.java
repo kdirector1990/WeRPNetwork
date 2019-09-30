@@ -186,10 +186,18 @@ public class ERPServiceImpl implements ERPService{
 	//물품 상세페이지
 	@Override
 	public void productDetailList(HttpServletRequest req, Model model) {
-		String product_code = req.getParameter("product_code");
-		ProductVO vo = dao.gerProductDetail(product_code);
 		
-		model.addAttribute("detail", vo);
+		try {
+			String product_code = req.getParameter("product_code");
+			ProductVO shop = dao.gerProductDetail(product_code);
+			
+			model.addAttribute("shop", shop);
+        } catch (NumberFormatException e) {
+            // NumberFormatException 이 발생한 경우 처리 방법
+        } catch (Exception e) {
+            // Exception 이 발생한 경우 처리 방법
+        }
+		
 	}
 	
 	
