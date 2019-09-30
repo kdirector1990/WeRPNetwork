@@ -73,7 +73,7 @@ function allcheck(){
 													<tr>
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
-														<td><input type="text" name="price" onkeyup="removeChar(event); inputNumberFormat(this);"></td>
+														<td><input type="text" name="price" onkeyup="removeChar(event);"></td>
 														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
 														<td>
 														<input type="hidden" name="material_code" value="${list.material_code}">
