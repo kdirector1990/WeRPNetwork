@@ -83,7 +83,7 @@ public class OriginService {
     	
     	String deptWallet = depart_wallet(department_code);
     	String deptname = department_code;
-    	
+    		
     	// 계정의 primary key를 접속한 부서별로 할당한다.
     	Credentials dept_AccountNumber = Credentials.create(deptWallet);
     	
@@ -110,11 +110,10 @@ public class OriginService {
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
   
-    	String prices = req.getParameter("price");
+    	int prices = Integer.parseInt(req.getParameter("price"));
     	int nums = Integer.parseInt(req.getParameter("num"));
     	
-    	int pricece = Integer.parseInt(prices.replace(",", ""));
-    	int price = pricece * nums;
+    	int price = prices * nums;
     	
     	BigInteger ethers = null;
     	
@@ -142,9 +141,9 @@ public class OriginService {
     	
     	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
     	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소 
-    	MateralOrigin dept = MateralOrigin.load(contractAddress, web3j, dept_AccountNumber, gasPrice, gasLimit);
+    	MateralOrigin dept = MateralOrigin.load(contractAddress, web3j, salesTeam, gasPrice, gasLimit);
 
-    	// 솔리디티의 buyMaterial을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
+    	// 솔리디티의 buyMaterialOrigins을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
 		String hash = dept.buyMaterialOrigins(new BigInteger("0"), name, ethers).send().getTransactionHash();
@@ -155,7 +154,7 @@ public class OriginService {
 		// 자재를 구매했기에 DB에 입력.
 		Material_VO mat = new Material_VO();
 		mat.setMaterial_code(code);
-		mat.setM_price(pricece);
+		mat.setM_price(prices);
 		mat.setM_amount(nums);
 		mat.setM_note(hash);
 		
