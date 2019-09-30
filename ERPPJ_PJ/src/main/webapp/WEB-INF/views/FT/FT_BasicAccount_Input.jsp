@@ -60,7 +60,6 @@
                     type : "POST",
                     url : "/erp/FT_AccountOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).val(),
                     success : function(data) {
-                        alert(data);
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
 	                   	$("input[name=number]").val(data.license_number);
