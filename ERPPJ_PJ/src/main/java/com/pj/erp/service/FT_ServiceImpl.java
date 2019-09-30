@@ -720,6 +720,8 @@ public class FT_ServiceImpl implements FT_Service{
 		map.put("firstday", map.get("firstday").toString());
 		map.put("lastday", map.get("lastday").toString());
 		System.out.println("year : " + year + ", month : " + month);
+		System.out.println("day : " + String.valueOf((new Date(year, Integer.parseInt(month), 0)).getDate()));
+		System.out.println("date : " + map.get("firstday").toString());
 		
 		List<FT_DTB> listL = dao.FT_DTBMonthListL(map);
 		List<FT_DTB> listM = dao.FT_DTBMonthListM(map);
@@ -1113,4 +1115,176 @@ public class FT_ServiceImpl implements FT_Service{
 		list.setUnsalecost(unsalecost);
 		return list;
 	}
+	
+	// 결산분개
+	public void FT_journalComplete(HttpServletRequest req, Model model) {
+		String a = req.getParameter("endproduct");
+		String b = req.getParameter("endsource");
+		String c = req.getParameter("eqprice");
+		String d = req.getParameter("ceqprice");
+		String e = req.getParameter("endjegong");
+		String f = req.getParameter("endjepum");
+		String g = req.getParameter("buildingprice");
+		String h = req.getParameter("landprice");
+		String i = req.getParameter("noteprice");
+		String j = req.getParameter("loanprice");
+		String k = req.getParameter("notcatchprice");
+		String l = req.getParameter("creditprice");
+		String m = req.getParameter("bubin");
+		Map<String, Object> map  = new HashMap<String, Object>();
+		map.put("date", req.getParameter("years") + "-12-31");
+		map.put("updateday", req.getParameter("years") + "-12-31");
+		map.put("type", "4");
+		map.put("wname", req.getSession().getAttribute("username"));
+		map.put("fname", req.getSession().getAttribute("username"));
+		map.put("leftcount", 0);
+		map.put("rightcount", 0);
+		int number = dao.FT_ChitMaxNumber(map);
+		map.put("number", number);
+		if(a != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", a);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", a);
+			dao.FT_chitInsert(map);
+		}
+		if(b != null) {
+			map.put("text", "원재료재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", b);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 원재료
+			map.put("leftprice", 0);
+			map.put("rightprice", b);
+			dao.FT_chitInsert(map);
+		}
+		if(c != null) {
+			map.put("text", "설비 감가상각 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 감가상각비
+			map.put("leftprice", c);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 설비
+			map.put("leftprice", 0);
+			map.put("rightprice", c);
+			dao.FT_chitInsert(map);
+		}
+		if(d != null) {
+			map.put("text", "전산설비 감가상각 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 감가상각비
+			map.put("leftprice", d);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 전산설비
+			map.put("leftprice", 0);
+			map.put("rightprice", d);
+			dao.FT_chitInsert(map);
+		}
+		if(e != null) {
+			map.put("text", "재공품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", e);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", e);
+			dao.FT_chitInsert(map);
+		}
+		if(f != null) {
+			map.put("text", "제품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", f);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", f);
+			dao.FT_chitInsert(map);
+		}
+		if(g != null) {
+			map.put("text", "건물 감가상각 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", g);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", g);
+			dao.FT_chitInsert(map);
+		}
+		if(h != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", h);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", h);
+			dao.FT_chitInsert(map);
+		}
+		if(i != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", i);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", i);
+			dao.FT_chitInsert(map);
+		}
+		if(j != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", j);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", j);
+			dao.FT_chitInsert(map);
+		}
+		if(k != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", k);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", k);
+			dao.FT_chitInsert(map);
+		}
+		if(l != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", l);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", l);
+			dao.FT_chitInsert(map);
+		}
+		if(m != null) {
+			map.put("text", "상품재고 결산분개");
+			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("leftprice", m);
+			map.put("rightprice", 0);
+			dao.FT_chitInsert(map);
+			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("leftprice", 0);
+			map.put("rightprice", m);
+			dao.FT_chitInsert(map);
+		}
+	}
+	
+	
 }
