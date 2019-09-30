@@ -636,7 +636,7 @@ public class ERPController {
 	}
 	
 	// 재료 구매하는 페이지
-	@RequestMapping("productList")
+	@RequestMapping("public_productList")
 	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
 		service.materialList(req, model);
@@ -644,7 +644,7 @@ public class ERPController {
 	}
 	
 	//물품판매
-	@RequestMapping("shop")
+	@RequestMapping("public_shop")
 	public String home(HttpServletRequest req, Model model) {
 		logger.info("log => home");
 		service.productList(req, model);
@@ -675,7 +675,7 @@ public class ERPController {
 	}
 	
 	//판매 상품 상세 productDetail
-	@RequestMapping("productDetail")
+	@RequestMapping("public_productDetail")
 	public String productDetail(HttpServletRequest req, Model model) {
 		logger.info("log => productDetail");
 		service.productDetailList(req, model);
