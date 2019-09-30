@@ -12,7 +12,6 @@
         <!-- Begin page -->
         <div id="wrapper">
 
-            
             <%@ include file="sidebar.jsp" %>
 
             <!-- ============================================================== -->
@@ -43,6 +42,13 @@
                                     	<h4 class="page-title">부서명: ${dName }</h4>
                                     	<h4 class="page-title">사번: ${username }</h4>
                                     	<h4 class="page-title">권한: ${auth }</h4>
+                                    	<h4 class="page-title">관리자권한: ${ADMIN }</h4>
+                                    	<h4 class="page-title">경영권한: ${MS }</h4>
+                                    	<h4 class="page-title">인사권한: ${HR }</h4>
+                                    	<h4 class="page-title">영업권한: ${ST }</h4>
+                                    	<h4 class="page-title">재무권한: ${FT }</h4>
+                                    	<h4 class="page-title">전산권한: ${CT }</h4>
+                                    	<h4 class="page-title">생산권한: ${MF }</h4>
                                     </sec:authorize>
                                     <sec:authorize access="isAnonymous()">
                                  	   <h4 class="page-title">부정한 접근 감지</h4>
