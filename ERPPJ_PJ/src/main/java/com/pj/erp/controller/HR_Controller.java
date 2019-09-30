@@ -55,6 +55,16 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
+	@RequestMapping("HR_InputHR_RPA")
+	public String HR_InputHR_RPA(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR_RPA");
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		 
+		return "HR/HR_InputHR_RPA";
+	}
+	
 
  
 	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 

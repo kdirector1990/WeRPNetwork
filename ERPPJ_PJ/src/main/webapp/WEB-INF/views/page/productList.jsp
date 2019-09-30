@@ -50,9 +50,6 @@ function allcheck(){
 						<div class="card">
 							<div class="card-body">
 								<div class="form-horizontal">
-								<form action="InsertMaterialIo" method="post">
-										<input type="hidden" name="${_csrf.parameterName }"
-											value="${_csrf.token }">
 										<table id="datatable"
 											class="table m-0 table-bordered table-hover"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -71,9 +68,12 @@ function allcheck(){
 											<tbody>
 												<c:forEach var="list" items="${dto}">
 													<tr>
+													<form action="InsertMaterialIo" method="post">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
-														<td><input type="text" name="price" onkeyup="removeChar(event); inputNumberFormat(this);"></td>
+														<td><input type="text" name="price" onkeyup="removeChar(event);"></td>
 														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
 														<td>
 														<input type="hidden" name="material_code" value="${list.material_code}">
@@ -84,12 +84,12 @@ function allcheck(){
 															<option value="4팀">(주)돼지</option>
 														</select>
 														</td>
-														<td><button type="submit" class="btn btn-dark waves-effect waves-light" onclick=";">구매</button></td>
+														<td><button type="submit" class="btn btn-dark waves-effect waves-light" >구매</button></td>
+														</form>							
 													 </tr>
 												</c:forEach>
 											</tbody>
 										</table>
-									</form>									
 								</div>
 
 								<%-- <div class="result">

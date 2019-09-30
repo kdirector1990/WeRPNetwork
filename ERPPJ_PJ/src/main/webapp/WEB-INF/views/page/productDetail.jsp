@@ -85,6 +85,13 @@
 					<div class="row">
 						<div class="col-lg-8 mx-auto">
 							<div class="modal-body">
+							
+							<form action="EproductBuy">
+							<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
+							<input type="hidden" name="product_name" value="${shop.product_name }">
+							<input type="hidden" name="product_price" value="${shop.price }">
+							<input type="hidden" name="product_code" value="${shop.product_code }">
 								<!-- Project Details Go Here -->
 								<h2 class="text-uppercase">${shop.product_name}</h2>
 								<p class="item-intro text-muted">${shop.price}</p>
@@ -101,13 +108,14 @@
 									<li>product_code : ${shop.product_code}</li>
 								</ul>
 								<button class="btn btn-primary" data-dismiss="modal"
-									type="button">
+									type="submit">
 									Buy
 								</button>
 								<button class="btn btn-primary"
 									type="button" onclick="window.history.back();">
 									<i class="fas fa-times"></i> Close
 								</button>
+								</form>
 							</div>
 						</div>
 					</div>
