@@ -669,9 +669,14 @@ public class ERPController {
 	
 	// 재료 구매.
 	@RequestMapping("InsertMaterialIo")
-	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
+	public String InsertMaterialIo(HttpServletRequest req, Model model){
 		logger.info("log => InsertMaterialIo");
-		OS.payOriginMaterial(req, model);
+		try {
+			OS.payOriginMaterial(req, model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		logger.info("log => productList");
 		service.materialList(req, model);

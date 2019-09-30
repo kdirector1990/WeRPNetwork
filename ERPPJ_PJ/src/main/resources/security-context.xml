@@ -11,6 +11,10 @@
 				pattern = "/public_*"  
 				access = "permitAll" 
 			/>
+			<security:intercept-url 
+				pattern = "/cm_*"
+				access = "hasAnyRole('ROLE_HR','ROLE_CT','ROLE_MF','ROLE_MS','ROLE_ST','ROLE_FT','ROLE_ADMIN')" 
+			/>
 		
 			<security:intercept-url 
 				pattern = "/index2"  
