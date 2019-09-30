@@ -455,4 +455,19 @@
 		]]>
 	</select>
 	
+	<!-- 발령공고 변경목록 -->
+	<select id = "getRecords" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_RecordVO">
+		<![CDATA[
+			select a.ap_name as ap_name, p.position_name as position_name, d.department_name as department_name, r.record_date as record_date
+			from users u, appointment_tbl a, position_record_tbl r, position_tbl p, department_tbl d
+			where u.username = r.username
+			and a.ap_code = r.ap_code
+			and d.department_code = r.department_code_after
+			and p.position_code = r.position_code_after
+			and u.username like '%'||#{username}||'%'
+			and a.ap_code like '%'||#{ap_code}||'%'
+			and a.ap_name like '%'||#{ap_name}||'%'
+		]]> 
+	</select>
+	
 </mapper>

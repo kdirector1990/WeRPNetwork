@@ -549,6 +549,16 @@ public class HR_Controller {
 		return list;
 	}
 	
+	// 인사발령공고 변경된 내용들
+	@RequestMapping(value = "HR_position_record_list", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_RecordVO> HR_position_record_list(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_position_record_list");
+		List<HR_RecordVO> list = service.getRecords(map, req, model);
+		return list;
+	}
+	
+	
 	// 사이드바 출근
 	@RequestMapping("HR_Start_Work_Sidebar")
 	@ResponseBody
