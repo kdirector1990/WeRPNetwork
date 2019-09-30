@@ -270,5 +270,8 @@ public interface FT_Service {
 	
 	// 결산자료입력 리스트
 	public FT_Total FT_TotalSelect(HttpServletRequest req, Model model);
+
+	// 결산분개
+	public void FT_journalComplete(HttpServletRequest req, Model model);
 	
 }

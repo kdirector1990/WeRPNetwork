@@ -87,7 +87,7 @@
 	  
 	                                <tbody>
 	                                    <c:set var="cnt" value="0"/>  
-	                                    <c:if test="${loan == null}">                             
+	                                    <c:if test="${loan != null}">                             
 	                                    	<c:forEach var="lo" items="${loan}">
 	                                      		<tr>																			
 	                                               <td>${lo.loanCode}</td>
