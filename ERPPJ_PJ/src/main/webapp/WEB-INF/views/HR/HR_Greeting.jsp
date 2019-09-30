@@ -217,7 +217,7 @@ function ap_nameList() {
 
 
 					<div class="row">
-						<div class="col-sm-12">
+						<div class="col-sm-8">
 							<div class="card">
 								<div class="card-body">
 									<h4 class="header-title">발령공고</h4>									
@@ -264,58 +264,12 @@ function ap_nameList() {
 												</div>
 
 												<div class="form-group mb-0">
-													<input type="submit" class="btn btn-success" value="공고등록">
+													<input type="submit" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" class="btn btn-success" value="공고등록">
 												</div>
 											</form>
 										</div>
 										
-										<div class="col-xl-6">
-											<form class="form-horizontal">
-												<div class="card">
-													<div class="card-body">
-														<br>
-														<table id="datatable"
-															class="table table-hover table-bordered dt-responsive nowrap"
-															style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-															<thead class="table-info">
-																<tr style="text-align: center; pointer-events: none;">
-																	<th></th>
-																	<th>사원코드</th>
-																	<th>사원명</th>
-																	<th>부서</th>
-																	<th>직책</th>
-																</tr>
-															</thead>
-
-															<tbody>
-																<tr>
-																	<th></th>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<th></th>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																</tr>
-																<tr>
-																	<th></th>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																	<td></td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-
-											</form>
-										</div>
+										
 										<!-- end col -->
 									</div>
 									<!-- end row -->

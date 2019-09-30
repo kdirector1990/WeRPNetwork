@@ -60,7 +60,6 @@
                     type : "POST",
                     url : "/erp/FT_AccountOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).val(),
                     success : function(data) {
-                        alert(data);
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
 	                   	$("input[name=number]").val(data.license_number);
@@ -382,14 +381,6 @@
 															<div class="col-lg-8">
 																<input type="text" class="form-control"
 																	name="bsAddress2" placeholder="본점소재지">
-															</div>
-														</div>
-
-														<div class="form-group row">
-															<label class="col-lg-4 col-form-label" for="simpleinput">스캔파일명<span
-																class="text-danger">*</span></label>
-															<div class="col-lg-8">
-																<input type="file" class="dropify" name="scanfile" />
 															</div>
 														</div>
 													</div>

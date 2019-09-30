@@ -156,15 +156,15 @@
    	}
        
        function usernameList() {
-   		window.open("ST_searchUsername", "username_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+   		window.open("ST_searchUsername", "username_list", "menubar=no, width=450px, height = 480px, location=no, status=nos, top = 200, left = 500");
    	}   
        
      function customerNameList() {
-    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=1000px , height = 600px, location=no, status=nos, top = 200, left = 600");
     	} 
     
      function customerNameList3() {
- 		window.open("ST_searchCustomername3", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+ 		window.open("ST_searchCustomername3", "customer_list", "menubar=no, width=1000px , height = 600px, location=no, status=nos, top = 200, left = 500");
  	} 
 </script>
     

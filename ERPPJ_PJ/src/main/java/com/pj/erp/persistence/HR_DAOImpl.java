@@ -44,8 +44,8 @@ public class HR_DAOImpl implements HR_DAO{
 	}
 	
 	@Override
-	public int insertAuth() {
-		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertAuth");
+	public int insertAuth(String authority) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertAuth", authority);
 	}
 
 	//호봉테이블 (직급)
