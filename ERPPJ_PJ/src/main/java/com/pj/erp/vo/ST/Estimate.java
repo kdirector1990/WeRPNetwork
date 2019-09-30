@@ -19,6 +19,7 @@ public class Estimate {
 	private String customer_name;	// 거래처명
 	private String detail_ac_code;	// 제품 코드
 	private String e_name;	// 이름
+	private String search_release_code;	// 제품명
 	
 	// 생성자
 	public Estimate() {}
@@ -156,6 +157,18 @@ public class Estimate {
 	public void setE_name(String e_name) {
 		this.e_name = e_name;
 	}
+
+
+	public String getSearch_release_code() {
+		return search_release_code;
+	}
+
+
+	public void setSearch_release_code(String search_release_code) {
+		this.search_release_code = search_release_code;
+	}
+	
+	
 
 
 	
