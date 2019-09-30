@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: USER
 Build-Jdk: 1.8.0_211
-=======
-Built-By: SSI
-Build-Jdk: 1.8.0_221
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 Created-By: Maven Integration for Eclipse
 
