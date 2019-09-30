@@ -67,10 +67,7 @@ function setName(customer_name, customer_code) {
 	opener.document.getElementById("customer_codeM").value = customer_code;
 
 	//test alert
-<<<<<<< HEAD
 	
-=======
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	$("#customer_nameM", opener.document).val(customer_name); //jquery 이용
 	$(opener.document).find("#customer_nameM").val(customer_name); //find를 이용한 jquery
 	

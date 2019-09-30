@@ -227,12 +227,12 @@
 												<th class="col-md-1 col-form-label"style="text-align: right;">품명</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="ProductName" id="ProductName" class="form-control"></td>
-													
-													
-												<td class="col-md-2 input-group"><button type="button" 
-														class="btn btn-primary waves-effect waves-light" id="search">조회</button></td>
 											</tr>
 										</table>
+										<div align="right">
+											<button type="button"
+												class="btn btn-primary waves-effect waves-light" id="search" >조회</button>
+										</div>
 									</form>
 								</div>
 							</div>

@@ -227,11 +227,13 @@ $(function(){
 											<td class="col-md-2 input-group"><input type="text"
 												name="ProductName" id="ProductName" class="form-control">
 											</td>
-											<td class="col-md-2 input-group"><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">조회</button></td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light"
+											id="search">조회</button>
+									</div>
 								</div>
 							</div>
 							<!-- end card -->
