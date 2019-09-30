@@ -99,4 +99,11 @@
  		   select * from salelist_tbl
  	</select>
 
+	<!-- 가상화폐를 통해 판매 물품 판매대장 insert -->
+	<insert id="insertSalelist" parameterType="com.pj.erp.vo.ST.SalePlan">
+		Insert into salelist_tbl(salelist_code, username, detail_ac_code, customer_code, reg_date, release_o_date, unit, amount, 
+								price, note, release_state, ether_salecode)
+		Values('sa_' || salelist_seq.nextval, '10008', #{detail_ac_code}, '0x1d9CefB3A08ac0390e436A02807B5d4054DE6247', sysdate, #{release_o_date}, '대', '1', 
+				#{price}, '가상화폐로 구매', '2', #{ether_salecode})
+	</insert>
 </mapper>

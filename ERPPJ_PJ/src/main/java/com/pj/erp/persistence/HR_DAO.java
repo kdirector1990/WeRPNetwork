@@ -179,4 +179,7 @@ public interface HR_DAO {
 	// 가족정보 수정
 	public int updateFamily(HR_FamilyVO vo); 
 	
+	// 발령공고 변경내역
+	public List<HR_RecordVO> getRecords(Map<String, Object> map);
+	
 }

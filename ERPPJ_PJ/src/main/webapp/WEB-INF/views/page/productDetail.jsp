@@ -106,6 +106,7 @@
 									<li>product_name : ${shop.product_name}</li>
 									<li>price : ${shop.price}</li>
 									<li>product_code : ${shop.product_code}</li>
+									<li><input type="date" name="release_o_date"></li>
 								</ul>
 								<button class="btn btn-primary" data-dismiss="modal"
 									type="submit">
