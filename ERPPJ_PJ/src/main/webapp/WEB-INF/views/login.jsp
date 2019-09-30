@@ -7,7 +7,7 @@
 	<body>
      	 <!-- Begin page -->
     	 <div id="wrapper">
-    	 <%@ include file="sidebar.jsp" %>
+            <%@ include file="sidebar.jsp" %>
             <div class="content-page">
 			<!-- ============================================================== -->
             <!-- Start Page Content here -->
@@ -29,7 +29,7 @@
                                             <li class="breadcrumb-item active">Log In</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Log In</h4>
+                                    <h4 class="page-title">Log In${auth }</h4>
                                 </div>
                             </div>
                         </div>     

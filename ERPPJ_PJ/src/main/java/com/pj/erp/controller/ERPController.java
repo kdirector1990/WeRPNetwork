@@ -23,6 +23,7 @@ import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.service.OriginService;
 import com.pj.erp.service.ProductSell;
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.ST.ST_contrast;
 
 import sun.nio.cs.MS1250;
 
@@ -63,7 +64,8 @@ public class ERPController {
  
 	@RequestMapping("index")
 	public String index(Locale locale, Model model) {
-		logger.info("log => index");  
+		logger.info("log => index");
+		service.getcontrast(model);
 		return "index";
 	}
 	@RequestMapping("index2")
@@ -651,7 +653,7 @@ public class ERPController {
 	}
 	
 	// 재료 구매하는 페이지
-	@RequestMapping("public_productList")
+	@RequestMapping("CM_productList")
 	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
 		service.materialList(req, model);

@@ -13,6 +13,7 @@ import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.SaleList;
 
 @Repository
@@ -92,5 +93,13 @@ public class ERPDAOImpl implements ERPDAO{
 	public int insertSalelist(SaleList vo) {
 		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertSalelist", vo);
 	}
+	
+	// ST_contrast 검색 조회
+	@Override
+	public List<ST_contrast> getContrast() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getContrast");
+	}
+	
+	
 	
 }

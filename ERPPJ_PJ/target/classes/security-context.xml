@@ -12,7 +12,7 @@
 				access = "permitAll" 
 			/>
 			<security:intercept-url 
-				pattern = "/cm_*"
+				pattern = "/CM_*"
 				access = "hasAnyRole('ROLE_HR','ROLE_CT','ROLE_MF','ROLE_MS','ROLE_ST','ROLE_FT','ROLE_ADMIN')" 
 			/>
 		

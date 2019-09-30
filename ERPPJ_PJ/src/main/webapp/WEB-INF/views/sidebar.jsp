@@ -302,7 +302,16 @@
                     <div id="sidebar-menu">
 
                         <ul class="metismenu" id="side-menu">
-
+                        	<c:if test = "${auth == null }">
+                        		<li>
+                                <a href="index">
+                                    <i class="fe-airplay"></i>
+                                    <span class="badge badge-success badge-pill float-right">1</span>
+                                    <span> 로그인 후 이용할 수 있습니다. </span>
+                                </a>
+                            </li>
+                        	</c:if>
+							<c:if test = "${auth != null }">
                             <li class="menu-title">Navigation</li>
 
                             <li>
@@ -312,21 +321,23 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
-                            
+                            <c:if test="${auth != null}">
                             <li>
-                            	<a href="public_productList">
+                            	<a href="CM_productList">
                             		<i class="mdi mdi-spa"></i>
                             		<span>물품 구매</span>
                             	</a>
                             </li>
-                            
+                            </c:if>
+                            <c:if test="${auth != null}">
                             <li>
                             	<a href="public_shop">
                             		<i class="mdi mdi-spa-outline"></i>
                             		<span>물품 판매</span>
                             	</a>
                             </li>
-                           
+                            </c:if>
+                           <c:if test="${MS eq 1 || ADMIN eq 1}">
                            	<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-file-document"></i>
@@ -339,7 +350,8 @@
 	                          	<li><a href="MS_planEnrollment">기획서 등록</a></li> 	
 	                          </ul>
 							</li>
-                                                      
+                            </c:if>      
+                            <c:if test="${HR eq 1 || ADMIN eq 1}">                  
                            	<li> 
 	                          <a href="javascript: void(0);" id = "0">
 	                             <i class="mdi mdi-account"></i> 
@@ -455,11 +467,12 @@
 										<li><a href="coming_soon">!일용직급여지급일자등록</a></li>
 										<li><a href="coming_soon">!일용직급여입력 및 계산</a></li>
 	                          		</ul>
-	                          	</li> -->
+	                          	</li>-->
 	                          </ul>
-	                          
+	                          </c:if>
 	                          
 	                          <!-- ★ 내가 해야 하는 영업 ★ -->
+	                          <c:if test="${ST eq 1 || ADMIN eq 1}">   
 	                        <li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-car-back"></i>
@@ -511,7 +524,8 @@
 	                          	</li>
 	                          </ul>
 							</li>	
-	                         
+	                         </c:if>
+	                         <c:if test="${FT eq 1 || ADMIN eq 1}">   
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-coin"></i>
@@ -621,7 +635,8 @@
 	                          	 	
 	                          </ul>
 							</li>
-							
+							</c:if>
+							<c:if test="${CT eq 1 || ADMIN eq 1}">   
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-server"></i>
@@ -664,7 +679,8 @@
 	                          	</li>
 	                          </ul>
 							</li>
-							
+							</c:if>
+							<c:if test="${MF eq 1 || ADMIN eq 1}">   
 							<li> 
 	                          <a href="javascript: void(0);">
 	                             <i class="mdi mdi-factory"></i>
@@ -721,8 +737,9 @@
 	                          	</li>
 	                          </ul>
 							</li>
-							
-                            <li class="menu-title mt-2">More</li>
+							</c:if>
+							</c:if>
+                             <li class="menu-title mt-2">More</li>
 
 							<li>
                                 <a href="javascript: void(0);">
