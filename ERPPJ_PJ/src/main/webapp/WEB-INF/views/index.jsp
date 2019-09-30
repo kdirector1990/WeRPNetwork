@@ -38,25 +38,19 @@
                                             <li class="breadcrumb-item active">Dashboard</li>
                                         </ol>
                                     </div>
-                                    <%-- <sec:authorize access="isAuthenticated()">
+                                     <%-- <sec:authorize access="isAuthenticated()">
                                     	<h4 class="page-title">사원명 : ${name }</h4>
                                     	<h4 class="page-title">직책코드: ${pCode }</h4>
                                     	<h4 class="page-title">직책명: ${pName }</h4>
-                                    	<h4 class="page-title">부서코드: ${dCode }</h4>
-                                    	<h4 class="page-title">부서명: ${dName }</h4>
-                                    	<h4 class="page-title">사번: ${username }</h4>
-                                    	<h4 class="page-title">권한: ${auth }</h4>
-                                    	<h4 class="page-title">관리자권한: ${ADMIN }</h4>
-                                    	<h4 class="page-title">경영권한: ${MS }</h4>
-                                    	<h4 class="page-title">인사권한: ${HR }</h4>
-                                    	<h4 class="page-title">영업권한: ${ST }</h4>
-                                    	<h4 class="page-title">재무권한: ${FT }</h4>
-                                    	<h4 class="page-title">전산권한: ${CT }</h4>
-                                    	<h4 class="page-title">생산권한: ${MF }</h4>
+                                    	<h4 class="page-title">부서코드: ${dCode }, 부서명: ${dName }</h4>
+                                    	<h4 class="page-title">사번: ${username }, 권한: ${auth }</h4>
+                                    	<h4 class="page-title">관리자권한: ${ADMIN }, 경영권한: ${MS }, 인사권한: ${HR }</h4>
+                                    	<h4 class="page-title">영업권한: ${ST }, 재무권한: ${FT }</h4>
+                                    	<h4 class="page-title">전산권한: ${CT }, 생산권한: ${MF }</h4>
                                     </sec:authorize>
                                     <sec:authorize access="isAnonymous()">
                                  	   <h4 class="page-title">부정한 접근 감지</h4>
-                                    </sec:authorize> --%>
+                                    </sec:authorize>  --%>
                                 </div>
                             </div>
                         </div>     
@@ -68,6 +62,7 @@
                             <div class="col-xl-6">
                                 <div class="card">
                                     <div class="card-body">
+                                    <h4 class="header-title">판매수량</h4>
                                    		<div id="morris-bar-example" class="morris-chart" style="height: 320px;"></div>
                                         <div class="text-center">
                                              <p class="text-uppercase mb-0">
@@ -79,7 +74,8 @@
                             </div>
                             <div class="col-xl-6">
                                 <div class="card">
-                                    <div class="card-body">                
+                                    <div class="card-body">     
+                                    <h4 class="header-title">판매실적</h4>           
                                          <div id="morris-bar-example2" class="morris-chart" style="height: 320px;"></div>
                                          <div class="text-center">
                                              <p class="text-uppercase mb-0">
@@ -95,6 +91,7 @@
 							<div class="col-xl-6">
                                 <div class="card">
                                     <div class="card-body">
+                                    <h4 class="header-title">발주수량</h4>
                                    		<div id="morris-bar-example3" class="morris-chart" style="height: 320px;"></div>
                                         <div class="text-center">
                                              <p class="text-uppercase mb-0">
@@ -108,6 +105,7 @@
                             <div class="col-xl-6">
                                 <div class="card">
                                     <div class="card-body">   
+                                    <h4 class="header-title">발주실적</h4>
                           	        	<div id="morris-bar-example4" class="morris-chart" style="height: 320px;"></div>
                                   		<div class="text-center">
                                            <p class="text-uppercase mb-0">
