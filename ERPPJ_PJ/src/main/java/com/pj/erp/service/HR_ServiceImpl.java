@@ -336,7 +336,7 @@ public class HR_ServiceImpl implements HR_Service {
 	  
 	    String saveDir = req.getRealPath("/resources/hr_img/");
 	  
-	    String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
+	    String realDir = /*"C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\";*/ "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img";	  
 	    try { file.transferTo(new File(saveDir+file.getOriginalFilename()));
 	  
 	    FileInputStream fis = new FileInputStream(saveDir +

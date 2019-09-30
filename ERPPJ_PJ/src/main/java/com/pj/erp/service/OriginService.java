@@ -110,7 +110,7 @@ public class OriginService {
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
   
-    	int prices = Integer.parseInt(req.getParameter("price"));
+    	int prices = Integer.parseInt(req.getParameter("price")); 
     	int nums = Integer.parseInt(req.getParameter("num"));
     	
     	int price = prices * nums;
