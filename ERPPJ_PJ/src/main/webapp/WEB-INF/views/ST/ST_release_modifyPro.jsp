@@ -10,13 +10,13 @@
     <body>
 	<c:if test="${updateRelease == 0}">
 		<script type="text/javascript">
-			alert("수정 ㄴㄴ");
+			alert("수정 처리가 되지 않았습니다.");
 		</script>
 	</c:if>
 	
 	<c:if test="${updateRelease != 0}">
 		<script type="text/javascript">
-			alert("수정 완료");
+			alert("수정 완료되었습니다.");
 			window.location='ST_release_manage';
 		</script>
 	</c:if>
