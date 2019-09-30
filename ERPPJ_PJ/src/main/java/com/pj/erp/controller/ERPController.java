@@ -705,7 +705,15 @@ public class ERPController {
 		
 		PS.SellProduct(req, model);
 		
-		return "page/productDetail"; 
+		return "page/insertResult"; 
+	}
+	
+	//사내 메신저
+	@RequestMapping("MSGdeploy")
+	public String MSGdeploy(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => MSGdeploy");
+		
+		return "index2"; 
 	}
 	
 	
