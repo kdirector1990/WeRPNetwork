@@ -9,8 +9,10 @@ public class HR_RecordVO {
 	private String e_name;
 	private String ap_name;
 	private String position_code;
+	private String position_name;
 	private String position_code_after;
 	private String department_code;
+	private String department_name;
 	private String department_code_after;
 	private Date record_date_after;
 	private Date record_date;
@@ -59,6 +61,14 @@ public class HR_RecordVO {
 		this.position_code = position_code;
 	}
 
+	public String getPosition_name() {
+		return position_name;
+	}
+
+	public void setPosition_name(String position_name) {
+		this.position_name = position_name;
+	}
+
 	public String getPosition_code_after() {
 		return position_code_after;
 	}
@@ -73,6 +83,14 @@ public class HR_RecordVO {
 
 	public void setDepartment_code(String department_code) {
 		this.department_code = department_code;
+	}
+
+	public String getDepartment_name() {
+		return department_name;
+	}
+
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
 	}
 
 	public String getDepartment_code_after() {
@@ -113,7 +131,10 @@ public class HR_RecordVO {
 
 	public void setAp_status(String ap_status) {
 		this.ap_status = ap_status;
-	}	
+	}
+
+	
+		
 
 	
 }

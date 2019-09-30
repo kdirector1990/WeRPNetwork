@@ -76,7 +76,7 @@
 													<th>입고처</th>
 													<td><div class="col-md-10">
 													<div style="display: inline-block;">
-													<input type="text" class="form-control" name=""
+													<input type="text" class="form-control" name="customer_code"
 													 id = "customer_codeM" onclick="customerNameList3()" style="width: 140px; float: left;" value="">
 													 
 													<input type="text" name="stored_name" class="form-control"

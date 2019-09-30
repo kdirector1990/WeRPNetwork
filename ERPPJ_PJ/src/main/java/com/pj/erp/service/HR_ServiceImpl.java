@@ -53,8 +53,9 @@ public class HR_ServiceImpl implements HR_Service {
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
-        
-        String realDir="C:\\Users\\YooJoonSeon\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; // 저장 경로
+		/* F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\   
+		 * 서버용 저장 경로*/
+        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
  
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
@@ -91,11 +92,8 @@ public class HR_ServiceImpl implements HR_Service {
 		vo.setE_code(req.getParameter("e_code"));
 		vo.setE_hp(req.getParameter("e_hp"));
 		
-		String e_address = "";
-		String e_address1 = req.getParameter("e_address1");
-		String e_address2 = req.getParameter("e_address2");
+		String e_address = req.getParameter("e_address");		
 		
-		e_address = e_address1 + "/" + e_address2;
 		vo.setE_address(e_address);
 		
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
@@ -344,11 +342,8 @@ public class HR_ServiceImpl implements HR_Service {
 		vo.setE_code(req.getParameter("e_code"));
 		vo.setE_hp(req.getParameter("e_hp"));
 
-		String e_address = "";
-		String e_address1 = req.getParameter("e_address1");
-		String e_address2 = req.getParameter("e_address2");
-
-		e_address = e_address1 + "/" + e_address2;
+		String e_address = req.getParameter("e_address");
+		
 		vo.setE_address(e_address);
 
 		vo.setE_mailcode(req.getParameter("e_mailcode"));
@@ -771,10 +766,9 @@ public class HR_ServiceImpl implements HR_Service {
 	}
 
 	@Override
-	public List<HR_VO> getPositions(Map<String, Object> map, HttpServletRequest req, Model model)
-			throws ParseException {
+	public List<HR_RecordVO> getPositions(Map<String, Object> map, HttpServletRequest req, Model model)	throws ParseException {
 
-		List<HR_VO> list = dao.getPositions(map);
+		List<HR_RecordVO> list = dao.getPositions(map);
 		return list;
 
 	}

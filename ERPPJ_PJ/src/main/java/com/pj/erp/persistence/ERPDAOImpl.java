@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pj.erp.vo.BlockChainVO;
+import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
@@ -50,8 +51,8 @@ public class ERPDAOImpl implements ERPDAO{
 
 	// 구매할 때 필요한 목록
 	@Override
-	public List<ProductVO> getProductList() {
-		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getProductList");
+	public List<MaterialVO> getMaterialList() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getMaterialList");
 	}
 	
 	@Override
@@ -64,6 +65,18 @@ public class ERPDAOImpl implements ERPDAO{
 		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectHashDept", department_code);
 	}
 
+	//물품판매목록
+	@Override
+	public List<ProductVO> getProductList() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getProductList");
+	}
+
+	//물품 상세페이지
+	@Override
+	public ProductVO gerProductDetail(String product_code) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.gerProductDetail", product_code);
+	}
+	
 	@Override
 	public int InsertMaterial_IO(Material_VO vo) {
 		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.InsertMaterial_IO", vo);

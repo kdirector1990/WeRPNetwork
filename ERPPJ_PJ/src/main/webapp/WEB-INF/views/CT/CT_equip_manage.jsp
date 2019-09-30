@@ -6,6 +6,9 @@
 #update {
 	display: none;
 }
+#selectCEQ{
+	display: none;
+}
 </style>
 <%@ include file="../setting.jsp"%>
 
@@ -36,8 +39,6 @@
 	var searchCount = 1;
 	
 	function sunyoungJoa(code){
- 
-		alert(code);
 		$.ajax({
 			url: '/erp/CT_select_code?${_csrf.parameterName }=${_csrf.token }&ceq_code='+code,
 			type: 'POST',
@@ -70,13 +71,13 @@
 					 '</select></td><td>' +
 					 '<input type="date" name="ceq_acquire_date" value="'+ceq_acquire_date+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td><td>' +
 					 '<select name = "department_code" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;">' +
-					 	'<option value="'+voC.department_name+'">선택</option>' +
-					 	'<option value="인사">인사</option>' +
-					 	'<option value="plan_depart">기획</option>' +
-					 	'<option value="영업">영업</option>' +
-					 	'<option value="재무">재무</option>' +
-					 	'<option value="전산">전산</option>' +
-					 	'<option value="제조">제조</option>' +
+					 	'<option value="'+voC.department_code+'">선택</option>' +
+					 	'<option value="hr_01">인사</option>' +
+					 	'<option value="ms_01">기획</option>' +
+					 	'<option value="st_01">영업</option>' +
+					 	'<option value="ft_01">재무</option>' +
+					 	'<option value="ct_01">전산</option>' +
+					 	'<option value="mf_01">제조</option>' +
 					 '</select></td><td>' +
 					 '<input type="text" name="ceq_location" value="'+voC.ceq_location+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;"></td><td>' +
 					 '<input type="text" name="ceq_prime_cost" value="'+voC.ceq_prime_cost+'" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeyup="removeChar(event); inputNumberFormat(this);"></td><td>' +
@@ -109,6 +110,7 @@
 			dataTpye: 'json',
 			success: function(vo){
 				
+				document.getElementById("selectCEQ").style.display="block";
 				$('#result').empty();
 				
 				for(var i = 0; i < vo.length; i++){
@@ -136,8 +138,6 @@
 					var ceq_depreciation = vo[i].ceq_depreciation; 
 					var ceq_depreciation_type = vo[i].ceq_depreciation_type; 
 					var department_name = vo[i].department_name;
-					
-					alert("'"+ceq_code+"'");
 					
 					 $('#result').append('<tr class="spoat" onclick="sunyoungJoa(\''+ceq_code+'\')"><td>'+ceq_code+'</td><td>'+
 						ceq_name + '</td><td>'+
@@ -192,6 +192,7 @@
 	  			success: function(updateCnt){
 	  				document.getElementById("update").style.display="none";
 	  				alert("자산을 수정했습니다.");
+	  				window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_equip_manage";
 	  			},
 	  			error : function(){
 	  				alert("전산 오류로 인하여 수정에 실패하였습니다.");
@@ -209,6 +210,7 @@
   			success: function(deleteCnt){
   				document.getElementById("update").style.display="none";
   				alert("자산을 폐기하였습니다.");
+  				window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_equip_manage";
   			},
   			error : function(){
   				alert("전산 오류로 인하여 폐기에 실패하였습니다.");
@@ -275,6 +277,7 @@
 					</div>
 				</div>
 
+			<div id="selectCEQ">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
@@ -303,6 +306,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 
 				<div id="update">
 					<div class="col-sm-12">
@@ -346,12 +350,12 @@
 											</table>
 										</div>
 									</form>
-									<div id="ceq_button" class="col-md-4 input-group">
+									<div id="ceq_button" class="col-md-4 input-group" style="margin: auto;">
 										<button type="button" id="btnTCT" onclick="updateCT();"
-											class="btn btn-outline-dark waves-effect waves-light width-md">수정</button>
+											class="btn btn-dark waves-effect waves-light"">수정</button>
 										&nbsp;
 										<button type="button" onclick="deleteCT();"
-											class="btn btn-outline-dark waves-effect waves-light width-md">폐기</button>
+											class="btn btn-dark waves-effect waves-light"">폐기</button>
 									</div>
 								</div>
 							</div>

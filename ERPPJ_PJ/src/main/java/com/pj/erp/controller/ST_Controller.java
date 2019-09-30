@@ -28,6 +28,7 @@ import com.pj.erp.vo.ST.ST_searchProductCode;
 import com.pj.erp.vo.ST.ST_searchUsername;
 import com.pj.erp.vo.ST.SaleList;
 import com.pj.erp.vo.ST.SalePlan;
+import com.pj.erp.vo.ST.TaxDetails;
 import com.pj.erp.vo.ST.TransactionDetails;
 
 @Controller
@@ -69,7 +70,16 @@ public class ST_Controller {
 		logger.info("log => ST_tax_statements");
 		
 		return "ST/ST_tax_statements";
-	}    
+	} 
+	
+	// 거래 명세서 발행
+	@RequestMapping(value = "ST_tax_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public  List<TaxDetails> ST_tax_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => ST_tables_datatable_result");
+		List<TaxDetails> list = service.getTax(map, req, model);
+		return list;
+	} 
 	
 	// 견적 등록 (ST_estimate)
 	@RequestMapping("ST_estimate")

@@ -118,7 +118,6 @@
 	  			type: 'POST',
 	  			dataTpye: 'json',
 	  			success: function(data){
-	  				alert("작동");
 	  				$('#result2').empty();
 	  				document.getElementById("update").style.display="block";
 	  				
@@ -194,7 +193,8 @@
     				if(updateCnt != 0){
     					$('#result2').empty();
     					document.getElementById("update").style.display="none";
-    					alert("수정이 완료되었습니다.");    					
+    					alert("수정이 완료되었습니다.");
+    					window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_as_manage";
     				}
     			},
     			error : function(){
@@ -215,6 +215,7 @@
     					$('#result2').empty();
     					document.getElementById("update").style.display="none";
     					alert("AS처리가 완료되었습니다.");
+    					window.location.href="http://smueoot.dlinkddns.com:8087/erp/CT_as_manage";
     				}
     			},
     			error : function(){

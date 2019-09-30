@@ -10,7 +10,6 @@
 		
 		function write_add(){
 			var param = $("#AS_Write").serializeArray();
-    		alert(JSON.stringify(param));
     		$.ajax({
     			url: '/erp/CT_AS_add',
     			type: 'POST',
@@ -66,13 +65,9 @@
 										<label class="col-md-2 col-form-label" for="simpleinput">부서코드</label>
 										<div class="col-md-10">
 											<select name="department_code" class="form-controll">
-												<option value="">선택</option>
-												<option value="인사">인사</option>
-												<option value="plan_depart">기획</option>
-												<option value="영업">영업</option>
-												<option value="재무">재무</option>
-												<option value="전산">전산</option>
-												<option value="제조">제조</option>
+												<c:forEach var="dto" items="${vo }">
+													<option value="${dto.department_code }"> ${dto.department_name}</option>
+												</c:forEach>
 											</select>
 										</div>
 									</div>

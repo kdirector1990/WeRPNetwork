@@ -321,7 +321,7 @@
                             </li>
                             
                             <li>
-                            	<a href="#">
+                            	<a href="shop">
                             		<i class="mdi mdi-spa-outline"></i>
                             		<span>물품 판매</span>
                             	</a>
@@ -478,7 +478,7 @@
 										<li><a href="ST_release">출고 등록</a></li>
 										<li><a href="ST_saleList">판매 관리</a></li>
 										<li><a href="ST_transaction">거래 명세서 발행</a></li>
-										<li><a href="ST_tax-statements">세금 계산서 발행</a></li>
+										<li><a href="ST_tax_statements">세금 계산서 발행</a></li>
 	                          		</ul>
 	                          	</li>
 	                          	

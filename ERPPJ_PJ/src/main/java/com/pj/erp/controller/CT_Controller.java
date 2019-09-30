@@ -123,7 +123,7 @@ public class CT_Controller {
 	@RequestMapping("CT_write_AS")
 	public String CT_write_AS(HttpServletRequest req, Model model) {
 		logger.info("log => CT_write_AS");
-		
+		CT.selectDeptS(req, model);
 		return "CT/CT_write_AS";
 	}
 	

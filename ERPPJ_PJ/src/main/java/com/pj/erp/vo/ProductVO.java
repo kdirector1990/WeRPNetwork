@@ -1,29 +1,36 @@
 package com.pj.erp.vo;
 
 public class ProductVO {
-	private String material_code;
-	private String material_name;
-	private String material_unit;
+	private String product_code;
+	private String product_name;
+	private String bom_code;
+	private int price;
 	
+	public String getBom_code() {
+		return bom_code;
+	}
+	public void setBom_code(String bom_code) {
+		this.bom_code = bom_code;
+	}
+	public String getProduct_code() {
+		return product_code;
+	}
+	public void setProduct_code(String product_code) {
+		this.product_code = product_code;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
-	public String getMaterial_code() {
-		return material_code;
-	}
-	public void setMaterial_code(String material_code) {
-		this.material_code = material_code;
-	}
-	public String getMaterial_name() {
-		return material_name;
-	}
-	public void setMaterial_name(String material_name) {
-		this.material_name = material_name;
-	}
-	public String getMaterial_unit() {
-		return material_unit;
-	}
-	public void setMaterial_unit(String material_unit) {
-		this.material_unit = material_unit;
-	}
 	
 	
 }
