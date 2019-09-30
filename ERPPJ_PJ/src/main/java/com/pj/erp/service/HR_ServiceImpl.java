@@ -914,4 +914,13 @@ public class HR_ServiceImpl implements HR_Service {
 		return list;
 	}
 
+
+
+	@Override
+	public List<HR_RecordVO> getRecords(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+
+		List<HR_RecordVO> list = dao.getRecords(map);
+		return list;
+	}
+
 }
