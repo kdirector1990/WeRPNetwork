@@ -341,7 +341,7 @@
 							+'</div>'																
 						+'</div>'						
 						+'<div class="form-group text-right mb-0">'
-							+'<button onclick="HR_modifyPhysicalyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+							+'<button onclick="HR_modifyPhysicalyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">수정</button>'
 						+'</div>'
 	  				);
 	  			},

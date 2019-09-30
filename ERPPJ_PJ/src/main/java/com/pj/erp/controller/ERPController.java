@@ -20,6 +20,7 @@ import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
+import com.pj.erp.service.OriginService;
 import com.pj.erp.vo.HashVO;
 
 import sun.nio.cs.MS1250;
@@ -37,7 +38,7 @@ public class ERPController {
 	MateralServiceImpl MSI;
 	
 	@Autowired
-	MateralService MSI2;
+	OriginService OS;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -616,9 +617,13 @@ public class ERPController {
 	
 	// 블록체인 신청 입력처리
 	@RequestMapping("FT_apply_input2_pro")
-	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
+	public String FT_apply_input2_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input2_pro");
-		MSI.budgetAdd(req, model);
+		try {
+			MSI.budgetAdd(req, model);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "FT/FT_apply_input2";
 	}
@@ -663,7 +668,7 @@ public class ERPController {
 	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => InsertMaterialIo");
 		
-		MSI.payMaterial(req, model);
+		OS.payOriginMaterial(req, model);
 		
 		logger.info("log => productList");
 		service.productList(req, model);
