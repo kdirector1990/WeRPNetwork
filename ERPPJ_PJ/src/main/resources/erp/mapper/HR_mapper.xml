@@ -109,6 +109,7 @@
 		and d.department_code like '%'||#{department_code}||'%' 
 		and p.position_code like '%'||#{position_code}||'%'
 		and r.rank_code like '%'||#{rank_code}||'%'
+		order by username desc
 		]]>
 	</select>
 	
@@ -126,6 +127,7 @@
 		and d.department_code like '%'||#{department_code}||'%' 
 		and o.position_code like '%'||#{position_code}||'%'
 		and r.rank_code like '%'||#{rank_code}||'%'
+		order by username desc
 	]]>
 	</select>
 	
@@ -143,6 +145,7 @@
 		and d.department_code like '%'||#{department_code}||'%' 
 		and p.position_code like '%'||#{position_code}||'%'
 		and r.rank_code like '%'||#{rank_code}||'%'
+		order by username desc
 		]]>
 	</select>
 	
@@ -387,7 +390,8 @@
 		and a.ap_code = r.ap_code		
 		and u.username like '%'||#{username}||'%'
 		and a.ap_code like '%'||#{ap_code}||'%' 
-		and a.ap_name like '%'||#{ap_name}||'%'		
+		and a.ap_name like '%'||#{ap_name}||'%'
+		order by username desc		
 		]]>
 	</select>
 	
@@ -452,6 +456,7 @@
 			and u.username like '%'||#{username}||'%'
 			and a.ap_code like '%'||#{ap_code}||'%'
 			and a.ap_name like '%'||#{ap_name}||'%'
+			order by position_record_code desc
 		]]>
 	</select>
 	
@@ -467,6 +472,7 @@
 			and u.username like '%'||#{username}||'%'
 			and a.ap_code like '%'||#{ap_code}||'%'
 			and a.ap_name like '%'||#{ap_name}||'%'
+			order by record_date
 		]]> 
 	</select>
 	

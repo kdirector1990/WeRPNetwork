@@ -358,7 +358,7 @@ public class HR_Controller {
 		logger.info("log = > HR_APinput");
 		service.HR_APinput(req, model);
 		
-		return "index";
+		return "HR/HR_APinputLocation";
 	}
 	
 	@RequestMapping("HR_appointment_notice")

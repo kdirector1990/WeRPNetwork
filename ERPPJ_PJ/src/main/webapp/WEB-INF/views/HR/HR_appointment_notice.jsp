@@ -327,42 +327,7 @@
 						</div>
 					
 
-					<div class="row">
-						<div class="col-xl-6">
-							<div class="card">
-								<div class="card-body">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap center"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-										<tr>
-											<th>비고</th>
-											<td><textarea class="form-control" rows="10" cols="40"
-													name="content" style="width: 500px"
-													placeholder="글내용을 입력하세요 !" word-break:break-all>
-									</textarea></td>
-										</tr>
-
-									</table>
-								</div>
-							</div>
-						</div>
-						<!-- end col -->
-
-						<div class="col-xl-6">
-							<div class="card">
-								<div class="card-body">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap center"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-
-									</table>
-								</div>
-							</div>
-
-						</div>
-						<!-- end col -->
-					</div>
+					
 
 
 					<%@ include file="../footer.jsp"%>
