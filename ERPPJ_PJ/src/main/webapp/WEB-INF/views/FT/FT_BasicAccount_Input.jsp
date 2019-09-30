@@ -384,14 +384,6 @@
 																	name="bsAddress2" placeholder="본점소재지">
 															</div>
 														</div>
-
-														<div class="form-group row">
-															<label class="col-lg-4 col-form-label" for="simpleinput">스캔파일명<span
-																class="text-danger">*</span></label>
-															<div class="col-lg-8">
-																<input type="file" class="dropify" name="scanfile" />
-															</div>
-														</div>
 													</div>
 												</div>
 											</div>
