@@ -108,6 +108,15 @@ public class FT_Controller {
 		return service.FT_TotalSelect(req, model);
 	}
 
+	// 결산자료입력 분개하기
+	@RequestMapping("FT_journalComplete")
+	public String FT_journalComplete(HttpServletRequest req, Model model) {
+		logger.info("log => FT_journalComplete");
+		
+		service.FT_journalComplete(req, model);
+		return "FT/FT_journalComplete";
+	}
+	
 	@RequestMapping("FT_Chit_Manager")
 	public String FT_Chit_Manager(Locale locale, Model model) {
 		logger.info("log => FT_Chit_Manager");
@@ -961,5 +970,6 @@ public class FT_Controller {
 
 		return service.FT_CDepreciationDataList(map, model);
 	}
+	
 	
 }
