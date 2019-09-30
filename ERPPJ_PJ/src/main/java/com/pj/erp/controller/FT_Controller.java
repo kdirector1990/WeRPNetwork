@@ -103,8 +103,6 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_insertTotalList")
 	public @ResponseBody FT_Total FT_insertTotalList(HttpServletRequest req, Model model) {
 		logger.info("url : FT_insertTotalList 호출중");
-		System.out.println("value = " + req.getParameter("year"));
-
 		return service.FT_TotalSelect(req, model);
 	}
 
@@ -579,7 +577,6 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_chitInsert", produces = "application/text; charset=utf8")
 	public @ResponseBody String FT_chitInsert(@RequestBody Map<String, Object> map, HttpServletRequest req) throws Exception {
 		logger.info("url : FT_chitInsert 호출중");
-		System.out.println("username" + req.getSession().getAttribute("username"));
 		return service.FT_chitInsert(map);
 	}
 
@@ -613,7 +610,6 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_AccountSelect")
 	public @ResponseBody List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
 		logger.info("url : FT_AccountSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_AccountSelect(req);
 	}
@@ -638,7 +634,6 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_AccountOneSelect")
 	public @ResponseBody FT_Account FT_AccountOneSelect(HttpServletRequest req) {
 		logger.info("url : FT_AccountOneSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_AccountOneSelect(req);
 	}
@@ -848,7 +843,6 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_BuildingOneSelect")
 	public @ResponseBody FT_Building FT_BuildingOneSelect(HttpServletRequest req) {
 		logger.info("url : FT_BuildingOneSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_BuildingOneSelect(req);
 	}
@@ -918,7 +912,6 @@ public class FT_Controller {
 	@RequestMapping(value = "FT_LandOneSelect")
 	public @ResponseBody FT_Land FT_LandOneSelect(HttpServletRequest req) {
 		logger.info("url : FT_LandOneSelect 호출중");
-		System.out.println("value = " + req.getParameter("srhval"));
 
 		return service.FT_LandOneSelect(req);
 	}

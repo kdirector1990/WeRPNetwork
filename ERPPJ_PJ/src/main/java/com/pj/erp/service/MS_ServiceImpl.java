@@ -83,16 +83,6 @@ public class MS_ServiceImpl implements MS_Service {
 		vo.setPlan_objective(req.getParameter("plan_objective"));
 		vo.setPlan_proposal(req.getParameter("plan_proposal"));
 		
-		System.out.println(vo.getPlan_code());
-		System.out.println(vo.getPlan_name());
-		System.out.println(vo.getUsername());
-		System.out.println(vo.getPosition_code());
-		System.out.println(vo.getPlan_startdate());
-		System.out.println(vo.getPlan_enddate());
-		System.out.println(vo.getPlan_state());
-		System.out.println(vo.getPlan_objective());
-		System.out.println(vo.getPlan_proposal());
-		
 		dao.updatePlan(vo);
 	}
 
@@ -109,10 +99,8 @@ public class MS_ServiceImpl implements MS_Service {
 	public void searchUsername(HttpServletRequest req, Model model) {
 		String e_name = req.getParameter("e_name");
 		
-		System.out.println("e_name : " + e_name); 
 		int cnt = dao.selectEname(e_name); 
 		
-		System.out.println("cnt: "+cnt);
 		
 		if(cnt > 0) {
 			List<HR_VO> dto = dao.getUsernameList(e_name);
