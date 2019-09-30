@@ -264,7 +264,7 @@ function ap_nameList() {
 												</div>
 
 												<div class="form-group mb-0">
-													<input type="submit" class="btn btn-success" value="공고등록">
+													<input type="submit" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" class="btn btn-success" value="공고등록">
 												</div>
 											</form>
 										</div>
