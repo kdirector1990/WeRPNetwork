@@ -145,7 +145,7 @@ function allcheck(){
 							</div>
 						</div> 
 						<img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/01-thumbnail.jpg" alt="">
+						src="/erp/resources/shop/img/portfolio/ref.png" alt="">
 					</a>
 					<div class="portfolio-caption">
 						<h4>${shop.product_name}</h4>
@@ -553,7 +553,7 @@ function allcheck(){
 								<p class="item-intro text-muted">Lorem ipsum dolor sit amet
 									consectetur.</p>
 								<img class="img-fluid d-block mx-auto"
-									src="/erp/resources/shop/img/portfolio/01-full.jpg" alt="">
+									src="/erp/resources/shop/img/portfolio/ref.png" alt="">
 								<p>Use this area to describe your project. Lorem ipsum dolor
 									sit amet, consectetur adipisicing elit. Est blanditiis dolorem
 									culpa incidunt minus dignissimos deserunt repellat aperiam

@@ -138,90 +138,137 @@
         <script src="/erp/resources/assets/js/pages/morris.init.js"></script>
         <%@ include file="setting2.jsp"%>
 	</div>
-	<c:forEach var = "lis" items = "${list }">
-	</c:forEach>
+	<c:set var = "amount01" value = "${amount01 }"/>
+	<c:set var = "amount02" value = "${amount02 }"/>
+	<c:set var = "amount03" value = "${amount03 }"/>
+	<c:set var = "amount04" value = "${amount04 }"/>
+	<c:set var = "amount05" value = "${amount05 }"/>
+	<c:set var = "amount06" value = "${amount06 }"/>
+	<c:set var = "amount07" value = "${amount07 }"/>
+	<c:set var = "amount08" value = "${amount08 }"/>
+	<c:set var = "amount09" value = "${amount09 }"/>
+	<c:set var = "amount10" value = "${amount10 }"/>
+	<c:set var = "amount11" value = "${amount11 }"/>
+	<c:set var = "amount12" value = "${amount12 }"/>
+	<c:set var = "price01" value = "${price01 }"/>
+	<c:set var = "price02" value = "${price02 }"/>
+	<c:set var = "price03" value = "${price03 }"/>
+	<c:set var = "price04" value = "${price04 }"/>
+	<c:set var = "price05" value = "${price05 }"/>
+	<c:set var = "price06" value = "${price06 }"/>
+	<c:set var = "price07" value = "${price07 }"/>
+	<c:set var = "price08" value = "${price08 }"/>
+	<c:set var = "price09" value = "${price09 }"/>
+	<c:set var = "price10" value = "${price10 }"/>
+	<c:set var = "price11" value = "${price11 }"/>
+	<c:set var = "price12" value = "${price12 }"/>
+	<c:set var = "aamount01" value = "${aamount01 }"/>
+	<c:set var = "aamount02" value = "${aamount02 }"/>
+	<c:set var = "aamount03" value = "${aamount03 }"/>
+	<c:set var = "aamount04" value = "${aamount04 }"/>
+	<c:set var = "aamount05" value = "${aamount05 }"/>
+	<c:set var = "aamount06" value = "${aamount06 }"/>
+	<c:set var = "aamount07" value = "${aamount07 }"/>
+	<c:set var = "aamount08" value = "${aamount08 }"/>
+	<c:set var = "aamount09" value = "${aamount09 }"/>
+	<c:set var = "aamount10" value = "${aamount10 }"/>
+	<c:set var = "aamount11" value = "${aamount11 }"/>
+	<c:set var = "aamount12" value = "${aamount12 }"/>
+	<c:set var = "aprice01" value = "${aprice01 }"/>
+	<c:set var = "aprice02" value = "${aprice02 }"/>
+	<c:set var = "aprice03" value = "${aprice03 }"/>
+	<c:set var = "aprice04" value = "${aprice04 }"/>
+	<c:set var = "aprice05" value = "${aprice05 }"/>
+	<c:set var = "aprice06" value = "${aprice06 }"/>
+	<c:set var = "aprice07" value = "${aprice07 }"/>
+	<c:set var = "aprice08" value = "${aprice08 }"/>
+	<c:set var = "aprice09" value = "${aprice09 }"/>
+	<c:set var = "aprice10" value = "${aprice10 }"/>
+	<c:set var = "aprice11" value = "${aprice11 }"/>
+	<c:set var = "aprice12" value = "${aprice12 }"/>
 	 <script type = "text/javascript">
-	 Morris.Bar({
-      	  element: 'morris-bar-example',
-      	  data: [
-      	    { y: '1', a: 100 },
-      	    { y: '2', a: 75 },
-      	    { y: '3', a: 50 },
-      	    { y: '4', a: 75 },
-      	    { y: '5', a: 50 },
-      	    { y: '6', a: 75 },
-      	  	{ y: '7', a: 100 },
-    	    { y: '8', a: 75 },
-    	    { y: '9', a: 50 },
-    	    { y: '10', a: 75 },
-    	    { y: '11', a: 50 },
-    	    { y: '12', a: 75 }
-      	  ],
-      	  xkey: 'y',
-      	  ykeys: ['a'],
-      	  labels: ['Series A']
-      	});     	
+		 Morris.Bar({
+	      	  element: 'morris-bar-example',
+	      	  data: [
+	      		{ y: '1', a: ${aamount01}},
+	       	    { y: '2', a: ${aamount02} },
+	       	    { y: '3', a: ${aamount03} },
+	       	    { y: '4', a: ${aamount04} },
+	       	    { y: '5', a: ${aamount05} },
+	       	    { y: '6', a: ${aamount06} },
+	       	  	{ y: '7', a: ${aamount07} },
+	     	    { y: '8', a: ${aamount08} },
+	     	    { y: '9', a: ${aamount09} },
+	     	    { y: '10', a: ${aamount10} },
+	     	    { y: '11', a: ${aamount11} },
+	     	    { y: '12', a: ${aamount12} }
+	      	  ],
+	      	  xkey: 'y',
+	      	  ykeys: ['a'],
+	      	  labels: ['판매수량']
+	      });  
+		 
 		 Morris.Bar({
 	     	  element: 'morris-bar-example2',
 	     	  data: [
-	     		{ y: '1', a: 100 },
-	       	    { y: '2', a: 75 },
-	       	    { y: '3', a: 50 },
-	       	    { y: '4', a: 75 },
-	       	    { y: '5', a: 50 },
-	       	    { y: '6', a: 75 },
-	       	  	{ y: '7', a: 100 },
-	     	    { y: '8', a: 75 },
-	     	    { y: '9', a: 50 },
-	     	    { y: '10', a: 75 },
-	     	    { y: '11', a: 50 },
-	     	    { y: '12', a: 75 }
+	     		{ y: '1', a: ${aprice01} },
+           	    { y: '2', a: ${aprice02} },
+           	    { y: '3', a: ${aprice03} },
+           	    { y: '4', a: ${aprice04} },
+           	    { y: '5', a: ${aprice05} },
+           	    { y: '6', a: ${aprice06} },
+           	  	{ y: '7', a: ${aprice07} },
+         	    { y: '8', a: ${aprice08} },
+         	    { y: '9', a: ${aprice09} },
+         	    { y: '10', a: ${aprice10} },
+         	    { y: '11', a: ${aprice11} },
+         	    { y: '12', a: ${aprice12} }
 	     	  ],
 	     	  xkey: 'y',
 	     	  ykeys: ['a'],
-	     	  labels: ['Series A']
+	     	  labels: ['판매금액']
      	});     
        	
        	Morris.Bar({
          	  element: 'morris-bar-example3',
          	  data: [
-         		{ y: '1', a: 100 },
-           	    { y: '2', a: 75 },
-           	    { y: '3', a: 50 },
-           	    { y: '4', a: 75 },
-           	    { y: '5', a: 50 },
-           	    { y: '6', a: 75 },
-           	  	{ y: '7', a: 100 },
-         	    { y: '8', a: 75 },
-         	    { y: '9', a: 50 },
-         	    { y: '10', a: 75 },
-         	    { y: '11', a: 50 },
-         	    { y: '12', a: 75 }
+         		{ y: '1', a: ${amount01}},
+           	    { y: '2', a: ${amount02} },
+           	    { y: '3', a: ${amount03} },
+           	    { y: '4', a: ${amount04} },
+           	    { y: '5', a: ${amount05} },
+           	    { y: '6', a: ${amount06} },
+           	  	{ y: '7', a: ${amount07} },
+         	    { y: '8', a: ${amount08} },
+         	    { y: '9', a: ${amount09} },
+         	    { y: '10', a: ${amount10} },
+         	    { y: '11', a: ${amount11} },
+         	    { y: '12', a: ${amount12} }
          	  ],
          	  xkey: 'y',
          	  ykeys: ['a'],
-         	  labels: ['Series A']
+         	  labels: ['발주수량']
          	});
        	
        	Morris.Bar({
          	  element: 'morris-bar-example4',
          	  data: [
-         		{ y: '1', a: 100 },
-           	    { y: '2', a: 75 },
-           	    { y: '3', a: 50 },
-           	    { y: '4', a: 75 },
-           	    { y: '5', a: 50 },
-           	    { y: '6', a: 75 },
-           	  	{ y: '7', a: 100 },
-         	    { y: '8', a: 75 },
-         	    { y: '9', a: 50 },
-         	    { y: '10', a: 75 },
-         	    { y: '11', a: 50 },
-         	    { y: '12', a: 75 }
+         		{ y: '1', a: ${price01} },
+           	    { y: '2', a: ${price02} },
+           	    { y: '3', a: ${price03} },
+           	    { y: '4', a: ${price04} },
+           	    { y: '5', a: ${price05} },
+           	    { y: '6', a: ${price06} },
+           	  	{ y: '7', a: ${price07} },
+         	    { y: '8', a: ${price08} },
+         	    { y: '9', a: ${price09} },
+         	    { y: '10', a: ${price10} },
+         	    { y: '11', a: ${price11} },
+         	    { y: '12', a: ${price12} }
          	  ],
          	  xkey: 'y',
          	  ykeys: ['a'],
-         	  labels: ['Series A']
+         	  labels: ['발주금액']
          	});
        </script>
 	

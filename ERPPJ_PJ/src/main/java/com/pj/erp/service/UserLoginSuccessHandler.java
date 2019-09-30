@@ -43,7 +43,6 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 		request.getSession().setAttribute("CT", 0);
 		request.getSession().setAttribute("FT", 0);
 		request.getSession().setAttribute("ST", 0);
-		System.out.println(authority);
 		if(authority.contains("ROLE_MS")==true) {
 			request.getSession().setAttribute("MS", 1);
 		}

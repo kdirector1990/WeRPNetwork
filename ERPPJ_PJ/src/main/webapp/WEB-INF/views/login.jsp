@@ -29,7 +29,7 @@
                                             <li class="breadcrumb-item active">Log In</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Log In${auth }</h4>
+                                    <h4 class="page-title">Log In</h4>
                                 </div>
                             </div>
                         </div>     

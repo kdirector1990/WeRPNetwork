@@ -96,7 +96,7 @@
 								<h2 class="text-uppercase">${shop.product_name}</h2>
 								<p class="item-intro text-muted">${shop.price}</p>
 								<img class="img-fluid d-block mx-auto"
-									src="/erp/resources/shop/img/portfolio/01-full.jpg" alt="">
+									src="/erp/resources/shop/img/portfolio/ref.png" alt="">
 								<p>Use this area to describe your project. Lorem ipsum dolor
 									sit amet, consectetur adipisicing elit. Est blanditiis dolorem
 									culpa incidunt minus dignissimos deserunt repellat aperiam
