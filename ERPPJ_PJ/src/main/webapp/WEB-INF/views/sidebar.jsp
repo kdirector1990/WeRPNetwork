@@ -314,14 +314,14 @@
                             </li>
                             
                             <li>
-                            	<a href="productList">
+                            	<a href="public_productList">
                             		<i class="mdi mdi-spa"></i>
                             		<span>물품 구매</span>
                             	</a>
                             </li>
                             
                             <li>
-                            	<a href="shop">
+                            	<a href="public_shop">
                             		<i class="mdi mdi-spa-outline"></i>
                             		<span>물품 판매</span>
                             	</a>

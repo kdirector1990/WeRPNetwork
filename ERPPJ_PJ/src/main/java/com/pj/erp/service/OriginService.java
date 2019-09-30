@@ -10,20 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.web3j.crypto.Credentials;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.Ethereum;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
-import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
 
 import com.pj.erp.persistence.ERPDAO;
-import com.pj.erp.vo.BlockChainVO;
-import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
-import com.pj.erp.vo.ProductVO;
 
 @Service
-public class MateralServiceImpl {
+public class OriginService {
 	
 	@Autowired
 	ERPDAO dao;
@@ -78,94 +72,11 @@ public class MateralServiceImpl {
     		
     	}
     	return walletCode;
-    }	
-    
-    /*
-    //예산편성 시 작성할 계약서
-    //배포함으로서 가나슈에서 Transaction -> CONTRACT CREATION ->  CONTRACT ADDRESS 가 발생하고 정보를 와서 변수에 담고 DB저장하여 사용할수 있다.(사용안함)
-    @SuppressWarnings("deprecation")
-    public void deploy() throws Exception {    	
-    	contractAddress = Materal.deploy(web3j, hostCredentials, gasPrice, gasLimit).send().getContractAddress();
-    	//  System.out.println(contractAddress);    	    	
     }
-		*/
-    
-    
-    @SuppressWarnings("deprecation")
-	public void deploy() throws Exception {    	
-    	contractAddress = Materal.deploy(web3j, Account, gasPrice, gasLimit).send().getContractAddress();
-    	//  System.out.println(contractAddress);    	    	
-    }
-    
-    //편성한 가상화폐 예산 보내기.
-    @SuppressWarnings("deprecation")
-	public void budgetAdd(HttpServletRequest req, Model model) throws Exception {
-    	
-    	String department_code = req.getParameter("dept_code");
-    	
-    	String deptWallet = depart_wallet(department_code);
-    	
-    	// 계정의 primary key를 검색한 부서의 팀으로 할당한다.
-    	Credentials dept_AccountNumber = Credentials.create(deptWallet);
-    	
-    	System.out.println(gasPrice);
-    	System.out.println(gasLimit);
-    	
-    	String contractAddress2 = Materal.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
-    	
-    	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
-    	int price = Integer.parseInt(req.getParameter("money"));
-    	BigInteger ethers = null;
-    	
-    	//가격에 해당하는 이더 설정.
-    	if(price < 100000) {
-    		ethers = etherToWei(new BigDecimal(1));
-    	}
-    	else if((100000 < price) && (price < 300000)) {
-    		ethers = etherToWei(new BigDecimal(2));
-    	}
-    	else if ((300000 < price) && (price < 500000)) {
-    		ethers = etherToWei(new BigDecimal(3));
-    	}
-    	else if ((500000 < price) && (price < 800000)) {
-    		ethers = etherToWei(new BigDecimal(4));
-    	}
-    	else if ((800000 < price) && (price < 1000000)) {
-    		ethers = etherToWei(new BigDecimal(5));
-    	}
-    	else {
-    		ethers = etherToWei(new BigDecimal(6));
-    	}
-
-    	byte[] name = stringToBytes32(department_code);
-    	
-    	// 자바로 변환된 budgetAdd의 메소드(load)를 호출하여 사용 : 이더 전송
-    	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소
-    	Materal dept = Materal.load(contractAddress2, web3j, hostCredentials, gasPrice, gasLimit);
-
-    	// 솔리디티의 budgetAdd을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
-    	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
-    	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
-		
-		//DB에 내역 가상화폐 거래 내역 insert
-		String purpose = req.getParameter("purpose");
-		
-		HashVO vos = new HashVO();
-		vos.setDepartment_code(department_code);
-		vos.setE_subject(purpose);
-		vos.setE_hashcode(hash);
-		
-		int insertCnt = dao.insertLog(vos);
-		if(insertCnt == 1) {
-			System.out.println("등록되었습니다.");
-		}
-    }
-    
     
     // 원자재 구매시 판매자에게 이더를 전송하는 메소드
     @SuppressWarnings("deprecation")
-	public void payMaterial(HttpServletRequest req, Model model) throws Exception {
+	public void payOriginMaterial(HttpServletRequest req, Model model) throws Exception {
     	
     	// 구매하는 부서의 코드로 구매하게 만든다. 
     	String department_code = "ft_01"; 
@@ -194,7 +105,7 @@ public class MateralServiceImpl {
     	}
     	
     	//계약서 작성.
-    	contractAddress = Materal.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
+    	contractAddress = MateralOrigin.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
@@ -231,14 +142,16 @@ public class MateralServiceImpl {
     	
     	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
     	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소 
-    	Materal dept = Materal.load(contractAddress, web3j, dept_AccountNumber, gasPrice, gasLimit);
+    	MateralOrigin dept = MateralOrigin.load(contractAddress, web3j, dept_AccountNumber, gasPrice, gasLimit);
 
     	// 솔리디티의 buyMaterial을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
     	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
-		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
+		String hash = dept.buyMaterialOrigins(new BigInteger("0"), name, ethers).send().getTransactionHash();
+		
+    	
 		String code = req.getParameter("material_code");
-		System.out.println(nums);
+
 		// 자재를 구매했기에 DB에 입력.
 		Material_VO mat = new Material_VO();
 		mat.setMaterial_code(code);
@@ -252,5 +165,5 @@ public class MateralServiceImpl {
 		}
     }
     
-	
+    
 }

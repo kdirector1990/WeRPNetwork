@@ -68,12 +68,10 @@ public class FT_ServiceImpl implements FT_Service{
 	// 분개 데이터 가져오기
 	@Override
 	public List<FT_Chit> FT_chitDataLoad(Map<String, Object> map, Model model) {
-		System.out.println(Integer.parseInt(map.get("month").toString()));
 		if(Integer.parseInt(map.get("month").toString()) < 10) {
 			map.put("month","0" + Integer.parseInt(map.get("month").toString()));
 		}
 		int number = dao.FT_chitDataCnt(map); 
-		System.out.println(number);
 		if(number == 0) {
 			return null;
 		} else {
@@ -85,15 +83,12 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_insertChit(HttpServletRequest req, Model model) {
 		String keycode = req.getParameter("keynum"); 
-		System.out.println("keycode : " + req.getParameter("keynum"));
 		if(keycode != null) {
 			String date = req.getParameter("date" + keycode);
 			String no = req.getParameter("no" + keycode);
 			String year = date.substring(0, 4);
 			String month = date.substring(5,7);
 			String day = date.substring(8, 10);
-			System.out.println("no : " + no);
-			System.out.println("date : " + year + "-" + month + "-" + day);
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("chkno", no);
 			map.put("year", year);
@@ -101,7 +96,6 @@ public class FT_ServiceImpl implements FT_Service{
 			map.put("day", day);
 			
 			List<FT_Chit> list = dao.FT_chitDataLoad(map);
-			System.out.println("size : " + list.size());
 			
 			model.addAttribute("chkno", no);
 			model.addAttribute("year", year);
@@ -115,7 +109,6 @@ public class FT_ServiceImpl implements FT_Service{
 	// 전표입력
 	@Override
 	public String FT_chitInsert(Map<String, Object> map) {
-		System.out.println(map.get("type"));
 		int number = dao.FT_chitInsert(map); 
 		if(number == 0) {
 			return "실패";
@@ -127,9 +120,7 @@ public class FT_ServiceImpl implements FT_Service{
 	// 전표수정
 	@Override
 	public String FT_chitupdate(Map<String, Object> map) {
-		System.out.println("map = " + map.get("fname"));
 		if(map.get("fname").equals("null")) {
-			System.out.println("map = " + map.get("fname"));
 			map.replace("fname", null);
 		}
 		int number = dao.FT_chitupdate(map); 
@@ -179,7 +170,6 @@ public class FT_ServiceImpl implements FT_Service{
 		 * fos.close();
 		 */
 
-        System.out.println("1");
         FT_Account vo = new FT_Account();
         vo.setLicense_number(req.getParameter("number"));
         vo.setCustomer_name(req.getParameter("customerName"));
@@ -231,7 +221,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_AccountAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Account> account = dao.FT_AccountAllSelect();
-		System.out.println("customerCode : " + account.get(0).getCustomer_code());
 		model.addAttribute("account", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}
@@ -240,7 +229,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public FT_Account FT_AccountOneSelect(HttpServletRequest req) {
 		FT_Account ac = dao.FT_AccountOneSelect(req.getParameter("srhval"));
-		System.out.println(ac);
 		return ac;
 	}
 
@@ -248,7 +236,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Account> FT_AccountSelect(HttpServletRequest req) {
 		List<FT_Account> ac = dao.FT_AccountSelect(req.getParameter("srhval"));
-		System.out.println(ac);
 		return ac;
 	}
 	
@@ -295,8 +282,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_DepositAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Deposit> savings = dao.FT_DepositAllSelect();
-		System.out.println(savings);
-		System.out.println(savings.size());
 		model.addAttribute("deposit", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
@@ -305,8 +290,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Deposit> FT_DepositSelect(HttpServletRequest req, Model model) {
 		List<FT_Deposit> tf = dao.FT_DepositSelect(req.getParameter("srhval"));
-		System.out.println(tf);
-		System.out.println(req.getParameter("srhval"));
 		return tf;
 	}
 	
@@ -346,8 +329,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_NoteAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Note> savings = dao.FT_NoteAllSelect();
-		System.out.println(savings);
-		System.out.println(savings.size());
 		model.addAttribute("note", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
@@ -387,8 +368,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_LoanAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Loan> savings = dao.FT_LoanAllSelect();
-		System.out.println(savings);
-		System.out.println(savings.size());
 		model.addAttribute("loan", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
@@ -428,8 +407,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_SecuritiesAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Securities> savings = dao.FT_SecuritiesAllSelect();
-		System.out.println(savings);
-		System.out.println(savings.size());
 		model.addAttribute("Securities", savings);
 		model.addAttribute("listsize", savings.size() + 1);
 	}
@@ -508,7 +485,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_SubjectAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> subject = dao.FT_SubjectAllSelect();
-		System.out.println("AccountCode : " + subject.get(0).getAccounts_code());
 		model.addAttribute("subject", subject);
 		model.addAttribute("listsize", subject.size() + 1);
 	}
@@ -517,8 +493,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Subject> FT_SubjectSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> tf = dao.FT_SubjectSelect(req.getParameter("srhval"));
-		System.out.println(tf);
-		System.out.println(req.getParameter("srhval"));
 		return tf;
 	}
 	
@@ -534,8 +508,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<HR_VO> FT_DepartmentSelect(HttpServletRequest req, Model model) {
 		List<HR_VO> tf = dao.FT_DepartmentSelect(req.getParameter("srhval"));
-		System.out.println(tf);
-		System.out.println(req.getParameter("srhval"));
 		return tf;
 	}
 
@@ -543,7 +515,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_AccSubjectAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> subject = dao.FT_AccSubjectAllSelect();
-		System.out.println("AccountCode : " + subject.get(0).getAccounts_code());
 		model.addAttribute("subject", subject);
 		model.addAttribute("listsize", subject.size() + 1);
 	}
@@ -552,8 +523,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Subject> FT_AccSubjectSelect(HttpServletRequest req, Model model) {
 		List<FT_Subject> tf = dao.FT_AccSubjectSelect(req.getParameter("srhval"));
-		System.out.println(tf);
-		System.out.println(req.getParameter("srhval"));
 		return tf;
 	}
 	
@@ -561,7 +530,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_UsersAllSelect(HttpServletRequest req, Model model) {
 		List<HR_VO> users = dao.FT_UsersAllSelect();
-		System.out.println("username : " + users.get(0).getUsername());
 		model.addAttribute("users", users);
 		model.addAttribute("listsize", users.size() + 1);
 	}
@@ -570,8 +538,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<HR_VO> FT_UsersSelect(HttpServletRequest req) {
 		List<HR_VO> tf = dao.FT_UsersSelect(req.getParameter("srhval"));
-		System.out.println(tf);
-		System.out.println(req.getParameter("srhval"));
 		return tf;
 	}
 	
@@ -581,7 +547,6 @@ public class FT_ServiceImpl implements FT_Service{
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		int count = Integer.parseInt(req.getParameter("count"));
-		System.out.println(count);
 		for(int i = 0 ; i <= count ; i++) {
 			String dept_name = req.getParameter("dept_name"+i);
 			String money = req.getParameter("money"+i);
@@ -673,14 +638,12 @@ public class FT_ServiceImpl implements FT_Service{
 		}
 		
 		List<FT_Ledger> list = dao.FT_ledgerList(map);
-		System.out.println("list : " + list);
 		return list;
 	}
 	
 	// 거래처원장 리스트
 	public List<FT_Chit> FT_ledgerAccList(Map<String, Object> map, Model model) {
 		List<FT_Chit> list = dao.FT_ledgerAccList(map);
-		System.out.println("list : " + list);
 		return list;
 	}
 	
@@ -689,14 +652,10 @@ public class FT_ServiceImpl implements FT_Service{
 		int year = Integer.parseInt(map.get("firstday").toString().substring(0, 4));
 		String month = map.get("firstday").toString().substring(5,7);
 		String day = map.get("firstday").toString().substring(8,10);
-		System.out.println("year" + year + "month" + month + "day" + day);
 		
 		List<FT_DTB> listL = dao.FT_DTBDayListL(map);
 		List<FT_DTB> listM = dao.FT_DTBDayListM(map);
 		List<FT_DTB> listS = dao.FT_DTBDayListS(map);
-		System.out.println("listL : " + listL);
-		System.out.println("listM : " + listM);
-		System.out.println("listS : " + listS);
 		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
 		if(listL != null || listM != null || listS != null) {
 			list.add(listL);
@@ -706,8 +665,6 @@ public class FT_ServiceImpl implements FT_Service{
 			list = null;
 		}
 		String rootPath = System.getProperty("user.dir");
-        System.out.println("현재 프로젝트의 경로 : "+rootPath );
-        System.out.println("list : " + list);
 
 		return list;
 	}
@@ -719,16 +676,10 @@ public class FT_ServiceImpl implements FT_Service{
 		map.put("day", String.valueOf((new Date(year, Integer.parseInt(month), 0)).getDate()));
 		map.put("firstday", map.get("firstday").toString());
 		map.put("lastday", map.get("lastday").toString());
-		System.out.println("year : " + year + ", month : " + month);
-		System.out.println("day : " + String.valueOf((new Date(year, Integer.parseInt(month), 0)).getDate()));
-		System.out.println("date : " + map.get("firstday").toString());
 		
 		List<FT_DTB> listL = dao.FT_DTBMonthListL(map);
 		List<FT_DTB> listM = dao.FT_DTBMonthListM(map);
 		List<FT_DTB> listS = dao.FT_DTBMonthListS(map);
-		System.out.println("listL : " + listL);
-		System.out.println("listM : " + listM);
-		System.out.println("listS : " + listS);
 		List<List<FT_DTB>> list = new ArrayList<List<FT_DTB>>();
 		if(listL != null || listM != null || listS != null) {
 			list.add(listL);
@@ -737,7 +688,6 @@ public class FT_ServiceImpl implements FT_Service{
 		} else {
 			list = null;
 		}
-        System.out.println("list : " + list);
 		return list;
 	}
 	
@@ -747,9 +697,6 @@ public class FT_ServiceImpl implements FT_Service{
 		String[] datelist = map.get("dates").toString().split("/");
 		String[] nolist = map.get("nos").toString().split("/");
 		for(int i = 0; i<datelist.length; i++) {
-			System.out.println("리스트 : " + datelist[i]);
-			System.out.println("number리스트 : " + nolist[i]);
-			System.out.println("username : " + map.get("username"));
 			map.put("dates", datelist[i]);
 			map.put("nos", nolist[i]);
 			if(dao.FT_CheckFormal(map) == 0) {
@@ -768,7 +715,6 @@ public class FT_ServiceImpl implements FT_Service{
 		String typename = "자산"; 
 		List<FT_accounts_balance> assets_list = dao.FT_getAssetsList(typename);
 		bs_result.put("assets_list", assets_list);
-		System.out.println("1: "+assets_list.get(0).getAccount_name());
 		
 		typename = "부채";
 		List<FT_accounts_balance> liab_list = dao.FT_getAssetsList(typename);
@@ -777,7 +723,6 @@ public class FT_ServiceImpl implements FT_Service{
 		typename = "자본";
 		List<FT_accounts_balance> capit_list = dao.FT_getAssetsList(typename);
 		bs_result.put("capit_list", capit_list);
-		System.out.println("1: "+capit_list.get(0).getAccount_name());
 		
 		int left_max = assets_list.size();
 		int right_max = liab_list.size()+capit_list.size(); 
@@ -786,7 +731,6 @@ public class FT_ServiceImpl implements FT_Service{
 			maxsize = right_max;
 		}
 		
-		System.out.println("result max: "+ maxsize );
 		 
 		
 		return bs_result;
@@ -900,8 +844,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_BuildingAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Building> account = dao.FT_BuildingAllSelect();
-		System.out.println("building : " + account);
-		System.out.println("buildingSize : " + account.size());
 		model.addAttribute("building", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}
@@ -910,7 +852,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public FT_Building FT_BuildingOneSelect(HttpServletRequest req) {
 		FT_Building ac = dao.FT_BuildingOneSelect(req.getParameter("srhval"));
-		System.out.println(ac);
 		return ac;
 	}
 	
@@ -958,8 +899,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public void FT_LandAllSelect(HttpServletRequest req, Model model) {
 		List<FT_Land> account = dao.FT_LandAllSelect();
-		System.out.println("building : " + account);
-		System.out.println("buildingSize : " + account.size());
 		model.addAttribute("land", account);
 		model.addAttribute("listsize", account.size() + 1);
 	}
@@ -968,7 +907,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public FT_Land FT_LandOneSelect(HttpServletRequest req) {
 		FT_Land ac = dao.FT_LandOneSelect(req.getParameter("srhval"));
-		System.out.println(ac);
 		return ac;
 	}
 	
@@ -981,10 +919,6 @@ public class FT_ServiceImpl implements FT_Service{
 		FT_Depreciation lvo = dao.FT_LDepreciationDistinct(map);
 		FT_Depreciation evo = dao.FT_EDepreciationDistinct(map);
 		FT_Depreciation cvo = dao.FT_CDepreciationDistinct(map);
-		System.out.println(bvo);
-		System.out.println(lvo);
-		System.out.println(evo);
-		System.out.println(cvo);
 		if(bvo != null) {
 			list.add(bvo);
 		}
@@ -1004,7 +938,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Depreciation> FT_BDepreciationDataList(Map<String, Object> map, Model model) {
 		int number = dao.FT_BDepreciationDataCnt(map); 
-		System.out.println(number);
 		if(number == 0) {
 			return null;
 		} else {
@@ -1016,7 +949,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Depreciation> FT_LDepreciationDataList(Map<String, Object> map, Model model) {
 		int number = dao.FT_LDepreciationDataCnt(map); 
-		System.out.println(number);
 		if(number == 0) {
 			return null;
 		} else {
@@ -1028,7 +960,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Depreciation> FT_EDepreciationDataList(Map<String, Object> map, Model model) {
 		int number = dao.FT_EDepreciationDataCnt(map); 
-		System.out.println(number);
 		if(number == 0) {
 			return null;
 		} else {
@@ -1040,7 +971,6 @@ public class FT_ServiceImpl implements FT_Service{
 	@Override
 	public List<FT_Depreciation> FT_CDepreciationDataList(Map<String, Object> map, Model model) {
 		int number = dao.FT_CDepreciationDataCnt(map); 
-		System.out.println(number);
 		if(number == 0) {
 			return null;
 		} else {

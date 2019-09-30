@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
+import com.pj.erp.service.OriginService;
 import com.pj.erp.vo.HashVO;
+
+import sun.nio.cs.MS1250;
 
 @Controller
 public class ERPController {
@@ -32,6 +36,9 @@ public class ERPController {
 	
 	@Autowired
 	MateralServiceImpl MSI;
+	
+	@Autowired
+	OriginService OS;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -610,9 +617,13 @@ public class ERPController {
 	
 	// 블록체인 신청 입력처리
 	@RequestMapping("FT_apply_input2_pro")
-	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
+	public String FT_apply_input2_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input2_pro");
-		MSI.budgetAdd(req, model);
+		try {
+			MSI.budgetAdd(req, model);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "FT/FT_apply_input2";
 	}
@@ -636,7 +647,7 @@ public class ERPController {
 	}
 	
 	// 재료 구매하는 페이지
-	@RequestMapping("productList")
+	@RequestMapping("public_productList")
 	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
 		service.materialList(req, model);
@@ -644,8 +655,7 @@ public class ERPController {
 	}
 	
 	//물품판매
-	// 페이지 해놓을게요 생
-	@RequestMapping("shop")
+	@RequestMapping("public_shop")
 	public String home(HttpServletRequest req, Model model) {
 		logger.info("log => home");
 		service.productList(req, model);
@@ -658,7 +668,7 @@ public class ERPController {
 	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => InsertMaterialIo");
 		
-		MSI.payMaterial(req, model);
+		OS.payOriginMaterial(req, model);
 		
 		logger.info("log => productList");
 		service.productList(req, model);
@@ -673,5 +683,14 @@ public class ERPController {
 		service.selectMaterals(req, model);
 		
 		return "MF/MF_materialsManagement2"; 
+	}
+	
+	//판매 상품 상세 productDetail
+	@RequestMapping("public_productDetail")
+	public String productDetail(HttpServletRequest req, Model model) {
+		logger.info("log => productDetail");
+		service.productDetailList(req, model);
+		
+		return "page/productDetail"; 
 	}
 }

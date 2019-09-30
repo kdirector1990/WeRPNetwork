@@ -78,15 +78,15 @@
 					
 						var usernames = list[i].username;
 						var f_names = list[i].f_name;
-						var f_types = list[i].f_type;
-						if(f_types == 1) {
-							f_types = "동거";
-						}
-						if(f_types == 2) {
-							f_types = "별거";
-						}
+						var f_types = list[i].f_type;						
 						
 						var f_cohabitations = list[i].f_cohabitation;
+						if(f_cohabitations == 1) {
+							f_cohabitations = "동거";
+						}
+						if(f_cohabitations == 2) {
+							f_cohabitations = "별거";
+						}
 						
 						var f_born = list[i].f_born;
 						var pa = new Date(f_born);

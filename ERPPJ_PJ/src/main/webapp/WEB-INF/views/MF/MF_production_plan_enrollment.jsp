@@ -11,7 +11,6 @@
         
         function planInsert(){
     		var param = $("#MF_production_plan_enrollment").serializeArray();
-    		alert(JSON.stringify(param));
     		$.ajax({
     			url: '/erp/MF_production_plan_enrollmentPro',
     			type: 'POST',

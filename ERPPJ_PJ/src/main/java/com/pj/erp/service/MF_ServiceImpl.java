@@ -35,7 +35,6 @@ public class MF_ServiceImpl implements MF_Service {
 		
 		vo.setMaterial_name(req.getParameter("material_name"));
 		vo.setMaterial_unit(req.getParameter("material_unit"));
-		System.out.println(vo.getMaterial_name());
 		
 		dao.insertMF(vo);
 	}
@@ -47,10 +46,8 @@ public class MF_ServiceImpl implements MF_Service {
 		
 		cnt = dao.getMaterialListCnt();
 		
-		System.out.println("cnt : "+ cnt);
 		
 		List<MF_material> dto = dao.getMaterialList();
-		System.out.println(dto.get(0).getMaterial_code());
 		
 		model.addAttribute("dto", dto);
 	}
@@ -70,7 +67,6 @@ public class MF_ServiceImpl implements MF_Service {
 	@Override
 	public void deleteMF(HttpServletRequest req, Model model) {
 		String material_code = req.getParameter("material_code");
-		System.out.println(material_code);
 		
 		dao.deleteMaterial(material_code);
 	}
@@ -149,7 +145,6 @@ public class MF_ServiceImpl implements MF_Service {
 	@Override
 	public void deleteMFplan(HttpServletRequest req, Model model) {
 		String p_pp_code = req.getParameter("p_pp_code");
-		System.out.println(p_pp_code);
 		
 		dao.deleteMFplan(p_pp_code);
 	}

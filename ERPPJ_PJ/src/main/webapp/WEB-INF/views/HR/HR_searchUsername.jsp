@@ -69,7 +69,6 @@ function setName(username,e_name,department_code,position_code) {
 	opener.document.getElementById("department_code").value = department_code;
 	opener.document.getElementById("position_code").value = position_code;
 	//test alert
-	alert(username);
 	
 	$("#username", opener.document).val(username); //jquery 이용
 	$(opener.document).find("#username").val(username); //find를 이용한 jquery
