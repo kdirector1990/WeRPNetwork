@@ -123,7 +123,13 @@
     					var pa = new Date(reg_date);
     					var year = pa.getFullYear();
     					var month = (1+pa.getMonth());
+    					if(month < 10){
+    						month = "0" + month;
+    					}
     					var day = pa.getDate(); 
+    					if(day < 10){
+    						day = "0" + day;
+    					}
     					var reg = year + "/" + month +"/"+day;
     					
     					var release_o_date = list[i].release_o_date;
