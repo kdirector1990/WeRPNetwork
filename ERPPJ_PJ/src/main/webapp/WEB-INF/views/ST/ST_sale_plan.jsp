@@ -78,12 +78,34 @@
     				dataType : "json",
     				contentType:"application/json;charset=UTF-8",
     				success : function(list){
-    					
-    					$('#result_2').empty();
+    					$('#bodyappend').empty();
+        				$('#resulttable').empty();
+        				$('#result_2').empty();
+        				
+        				$('#resulttable').append(
+        						'<div class="table-rep-plugin">'+
+								'<div class="" data-pattern="priority-columns">'+
+									'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+										'<thead class="bg-primary text-white">'+
+											'<tr>'+
+												'<th>판매계획코드</th>'+
+												'<th>품명</th>'+
+												'<th>단위 (관리)</th>'+
+												'<th>예상 금액</th>'+
+												'<th>예상 수량</th>'+
+												'<th>기간 시작</th>'+
+												'<th>기간 종료</th>'+
+												'<th>비고</th>'+
+											'</tr>'+
+										'</thead>'+
+										'<tbody id="result_2">'+
+										'</tbody>'+
+									'</table>'+
+								'</div>'+
+							'</div>');
     					
     					
     					for(var i = 0 ; i < list.length; i++){
-    					
     						var saleplan_code = list[i].saleplan_code;
     						var ef_price = list[i].ef_price;
     						var ef_amount = list[i].ef_amount;						
@@ -116,7 +138,7 @@
     								'<td>'+ sp_note +'</td>'+
     	                 		'</tr>');
     					
-    					if(searchCount == 1){
+    					}
     					$('#bodyappend').append(
     					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
     					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -136,10 +158,7 @@
     					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
     					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
     					);
-    					searchCount = searchCount + 1;
-    					}
     					
-    					}
     					
     				},
     				error : function(){
@@ -221,43 +240,32 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<div class="table-rep-plugin">
+								<div id = "resulttable">
+								</div>
+									<!-- <div class="table-rep-plugin">
 										<div class="" data-pattern="priority-columns">
 											<table id="datatable"
 												class="table table-striped table-bordered dt-responsive nowrap">
 												<thead class="bg-primary text-white">
-										<tr>
-											<th>판매계획코드</th>
-											<th>품명</th>
-											<th>단위 (관리)</th>
-											<th>예상 금액</th>
-											<th>예상 수량</th>
-											<th>기간 시작</th>
-											<th>기간 종료</th>
-											<th>비고</th>
-										</tr>
+													<tr>
+														<th>판매계획코드</th>
+														<th>품명</th>
+														<th>단위 (관리)</th>
+														<th>예상 금액</th>
+														<th>예상 수량</th>
+														<th>기간 시작</th>
+														<th>기간 종료</th>
+														<th>비고</th>
+													</tr>
 
-									</thead>
-									<tbody id="result_2">
-										<%-- <c:if test="${cnt > 0}">
-																<c:forEach var="dto" items="${dtos}">
-																	<tr onclick="salePlanWriteForm('${dto.saleplan_code}');">
-																		<td>${dto.saleplan_code}</td>
-																		<td></td>
-																		<td>${dto.sp_unit }</td>
-																		<td>${dto.ef_price}</td>
-																		<td>${dto.ef_amount }</td>
-																		<td>${dto.s_plan_start }</td>
-																		<td>${dto.s_plan_end }</td>
-																		<td style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${dto.sp_note}</td>
-																	</tr>
-																</c:forEach>
-															</c:if> --%>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+												</thead>
+												<tbody id="result_2">
+													
+												</tbody>
+											</table>
+										</div>
+									</div> -->
+								</div>
 				</div>
 				<!-- end row -->
 

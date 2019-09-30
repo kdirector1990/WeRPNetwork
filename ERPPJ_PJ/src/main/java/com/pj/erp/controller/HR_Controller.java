@@ -55,6 +55,16 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
+	@RequestMapping("HR_InputHR_RPA")
+	public String HR_InputHR_RPA(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR_RPA");
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		 
+		return "HR/HR_InputHR_RPA";
+	}
+	
 
  
 	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
@@ -81,7 +91,7 @@ public class HR_Controller {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
 		
-		return  "HR/HR_EmployeeInformation";
+		return  "HR/HR_FoundationLocation";
 	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
@@ -97,7 +107,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyPhysicalyPro");
 		service.modifyPhysicalyPro(req, model);
 		
-		return "index";
+		return "HR/HR_PhysicalyLocation";
 	}
 	
 	@RequestMapping("HR_modifyFamilyPro")
@@ -105,7 +115,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyFamilyPro");
 		service.modifyFamilyPro(req, model);
 		
-		return "index";
+		return "HR/HR_FamilyLocation";
 	}
 	
 	/*
@@ -333,7 +343,7 @@ public class HR_Controller {
 		logger.info("log => HR_recordinput");
 		service.HR_recordinput(req, model);
 		
-		return "index";
+		return "HR/HR_recordLocation";
 	}
 	
 	@RequestMapping("HR_record_input_pro")

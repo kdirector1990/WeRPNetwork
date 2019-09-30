@@ -70,10 +70,10 @@
 						var day = pa.getDate();
 						var record_date = year + "/" + month +"/"+day;	
 						
-						var position_codes = list[i].position_code;
+						var position_names = list[i].position_name;
 						var position_code_afters = list[i].position_code_after;						
 						
-						var department_codes = list[i].department_code;
+						var department_names = list[i].department_name;
 						var department_code_afters = list[i].department_code_after;
 						
 						var ap_status = list[i].ap_status;
@@ -102,9 +102,9 @@
 							'<td>'+ ap_codes +'</td>'+
 							'<td>'+ record_date +'</td>'+							
 							'<td>'+ ap_names +'</td>'+
-							'<td>'+ position_codes +'</td>'+
+							'<td>'+ position_names +'</td>'+
 							'<td>'+ position_code_afters +'</td>'+
-							'<td>'+ department_codes +'</td>'+
+							'<td>'+ department_names +'</td>'+
 							'<td>'+ department_code_afters +'</td>'+
 							'<td>'+ ap_status +'</td>'+
                  		'</tr>');

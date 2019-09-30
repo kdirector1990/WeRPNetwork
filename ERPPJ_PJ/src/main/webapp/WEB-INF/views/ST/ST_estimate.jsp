@@ -10,7 +10,7 @@
        	}
         
         function customerNameList() {
-    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px location=no,status=no,scrollbars=yes");
+    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=1000px, height = 600px location=no,status=no,scrollbars=yes");
     	}   
         
         </script>
