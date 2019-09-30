@@ -78,8 +78,15 @@
 					
 						var usernames = list[i].username;
 						var f_names = list[i].f_name;
-						var f_types = list[i].f_type;
+						var f_types = list[i].f_type;						
+						
 						var f_cohabitations = list[i].f_cohabitation;
+						if(f_cohabitations == 1) {
+							f_cohabitations = "동거";
+						}
+						if(f_cohabitations == 2) {
+							f_cohabitations = "별거";
+						}
 						
 						var f_born = list[i].f_born;
 						var pa = new Date(f_born);
@@ -89,6 +96,12 @@
     					var fborn = year + "/" + month +"/"+day;
 						
 						var f_born_types = list[i].f_born_type;
+						if(f_born_types == 1) {
+							f_born_types = "음력";
+						}
+						if(f_born_types == 2) {
+							f_born_types = "양력";
+						}
 						
 					$('#result').append('<tr onclick="updateFAM('+usernames+');">'+                         	
 							'<td>'+ usernames +'</td>'+
@@ -177,17 +190,17 @@
 							+'<label class="col-md-1 col-form-label" for="simpleinput">음력/양력</label>'
 								+'<div class="col-md-3 col-form-label">'
 	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline9" name="f_born_type" class="custom-control-input" value="음력" checked>'
+	                                    +'<input type="radio" id="customRadioInline9" name="f_born_type" class="custom-control-input" value="1" checked>'
 	                                    +'<label class="custom-control-label" for="customRadioInline9">음력</label>'
 	                                +'</div>'
 	                                +'<div class="custom-control custom-radio custom-control-inline mb-2">'
-	                                    +'<input type="radio" id="customRadioInline10" name="f_born_type" class="custom-control-input" value="양력">'
+	                                    +'<input type="radio" id="customRadioInline10" name="f_born_type" class="custom-control-input" value="2">'
 	                                    +'<label class="custom-control-label" for="customRadioInline10">양력</label>'
 	                                +'</div>'
 	                            +'</div>'
 						+'</div>'						
 						+'<div class="form-group text-right mb-0">'
-							+'<button onclick="HR_modifyFamilyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+							+'<input type="submit" formaction="HR_modifyFamilyPro?${_csrf.parameterName}=${_csrf.token }" value="수정">'
 						+'</div>'
 	  				);
 	  			},
@@ -199,7 +212,7 @@
 	 }
 	 
 	 function HR_modifyFamilyPro(){
-     	var param = $("#updateFamily").serializeArray();
+     	var param = $("#updateFAM").serializeArray();
  		
  		$.ajax({
  			url: '/erp/HR_modifyFamilyPro?${_csrf.parameterName}=${_csrf.token }',
@@ -214,7 +227,7 @@
  				}
  			},
  			error : function(){
- 				alert("전산 오류로 인하여 AS처리중으로 수정하지 못했습니다.");
+ 				alert("오류로 인하여 수정하지 못했습니다.");
  			}
  		});
      }
@@ -321,13 +334,18 @@
 									</div>
 								</div>
 							</div>
-							<div class="card" id="selectTable">
+							
+							<div class="card" id="selectTable">							
 								<div class="card-body">
+								<form id="updateFAM">
 									<div id="result2">
 										<!-- 상세 페이지 출력 위치 -->
 									</div>
+								</form>
 								</div>
+							
 							</div>
+							
 						</div>
 					</div>
 					</div>

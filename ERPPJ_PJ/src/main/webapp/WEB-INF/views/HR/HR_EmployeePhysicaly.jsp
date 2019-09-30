@@ -196,7 +196,7 @@
 	  				var e_blood_type = data.e_blood_type;
 	  				var e_blood_presure = data.e_blood_presure;
 	  				var e_medical_info = data.e_medical_info;
-	  				var e_veteran_type = data.e_veteran_type;
+	  				var e_veteran_type = data.e_veteran_type;	  				
 	  				var e_veteran_info = data.e_veteran_info;
 	  				var e_veteran_level = data.e_veteran_level;
 	  				var e_disability_type = data.e_disability_type;
@@ -341,7 +341,7 @@
 							+'</div>'																
 						+'</div>'						
 						+'<div class="form-group text-right mb-0">'
-							+'<button onclick="HR_modifyPhysicalyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">처리시작</button>'
+							+'<input type="submit" formaction="HR_modifyPhysicalyPro?${_csrf.parameterName}=${_csrf.token }" value="수정">'
 						+'</div>'
 	  				);
 	  			},

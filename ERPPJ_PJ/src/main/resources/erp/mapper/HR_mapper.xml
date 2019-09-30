@@ -16,9 +16,9 @@
 		values(userid.nextval, #{password}, #{e_name}, 1, 'plan_depart', '920', 'pos_1001', 1) 
 	</insert>
 	
-	<insert id="insertAuth">
+	<insert id="insertAuth" parameterType="String">
 		insert into authority(username, authority)
-		values(userid.currval, 'ROLE_ADMIN') 
+		values(userid.currval, #{authority}) 
 	</insert>
 	
 	<!-- 사원번호 체크 -->
@@ -439,9 +439,9 @@
 			a.ap_code as ap_code,
 			a.ap_name as ap_name,
 			r.record_date as record_date,			
-			p.position_code as position_code,
+			p.position_name as position_name,
 			r.position_code_after as position_code_after,
-			d.department_code as department_code,
+			d.department_name as department_name,
 			r.department_code_after as department_code_after,
 			a.ap_status as ap_status
 			from users u, appointment_tbl a, position_record_tbl r, position_tbl p, department_tbl d
