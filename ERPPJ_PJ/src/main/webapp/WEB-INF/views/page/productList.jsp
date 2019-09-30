@@ -70,13 +70,13 @@ function allcheck(){
 
 											<tbody>
 												<c:forEach var="list" items="${dto}">
-											<input type="hidden" name="material_code" value="${list.material_code}">
 													<tr>
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
 														<td><input type="text" name="price" onkeyup="removeChar(event); inputNumberFormat(this);"></td>
 														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
 														<td>
+														<input type="hidden" name="material_code" value="${list.material_code}">
 														<select name="salesTeam">
 															<option value="1팀">(주)심장</option>
 															<option value="2팀">(주)북두칠성</option>
