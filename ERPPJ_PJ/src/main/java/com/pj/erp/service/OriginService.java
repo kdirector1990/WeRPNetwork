@@ -111,13 +111,25 @@ public class OriginService {
     	int prices = Integer.parseInt(req.getParameter("price"));
     	int nums = Integer.parseInt(req.getParameter("num"));
     	
-    	BigInteger ethers = etherToWei(new BigDecimal(1));
+    	
+    	BigInteger ethers = null;
+    	
+    	
+    	int price = prices * nums;
+    	if(price < 1500000) {
+    		ethers = etherToWei(new BigDecimal(1));
+    	}
+    	else {
+    		ethers= etherToWei(new BigDecimal(2));
+    	}
+    	
     	
     	byte[] name = stringToBytes32(deptname); 
     	
     	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
-    	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소 
-    	MateralOrigin dept = MateralOrigin.load(contractAddress, web3j, salesTeam, gasPrice, gasLimit);
+    	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소
+    	contractAddress = MateralOrigin.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
+    	MateralOrigin dept = MateralOrigin.load(contractAddress, web3j, hostCredentials, gasPrice, gasLimit);
 
     	// 솔리디티의 buyMaterialOrigins을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
 		String hash = dept.buyMaterialOrigins(new BigInteger("0"), name, ethers).send().getTransactionHash();
