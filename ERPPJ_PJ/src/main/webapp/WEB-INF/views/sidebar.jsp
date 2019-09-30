@@ -321,7 +321,7 @@
                             </li>
                             
                             <li>
-                            	<a href="shop">
+                            	<a href="public_shop">
                             		<i class="mdi mdi-spa-outline"></i>
                             		<span>물품 판매</span>
                             	</a>
