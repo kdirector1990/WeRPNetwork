@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.vo.HashVO;
+
+import sun.nio.cs.MS1250;
 
 @Controller
 public class ERPController {
@@ -32,6 +35,9 @@ public class ERPController {
 	
 	@Autowired
 	MateralServiceImpl MSI;
+	
+	@Autowired
+	MateralService MSI2;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	

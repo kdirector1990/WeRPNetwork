@@ -16,7 +16,7 @@
 	
 	<c:if test="${estimatewrite != 0}">
 		<script type="text/javascript">
-			alert("글 쓰기 완료");
+			alert("견적 등록이 완료되었습니다.");
 			window.location='ST_estimate_price';
 		</script>
 	</c:if>
