@@ -25,7 +25,7 @@ public interface HR_DAO {
 	
 	public int insertPhysical(String username);
 	
-	public int insertAuth();
+	public int insertAuth(String authority);
 	
 	public int insertFamily(HR_FamilyVO vo2);
 	

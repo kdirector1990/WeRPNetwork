@@ -306,7 +306,7 @@
 							+'</div>'																
 						+'</div>'
 						+'<div class="form-group text-right mb-0">'
-							+'<input type="submit" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" value="처리시작">'
+							+'<input type="submit" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" value="수정">'
 						+'</div>'
 	  				);
 	  				$('#bodyappend').append(

@@ -102,7 +102,35 @@ public class HR_ServiceImpl implements HR_Service {
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		
+		
 		String department_code = req.getParameter("department_code");
+		String authority = "";
+		
+		switch(department_code) {
+			case "ct_01"
+				: authority = "ROLE_CT";
+				break;
+			case "hr_01"
+				: authority = "ROLE_HR";
+				break;
+			case "ms_01"
+				: authority = "ROLE_MS";
+				break;
+			case "st_01"
+				: authority = "ROLE_ST";
+				break;
+			case "ft_01"
+				: authority = "ROLE_FT";
+				break;
+			case "mf_01"
+				: authority = "ROLE_MF";
+				break;
+			default 
+				: authority = "ROLE_ADMIN";
+				break;
+		}
+		
 		String position_code = req.getParameter("position_code");
 		String rank_code = req.getParameter("rank_code");
 		
@@ -127,7 +155,7 @@ public class HR_ServiceImpl implements HR_Service {
 		int cnt = 0;		
 		
 		cnt = dao.insertMember(vo);		
-		dao.insertAuth();
+		dao.insertAuth(authority);
 		dao.insertPhysical(username);
 		dao.insertFamily(vo2);
 		
@@ -432,10 +460,12 @@ public class HR_ServiceImpl implements HR_Service {
 		String username = req.getParameter("username");
 
 		vo.setUsername(username);
+		System.out.println(req.getParameter("f_name"));
+		
 		vo.setF_name(req.getParameter("f_name"));
 		vo.setF_type(req.getParameter("f_type"));
 		vo.setF_cohabitation(req.getParameter("f_cohabitation"));
-		
+		System.out.println(req.getParameter("f_born"));
 		vo.setF_born(Date.valueOf(req.getParameter("f_born")));
 
 		vo.setF_born_type(req.getParameter("f_born_type"));

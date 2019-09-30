@@ -55,8 +55,34 @@ public class ERPServiceImpl implements ERPService{
 		vo.setPassword(password);
 		vo.setE_name(e_name);
 		
+		String department_code = req.getParameter("department_code");
+		String authority = "";
+		switch(department_code) {
+		case "ct_01"
+			: authority = "ROLE_CT";
+			break;
+		case "hr_01"
+			: authority = "ROLE_HR";
+			break;
+		case "ms_01"
+			: authority = "ROLE_MS";
+			break;
+		case "st_01"
+			: authority = "ROLE_ST";
+			break;
+		case "ft_01"
+			: authority = "ROLE_FT";
+			break;
+		case "mf_01"
+			: authority = "ROLE_MF";
+			break;
+		default 
+			: authority = "ROLE_ADMIN";
+			break;
+	}
+		
 		dao2.insertMember2(vo);
-		dao2.insertAuth();
+		dao2.insertAuth(authority);
 		
 		
 		

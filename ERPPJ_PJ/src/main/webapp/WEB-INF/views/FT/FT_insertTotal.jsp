@@ -156,21 +156,23 @@
 								<div class="card-body">
 									<div align="right">
 										<button type="button"
-											class="btn btn-outline-dark waves-effect waves-light">분개</button>
+											class="btn btn-outline-dark waves-effect waves-light" onclick = "javascript: TotalComplete.submit();">분개</button>
 										<button type="button"
 											class="btn btn-outline-dark waves-effect waves-light" onclick = "gamga();">감가상각</button>
 										<hr>
 									</div>
+									<form action = "FT_journalComplete" name = "TotalComplete" method="post">
 									<table id="datatable"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<tr class="form-group row">
 											<th class="col-md-1 col-form-label">조회기간</th>
 											<td><input
-												class="form-control" type="text" id = "dated" onkeyup = "ajaxload();"></td>
+												class="form-control" type="text" id = "dated" name = "years" onkeyup = "ajaxload();"></td>
 										</tr>
 									</table>
 									<hr>
-
+									
+									<input type = "hidden" name = "${_csrf.parameterName }" value = "${_csrf.token }">
 									<div class="col-sm-12">
 										<div class="card">
 											<div class="card-body table-responsive">
@@ -393,7 +395,7 @@
 																<td></td>
 																<td></td>
 																<td><input type = "text" name = "creditprice" style = "width:100%;"></td>
-															</tr>
+															</tr> 
 															<tr>
 																<td colspan="2">5.영업이익</td>
 																<td></td>
@@ -442,6 +444,7 @@
 											</div>
 										</div>
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>
