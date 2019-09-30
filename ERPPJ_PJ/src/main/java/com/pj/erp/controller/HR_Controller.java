@@ -140,7 +140,6 @@ public class HR_Controller {
 		logger.info("log => HR_update_Fou");
 		
 		HR_VO data = service.HR_select_username(req, model);
-		System.out.println(data.getE_picture());
 		return data;
 	}
 	

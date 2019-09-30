@@ -45,6 +45,11 @@
 		select * from material_tbl
 	</select>
 	
+	<!-- 물품판매목록 getProductList -->
+	<select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
+		select * from product_list_tbl
+	</select>
+	
 	<!-- 가상화폐 예산편성 내역 insert -->
 	<insert id="insertLog" parameterType="com.pj.erp.vo.HashVO">
 		Insert Into ether_rec_tbl(department_code, e_subject, e_hashcode)
@@ -63,15 +68,10 @@
 	    Where d.department_name like '%'|| #{department_name} ||'%'	
 	</select>
 	
-	<!-- 물품판매목록 getProductList -->
-	<select id="getProductList" resultType="com.pj.erp.vo.ProductVO">
-		select * from product_list_tbl
+	<!-- 판매 물품 상세페이지 -->
+	<select id="gerProductDetail" resultType="com.pj.erp.vo.ProductVO" parameterType="String">
+		select * from product_list_tbl where product_code = #{product_code}	
 	</select>
-	
-	<!-- 물품 상세페이지 -->
-	<!-- <select id="gerProductDetail" resultType="com.pj.erp.vo.ProductVO" parameterType="String">
-		select * from product_list_tbl where product_code=${product_code}
-	</select> -->
 	
 	<!-- 가상화폐를 통해 구매한 자재 DB Insert -->
 	<insert id="InsertMaterial_IO" parameterType="com.pj.erp.vo.Material_VO">
