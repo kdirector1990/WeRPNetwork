@@ -167,7 +167,6 @@
     				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
     				);
     				
-    				
     			},
     			error : function(){
     				alert("에러");
