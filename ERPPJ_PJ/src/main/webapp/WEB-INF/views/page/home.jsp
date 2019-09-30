@@ -138,7 +138,7 @@ function allcheck(){
 				<div class="col-md-4 col-sm-6 portfolio-item">
 					<%-- <input type="checkbox" class="checklist" name="product_code" value="${shop.product_code}"> --%>
 					<a class="portfolio-link"
-						href="public_productDetail?product_code="${shop.product_code}">
+						href='public_productDetail?product_code=${shop.product_code}'>
 						<div class="portfolio-hover">
 							<div class="portfolio-hover-content">
 								<i class="fas fa-plus fa-3x"></i>
