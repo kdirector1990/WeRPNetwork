@@ -19,14 +19,11 @@
            
            function enterupdate(vv) {
               if(event.keyCode == 13) {
-                 alert(vv + 100);
               }
            }
            
            function enterinsert(cc) {
               if(event.keyCode == 13) {
-                 alert(cc);
-                 alert(count);
                  $(".chit-table-bordered-primary tbody #enter").attr("onkeyup", "enterupdate(" + cc + ");");
                  $(".chit-table-bordered-primary tbody #enter").attr("id", "enter" + cc);
                  $(".chit-table-bordered-primary tbody #first").attr("id", "first" + cc);
@@ -44,7 +41,6 @@
                            '<td><input type="text" onfocus = "focuse();" name = "slee' + count + '" id = "enter" class="form-control" data-toggle="input-mask" style = "width: 100px; border:0px;" onkeyup="enterinsert(' + count + ');"></td>' +
                         '</tr>');
                      count = count + 1;
-                     alert(count);
                   $(".chit-table-bordered-primary tbody #first").focus();
               }
            }

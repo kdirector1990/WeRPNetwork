@@ -78,7 +78,20 @@
         		var url = "HR_userChk?username=" + document.inputPhysicaly.username.value;
         		window.open(url, "confirm", "menubar=no, width=300, height=200");
         		// -> confirmId.do 서블릿 지정
-        	}   	
+        	}
+        	
+        	        	
+        	function changePosition(code) {        	
+        		$.ajax({
+    	  			url: '/erp/HR_changePosition?${_csrf.parameterName}=${_csrf.token }&de='+code,
+    	  			type: 'POST',
+    	  			dataTpye: 'json',
+    	  			success: function(data){
+    	  				
+    	  			}
+    	  				
+    	  			});
+        	}
         	
         		
         	
@@ -273,7 +286,7 @@
 																class="text-danger">*</span></label>
 															<div class="col-md-4">
 																<select class="form-control select2"
-																	name="department_code" id = "department_code" onchange="">
+																	name="department_code" id = "department_code" onchange="changePosition();">
 																		<option value="">부서를 선택하세요</option>
 																	<c:forEach var="dep" items="${dep}">
 																		<option value="${dep.department_code}">${dep.department_name}</option>
