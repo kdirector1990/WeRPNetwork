@@ -28,7 +28,6 @@
                   contentType : 'application/json;charset=UTF-8',
                   success : function(data) {
                	   if(data != null){
-               		   alert("데이터를 불러왔습니다!");
 						for(i = 0; i < data.length; i++){
 							if(data[i].name == "건물"){
 								$("input[name=buildingprice]").val(data[i].nowprice);
