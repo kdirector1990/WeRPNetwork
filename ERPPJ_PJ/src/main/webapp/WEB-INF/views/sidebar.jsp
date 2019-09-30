@@ -739,7 +739,7 @@
 							</li>
 							</c:if>
 							</c:if>
-                            <!-- <li class="menu-title mt-2">More</li>
+                             <li class="menu-title mt-2">More</li>
 
 							<li>
                                 <a href="javascript: void(0);">
@@ -954,7 +954,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li> -->
+                            </li>
                         </ul>
 
                     </div>

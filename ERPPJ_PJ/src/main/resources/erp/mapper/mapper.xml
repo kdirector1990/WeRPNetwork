@@ -94,5 +94,9 @@
 	    From material_io_rec i Join material_tbl m
 	    On i.material_code = m.material_code
 	</select>
+	
+	<select id="getContrast" resultType="com.pj.erp.vo.SalelistVO">
+ 		   select * from salelist_tbl
+ 	</select>
 
 </mapper>

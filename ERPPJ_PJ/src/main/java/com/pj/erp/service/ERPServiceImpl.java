@@ -26,6 +26,7 @@ import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.MS.MS_plan;
+import com.pj.erp.vo.ST.ST_contrast;
 
 @Service
 public class ERPServiceImpl implements ERPService{
@@ -229,4 +230,11 @@ public class ERPServiceImpl implements ERPService{
 		model.addAttribute("dto", vo);
 	}
 	
+	// ST_contrast_pp 검색 기능
+	@Override
+	public void getcontrast(Model model) {
+		List<ST_contrast> list = dao.getContrast();
+		model.addAttribute("list",list);
+	}
+
 }
