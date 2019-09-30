@@ -21,6 +21,7 @@ import com.pj.erp.service.HR_Service;
 import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.service.OriginService;
+import com.pj.erp.service.ProductSell;
 import com.pj.erp.vo.HashVO;
 
 import sun.nio.cs.MS1250;
@@ -39,6 +40,9 @@ public class ERPController {
 	
 	@Autowired
 	OriginService OS;
+	
+	@Autowired
+	ProductSell PS;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -694,11 +698,12 @@ public class ERPController {
 	}
 	
 	
-	//판매 상품 상세 productDetail
+	//판매 상품 구매처리
 	@RequestMapping("EproductBuy")
-	public String EproductBuy(HttpServletRequest req, Model model) {
+	public String EproductBuy(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => EproductBuy");
 		
+		PS.SellProduct(req, model);
 		
 		return "page/productDetail"; 
 	}

@@ -9,6 +9,7 @@ import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.ST.SaleList;
 
 
 public interface ERPDAO {
@@ -44,4 +45,7 @@ public interface ERPDAO {
 	
 	// 블록체인을 통해 구매한 자제목록 가져오기
 	public List<Material_VO> selectMateral();
+	
+	// 블록체인을 통해 판매한 제품 판매대장에 insert
+	public int insertSalelist(SaleList vo);
 }
