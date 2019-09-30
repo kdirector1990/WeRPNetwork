@@ -71,8 +71,34 @@
 	    			dataType : "json",
 	    			contentType:"application/json;charset=UTF-8", 
 	    			success : function(list){
-	    				
+	    				$('#bodyappend').empty();
+	    				$('#resulttable').empty();
 	    				$('#result_2').empty();
+	    				
+	    				$('#resulttable').append(
+	    						'<div class="table-rep-plugin">' +
+								'<div class="" data-pattern="priority-columns">' +
+									'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">' +
+										'<thead class="bg-primary text-white">' +
+												'<tr>' +
+													'<th>입출고 코드</th>' +
+													'<th>품명</th>' +
+													'<th>출고 거래처명</th>' +
+													'<th>등록일</th>' +
+													'<th>출고 수량</th>' +
+													'<th>입고처</th>' +
+													'<th>입고 수량</th>' +
+													'<th>담당자</th>' +
+													'<th>구분</th>' +
+													'<th>단가</th>' +
+													'<th>합계액</th>' +
+												'</tr>' +
+											'</thead> '+
+											'<tbody id="result_2">' +
+											'</tbody>' +
+										'</table>' +
+									'</div>' +
+								'</div>');
 	    				
 	    				for(var i = 0 ; i < list.length; i++){
 	    					var sar_code = list[i].sar_code;
@@ -116,8 +142,7 @@
 	    							'<td>'+ unit_cost +'</td>'+
 	    							'<td>'+ unit_cost*release_count +'</td>'+
 	                    		'</tr>');
-	    				
-	    				if(searchCount == 1){
+	    				}
 	    				$('#bodyappend').append(
 	    				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 	    				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -137,11 +162,6 @@
 	    				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 	    				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 	    				);
-	    				searchCount = searchCount + 1;
-	    				}
-	    				
-	    				
-	    				}
 	    				
 	    			},
 	    			error : function(){
@@ -246,7 +266,9 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<div class="table-rep-plugin">
+								<div id = "resulttable">
+								</div>
+									<!-- <div class="table-rep-plugin">
 										<div class="" data-pattern="priority-columns">
 											<table id="datatable"
 												class="table table-striped table-bordered dt-responsive nowrap">
@@ -266,36 +288,11 @@
 														</tr>
 													</thead>
 													<tbody id="result_2">
-														<%-- <c:if test="${cnt > 0}">
-															<c:forEach var="rto" items="${rtos}">
-																<tr onclick="ST_releaseDetailForm('${rto.sar_code }');">
-																	<td>${rto.sar_code }</td>
-																	<!-- 입출고 코드 -->
-																	<td>${rto.release_name }</td>
-																	<!-- 출고처 -->
-																	<td>${rto.release_date }</td>
-																	<!-- 등록일 -->
-																	<td>${rto.release_count }</td>
-																	<!-- 출고 수량 -->
-																	<td>${rto.stored_name }</td>
-																	<!-- 입고처 -->
-																	<td>${rto.stored_count }</td>
-																	<td>${rto.username }</td>
-																	<!--담당자  -->
-																	<td>${rto.sar_type }</td>
-																	<td>${rto.unit_cost }</td>
-																	<!-- 단가 -->
-																	<td></td>
-																	<!-- 합계액 -->
-																</tr>
-															</c:forEach>
-														</c:if> --%>
+														
 													</tbody>
 												</table>
 											</div>
-											<!-- end .table-responsive -->
-
-										</div>
+										</div> -->
 										<!-- end .table-rep-plugin-->
 									</div>
 									<!-- end .responsive-table-plugin-->
