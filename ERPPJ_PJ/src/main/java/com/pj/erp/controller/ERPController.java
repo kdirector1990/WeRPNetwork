@@ -667,7 +667,7 @@ public class ERPController {
 	@RequestMapping("InsertMaterialIo")
 	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => InsertMaterialIo");
-		
+		OS.deploy();
 		OS.payOriginMaterial(req, model);
 		
 		logger.info("log => productList");
@@ -693,4 +693,16 @@ public class ERPController {
 		
 		return "page/productDetail"; 
 	}
+	
+	
+	//판매 상품 상세 productDetail
+	@RequestMapping("EproductBuy")
+	public String EproductBuy(HttpServletRequest req, Model model) {
+		logger.info("log => EproductBuy");
+		
+		
+		return "page/productDetail"; 
+	}
+	
+	
 }
