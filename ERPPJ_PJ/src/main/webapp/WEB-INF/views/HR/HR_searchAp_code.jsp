@@ -67,7 +67,6 @@ function setName(ap_code, ap_name) {
 	opener.document.getElementById("ap_code").value = ap_code;
 	opener.document.getElementById("ap_name").value = ap_name;	
 	//test alert
-	alert(ap_name);
 	
 	$("#ap_code", opener.document).val(ap_code); //jquery 이용
 	$(opener.document).find("#ap_code").val(ap_code); //find를 이용한 jquery

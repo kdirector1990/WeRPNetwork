@@ -48,9 +48,6 @@
 					}
 				}
         	}
-        	function inin() {
-        		alert("dkdkk");
-        	}
         	function focuse(keyval) {
         		$(".chit-table-bordered-primary tbody *").focus(function() {
         			$(".chit-table-bordered-primary tbody *").css("background-color", "");

@@ -83,17 +83,14 @@ public class ST_ServiceImpl implements ST_Service {
 		int currentPage = 0; // 현재 페이지
 
 		cnt = dao.getestimateCnt();
-		System.out.println("cnt : " + cnt);
 
 		pageNum = req.getParameter("pageNum");
-		System.out.println(req.getParameter("pageNum"));
 
 		if (pageNum == null) {
 			pageNum = "1";
 		}
 
 		currentPage = Integer.parseInt(pageNum);
-		System.out.println("currentPage " + currentPage);
 
 		// 현재페이지 시작 글번호
 		// 1 = ( 1 - 1 ) * 5 + 1(페이지별)
@@ -103,11 +100,7 @@ public class ST_ServiceImpl implements ST_Service {
 		// 5 = 1 + 5 - 1
 		end = start + pageSize - 1;
 
-		System.out.println("start : " + start);
-		System.out.println("end : " + end);
-
 		number = cnt - (currentPage - 1) * pageSize;
-		System.out.println("number : " + number);
 
 		if (end > cnt)
 			end = cnt;
@@ -122,7 +115,6 @@ public class ST_ServiceImpl implements ST_Service {
 			model.addAttribute("etos", etos);
 		}
 
-		System.out.println("==========================================");
 		model.addAttribute("cnt", cnt); // 글 갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지 번호
@@ -137,7 +129,6 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public List<Estimate> getEstimate(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
 		List<Estimate> list = dao.getEstimateresult(map);  
-		System.out.println("개수 : " + list.size());
 		return list;
 	}
 
@@ -213,17 +204,14 @@ public class ST_ServiceImpl implements ST_Service {
 		int currentPage = 0; // 현재 페이지
 
 		cnt = dao.getSaleCnt();
-		System.out.println("cnt : " + cnt);
 
 		pageNum = req.getParameter("pageNum");
-		System.out.println(req.getParameter("pageNum"));
 
 		if (pageNum == null) {
 			pageNum = "1";
 		}
 
 		currentPage = Integer.parseInt(pageNum);
-		System.out.println("currentPage " + currentPage);
 
 		// 현재페이지 시작 글번호
 		// 1 = ( 1 - 1 ) * 5 + 1(페이지별)
@@ -233,11 +221,7 @@ public class ST_ServiceImpl implements ST_Service {
 		// 5 = 1 + 5 - 1
 		end = start + pageSize - 1;
 
-		System.out.println("start : " + start);
-		System.out.println("end : " + end);
-
 		number = cnt - (currentPage - 1) * pageSize;
-		System.out.println("number : " + number);
 
 		if (end > cnt)
 			end = cnt;
@@ -253,7 +237,6 @@ public class ST_ServiceImpl implements ST_Service {
 			model.addAttribute("dtos", dtos);
 		}
 
-		System.out.println("==========================================");
 		model.addAttribute("cnt", cnt); // 글 갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지 번호
@@ -324,8 +307,6 @@ public class ST_ServiceImpl implements ST_Service {
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		String saleplan_code = req.getParameter("saleplan_code");
 
-		System.out.println("code : " + saleplan_code);
-
 		int deletesale = dao.deletesalePlan(saleplan_code);
 
 		model.addAttribute("deletesale", deletesale);
@@ -358,7 +339,6 @@ public class ST_ServiceImpl implements ST_Service {
 		vo.setUnit_cost(Integer.parseInt(req.getParameter("unit_cost")));
 		vo.setSalelist_code(req.getParameter("salelist_code"));
 		
-		System.out.println("username : " + vo.getUsername());
 		int releaseWritePro = dao.insertRelease(vo);
 		
 		model.addAttribute("releaseWritePro", releaseWritePro);
@@ -369,7 +349,6 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public List<Release> getRelease(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
 		List<Release> list = dao.getreleaseResult(map);
-		System.out.println("작동");
 		return list;
 	}
 	
@@ -411,17 +390,14 @@ public class ST_ServiceImpl implements ST_Service {
 		int currentPage = 0; // 현재 페이지
 
 		cnt = dao.getReleaseCnt();
-		System.out.println("cnt : " + cnt);
 
 		pageNum = req.getParameter("pageNum");
-		System.out.println(req.getParameter("pageNum"));
 
 		if (pageNum == null) {
 			pageNum = "1";
 		}
 
 		currentPage = Integer.parseInt(pageNum);
-		System.out.println("currentPage " + currentPage);
 
 		// 현재페이지 시작 글번호
 		// 1 = ( 1 - 1 ) * 5 + 1(페이지별)
@@ -431,11 +407,7 @@ public class ST_ServiceImpl implements ST_Service {
 		// 5 = 1 + 5 - 1
 		end = start + pageSize - 1;
 
-		System.out.println("start : " + start);
-		System.out.println("end : " + end);
-
 		number = cnt - (currentPage - 1) * pageSize;
-		System.out.println("number : " + number);
 
 		if (end > cnt)
 			end = cnt;
@@ -450,7 +422,6 @@ public class ST_ServiceImpl implements ST_Service {
 			model.addAttribute("rtos", rtos);
 		}
 
-		System.out.println("==========================================");
 		model.addAttribute("cnt", cnt); // 글 갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지 번호
@@ -560,7 +531,6 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public List<SaleList> getsaleList(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
 		List<SaleList> list = dao.getSaleList(map);
-		System.out.println("개수 : " + list.size());
 		return list;
 	}
 	
@@ -577,17 +547,14 @@ public class ST_ServiceImpl implements ST_Service {
 		int currentPage = 0; // 현재 페이지
 
 		cnt = dao.getSaleListCnt();
-		System.out.println("cnt : " + cnt);
 
 		pageNum = req.getParameter("pageNum");
-		System.out.println(req.getParameter("pageNum"));
 
 		if (pageNum == null) {
 			pageNum = "1";
 		}
 
 		currentPage = Integer.parseInt(pageNum);
-		System.out.println("currentPage " + currentPage);
 
 		// 현재페이지 시작 글번호
 		// 1 = ( 1 - 1 ) * 5 + 1(페이지별)
@@ -597,11 +564,7 @@ public class ST_ServiceImpl implements ST_Service {
 		// 5 = 1 + 5 - 1
 		end = start + pageSize - 1;
 
-		System.out.println("start : " + start);
-		System.out.println("end : " + end);
-
 		number = cnt - (currentPage - 1) * pageSize;
-		System.out.println("number : " + number);
 
 		if (end > cnt)
 			end = cnt;
@@ -616,7 +579,6 @@ public class ST_ServiceImpl implements ST_Service {
 			model.addAttribute("stos", stos);
 		}
 
-		System.out.println("==========================================");
 		model.addAttribute("cnt", cnt); // 글 갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지 번호
@@ -675,10 +637,8 @@ public class ST_ServiceImpl implements ST_Service {
 	public void searchProduct(HttpServletRequest req, Model model) {
 		String product_name = req.getParameter("product_name");
 
-		System.out.println("product_name : " + product_name);
 		int cnt = dao.selectProduct(product_name);
 
-		System.out.println("cnt: " + cnt);
 
 		if (cnt > 0) {
 			List<ProductList> ptos = dao.getProductList(product_name);
@@ -692,9 +652,7 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public List<ST_contrast> getcontrast(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
 		List<ST_contrast> list = dao.getContrast(map);
-		System.out.println(list);
 		for(int i = 0 ; i <list.size();i++) {
-			System.out.println("salecode"+i+":"+list.get(i).getSale_code());
 		}
 		return list;
 	}
@@ -709,8 +667,6 @@ public class ST_ServiceImpl implements ST_Service {
 		 */
 		
 		List<TransactionDetails> list = dao.getTransaction(map);
-		System.out.println(map.get("userdate1"));
-		System.out.println(map.get("userdate2"));
 		return list;
 	}
 	
@@ -729,7 +685,6 @@ public class ST_ServiceImpl implements ST_Service {
 		
 		int cnt = dao.selectCustomer(customer_name);
 		
-		System.out.println("cnt : " + cnt);
 		
 		if (cnt > 0) {
 			List<CustomerList> ctos = dao.getCustomerList(customer_name);
@@ -745,7 +700,6 @@ public class ST_ServiceImpl implements ST_Service {
 		String e_name = req.getParameter("e_name");
 		
 		int unt = dao.selectName(e_name); 
-		System.out.println("unt: " +unt);
 		
 		if(unt > 0) {
 			List<UserName> nto = dao.getUsernameList(e_name);
@@ -763,7 +717,6 @@ public class ST_ServiceImpl implements ST_Service {
 		
 		int cnt = dao.selectCustomer(customer_name);
 		
-		System.out.println("cnt : " + cnt);
 		
 		if (cnt > 0) {
 			List<CustomerList> ctos = dao.getCustomerList(customer_name);
@@ -783,7 +736,6 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("customer_code", customer_code);
 		
 		List<ST_searchCustomerCode> vo = dao.getCustomerCode(map);
-		System.out.println("거래처test1 : " +customer_code);
 		return vo;
 	}
 
@@ -796,7 +748,6 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("product_code", product_code);
 		
 		List<ST_searchProductCode> vo = dao.getProCode(map);
-		System.out.println("품명test2 : " +product_code);
 		return vo;
 	}
 
@@ -809,7 +760,6 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("e_name", e_name);
 		
 		List<ST_searchUsername> vo = dao.getUsername(map);
-		System.out.println("담당자test3 : "+ e_name);
 		
 		return vo;
 	}
@@ -823,7 +773,6 @@ public class ST_ServiceImpl implements ST_Service {
 		map.put("department_code", department_code);
 		
 		List<ST_searchDepartmentCode> vo = dao.getDepartmentCode(map);
-		System.out.println("부서test4 : "+ department_code);
 		
 		return vo;
 	}
@@ -835,7 +784,6 @@ public class ST_ServiceImpl implements ST_Service {
 		
 		int cnt = dao.selectDepName(department_name);
 		
-		System.out.println("cnt : " + cnt);
 		
 		if (cnt > 0) {
 			List<ST_department> dto = dao.getDepartmentList(department_name);
@@ -849,10 +797,8 @@ public class ST_ServiceImpl implements ST_Service {
 	@Override
 	public void searchSaleList(HttpServletRequest req, Model model) {
 		String customer_name = req.getParameter("customer_name");
-		System.out.println(customer_name);
 		
 		int cnt = dao.selectSale(customer_name);
-		System.out.println(cnt);
 		
 		if (cnt > 0) {
 			List<SaleList> stos = dao.selectSaleList(customer_name);

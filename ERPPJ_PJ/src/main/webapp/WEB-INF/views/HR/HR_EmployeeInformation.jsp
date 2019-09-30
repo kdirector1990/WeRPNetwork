@@ -323,7 +323,6 @@
 	 
 	 function HR_modifyFoundationPro2(){
      	var param = $("#updateFou").serializeArray();
- 		alert(JSON.stringify(param));
  		$.ajax({
  			url: '/erp/HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }',
  			type: 'POST',
