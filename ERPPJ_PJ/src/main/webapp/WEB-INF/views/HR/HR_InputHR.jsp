@@ -78,7 +78,8 @@
         		var url = "HR_userChk?username=" + document.inputPhysicaly.username.value;
         		window.open(url, "confirm", "menubar=no, width=300, height=200");
         		// -> confirmId.do 서블릿 지정
-        	}   	
+        	}
+        	
         	
         		
         	
