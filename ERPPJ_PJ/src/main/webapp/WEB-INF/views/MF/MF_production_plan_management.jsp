@@ -240,7 +240,6 @@
      
      function updatePlan(){
 		 var param = $("#MF_production_plan_enrollment").serializeArray();
-		 alert(JSON.stringify(param));
 		$.ajax({
 			url: '/erp/MF_updateProductionPlanPro',
 			type: 'POST',
@@ -259,7 +258,6 @@
      
      function deletePlan(){
 		 var param = $("#MF_production_plan_enrollment").serializeArray();
-		 alert(JSON.stringify(param));
 		$.ajax({
 			url: '/erp/MF_deleteProductionPlanPro',
 			type: 'POST',
