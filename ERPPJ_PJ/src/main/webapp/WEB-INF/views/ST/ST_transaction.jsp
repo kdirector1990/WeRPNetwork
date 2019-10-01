@@ -244,10 +244,13 @@ $(function(){
 											<td class="col-md-2 input-group">
 											<input type="date" id="userdate1" pattern="YYYY-MM-DD" name="userdate1" class="form-control" value="2019-01-01">&nbsp;&nbsp;&nbsp;__</td>
 											<td class="col-md-2 input-group"><input type="date" id="userdate2" name="userdate2" class="form-control" value="2019-12-31"></td>
-												<td ><button type="button" 
-														class="btn btn-primary waves-effect waves-light" id="search" name="search">조회</button></td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light"
+											id="search" name="search">조회</button>
+									</div>
 									<div id = "resulttable">
 									</div>
 									<!-- <table id="datatable-buttons"

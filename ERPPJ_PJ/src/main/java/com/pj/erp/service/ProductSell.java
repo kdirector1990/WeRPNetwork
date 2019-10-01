@@ -2,9 +2,11 @@ package com.pj.erp.service;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.web3j.crypto.Credentials;
@@ -12,16 +14,22 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Convert;
 
+import com.pj.erp.persistence.ERPDAO;
+import com.pj.erp.vo.ST.SaleList;
+
 @Service
 public class ProductSell {
 
+	@Autowired
+	ERPDAO dao;
+	
 	// 롭슨 Test 서버와 연결 한다 : localhost:8545
 		private static final Web3j web3j = Web3j.build(new HttpService("HTTPS://ropsten.infura.io/v3/d11459c1c17049628f462a1492c7df36"));
 		
 		// 호스트에는 첫번째 계정(재무팀)의  PRIVATE KEY 복사하여 연결
 		private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 
-		private static final BigInteger gasLimit = BigInteger.valueOf(6721975L);
+		private static final BigInteger gasLimit = BigInteger.valueOf(4712388L);
 		private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
 		
 		private static final Credentials Account = Credentials.create("3f0b5c58378de554534a5a8c630aac075886e74a6b3229000ae78f4500e153e3");
@@ -70,42 +78,44 @@ public class ProductSell {
 	    @SuppressWarnings("deprecation")
 	    public void SellProduct(HttpServletRequest req, Model model) throws Exception {
 	    		    	
-	    	// 계정의 primary key를 접속한 부서별로 할당한다.
-	    	// 구입시 보낸 ether를 받을 지갑 : ft_01
-	    	Credentials dept_AccountNumber = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
-	    	
 	    	// 물품 판매시 구매하는 사람의 지갑
 	    	Credentials buyer = Credentials.create("BFDE674AE42A9FA179E3E965E1DDB9EA479E63E62CB61F16C2ADC4B365314BC5");
-	    	
-	    	//계약서를 작성(물품구매자)
-	    	contractAddress = Product.deploy(web3j, buyer, gasPrice, gasLimit).send().getContractAddress();
 	    	
 	    	//구매하는 가격을 입력 받아서 조건에 해당하는 이더를 거래하도록 설정한다.
 	    	int price = Integer.parseInt(req.getParameter("product_price"));
 	    	
 	    	BigInteger ethers = null;
 	    	
-	    	if(price < 1500000) {
+	    	if(price < 2500000) {
 	    		ethers = etherToWei(new BigDecimal(1));
 	    	}
-	    	else if(price < 2500000) {
-	    		ethers = etherToWei(new BigDecimal(2));
-	    	} 
 	    	else {
-	    		ethers = etherToWei(new BigDecimal(3));
+	    		ethers = etherToWei(new BigDecimal(2));
 	    	}
 	    	
 	    	//블록에 넣을 정보를 byte배열에 담는다.
 	    	byte[] name = stringToBytes32("buyers");
 	    	BigInteger count = new BigInteger("1");
 	    	
+	    	//계약서를 작성(물품구매자)
+	    	contractAddress = Product.deploy(web3j, hostCredentials, gasPrice, gasLimit).send().getContractAddress();
+	    	
 	    	//작성한 계약서를 load
-	    	Product pt = Product.load(contractAddress, web3j, dept_AccountNumber, gasPrice, gasLimit);
+	    	Product pt = Product.load(contractAddress, web3j, buyer, gasPrice, gasLimit);
 	    	
 	    	// 솔리디티의 buyMaterialOrigins을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
 	    	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
 	    	String hash = pt.productBuy(count, name, new BigInteger("0"), ethers).send().getTransactionHash();
 	    	
+	    	SaleList vo = new SaleList();
+	    	vo.setRelease_o_date(Date.valueOf(req.getParameter("release_o_date")));
+	    	vo.setPrice(Integer.parseInt(req.getParameter("product_price")));
+	    	vo.setDetail_ac_code(req.getParameter("product_code"));
+	    	vo.setEther_salecode(hash);
+	    	int insertCnt = dao.insertSalelist(vo);
+	    	if(insertCnt == 1) {
+	    		System.out.println("판매대장에 등록되었습니다.");
+	    	}
 	    	
 	    }
 	    

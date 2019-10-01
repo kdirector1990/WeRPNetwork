@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="/shop/resources/css/agency.min.css" rel="stylesheet">
+  <link href="/erp/resources/shop/css/agency.min.css" rel="stylesheet">
 
 </head>
 
@@ -96,7 +96,7 @@
 								<h2 class="text-uppercase">${shop.product_name}</h2>
 								<p class="item-intro text-muted">${shop.price}</p>
 								<img class="img-fluid d-block mx-auto"
-									src="/erp/resources/shop/img/portfolio/01-full.jpg" alt="">
+									src="/erp/resources/shop/img/portfolio/ref.png" alt="">
 								<p>Use this area to describe your project. Lorem ipsum dolor
 									sit amet, consectetur adipisicing elit. Est blanditiis dolorem
 									culpa incidunt minus dignissimos deserunt repellat aperiam
@@ -106,6 +106,7 @@
 									<li>product_name : ${shop.product_name}</li>
 									<li>price : ${shop.price}</li>
 									<li>product_code : ${shop.product_code}</li>
+									<li><input type="date" name="release_o_date"></li>
 								</ul>
 								<button class="btn btn-primary" data-dismiss="modal"
 									type="submit">

@@ -25,6 +25,8 @@ public class SaleList {
 	private String e_name;
 	private String deal_state;	
 	private String release_date;	// 출고 등록일
+	private String ether_salecode; //블록체인 거래코드
+	
 	
 	// 생성자
 	public SaleList() {}
@@ -197,7 +199,14 @@ public class SaleList {
 	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
 	}
-	
-	
+
+	public String getEther_salecode() {
+		return ether_salecode;
+	}
+
+	public void setEther_salecode(String ether_salecode) {
+		this.ether_salecode = ether_salecode;
+	}
+
 
 }

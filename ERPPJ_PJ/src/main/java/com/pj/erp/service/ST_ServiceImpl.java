@@ -483,10 +483,6 @@ public class ST_ServiceImpl implements ST_Service {
 			vo.setCustomer_code(req.getParameter("customer_code"));
 		}
 		
-		
-		
-		
-		
 		int updateRelease = dao.updateRelease(vo);
 		
 		req.setAttribute("sar_code", sar_code);

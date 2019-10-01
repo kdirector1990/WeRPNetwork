@@ -10,9 +10,12 @@ import org.springframework.stereotype.Repository;
 import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.SalelistVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
+import com.pj.erp.vo.ST.ST_contrast;
+import com.pj.erp.vo.ST.SaleList;
 
 @Repository
 public class ERPDAOImpl implements ERPDAO{
@@ -86,5 +89,22 @@ public class ERPDAOImpl implements ERPDAO{
 	public List<Material_VO> selectMateral() {
 		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectMateral");
 	}
+
+	@Override
+	public int insertSalelist(SaleList vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.insertSalelist", vo);
+	}
+	
+	// ST_contrast 검색 조회
+	@Override
+	public List<SalelistVO> getContrast() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getContrast");
+	}
+	@Override
+	public List<SalelistVO> getContrast2() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getContrast2");
+	}
+	
+	
 	
 }

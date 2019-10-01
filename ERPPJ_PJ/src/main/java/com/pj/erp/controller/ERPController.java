@@ -21,6 +21,7 @@ import com.pj.erp.service.HR_Service;
 import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.service.OriginService;
+import com.pj.erp.service.ProductSell;
 import com.pj.erp.vo.HashVO;
 
 import sun.nio.cs.MS1250;
@@ -39,6 +40,9 @@ public class ERPController {
 	
 	@Autowired
 	OriginService OS;
+	
+	@Autowired
+	ProductSell PS;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -59,7 +63,8 @@ public class ERPController {
  
 	@RequestMapping("index")
 	public String index(Locale locale, Model model) {
-		logger.info("log => index");  
+		logger.info("log => index");
+		service.getcontrast(model);
 		return "index";
 	}
 	@RequestMapping("index2")
@@ -665,9 +670,14 @@ public class ERPController {
 	
 	// 재료 구매.
 	@RequestMapping("InsertMaterialIo")
-	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
+	public String InsertMaterialIo(HttpServletRequest req, Model model){
 		logger.info("log => InsertMaterialIo");
-		OS.payOriginMaterial(req, model);
+		try {
+			OS.payOriginMaterial(req, model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		logger.info("log => productList");
 		service.materialList(req, model);
@@ -694,11 +704,12 @@ public class ERPController {
 	}
 	
 	
-	//판매 상품 상세 productDetail
+	//판매 상품 구매처리
 	@RequestMapping("EproductBuy")
-	public String EproductBuy(HttpServletRequest req, Model model) {
+	public String EproductBuy(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => EproductBuy");
 		
+		PS.SellProduct(req, model);
 		
 		return "page/productDetail"; 
 	}
