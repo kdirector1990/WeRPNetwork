@@ -25,9 +25,9 @@
 							
 							<div class="form_group">
 								<label for="message">내용</label>
-								<textarea id="message" name="msg_content" rows="20" data-parsely-trigger="keyup" data-parsely-maxlength="2000"></textarea>
+								<textarea id="message" name="msg_content" rows="20" data-parsely-trigger="keyup" data-parsely-maxlength="2000" class="form-control"></textarea>
 							</div>
-							
+							<br>
 							<div class="form-group text-right mb-0">
 								<input type="submit" class="btn btn-success" value="validate">
 							</div>
