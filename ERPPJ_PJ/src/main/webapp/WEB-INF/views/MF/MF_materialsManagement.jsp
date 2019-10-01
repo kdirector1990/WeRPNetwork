@@ -82,10 +82,10 @@
 										</table>
 										<div align="right">
 											<button type="button" id="btnRe"
-												class="btn btn-outline-dark waves-effect waves-light"
+												class="btn btn-success waves-effect waves-light"
 												onclick="updateMaterial();">수정</button>
 											<button type="button" id="btnDel"
-												class="btn btn-outline-dark waves-effect waves-light"
+												class="btn btn-danger waves-effect waves-light"
 												onclick="deleteMaterial();">폐기</button>
 										</div>
 									</form>
@@ -151,8 +151,8 @@
    			
    			$('#datatable2 > tbody:last').append(
 				'<tr class="plantr">'+'<input type = "hidden" name = "material_code" value = "'+tdArr[0]+'">'+'<td>' +tdArr[0] +'</td>'+
-					'<td><input type="text" name="material_name" value="' +tdArr[1]+'"></td>' +
-					'<td><input type="text" name="material_unit" value="' +tdArr[2]+'"</td>' +
+					'<td><input type="text" class="form-control" name="material_name" value="' +tdArr[1]+'"></td>' +
+					'<td><input type="text" class="form-control" name="material_unit" value="' +tdArr[2]+'"</td>' +
            		'</tr>');
    			
    			var offset = $(".plantr").offset();
