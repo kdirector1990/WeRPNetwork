@@ -34,13 +34,12 @@ public class MS_Controller {
 	
 	// 기획서 등록 처리	
 	@RequestMapping(value="MS_insertPlanPro", method = RequestMethod.POST)
-	@ResponseBody
-	public int MS_insertPlan(MultipartHttpServletRequest req, Model model) {
+	public String MS_insertPlan(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => MS_insertPlanPro");
 		
-		int insertCnt = service.insertPlan(req, model);
+		service.insertPlan(req, model);
 			 
-		return insertCnt;
+		return "MS/MS_planEnrollment";
 	}
 	
 	//기획서 조회
@@ -88,6 +87,7 @@ public class MS_Controller {
 	}
 		
 	//기획서 수정 처리
+	/*
 	@RequestMapping("MS_updatePlanPro")
 	@ResponseBody
 	public String MS_updatePlanPro(HttpServletRequest req, Model model) {
@@ -95,6 +95,15 @@ public class MS_Controller {
 		service.updatePlan(req, model);
 		
 		return "MS/MS_planManagement";
+	}
+	 */
+	@RequestMapping(value="MS_updatePlanPro", method=RequestMethod.POST) 
+	public String MS_updatePlanPro(MultipartHttpServletRequest req, Model model) {
+		logger.info("log = > MS_updatePlanPro");
+		//service.modifyFoundationPro(req, model);
+		service.updatePlan(req, model);
+		
+		return  "HR/MS_planManagement";
 	}
 	
 	//기획서 삭제 처리

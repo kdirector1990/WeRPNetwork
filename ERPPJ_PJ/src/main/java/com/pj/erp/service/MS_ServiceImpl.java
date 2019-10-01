@@ -30,7 +30,6 @@ public class MS_ServiceImpl implements MS_Service {
 	//기획서등록
 	@Override
 	public int insertPlan(MultipartHttpServletRequest req, Model model) {
-		int insertCnt = 0;
 		
 		MultipartFile file = req.getFile("plan_proposal");
 		
@@ -74,11 +73,12 @@ public class MS_ServiceImpl implements MS_Service {
 		vo.setPlan_objective(req.getParameter("plan_objective"));
 		vo.setPlan_proposal(file.getOriginalFilename());
 		
-		dao.insertPlan(vo);
+		int insertCnt = dao.insertPlan(vo);
+		
         } catch(IOException e) {
             e.printStackTrace();
-        }	
-        return insertCnt;
+        }
+		return 0;	
 	}
 
 	//기획서 조회 - 사원이름으로 검색 결과가져오기

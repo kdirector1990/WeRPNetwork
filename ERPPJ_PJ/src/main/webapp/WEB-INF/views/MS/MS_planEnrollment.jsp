@@ -75,7 +75,7 @@
 								<h4 class="header-title">등록</h4>
 								<p class="sub-header">기획서 등록</p>
 
-								<form action="MS_insertPlanPro?${_csrf.parameterName}=${_csrf.token}" id="insertPlan" method="post" enctype="multipart/form-data">
+								<form action="MS_insertPlanPro?${_csrf.parameterName}=${_csrf.token}" id="insertPlan" method="post" enctype="multipart/form-data" >
 									<input type='hidden' name="${_csrf.parameterName }"
 										value="${_csrf.token }">
 									<div class="form-group">
@@ -163,7 +163,7 @@
 												Cancel</button>  
 										</div> -->
 										<div>
-											<input type="submit" value="Submit"
+											<input type="submit" value="Submit" 
 												class="btn btn-primary waves-effect waves-light mr-1">
 											<input type="reset" value="Cancel"
 												class="btn btn-secondary waves-effect waves-light">

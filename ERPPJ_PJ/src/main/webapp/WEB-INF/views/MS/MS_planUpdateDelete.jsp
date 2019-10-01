@@ -81,7 +81,9 @@
 						</tr>
 						<tr>
 							<th>상세 기획안 파일</th>
-							<td><input type="text" name="plan_proposal" class="form-control" value="${dto.plan_proposal}"></td>
+							<td><input type="file" name="plan_proposal" class="form-control" value="/erp/resources/ms_file/${dto.plan_proposal}"> 
+							<br><p>현재 파일명 : ${dto.plan_proposal}</p>
+							</td>
 						</tr>
 					</tbody>
 				</table>
