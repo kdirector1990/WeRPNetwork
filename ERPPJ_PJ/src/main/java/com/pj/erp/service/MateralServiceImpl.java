@@ -119,19 +119,19 @@ public class MateralServiceImpl {
     		ethers = etherToWei(new BigDecimal(1));
     	}
     	else if((100000 < price) && (price < 300000)) {
-    		ethers = etherToWei(new BigDecimal(2));
+    		ethers = etherToWei(new BigDecimal(1.25));
     	}
     	else if ((300000 < price) && (price < 500000)) {
-    		ethers = etherToWei(new BigDecimal(3));
+    		ethers = etherToWei(new BigDecimal(1.5));
     	}
     	else if ((500000 < price) && (price < 800000)) {
-    		ethers = etherToWei(new BigDecimal(4));
+    		ethers = etherToWei(new BigDecimal(1.8));
     	}
     	else if ((800000 < price) && (price < 1000000)) {
-    		ethers = etherToWei(new BigDecimal(5));
+    		ethers = etherToWei(new BigDecimal(2));
     	}
     	else {
-    		ethers = etherToWei(new BigDecimal(6));
+    		ethers = etherToWei(new BigDecimal(2.25));
     	}
 
     	byte[] name = stringToBytes32(department_code);
