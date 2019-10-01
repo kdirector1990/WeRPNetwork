@@ -29,7 +29,7 @@
 </script>
 </head>
 <body>
-			<form id= "datatable2">
+			<form id= "datatable2" action="MS_updatePlanPro?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data" >
 				<table class="table table-bordered"
 					style="height: 550px;">
 					<tbody>
@@ -88,7 +88,7 @@
 					</tbody>
 				</table>
 				<div class="form-group text-right mb-0">
-					<button type="button" id="btnRe" class="btn btn-success waves-effect waves-light" onclick="updatePlan();">수정</button>
+					<button type="submit" id="btnRe" class="btn btn-success waves-effect waves-light">수정</button>
 					<button type="button" id="btnDel" class="btn btn-danger waves-effect waves-light" onclick="deletePlan();">폐기</button>
 					<button type="button" class="btn btn-dark waves-effect waves-light">목록보기</button>
 				</div>

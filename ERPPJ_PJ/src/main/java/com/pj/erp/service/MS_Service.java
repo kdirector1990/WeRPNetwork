@@ -13,7 +13,7 @@ import com.pj.erp.vo.MS.MS_plan;
 public interface MS_Service {
 
 	//기획서 등록
-	public int insertPlan(MultipartHttpServletRequest req, Model model);
+	public void insertPlan(MultipartHttpServletRequest req, Model model);
 	
 	//기획서 조회
 	public List<MS_plan> selectPlan(HttpServletRequest req, Model model);

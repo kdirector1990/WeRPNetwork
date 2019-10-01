@@ -39,7 +39,7 @@ public class MS_Controller {
 		
 		service.insertPlan(req, model);
 			 
-		return "MS/MS_planEnrollment";
+		return "MS/MS_insertPlanPro";
 	}
 	
 	//기획서 조회
@@ -100,10 +100,9 @@ public class MS_Controller {
 	@RequestMapping(value="MS_updatePlanPro", method=RequestMethod.POST) 
 	public String MS_updatePlanPro(MultipartHttpServletRequest req, Model model) {
 		logger.info("log = > MS_updatePlanPro");
-		//service.modifyFoundationPro(req, model);
 		service.updatePlan(req, model);
 		
-		return  "HR/MS_planManagement";
+		return  "MS/MS_planManagement";
 	}
 	
 	//기획서 삭제 처리

@@ -12,7 +12,7 @@
     		window.open("MS_positionCode", "positionCode", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
     	}
         
-        function insertPlan(){
+        /* function insertPlan(){
    		 var param = $("#insertPlan").serializeArray();
    		 $.ajax({
    				url: '/erp/MS_insertPlanPro',
@@ -33,7 +33,7 @@
    					alert("전산 오류로 인하여 등록에 실패하였습니다.");
    				}
    			});
-   	 }
+   	 } */
         </script>
 </head>
 

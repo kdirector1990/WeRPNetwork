@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.pj.erp.persistence.MS_DAO;
 import com.pj.erp.vo.HR.HR_VO;
@@ -29,8 +30,8 @@ public class MS_ServiceImpl implements MS_Service {
 	
 	//기획서등록
 	@Override
-	public int insertPlan(MultipartHttpServletRequest req, Model model) {
-		
+	public void insertPlan(MultipartHttpServletRequest req, Model model) {
+		int insertCnt = 0;
 		MultipartFile file = req.getFile("plan_proposal");
 		
 		String saveDir = req.getRealPath("/resources/ms_file/"); 
@@ -73,12 +74,13 @@ public class MS_ServiceImpl implements MS_Service {
 		vo.setPlan_objective(req.getParameter("plan_objective"));
 		vo.setPlan_proposal(file.getOriginalFilename());
 		
-		int insertCnt = dao.insertPlan(vo);
+		insertCnt = dao.insertPlan(vo);
 		
         } catch(IOException e) {
             e.printStackTrace();
         }
-		return 0;	
+        
+        model.addAttribute("insertCnt", insertCnt);
 	}
 
 	//기획서 조회 - 사원이름으로 검색 결과가져오기
@@ -93,7 +95,31 @@ public class MS_ServiceImpl implements MS_Service {
 	// 기획서 수정
 	@Override
 	public void updatePlan(HttpServletRequest req, Model model) {
+		int updateCnt = 0;
 		
+		MultipartFile file = ((MultipartRequest) req).getFile("plan_proposal");
+		
+		String saveDir = req.getRealPath("/resources/ms_file/"); 
+		/* F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\   
+		 * 서버용 저장 경로*/
+        String realDir="C:\\dev50\\workspace_PJ\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\ms_file\\"; // 저장 경로
+ 
+        try {
+            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
+            
+            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            
+            int data = 0;
+            
+            while((data = fis.read()) != -1) {
+                fos.write(data);
+            }
+            fis.close();
+ 
+            fos.close();		
+			 
+            
 		MS_plan vo = new MS_plan();
 		vo.setPlan_code(req.getParameter("plan_code"));
 		vo.setPlan_name(req.getParameter("plan_name"));
@@ -111,9 +137,15 @@ public class MS_ServiceImpl implements MS_Service {
 		
 		vo.setPlan_state(req.getParameter("plan_state"));
 		vo.setPlan_objective(req.getParameter("plan_objective"));
-		vo.setPlan_proposal(req.getParameter("plan_proposal"));
+		vo.setPlan_proposal(file.getOriginalFilename());
 		
-		dao.updatePlan(vo);
+		updateCnt = dao.updatePlan(vo);
+		
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        
+        model.addAttribute("updateCnt", updateCnt);
 	}
 
 	//기획서 삭제
