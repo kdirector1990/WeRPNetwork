@@ -58,9 +58,7 @@
     	}
     }
     
-    
   
-        var searchCount = 1;
     	 $(function(){
     		$('#search').click(function(){
     			var param = new Object();
@@ -111,6 +109,9 @@
     						var ef_amount = list[i].ef_amount;						
     						var sp_unit = list[i].sp_unit;
     						var sp_note = list[i].sp_note;
+    						if(sp_note == null){
+    							sp_note = " ";
+    						}
     						var product_name = list[i].product_name;
     						
     						var s_plan_start = list[i].s_plan_start;
