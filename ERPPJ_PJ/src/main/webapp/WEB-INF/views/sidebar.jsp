@@ -337,6 +337,19 @@
                             	</a>
                             </li>
                             </c:if>
+                            <c:if test="${auth != null}">
+                            <li>
+                            	<a href="javascript: void(0);">
+                            		<i class="mdi mdi-omega"></i>
+                            		<span>예산신청</span>
+                            		<span class="menu-arrow"></span>
+                            	</a>
+                            	<ul class="nav-second-level" aria-expanded="false">
+                            		<li><a href="#">예산 현황</a></li>
+                            		<li><a href="#">추가 예산 신청</a></li>
+                            	</ul>
+                            </li>
+                            </c:if>
                            <c:if test="${MS eq 1 || ADMIN eq 1}">
                            	<li> 
 	                          <a href="javascript: void(0);">
@@ -661,13 +674,13 @@
 	                          		</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">예산관리
+	                          	<!-- <li><a href="javascript: void(0);" aria-expanded="false">예산관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="CT_budget">예산 현황</a></li>
                     					<li><a href="CT_budget_apply">추가 예산 신청</a></li>
 	                          		</ul>
-	                          	</li>
+	                          	</li> -->
 	                          	
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
 	                          		<span class="menu-arrow"></span></a>

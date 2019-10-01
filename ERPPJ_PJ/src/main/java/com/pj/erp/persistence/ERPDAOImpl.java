@@ -12,6 +12,7 @@ import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
+import com.pj.erp.vo.MsgVO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.ST.ST_contrast;
 import com.pj.erp.vo.ST.SaleList;
@@ -100,6 +101,21 @@ public class ERPDAOImpl implements ERPDAO{
 		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getContrast");
 	}
 	
+	// 사내메신저 사원 목록 가져오기
+	@Override
+	public List<MsgVO> selectUserMsg(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.selectUserMsg", map);
+	}
 	
+	// 사내메신저 입력 폼
+	@Override
+	public MsgVO WriteForm(String username) {
+		return sqlSession.selectOne("com.pj.erp.persistence.ERPDAO.WriteForm", username);
+	}
 	
+	// 사내메신저 입력완료
+	@Override
+	public int WritePro(MsgVO vo) {
+		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.WritePro", vo);
+	}
 }
