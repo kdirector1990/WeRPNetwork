@@ -375,7 +375,7 @@ var searchCount = 1;
 											id="user-tab" data-toggle="tab" href="#user" role="tab"
 											aria-controls="user" aria-selected="false"> <span
 												class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-												<span class="d-none d-sm-block">고객</span>
+												<span class="d-none d-sm-block">거래처</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" id="product-tab"
 											data-toggle="tab" href="#product" role="tab"
@@ -412,7 +412,7 @@ var searchCount = 1;
 															<thead class="bg-primary text-white">
 																<tr>
 																	<th>코드</th>
-																	<th>고객명</th>
+																	<th>거래처명</th>
 																	<th>합계</th>
 																	<th>1월</th>
 																	<th>2월</th>

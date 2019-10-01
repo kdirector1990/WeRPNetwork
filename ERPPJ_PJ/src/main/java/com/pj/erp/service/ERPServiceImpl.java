@@ -24,6 +24,7 @@ import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.SalelistVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
+import com.pj.erp.vo.MsgVO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.MS.MS_plan;
@@ -264,4 +265,47 @@ public class ERPServiceImpl implements ERPService{
 		}
 	}
 
+	//사내메신저 사원 찾기
+	@Override
+	public List<MsgVO> selectMsgUser(HttpServletRequest req, Model model) {
+		String e_name = req.getParameter("e_name");
+		String department_name = req.getParameter("department_name");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("e_name", e_name);
+		map.put("department_name", department_name);
+		
+		List<MsgVO> vo = dao.selectUserMsg(map);
+		
+		return vo;
+	}
+
+	//사내 메신저 입력 폼
+	@Override
+	public void MsgWriteForm(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		MsgVO vo = dao.WriteForm(username);
+		
+		model.addAttribute("vo", vo);
+	}
+	
+
+	// 사내 입력폼 작성 완료
+	@Override
+	public void Msg_Write_Pro(HttpServletRequest req, Model model) {
+		String to_user = req.getParameter("to_user");
+		String content = req.getParameter("msg_content");
+		String from_user = req.getParameter("from_user");
+		
+		MsgVO vo = new MsgVO();
+		vo.setMsg_content(content);
+		vo.setTo_user(to_user);
+		vo.setFrom_user(from_user);
+		
+		int insertCnt = dao.WritePro(vo);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+		
 }

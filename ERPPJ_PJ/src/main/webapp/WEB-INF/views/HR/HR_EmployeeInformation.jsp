@@ -243,10 +243,10 @@
 								+'</div>'
 							+ '</div>'
 							+'<div class="form-group row">'
-								+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+								+'<label class="col-md-1 col-form-label" for="simpleinput">비밀번호<span class="text-danger">*</span></label>'
 								+'<div class="col-md-4">'
-									+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
-								+'</div>'
+									+'<input type="text" class="form-control" name="password" size="15">'
+								+'</div>'							
 								+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 								+'<label class="col-md-1 col-form-label" for="simpleinput">전화번호<span class="text-danger">*</span></label>'
 								+'<div class="col-md-4">'
@@ -255,8 +255,13 @@
 							+'</div>'
 						+'</div>'	
 						+'<div class="form-group row">'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+							+'<div class="col-md-4">'
+								+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
+							+'</div>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">&nbsp;</label>'
 							+'<label class="col-md-1 col-form-label" for="simpleinput">주소<span class="text-danger">*</span></label>'
-							+'<div class="col-md-10">'
+							+'<div class="col-md-5">'
 								+'<input type="text" class="form-control" name="e_address" value="'+e_address+'">'
 							+'</div>'							
 						+'</div>'
@@ -306,7 +311,7 @@
 							+'</div>'																
 						+'</div>'
 						+'<div class="form-group text-right mb-0">'
-							+'<input type="submit" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" value="수정">'
+							+'<input type="submit" class="btn btn-primary waves-effect waves-light" formaction="HR_modifyFoundationPro?${_csrf.parameterName}=${_csrf.token }" value="수정">'
 						+'</div>'
 	  				);
 	  				$('#bodyappend').append(
@@ -320,6 +325,32 @@
 	  			}
 	  		}); 	 
 	 }
+	 
+	 /* function HR_departmentList() {
+	     url: '/erp/HR_department_List?${_csrf.parameterName}=${_csrf.token }&username='+code,
+		 type: 'POST',
+		 dataTpye: 'json',
+		 success: function(list){
+
+		     document.getElementById("result3").style.display="block";
+		     
+		     for(var i = 0 ; i < list.length; i++){
+		    	 
+		    	 var position_codes = list[i].position_code;
+		    	 var position_names = list[i].position_name;
+		     
+		    	 $("#result3").append('<input type="hidden" name="username" value="'+username+'">'			
+	  			      +'<select class="form-control select2" name="position_code" onchange="">'
+						 +'<c:forEach var="poi" items="${poi}">'
+						 +'<option value="${poi.position_code}">${poi.position_name}</option>'	
+						 +'</c:forEach>'																							
+					 +'</select>'																	
+							
+		  		 );
+		     
+		     }
+		}
+	 } */
 	 
 	 function HR_modifyFoundationPro2(){
      	var param = $("#updateFou").serializeArray();

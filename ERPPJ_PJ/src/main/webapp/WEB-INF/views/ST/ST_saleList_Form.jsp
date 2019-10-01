@@ -92,10 +92,16 @@
 												
 											<th>출고여부</th>
 											<td>
-											<select class="form-control select" name = "release_state"
-												style="width: 150px;">
-													<option value="1">출고</option>
+											<select class="form-control select" name = "release_state" style="width: 150px;">
+											<c:if test="${sto.release_state == '1'}">
+													<option value="1" selected>출고</option>
 													<option value="2">미출고</option>
+											</c:if>
+											<c:if test="${sto.release_state == '2'}">	
+												<option value="1">출고</option>
+												<option value="2" selected>미출고</option>
+																							
+											</c:if>	
 											</select>
 											
 											</td>
@@ -115,6 +121,11 @@
 												class="btn btn-danger waves-effect waves-light" type="submit" value="삭제"
 												formaction="ST_saleList_deletePro"> <input class="btn btn-dark waves-effect waves-light" value="취소"
 												 type="button" onClick="window.location.reload()">
+											<td colspan="3">
+												<c:if test="${sto.ether_salecode != null}">
+												<a href="https://ropsten.etherscan.io/search?f=0&q=${sto.ether_salecode }">블록체인 거래 코드 : ${sto.ether_salecode }</a>
+												</c:if>
+											</td>	 
 										</tr>
 									</table>
 								</form>
