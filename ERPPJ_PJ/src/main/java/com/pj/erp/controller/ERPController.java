@@ -67,6 +67,7 @@ public class ERPController {
 		service.getcontrast(model);
 		return "index";
 	}
+	
 	@RequestMapping("index2")
 	public String index2(HttpServletRequest req, Model model) {
 		logger.info("log => index2");
@@ -714,5 +715,26 @@ public class ERPController {
 		return "page/productDetail"; 
 	}
 	
+	
+	
+	// 에러 처리용 컨트롤러 
+	@RequestMapping("cm_400")
+	public String cm_error_400(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_400");
+		model.addAttribute("msg","400");
+		return "cm";
+	}
+	@RequestMapping("cm_404")
+	public String cm_error_404(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_404");
+		model.addAttribute("msg","404");
+		return "cm";
+	}
+	@RequestMapping("cm_500")
+	public String cm_error_500(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_500");
+		model.addAttribute("msg","500");
+		return "cm";
+	}
 	
 }
