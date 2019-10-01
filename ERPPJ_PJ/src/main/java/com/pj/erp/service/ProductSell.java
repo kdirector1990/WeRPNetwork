@@ -116,6 +116,7 @@ public class ProductSell {
 	    	if(insertCnt == 1) {
 	    		System.out.println("판매대장에 등록되었습니다.");
 	    	}
+	    	model.addAttribute("insertCnt", insertCnt);
 	    	
 	    }
 	    

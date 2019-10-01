@@ -105,6 +105,9 @@
     					var price = list[i].price;						
     					var unit = list[i].unit;
     					var note = list[i].note;
+    					if(note == null){
+    						note = " ";
+    					}
     					var detail_ac_code = list[i].detail_ac_code;
     					var product_name = list[i].product_name;
     					
@@ -188,7 +191,7 @@ function ProductName() {
 }
 
 function customerNameList() {
-	window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+	window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=1000px, height = 600px, location=no, status=nos, top = 200, left = 500");
 }   
 
 function usernameList() {

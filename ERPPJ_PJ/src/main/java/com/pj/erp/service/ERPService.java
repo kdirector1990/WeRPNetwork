@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.MsgVO;
 import com.pj.erp.vo.ST.ST_contrast;
 
 @Service
@@ -36,5 +37,14 @@ public interface ERPService {
 	
 	// ST_contrast_pp 검색 기능
 	public void getcontrast (Model model);
+	
+	// 사내메신저 수신자 목록 가져오기
+	public List<MsgVO> selectMsgUser(HttpServletRequest req, Model model);
+	
+	// 사내메신저 입력 폼
+	public void MsgWriteForm(HttpServletRequest req, Model model);
+	
+	// 사내메신저 입력 완료 후 insert
+	public void Msg_Write_Pro(HttpServletRequest req, Model model);
 	
 }

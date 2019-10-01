@@ -40,7 +40,7 @@
 													<td><input type="hidden" class="form-control" name="sar_code"
 														value="${rto.sar_code }">${rto.sar_code } </td>
 													
-													<th>품명</th>
+													<th style="width: 215px;">품명</th>
 													<td>
 														<div style="display: inline-block;">
 															<input class="form-control" type="text"
@@ -55,7 +55,7 @@
 
 										</tr>
 												
-												<tr >
+												<tr>
 													<th >출고처</th>
 													<td style="width: 500px;"><div class="col-md-10">
 													<div style="display: inline-block;">
@@ -68,7 +68,7 @@
 													</div></td>
 													
 													<th>출고 수량</th>
-													<td><input class="form-control" type="number"
+													<td><input class="form-control" type="number" style="width: 400px;"
 														name="release_count" value="${rto.release_count}"></td>
 												</tr>
 		
@@ -85,7 +85,7 @@
 													</div></td>
 													
 													<th>입고 수량</th>
-													<td><input class="form-control" type="number"
+													<td><input class="form-control" type="number" style="width: 400px;"
 														name="stored_count" value="${rto.stored_count}"></td>
 												
 												</tr>
@@ -113,10 +113,24 @@
 													
 													<th>구분</th>
 													<td>
-													<select class="form-control" name="sar_type">
-														<option value = "1">1. 입고</option>
+													<select class="form-control" name="sar_type" style="width: 400px;">
+													<c:if test="${rto.sar_type == '1' }">
+														<option value = "1" selected="selected">1. 입고</option>
 														<option value="2">2. 출고(판매)</option>
 														<option value="3">3. 재입고(반품)</option>
+													</c:if>
+													
+													<c:if test="${rto.sar_type == '2' }">
+														<option value = "1" >1. 입고</option>
+												 		<option value="2" selected="selected">2. 출고(판매)</option>
+														<option value="3">3. 재입고(반품)</option>
+													</c:if>
+													
+													<c:if test="${rto.sar_type == '3' }">
+														<option value = "1" >1. 입고</option>
+												 		<option value="2">2. 출고(판매)</option>
+														<option value="3" selected="selected">3. 재입고(반품)</option>
+													</c:if>
 													</select>
 													</td>
 													
