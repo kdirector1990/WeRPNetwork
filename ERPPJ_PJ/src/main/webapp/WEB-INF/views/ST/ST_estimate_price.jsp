@@ -74,8 +74,33 @@ $(function(){
 			dataType : "json",
 			contentType:"application/json;charset=UTF-8", 
 			success : function(list){
-				
+				$('#bodyappend').empty();
+				$('#resulttable').empty();
 				$('#result_2').empty();
+				
+				$('#resulttable').append(
+						'<div class="table-rep-plugin">' +
+						'<div class="" data-pattern="priority-columns">' +
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">' +
+								'<thead class="bg-primary text-white">' +
+									'<tr>' +
+										'<th>견적 코드</th>' +
+										'<th>거래처</th>' +
+										'<th>담당자</th>' +
+										'<th>품번</th>' +
+										'<th>품명</th>' +
+										'<th>견적 수량</th>' +
+										'<th>납품 예정일</th>' +
+										'<th>견적 등록일</th>' +
+										'<th>공급가</th>' +
+										'<th>부가세</th>' +
+									'</tr>' +
+								'</thead>' +
+								'<tbody id="result_2">' +
+								'</tbody>' +
+							'</table>' +
+						'</div>' +
+					'</div>');
 				
 				
 				for(var i = 0 ; i < list.length; i++){
@@ -117,8 +142,7 @@ $(function(){
 							'<td>'+ ep_price +'</td>'+
 							'<td>'+ ep_price*0.1 +'</td>'+
                 		'</tr>');
-				
-				if(searchCount == 1){
+				}
 				$('#bodyappend').append(
 				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -138,11 +162,6 @@ $(function(){
 				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 				);
-				searchCount = searchCount + 1;
-				}
-				
-				
-				}
 				
 			},
 			error : function(){
@@ -246,7 +265,9 @@ $(function(){
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<div class="table-rep-plugin">
+								<div id = "resulttable">
+								</div>
+									<!-- <div class="table-rep-plugin">
 										<div class="" data-pattern="priority-columns">
 											<table id="datatable"
 												class="table table-striped table-bordered dt-responsive nowrap">
@@ -265,28 +286,11 @@ $(function(){
 													</tr>
 												</thead>
 												<tbody id="result_2">
-													<%-- <c:if test="${cnt > 0}">
-															<c:forEach var="eto" items="${etos}">
-																<tr  onclick="ST_estimate_Form('${eto.ep_code}');">
-																	<td>${eto.ep_code}</td> <!-- 견적 코드  -->
-																	<td></td> <!-- 거래처 -->
-																	<td></td> <!-- 담당자 -->
-																	<td></td> <!-- 품번 -->
-																	<td></td> <!-- 품명 -->
-																	<td>${eto.ep_amount }</td> <!-- 견적 수량 -->
-																	<td>${eto.ep_deliver_date }</td> <!-- 납품 예정일 -->
-																	<td>${eto.ep_reg_date }</td> <!-- 견적 등록일 -->
-																	<td>${eto.ep_price }</td> <!-- 단가 -->
-																	<td></td> <!-- 공급가 -->
-																	<td></td> <!-- 부가세 -->
-																</tr>
-															</c:forEach>
-														</c:if> --%>
+													
 												</tbody>
 											</table>
 										</div>
-										<!-- end .table-responsive -->
-									</div>
+									</div> -->
 									<!-- end .table-rep-plugin-->
 								</div>
 							</div>

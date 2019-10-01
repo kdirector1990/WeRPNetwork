@@ -44,8 +44,8 @@ public class HR_DAOImpl implements HR_DAO{
 	}
 	
 	@Override
-	public int insertAuth() {
-		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertAuth");
+	public int insertAuth(String authority) {
+		return sqlSession.insert("com.pj.erp.persistence.HR_DAO.insertAuth", authority);
 	}
 
 	//호봉테이블 (직급)
@@ -332,5 +332,10 @@ public class HR_DAOImpl implements HR_DAO{
 	@Override
 	public int updateFamily(HR_FamilyVO vo) {
 		return sqlSession.update("com.pj.erp.persistence.HR_DAO.updateFamily", vo);
+	}
+
+	@Override
+	public List<HR_RecordVO> getRecords(Map<String, Object> map) {
+		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getRecords", map);
 	}
 }

@@ -21,11 +21,13 @@ import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.SalelistVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.MS.MS_plan;
+import com.pj.erp.vo.ST.ST_contrast;
 
 @Service
 public class ERPServiceImpl implements ERPService{
@@ -54,8 +56,34 @@ public class ERPServiceImpl implements ERPService{
 		vo.setPassword(password);
 		vo.setE_name(e_name);
 		
+		String department_code = req.getParameter("department_code");
+		String authority = "";
+		switch(department_code) {
+		case "ct_01"
+			: authority = "ROLE_CT";
+			break;
+		case "hr_01"
+			: authority = "ROLE_HR";
+			break;
+		case "ms_01"
+			: authority = "ROLE_MS";
+			break;
+		case "st_01"
+			: authority = "ROLE_ST";
+			break;
+		case "ft_01"
+			: authority = "ROLE_FT";
+			break;
+		case "mf_01"
+			: authority = "ROLE_MF";
+			break;
+		default 
+			: authority = "ROLE_ADMIN";
+			break;
+	}
+		
 		dao2.insertMember2(vo);
-		dao2.insertAuth();
+		dao2.insertAuth(authority);
 		
 		
 		
@@ -203,4 +231,37 @@ public class ERPServiceImpl implements ERPService{
 		model.addAttribute("dto", vo);
 	}
 	
+	// ST_contrast_pp 검색 기능
+	@Override
+	public void getcontrast(Model model) {
+		List<SalelistVO> list = dao.getContrast();
+		List<SalelistVO> list2 = dao.getContrast2();
+		for(int i = 1 ; i < 13; i++) {
+			if(i<10) {
+				model.addAttribute("amount0"+i, 0);
+				model.addAttribute("price0"+i, 0);
+			}else {
+				model.addAttribute("amount"+i, 0);
+				model.addAttribute("price"+i, 0);
+			}
+		}
+		for(int i = 0 ; i < list.size(); i++) {
+			model.addAttribute("amount"+list.get(i).getMonth(), list.get(i).getAmount());
+			model.addAttribute("price"+list.get(i).getMonth(),list.get(i).getPrice());
+		}
+		for(int i = 1 ; i < 13; i++) {
+			if(i<10) {
+				model.addAttribute("aamount0"+i, 0);
+				model.addAttribute("aprice0"+i, 0);
+			}else {
+				model.addAttribute("aamount"+i, 0);
+				model.addAttribute("aprice"+i, 0);
+			}
+		}
+		for(int i = 0 ; i < list2.size(); i++) {
+			model.addAttribute("aamount"+list2.get(i).getMonth(), list2.get(i).getAamount());
+			model.addAttribute("aprice"+list2.get(i).getMonth(),list2.get(i).getAprice());
+		}
+	}
+
 }

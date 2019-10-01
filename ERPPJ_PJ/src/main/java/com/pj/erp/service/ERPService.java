@@ -1,6 +1,8 @@
 package com.pj.erp.service;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.pj.erp.vo.HashVO;
+import com.pj.erp.vo.ST.ST_contrast;
 
 @Service
 public interface ERPService {
@@ -30,4 +33,8 @@ public interface ERPService {
 	
 	//가상화폐로 산 자재목록 가져오기
 	public void selectMaterals(HttpServletRequest req, Model model);
+	
+	// ST_contrast_pp 검색 기능
+	public void getcontrast (Model model);
+	
 }

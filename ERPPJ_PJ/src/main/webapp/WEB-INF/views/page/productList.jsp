@@ -50,38 +50,33 @@ function allcheck(){
 						<div class="card">
 							<div class="card-body">
 								<div class="form-horizontal">
-									<form id="manageMF_plan" action="InsertMaterialIo" method="post">
-										<input type="hidden" name="${_csrf.parameterName }"
-											value="${_csrf.token }">
 										<table id="datatable"
 											class="table m-0 table-bordered table-hover"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-											<col style="width: 5%;">
-											<col style="width: 25%;">
-											<col style="width: 20%">
-											<col style="width: 20%;">
-											<col style="width: 20%;">
-											<col style="width: 10%;">
+											
 											<thead class="bg-primary text-white">
 												<tr>
-													<th><input type="checkbox" id="allChecked" name="material_code" onclick="allcheck();"></th>
 													<th>자재명</th>
 													<th>단위</th>
 													<th>가격</th>
 													<th>수량</th>
 													<th>구매처</th>
+													<th>구매</th>
 												</tr>
 											</thead>
 
 											<tbody>
 												<c:forEach var="list" items="${dto}">
 													<tr>
-														<td><input type="checkbox" class="checklist" name="material_code" value="${list.material_code}"></td>
+													<form action="InsertMaterialIo" method="post">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
-														<td><input type="text" name="price" onkeyup="removeChar(event); inputNumberFormat(this);"></td>
+														<td><input type="text" name="price" onkeyup="removeChar(event);"></td>
 														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
 														<td>
+														<input type="hidden" name="material_code" value="${list.material_code}">
 														<select name="salesTeam">
 															<option value="1팀">(주)심장</option>
 															<option value="2팀">(주)북두칠성</option>
@@ -89,18 +84,12 @@ function allcheck(){
 															<option value="4팀">(주)돼지</option>
 														</select>
 														</td>
+														<td><button type="submit" class="btn btn-dark waves-effect waves-light" >구매</button></td>
+														</form>							
 													 </tr>
 												</c:forEach>
 											</tbody>
 										</table>
-										
-										<hr>
-										<div align="right">
-											<button type="submit"
-												class="btn btn-dark waves-effect waves-light"
-												onclick=";">구매</button>
-										</div>
-									</form>
 								</div>
 
 								<%-- <div class="result">

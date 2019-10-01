@@ -52,7 +52,7 @@ public class HR_ServiceImpl implements HR_Service {
 		MultipartFile file = req.getFile("e_picture");
         
         String saveDir = req.getRealPath("/resources/hr_img/"); 
-		/* F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\   
+		/* F:\dev50\git\WeRPNetwork\ERPPJ_PJ\src\main\webapp\resources\hr_img\ 
 		 * 서버용 저장 경로*/
         String realDir="C:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
  
@@ -100,7 +100,35 @@ public class HR_ServiceImpl implements HR_Service {
 		
 		vo.setE_nfcCodeNFC(req.getParameter("e_nfcCodeNFC"));		
 		vo.setStart_date(new Timestamp(System.currentTimeMillis()));
+		
+		
 		String department_code = req.getParameter("department_code");
+		String authority = "";
+		
+		switch(department_code) {
+			case "ct_01"
+				: authority = "ROLE_CT";
+				break;
+			case "hr_01"
+				: authority = "ROLE_HR";
+				break;
+			case "ms_01"
+				: authority = "ROLE_MS";
+				break;
+			case "st_01"
+				: authority = "ROLE_ST";
+				break;
+			case "ft_01"
+				: authority = "ROLE_FT";
+				break;
+			case "mf_01"
+				: authority = "ROLE_MF";
+				break;
+			default 
+				: authority = "ROLE_ADMIN";
+				break;
+		}
+		
 		String position_code = req.getParameter("position_code");
 		String rank_code = req.getParameter("rank_code");
 		
@@ -124,7 +152,7 @@ public class HR_ServiceImpl implements HR_Service {
 		int cnt = 0;		
 		
 		cnt = dao.insertMember(vo);		
-		dao.insertAuth();
+		dao.insertAuth(authority);
 		dao.insertPhysical(username);
 		dao.insertFamily(vo2);
 		
@@ -307,7 +335,8 @@ public class HR_ServiceImpl implements HR_Service {
 	  
 	    String saveDir = req.getRealPath("/resources/hr_img/");
 
-	    String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
+	    String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
+	    /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
 	    try { file.transferTo(new File(saveDir+file.getOriginalFilename()));
 	  
 	    FileInputStream fis = new FileInputStream(saveDir +
@@ -425,10 +454,12 @@ public class HR_ServiceImpl implements HR_Service {
 		String username = req.getParameter("username");
 
 		vo.setUsername(username);
+		System.out.println(req.getParameter("f_name"));
+		
 		vo.setF_name(req.getParameter("f_name"));
 		vo.setF_type(req.getParameter("f_type"));
 		vo.setF_cohabitation(req.getParameter("f_cohabitation"));
-		
+		System.out.println(req.getParameter("f_born"));
 		vo.setF_born(Date.valueOf(req.getParameter("f_born")));
 
 		vo.setF_born_type(req.getParameter("f_born_type"));
@@ -880,6 +911,15 @@ public class HR_ServiceImpl implements HR_Service {
 	public List<HR_FamilyVO> searchFamily(Map<String, Object> map, HttpServletRequest req, Model model)
 			throws ParseException {
 		List<HR_FamilyVO> list = dao.searchFamily(map);
+		return list;
+	}
+
+
+
+	@Override
+	public List<HR_RecordVO> getRecords(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException {
+
+		List<HR_RecordVO> list = dao.getRecords(map);
 		return list;
 	}
 

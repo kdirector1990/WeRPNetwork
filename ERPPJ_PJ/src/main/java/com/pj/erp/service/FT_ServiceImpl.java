@@ -1069,147 +1069,156 @@ public class FT_ServiceImpl implements FT_Service{
 		map.put("fname", req.getSession().getAttribute("username"));
 		map.put("leftcount", 0);
 		map.put("rightcount", 0);
-		int number = dao.FT_ChitMaxNumber(map);
+		map.put("year", req.getParameter("years"));
+		map.put("month", "12");
+		map.put("day", "31");
+		map.put("accountcode", "0");
+		int number = dao.FT_DateChitCnt(map); 
+		if(number == 0) {
+			number = 1;
+		} else {
+			number = dao.FT_ChitMaxNumber(map) + 1;
+		}
 		map.put("number", number);
-		if(a != null) {
+		if(a != null && a != "") {
 			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("subjectcode", "sc00100"); // 코드넣기 매출원가
 			map.put("leftprice", a);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "02ivt_00400"); // 코드넣기 상품
 			map.put("leftprice", 0);
 			map.put("rightprice", a);
 			dao.FT_chitInsert(map);
 		}
-		if(b != null) {
+		if(b != null && b != "") {
 			map.put("text", "원재료재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("subjectcode", "sc00100"); // 코드넣기 매출원가
 			map.put("leftprice", b);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 원재료
+			map.put("subjectcode", "02ivt_00200"); // 코드넣기 원재료
 			map.put("leftprice", 0);
 			map.put("rightprice", b);
 			dao.FT_chitInsert(map);
 		}
-		if(c != null) {
+		if(c != null && c != "") {
 			map.put("text", "설비 감가상각 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 감가상각비
+			map.put("subjectcode", "gamga_1140"); // 코드넣기 감가상각비
 			map.put("leftprice", c);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 설비
+			map.put("subjectcode", "04ta_00701"); // 코드넣기 설비
 			map.put("leftprice", 0);
 			map.put("rightprice", c);
 			dao.FT_chitInsert(map);
 		}
-		if(d != null) {
+		if(d != null && d != "") {
 			map.put("text", "전산설비 감가상각 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 감가상각비
+			map.put("subjectcode", "gamga_1140"); // 코드넣기 감가상각비
 			map.put("leftprice", d);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 전산설비
+			map.put("subjectcode", "04ta_00101"); // 코드넣기 전산설비
 			map.put("leftprice", 0);
 			map.put("rightprice", d);
 			dao.FT_chitInsert(map);
 		}
-		if(e != null) {
+		if(e != null && e != "") {
 			map.put("text", "재공품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("subjectcode", "sc00100"); // 코드넣기 매출원가
 			map.put("leftprice", e);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "02ivt_00300"); // 코드넣기 재공품
 			map.put("leftprice", 0);
 			map.put("rightprice", e);
 			dao.FT_chitInsert(map);
 		}
-		if(f != null) {
+		if(f != null && f != "") {
 			map.put("text", "제품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("subjectcode", "sc00100"); // 코드넣기 매출원가
 			map.put("leftprice", f);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "02ivt_00100"); // 코드넣기 제품
 			map.put("leftprice", 0);
 			map.put("rightprice", f);
 			dao.FT_chitInsert(map);
 		}
-		if(g != null) {
+		if(g != null && g != "") {
 			map.put("text", "건물 감가상각 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+			map.put("subjectcode", "gamga_1140"); // 코드넣기 감가상각비
 			map.put("leftprice", g);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "04ta_00301"); // 코드넣기 건물
 			map.put("leftprice", 0);
 			map.put("rightprice", g);
 			dao.FT_chitInsert(map);
 		}
-		if(h != null) {
-			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+		if(h != null && h != "") {
+			map.put("text", "토지 감가상각 결산분개");
+			map.put("subjectcode", "gamga_1140"); // 코드넣기 감가상각비
 			map.put("leftprice", h);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "04ta_00201"); // 코드넣기 토지
 			map.put("leftprice", 0);
 			map.put("rightprice", h);
 			dao.FT_chitInsert(map);
 		}
-		if(i != null) {
-			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+		if(i != null && i != "") {
+			map.put("text", "받을어음 대손상각 결산분개");
+			map.put("subjectcode", "deson_1141"); // 코드넣기 대손상각비
 			map.put("leftprice", i);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "01qa_00701"); // 코드넣기 받을어음
 			map.put("leftprice", 0);
 			map.put("rightprice", i);
 			dao.FT_chitInsert(map);
 		}
-		if(j != null) {
-			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+		if(j != null && j != "") {
+			map.put("text", "단기대여금 결산분개");
+			map.put("subjectcode", "deson_1141"); // 코드넣기 대손상각비
 			map.put("leftprice", j);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "01qa_00801"); // 코드넣기 단기대여금
 			map.put("leftprice", 0);
 			map.put("rightprice", j);
 			dao.FT_chitInsert(map);
 		}
-		if(k != null) {
-			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+		if(k != null && k != "") {
+			map.put("text", "미수금 결산분개");
+			map.put("subjectcode", "deson_1141"); // 코드넣기 대손상각비
 			map.put("leftprice", k);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "01qa_00901"); // 코드넣기 미수금
 			map.put("leftprice", 0);
 			map.put("rightprice", k);
 			dao.FT_chitInsert(map);
 		}
-		if(l != null) {
-			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+		if(l != null && l != "") {
+			map.put("text", "외상매출금 결산분개");
+			map.put("subjectcode", "deson_1141"); // 코드넣기 대손상각비
 			map.put("leftprice", l);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "01qa_00601"); // 코드넣기 외상매출금
 			map.put("leftprice", 0);
 			map.put("rightprice", l);
 			dao.FT_chitInsert(map);
 		}
-		if(m != null) {
-			map.put("text", "상품재고 결산분개");
-			map.put("subjectcode", ""); // 코드넣기 매출원가
+		if(m != null && m != "") {
+			map.put("text", "법인세 결산분개");
+			map.put("subjectcode", "03bis_00100"); // 코드넣기 법인세 차감 계정
 			map.put("leftprice", m);
 			map.put("rightprice", 0);
 			dao.FT_chitInsert(map);
-			map.put("subjectcode", ""); // 코드넣기 상품
+			map.put("subjectcode", "06cli_01000"); // 코드넣기 
 			map.put("leftprice", 0);
 			map.put("rightprice", m);
 			dao.FT_chitInsert(map);

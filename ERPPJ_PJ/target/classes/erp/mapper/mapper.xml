@@ -43,6 +43,7 @@
 	<!-- 구매할 때 필요한 목록 -->
 	<select id="getMaterialList" resultType="com.pj.erp.vo.MaterialVO">
 		select * from material_tbl
+		Order by material_code asc
 	</select>
 	
 	<!-- 물품판매목록 getProductList -->
@@ -93,5 +94,19 @@
 	    From material_io_rec i Join material_tbl m
 	    On i.material_code = m.material_code
 	</select>
+	
+	<select id="getContrast" resultType="com.pj.erp.vo.SalelistVO">
+ 		   select nvl(TO_CHAR(reg_date,'mm'),'total')month, sum(amount*price)price, sum(amount)amount from salelist_tbl where TO_CHAR(reg_date,'yyyy') = TO_CHAR(sysdate,'yyyy') group by rollup(TO_CHAR(reg_date,'mm'))
+ 	</select>
+ 	<select id="getContrast2" resultType="com.pj.erp.vo.SalelistVO">
+ 		   select nvl(TO_CHAR(release_date,'mm'),'total')month, sum(release_count*unit_cost)aprice, sum(release_count)aamount from sar_list_tbl where TO_CHAR(release_date,'yyyy') = TO_CHAR(sysdate,'yyyy') group by rollup(TO_CHAR(release_date,'mm')) 
+ 	</select>
 
+	<!-- 가상화폐를 통해 판매 물품 판매대장 insert -->
+	<insert id="insertSalelist" parameterType="com.pj.erp.vo.ST.SalePlan">
+		Insert into salelist_tbl(salelist_code, username, detail_ac_code, customer_code, reg_date, release_o_date, unit, amount, 
+								price, note, release_state, ether_salecode)
+		Values('sa_' || salelist_seq.nextval, '10008', #{detail_ac_code}, '0x1d9CefB3A08ac0390e436A02807B5d4054DE6247', sysdate, #{release_o_date}, '대', '1', 
+				#{price}, '가상화폐로 구매', '2', #{ether_salecode})
+	</insert>
 </mapper>

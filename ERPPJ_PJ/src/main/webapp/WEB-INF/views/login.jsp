@@ -7,7 +7,7 @@
 	<body>
      	 <!-- Begin page -->
     	 <div id="wrapper">
-    	 <%@ include file="sidebar.jsp" %>
+            <%@ include file="sidebar.jsp" %>
             <div class="content-page">
 			<!-- ============================================================== -->
             <!-- Start Page Content here -->

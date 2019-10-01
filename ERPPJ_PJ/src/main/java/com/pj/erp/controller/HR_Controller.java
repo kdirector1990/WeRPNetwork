@@ -52,7 +52,17 @@ public class HR_Controller {
 		 
 		return "HR/HR_InputHR";
 	}
- 
+	
+	@RequestMapping("HR_InputHR_RPA")
+	public String HR_InputHR_RPA(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR_RPA");
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		 
+		return "HR/HR_InputHR_RPA";
+	}
+
 	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
@@ -77,7 +87,7 @@ public class HR_Controller {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
 		
-		return  "HR/HR_EmployeeInformation";
+		return  "HR/HR_FoundationLocation";
 	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
@@ -93,7 +103,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyPhysicalyPro");
 		service.modifyPhysicalyPro(req, model);
 		
-		return "index";
+		return "HR/HR_PhysicalyLocation";
 	}
 	
 	@RequestMapping("HR_modifyFamilyPro")
@@ -101,7 +111,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyFamilyPro");
 		service.modifyFamilyPro(req, model);
 		
-		return "index";
+		return "HR/HR_FamilyLocation";
 	}
 	
 	/*
@@ -329,7 +339,7 @@ public class HR_Controller {
 		logger.info("log => HR_recordinput");
 		service.HR_recordinput(req, model);
 		
-		return "index";
+		return "HR/HR_recordLocation";
 	}
 	
 	@RequestMapping("HR_record_input_pro")
@@ -344,7 +354,7 @@ public class HR_Controller {
 		logger.info("log = > HR_APinput");
 		service.HR_APinput(req, model);
 		
-		return "index";
+		return "HR/HR_APinputLocation";
 	}
 	
 	@RequestMapping("HR_appointment_notice")
@@ -544,6 +554,16 @@ public class HR_Controller {
 		List<HR_RecordVO> list = service.getPositions(map, req, model);
 		return list;
 	}
+	
+	// 인사발령공고 변경된 내용들
+	@RequestMapping(value = "HR_position_record_list", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_RecordVO> HR_position_record_list(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_position_record_list");
+		List<HR_RecordVO> list = service.getRecords(map, req, model);
+		return list;
+	}
+	
 	
 	// 사이드바 출근
 	@RequestMapping("HR_Start_Work_Sidebar")

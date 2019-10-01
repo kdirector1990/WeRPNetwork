@@ -7,7 +7,6 @@
 
 	function Insert(){
 		var param = $("#MF_materialsInput").serializeArray();
-		alert(JSON.stringify(param));
 		$.ajax({
 			url: '/erp/MF_materialsInputPro',
 			type: 'POST',

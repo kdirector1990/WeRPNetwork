@@ -151,4 +151,7 @@ public interface HR_Service {
 	
 	// 가족정보
 	public HR_FamilyVO HR_select_family(HttpServletRequest req, Model model);
+	
+	// 발령공고 변경리스트 페이지
+	public List<HR_RecordVO> getRecords(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
 }

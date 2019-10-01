@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
+import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
+import com.pj.erp.service.OriginService;
+import com.pj.erp.service.ProductSell;
 import com.pj.erp.vo.HashVO;
+
+import sun.nio.cs.MS1250;
 
 @Controller
 public class ERPController {
@@ -32,6 +37,12 @@ public class ERPController {
 	
 	@Autowired
 	MateralServiceImpl MSI;
+	
+	@Autowired
+	OriginService OS;
+	
+	@Autowired
+	ProductSell PS;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -52,7 +63,8 @@ public class ERPController {
  
 	@RequestMapping("index")
 	public String index(Locale locale, Model model) {
-		logger.info("log => index");  
+		logger.info("log => index");
+		service.getcontrast(model);
 		return "index";
 	}
 	@RequestMapping("index2")
@@ -610,9 +622,13 @@ public class ERPController {
 	
 	// 블록체인 신청 입력처리
 	@RequestMapping("FT_apply_input2_pro")
-	public String FT_apply_input2_pro(HttpServletRequest req, Model model) throws Exception {
+	public String FT_apply_input2_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input2_pro");
-		MSI.budgetAdd(req, model);
+		try {
+			MSI.budgetAdd(req, model);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "FT/FT_apply_input2";
 	}
@@ -654,13 +670,17 @@ public class ERPController {
 	
 	// 재료 구매.
 	@RequestMapping("InsertMaterialIo")
-	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
+	public String InsertMaterialIo(HttpServletRequest req, Model model){
 		logger.info("log => InsertMaterialIo");
-		
-		MSI.payMaterial(req, model);
+		try {
+			OS.payOriginMaterial(req, model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		logger.info("log => productList");
-		service.productList(req, model);
+		service.materialList(req, model);
 		return "page/productList"; 
 	}
 	
@@ -682,4 +702,17 @@ public class ERPController {
 		
 		return "page/productDetail"; 
 	}
+	
+	
+	//판매 상품 구매처리
+	@RequestMapping("EproductBuy")
+	public String EproductBuy(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => EproductBuy");
+		
+		PS.SellProduct(req, model);
+		
+		return "page/productDetail"; 
+	}
+	
+	
 }

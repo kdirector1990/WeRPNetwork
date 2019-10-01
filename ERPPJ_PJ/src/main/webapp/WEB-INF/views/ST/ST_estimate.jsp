@@ -10,7 +10,7 @@
        	}
         
         function customerNameList() {
-    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px location=no,status=no,scrollbars=yes");
+    		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=1000px, height = 600px location=no,status=no,scrollbars=yes");
     	}   
         
         </script>
@@ -62,7 +62,7 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">거래처 코드</label>
 													<div class="col-md-10">
-														<input type="text" name="search_release_code"
+														<input type="text" name="customer_code"
 															class="form-control" style="width: 350px;"
 															onclick="customerNameList()" id="search_release_code">
 													</div>

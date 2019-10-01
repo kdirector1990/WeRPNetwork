@@ -25,7 +25,7 @@ public interface HR_DAO {
 	
 	public int insertPhysical(String username);
 	
-	public int insertAuth();
+	public int insertAuth(String authority);
 	
 	public int insertFamily(HR_FamilyVO vo2);
 	
@@ -178,5 +178,8 @@ public interface HR_DAO {
 	
 	// 가족정보 수정
 	public int updateFamily(HR_FamilyVO vo); 
+	
+	// 발령공고 변경내역
+	public List<HR_RecordVO> getRecords(Map<String, Object> map);
 	
 }

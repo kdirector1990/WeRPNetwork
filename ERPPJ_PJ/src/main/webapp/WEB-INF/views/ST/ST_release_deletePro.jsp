@@ -10,13 +10,13 @@
     <body>
 	<c:if test="${deleteRelease == 0}">
 		<script type="text/javascript">
-			alert("삭제 ㄴㄴ");
+			alert("삭제를 실패하였습니다.");
 		</script>
 	</c:if>
 	
 	<c:if test="${deleteRelease != 0}">
 		<script type="text/javascript">
-			alert("삭제 완료");
+			alert("삭제 완료되었습니다.");
 			window.location='ST_release_manage';
 		</script>
 	</c:if>
