@@ -96,7 +96,10 @@
 	</select>
 	
 	<select id="getContrast" resultType="com.pj.erp.vo.SalelistVO">
- 		   select * from salelist_tbl
+ 		   select nvl(TO_CHAR(reg_date,'mm'),'total')month, sum(amount*price)price, sum(amount)amount from salelist_tbl where TO_CHAR(reg_date,'yyyy') = TO_CHAR(sysdate,'yyyy') group by rollup(TO_CHAR(reg_date,'mm'))
+ 	</select>
+ 	<select id="getContrast2" resultType="com.pj.erp.vo.SalelistVO">
+ 		   select nvl(TO_CHAR(release_date,'mm'),'total')month, sum(release_count*unit_cost)aprice, sum(release_count)aamount from sar_list_tbl where TO_CHAR(release_date,'yyyy') = TO_CHAR(sysdate,'yyyy') group by rollup(TO_CHAR(release_date,'mm')) 
  	</select>
 
 	<!-- 가상화폐를 통해 판매 물품 판매대장 insert -->

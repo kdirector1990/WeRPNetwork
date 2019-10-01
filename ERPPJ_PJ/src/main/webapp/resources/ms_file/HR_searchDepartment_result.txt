@@ -24,63 +24,44 @@
 <link
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
-
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
-			<form>
-				<table id="datatable" class="table table-bordered"
-					style="height: 550px;">
-					<tbody>
-						<!--  있으면 -->
-						<tr>
-							<th>기획서 코드</th>
-							<td>${dto.plan_code}</td>
-						</tr>
-						<tr>
-							<th>기획명</th>
-							<td>${dto.plan_name}</td>
-						</tr>
-						<tr>
-							<th>기획제안자</th>
-							<td>${dto.username}</td>
-						</tr>
-						<tr>
-							<th>책임자</th>
-							<td>${dto.position_code}</td>
-						</tr>
-						<tr>
-							<th>기획등록일</th>
-							<td>${dto.plan_regdate}</td>
-						</tr>
-						<tr>
-							<th>시작예정일</th>
-							<td>${dto.plan_startdate}</td>
-						</tr>
-						<tr>
-							<th>종료예정일</th>
-							<td>${dto.plan_enddate}</td>
-						</tr>
-						<tr>
-							<th>기획상태</th>
-							<td>${dto.plan_state}</td>
-						</tr>
-						<tr>
-							<th>기획목표</th>
-							<td>${dto.plan_objective}</td>
-						</tr>
-						<tr>
-							<th>상세 기획안 파일</th>
-							<td>${dto.plan_proposal}</td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-body table-responsive">
+					<table id="datatable"
+						class="table table-striped table-bordered dt-responsive nowrap">
+						<col style="width: 50%;">
+						<col style="width: 50%;">
+
+						<thead>
+							<tr>
+								<th>�μ��ڵ�</th>
+								<th>�μ���</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="var" begin="1" end="10" step="1">
+								<c:if test="${var eq param.department_code }">
+									<tr>
+										<td>${var }</td>
+										<td>${var }</td>										
+									</tr>
+								</c:if>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Datatable plugin js -->
+	<script
+		src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"></script>
+
 	<script
 		src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
 	<script
@@ -113,6 +94,7 @@
 
 	<script src="/erp/resources/assets/js/pages/datatables.init.js"></script>
 
+
+
 </body>
 </html>
-

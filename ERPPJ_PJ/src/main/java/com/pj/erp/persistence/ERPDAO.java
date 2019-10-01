@@ -6,6 +6,7 @@ import java.util.Map;
 import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.SalelistVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.MsgVO;
@@ -49,7 +50,8 @@ public interface ERPDAO {
 	public List<Material_VO> selectMateral();
 	
 	// ST_contrast 검색 조회
-	public List<ST_contrast> getContrast();
+	public List<SalelistVO> getContrast();
+	public List<SalelistVO> getContrast2();
 	
 	// 블록체인을 통해 판매한 제품 판매대장에 insert
 	public int insertSalelist(SaleList vo);

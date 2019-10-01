@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.SalelistVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.MsgVO;
@@ -97,8 +98,12 @@ public class ERPDAOImpl implements ERPDAO{
 	
 	// ST_contrast 검색 조회
 	@Override
-	public List<ST_contrast> getContrast() {
+	public List<SalelistVO> getContrast() {
 		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getContrast");
+	}
+	@Override
+	public List<SalelistVO> getContrast2() {
+		return sqlSession.selectList("com.pj.erp.persistence.ERPDAO.getContrast2");
 	}
 	
 	// 사내메신저 사원 목록 가져오기
