@@ -66,6 +66,9 @@ $(function(){
 					var price = list[i].price;						
 					var unit = list[i].unit;
 					var note = list[i].note;
+					if(note == null){
+						note = " ";
+					}
 					var detail_ac_code = list[i].detail_ac_code;
 					var product_name = list[i].product_name;
 					

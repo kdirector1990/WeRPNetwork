@@ -318,7 +318,8 @@
 					 p.product_name as product_name, 
 					 c.customer_name as customer_name,
 					 s.note as note,
-					 u.e_name as e_name
+					 u.e_name as e_name,
+					 s.ether_salecode as ether_salecode
 				 from salelist_tbl s, customer_list_tbl c, product_list_tbl p, users u
 				 Where s.customer_code = c.customer_code
 				 And s.detail_ac_code = p.product_code
