@@ -7,6 +7,9 @@ public class MF_plan {
 	private String p_pp_code;		//생산계획코드
 	private String bom_code;		//BOM코드
 	private String product_code;	//제품계정코드
+	
+	private String product_name;	//제품명
+	
 	private Date start_date;		//기간시작
 	private Date end_date;			//기간종료
 	private int ef_cost;			//예상 생산 원가
@@ -54,6 +57,12 @@ public class MF_plan {
 	}
 	public void setEf_amount(int ef_amount) {
 		this.ef_amount = ef_amount;
+	}
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 	public String getEas_code() {
 		return eas_code;
