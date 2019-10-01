@@ -228,11 +228,13 @@
 											</td>
 
 											<th></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">조회</button></td>
 										</tr>
 									</table>
+									<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light"
+											id="search">조회</button>
+									</div>
 								</div>
 							</div>
 						</div>

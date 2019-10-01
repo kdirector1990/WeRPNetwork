@@ -84,7 +84,7 @@ public class OriginService {
     @SuppressWarnings("deprecation")
 	public void payOriginMaterial(HttpServletRequest req, Model model) throws Exception {
     	
-    	String deptname = "test";
+    	String deptname = " ft_01";
     		
     	//원자재 구매시 이더를 보낼 거래처의 지갑 정보를 위해 판매자 아이디를 가져온다.
     	String seller = req.getParameter("salesTeam");
@@ -103,17 +103,13 @@ public class OriginService {
     		salesTeam = Credentials.create("3F0B5C58378DE554534A5A8C630AAC075886E74A6B3229000AE78F4500E153E3"); //st_01
     	}
     	
-    	//계약서 작성.
-    	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	//가격과 수량을 가져와서, 리플레이스를 함수를 통해 입력되어있는 콤마들 제거하여 숫자만 남긴다.
   
     	int prices = Integer.parseInt(req.getParameter("price")); 
     	int nums = Integer.parseInt(req.getParameter("num"));
     	
-    	
     	BigInteger ethers = null;
-    	
     	
     	int price = prices * nums;
     	if(price < 1500000) {
@@ -123,10 +119,9 @@ public class OriginService {
     		ethers= etherToWei(new BigDecimal(2));
     	}
     	
-    	
     	byte[] name = stringToBytes32(deptname); 
     	
-    	// 자바로 변환된 CreateClub의 메소드(load)를 호출하여 사용 : 이더 전송
+    	// 계약서 작성 
     	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소
     	contractAddress = MateralOrigin.deploy(web3j, salesTeam, gasPrice, gasLimit).send().getContractAddress();
     	MateralOrigin dept = MateralOrigin.load(contractAddress, web3j, hostCredentials, gasPrice, gasLimit);
