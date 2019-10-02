@@ -96,6 +96,11 @@
 	                                        '<td>' + data[i].bs_master + '</td>' +
 		                                '</tr>');
 									}
+									if(data.length == 0) {
+			                    		   alert("데이터가 없습니다.");
+			                    	   }
+		                    	   } else {
+		                    		   alert("데이터가 없습니다.");
 		                    	   }
 	                       },
 	                       error : function(e) {
@@ -158,6 +163,9 @@
 	                                        '<td>' + balance + '</td>' +
 		                                '</tr>');
 									}
+									 if(data.length == 0) {
+			                    		   alert("데이터가 없습니다.");
+			                    	   }
 		                    	   } else {
 		                    		   alert("데이터가 없습니다.");
 		                    	   }

@@ -59,6 +59,7 @@
 							for(var i = 0; i < data.length; i++){
 								var RLtype;
 								var price;
+								var number;
 								if(data[i].debtor_value == 0){
 									RLtype = "대변";
 								} else {
@@ -66,9 +67,17 @@
 								}
 								
 								if(data[i].debtor_value == 0){
-									price = data[i].creditor_value;
+                    			   number = data[i].creditor_value.replace(/\,/g,"");
+                    			   price = String(number).split('').join(',').split('');
+
+                    		       for( k=price.length-1, j=1; k>=0; k--, j++)  if( j%6 != 0 && j%2 == 0) price[k] = '';
+                    		       price = price.join('');
 								} else {
-									price = data[i].debtor_value;
+									number = data[i].debtor_value.replace(/\,/g,"");
+                    			   price = String(number).split('').join(',').split('');
+
+                    		       for( k=price.length-1, j=1; k>=0; k--, j++)  if( j%6 != 0 && j%2 == 0) price[k] = '';
+                    		       price = price.join('');
 								}
 								
 								if(data[i].l_count_value == 0){

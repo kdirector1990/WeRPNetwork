@@ -96,7 +96,7 @@
 	                                               <td>${lo.customer_name}</td>
 	                                               <td>${lo.username}</td>
 	                                               <td>${lo.ename}</td>
-	                                               <td>${lo.loan_s_price}</td>
+	                                               <td><fmt:formatNumber value="${lo.loan_s_price}" pattern="#,###"/></td>
 	                                               <td>${lo.loan_s_date.substring(0,10)}</td>
 	                                               <td>${lo.loan_s_expriration.substring(0,10)}</td>
 	                                               <td>${lo.loan_s_interest}</td>

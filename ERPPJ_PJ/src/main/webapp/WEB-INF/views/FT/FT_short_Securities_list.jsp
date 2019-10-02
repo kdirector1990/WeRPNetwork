@@ -101,7 +101,7 @@
 	                                               <td>${se.ts_date.substring(0,10)}</td>
 	                                               <td>${se.ts_expriration.substring(0,10)}</td>
 	                                               <td>${se.ts_amount}</td>
-	                                               <td>${se.ts_money}</td>
+	                                               <td><fmt:formatNumber value="${se.ts_money}" pattern="#,###"/></td>
 	                                               <td>${se.ts_interest}</td>
 	                                           </tr>
 	                                           <c:set var="cnt" value="${cnt+1}"/>
