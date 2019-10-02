@@ -24,7 +24,12 @@ function ST_searchProductname() {
 function ST_searchDepartmentname() {
 	window.open("ST_searchDepartmentname", "ST_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 }
-var searchCount = 1;
+function searchAll(){
+	searchCus();
+	searchPro();
+	searchUser();
+	searchDep();
+}
  function searchCus() {
 	 var param = $("#search").serializeArray();
 	 /* alert(JSON.stringify(param));  */
@@ -36,9 +41,36 @@ var searchCount = 1;
 			success: function(vo){
 				
 				$('#result1').empty();
+				$('#bodyappend').empty();
+				
 				document.getElementById("searchInfo").style.display="block";
+				
+				$("#result1").append(
+				'<table id="datatable" class="table m-0 table-bordered table-hover">'+
+				'<thead class="bg-primary text-white">'+
+					'<tr>'+
+						'<th>코드</th>'+
+						'<th>거래처명</th>'+
+						'<th>합계</th>'+
+						'<th>1월</th>'+
+						'<th>2월</th>'+
+						'<th>3월</th>'+
+						'<th>4월</th>'+
+						'<th>5월</th>'+
+						'<th>6월</th>'+
+						'<th>7월</th>'+
+						'<th>8월</th>'+
+						'<th>9월</th>'+
+						'<th>10월</th>'+
+						'<th>11월</th>'+
+						'<th>12월</th>'+
+					'</tr>'+
+				'</thead>'+
+					'<tbody id="result_cus">'+
+					'</tbody>'
+				);
 				for(var i = 0; i < vo.length; i++){
-					var customer_code = vo[i].customer_code;
+					var customer_code = vo[i].customer_code.substr(0, 10);
 					var customer_name = vo[i].customer_name;
 					var total = vo[i].m01 + vo[i].m02 + vo[i].m03 + vo[i].m04 
 								+ vo[i].m05 + vo[i].m06 + vo[i].m07 + vo[i].m08
@@ -56,48 +88,48 @@ var searchCount = 1;
 					var m11 = vo[i].m11;
 					var m12 = vo[i].m12;
 					
-					$("#result1").append('<tr>' +
+					
+					$("#result_cus").append(
+							
+							'<tr>' +
 							'<td>'+ customer_code+ '</td>' +
 							'<td>'+ customer_name+ '</td>' +
-							'<td>'+ total + '</td>' +
-							'<td>'+ m01 + '</td>' +
-							'<td>'+ m02 + '</td>' +
-							'<td>'+ m03 + '</td>' +
-							'<td>'+ m04 + '</td>' +
-							'<td>'+ m05 + '</td>' +
-							'<td>'+ m06 + '</td>' +
-							'<td>'+ m07 + '</td>' +
-							'<td>'+ m08 + '</td>' +
-							'<td>'+ m09 + '</td>' +
-							'<td>'+ m10 + '</td>' +
-							'<td>'+ m11 + '</td>' +
-							'<td>' + m12 + '</td></tr>'
+							'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m01.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m02.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m03.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m04.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m05.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m06.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m07.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m08.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m09.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m11.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>' + m12.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td></tr>'
+							
 					)
 					
-					if(searchCount == 1){
-						$('#bodyappend').append(
-						        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
-						        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
-						        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
-						        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
-						        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
-						);
-						searchCount = searchCount + 1;
-						}
-				};
-				
+				}
+				$('#bodyappend').append(
+				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+				        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+				        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+				);
 			/* 	alert("검색목록을 가져왔습니다1."); */
 			}, 
 			
@@ -118,7 +150,33 @@ var searchCount = 1;
 			success: function(vo){
 			
 			$('#result2').empty();
-
+			$('#bodyappend').empty();
+			
+			$("#result2").append(
+			'<table id="datatable-fixed-header" class="table m-0 table-bordered table-hover">'+
+			'<thead class="bg-primary text-white">'+
+				'<tr>'+
+					'<th>품번</th>'+
+					'<th>품명</th>'+
+					'<th>단위</th>'+
+					'<th>합계</th>'+
+					'<th>1월</th>'+
+					'<th>2월</th>'+
+					'<th>3월</th>'+
+					'<th>4월</th>'+
+					'<th>5월</th>'+
+					'<th>6월</th>'+
+					'<th>7월</th>'+
+					'<th>8월</th>'+
+					'<th>9월</th>'+
+					'<th>10월</th>'+
+					'<th>11월</th>'+
+					'<th>12월</th>'+
+				'</tr>'+
+			'</thead>'+
+				'<tbody id="result_pro">'+
+				'</tbody>'
+			);
 			for(var i = 0; i < vo.length; i++){
 				var product_code = vo[i].product_code;
 				var product_name = vo[i].product_name;
@@ -139,23 +197,23 @@ var searchCount = 1;
 				var m11 = vo[i].m11;
 				var m12 = vo[i].m12;
 				
-				$("#result2").append('<tr>' +
+				$("#result_pro").append('<tr>' +
 						'<td>'+ product_code+ '</td>' +
 						'<td>'+ product_name+ '</td>' +
 						'<td>'+ unit+ '</td>' +
-						'<td>'+ total + '</td>' +
-						'<td>'+ m01 + '</td>' +
-						'<td>'+ m02 + '</td>' +
-						'<td>'+ m03 + '</td>' +
-						'<td>'+ m04 + '</td>' +
-						'<td>'+ m05 + '</td>' +
-						'<td>'+ m06 + '</td>' +
-						'<td>'+ m07 + '</td>' +
-						'<td>'+ m08 + '</td>' +
-						'<td>'+ m09 + '</td>' +
-						'<td>'+ m10 + '</td>' +
-						'<td>'+ m11 + '</td>' +
-						'<td>' + m12 + '</td></tr>'
+						'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m01.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m02.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m03.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m04.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m05.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m06.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m07.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m08.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m09.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>'+ m11.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+						'<td>' + m12.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td></tr>'
 				)
 			}
 				/* alert("검색목록을 가져왔습니다2."); */
@@ -178,7 +236,61 @@ var searchCount = 1;
 			success: function(vo){
 				
 				$('#result3').empty();
+				$('#bodyappend').empty();
+				
+				/* 
+				<table id="datatable-keytable"
+					class="table m-0 table-bordered table-hover">
+					<thead class="bg-primary text-white">
+						<tr>
+							<th>코드</th>
+							<th>담당자명</th>
+							<th>합계</th>
+							<th>1월</th>
+							<th>2월</th>
+							<th>3월</th>
+							<th>4월</th>
+							<th>5월</th>
+							<th>6월</th>
+							<th>7월</th>
+							<th>8월</th>
+							<th>9월</th>
+							<th>10월</th>
+							<th>11월</th>
+							<th>12월</th>
+						</tr>
+					</thead>
+					<tbody id="result3">
 
+					</tbody>
+				</table>
+				*/
+				
+				$("#result3").append(
+					'<table id="datatable-keytable" class="table m-0 table-bordered table-hover">'+
+					'<thead class="bg-primary text-white">'+
+						'<tr>'+
+							'<th>코드</th>'+
+							'<th>담당자명</th>'+
+							'<th>합계</th>'+
+							'<th>1월</th>'+
+							'<th>2월</th>'+
+							'<th>3월</th>'+
+							'<th>4월</th>'+
+							'<th>5월</th>'+
+							'<th>6월</th>'+
+							'<th>7월</th>'+
+							'<th>8월</th>'+
+							'<th>9월</th>'+
+							'<th>10월</th>'+
+							'<th>11월</th>'+
+							'<th>12월</th>'+
+						'</tr>'+
+					'</thead>'+
+						'<tbody id="result_user">'+
+						'</tbody>'
+				);
+				
 				for(var i = 0; i < vo.length; i++){
 					var username = vo[i].username;
 					var e_name = vo[i].e_name;
@@ -198,25 +310,24 @@ var searchCount = 1;
 					var m11 = vo[i].m11;
 					var m12 = vo[i].m12;
 					
-					$("#result3").append('<tr>' +
+					$("#result_user").append('<tr>' +
 							'<td>'+ username+ '</td>' +
 							'<td>'+ e_name+ '</td>' +
-							'<td>'+ total + '</td>' +
-							'<td>'+ m01 + '</td>' +
-							'<td>'+ m02 + '</td>' +
-							'<td>'+ m03 + '</td>' +
-							'<td>'+ m04 + '</td>' +
-							'<td>'+ m05 + '</td>' +
-							'<td>'+ m06 + '</td>' +
-							'<td>'+ m07 + '</td>' +
-							'<td>'+ m08 + '</td>' +
-							'<td>'+ m09 + '</td>' +
-							'<td>'+ m10 + '</td>' +
-							'<td>'+ m11 + '</td>' +
-							'<td>' + m12 + '</td></tr>'
+							'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m01.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m02.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m03.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m04.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m05.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m06.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m07.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m08.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m09.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m11.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>' + m12.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td></tr>'
 					)
-				};
-				
+				}
 				/* alert("검색목록을 가져왔습니다3."); */
 			}, 
 			
@@ -237,7 +348,32 @@ var searchCount = 1;
 			success: function(vo){
 				
 				$('#result4').empty();
-
+				$('#bodyappend').empty();
+				
+				$("#result4").append(
+						'<table id="datatable-responsive" class="table m-0 table-bordered table-hover">'+
+						'<thead class="bg-primary text-white">'+
+							'<tr>'+
+								'<th>코드</th>'+
+								'<th>부서명</th>'+
+								'<th>합계</th>'+
+								'<th>1월</th>'+
+								'<th>2월</th>'+
+								'<th>3월</th>'+
+								'<th>4월</th>'+
+								'<th>5월</th>'+
+								'<th>6월</th>'+
+								'<th>7월</th>'+
+								'<th>8월</th>'+
+								'<th>9월</th>'+
+								'<th>10월</th>'+
+								'<th>11월</th>'+
+								'<th>12월</th>'+
+							'</tr>'+
+						'</thead>'+
+							'<tbody id="result_dep">'+
+							'</tbody>'
+						);
 				for(var i = 0; i < vo.length; i++){
 					var department_code = vo[i].department_code;
 					var department_name = vo[i].department_name;
@@ -257,25 +393,24 @@ var searchCount = 1;
 					var m11 = vo[i].m11;
 					var m12 = vo[i].m12;
 					
-					$("#result4").append('<tr>' +
+					$("#result_dep").append('<tr>' +
 							'<td>'+ department_code + '</td>' +
 							'<td>'+ department_name + '</td>' +
-							'<td>'+ total + '</td>' +
-							'<td>'+ m01 + '</td>' +
-							'<td>'+ m02 + '</td>' +
-							'<td>'+ m03 + '</td>' +
-							'<td>'+ m04 + '</td>' +
-							'<td>'+ m05 + '</td>' +
-							'<td>'+ m06 + '</td>' +
-							'<td>'+ m07 + '</td>' +
-							'<td>'+ m08 + '</td>' +
-							'<td>'+ m09 + '</td>' +
-							'<td>'+ m10 + '</td>' +
-							'<td>'+ m11 + '</td>' +
-							'<td>' + m12 + '</td></tr>'
+							'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m01.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m02.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m03.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m04.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m05.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m06.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m07.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m08.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m09.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>'+ m11.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+							'<td>' + m12.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td></tr>'
 					)
-				};
-				
+				}
 				/* alert("검색목록을 가져왔습니다4."); */
 			}, 
 			
@@ -359,7 +494,7 @@ var searchCount = 1;
 									<div align="right">
 										<button type="button"
 											class="btn btn-dark waves-effect waves-light"
-											onclick="searchCus(); searchPro(); searchUser(); searchDep();">조회</button>
+											onclick="searchAll();">조회</button>
 									</div>
 								</div>
 							</div>
@@ -404,34 +539,12 @@ var searchCount = 1;
 											aria-labelledby="user-tab">
 											<input type="hidden" name="${_csrf.parameterName }"
 												value="${_csrf.token }">
-											<div class="col-sm-12">
-												<div class="card">
-													<div class="card-body">
-														<table id="datatable"
-															class="table m-0 table-bordered table-hover">
-															<thead class="bg-primary text-white">
-																<tr>
-																	<th>코드</th>
-																	<th>거래처명</th>
-																	<th>합계</th>
-																	<th>1월</th>
-																	<th>2월</th>
-																	<th>3월</th>
-																	<th>4월</th>
-																	<th>5월</th>
-																	<th>6월</th>
-																	<th>7월</th>
-																	<th>8월</th>
-																	<th>9월</th>
-																	<th>10월</th>
-																	<th>11월</th>
-																	<th>12월</th>
-																</tr>
-															</thead>
-															<tbody id="result1">
-
-															</tbody>
-														</table>
+											<div class="row">
+												<div class="col-sm-12">
+													<div class="card">
+														<div class="card-body" id="result1">
+															<!-- 거래처별 결과 목록 -->
+														</div>
 													</div>
 												</div>
 											</div>
@@ -442,33 +555,8 @@ var searchCount = 1;
 											aria-labelledby="product-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body">
-														<table id="datatable-fixed-header"
-															class="table m-0 table-bordered table-hover">
-															<thead class="bg-primary text-white">
-																<tr>
-																	<th>품번</th>
-																	<th>품명</th>
-																	<th>단위</th>
-																	<th>합계</th>
-																	<th>1월</th>
-																	<th>2월</th>
-																	<th>3월</th>
-																	<th>4월</th>
-																	<th>5월</th>
-																	<th>6월</th>
-																	<th>7월</th>
-																	<th>8월</th>
-																	<th>9월</th>
-																	<th>10월</th>
-																	<th>11월</th>
-																	<th>12월</th>
-																</tr>
-															</thead>
-															<tbody id="result2">
-
-															</tbody>
-														</table>
+													<div class="card-body" id="result2">
+														<!-- 품목별 결과 목록 -->
 													</div>
 												</div>
 											</div>
@@ -479,32 +567,8 @@ var searchCount = 1;
 											aria-labelledby="manager-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body">
-														<table id="datatable-keytable"
-															class="table m-0 table-bordered table-hover">
-															<thead class="bg-primary text-white">
-																<tr>
-																	<th>코드</th>
-																	<th>담당자명</th>
-																	<th>합계</th>
-																	<th>1월</th>
-																	<th>2월</th>
-																	<th>3월</th>
-																	<th>4월</th>
-																	<th>5월</th>
-																	<th>6월</th>
-																	<th>7월</th>
-																	<th>8월</th>
-																	<th>9월</th>
-																	<th>10월</th>
-																	<th>11월</th>
-																	<th>12월</th>
-																</tr>
-															</thead>
-															<tbody id="result3">
-
-															</tbody>
-														</table>
+													<div class="card-body" id="result3">
+														<!-- 담당자 목록 결과 -->
 													</div>
 												</div>
 											</div>
@@ -515,32 +579,8 @@ var searchCount = 1;
 											aria-labelledby="department-tab">
 											<div class="col-sm-12">
 												<div class="card">
-													<div class="card-body">
-														<table id="datatable-responsive"
-															class="table m-0 table-bordered table-hover">
-															<thead class="bg-primary text-white">
-																<tr>
-																	<th>코드</th>
-																	<th>부서명</th>
-																	<th>합계</th>
-																	<th>1월</th>
-																	<th>2월</th>
-																	<th>3월</th>
-																	<th>4월</th>
-																	<th>5월</th>
-																	<th>6월</th>
-																	<th>7월</th>
-																	<th>8월</th>
-																	<th>9월</th>
-																	<th>10월</th>
-																	<th>11월</th>
-																	<th>12월</th>
-																</tr>
-															</thead>
-															<tbody id="result4">
-
-															</tbody>
-														</table>
+													<div class="card-body" id="result4">
+														<!-- 부서별 결과 목록 -->
 													</div>
 												</div>
 											</div>

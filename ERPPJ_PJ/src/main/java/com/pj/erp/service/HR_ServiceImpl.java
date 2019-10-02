@@ -51,25 +51,24 @@ public class HR_ServiceImpl implements HR_Service {
 	@Override 
 	public void inputFoundation(MultipartHttpServletRequest req, Model model) {			
 		MultipartFile file = req.getFile("e_picture");
-        
+		UUID uuid = UUID.randomUUID();
         String saveDir = req.getRealPath("/resources/hr_img/"); 
 		/* F:\dev50\git\WeRPNetwork\ERPPJ_PJ\src\main\webapp\resources\hr_img\ 
 		 * 서버용 저장 경로*/
-        String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
- 
+        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
+        String times = String.valueOf(System.currentTimeMillis());
         try {
-            file.transferTo(new File(saveDir+file.getOriginalFilename()));            
+            file.transferTo(new File(saveDir+times+uuid+"_"+file.getOriginalFilename()));            
             
-            FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
-            FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+            FileInputStream fis = new FileInputStream(saveDir +times+ uuid+"_"+file.getOriginalFilename());
+            FileOutputStream fos = new FileOutputStream(realDir +times+ uuid+"_"+file.getOriginalFilename());
             
             int data = 0;
             
             while((data = fis.read()) != -1) {
                 fos.write(data);
             }
-            fis.close();
- 
+            fis.close(); 
             fos.close();		
 			 
 		
@@ -78,6 +77,11 @@ public class HR_ServiceImpl implements HR_Service {
 		String username = dao.getUsername();
 		String e_name = req.getParameter("e_name");
 		String e_picture = file.getOriginalFilename();
+		if(e_picture.equals("")) {
+			e_picture ="noImage.png";
+		} else {
+			e_picture = times+ uuid+"_"+file.getOriginalFilename();
+		}
 		
 		String password = passwordEncoder.encode("1234");
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
@@ -333,45 +337,48 @@ public class HR_ServiceImpl implements HR_Service {
 		int updateCnt = 0;
 		
 	    MultipartFile file = req.getFile("e_picture");
-	  
+	    UUID uuid = UUID.randomUUID();
+	    
 	    String saveDir = req.getRealPath("/resources/hr_img/");
 
-	    String realDir = "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
+	    String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
 	    /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
- 
+	    String times = String.valueOf(System.currentTimeMillis());
 	    try {	    	
-	    	file.transferTo(new File(saveDir+file.getOriginalFilename()));	    	
+	    	file.transferTo(new File(saveDir+times+uuid+"_"+file.getOriginalFilename()));	    	
 	    	
-		    FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename()); 
-		    FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
-		    
-	    	
+		    FileInputStream fis = new FileInputStream(saveDir +times+ uuid+"_"+file.getOriginalFilename()); 
+		    FileOutputStream fos = new FileOutputStream(realDir +times+ uuid+"_"+file.getOriginalFilename());
+		    	    	
 		    int data = 0;
 	  
 		    while((data = fis.read()) != -1) { 
 		    	fos.write(data); 
 		    } 
 		    fis.close();
-		    fos.close();
-		
+		    fos.close();		
 		 
-
+		System.out.println(System.currentTimeMillis());
+		    
 		HR_VO vo = new HR_VO();
 		String username = req.getParameter("username");
 		String e_name = req.getParameter("e_name");
-		
-		UUID uuid = UUID.randomUUID();
+				
 		String e_picture = file.getOriginalFilename();
-		
+		if(e_picture.equals("")) {
+			e_picture ="noImage.png";
+		} else {
+			e_picture = times+ uuid+"_"+file.getOriginalFilename();
+		}
 		
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 
 		vo.setUsername(username);
 		vo.setE_name(e_name);
 		vo.setE_picture(e_picture);
-		if(e_picture == null) {
-			vo.setE_picture("noImage.png");
-		}
+			/*
+			 * if(e_picture == null) { vo.setE_picture("noImage.png"); }
+			 */
 		vo.setE_gender(e_gender);
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
