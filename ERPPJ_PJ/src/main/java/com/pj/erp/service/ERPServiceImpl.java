@@ -21,11 +21,14 @@ import com.pj.erp.persistence.ERPDAO;
 import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
+import com.pj.erp.vo.SalelistVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
+import com.pj.erp.vo.MsgVO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
 import com.pj.erp.vo.MS.MS_plan;
+import com.pj.erp.vo.ST.ST_contrast;
 
 @Service
 public class ERPServiceImpl implements ERPService{
@@ -229,4 +232,80 @@ public class ERPServiceImpl implements ERPService{
 		model.addAttribute("dto", vo);
 	}
 	
+	// ST_contrast_pp 검색 기능
+	@Override
+	public void getcontrast(Model model) {
+		List<SalelistVO> list = dao.getContrast();
+		List<SalelistVO> list2 = dao.getContrast2();
+		for(int i = 1 ; i < 13; i++) {
+			if(i<10) {
+				model.addAttribute("amount0"+i, 0);
+				model.addAttribute("price0"+i, 0);
+			}else {
+				model.addAttribute("amount"+i, 0);
+				model.addAttribute("price"+i, 0);
+			}
+		}
+		for(int i = 0 ; i < list.size(); i++) {
+			model.addAttribute("amount"+list.get(i).getMonth(), list.get(i).getAmount());
+			model.addAttribute("price"+list.get(i).getMonth(),list.get(i).getPrice());
+		}
+		for(int i = 1 ; i < 13; i++) {
+			if(i<10) {
+				model.addAttribute("aamount0"+i, 0);
+				model.addAttribute("aprice0"+i, 0);
+			}else {
+				model.addAttribute("aamount"+i, 0);
+				model.addAttribute("aprice"+i, 0);
+			}
+		}
+		for(int i = 0 ; i < list2.size(); i++) {
+			model.addAttribute("aamount"+list2.get(i).getMonth(), list2.get(i).getAamount());
+			model.addAttribute("aprice"+list2.get(i).getMonth(),list2.get(i).getAprice());
+		}
+	}
+
+	//사내메신저 사원 찾기
+	@Override
+	public List<MsgVO> selectMsgUser(HttpServletRequest req, Model model) {
+		String e_name = req.getParameter("e_name");
+		String department_name = req.getParameter("department_name");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("e_name", e_name);
+		map.put("department_name", department_name);
+		
+		List<MsgVO> vo = dao.selectUserMsg(map);
+		
+		return vo;
+	}
+
+	//사내 메신저 입력 폼
+	@Override
+	public void MsgWriteForm(HttpServletRequest req, Model model) {
+		String username = req.getParameter("username");
+		MsgVO vo = dao.WriteForm(username);
+		
+		model.addAttribute("vo", vo);
+	}
+	
+
+	// 사내 입력폼 작성 완료
+	@Override
+	public void Msg_Write_Pro(HttpServletRequest req, Model model) {
+		String to_user = req.getParameter("to_user");
+		String content = req.getParameter("msg_content");
+		String from_user = req.getParameter("from_user");
+		
+		MsgVO vo = new MsgVO();
+		vo.setMsg_content(content);
+		vo.setTo_user(to_user);
+		vo.setFrom_user(from_user);
+		
+		int insertCnt = dao.WritePro(vo);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+		
 }

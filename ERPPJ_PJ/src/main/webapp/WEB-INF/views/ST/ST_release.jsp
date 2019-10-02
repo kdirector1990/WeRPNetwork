@@ -18,11 +18,11 @@
  	}   
      
    function customerNameList() {
-  		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+  		window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=1000px, height = 600px, location=no, status=nos, top = 200, left = 500");
   	} 
   
    function customerNameList3() {
-	window.open("ST_searchCustomername3", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+	window.open("ST_searchCustomername3", "customer_list", "menubar=no, width=1000px, height = 600px, location=no, status=nos, top = 200, left = 500");
 } 
    
    function saleListName() {
@@ -122,7 +122,7 @@
 												
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">단가</label>
-														<input type="text" name="unit_cost" class="form-control" style="width: 400px;">
+														<input type="number" name="unit_cost" class="form-control" style="width: 400px;" step="10000">
 												</div>
 
 											</div>
@@ -141,15 +141,15 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">출고 수량</label>
 													<div class="col-md-10">
-														<input type="text" name="release_count" id = "release_countP"
-															class="form-control" style="width: 370px;" >
+														<input type="number" name="release_count" id = "release_countP"
+															class="form-control" style="width: 370px;" value="0">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">입고 수량</label>
 													<div class="col-md-10">
-														<input type="text" class="form-control" style="width: 370px;"
-															name="stored_count">
+														<input type="number" class="form-control" style="width: 370px;"
+															name="stored_count" value="0">
 													</div>
 												</div>
 
@@ -166,7 +166,7 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">가격</label>
 													<div class="col-md-10">
-														<input type="text" class="form-control" style="width: 370px;"
+														<input type="number" class="form-control" style="width: 370px;" step = "10000"
 															name="price" id = "priceP">
 													</div>
 											</div>

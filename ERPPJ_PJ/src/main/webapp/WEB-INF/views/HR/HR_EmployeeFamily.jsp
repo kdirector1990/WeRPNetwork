@@ -200,7 +200,7 @@
 	                            +'</div>'
 						+'</div>'						
 						+'<div class="form-group text-right mb-0">'
-							+'<button onclick="HR_modifyFamilyPro();" type="button" class="btn btn-outline-primary waves-effect waves-light">수정</button>'
+							+'<input type="submit" formaction="HR_modifyFamilyPro?${_csrf.parameterName}=${_csrf.token }" value="수정">'
 						+'</div>'
 	  				);
 	  			},

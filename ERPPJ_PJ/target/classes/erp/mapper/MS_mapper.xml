@@ -6,17 +6,17 @@
 	<!-- 기획서 등록 -->
  	<insert id="insertPlan" parameterType = "com.pj.erp.vo.MS.MS_plan">
 		insert into plan_list_tbl(plan_code, plan_name, username, position_code, plan_regdate, plan_startdate, plan_enddate, plan_objective, plan_state, plan_proposal)
-		values(ms_pc_seq.nextval, #{plan_name}, #{username} ,#{position_code} , #{plan_regdate}, #{plan_startdate}, #{plan_enddate}, #{plan_objective}, #{plan_state},'파일') 
+		values(ms_pc_seq.nextval, #{plan_name}, #{username} ,#{position_code} , #{plan_regdate}, #{plan_startdate}, #{plan_enddate}, #{plan_objective}, #{plan_state}, #{plan_proposal}) 
 	</insert>
 	
 	<!-- 기획서 목록  -->
 	<select id="getPlanList" resultType="com.pj.erp.vo.MS.MS_plan" parameterType="String">
-		SELECT * FROM ms_plan_script_view where username like '%'||#{username}||'%'
+		SELECT * FROM ms_plan_script_view where username like '%'||#{username}||'%' 
 	</select>
 	
 	<!-- 기획서 상세조회 -->
 	<select id="getPlanDetail" resultType="com.pj.erp.vo.MS.MS_plan" parameterType="String">
-		select * from plan_list_tbl where plan_code like '%'||#{plan_code}||'%'
+		select * from plan_list_tbl where plan_code like '%'||#{plan_code}||'%' 
 	</select>
 	
 	<!-- 기획서 수정 -->

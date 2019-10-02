@@ -50,10 +50,10 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+					document.getElementById("searchTable").style.display="block";
+					
 					$('#result').empty();
 					$('#bodyappend').empty();
-					
-					
 					
 					for(var i = 0 ; i < list.length; i++){
 					
@@ -221,77 +221,61 @@
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="ap_name"
 												id="ap_name"></td>
-
-										</tr>
-
-										<tr class="form-group row">
-
-											<th class="col-md-1 col-form-label"></th>
-											<td class="col-md-2 input-group">
-											</td>
-
-											<th class="col-md-1 col-form-label">&nbsp;</th>
-
-											<th class="col-md-1 col-form-label"></th>
-											<td class="col-md-2 input-group">
-											</td>
-
-											<th class="col-md-1 col-form-label"></th>
-											<td><button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">검색</button></td>
 										</tr>
 									</table>
+									<div class="form-group text-right mb-0">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light" id="search">검색</button>
+									</div>
 									</div>
 								</div>
 							</div>
-						
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card">
-								<div class="card-body">
-							<div class="tab-content">
-								<!-- 개인별 -->
-								<div class="tab-pane show active" id="individual"
-									role="tabpanel" aria-labelledby="individual-tab">
-									<input type="hidden" name="${_csrf.parameterName }"
-										value="${_csrf.token }">
+
+							<div id="searchTable">
+								<div class="row">
 									<div class="col-sm-12">
-										<div class="card-body table-responsive">
-											<div class="table-responsive" style="margin: 15px 0px 50px">
-												<table id="datatable"
-															class="table table-striped table-bordered dt-responsive nowrap">
-													<thead>
-														<tr>
-															<th>사원번호</th>
-															<th>사원명</th>
-															<th>발령기록코드</th>
-															<th>공고코드</th>
-															<th>발령일자</th>															
-															<th>공고명</th>														
-															<th>현재직책</th>
-															<th>변경 후 직책</th>
-															<th>현재부서</th>
-															<th>변경 후 부서</th>
-															<th>상태</th>
-														</tr>
-													</thead>
-													
-													<tbody id="result">
-													
-													</tbody>
-												</table>
+										<div class="card">
+											<div class="card-body">
+												<div class="tab-content">
+													<!-- 개인별 -->
+													<div class="tab-pane show active" id="individual"
+														role="tabpanel" aria-labelledby="individual-tab">
+														<input type="hidden" name="${_csrf.parameterName }"
+															value="${_csrf.token }">
+														<div class="col-sm-12">
+															<div class="card-body table-responsive">
+																<table id="datatable"
+																	class="table table-striped table-bordered nowrap table-colored-bordered table-bordered-info">
+																	<thead class="bg-primary text-white">
+																		<tr>
+																			<th>사원번호</th>
+																			<th>사원명</th>
+																			<th>발령기록코드</th>
+																			<th>공고코드</th>
+																			<th>발령일자</th>
+																			<th>공고명</th>
+																			<th>현재직책</th>
+																			<th>변경 후 직책</th>
+																			<th>현재부서</th>
+																			<th>변경 후 부서</th>
+																			<th>상태</th>
+																		</tr>
+																	</thead>
+
+																	<tbody id="result">
+
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>								
-								
+								</div>
 							</div>
-						</div>
-						</div>
-						</div>
-						</div>
-
 							<!--  -->
 
 						</div>
@@ -318,25 +302,6 @@
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
 
-	<script src="/erp/resources/assets/libs/c3/c3.min.js"></script>
-	<script src="/erp/resources/assets/libs/d3/d3.min.js"></script>
-	<!-- plugins -->
-	<script src="/erp/resources/assets/libs/moment/moment.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script
-		src="/erp/resources/assets/libs/clockpicker/bootstrap-clockpicker.min.js"></script>
-	<script
-		src="/erp/resources/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-
-	<!-- dashboard init -->
-	<script src="/erp/resources/assets/js/pages/dashboard.init.js"></script>
-	<!-- Init js-->
-	<script src="/erp/resources/assets/js/pages/form-pickers.init.js"></script>
-
+	<div id="bodyappend"></div>
 </body>
 </html>

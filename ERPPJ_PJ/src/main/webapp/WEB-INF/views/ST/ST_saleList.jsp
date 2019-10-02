@@ -53,7 +53,6 @@
     	}
     }
     
-    var searchCount = 1;
     $(function(){
     	$('#search').click(function(){
     		var param = new Object();
@@ -73,8 +72,32 @@
     			dataType : "json",
     			contentType:"application/json;charset=UTF-8", 
     			success : function(list){
-    				
+    				$('#bodyappend').empty();
+    				$('#resulttable').empty();
     				$('#result_2').empty();
+    				
+    			$('#resulttable').append(
+    				'<div class="table-rep-plugin">'+	
+    				'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">' +
+						'<thead class="bg-primary text-white">' +
+							'<tr>' +
+								'<th>판매 코드</th>' +
+								'<th>제품명</th>' +
+								'<th>담당자</th>' +
+								'<th>등록일</th>' +
+								'<th>출고 요청일</th>' +
+								'<th>단위</th>' +
+								'<th>수량</th>' +
+								'<th>가격</th>' +
+								'<th>거래처</th>' +
+								'<th>출고여부</th>' +
+								'<th>비고</th>' +
+							'</tr>' +
+						'</thead>' +
+						'<tbody id="result_2">' +
+						'</tbody>' +
+					'</table>');
+    				
     				
     				for(var i = 0 ; i < list.length; i++){
     					var salelist_code = list[i].salelist_code;
@@ -82,6 +105,9 @@
     					var price = list[i].price;						
     					var unit = list[i].unit;
     					var note = list[i].note;
+    					if(note == null){
+    						note = " ";
+    					}
     					var detail_ac_code = list[i].detail_ac_code;
     					var product_name = list[i].product_name;
     					
@@ -100,7 +126,13 @@
     					var pa = new Date(reg_date);
     					var year = pa.getFullYear();
     					var month = (1+pa.getMonth());
+    					if(month < 10){
+    						month = "0" + month;
+    					}
     					var day = pa.getDate(); 
+    					if(day < 10){
+    						day = "0" + day;
+    					}
     					var reg = year + "/" + month +"/"+day;
     					
     					var release_o_date = list[i].release_o_date;
@@ -123,8 +155,7 @@
     							'<td>'+ release_state +'</td>'+
     							'<td>'+ note +'</td>'+
                     		'</tr>');
-    				
-    				if(searchCount == 1){
+    				}
     				$('#bodyappend').append(
     				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
     				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -144,10 +175,6 @@
     				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
     				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
     				);
-    				searchCount = searchCount + 1;
-    				}
-    				
-    				}
     				
     			},
     			error : function(){
@@ -164,7 +191,7 @@ function ProductName() {
 }
 
 function customerNameList() {
-	window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+	window.open("ST_searchCustomername2", "customer_list", "menubar=no, width=1000px, height = 600px, location=no, status=nos, top = 200, left = 500");
 }   
 
 function usernameList() {
@@ -261,9 +288,10 @@ function usernameList() {
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-									<div class="table-rep-plugin">
-										<div class="" data-pattern="priority-columns">
-											<table id="datatable"
+								<div id = "resulttable">
+								<!-- 	<div class="table-rep-plugin"> -->
+										</div>
+									<%-- 		<table id="datatable"
 												class="table table-striped table-bordered dt-responsive nowrap">
 												<thead class="bg-primary text-white">
 													<tr>
@@ -281,28 +309,8 @@ function usernameList() {
 													</tr>
 												</thead>
 												<tbody id="result_2">
-													<%-- <c:if test="${cnt > 0}">
-													<c:forEach var="sto" items="${stos}">
-														<tr onclick="salePlanWriteForm('${sto.salelist_code}');">
-															<td>${sto.salelist_code}</td>
-															<td></td>
-															<!-- 제품명 -->
-															<td></td>
-															<!-- 담당자 -->
-															<td>${sto.reg_date }</td>
-															<td>${sto.release_o_date }</td>
-															<td>${sto.unit }</td>
-															<td>${sto.amount }</td>
-															<td>${sto.price }</td>
-															<td>${sto.customer_code }</td>
-															<td>${sto.release_state }</td>
-															<td
-																style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">${sto.note}</td>
-														</tr>
-													</c:forEach>
-												</c:if> --%>
 												</tbody>
-											</table>
+											</table> --%>
 										</div>
 										<!-- end .table-rep-plugin-->
 									</div>

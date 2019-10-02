@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR.HR_FamilyVO;
@@ -31,13 +31,12 @@ import com.pj.erp.vo.HR.HR_Time_VO;
 import com.pj.erp.vo.HR.HR_VO;
 import com.pj.erp.vo.HR.HR_YearService_VO;
 import com.pj.erp.vo.HR.HR_nfc_log;
-import com.pj.erp.vo.ST.ST_searchDepartmentCode;
 
 @Controller
 public class HR_Controller {
 
 	@Autowired
-	HR_Service service;
+	HR_Service service;	
 	
 	@Autowired
 	CT_Service CT;
@@ -55,8 +54,16 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
+	@RequestMapping("HR_InputHR_RPA")
+	public String HR_InputHR_RPA(HttpServletRequest req, Model model) {
+		logger.info("log => HR_InputHR_RPA");
+		service.departmentList(req, model);
+		service.positionList(req, model);
+		service.rankList(req, model);
+		 
+		return "HR/HR_InputHR_RPA";
+	}
 
- 
 	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
@@ -81,7 +88,7 @@ public class HR_Controller {
 		logger.info("log = > HR_modifyFoundationPro");
 		service.modifyFoundationPro(req, model);
 		
-		return  "HR/HR_EmployeeInformation";
+		return  "HR/HR_FoundationLocation";
 	}
 	
 	@RequestMapping("HR_modifyPhysicaly")
@@ -97,7 +104,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyPhysicalyPro");
 		service.modifyPhysicalyPro(req, model);
 		
-		return "index";
+		return "HR/HR_PhysicalyLocation";
 	}
 	
 	@RequestMapping("HR_modifyFamilyPro")
@@ -105,7 +112,7 @@ public class HR_Controller {
 		logger.info("log => HR_modifyFamilyPro");
 		service.modifyFamilyPro(req, model);
 		
-		return "index";
+		return "HR/HR_FamilyLocation";
 	}
 	
 	/*
@@ -183,6 +190,7 @@ public class HR_Controller {
 	public List<HR_VO> HR_EmployeeInformation_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_EmployeeInformation_result");
 		List<HR_VO> list = service.getUsers(map, req, model);
+		
 		return list;
 	}
 	
@@ -333,7 +341,7 @@ public class HR_Controller {
 		logger.info("log => HR_recordinput");
 		service.HR_recordinput(req, model);
 		
-		return "index";
+		return "HR/HR_recordLocation";
 	}
 	
 	@RequestMapping("HR_record_input_pro")
@@ -348,7 +356,7 @@ public class HR_Controller {
 		logger.info("log = > HR_APinput");
 		service.HR_APinput(req, model);
 		
-		return "index";
+		return "HR/HR_APinputLocation";
 	}
 	
 	@RequestMapping("HR_appointment_notice")
@@ -548,6 +556,16 @@ public class HR_Controller {
 		List<HR_RecordVO> list = service.getPositions(map, req, model);
 		return list;
 	}
+	
+	// 인사발령공고 변경된 내용들
+	@RequestMapping(value = "HR_position_record_list", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
+	@ResponseBody
+	public List<HR_RecordVO> HR_position_record_list(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
+		logger.info("log => HR_position_record_list");
+		List<HR_RecordVO> list = service.getRecords(map, req, model);
+		return list;
+	}
+	
 	
 	// 사이드바 출근
 	@RequestMapping("HR_Start_Work_Sidebar")

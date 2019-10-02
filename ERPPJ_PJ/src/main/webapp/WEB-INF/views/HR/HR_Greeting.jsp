@@ -62,12 +62,7 @@ function ap_nameList() {
 					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
-							<div class="page-title-box">
-								<div class="page-title-right">
-									<button type="button"
-										class="btn btn-outline-primary waves-effect waves-light"
-										disabled>사원추가</button>
-								</div>
+							<div class="page-title-box">								
 								<h4 class="page-title">인사발령등록</h4>
 							</div>
 						</div>
@@ -264,7 +259,7 @@ function ap_nameList() {
 												</div>
 
 												<div class="form-group mb-0">
-													<input type="submit" class="btn btn-success" value="공고등록">
+													<input type="submit" formaction="HR_APinput?${_csrf.parameterName}=${_csrf.token }" class="btn btn-success" value="공고등록">
 												</div>
 											</form>
 										</div>

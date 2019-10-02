@@ -17,6 +17,12 @@
             		<h5 class="pl-3">A/S요청</h5>
                 </a>
                 <hr class="mb-0" />
+                
+                <hr class="mt-0">
+            	<a href="MSGdeploy">
+            		<h5 class="pl-3">사내메신저</h5>
+                </a>
+                <hr class="mb-0" />
             
                 <hr class="mt-0">
                 	<h5 class="pl-3">Basic Settings</h5>

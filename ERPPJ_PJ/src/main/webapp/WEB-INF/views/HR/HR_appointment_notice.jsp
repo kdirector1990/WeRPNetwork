@@ -38,8 +38,9 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
-					$('#result').empty();
-					$('#result2').empty();
+					document.getElementById("searchTable").style.display="block";
+					
+					$('#result').empty();					
 					$('#bodyappend').empty();		
 					
 					for(var i = 0 ; i < list.length; i++){
@@ -64,19 +65,99 @@
 						var day = pa.getDate(); 
 						var record_date = year + "/" + month +"/"+day;
 						
-					$('#result').append('<tr>'+                         	
+					$('#result').append('<tr onclick="recordINFO('+usernames+');">'+                         	
 							'<td>'+ usernames +'</td>'+
 							'<td>'+ e_names +'</td>'+							
 							'<td>'+ department_names +'</td>'+
 							'<td>'+ position_names +'</td>'+								
-                 		'</tr>');
+                 		'</tr>');										
 					
-					$('#result2').append('<tr>'+
-							'<td>'+ ap_name +'</td>'+
-							'<td>'+ position_code_after +'</td>'+
-							'<td>'+ department_code_after +'</td>'+
-							'<td>'+ record_date +'</td>'+
-						'</tr>');
+					if(searchCount == 1){
+					$('#bodyappend').append(
+					        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/responsive.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.buttons.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.bootstrap4.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.html5.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/buttons.print.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.keyTable.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedHeader.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.scroller.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.colVis.js"/>' +
+					        '<script src="/erp/resources/assets/libs/datatables/dataTables.fixedColumns.min.js"/>'+
+					        '<script src="/erp/resources/assets/libs/jszip/jszip.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/pdfmake.min.js"/>' +
+					        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
+					        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
+					);
+					searchCount = searchCount + 1;
+					}
+					
+					
+					}
+					
+				},
+				error : function(){
+					alert("에러");
+				}
+			});			
+		}); 
+	 });
+	 
+	 var searchCount = 1;
+	 $(function(){
+		$('#search').click(function(){
+			var param = new Object();
+			var jsonData;
+			
+						
+			param.username = $("#username").val();
+			param.ap_code = $("#ap_code").val();
+			param.ap_name = $("#ap_name").val();			
+					
+			jsonData = JSON.stringify(param);
+			
+			$.ajax({
+				url : '${pageContext.request.contextPath}/HR_position_record_list?${_csrf.parameterName}=${_csrf.token }',
+				type : 'POST',
+				data : jsonData, 
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				success : function(list){					
+					
+					$('#result2').empty();
+					$('#bodyappend').empty();		
+					
+					for(var i = 0 ; i < list.length; i++){
+					
+						var usernames = list[i].username;
+						var position_record_codes = list[i].position_record_code;
+						var e_names = list[i].e_name;
+						var department_codes = list[i].department_code;
+						var position_codes = list[i].position_code;
+						
+						var department_name = list[i].department_name;
+						var position_name = list[i].position_name;											
+						
+						var ap_name = list[i].ap_name;
+						var position_code_after = list[i].position_code_after;
+						var department_code_after = list[i].department_code_after;
+						
+						var record_dates = list[i].record_date;
+						var pa = new Date(record_dates);
+						var year = pa.getFullYear();
+						var month = (1+pa.getMonth());
+						var day = pa.getDate(); 
+						var record_date = year + "/" + month +"/"+day;
+						
+					$('#result2').append('<tr>'+                         	
+							'<td>'+ ap_name +'</td>'+													
+							'<td>'+ position_name +'</td>'+
+							'<td>'+ department_name +'</td>'+
+							'<td>'+ record_date +'</td>'+	
+                 		'</tr>');										
 					
 					if(searchCount == 1){
 					$('#bodyappend').append(
@@ -189,19 +270,20 @@
 							</div>
 						</div>
 					</div>	
-
+					
+					<div id="searchTable">
 						<div class="row">
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
 										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap table-hover center"
+											class="table table-bordered dt-responsive nowrap center table-colored-bordered table-bordered-info"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
-												<tr>													
+												<tr class="bg-primary text-white">													
 													<th colspan="4">발령대상자</th>
 												</tr>
-												<tr>
+												<tr class="thead-light">
 													<th>사번</th>
 													<th>성명</th>
 													<th>부서</th>
@@ -221,14 +303,14 @@
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
-										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap center"
+										<table id="datatable-keytable"
+											class="table table-bordered dt-responsive nowrap center table-colored-bordered table-bordered-info"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
-												<tr>													
+												<tr class="bg-primary text-white">													
 													<th colspan="4">발령내역</th>
 												</tr>
-												<tr>
+												<tr class="thead-light">
 													<th>공고명</th>
 													<th>변경 후 직책</th>
 													<th>변경 후 부서</th>
@@ -246,44 +328,10 @@
 							</div>
 							<!-- end col -->
 						</div>
+					</div>
 					
 
-					<div class="row">
-						<div class="col-xl-6">
-							<div class="card">
-								<div class="card-body">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap center"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-										<tr>
-											<th>비고</th>
-											<td><textarea class="form-control" rows="10" cols="40"
-													name="content" style="width: 500px"
-													placeholder="글내용을 입력하세요 !" word-break:break-all>
-									</textarea></td>
-										</tr>
-
-									</table>
-								</div>
-							</div>
-						</div>
-						<!-- end col -->
-
-						<div class="col-xl-6">
-							<div class="card">
-								<div class="card-body">
-									<table id="datatable"
-										class="table table-striped table-bordered dt-responsive nowrap center"
-										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-
-									</table>
-								</div>
-							</div>
-
-						</div>
-						<!-- end col -->
-					</div>
+					
 
 
 					<%@ include file="../footer.jsp"%>
@@ -301,6 +349,6 @@
 	<!-- Right Sidebar -->
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-
+	<div id="bodyappend"></div>
 </body>
 </html>

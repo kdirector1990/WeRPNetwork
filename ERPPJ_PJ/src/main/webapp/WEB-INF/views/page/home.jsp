@@ -37,7 +37,7 @@ function allcheck(){
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="/shop/resources/css/agency.min.css" rel="stylesheet">
+  <link href="/erp/resources/shop/css/agency.min.css" rel="stylesheet">
 
 </head>
 
@@ -145,7 +145,7 @@ function allcheck(){
 							</div>
 						</div> 
 						<img class="img-fluid"
-						src="/erp/resources/shop/img/portfolio/01-thumbnail.jpg" alt="">
+						src="/erp/resources/shop/img/portfolio/ref.png" alt="">
 					</a>
 					<div class="portfolio-caption">
 						<h4>${shop.product_name}</h4>
@@ -553,7 +553,7 @@ function allcheck(){
 								<p class="item-intro text-muted">Lorem ipsum dolor sit amet
 									consectetur.</p>
 								<img class="img-fluid d-block mx-auto"
-									src="/erp/resources/shop/img/portfolio/01-full.jpg" alt="">
+									src="/erp/resources/shop/img/portfolio/ref.png" alt="">
 								<p>Use this area to describe your project. Lorem ipsum dolor
 									sit amet, consectetur adipisicing elit. Est blanditiis dolorem
 									culpa incidunt minus dignissimos deserunt repellat aperiam

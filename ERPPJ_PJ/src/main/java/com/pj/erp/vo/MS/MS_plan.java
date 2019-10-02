@@ -21,9 +21,6 @@ public class MS_plan {
 	private String plan_objective;		//기획 목표
 	private String plan_state;			//기획 상태
 	private String plan_proposal;		//상세 기획안 파일
-	
-	
-	 
 
 	public MS_plan() {}
 

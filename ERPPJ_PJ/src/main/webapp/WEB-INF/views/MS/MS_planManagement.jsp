@@ -14,11 +14,10 @@
 <%@ include file="../setting.jsp"%>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-function updatePlan(){
+/* function updatePlan(){
 	var param = $("#datatable2").serializeArray();
-	/* alert(JSON.stringify(param)); */
 	$.ajax({
-		url: '/erp/MS_updatePlanPro?${_csrf.parameterName}=${_csrf.token }',
+		url: '/erp/MS_updatePlanPro',
 		type: 'POST',
 		data : param,
 		dataTpye: 'json',
@@ -32,7 +31,7 @@ function updatePlan(){
 		}
 	});
 }
-
+ */
 function deletePlan(){
 	var param = $("#datatable2").serializeArray();
 	/* alert(JSON.stringify(param)); */
@@ -42,7 +41,7 @@ function deletePlan(){
 		data : param,
 		dataTpye: 'json',
 		success: function(param){
-			alert("삭제되었습니다.");
+			alert("기획서가 삭제되었습니다.");
 			$('#result').empty();
 			searchCus();
 		},

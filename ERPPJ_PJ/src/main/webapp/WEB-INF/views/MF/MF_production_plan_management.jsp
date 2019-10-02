@@ -51,23 +51,21 @@
 											<col style="width: 12%">
 											<col style="width: 13%;">
 											<col style="width: 10%">
-											<col style="width: 10%;">
-											<col style="width: 10%;">
 											<col style="width: 11%;">
 											<col style="width: 11%;">
-											<col style="width: 13%;">
-											<col style="width: 10%;">
+											<col style="width: 11%;">
+											<col style="width: 11%;">
+											<col style="width: 11%;">
 											<thead class="bg-primary text-white">
 												<tr>
 													<th>생산계획코드</th>
 													<th>BOM코드</th>
 													<th>제품계정코드</th>
+													<th>제품명</th>
 													<th>기간시작</th>
 													<th>기간종료</th>
 													<th>예상 생산 원가</th>
 													<th>목표 생산 수량</th>
-													<th>전결라인코드</th>
-													<th>전결현황코드</th>
 												</tr>
 											</thead>
 
@@ -77,12 +75,11 @@
 														<td>${list.p_pp_code}</td>
 														<td>${list.bom_code}</td>
 														<td>${list.product_code}</td>
+														<td>${list.product_name}</td>
 														<td>${list.start_date}</td>
 														<td>${list.end_date}</td>
 														<td>${list.ef_cost}</td>
 														<td>${list.ef_amount}</td>
-														<td>${list.eas_code}</td>
-														<td>${list.e_approval_code}</td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -163,14 +160,16 @@
 			var p_pp_code = td.eq(1).text();
    			var bom_code = td.eq(2).text();
    			var product_code = td.eq(3).text();
-   			var start_date = td.eq(4).text();
-   			var end_date = td.eq(5).text();
-   			var ef_cost = td.eq(6).text();
-   			var ef_amount = td.eq(7).text();
+   			var product_name = td.eq(4).text();
+   			var start_date = td.eq(5).text();
+   			var end_date = td.eq(6).text();
+   			var ef_cost = td.eq(7).text();
+   			var ef_amount = td.eq(8).text();
 			
    			tdArr.push(p_pp_code);
    			tdArr.push(bom_code);
    			tdArr.push(product_code);
+   			tdArr.push(product_name);
    			tdArr.push(start_date);
    			tdArr.push(end_date);
    			tdArr.push(ef_cost);
@@ -199,36 +198,37 @@
 			        + '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="simpleinput">제품명</label>' 
   			        	+ '<div class="col-md-10">'
-  			        	+ '<input type="text" name="product_name" id="product_name" id="simpleinput" class="form-control" readonl>' 
+  			        	+ '<input type="text" name="product_name" id="product_name"value="'+tdArr[3]+'"id="simpleinput" class="form-control" readonly>' 
 			            + '</div>'
 			        +'</div>'
   			    	+ '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">기간시작</label>'
   			        	+ '<div class="col-md-10">'
-  			        	+ '<input type="text" name="start_date" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[3]+'" id="simpleinput" class="form-control" >'
+  			        	+ '<input type="text" name="start_date" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[4]+'" id="simpleinput" class="form-control" >'
   			        	+ '</div>'
   			    	+ '</div>'
   			    	+ '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="simpleinput">기간종료</label>'
   			        	+ '<div class="col-md-10">'
-  			            	+ '<input type="text" name="end_date" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[4]+'" id="simpleinput" class="form-control">'
+  			            	+ '<input type="text" name="end_date" data-provide="datepicker" data-date-autoclose="true" value="'+tdArr[5]+'" id="simpleinput" class="form-control">'
   			        	+ '</div>'
   			    	+ '</div>'
   			    	+  '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">예상 생산 원가</label>'
   			        	+'<div class="col-md-10">'
-  			            	+ '<input type="text" name="ef_cost" value="'+tdArr[5]+'" id="simpleinput" class="form-control" >'
+  			            	+ '<input type="text" name="ef_cost" value="'+tdArr[6]+'" id="simpleinput" class="form-control" >'
   			        	+ '</div>'
   			    	+ '</div>' 
   			    	+  '<div class="form-group row">'
   			        + '<label class="col-md-2 col-form-label" for="example-textarea">목표 생산 수량</label>'
   			        	+'<div class="col-md-10">'
-  			            	+ '<input type="text" name="ef_amount" value="'+tdArr[6]+'" id="simpleinput" class="form-control" >'
+  			            	+ '<input type="text" name="ef_amount" value="'+tdArr[7]+'" id="simpleinput" class="form-control" >'
   			        	+ '</div>'
   			    	+ '</div>' 
   			    	+ '<div class="form-group text-right mb-0">'
-  						+ '<button type="button" id="btnRe" class="btn btn-outline-dark waves-effect waves-light" onclick="updatePlan();">수정</button>'
-  						+ '<button type="button" id="btnDel" class="btn btn-outline-dark waves-effect waves-light" onclick="deletePlan();">폐기</button>'
+  						+ '<button type="button" id="btnRe" class="btn btn-success waves-effect waves-light" onclick="updatePlan();">수정</button>'
+  						+ '&nbsp;'
+  						+ '<button type="button" id="btnDel" class="btn btn-danger waves-effect waves-light" onclick="deletePlan();">폐기</button>'
   					+ '</div>'
   					+'</div>'
   				    );

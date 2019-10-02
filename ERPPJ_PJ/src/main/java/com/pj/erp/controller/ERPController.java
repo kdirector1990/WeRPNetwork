@@ -18,12 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
-import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.service.OriginService;
+import com.pj.erp.service.ProductSell;
 import com.pj.erp.vo.HashVO;
-
-import sun.nio.cs.MS1250;
+import com.pj.erp.vo.MsgVO;
 
 @Controller
 public class ERPController {
@@ -39,6 +38,9 @@ public class ERPController {
 	
 	@Autowired
 	OriginService OS;
+	
+	@Autowired
+	ProductSell PS;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ERPController.class);
 	
@@ -59,9 +61,11 @@ public class ERPController {
  
 	@RequestMapping("index")
 	public String index(Locale locale, Model model) {
-		logger.info("log => index");  
+		logger.info("log => index");
+		service.getcontrast(model);
 		return "index";
 	}
+	
 	@RequestMapping("index2")
 	public String index2(HttpServletRequest req, Model model) {
 		logger.info("log => index2");
@@ -628,7 +632,7 @@ public class ERPController {
 		return "FT/FT_apply_input2";
 	}
 	
-	// 암호화폐 편성 내역
+	// 암호화폐 편성
 	@RequestMapping("FT_plan2")
 	public String FT_plan2(Locale locale, Model model) {
 		logger.info("log => FT_plan2");
@@ -647,7 +651,7 @@ public class ERPController {
 	}
 	
 	// 재료 구매하는 페이지
-	@RequestMapping("public_productList")
+	@RequestMapping("CM_productList")
 	public String productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
 		service.materialList(req, model);
@@ -665,13 +669,17 @@ public class ERPController {
 	
 	// 재료 구매.
 	@RequestMapping("InsertMaterialIo")
-	public String InsertMaterialIo(HttpServletRequest req, Model model) throws Exception {
+	public String InsertMaterialIo(HttpServletRequest req, Model model){
 		logger.info("log => InsertMaterialIo");
-		
-		OS.payOriginMaterial(req, model);
+		try {
+			OS.payOriginMaterial(req, model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		logger.info("log => productList");
-		service.productList(req, model);
+		service.materialList(req, model);
 		return "page/productList"; 
 	}
 	
@@ -693,4 +701,72 @@ public class ERPController {
 		
 		return "page/productDetail"; 
 	}
+	
+	
+	//판매 상품 구매처리
+	@RequestMapping("EproductBuy")
+	public String EproductBuy(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => EproductBuy");
+		
+		PS.SellProduct(req, model);
+		
+		return "page/insertResult"; 
+	}
+	
+	//사내 메신저
+	@RequestMapping("MSGdeploy")
+	public String MSGdeploy(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => MSGdeploy");
+		
+		return "index2"; 
+	}
+	
+	//사내메신저 수신자 검색
+	@RequestMapping("MSG_Select_User")
+	@ResponseBody
+	public List<MsgVO> MSG_Select_User(HttpServletRequest req, Model model) {
+		logger.info("log => MSG_Select_User");
+		
+		List<MsgVO> vo = service.selectMsgUser(req, model);
+		
+		return vo;
+	}
+	
+	//사내 메신저
+	@RequestMapping("MSG_Write_Form")
+	public String MSG_Write_Form(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => MSG_Write_Form");
+		service.MsgWriteForm(req, model);
+		return "MSG_Write_Form"; 
+	}
+	
+	//사내 메신저 작성 후 insert
+	@RequestMapping("MsgWritePro")
+	public String MsgWritePro(HttpServletRequest req, Model model) throws Exception {
+		logger.info("log => MsgWritePro");
+		service.Msg_Write_Pro(req, model);
+		return "Msg_WritePro"; 
+	}
+	
+	
+	// 에러 처리용 컨트롤러 
+	@RequestMapping("cm_400")
+	public String cm_error_400(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_400");
+		model.addAttribute("msg","400");
+		return "cm";
+	}
+	@RequestMapping("cm_404")
+	public String cm_error_404(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_404");
+		model.addAttribute("msg","404");
+		return "cm";
+	}
+	@RequestMapping("cm_500")
+	public String cm_error_500(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_500");
+		model.addAttribute("msg","500");
+		return "cm";
+	}
+	
 }

@@ -73,7 +73,7 @@
 						</tr>
 						<tr>
 							<th>상세 기획안 파일</th>
-							<td>${dto.plan_name}</td>
+							<td>${dto.plan_proposal}</td>
 						</tr>
 					</tbody>
 				</table>
