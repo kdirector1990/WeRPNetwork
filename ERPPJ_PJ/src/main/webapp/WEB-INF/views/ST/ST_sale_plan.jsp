@@ -132,7 +132,7 @@
     	                         	'<td>'+ saleplan_code +'</td>'+
     	                         	'<td>'+ product_name +'</td>'+
     	                         	'<td>'+ sp_unit +'</td>'+
-    								'<td>'+ ef_price +'</td>'+
+    								'<td>'+ ef_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
     								'<td>'+ ef_amount +'</td>'+
     								'<td>'+ start_datess +'</td>'+
     								'<td>'+ edate +'</td>'+
@@ -172,7 +172,10 @@
       function ProductName() {
   		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
   		}
-        </script>
+      
+      
+      
+    </script>
 <body>
 
 	<!-- Begin page -->

@@ -135,7 +135,7 @@ $(function(){
                         	'<td>'+ release_date +'</td>'+ 
 							'<td>'+ bs_condition +'</td>'+ 
 							'<td>'+ e_name +'</td>'+
-							'<td>'+ re +'원</td>'+
+							'<td>'+ re.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'원</td>'+
                 		'</tr>');
 				}
 				$('#bodyappend').append(
@@ -229,6 +229,7 @@ $(function(){
 										<button type="button"
 											class="btn btn-primary waves-effect waves-light"
 											id="search" name="search">조회</button>
+											<br>
 									</div>
 								<div id = "resulttable">
 								</div>
