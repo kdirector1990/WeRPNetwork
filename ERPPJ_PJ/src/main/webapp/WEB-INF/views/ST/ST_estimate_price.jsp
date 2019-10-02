@@ -136,10 +136,10 @@ $(function(){
                         	'<td>'+ e_name +'</td>'+
                         	'<td>'+ detail_ac_code +'</td>'+ 
 							'<td>'+ product_name +'</td>'+ 
-							'<td>'+ ep_amount +'</td>'+
+							'<td>'+ ep_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ ep_deliver +'</td>'+
 							'<td>'+ s_plan + '</td>'+
-							'<td>'+ ep_price +'</td>'+
+							'<td>'+ ep_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ ep_price*0.1 +'</td>'+
                 		'</tr>');
 				}
