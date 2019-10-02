@@ -253,7 +253,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body table-responsive">
+							<div class="card-body table-responsive" style="margin-bottom: 0px;">
 								<div class="form-group row">
 									<label class="col-md-1 col-form-label" for="simpleinput">출력구분</label>
 									<div class="col-md-4 input-group">
@@ -281,7 +281,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body table-responsive">
+							<div class="card-body table-responsive" style="margin-bottom: 0px;">
 								<hr>
 								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap">
@@ -308,10 +308,10 @@
 				</div>
 			</div>
 
-				<div id="update">
+				<div class="row" id="update">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body table-responsive">
+							<div class="card-body table-responsive" style="margin-bottom: 0px;">
 								<div class="table-responsive" style="margin: 15px 0px 50px">
 									<form id="updateCTS" method="post" class="form-horizontal">
 										<input type="hidden" name="${_csrf.parameterName }"
