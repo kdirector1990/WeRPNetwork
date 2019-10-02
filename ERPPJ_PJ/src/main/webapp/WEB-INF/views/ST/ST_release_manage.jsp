@@ -42,7 +42,7 @@
 	    		 	result.innerHTML = "정상종료";
 	    			
 	    			var datas = httpRequest.responseText; 
-	    			
+	    			document.getElementById("updateList").style.display="block";
 	    			result.innerHTML = datas;
 	    		} else {
 	    			result.innerHTML = "에러발생";
@@ -65,6 +65,9 @@
 	    		param.sarTType = $("#sarType").val();
 	    				
 	    		jsonData = JSON.stringify(param); 
+	    		
+	    		document.getElementById("searchInfo").style.display="block";
+	    		
 	    		$.ajax({
 	    			url : '${pageContext.request.contextPath}/ST_release_result?${_csrf.parameterName}=${_csrf.token }',
 	    			type : 'POST',
@@ -77,6 +80,8 @@
 	    				$('#bodyappend').empty();
 	    				$('#resulttable').empty();
 	    				$('#result_2').empty();
+	    				
+	    				document.getElementById("updateList").style.display="none";
 	    				
 	    				$('#resulttable').append(
 	    						'<div class="table-rep-plugin">'+
@@ -274,48 +279,29 @@
 					</div>
 					<!-- end row -->
 
-					<div class="row">
+				<div class="row" id="searchInfo">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-								<div id = "resulttable">
-								
-								</div>
-									<!-- <div class="table-rep-plugin">
-										<div class="" data-pattern="priority-columns">
-											<table id="datatable"
-												class="table table-striped table-bordered dt-responsive nowrap">
-												<thead class="bg-primary text-white">
-														<tr>
-															<th>입출고 코드</th>
-															<th>품명</th>
-															<th>출고 거래처명</th>
-															<th>등록일</th>
-															<th>출고 수량</th>
-															<th>입고처</th>
-															<th>입고 수량</th>
-															<th>담당자</th>
-															<th>구분</th>
-															<th>단가</th>
-															<th>합계액</th>
-														</tr>
-													</thead>
-													<tbody id="result_2">
-														
-													</tbody>
-												</table>
-											</div>
-										</div> -->
-										<!-- end .table-rep-plugin-->
+									<div id="resulttable">
+										<!-- 검색 결과 목록 -->									
 									</div>
-									<!-- end .responsive-table-plugin-->
+								</div>
+								<!-- end .table-rep-plugin-->
+							</div>
+						</div>
+					</div>
+					<div class="row" id="updateList">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result">
+										<!-- 수정/삭제 가능한 상세 페이지 출력 -->
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div id="result">
-						<!-- 상세 페이지 출력 위치 -->
-
 					</div>
 
 				</div>

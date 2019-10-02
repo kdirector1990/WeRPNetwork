@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.service.MateralServiceImpl;
+import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
@@ -48,6 +49,9 @@ public class FT_Controller {
 	
 	@Autowired
 	MateralServiceImpl MSI;
+	
+	@Autowired
+	ST_Service ST;
 	
 	@Autowired
 	ERPService ERP;
@@ -964,5 +968,20 @@ public class FT_Controller {
 		return service.FT_CDepreciationDataList(map, model);
 	}
 	
+	//부서 조회 팝업창
+	@RequestMapping("FT_searchDepartmentname")
+	public String FT_searchDepartmentname(HttpServletRequest req, Model model) {
+		logger.info("log => FT_searchDepartmentname");
+		return "FT/FT_searchDepartmentname";
+	}
+	
+	//부서 조회 팝업창 결과
+	@RequestMapping("FT_searchDepartmentname_result")
+	public String FT_searchDepartmentname_result(HttpServletRequest req, Model model) {
+		logger.info("log => FT_searchDepartmentname_result");
+		ST.searchDepCode(req, model);
+		
+		return "FT/FT_searchDepartmentname_result";
+	}
 	
 }
