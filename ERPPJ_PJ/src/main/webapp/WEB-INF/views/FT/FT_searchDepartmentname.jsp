@@ -13,19 +13,6 @@
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
 
-var getParam = function(key){
-    var _parammap = {};
-    document.location.search.replace(/\?(?:([^=]+)=([^&]*)&?)/g,  function () {
-        function decode(s) {
-            return decodeURIComponent(s.split("+").join(" "));
-        }
-
-        _parammap[decode(arguments[1])] = decode(arguments[2]);
-    });
-
-    return _parammap[key];
-};
-
 
 // 검색창 포커스	 
 function searchNameFocus(){
@@ -76,9 +63,10 @@ function callback() {
 } 
 
 
-function setName(department_code, department_name,count) {
-	opener.document.getElementById("department_name"+count+"").value = department_name;
-	opener.document.getElementById("department_code"+count+"").value = department_code;
+function setName(department_code, department_name) {
+	opener.document.getElementById("department_code").value = department_code;
+	opener.document.getElementById("department_name").value = department_name;
+	
 	self.close();
 	
 }
