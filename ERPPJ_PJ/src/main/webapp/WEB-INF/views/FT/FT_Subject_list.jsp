@@ -134,38 +134,41 @@
 							</div>
 							<div class="card-body" style="padding-bottom: 0px;">
 								<table id="datatable"
-									class="table table-bordered dt-responsive nowrap subtables">
+									 style="width: 100%;" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"> <!--  class="table table-bordered dt-responsive nowrap subtables" -->
 									<colgroup>
-										<col style="width: 80px;">
-										<col style="width: 200px;">
+										<col style="width: 20%;">
+										<col style="width: 75%;">
 									</colgroup>
-									<thead>
-										<tr class="table-info">
-											<th>코드</th>
-											<th>계정과목명</th>
+									<thead style="overflow: auto; width:100%;">
+										
+										<tr class="table-info" style="width: 100%;"> 
+											<th  >코드</th>
+											<th  >계정과목명</th>
 										</tr>
 									</thead>
-									<tbody style="overflow: auto;">
+									<tbody style="overflow: auto; width:100%;">
 										<c:set var="count" value="0" />
 										<c:if test="${subject != null}">
+											
 											<c:forEach var="sub" items="${subject}">
-												<tr>
+												<tr style="width: 100%;">
 													<td id="code${count}" onclick="focuse(${count});"
-														style="width: 80px;" ondblclick="setvalue();">${sub.detail_ac_code}</td>
+														style="width: 20%;" ondblclick="setvalue();">${sub.detail_ac_code}</td>
 													<td id="name${count}" onclick="focuse(${count});"
 														ondblclick="setvalue();"
-														style="width: calc(200px - 16px);">${sub.account_name}</td>
+														style="width: 75%;">${sub.account_name}</td>
 													<c:set var="count" value="${count+1}" />
 												</tr>
 											</c:forEach>
 										</c:if>
 										<c:if test="${subject == null}">
+										
 											<c:forEach var="sub" begin="1" end="100">
-												<tr>
+												<tr style="width:100%;">
 													<td id="code${count}" ondblclick="setvalue(this)"
-														style="width: 80px;">${sub}</td>
+														style="width: 20%;">${sub}</td>
 													<td id="name${count}" ondblclick="setvalue(this)"
-														style="width: calc(200px - 16px);">${sub}</td>
+														style="width: 75%;">${sub}</td>
 													<c:set var="count" value="${count+1}" />
 												</tr>
 											</c:forEach>
