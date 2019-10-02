@@ -14,24 +14,7 @@
 <%@ include file="../setting.jsp"%>
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
-/* function updatePlan(){
-	var param = $("#datatable2").serializeArray();
-	$.ajax({
-		url: '/erp/MS_updatePlanPro',
-		type: 'POST',
-		data : param,
-		dataTpye: 'json',
-		success: function(param){
-			alert("수정되었습니다.");
-			$('#result').empty();
-			searchCus();
-		},
-		error : function(){
-			alert("전산 오류로 인하여 수정에 실패하였습니다.");
-		}
-	});
-}
- */
+
 function deletePlan(){
 	var param = $("#datatable2").serializeArray();
 	/* alert(JSON.stringify(param)); */

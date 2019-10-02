@@ -52,6 +52,8 @@ $(function(){
 				$('#resulttable').empty();
 				$('#result_2').empty();
 				
+				document.getElementById("searchInfo").style.display="block";
+				
 				$('#resulttable').append(
 						'<div class="table-rep-plugin">'+
 						'<div class="" data-pattern="priority-columns">'+
@@ -215,13 +217,11 @@ $(function(){
 									</table>
 									<div align="right">
 										<button type="button"
-											class="btn btn-dark waves-effect waves-light" id ="search">조회</button>
+											class="btn btn-primary waves-effect waves-light" id ="search">조회</button>
 									</div>
-									<hr>
-
 
 									<!-- 품목 -->
-									<div class="row">
+									<div class="row" id="searchInfo">
 										<div class="col-sm-12">
 											<div class="card">
 												<div class="card-body">

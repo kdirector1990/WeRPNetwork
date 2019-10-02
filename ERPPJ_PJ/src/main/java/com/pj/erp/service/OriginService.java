@@ -100,7 +100,7 @@ public class OriginService {
     		salesTeam = Credentials.create("0x20BB5789f444e47a88c366f0bfE41EcB3c75BD4C");
     	}
     	else {
-    		salesTeam = Credentials.create("3F0B5C58378DE554534A5A8C630AAC075886E74A6B3229000AE78F4500E153E3"); //st_01
+    		salesTeam = Credentials.create("BFDE674AE42A9FA179E3E965E1DDB9EA479E63E62CB61F16C2ADC4B365314BC5"); //st_01
     	}
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.

@@ -65,35 +65,35 @@
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                '</tr>');
 								}
 	                    	   }
@@ -133,35 +133,35 @@
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                '</tr>');
 								}
 	                    	   }
@@ -201,35 +201,35 @@
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 											'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 											'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 											'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice + '</td>' +
+											'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                             '</tr>');
 								}
 	                 	   }
@@ -269,35 +269,35 @@
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                                    '<td onfocus = "subfocuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 										'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 										'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 										'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice + '</td>' +
+										'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 	                         '</tr>');
 							}
 	             	   }
@@ -457,35 +457,35 @@
 												'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost + '</td>' +
+												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].baseCost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 			                                    '<td onclick = "focuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 												'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 												'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 												'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum + '</td>' +
+												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].beforesum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 			                                    '<td onclick = "focuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 												'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 												'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 												'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice + '</td>' +
+												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 			                                    '<td onclick = "focuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 												'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 												'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 												'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum + '</td>' +
+												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].nowsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 			                                    '<td onclick = "focuse(' + i + ');" style = "height: calc(1.5em + .9rem + 2px);' +
 												'padding: .45rem .9rem; font-size: .8125rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fff;' +
 												'background-clip: padding-box; border: 1px solid #ced4da; border-radius: .2rem; vertical-align:middle;' +
 												'-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;' +
 												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;' +
-												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice + '</td>' +
+												'transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out">' + data[i].unprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                '</tr>');
 									}
 		                    	   } else {
