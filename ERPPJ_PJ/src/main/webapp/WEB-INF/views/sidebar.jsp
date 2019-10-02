@@ -558,10 +558,10 @@
                           			</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/제무재표
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/재무제표
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
-	                          		<ul>
+	                          		<ul> 
 	                          				<li><a href="FT_insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
 						                    <li><a href="FT_IS">손익계산서</a></li>
