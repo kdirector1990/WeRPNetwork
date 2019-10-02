@@ -54,7 +54,7 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
-	// RPA 사원 등록
+	// RPA 사원 등록ㄸ
 	@RequestMapping("HR_InputHR_RPA")
 	public String HR_InputHR_RPA(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR_RPA");
