@@ -9,7 +9,7 @@
 <script> 
 	alert('${msg} error\n관리자에게 문의하세요!!');
 	
-	window.location.href = 'index';
+	window.location.href = '${pageContext.request.contextPath}/index';
 </script>
 <body> 
 </body>

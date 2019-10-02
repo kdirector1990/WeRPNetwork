@@ -338,20 +338,7 @@ public class HR_ServiceImpl implements HR_Service {
 
 	    String realDir = "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
 	    /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
-<<<<<<< HEAD
-	    try { file.transferTo(new File(saveDir+file.getOriginalFilename()));
-	    
-	    FileInputStream fis = new FileInputStream(saveDir +
-	    file.getOriginalFilename()); FileOutputStream fos = new
-	    FileOutputStream(realDir + file.getOriginalFilename());
-	  
-	    int data = 0;
-	  
-	    while((data = fis.read()) != -1) { fos.write(data); } 
-	    fis.close();
-	    fos.close();
-		 
-=======
+ 
 	    try {	    	
 	    	file.transferTo(new File(saveDir+file.getOriginalFilename()));	    	
 	    	
@@ -367,8 +354,7 @@ public class HR_ServiceImpl implements HR_Service {
 		    fis.close();
 		    fos.close();
 		
-		
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
+		 
 
 		HR_VO vo = new HR_VO();
 		String username = req.getParameter("username");
