@@ -149,8 +149,8 @@
                             	'<td>'+ reg +'</td>'+ 
                             	'<td>'+ release_date +'</td>'+ 
     							'<td>'+ unit +'</td>'+ 
-    							'<td>'+ amount +'</td>'+
-    							'<td>'+ price +'</td>'+
+    							'<td>'+ amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+    							'<td>'+ price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
     							'<td>'+ customer_name + '</td>'+
     							'<td>'+ release_state +'</td>'+
     							'<td>'+ note +'</td>'+

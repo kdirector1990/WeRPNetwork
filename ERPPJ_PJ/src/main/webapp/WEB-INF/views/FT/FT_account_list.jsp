@@ -43,9 +43,9 @@
 		                   $("tbody").html("");
 							for(var i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
-		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
-		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
+			              			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "display: inline-block; width:60px; font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + data[i].customer_code + '</td>' +
+		                 			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + data[i].customer_name + '</td>' +
+		                 			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + data[i].license_number + '</td>' +
 			              		'</tr>');
 							}
 	           	   }
@@ -82,9 +82,9 @@
 		               		$("tbody").html("");
 							for(i = 0; i < data.length; i++){
 								$("tbody").append('<tr>' +
-	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">' + data[i].customer_code + '</td>' +
-                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">' + data[i].customer_name + '</td>' +
-                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">' + data[i].license_number + '</td>' +
+	                			'<td id = "code' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "display: inline-block; width:60px; font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + data[i].customer_code + '</td>' +
+                       			'<td id = "name' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width:90px; font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + data[i].customer_name + '</td>' +
+                       			'<td id = "licenseNo' + i + '" onclick="focuse(' + i + ');" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">' + data[i].license_number + '</td>' +
 	                		'</tr>');
 							}
 	             	   }
@@ -148,9 +148,9 @@
                                   		<c:if test="${account != null}">
 	                                  		<c:forEach var = "acc" items="${account}">
 	                                       		<tr>
-	                                       			<td id = "code${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:60px; font-size: .85em;">${acc.customer_code}</td>
-	                                       			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:90px; font-size: .85em;">${acc.customer_name}</td>
-	                                       			<td id = "licenseNo${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em;">${acc.license_number}</td>
+	                                       			<td id = "code${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "display: inline-block; width:60px; font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${acc.customer_code}</td>
+	                                       			<td id = "name${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width:90px; font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${acc.customer_name}</td>
+	                                       			<td id = "licenseNo${count}" onclick="focuse(${count});" ondblclick="setvalue();" style = "width: calc( 130px - 16px ); font-size: .85em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${acc.license_number}</td>
 	                                       			<c:set var="count" value="${count+1}"/>
 	                                       		</tr>
                                        		</c:forEach>

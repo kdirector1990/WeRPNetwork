@@ -150,8 +150,8 @@ $(function(){
 							'<td>'+ stored_name +'</td>'+ 
 							'<td>'+ release_name +'</td>'+
 							'<td>'+ sar_type +'</td>'+
-							'<td>'+ unit_cost + '</td>'+
-							'<td>'+ amount +'</td>'+
+							'<td>'+ unit_cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>'+
+							'<td>'+ amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ e_name +'</td>'+
                 		'</tr>');
 				}

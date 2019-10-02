@@ -59,10 +59,10 @@
 						<div class="card">
 							<div class="card-body table-responsive">
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap">
-									<col style="width: 10%;">
-									<col style="width: 10%">
-									<col style="width: 15%;">
+									class="table table-striped table-bordered dt-responsive nowrap chit-table-colored-bordered chit-table-bordered-primary table-bordered"
+									style="border-collapse: collapse; border-spacing: 0;">
+									<col style="width: 15%">
+									<col style="width: 20%;">
 									<col style="width: 20%;">
 									<col style="width: 15%;">
 									<col style="width: 15%;">
@@ -70,8 +70,9 @@
 									<thead>
 										<tr>
 											<th>예금관리코드</th>
-											<th>계정코드</th>
-											<th>거래처코드</th>
+											<th>예금명</th>
+											<th>계정명</th>
+											<th>거래처명</th>
 											<th>계좌번호</th>
 											<th>예금주</th>
 										</tr>
@@ -81,11 +82,12 @@
                                   		<c:if test="${deposit != null}">
 	                                  		<c:forEach var="depo" items="${deposit}">
 	                                       		<tr>
-													<td>${depo.depositCode}</td>
-													<td>${depo.subjectCode}</td>
-													<td>${depo.accCode}</td>
-													<td>${depo.accountNo}</td>
-													<td>${depo.accountHolder}</td>
+													<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${depo.depositCode}</td>
+													<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${depo.depositName}</td>
+													<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${depo.subjectName}</td>
+													<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${depo.accName}</td>
+													<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${depo.accountNo}</td>
+													<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${depo.accountHolder}</td>
 	                                       			<c:set var="count" value="${count+1}"/>
 	                                       		</tr>
                                        		</c:forEach>

@@ -26,7 +26,7 @@
 } 
    
    function saleListName() {
-		window.open("ST_searchsaleList", "searchsaleList", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+		window.open("ST_searchsaleList", "searchsaleList", "menubar=no, width=600px, height = 600px, location=no, status=nos, top = 200, left = 500");
 	} 
 </script>
 
@@ -158,7 +158,7 @@
 													<div class="col-md-10">
 														<select class="form-control" name="sar_type" style="width: 370px;">
 															<option value="1">1. 입고</option>
-															<option value="2">2. 출고(판매)</option>
+															<option value="2" selected="selected">2. 출고(판매)</option>
 														</select>
 													</div>
 												</div>

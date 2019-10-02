@@ -122,6 +122,7 @@
 	    					
 	    					var e_name = list[i].e_name;
 	    					var product_name = list[i].product_name;
+	    					var total = unit_cost*release_count;
 	    					
 	    					var release_date = list[i].release_date;
 	    					var pa = new Date(release_date);
@@ -135,13 +136,13 @@
 	                            	'<td>'+ product_name +'</td>'+ 
 	                            	'<td>'+ release_name +'</td>'+
 	                            	'<td>'+ rel_date +'</td>'+ 
-	    							'<td>'+ release_count +'</td>'+ 
+	    							'<td>'+ release_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+ 
 	    							'<td>'+ stored_name +'</td>'+
-	    							'<td>'+ stored_count +'</td>'+
+	    							'<td>'+ stored_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 	    							'<td>'+ e_name + '</td>'+
 	    							'<td>'+ sar_type +'</td>'+
-	    							'<td>'+ unit_cost +'</td>'+
-	    							'<td>'+ unit_cost*release_count +'</td>'+
+	    							'<td>'+ unit_cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+	    							'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 	                    		'</tr>');
 	    				
 	    				}

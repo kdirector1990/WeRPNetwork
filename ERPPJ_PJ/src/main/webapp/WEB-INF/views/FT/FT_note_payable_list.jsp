@@ -73,7 +73,7 @@
 					$('#result').append('<tr>'+
                          	'<td>'+ bill_p_codes +'</td>'+
 							'<td>'+ customer_codes +'</td>'+
-							'<td>'+ payment_prices +'</td>'+
+							'<td>'+ payment_prices.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ payment_dates +'</td>'+
 							'<td>'+ payment_exprirations +'</td>'+
 							'<td>'+ payment_interests +'</td>'+
