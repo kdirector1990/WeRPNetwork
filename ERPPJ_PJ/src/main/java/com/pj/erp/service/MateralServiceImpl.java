@@ -108,9 +108,6 @@ public class MateralServiceImpl {
     	// 계정의 primary key를 검색한 부서의 팀으로 할당한다.
     	Credentials dept_AccountNumber = Credentials.create(deptWallet);
     	
-    	System.out.println(gasPrice);
-    	System.out.println(gasLimit);
-    	
     	String contractAddress2 = Materal.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
@@ -122,19 +119,19 @@ public class MateralServiceImpl {
     		ethers = etherToWei(new BigDecimal(1));
     	}
     	else if((100000 < price) && (price < 300000)) {
-    		ethers = etherToWei(new BigDecimal(2));
+    		ethers = etherToWei(new BigDecimal(1.25));
     	}
     	else if ((300000 < price) && (price < 500000)) {
-    		ethers = etherToWei(new BigDecimal(3));
+    		ethers = etherToWei(new BigDecimal(1.5));
     	}
     	else if ((500000 < price) && (price < 800000)) {
-    		ethers = etherToWei(new BigDecimal(4));
+    		ethers = etherToWei(new BigDecimal(1.8));
     	}
     	else if ((800000 < price) && (price < 1000000)) {
-    		ethers = etherToWei(new BigDecimal(5));
+    		ethers = etherToWei(new BigDecimal(2));
     	}
     	else {
-    		ethers = etherToWei(new BigDecimal(6));
+    		ethers = etherToWei(new BigDecimal(2.25));
     	}
 
     	byte[] name = stringToBytes32(department_code);
@@ -144,7 +141,7 @@ public class MateralServiceImpl {
     	Materal dept = Materal.load(contractAddress2, web3j, hostCredentials, gasPrice, gasLimit);
 
     	// 솔리디티의 budgetAdd을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
-    	// 첫번재 매개변수는 매물id인데 사용하지않아 상관없으므로 0으로 초기화
+    	// 첫번재 매개변수는 예산의 id인데 사용하지않아 상관없으므로 0으로 초기화
     	// 두번째 매개변수는 현재 접속한 부서코드 이름.
 		String hash = dept.buyMaterial(new BigInteger("0"), name, ethers).send().getTransactionHash();
 		

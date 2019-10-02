@@ -80,15 +80,13 @@
 										<th>견적 등록일</th>
 										<td><input class="form-control" type="date" name="ep_reg_date"
 											value="${eto.ep_reg_date }"></td>
-
-									</tr>
-
-									<tr>
+											
 										<th>공급가</th>
 										<td><input class="form-control" type="text" name="ep_price"
-											value="${eto.ep_price }"></td>
+											value="${eto.ep_price }"></td>	
 
 									</tr>
+
 									<tr>	
 									<td colspan="4">
 										<input class="btn btn-success waves-effect waves-light" type="submit" value="수정"
