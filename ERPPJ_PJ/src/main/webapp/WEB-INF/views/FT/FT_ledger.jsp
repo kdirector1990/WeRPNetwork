@@ -26,7 +26,7 @@
 	           	var popupX = Math.ceil((window.screen.width - 363)/2);
 	           	var popupY = Math.ceil((window.screen.height - 528)/2);
 	       		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
-	       		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
+	       		window.open(url, "subject_list", "menubar=no, width=600px, height = 600px, left="+ popupX + ", top="+ popupY);
 	       		
 	       	}
 	       	
@@ -83,17 +83,18 @@
                                         } else if(data[i].deal_state == "5") {
                                         	statename = "카드사"
                                         }
+                                        var allsum = (parseInt(data[i].before_value) + parseInt(data[i].debtor_value) - parseInt(data[i].creditor_value));
 										$("#onepage").append('<tr>' +
-	                                        '<td scope="row">' + data[i].customer_code + '</td>' +
-	                                        '<td>' + data[i].customer_name + '</td>' +
-	                                        '<td>' + data[i].license_number + '</td>' +
-	                                        '<td>' + data[i].before_value + '</td>' +
-	                                        '<td>' + data[i].debtor_value + '</td>' +
-	                                        '<td>' + data[i].creditor_value + '</td>' +
-	                                        '<td>' + (parseInt(data[i].before_value) + parseInt(data[i].debtor_value) - parseInt(data[i].creditor_value)) + '</td>' +
-	                                        '<td>' + data[i].deal_state + '</td>' +
-	                                        '<td>' + statename + '</td>' +
-	                                        '<td>' + data[i].bs_master + '</td>' +
+	                                        '<td scope="row" style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].customer_code + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].customer_name + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].license_number + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].before_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].debtor_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].creditor_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + allsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].deal_state + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + statename + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].bs_master + '</td>' +
 		                                '</tr>');
 									}
 									if(data.length == 0) {
@@ -156,11 +157,11 @@
 										}
 										balance += dev;
 										$("#twopage").append('<tr>' +
-	                                        '<td scope="row">' + data[i].journal_date + '</td>' +
-	                                        '<td>' + data[i].journal_abstract + '</td>' +
-	                                        '<td>' + data[i].debtor_value + '</td>' +
-	                                        '<td>' + data[i].creditor_value + '</td>' +
-	                                        '<td>' + balance + '</td>' +
+	                                        '<td scope="row" style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].journal_date + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].journal_abstract + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].debtor_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + data[i].creditor_value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">' + balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                '</tr>');
 									}
 									 if(data.length == 0) {
@@ -262,8 +263,9 @@
 														</table>
 
 														<div class="table-responsive">
-															<table class="table mb-0">
-																<thead class="thead-light">
+															<table class="table mb-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered"
+															style="border-collapse: collapse; border-spacing: 0;">
+																<thead>
 																	<tr>
 																		<th>코드</th>
 																		<th>거래처명</th>
@@ -320,8 +322,9 @@
 														</table>
 
 														<div class="table-responsive">
-															<table class="table mb-0">
-																<thead class="thead-light">
+															<table class="table mb-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered"
+															style="border-collapse: collapse; border-spacing: 0;">
+																<thead>
 																	<!-- <tr>
 					                                                    <th scope="col">#</th>
 					                                                    <th scope="col">First</th>

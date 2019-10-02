@@ -59,7 +59,8 @@
 						<div class="card">
 							<div class="card-body table-responsive">
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap">
+									class="table table-striped table-bordered dt-responsive nowrap chit-table-colored-bordered chit-table-bordered-primary table-bordered"
+									style="border-collapse: collapse; border-spacing: 0;">
 									<col style="width: 10%;">
 	                                <col style="width: 10%;">
 									<col style="width: 10%;">
@@ -90,16 +91,16 @@
 	                                    <c:if test="${loan != null}">                             
 	                                    	<c:forEach var="lo" items="${loan}">
 	                                      		<tr>																			
-	                                               <td>${lo.loanCode}</td>
-	                                               <td>${lo.loanName}</td>
-	                                               <td>${lo.customer_code}</td>
-	                                               <td>${lo.customer_name}</td>
-	                                               <td>${lo.username}</td>
-	                                               <td>${lo.ename}</td>
-	                                               <td><fmt:formatNumber value="${lo.loan_s_price}" pattern="#,###"/></td>
-	                                               <td>${lo.loan_s_date.substring(0,10)}</td>
-	                                               <td>${lo.loan_s_expriration.substring(0,10)}</td>
-	                                               <td>${lo.loan_s_interest}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.loanCode}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.loanName}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.customer_code}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.customer_name}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.username}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.ename}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;"><fmt:formatNumber value="${lo.loan_s_price}" pattern="#,###"/></td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.loan_s_date.substring(0,10)}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.loan_s_expriration.substring(0,10)}</td>
+	                                               <td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${lo.loan_s_interest}</td>
 	                                           </tr>
 	                                           <c:set var="cnt" value="${cnt+1}"/>
 	                                      	</c:forEach>

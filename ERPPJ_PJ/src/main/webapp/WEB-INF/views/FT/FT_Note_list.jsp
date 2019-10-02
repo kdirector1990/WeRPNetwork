@@ -59,17 +59,20 @@
 						<div class="card">
 							<div class="card-body table-responsive">
 								<table id="datatable"
-									class="table table-striped table-bordered dt-responsive nowrap">
-									<col style="width: 20%;">
-									<col style="width: 20%">
+									class="table table-striped table-bordered dt-responsive nowrap chit-table-colored-bordered chit-table-bordered-primary table-bordered"
+									style="border-collapse: collapse; border-spacing: 0;">
+									<col style="width: 15%;">
+									<col style="width: 15%">
+									<col style="width: 15%">
 									<col style="width: 15%;">
 									<col style="width: 15%;">
 									<col style="width: 15%;">
-									<col style="width: 15%;">
+									<col style="width: 10%;">
 									<thead>
 										<tr>
 											<th>받을어음관리코드</th>
-											<th>거래처코드</th>
+											<th>받을어음번호</th>
+											<th>거래처명</th>
 											<th>액면가</th>
 											<th>발생일</th>
 											<th>만기일</th>
@@ -81,12 +84,13 @@
 	                                <c:if test="${note != null}">                             
 	                                   	<c:forEach var="item" items="${note}">
 											<tr>
-												<td>${item.bill_r_code}</td>
-												<td>${item.customer_code}</td>
-												<td><fmt:formatNumber value="${item.payment_price}" pattern="#,###"/></td>
-												<td>${item.payment_date.substring(0,10)}</td>
-												<td>${item.payment_expriration.substring(0,10)}</td>
-												<td>${item.payment_interest}</td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${item.bill_r_code}</td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${item.noteNumber}</td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${item.customer_name}</td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;"><fmt:formatNumber value="${item.payment_price}" pattern="#,###"/></td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${item.payment_date.substring(0,10)}</td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${item.payment_expriration.substring(0,10)}</td>
+												<td style = "padding: .85rem; vertical-align: top; border-top: 1px solid #dee2e6;">${item.payment_interest}</td>
 											</tr>
 										</c:forEach>
                                   	</c:if>
