@@ -11,6 +11,12 @@
 #searchTable {
 	display: none;
 }
+#searchInfo {
+	display: none;
+}
+#updateList {
+	display: none;
+}
 </style>
 
 		<!-- App favicon -->
