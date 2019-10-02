@@ -30,7 +30,7 @@
 	rel="stylesheet" type="text/css" />
 <script src="/pj/resources/assets/css/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-var searchCount = 1;
+
 $(function(){
 	$('#search').click(function(){
 		var param = new Object();
@@ -48,8 +48,32 @@ $(function(){
 			dataType : "json",
 			contentType:"application/json;charset=UTF-8", 
 			success : function(list){
-				
+				$('#bodyappend').empty();
+				$('#resulttable').empty();
 				$('#result_2').empty();
+				
+				$('#resulttable').append(
+						'<div class="table-rep-plugin">'+
+						'<div class="" data-pattern="priority-columns">'+
+							'<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">'+
+								'<thead class="bg-primary text-white">'+
+									'<tr>'+
+										'<th>월</th>'+
+										'<th>품번</th>'+
+										'<th>품명</th>'+
+										'<th>거래처</th>'+
+										'<th>담당자</th>'+
+										'<th>출고 수량</th>'+
+										'<th>계획 수량</th>'+
+										'<th>달성율</th>'+
+									'</tr>'+
+								'</thead>'+
+								'<tbody id = "result_2">'+
+								
+								'</tbody>'+
+							'</table>'+
+						'</div>'+
+					'</div>	');
 				
 				for(var i = 0 ; i < list.length; i++){
 					var sale_code = list[i].sale_code;
@@ -80,12 +104,12 @@ $(function(){
                         	'<td>'+ sale_pname +'</td>'+
                         	'<td>'+ customer_name +'</td>'+ 
 							'<td>'+ sale_name +'</td>'+ 
-							'<td>'+ sale_amount +'</td>'+
-							'<td>'+ plan_amount +'</td>'+
+							'<td>'+ sale_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+							'<td>'+ plan_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ am + '%</td>'+
                 		'</tr>');
 				
-				if(searchCount == 1){
+				}
 				$('#bodyappend').append(
 				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -105,11 +129,6 @@ $(function(){
 				        '<script src="/erp/resources/assets/libs/pdfmake/vfs_fonts.js"/>' +
 				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 				);
-				searchCount = searchCount + 1;
-				}
-				
-				
-				}
 				
 			},
 			error : function(){
@@ -206,7 +225,9 @@ $(function(){
 										<div class="col-sm-12">
 											<div class="card">
 												<div class="card-body">
-													<div class="table-rep-plugin">
+													<div id = "resulttable">
+													</div>
+													<!-- <div class="table-rep-plugin">
 														<div class="" data-pattern="priority-columns">
 															<table id="datatable"
 																class="table table-striped table-bordered dt-responsive nowrap">
@@ -223,20 +244,11 @@ $(function(){
 																	</tr>
 																</thead>
 																<tbody id = "result_2">
-																	<!-- <tr>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																		<td>Table cell</td>
-																	</tr> -->
+																
 																</tbody>
 															</table>
 														</div>
-													</div>
+													</div> -->
 												</div>
 
 											</div>

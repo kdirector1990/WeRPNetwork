@@ -294,7 +294,11 @@
 		           	                       '</tr>');
 		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus();
 		           	                 count = count + 1;
-	                               alert(data);
+		           	              if(data == "insert 실패"){
+	                               		alert(data);
+		           	               } else {
+		           	            		alert("성공");
+		           	               }
 	                        },
 	                        error : function(e) {
 	                               alert('서버 연결 도중 에러가 났습니다. 다시 시도해 주십시오.');
