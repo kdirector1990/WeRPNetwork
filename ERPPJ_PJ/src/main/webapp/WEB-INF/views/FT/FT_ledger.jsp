@@ -96,6 +96,8 @@
 	                                        '<td>' + data[i].bs_master + '</td>' +
 		                                '</tr>');
 									}
+		                    	   } else {
+		                    		   alert("데이터가 없습니다.");
 		                    	   }
 	                       },
 	                       error : function(e) {
