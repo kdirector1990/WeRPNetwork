@@ -18,17 +18,16 @@ function searchNameFocus(){
 	document.searchName.customer_name.focus();
 }
 
-function enterkey() {
+ function enterkey() {
     if (window.event.keyCode == 13) {
          // 엔터키가 눌렸을 때 실행할 내용
          load1();
     }
-}
+} 
 
 // 결과
 function load1(customer_name) {
 	var url = document.searchName.customer_name.value;
-	
 	sendRequest(callback, "ST_searchCustomername_result3", "post", "customer_name="+url);
 }
 
@@ -65,13 +64,9 @@ function callback() {
 function setName(customer_name, customer_code) {
 	opener.document.getElementById("customer_nameM").value = customer_name;
 	opener.document.getElementById("customer_codeM").value = customer_code;
-
-<<<<<<< HEAD
-	//test alert
 	
-=======
+	alert(customer_name, customer_code);
 
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 	$("#customer_nameM", opener.document).val(customer_name); //jquery 이용
 	$(opener.document).find("#customer_nameM").val(customer_name); //find를 이용한 jquery
 	

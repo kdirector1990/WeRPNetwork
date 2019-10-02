@@ -18,15 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
-import com.pj.erp.service.MateralService;
 import com.pj.erp.service.MateralServiceImpl;
 import com.pj.erp.service.OriginService;
 import com.pj.erp.service.ProductSell;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.MsgVO;
-import com.pj.erp.vo.ST.ST_contrast;
-
-import sun.nio.cs.MS1250;
 
 @Controller
 public class ERPController {
@@ -69,6 +65,7 @@ public class ERPController {
 		service.getcontrast(model);
 		return "index";
 	}
+	
 	@RequestMapping("index2")
 	public String index2(HttpServletRequest req, Model model) {
 		logger.info("log => index2");
@@ -749,6 +746,27 @@ public class ERPController {
 		logger.info("log => MsgWritePro");
 		service.Msg_Write_Pro(req, model);
 		return "Msg_WritePro"; 
+	}
+	
+	
+	// 에러 처리용 컨트롤러 
+	@RequestMapping("cm_400")
+	public String cm_error_400(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_400");
+		model.addAttribute("msg","400");
+		return "cm";
+	}
+	@RequestMapping("cm_404")
+	public String cm_error_404(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_404");
+		model.addAttribute("msg","404");
+		return "cm";
+	}
+	@RequestMapping("cm_500")
+	public String cm_error_500(Locale locale, Model model) {
+		logger.info("ERPController => cm_error_500");
+		model.addAttribute("msg","500");
+		return "cm";
 	}
 	
 }
