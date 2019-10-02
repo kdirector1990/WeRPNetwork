@@ -28,7 +28,7 @@
 </head>
 <body>
 	<div class="card-body" style="padding-bottom: 0px;">
-		<div style="width: 100%; height: 330px; overflow: auto">
+		<div style="width: 100%; height: 510px; overflow: auto">
 			<form>
 				<table id="datatable" class="table table-bordered table-hover">
 					<thead class="table-info">

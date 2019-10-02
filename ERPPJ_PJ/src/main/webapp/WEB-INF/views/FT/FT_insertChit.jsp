@@ -245,7 +245,7 @@
             	var popupX = Math.ceil((window.screen.width - 363)/2);
             	var popupY = Math.ceil((window.screen.height - 528)/2);
         		var url = "FT_Subject_list?key=" + $("*[name=SubjectCode" + subjectcode + "]").val() + "&keyname=" + subjectcode;
-        		window.open(url, "subject_list", "menubar=no, width=363px, height = 528px, left="+ popupX + ", top="+ popupY);
+        		window.open(url, "subject_list", "menubar=no, width=600px, height = 600px, left="+ popupX + ", top="+ popupY);
         		
         	}
         	

@@ -112,20 +112,30 @@
 		                    		   var leftacc;
 		                    		   var rightprice;
 		                    		   var leftprice;
+		                    		   var number;
+		                    		   var k;
 										for(i = 0; i < data.length; i++){
 			                    		   if(data[i].debtor_value == 0){
 			                    			   rightacc = data[i].account_name;
 			                    			   leftacc = "";
-			                    			   rightprice = data[i].creditor_value;
+			                    			   number = data[i].creditor_value.replace(/\,/g,"");
+			                    			   rightprice = String(number).split('').join(',').split('');
+
+			                    		       for( k=rightprice.length-1, j=1; k>=0; k--, j++)  if( j%6 != 0 && j%2 == 0) rightprice[k] = '';
+			                    		       rightprice = rightprice.join('');
 			                    			   leftprice = "";
 			                    		   } else {
 			                    			   rightacc = "";
 			                    			   leftacc = data[i].account_name;
 			                    			   rightprice = "";
-			                    			   leftprice = data[i].debtor_value;
+			                    			   number = data[i].debtor_value.replace(/\,/g,"");
+			                    			   leftprice = String(number).split('').join(',').split('');
+
+			                    		       for( k=leftprice.length-1, j=1; k>=0; k--, j++)  if( j%6 != 0 && j%2 == 0) leftprice[k] = '';
+			                    		       leftprice = leftprice.join('');
 			                    		   }
 											$(".chit-table-bordered-primary tbody").append('<tr>' +
-	                                        		'<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_date + '" name = "WriteDate' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly></td>' +
+	                                        		'<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_date.substring(0,10) + '" name = "WriteDate' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly></td>' +
 	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].journal_number + '" name = "WriteNo' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);"></td>' +
 	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftprice + '" name = "LeftPrice' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly></td>' +
 	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + leftacc + '" name = "LeftSubject' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly></td>' +
@@ -136,8 +146,9 @@
 	                                                '<td><input type="text" onfocus = "focuse(this.name);" value = "' + data[i].customer_name + '" name = "AccName' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" onkeydown = "enter(this.tagName, this.name);" readonly></td>' +
 	                                            '</tr>');
 										}
-			                    	   } else {
-			                    		   alert("데이터가 없습니다.");
+										 if(data.length == 0) {
+				                    		   alert("데이터가 없습니다.");
+				                    	   }
 			                    	   }
 		                       },
 		                       error : function(e) {
@@ -347,5 +358,8 @@
 	<!-- App js -->
 	<script src="/erp/resources/assets/js/app.min.js"></script>
 
+    <!-- Plugins js -->
+    <script src="/erp/resources/assets/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
+    <script src="/erp/resources/assets/libs/autonumeric/autoNumeric-min.js"></script>
 </body>
 </html>

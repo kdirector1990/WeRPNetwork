@@ -96,9 +96,9 @@ $(function(){
                         	'<td>'+ o_date +'</td>'+ 
                         	'<td>'+ customer_name +'</td>'+
                         	'<td>'+ product_name +'</td>'+ 
-                        	'<td>'+ amount +'</td>'+ 
+                        	'<td>'+ amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+ 
 							'<td>'+ unit +'</td>'+ 
-							'<td>'+ price +'</td>'+
+							'<td>'+ price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ e_name +'</td>'+
 							'<td>'+ note +'</td>'+
                 		'</tr>');

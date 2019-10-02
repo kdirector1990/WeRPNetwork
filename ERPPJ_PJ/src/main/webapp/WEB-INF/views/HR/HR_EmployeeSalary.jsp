@@ -107,10 +107,10 @@
 							'<td>'+ department_names +'</td>'+
 							'<td>'+ rank_names +'</td>'+
 							'<td>'+ start_datess +'</td>'+
-							'<td>'+ base_payments +'</td>'+
-							'<td>'+ add_payments +'</td>'+
-							'<td>'+ extension_payments +'</td>'+
-							'<td>'+ total +'</td>'+
+							'<td>'+ base_payments.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+							'<td>'+ add_payments.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+							'<td>'+ extension_payments.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+							'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
                  		'</tr>');
 					}
 					$('#bodyappend').append(
@@ -132,7 +132,7 @@
 					
 					
 					
-					$('#totals').append(totals);
+					$('#totals').append(totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 					
 				},
 				error : function(){

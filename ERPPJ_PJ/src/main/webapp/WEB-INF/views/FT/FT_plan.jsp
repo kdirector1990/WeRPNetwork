@@ -25,7 +25,9 @@
 <link href="/erp/resources/assets/libs/datatables/dataTables.colVis.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 $(function(){
 	$('#search').click(function(){
 		var param = new Object();
@@ -87,7 +89,7 @@ $(function(){
 				$('#result').append('<tr>'+
                      	'<td onclick="FT_planUpdateDelete(\''+budget_codes+'\');">'+ budget_codes +'</td>'+
 						'<td>'+ department_names +'</td>'+
-						'<td>'+ budget_amounts +'</td>'+
+						'<td>'+ budget_amounts.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 						'<td>'+ eas_codes +'</td>'+
 						'<td>'+ e_approval_codes +'</td>'+
 						'<td>'+ budget_subjects +'</td>'+
@@ -110,9 +112,7 @@ $(function(){
 				        '<script src="/erp/resources/assets/js/pages/datatables.init.js"/>'  	
 				);
 				
-				
-				
-				$('#totals').append(totals);
+				$('#totals').append(totals.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 				
 			},
 			error : function(){

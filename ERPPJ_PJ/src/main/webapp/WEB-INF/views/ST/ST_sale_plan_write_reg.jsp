@@ -58,8 +58,8 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">예상 수량</label>
 													<div class="col-md-10">
-														<input type="text" name="ef_amount" class="form-control"
-															value="" style="width: 370px;">
+														<input type="number" name="ef_amount" class="form-control"
+															value="0" style="width: 370px;">
 													</div>
 												</div>
 

@@ -203,7 +203,7 @@
 		  					+'<div class="form-group row">'	  	
 			  					+'<label class="col-md-1 col-form-label" for="simpleinput">사진등록<span class="text-danger">*</span></label>'
 									+'<div class="col-md-4">'
-										+'<input type="file" class="dropify" name="e_picture" value="/erp/resources/hr_img/'+e_picture+'">'
+										+'<input type="file" class="dropify" name="e_picture">'
 									+'</div>'
 								+'<label class="col-md-1 col-form-label" for="simpleinput">현재사진<span class="text-danger">*</span></label>'
 									+'<div class="col-md-4">'

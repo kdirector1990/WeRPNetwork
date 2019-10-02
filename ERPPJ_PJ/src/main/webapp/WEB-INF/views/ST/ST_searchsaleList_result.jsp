@@ -16,37 +16,41 @@
 <body>
 	<div class="card-body"
 		style="padding-bottom: 0px; padding-bottom: 24px;">
-		<form name="selectTable">
-			<table id="datatable" class="table table-bordered table-hover">
-				<thead>
-					<tr class="table-info" style="text-align: center; pointer-events: none;">
-						<th>판매대장 코드</th>
-						<th>거래처명</th>
-						<th>품명</th>
-						<th>출고 요청일</th>
-					</tr>
-				</thead>
-				<tbody style="overflow:auto;">
-					<!--  있으면 -->
-					<c:if test="${cnt != 0}">
-						<c:forEach var="sto" items="${stos}">
-							<tr onclick="setName('${sto.salelist_code}','${sto.customer_name}','${sto.amount}','${sto.price}','${sto.product_name}','${sto.detail_ac_code}','${sto.customer_code}' );">
-								<td>${sto.salelist_code}</td>
-								<td>${sto.customer_name}</td>
-								<td>${sto.product_name}</td>
-								<td>${sto.release_o_date}</td>
-							</tr>
-						</c:forEach>
-					</c:if>
-					<!--  없으면 -->
-					<c:if test="${cnt == 0}">
-						<tr>
-							<td colspan="6" align="center">조회결과 없음
+		<div style="width: 100%; height: 510px; overflow: auto">
+			<form name="selectTable">
+				<table id="datatable" class="table table-bordered table-hover">
+					<thead>
+						<tr class="table-info"
+							style="text-align: center; pointer-events: none;">
+							<th>판매대장 코드</th>
+							<th>거래처명</th>
+							<th>품명</th>
+							<th>출고 요청일</th>
 						</tr>
-					</c:if>
-				</tbody>
-			</table>
-		</form>
+					</thead>
+					<tbody style="overflow: auto;">
+						<!--  있으면 -->
+						<c:if test="${cnt != 0}">
+							<c:forEach var="sto" items="${stos}">
+								<tr
+									onclick="setName('${sto.salelist_code}','${sto.customer_name}','${sto.amount}','${sto.price}','${sto.product_name}','${sto.detail_ac_code}','${sto.customer_code}' );">
+									<td>${sto.salelist_code}</td>
+									<td>${sto.customer_name}</td>
+									<td>${sto.product_name}</td>
+									<td>${sto.release_o_date}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<!--  없으면 -->
+						<c:if test="${cnt == 0}">
+							<tr>
+								<td colspan="6" align="center">조회결과 없음
+							</tr>
+						</c:if>
+					</tbody>
+				</table>
+			</form>
+		</div>
 	</div>
 	<!-- Datatable plugin js -->
         <script src="/erp/resources/assets/libs/datatables/dataTables.responsive.min.js"></script>
