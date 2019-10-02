@@ -27,8 +27,6 @@ var getParam = function(key){
 };
 
 
-출처: https://stove99.tistory.com/97 [스토브 훌로구]
-
 // 검색창 포커스	 
 function searchNameFocus(){
 	document.searchName.department_name.focus();

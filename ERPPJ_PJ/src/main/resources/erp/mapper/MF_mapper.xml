@@ -46,7 +46,9 @@
 
 	 <!-- 생산계획목록 -->
 	 <select id="getMFplanList" resultType="com.pj.erp.vo.MF.MF_plan">
-		SELECT * FROM mf_plan_tbl
+		select m.*, p.product_name 
+		from mf_plan_tbl m join product_list_tbl p 
+		on m.product_code = p.product_code order by p_pp_code
 	</select>
 	
 	<!-- 생산계획수정 -->
@@ -56,7 +58,7 @@
 			where p_pp_code=#{p_pp_code}
 	</update>
 	
-	<!-- 생산계횐삭제 -->
+	<!-- 생산계획삭제 -->
 	<delete id="delateMFplan" parameterType="String">
 		delete from mf_plan_tbl where p_pp_code=#{p_pp_code}
 	</delete>

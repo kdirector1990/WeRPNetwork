@@ -255,12 +255,15 @@
 												<select class="form-control" name="sar_type" id="sarType">
 														<option value = "1">1. 입고</option>
 														<option value="2">2. 출고(판매)</option>
-													</select> &nbsp;
-													<button type="button" class="btn btn-primary waves-effect waves-light" id="search">조회</button>
-													</td>	
-												<td></td>
+													</select> 
+												</td>	
 											</tr>
 										</table>
+										<div align="right">
+										<button type="button"
+											class="btn btn-primary waves-effect waves-light"
+											id="search" name="search">조회</button>
+									</div>
 									</form>
 								</div>
 							</div>

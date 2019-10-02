@@ -71,8 +71,8 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">수량</label>
 													<div class="col-md-10">
-														<input type="text" name="ep_amount" class="form-control"
-															placeholder="" style="width: 350px;">
+														<input type="number" name="ep_amount" class="form-control"
+															value="0" style="width: 350px;">
 													</div>
 												</div>
 
@@ -122,7 +122,7 @@
 												<div class="form-group row">
 													<label class="col-md-2 col-form-label">공급가</label>
 													<div class="col-md-10">
-														<input type="text" name="ep_price" class="form-control"
+														<input type="number" name="ep_price" class="form-control" step = "10000"
 															value="" style="width: 350px;">
 													</div>
 												</div>

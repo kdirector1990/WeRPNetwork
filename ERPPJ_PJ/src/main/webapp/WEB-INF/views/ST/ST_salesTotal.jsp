@@ -3,6 +3,11 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<style type="text/css">
+#searchInfo{
+	display: none;
+}
+</style>
 <script type = "text/javascript">
 function ST_searchCustomerName() {
 	window.open("ST_searchCustomername3", "ST_searchCustomerName", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
@@ -31,7 +36,7 @@ var searchCount = 1;
 			success: function(vo){
 				
 				$('#result1').empty();
-
+				document.getElementById("searchInfo").style.display="block";
 				for(var i = 0; i < vo.length; i++){
 					var customer_code = vo[i].customer_code;
 					var customer_name = vo[i].customer_name;
@@ -319,12 +324,16 @@ var searchCount = 1;
 												<th class="col-md-1 col-form-label">거래처</th>
 												<td class="col-md-2 input-group">
 												<input type="text" name="customer_code" id="customer_codeM" class="form-control" onclick="ST_searchCustomerName();">
+												</td>
+												<td class="col-md-2 input-group">
 												<input type="text" name="customer_name" id="customer_nameM" class="form-control" readonly>
 												<td>
 													
 												<th class="col-md-1 col-form-label">품명</th>
 												<td class="col-md-2 input-group">
 												<input type="text" name="product_code" id="product_codeP" class="form-control" onclick="ST_searchProductname();">
+												</td>
+												<td class="col-md-2 input-group">
 												<input type="text" name="product_name" id="product_nameP" class="form-control" readonly>
 												</td>
 											</tr>
@@ -332,12 +341,16 @@ var searchCount = 1;
 												<th class="col-md-1 col-form-label">사원</th>
 												<td class="col-md-2 input-group">
 												<input type="text" name="username" id="username" class="form-control" onclick="ST_searchUsername();">
+												</td>
+												<td class="col-md-2 input-group">
 												<input type="text" name="e_name" id="e_name" class="form-control" readonly>
 												</td>
 												
 												<th class="col-md-1 col-form-label">부서</th>
 												<td class="col-md-2 input-group">
 												<input type="text" name="department_code" id="department_code" class="form-control" onclick="ST_searchDepartmentname();">
+												</td>
+												<td class="col-md-2 input-group">
 												<input type="text" name="department_name" id="department_name" class="form-control" readonly>
 												</td>
 											</tr>
@@ -353,7 +366,7 @@ var searchCount = 1;
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row" id="searchInfo">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
@@ -362,7 +375,7 @@ var searchCount = 1;
 											id="user-tab" data-toggle="tab" href="#user" role="tab"
 											aria-controls="user" aria-selected="false"> <span
 												class="d-block d-sm-none"><i class="fa fa-user"></i></span>
-												<span class="d-none d-sm-block">고객</span>
+												<span class="d-none d-sm-block">거래처</span>
 										</a></li>
 										<li class="nav-item"><a class="nav-link" id="product-tab"
 											data-toggle="tab" href="#product" role="tab"
@@ -392,14 +405,14 @@ var searchCount = 1;
 											<input type="hidden" name="${_csrf.parameterName }"
 												value="${_csrf.token }">
 											<div class="col-sm-12">
-												<div class="card-body">
-													<div class="table-responsive" style="margin: 15px 0px 50px">
-														<table id = "datatable"
-															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
-															<thead>
+												<div class="card">
+													<div class="card-body">
+														<table id="datatable"
+															class="table m-0 table-bordered table-hover">
+															<thead class="bg-primary text-white">
 																<tr>
 																	<th>코드</th>
-																	<th>고객명</th>
+																	<th>거래처명</th>
 																	<th>합계</th>
 																	<th>1월</th>
 																	<th>2월</th>
@@ -428,11 +441,11 @@ var searchCount = 1;
 										<div class="tab-pane" id="product" role="tabpanel"
 											aria-labelledby="product-tab">
 											<div class="col-sm-12">
-												<div class="card-body">
-													<div class="table-responsive" style="margin: 15px 0px 50px">
+												<div class="card">
+													<div class="card-body">
 														<table id="datatable-fixed-header"
-															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
-															<thead>
+															class="table m-0 table-bordered table-hover">
+															<thead class="bg-primary text-white">
 																<tr>
 																	<th>품번</th>
 																	<th>품명</th>
@@ -452,8 +465,8 @@ var searchCount = 1;
 																	<th>12월</th>
 																</tr>
 															</thead>
-															<tbody id = "result2">
-								
+															<tbody id="result2">
+
 															</tbody>
 														</table>
 													</div>
@@ -465,11 +478,11 @@ var searchCount = 1;
 										<div class="tab-pane" id="manager" role="tabpanel"
 											aria-labelledby="manager-tab">
 											<div class="col-sm-12">
-												<div class="card-body">
-													<div class="table-responsive" style="margin: 15px 0px 50px">
+												<div class="card">
+													<div class="card-body">
 														<table id="datatable-keytable"
-															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
-															<thead>
+															class="table m-0 table-bordered table-hover">
+															<thead class="bg-primary text-white">
 																<tr>
 																	<th>코드</th>
 																	<th>담당자명</th>
@@ -488,8 +501,8 @@ var searchCount = 1;
 																	<th>12월</th>
 																</tr>
 															</thead>
-															<tbody id = "result3">
-								
+															<tbody id="result3">
+
 															</tbody>
 														</table>
 													</div>
@@ -497,15 +510,15 @@ var searchCount = 1;
 											</div>
 										</div>
 
-										<!-- 발령내역별 -->
+										<!-- 부서별 -->
 										<div class="tab-pane" id="department" role="tabpanel"
 											aria-labelledby="department-tab">
 											<div class="col-sm-12">
-												<div class="card-body">
-													<div class="table-responsive" style="margin: 15px 0px 50px">
+												<div class="card">
+													<div class="card-body">
 														<table id="datatable-responsive"
-															class="table m-0 chit-table-colored-bordered chit-table-bordered-primary table-bordered table-hover">
-															<thead>
+															class="table m-0 table-bordered table-hover">
+															<thead class="bg-primary text-white">
 																<tr>
 																	<th>코드</th>
 																	<th>부서명</th>
@@ -525,18 +538,19 @@ var searchCount = 1;
 																</tr>
 															</thead>
 															<tbody id="result4">
-															
+
 															</tbody>
 														</table>
 													</div>
 												</div>
 											</div>
 										</div>
+
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</div><!-- end of row -->
 				</div>
 				<%@ include file="../footer.jsp"%>
 			</div>
