@@ -150,7 +150,7 @@
 									<li class="breadcrumb-item active">가상화폐 편성 내역</li>
 								</ol>
 							</div>
-							<h4 class="page-title">가상화폐 편성 내역</h4>
+							<h4 class="page-title" style="font-size: 25px;">가상화폐 편성 내역</h4>
 						</div>
 					</div>
 				</div>

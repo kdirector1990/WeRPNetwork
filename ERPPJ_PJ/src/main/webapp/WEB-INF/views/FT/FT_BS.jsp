@@ -119,7 +119,7 @@
                                             <li class="breadcrumb-item active">Datatables</li>
                                         </ol> -->
 								</div>
-								<h4 class="page-title">재무상태표</h4>
+								<h4 class="page-title" style="font-size: 25px;">재무상태표</h4>
 							</div>
 						</div>
 					</div>

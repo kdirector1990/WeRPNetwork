@@ -312,16 +312,8 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box">
-								<div class="page-title-right">
-									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
-										<li class="breadcrumb-item active">Datatables</li>
-									</ol>
-								</div>
-								<h4 class="page-title">전표승인해제</h4>
+								 
+								<h4 class="page-title" style="font-size: 25px;">전표승인해제</h4>
 							</div>
 						</div>
 					</div>

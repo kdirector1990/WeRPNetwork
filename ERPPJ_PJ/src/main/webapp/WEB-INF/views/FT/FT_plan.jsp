@@ -235,7 +235,7 @@ $(function(){
 									<li class="breadcrumb-item active">예산계획현황</li>
 								</ol>
 							</div>
-							<h4 class="page-title">예산계획현황</h4>
+							<h4 class="page-title" style="font-size: 25px;">예산계획현황</h4>
 						</div>
 					</div>
 				</div>

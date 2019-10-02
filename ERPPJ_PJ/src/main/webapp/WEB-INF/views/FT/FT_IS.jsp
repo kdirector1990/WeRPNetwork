@@ -102,7 +102,7 @@
 										<li class="breadcrumb-item active">Datatables</li>
 									</ol>
 								</div>
-								<h4 class="page-title">손익계산서</h4>
+								<h4 class="page-title" style="font-size: 25px;">손익계산서</h4>
 							</div>
 						</div>
 					</div>
