@@ -43,7 +43,7 @@ function callback() {
 		 	result.innerHTML = "정상종료";
 			
 			var datas = httpRequest.responseText;  
-			
+			document.getElementById("updateList").style.display="block";
 			result.innerHTML = datas;
 		} else {
 			result.innerHTML = "에러발생";
@@ -54,7 +54,6 @@ function callback() {
 	}
 }
 
-var searchCount = 1;
 $(function(){
 	$('#search').click(function(){
 		var param = new Object();
@@ -67,6 +66,8 @@ $(function(){
 				
 		jsonData = JSON.stringify(param); 
 		
+		document.getElementById("searchInfo").style.display="block";
+		
 		$.ajax({
 			url : '${pageContext.request.contextPath}/ST_estimate_result?${_csrf.parameterName}=${_csrf.token }',
 			type : 'POST',
@@ -77,6 +78,8 @@ $(function(){
 				$('#bodyappend').empty();
 				$('#resulttable').empty();
 				$('#result_2').empty();
+				
+				document.getElementById("updateList").style.display="none";
 				
 				$('#resulttable').append(
 						'<div class="table-rep-plugin">' +
@@ -143,6 +146,7 @@ $(function(){
 							'<td>'+ ep_price*0.1 +'</td>'+
                 		'</tr>');
 				}
+				
 				$('#bodyappend').append(
 				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
 				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -261,7 +265,7 @@ $(function(){
 					</div>
 					<!-- end row -->
 
-					<div class="row">
+					<div class="row" id="searchInfo">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
@@ -296,11 +300,17 @@ $(function(){
 							</div>
 						</div>
 					</div>
-					<div id="result">
-						<!-- 상세 페이지 출력 위치 -->
-
+					<div class="row" id="updateList">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result">
+										<!-- 수정/삭제 가능한 상세 페이지 출력 -->
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-
 				</div>
 				<!-- end container-fluid -->
 
