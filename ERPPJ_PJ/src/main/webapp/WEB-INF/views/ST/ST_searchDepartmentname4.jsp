@@ -13,20 +13,6 @@
 <script src="/erp/resources/assets/css/js/request.js"></script>
 <script type="text/javascript">
 
-var getParam = function(key){
-    var _parammap = {};
-    document.location.search.replace(/\?(?:([^=]+)=([^&]*)&?)/g,  function () {
-        function decode(s) {
-            return decodeURIComponent(s.split("+").join(" "));
-        }
-
-        _parammap[decode(arguments[1])] = decode(arguments[2]);
-    });
-
-    return _parammap[key];
-};
-
-
 // 검색창 포커스	 
 function searchNameFocus(){
 	document.searchName.department_name.focus();
@@ -43,7 +29,7 @@ function enterkey() {
 function load1(department_name) {
 	var url = document.searchName.department_name.value;
 	
-	sendRequest(callback, "FT_searchDepartmentname_result2", "post", "department_name="+url);
+	sendRequest(callback, "FT_searchDepartmentname_result", "post", "department_name="+url);
 }
 
 function callback() {
@@ -76,19 +62,18 @@ function callback() {
 } 
 
 
-function setName(department_code, department_name,count) {
-	opener.document.getElementById("department_name"+count+"").value = department_name;
-	opener.document.getElementById("department_code"+count+"").value = department_code;
+function setName(department_code, department_name) {
+	opener.document.getElementById("department_code").value = department_code;
+	opener.document.getElementById("department_name").value = department_name;
 
 	//test alert
-	/* alert(department_name, department_code);
 	
-	$("#department_name", opener.document).val(department_name+count); //jquery 이용
-	$(opener.document).find("#department_name").val(department_name+count); //find를 이용한 jquery
+	$("#department_name", opener.document).val(department_name); //jquery 이용
+	$(opener.document).find("#department_name").val(department_name); //find를 이용한 jquery
 	
-	$("#department_code", opener.document).val(department_code+count); //jquery 이용
-	$(opener.document).find("#department_code").val(department_code+count); //find를 이용한 jquery
-	*/
+	$("#department_code", opener.document).val(department_code); //jquery 이용
+	$(opener.document).find("#department_code").val(department_code); //find를 이용한 jquery
+	
 	self.close();
 	
 }
