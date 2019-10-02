@@ -80,7 +80,6 @@ function setName(department_code, department_name,count) {
 	opener.document.getElementById("department_name"+count+"").value = department_name;
 	opener.document.getElementById("department_code"+count+"").value = department_code;
 
-	alert(count);
 	//test alert
 	/* alert(department_name, department_code);
 	

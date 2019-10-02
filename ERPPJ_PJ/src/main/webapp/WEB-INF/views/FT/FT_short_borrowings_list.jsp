@@ -76,7 +76,7 @@
                          	'<td>'+ debt_s_codes +'</td>'+
 							'<td>'+ customer_codes +'</td>'+
 							'<td>'+ usernames +'</td>'+
-							'<td>'+ debt_s_prices +'</td>'+
+							'<td>'+ debt_s_prices.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 							'<td>'+ debt_s_datess +'</td>'+
 							'<td>'+ debt_s_exprirationss +'</td>'+
 							'<td>'+ debt_s_interests +'</td>'+

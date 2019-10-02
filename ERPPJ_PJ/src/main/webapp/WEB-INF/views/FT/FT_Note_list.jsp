@@ -83,7 +83,7 @@
 											<tr>
 												<td>${item.bill_r_code}</td>
 												<td>${item.customer_code}</td>
-												<td>${item.payment_price}</td>
+												<td><fmt:formatNumber value="${item.payment_price}" pattern="#,###"/></td>
 												<td>${item.payment_date.substring(0,10)}</td>
 												<td>${item.payment_expriration.substring(0,10)}</td>
 												<td>${item.payment_interest}</td>

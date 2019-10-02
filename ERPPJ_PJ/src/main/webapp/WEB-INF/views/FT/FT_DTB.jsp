@@ -53,30 +53,30 @@
 	                    		   var listS = data[2];
 									for(var j = 0; j < listL.length; j++){
 										$("#onepage").append('<tr>' +
-	                                        '<td scope="row" style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].lg_name + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
+	                                        '<td scope="row" style = "background-color:#D6EAF8">' + listL[j].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8"><b style = "font-size:20px;">' + (j+1) + '. ' + listL[j].lg_name + '</b></td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                '</tr>');
 										for(var k = 0; k < listM.length; k++) {
 											if(listL[j].lg_name == listM[k].lg_name){
 												$("#onepage").append('<tr>' +
-				                                        '<td scope="row" style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].ag_name + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
+				                                        '<td scope="row" style = "background-color:#EBF5FB">' + listM[k].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB"><b style = "font-size:15px;">' + listM[k].ag_name + '</b></td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 					                                '</tr>');
 											}
 											for(var l = 0; l < listS.length; l++) {
 												if(listM[k].ag_name == listS[l].ag_name && listL[j].lg_name == listM[k].lg_name){
 													$("#onepage").append('<tr>' +
-					                                        '<td scope="row">' + listS[l].debtorsum + '</td>' +
-					                                        '<td>' + listS[l].debtorsum + '</td>' +
+					                                        '<td scope="row">' + listS[l].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+					                                        '<td>' + listS[l].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 					                                        '<td>' + listS[l].accounts_name + '</td>' +
-					                                        '<td>' + listS[l].creditorsum + '</td>' +
-					                                        '<td>' + listS[l].creditorsum + '</td>' +
+					                                        '<td>' + listS[l].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+					                                        '<td>' + listS[l].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 						                                '</tr>');
 												}
 											}
@@ -126,30 +126,30 @@
 	                    		   var listS = data[2];
 									for(var j = 0; j < listL.length; j++){
 										$("#twopage").append('<tr>' +
-	                                        '<td scope="row" style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].debtorsum + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].lg_name + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
-	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum + '</td>' +
+	                                        '<td scope="row" style = "background-color:#D6EAF8">' + listL[j].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8"><b style = "font-size:20px;">' + (j+1) + '. ' + listL[j].lg_name + '</b></td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+	                                        '<td style = "background-color:#D6EAF8">' + listL[j].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 		                                '</tr>');
 										for(var k = 0; k < listM.length; k++) {
 											if(listL[j].lg_name == listM[k].lg_name){
 												$("#twopage").append('<tr>' +
-				                                        '<td scope="row" style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].debtorsum + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].ag_name + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
-				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum + '</td>' +
+				                                        '<td scope="row" style = "background-color:#EBF5FB">' + listM[k].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB"><b style = "font-size:15px;">' + listM[k].ag_name + '</b></td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+				                                        '<td style = "background-color:#EBF5FB">' + listM[k].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 					                                '</tr>');
 											}
 											for(var l = 0; l < listS.length; l++) {
 												if(listM[k].ag_name == listS[l].ag_name && listL[j].lg_name == listM[k].lg_name){
 													$("#twopage").append('<tr>' +
-					                                        '<td scope="row">' + listS[l].debtorsum + '</td>' +
-					                                        '<td>' + listS[l].debtorsum + '</td>' +
+					                                        '<td scope="row">' + listS[l].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+					                                        '<td>' + listS[l].debtorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 					                                        '<td>' + listS[l].accounts_name + '</td>' +
-					                                        '<td>' + listS[l].creditorsum + '</td>' +
-					                                        '<td>' + listS[l].creditorsum + '</td>' +
+					                                        '<td>' + listS[l].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
+					                                        '<td>' + listS[l].creditorsum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</td>' +
 						                                '</tr>');
 												}
 											}
@@ -193,14 +193,10 @@
 							<div class="page-title-box">
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
-										<li class="breadcrumb-item active">Datatables</li>
+										<li class="breadcrumb-item active">일월계표</li>
 									</ol>
 								</div>
-								<h4 class="page-title">거래처원장</h4>
+								<h4 class="page-title">일월계표</h4>
 							</div>
 						</div>
 					</div>
