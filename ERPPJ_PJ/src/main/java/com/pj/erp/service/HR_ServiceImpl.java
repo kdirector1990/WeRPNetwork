@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,7 +55,7 @@ public class HR_ServiceImpl implements HR_Service {
         String saveDir = req.getRealPath("/resources/hr_img/"); 
 		/* F:\dev50\git\WeRPNetwork\ERPPJ_PJ\src\main\webapp\resources\hr_img\ 
 		 * 서버용 저장 경로*/
-        String realDir="C:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
+        String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
  
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));            
@@ -335,31 +336,42 @@ public class HR_ServiceImpl implements HR_Service {
 	  
 	    String saveDir = req.getRealPath("/resources/hr_img/");
 
-	    String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
+	    String realDir = "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
 	    /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
-	    try { file.transferTo(new File(saveDir+file.getOriginalFilename()));
+ 
+	    try {	    	
+	    	file.transferTo(new File(saveDir+file.getOriginalFilename()));	    	
+	    	
+		    FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename()); 
+		    FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+		    
+	    	
+		    int data = 0;
 	  
-	    FileInputStream fis = new FileInputStream(saveDir +
-	    file.getOriginalFilename()); FileOutputStream fos = new
-	    FileOutputStream(realDir + file.getOriginalFilename());
-	  
-	    int data = 0;
-	  
-	    while((data = fis.read()) != -1) { fos.write(data); } 
-	    fis.close();
-	    fos.close();
+		    while((data = fis.read()) != -1) { 
+		    	fos.write(data); 
+		    } 
+		    fis.close();
+		    fos.close();
+		
 		 
 
 		HR_VO vo = new HR_VO();
 		String username = req.getParameter("username");
 		String e_name = req.getParameter("e_name");
+		
+		UUID uuid = UUID.randomUUID();
 		String e_picture = file.getOriginalFilename();
-
+		
+		
 		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
 
 		vo.setUsername(username);
 		vo.setE_name(e_name);
 		vo.setE_picture(e_picture);
+		if(e_picture == null) {
+			vo.setE_picture("noImage.png");
+		}
 		vo.setE_gender(e_gender);
 		vo.setE_type(req.getParameter("e_type"));
 		vo.setE_code(req.getParameter("e_code"));
@@ -388,9 +400,8 @@ public class HR_ServiceImpl implements HR_Service {
 		model.addAttribute("username", username);
 		 
 		
-		}catch(
-		 
-		IOException e) { e.printStackTrace(); 
+		}catch(IOException e) { 
+			e.printStackTrace(); 
 		}
 	    
 	}

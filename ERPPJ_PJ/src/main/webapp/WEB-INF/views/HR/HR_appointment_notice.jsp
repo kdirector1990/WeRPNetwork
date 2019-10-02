@@ -38,6 +38,8 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(list){
 					
+					document.getElementById("searchTable").style.display="block";
+					
 					$('#result').empty();					
 					$('#bodyappend').empty();		
 					
@@ -268,19 +270,20 @@
 							</div>
 						</div>
 					</div>	
-
+					
+					<div id="searchTable">
 						<div class="row">
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
 										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap table-hover center"
+											class="table table-bordered dt-responsive nowrap center table-colored-bordered table-bordered-info"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
-												<tr>													
+												<tr class="bg-primary text-white">													
 													<th colspan="4">발령대상자</th>
 												</tr>
-												<tr>
+												<tr class="thead-light">
 													<th>사번</th>
 													<th>성명</th>
 													<th>부서</th>
@@ -300,14 +303,14 @@
 							<div class="col-xl-6">
 								<div class="card">
 									<div class="card-body">
-										<table id="datatable"
-											class="table table-striped table-bordered dt-responsive nowrap center"
+										<table id="datatable-keytable"
+											class="table table-bordered dt-responsive nowrap center table-colored-bordered table-bordered-info"
 											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 											<thead>
-												<tr>													
+												<tr class="bg-primary text-white">													
 													<th colspan="4">발령내역</th>
 												</tr>
-												<tr>
+												<tr class="thead-light">
 													<th>공고명</th>
 													<th>변경 후 직책</th>
 													<th>변경 후 부서</th>
@@ -325,6 +328,7 @@
 							</div>
 							<!-- end col -->
 						</div>
+					</div>
 					
 
 					
@@ -345,6 +349,6 @@
 	<!-- Right Sidebar -->
 	<%@ include file="../rightbar.jsp"%>
 	<%@ include file="../setting2.jsp"%>
-
+	<div id="bodyappend"></div>
 </body>
 </html>
