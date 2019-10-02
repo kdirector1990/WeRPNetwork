@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.vo.HR.HR_FamilyVO;
@@ -35,7 +36,7 @@ import com.pj.erp.vo.HR.HR_nfc_log;
 public class HR_Controller {
 
 	@Autowired
-	HR_Service service;
+	HR_Service service;	
 	
 	@Autowired
 	CT_Service CT;
@@ -189,6 +190,7 @@ public class HR_Controller {
 	public List<HR_VO> HR_EmployeeInformation_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => HR_EmployeeInformation_result");
 		List<HR_VO> list = service.getUsers(map, req, model);
+		
 		return list;
 	}
 	
