@@ -968,20 +968,4 @@ public class FT_Controller {
 		return service.FT_CDepreciationDataList(map, model);
 	}
 	
-	//부서 조회 팝업창
-	@RequestMapping("FT_searchDepartmentname")
-	public String FT_searchDepartmentname(HttpServletRequest req, Model model) {
-		logger.info("log => FT_searchDepartmentname");
-		return "FT/FT_searchDepartmentname";
-	}
-	
-	//부서 조회 팝업창 결과
-	@RequestMapping("FT_searchDepartmentname_result")
-	public String FT_searchDepartmentname_result(HttpServletRequest req, Model model) {
-		logger.info("log => FT_searchDepartmentname_result");
-		ST.searchDepCode(req, model);
-		
-		return "FT/FT_searchDepartmentname_result";
-	}
-	
 }
