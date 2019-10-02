@@ -42,7 +42,7 @@
 	    		 	result.innerHTML = "정상종료";
 	    			
 	    			var datas = httpRequest.responseText; 
-	    			
+	    			document.getElementById("updateList").style.display="block";
 	    			result.innerHTML = datas;
 	    		} else {
 	    			result.innerHTML = "에러발생";
@@ -64,6 +64,8 @@
 	    		param.product_name = $("#ProductName").val();
 	    				
 	    		jsonData = JSON.stringify(param); 
+	    		
+	    		document.getElementById("searchInfo").style.display="block";
 	    		$.ajax({
 	    			url : '${pageContext.request.contextPath}/ST_refund_result2?${_csrf.parameterName}=${_csrf.token }',
 	    			type : 'POST',
@@ -74,6 +76,8 @@
 	    				$('#bodyappend').empty();
 	    				$('#resulttable').empty();
 	    				$('#result_2').empty();
+	    				
+	    				document.getElementById("updateList").style.display="none";
 	    				
 	    				$('#resulttable').append(
 	    						'<div class="table-rep-plugin">' +
@@ -119,6 +123,7 @@
 	    						sar_type="재입고(반품)";
 	    					}
 	    					
+	    					var total = unit_cost*release_count;
 	    					var e_name = list[i].e_name;
 	    					var product_name = list[i].product_name;
 	    					
@@ -134,13 +139,13 @@
 	                            	'<td>'+ product_name +'</td>'+ 
 	                            	'<td>'+ release_name +'</td>'+
 	                            	'<td>'+ rel_date +'</td>'+ 
-	    							'<td>'+ release_count +'</td>'+ 
+	    							'<td>'+ release_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+ 
 	    							'<td>'+ stored_name +'</td>'+
-	    							'<td>'+ stored_count +'</td>'+
+	    							'<td>'+ stored_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 	    							'<td>'+ e_name + '</td>'+
 	    							'<td>'+ sar_type +'</td>'+
-	    							'<td>'+ unit_cost +'</td>'+
-	    							'<td>'+ unit_cost*release_count +'</td>'+
+	    							'<td>'+ unit_cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+	    							'<td>'+ total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
 	                    		'</tr>');
 	    				}
 	    				$('#bodyappend').append(
@@ -236,22 +241,25 @@
 											value="${_csrf.token }">
 										<table class="col-12">
 											<tr class="form-group row">
-												<th class="col-md-1 col-form-label" style="text-align: right;">거래처</th>
+												<th class="col-md-1 col-form-label"
+													style="text-align: right;">거래처</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="customerName" id="customerName" class="form-control"></td>
 
-												<th class="col-md-1 col-form-label"style="text-align: right;">담당자</th>
+												<th class="col-md-1 col-form-label"
+													style="text-align: right;">담당자</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="username" id="username_2" class="form-control"></td>
-													
-												<th class="col-md-1 col-form-label"style="text-align: right;">품명</th>
+
+												<th class="col-md-1 col-form-label"
+													style="text-align: right;">품명</th>
 												<td class="col-md-2 input-group"><input type="text"
 													name="ProductName" id="ProductName" class="form-control"></td>
 											</tr>
 										</table>
 										<div align="right">
 											<button type="button"
-												class="btn btn-primary waves-effect waves-light" id="search" >조회</button>
+												class="btn btn-primary waves-effect waves-light" id="search">조회</button>
 										</div>
 									</form>
 								</div>
@@ -262,47 +270,28 @@
 					</div>
 					<!-- end row -->
 
-					<div class="row">
+					<div class="row" id="searchInfo">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-								<div id = "resulttable">
-								</div>
-									<!-- <div class="table-rep-plugin">
-										<div class="" data-pattern="priority-columns">
-											<table id="datatable"
-												class="table table-striped table-bordered dt-responsive nowrap">
-												<thead class="bg-primary text-white">
-														<tr>
-															<th>입출고 코드</th>
-															<th>품명</th>
-															<th>출고 거래처명</th>
-															<th>등록일</th>
-															<th>출고 수량</th>
-															<th>입고처</th>
-															<th>입고 수량</th>
-															<th>담당자</th>
-															<th>구분</th>
-															<th>단가</th>
-															<th>합계액</th>
-														</tr>
-													</thead>
-													<tbody id="result_2">
-														
-													</tbody>
-												</table>
-											</div>
-										</div> -->
-										<!-- end .table-rep-plugin-->
+									<div id="resulttable">
+										<!-- 검색 결과 목록 -->
 									</div>
-									<!-- end .responsive-table-plugin-->
 								</div>
+								<!-- end .table-rep-plugin-->
 							</div>
 						</div>
 					</div>
-					<div id="result">
-						<!-- 상세 페이지 출력 위치 -->
-
+					<div class="row" id="updateList">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result">
+										<!-- 수정/삭제 가능한 상세 페이지 출력 -->
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 
 				</div>

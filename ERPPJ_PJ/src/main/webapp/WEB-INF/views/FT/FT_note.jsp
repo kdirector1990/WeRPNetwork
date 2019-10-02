@@ -255,7 +255,11 @@
 		           	                       '</tr>');
 		           	       			 $(".chit-table-bordered-primary tbody #first" + count).focus(); 
 		           	                 count = count + 1;*/
-	                               alert(data);
+	                        	if(data == "insert 실패"){
+                               		alert(data);
+	           	               } else {
+	           	            		alert("성공");
+	           	               }
 	                               location.reload();
 	                        },
 	                        error : function(e) {

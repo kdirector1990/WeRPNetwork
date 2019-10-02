@@ -168,7 +168,7 @@ public class ST_Controller {
 
 		return "ST/ST_release_deletePro";
 	}
-	     
+	        
 	// 반품 관리
 	@RequestMapping("ST_refund")
 	public String ST_refund(HttpServletRequest req, Model model) {
@@ -183,7 +183,7 @@ public class ST_Controller {
 		logger.info("log => ST_sale_plan_write_reg");
 		
 		return "ST/ST_sale_plan_write_reg";
-	}
+	}  
 	
 	// ST_sale_plan 판매 계획 등록 
 	@RequestMapping("ST_sale_plan_writePro")
@@ -626,23 +626,5 @@ public class ST_Controller {
 		
 		return "ST/ST_searchsaleList_result";
 	}
-	
-	
-	//부서 조회 팝업창
-	@RequestMapping("ST_searchDepartmentname3")
-	public String ST_searchDepartmentname3(HttpServletRequest req, Model model) {
-		logger.info("log => ST_searchDepartmentname3");
-		return "ST/ST_searchDepartmentname3";
-	}
-	
-	//부서 조회 팝업창 결과
-	@RequestMapping("ST_searchDepartmentname_result3")
-	public String ST_searchDepartmentname_result3(HttpServletRequest req, Model model) {
-		logger.info("log => ST_searchDepartmentname_result3");
-		service.searchDepCode(req, model);
-		
-		return "ST/ST_searchDepartmentname_result3";
-	}
-	
 	
 }

@@ -51,7 +51,6 @@
                     type : "POST",
                     url : "/erp/FT_LandOneSelect?${_csrf.parameterName }=${_csrf.token }&srhval=" + $("#code" + cc).html(),
                     success : function(data) {
-                        alert(data);
 	                   	$("#update").css("display", "");
 	                   	$("#submit").css("display", "none");
 	                   	$("input[name=landName]").val(data.landName);

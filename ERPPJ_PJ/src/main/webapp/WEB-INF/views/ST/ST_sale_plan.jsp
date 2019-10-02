@@ -45,7 +45,7 @@
     		 	result.innerHTML = "정상종료";
     			
     			var datas = httpRequest.responseText; 
-    			
+    			document.getElementById("updateList").style.display="block";
     			var bookList = "";
     			
     			result.innerHTML = datas;
@@ -69,6 +69,8 @@
     					
     			jsonData = JSON.stringify(param);
     			
+    			document.getElementById("searchInfo").style.display="block";
+    			
     			$.ajax({
     				url : '${pageContext.request.contextPath}/ST_sale_plan_result?${_csrf.parameterName}=${_csrf.token }',
     				type : 'POST',
@@ -76,9 +78,13 @@
     				dataType : "json",
     				contentType:"application/json;charset=UTF-8",
     				success : function(list){
-    					$('#bodyappend').empty();
-        				$('#resulttable').empty();
         				$('#result_2').empty();
+        				$('#result').empty();
+        				
+        				document.getElementById("updateList").style.display="none";
+        				
+        				$('#bodyappend').empty();
+        				$('#resulttable').empty();
         				
         				$('#resulttable').append(
         						'<div class="table-rep-plugin">'+
@@ -132,7 +138,7 @@
     	                         	'<td>'+ saleplan_code +'</td>'+
     	                         	'<td>'+ product_name +'</td>'+
     	                         	'<td>'+ sp_unit +'</td>'+
-    								'<td>'+ ef_price +'</td>'+
+    								'<td>'+ ef_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
     								'<td>'+ ef_amount +'</td>'+
     								'<td>'+ start_datess +'</td>'+
     								'<td>'+ edate +'</td>'+
@@ -172,7 +178,10 @@
       function ProductName() {
   		window.open("ST_searchProductname", "ProductName_list", "menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
   		}
-        </script>
+      
+      
+      
+    </script>
 <body>
 
 	<!-- Begin page -->
@@ -214,83 +223,59 @@
 								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-
-											<th>품명</th>
+											<th class="col-md-1 col-form-label">품명</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="productName" id="productName">
 											</td>
 
-											<td>&nbsp;&nbsp;</td>
-
-											<th>계획년도</th>
+											<th class="col-md-1 col-form-label">계획년도</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="user_date" id="user_date">
 											</td>
-
-											<th></th>
 										</tr>
 									</table>
 									<div align="right">
 										<button type="button"
-											class="btn btn-primary waves-effect waves-light"
-											id="search">조회</button>
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" id="searchInfo">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-								<div id = "resulttable">
+									<div id="resulttable"></div>
 								</div>
-									<!-- <div class="table-rep-plugin">
-										<div class="" data-pattern="priority-columns">
-											<table id="datatable"
-												class="table table-striped table-bordered dt-responsive nowrap">
-												<thead class="bg-primary text-white">
-													<tr>
-														<th>판매계획코드</th>
-														<th>품명</th>
-														<th>단위 (관리)</th>
-														<th>예상 금액</th>
-														<th>예상 수량</th>
-														<th>기간 시작</th>
-														<th>기간 종료</th>
-														<th>비고</th>
-													</tr>
-
-												</thead>
-												<tbody id="result_2">
-													
-												</tbody>
-											</table>
-										</div>
-									</div> -->
+							</div>
+						</div>
+					</div>
+					<div class="row" id="updateList">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result">
+										<!-- 수정/삭제 가능한 상세 페이지 출력 -->
+									</div>
 								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<!-- end row -->
-
 			</div>
-			</div>
-			</div>
-			</div>
-			<div id="result"></div>
-
 		</div>
-	</div>
 
-	<!-- end container-fluid -->
+		<!-- end container-fluid -->
 
-	<!-- end content -->
-	<%@ include file="../footer.jsp"%>
+		<!-- end content -->
+		<%@ include file="../footer.jsp"%>
 
-	<!-- ============================================================== -->
-	<!-- End Page content -->
-	<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- End Page content -->
+		<!-- ============================================================== -->
 
-	<!-- END wrapper -->
+		<!-- END wrapper -->
 
 	</div>
 	<!-- END wrapper -->

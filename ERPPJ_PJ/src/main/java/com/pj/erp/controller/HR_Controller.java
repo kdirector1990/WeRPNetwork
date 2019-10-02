@@ -43,7 +43,7 @@ public class HR_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HR_Controller.class);
 	
-	 
+	// 사원 등록 페이지
 	@RequestMapping("HR_InputHR")
 	public String HR_InputHR(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR");
@@ -54,6 +54,7 @@ public class HR_Controller {
 		return "HR/HR_InputHR";
 	}
 	
+	// RPA 사원 등록ㄸ
 	@RequestMapping("HR_InputHR_RPA")
 	public String HR_InputHR_RPA(HttpServletRequest req, Model model) {
 		logger.info("log => HR_InputHR_RPA");
@@ -63,7 +64,8 @@ public class HR_Controller {
 		 
 		return "HR/HR_InputHR_RPA";
 	}
-
+	
+	// 사원 등록 처리 페이지
 	@RequestMapping(value="HR_inputFoundation", method=RequestMethod.POST) 
 	public String inputFoundation(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_inputFoundation");
@@ -72,6 +74,7 @@ public class HR_Controller {
 		return "index";		
 	}		
 	
+	// 사원정보 수정페이지 - 안씀
 	@RequestMapping("HR_modifyFoundation")
 	public String HR_modifyFoundation(HttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundation");
@@ -83,6 +86,7 @@ public class HR_Controller {
 		return "HR/HR_modifyFoundation";
 	}
 	
+	// 사원정보 수정처리
 	@RequestMapping(value="HR_modifyFoundationPro", method=RequestMethod.POST) 
 	public String HR_modifyFoundationPro(MultipartHttpServletRequest req, Model model) {
 		logger.info("log = > HR_modifyFoundationPro");
@@ -91,6 +95,7 @@ public class HR_Controller {
 		return  "HR/HR_FoundationLocation";
 	}
 	
+	// 신체정보 수정페이지 - 안씀
 	@RequestMapping("HR_modifyPhysicaly")
 	public String HR_modifyPhysicaly(HttpServletRequest req, Model model) {
 		logger.info("log => HR_modifyPhysicaly");
@@ -99,6 +104,7 @@ public class HR_Controller {
 		return "HR/HR_modifyPhysicaly";
 	}
 	
+	// 신체정보 수정 처리
 	@RequestMapping("HR_modifyPhysicalyPro")
 	public String HR_modifyPhysicalyPro(HttpServletRequest req, Model model) {
 		logger.info("log => HR_modifyPhysicalyPro");
@@ -107,6 +113,7 @@ public class HR_Controller {
 		return "HR/HR_PhysicalyLocation";
 	}
 	
+	// 가족정보 수정처리
 	@RequestMapping("HR_modifyFamilyPro")
 	public String HR_modifyFamilyPro(HttpServletRequest req, Model model) {
 		logger.info("log => HR_modifyFamilyPro");
@@ -126,12 +133,13 @@ public class HR_Controller {
 	}
 	*/
 	
-	@RequestMapping("HR_inputProHR3")
-	public String HR_inputProHR3(HttpServletRequest req, Model model) {
-		logger.info("log => HR_inputProHR3");
-		
-		return "HR/HR_InputHR";
-	}
+	/*
+	 * @RequestMapping("HR_inputProHR3") public String
+	 * HR_inputProHR3(HttpServletRequest req, Model model) {
+	 * logger.info("log => HR_inputProHR3");
+	 * 
+	 * return "HR/HR_InputHR"; }
+	 */
 	
 	/*@RequestMapping("joinPro")
 	public String joinPro(HttpServletRequest req, Model model) {
@@ -140,7 +148,7 @@ public class HR_Controller {
 		return "index";
 	}*/
 	
-	// 사원정보
+	// 사원정보 수정용 상세페이지
 	@RequestMapping("HR_update_Fou")
 	@ResponseBody	
 	public HR_VO HR_update_Fou(HttpServletRequest req, Model model) {
@@ -150,7 +158,7 @@ public class HR_Controller {
 		return data;
 	}
 	
-	// 신체정보
+	// 신체정보 수정용 상세페이지
 	@RequestMapping("HR_update_Phy")
 	@ResponseBody
 	public HR_PhysicalVO HR_update_Phy(HttpServletRequest req, Model model) {
@@ -161,17 +169,18 @@ public class HR_Controller {
 		return data;
 	}
 	
-	// 가족정보
+	// 가족정보 수정용 상세페이지
 	@RequestMapping("HR_update_Fam")
 	@ResponseBody
-	public HR_PhysicalVO HR_update_Fam(HttpServletRequest req, Model model) {
+	public HR_FamilyVO HR_update_Fam(HttpServletRequest req, Model model) {
 		logger.info("log => HR_update_Fam");
 		
-		HR_PhysicalVO data = service.HR_select_physical(req, model);
+		HR_FamilyVO data = service.HR_select_family(req, model);
 		
 		return data;
 	}
-
+	
+	// 사원정보현황 조회 페이지
 	@RequestMapping("HR_EmployeeInformation")
 	public String HR_EmployeeInformation(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeInformation");
@@ -184,7 +193,7 @@ public class HR_Controller {
 		return "HR/HR_EmployeeInformation";
 	}
 	
-	//사원정보현황
+	//사원정보 검색결과 리스트 불러오기
 	@RequestMapping(value = "HR_EmployeeInformation_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public List<HR_VO> HR_EmployeeInformation_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
@@ -194,7 +203,7 @@ public class HR_Controller {
 		return list;
 	}
 	
-	// 신체정보현황
+	// 신체정보현황 페이지
 	@RequestMapping("HR_EmployeePhysicaly")
 	public String HR_EmployeePhysicaly(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeePhysicaly");
@@ -202,7 +211,7 @@ public class HR_Controller {
 		return "HR/HR_EmployeePhysicaly";
 	}
 	
-	//신체정보 검색결과
+	//신체정보 검색결과 리스트 불러오기
 	@RequestMapping(value = "HR_EmployeePhysicaly_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public  List<HR_PhysicalVO> HR_EmployeePhysicaly(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
@@ -211,7 +220,7 @@ public class HR_Controller {
 		return list;
 	}
 	
-	// 가족정보현황
+	// 가족정보현황 페이지
 	@RequestMapping("HR_EmployeeFamily")
 	public String HR_EmployeeFamily(HttpServletRequest req, Model model) {
 		logger.info("log => HR_EmployeeFamily");
@@ -219,7 +228,7 @@ public class HR_Controller {
 		return "HR/HR_EmployeeFamily";
 	}
 	
-	//가족정보 검색결과
+	//가족정보 검색결과 리스트 불러오기
 	@RequestMapping(value = "HR_EmployeeFamily_result", produces ={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} , method = RequestMethod.POST)
 	@ResponseBody
 	public List<HR_FamilyVO> HR_EmployeeFamily_result(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
@@ -271,7 +280,7 @@ public class HR_Controller {
 		return list;
 	}	
 	
-	
+	// 근속년수현황
 	@RequestMapping("HR_Yearsofservice")
 	public String HR_Yearsofservice(HttpServletRequest req, Model model) {
 		logger.info("log => HR_Yearsofservice");
@@ -295,6 +304,7 @@ public class HR_Controller {
 		return "HR/HR_LeaveStandard";
 	}
 	
+	// 인사발령등록 페이지
 	@RequestMapping("HR_Greeting")
 	public String HR_Greeting(HttpServletRequest req, Model model) {
 		logger.info("log => HR_Greeting");
@@ -304,6 +314,7 @@ public class HR_Controller {
 		return "HR/HR_Greeting";
 	}
 	
+	// 사원번호 검색창
 	@RequestMapping("HR_searchUsername")
 	public String HR_searchUsername(HttpServletRequest req, Model model) {
 		logger.info("log => HR_searchUsername");
@@ -311,7 +322,7 @@ public class HR_Controller {
 		return "HR/HR_searchUsername";
 	}
 	
-	// 검색목록가져오기
+	// 사원번호 검색목록 가져오기
 	@RequestMapping("HR_searchUsername_result")
 	public String HR_searchUsername_result(HttpServletRequest req, Model model) {
 		logger.info("log => HR_searchUsername_result");
@@ -320,6 +331,7 @@ public class HR_Controller {
 		return "HR/HR_searchUsername_result";
 	}
 	
+	// 공고코드 검색창
 	@RequestMapping("HR_searchAp_code")
 	public String HR_searchAp_code(HttpServletRequest req, Model model) {
 		logger.info("log => HR_searchAp_code");
@@ -327,7 +339,7 @@ public class HR_Controller {
 		return "HR/HR_searchAp_code";
 	}
 	
-	// 검색목록가져오기
+	// 발령공고 검색목록 가져오기
 	@RequestMapping("HR_searchAp_code_result")
 	public String HR_searchAp_code_result(HttpServletRequest req, Model model) {
 		logger.info("log => HR_searchAp_code_result");
@@ -336,6 +348,7 @@ public class HR_Controller {
 		return "HR/HR_searchAp_code_result";
 	}
 	
+	// 직잭변경 등록
 	@RequestMapping("HR_recordinput")
 	public String HR_recordinput(HttpServletRequest req, Model model) {
 		logger.info("log => HR_recordinput");
@@ -344,13 +357,14 @@ public class HR_Controller {
 		return "HR/HR_recordLocation";
 	}
 	
-	@RequestMapping("HR_record_input_pro")
+	/*@RequestMapping("HR_record_input_pro")
 	public String HR_record_input_pro(HttpServletRequest req, Model model) {
 		logger.info("log => HR_record_input_pro");
 		service.HR_recordinput(req, model);
 		return "HR/HR_record_input_pro";
-	}
+	}*/
 	
+	// 발령공고 등록
 	@RequestMapping("HR_APinput")
 	public String HR_APinput(HttpServletRequest req, Model model) {
 		logger.info("log = > HR_APinput");
@@ -359,6 +373,7 @@ public class HR_Controller {
 		return "HR/HR_APinputLocation";
 	}
 	
+	// 인사발령공고 조회 페이지
 	@RequestMapping("HR_appointment_notice")
 	public String HT_appointment_notice(HttpServletRequest req, Model model) {
 		logger.info("log => HR_appointment_notice");
@@ -366,6 +381,7 @@ public class HR_Controller {
 		return "HR/HR_appointment_notice";
 	}
 	
+	// 인사발령리포트 조회 페이지
 	@RequestMapping("HR_appointment_report")
 	public String HR_appointment_report(HttpServletRequest req, Model model) {
 		logger.info("log => HR_appointment_report");
@@ -432,6 +448,7 @@ public class HR_Controller {
 		return "HR/coming_soon";
 	}
 	
+	// 부서등록 페이지
 	@RequestMapping("HR_InputDepartment")
 	public String InputDepartment(HttpServletRequest req, Model model) {
 		logger.info("log => InputDepartment");				
@@ -439,6 +456,7 @@ public class HR_Controller {
 		return "HR/HR_InputDepartment"; 
 	}
 	
+	// 부서등록 처리
 	@RequestMapping("HR_inputDepartmentPro") 
 	public String inputDepartmentPro(HttpServletRequest req, Model model) {
 		logger.info("log => inputDepartmentPro");
