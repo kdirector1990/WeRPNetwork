@@ -55,7 +55,7 @@ public class HR_ServiceImpl implements HR_Service {
         String saveDir = req.getRealPath("/resources/hr_img/"); 
 		/* F:\dev50\git\WeRPNetwork\ERPPJ_PJ\src\main\webapp\resources\hr_img\ 
 		 * 서버용 저장 경로*/
-        String realDir="C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
+        String realDir="F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
         String times = String.valueOf(System.currentTimeMillis());
         try {
             file.transferTo(new File(saveDir+times+uuid+"_"+file.getOriginalFilename()));            
@@ -341,7 +341,7 @@ public class HR_ServiceImpl implements HR_Service {
 	    
 	    String saveDir = req.getRealPath("/resources/hr_img/");
 
-	    String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
+	    String realDir = "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; 
 	    /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
 	    String times = String.valueOf(System.currentTimeMillis());
 	    try {	    	
@@ -939,6 +939,17 @@ public class HR_ServiceImpl implements HR_Service {
 
 		List<HR_RecordVO> list = dao.getRecords(map);
 		return list;
+	}
+
+
+
+	@Override
+	public void selectAppointment(HttpServletRequest req, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<HR_ApVO> ap = dao.getAppointmentList(map);
+
+		model.addAttribute("ap", ap);
+		
 	}
 
 }
