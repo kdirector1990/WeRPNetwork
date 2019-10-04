@@ -550,7 +550,7 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="FT_insertChit">전표입력</a></li> 
-					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
+					                    <li><a href="FT_Chit_Manager">전표 승인/해제</a></li>
 					                    <li><a href="FT_journal">분개장</a></li>
 					                    <li><a href="FT_ledger">거래처원장</a></li>
 					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
@@ -752,6 +752,7 @@
 							</li>
 							</c:if>
 							</c:if>
+							<!-- 
                              <li class="menu-title mt-2">More</li>
 
 							<li>
@@ -967,7 +968,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
 
                     </div>

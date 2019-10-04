@@ -39,19 +39,19 @@
 						var net_profit = nontax_income-tax_cost;
 						
 						$('#is_result').empty(); 
-						$('#is_result').append('<tr><td><h4>총매출액</h4></td><td>'+total_sale_income+'</td></tr>');  
-						$('#is_result').append('<tr><td>매출원가</td><td>'+cost+'</td></tr>');  
-						$('#is_result').append('<tr><td><h4>매출총이익</h4></td><td>'+income+'</td></tr>');  
-						$('#is_result').append('<tr><td>판매비와 관리비</td><td>'+sale_expense+'</td></tr>');
-						$('#is_result').append('<tr><td><h4>영업이익</h4></td><td>'+bs_income+'</td></tr>');  
+						$('#is_result').append('<tr><td><h4>총매출액</h4></td><td align=right>'+total_sale_income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');  
+						$('#is_result').append('<tr><td>매출원가</td><td align=right>'+cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');  
+						$('#is_result').append('<tr><td><h4>매출총이익</h4></td><td align=right>'+income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');  
+						$('#is_result').append('<tr><td>판매비와 관리비</td><td align=right>'+sale_expense.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');
+						$('#is_result').append('<tr><td><h4>영업이익</h4></td><td align=right>'+bs_income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');  
 						
-						$('#is_result').append('<tr><td>영업외 수익</td><td>'+total_etc_income+'</td></tr>');  
-						$('#is_result').append('<tr><td>영업외 비용</td><td>'+total_etc_cost+'</td></tr>');   
-						$('#is_result').append('<tr><td><h4>법인세차감전순이익</h4></td><td>'+nontax_income +'</td></tr>');
+						$('#is_result').append('<tr><td>영업외 수익</td><td align=right>'+total_etc_income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');  
+						$('#is_result').append('<tr><td>영업외 비용</td><td align=right>'+total_etc_cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');   
+						$('#is_result').append('<tr><td><h4>법인세차감전순이익</h4></td><td align=right>'+nontax_income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td></tr>');
 						
-						$('#is_result').append('<tr><td>법인세</td><td>'+tax_cost+'</td></tr>');  
+						$('#is_result').append('<tr><td>법인세</td><td align=right>'+tax_cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</td></tr>');  
 						
-						$('#is_result').append('<tr><td><h4>당기순이익</h4></td><td>'+net_profit +'</td></tr>');
+						$('#is_result').append('<tr><td><h4>당기순이익</h4></td><td align=right>'+net_profit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td></tr>');
 					},
 					error : function() {
 						alert("에러, 관리자에게 문의하세요\n에러코드: FT_BS - search_bs - ajax error")
