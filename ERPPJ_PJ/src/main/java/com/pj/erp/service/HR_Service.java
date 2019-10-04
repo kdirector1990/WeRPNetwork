@@ -154,4 +154,7 @@ public interface HR_Service {
 	
 	// 발령공고 변경리스트 페이지
 	public List<HR_RecordVO> getRecords(Map<String, Object> map, HttpServletRequest req, Model model) throws java.text.ParseException;
+	
+	// 공고목록 현황
+	public void selectAppointment(HttpServletRequest req, Model model);
 }

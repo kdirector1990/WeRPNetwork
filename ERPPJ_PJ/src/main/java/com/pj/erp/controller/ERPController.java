@@ -623,13 +623,25 @@ public class ERPController {
 	@RequestMapping("FT_apply_input2_pro")
 	public String FT_apply_input2_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input2_pro");
+		/*
 		try {
 			MSI.budgetAdd(req, model);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 		
-		return "FT/FT_apply_input2";
+		try {
+			String wallet = service.department_wallet_Search(req, model);
+			String price = service.department_price_req(req);
+			String hash = MSI.BudgetAdd(wallet, price);
+			service.InsertDBbudget(req, hash);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "FT/FT_plan2";
 	}
 	
 	// 암호화폐 편성

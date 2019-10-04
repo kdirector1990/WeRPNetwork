@@ -138,4 +138,5 @@
 		Values('MSG_'||MSG_CODE_SEQ.nextval, #{from_user}, #{to_user}, #{msg_content})
 	</insert>
 	
+	
 </mapper>

@@ -123,4 +123,5 @@ public class ERPDAOImpl implements ERPDAO{
 	public int WritePro(MsgVO vo) {
 		return sqlSession.insert("com.pj.erp.persistence.ERPDAO.WritePro", vo);
 	}
+
 }
