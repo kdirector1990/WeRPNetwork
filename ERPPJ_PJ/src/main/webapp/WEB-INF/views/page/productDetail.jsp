@@ -86,7 +86,7 @@
 						<div class="col-lg-8 mx-auto">
 							<div class="modal-body">
 							
-							<form action="EproductBuy">
+							<form action="CM_EproductBuy">
 							<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 							<input type="hidden" name="product_name" value="${shop.product_name }">

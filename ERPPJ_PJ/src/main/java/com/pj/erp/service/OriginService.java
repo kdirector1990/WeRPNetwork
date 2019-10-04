@@ -29,7 +29,7 @@ public class OriginService {
 	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 
 	private static final BigInteger gasLimit = BigInteger.valueOf(4712388L);
-	private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
+	private static final BigInteger gasPrice =  BigInteger.valueOf(190000000000L);
 	
 	private static final Credentials Account = Credentials.create("3f0b5c58378de554534a5a8c630aac075886e74a6b3229000ae78f4500e153e3");
 	String contractAddress = "";
@@ -84,7 +84,7 @@ public class OriginService {
     @SuppressWarnings("deprecation")
 	public void payOriginMaterial(HttpServletRequest req, Model model) throws Exception {
     	
-    	String deptname = " ft_01";
+    	String deptname = " mf_01";
     		
     	//원자재 구매시 이더를 보낼 거래처의 지갑 정보를 위해 판매자 아이디를 가져온다.
     	String seller = req.getParameter("salesTeam");
