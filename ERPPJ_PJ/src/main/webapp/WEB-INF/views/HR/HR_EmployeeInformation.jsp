@@ -69,7 +69,7 @@
 									'<th>사원번호</th>'+
 									'<th>사원명</th>'+
 									'<th>성별</th>'+
-									'<th>주민번호</th>'+
+									'<th>생년월일</th>'+
 									'<th>연락처</th>'+
 									'<th>우편번호</th>'+
 									'<th>주소</th>'+
@@ -255,7 +255,7 @@
 							+'</div>'
 						+'</div>'	
 						+'<div class="form-group row">'
-							+'<label class="col-md-1 col-form-label" for="simpleinput">주민등록번호<span class="text-danger">*</span></label>'
+							+'<label class="col-md-1 col-form-label" for="simpleinput">생년월일<span class="text-danger">*</span></label>'
 							+'<div class="col-md-4">'
 								+'<input type="text" class="form-control" name="e_code" value="'+e_code+'" size="13">'
 							+'</div>'
