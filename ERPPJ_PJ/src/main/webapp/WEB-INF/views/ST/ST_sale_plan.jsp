@@ -223,12 +223,12 @@
 								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">품명</th>
+											<th class="col-md-1 col-form-label" style="text-align: right;">품명</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="productName" id="productName">
 											</td>
 
-											<th class="col-md-1 col-form-label">계획년도</th>
+											<th class="col-md-1 col-form-label" style="text-align: right;">계획년도</th>
 											<td class="col-md-2 input-group"><input type="text"
 												class="form-control" name="user_date" id="user_date">
 											</td>
