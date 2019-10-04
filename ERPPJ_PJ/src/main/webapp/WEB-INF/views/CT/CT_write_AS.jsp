@@ -11,7 +11,7 @@
 		function write_add(){
 			var param = $("#AS_Write").serializeArray();
     		$.ajax({
-    			url: '/erp/CT_AS_add',
+    			url: '/erp/CM_AS_add',
     			type: 'POST',
     			data : param,
     			dataTpye: 'json',

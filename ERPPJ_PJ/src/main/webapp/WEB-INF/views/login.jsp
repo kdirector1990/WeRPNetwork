@@ -34,10 +34,9 @@
                             </div>
                         </div>     
             
-               		 <div class="row">
-               		 	<div class="col-3">
-               		 	</div>
-                            <div class="col-6">
+               		 <div class="row" style=" width: 100%; margin: auto;">
+               		  
+                            <div class="col-6" style="width: 100%; min-width: 280px; margin: auto;"> 
                                 <div class="card">
                                		<div class="card-header bg-primary">
                                         <div class="logo-box">

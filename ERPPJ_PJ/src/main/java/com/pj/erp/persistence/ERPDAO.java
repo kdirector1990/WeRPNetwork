@@ -64,4 +64,5 @@ public interface ERPDAO {
 	
 	// 메신저 입력
 	public int WritePro(MsgVO vo);
+	
 }

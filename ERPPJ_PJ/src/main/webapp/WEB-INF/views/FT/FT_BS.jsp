@@ -28,42 +28,42 @@
 						
 						var assets_left_total = 0;
 						var assets_right_total = 0;
-						$('#bs_result').append('<tr><td></td><td></td><td><h4>1. 자산</h4></td><td></td><td></td></tr>');
+						$('#bs_result').append('<tr><td style="width: 20%;"></td><td style="width: 20%;"></td><td align=center style="width: 20%;"><h4>1. 자산</h4></td><td style="width: 20%;"></td><td style="width: 20%;"></td></tr>');
 						for (var i = 0; i < assets.length; i++) {
 							var left_val = assets[i].debtor_total-assets[i].creditor_total;
 							var right_val = assets[i].creditor_total-assets[i].debtor_total;
 							$('#bs_result').append(
 									
 							'<tr>'+
-								'<td>'+ left_val +'</td>'+
-								'<td>'+ assets[i].debtor_total +'</td>'+
-								'<td>'+ assets[i].account_name +'</td>'+
-								'<td>'+ assets[i].creditor_total +'</td>'+
-								'<td>'+ '0' +'</td>' +
+								'<td align=right >'+ left_val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+								'<td align=right>'+ assets[i].debtor_total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+								'<td align=center>'+ assets[i].account_name+'</td>'+
+								'<td align=right>'+ assets[i].creditor_total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+								'<td align=right>'+ '0' +'</td>' +
 							'</tr>'); 
 							assets_left_total += left_val;
 							assets_right_total += right_val;
 						}
 						var liab_left_total = 0;
 						var liab_right_total = 0;
-						$('#bs_result').append('<tr><td></td><td></td><td><h4>2. 부채</h4></td><td></td><td></td></tr>');
+						$('#bs_result').append('<tr><td></td><td></td><td align=center><h4>2. 부채</h4></td><td></td><td></td></tr>');
 						for (var i = 0; i < liab.length; i++) {
 							var left_val = liab[i].debtor_total-liab[i].creditor_total;
 							var right_val = liab[i].creditor_total-liab[i].debtor_total;
 							$('#bs_result').append(
 									
 							'<tr>'+
-								'<td>'+ '0' +'</td>'+
-								'<td>'+ liab[i].debtor_total +'</td>'+
-								'<td>'+ liab[i].account_name +'</td>'+
-								'<td>'+ liab[i].creditor_total +'</td>'+
-								'<td>'+ right_val +'</td>' +
+								'<td align=right>'+ '0' +'</td>'+
+								'<td align=right>'+ liab[i].debtor_total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+								'<td align=center>'+ liab[i].account_name +'</td>'+
+								'<td align=right>'+ liab[i].creditor_total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+								'<td align=right>'+ right_val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>' +
 							'</tr>'); 
 							liab_left_total += left_val;
 							liab_right_total += right_val;
 						}
 						
-						$('#bs_result').append('<tr><td></td><td></td><td><h4>3. 자본금</h4></td><td></td><td></td></tr>');
+						$('#bs_result').append('<tr><td></td><td></td><td align=center><h4>3. 자본금</h4></td><td></td><td></td></tr>');
 						 
 							var income = (assets_left_total-liab_right_total)-capit[0].creditor_total;
 							var left_val = capit[0].debtor_total-capit[0].creditor_total;
@@ -71,11 +71,11 @@
 							$('#bs_result').append(
 									
 							'<tr>'+
-								'<td>'+ '0' +'</td>'+
-								'<td>'+ capit[0].debtor_total +'</td>'+
-								'<td>'+ capit[0].account_name +'</td>'+
-								'<td>'+ capit[0].creditor_total+' ( '+income+' ) ' +'</td>'+
-								'<td>'+ right_val +'</td>' +
+								'<td align=right>'+ '0' +'</td>'+
+								'<td align=right>'+ capit[0].debtor_total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>'+
+								'<td align=center>'+ capit[0].account_name +'</td>'+
+								'<td align=right>'+ capit[0].creditor_total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+' ( '+income.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+' ) ' +'</td>'+
+								'<td align=right>'+ right_val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +'</td>' +
 							'</tr>'); 
 						 
 						
@@ -119,7 +119,7 @@
                                             <li class="breadcrumb-item active">Datatables</li>
                                         </ol> -->
 								</div>
-								<h4 class="page-title">재무상태표</h4>
+								<h4 class="page-title" style="font-size: 25px;">재무상태표</h4>
 							</div>
 						</div>
 					</div>
@@ -141,7 +141,7 @@
 									<table id="datatable"
 										style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 										<tr class="form-group row">
-											<th class="col-md-1 col-form-label">회계년도</th>
+											<th class="col-md-1 col-form-label" >회계년도</th>
 											<td class="col-md-2 input-group"><select
 												class="form-control" id="fiscalyear" onchange=""
 												style="width: 200px;">
@@ -202,11 +202,11 @@
 															<table class="table mb-0"  >
 																<thead class="thead-light">
 																	<tr>
-																		<th>잔액</th>
-																		<th>차변</th>
-																		<th>계정명</th>
-																		<th>대변</th>
-																		<th>잔액</th>
+																		<th style="padding-left: 50%;">잔액</th>
+																		<th align=center>차변</th>
+																		<th align=center>계정명</th>
+																		<th align=center>대변</th>
+																		<th align=center>잔액</th>
 																	</tr> 
 																</thead>
 																<tbody id="bs_result">

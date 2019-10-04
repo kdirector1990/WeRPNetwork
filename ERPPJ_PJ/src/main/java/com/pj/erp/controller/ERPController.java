@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pj.erp.service.CT_Service;
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.HR_Service;
 import com.pj.erp.service.MateralServiceImpl;
@@ -32,6 +33,9 @@ public class ERPController {
 	
 	@Autowired 
 	HR_Service service2;
+	
+	@Autowired 
+	CT_Service CT;
 	
 	@Autowired
 	MateralServiceImpl MSI;
@@ -623,13 +627,25 @@ public class ERPController {
 	@RequestMapping("FT_apply_input2_pro")
 	public String FT_apply_input2_pro(HttpServletRequest req, Model model) {
 		logger.info("log => FT_apply_input2_pro");
+		
 		try {
 			MSI.budgetAdd(req, model);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "FT/FT_apply_input2";
+		/*
+		try {
+			String wallet = service.department_wallet_Search(req, model);
+			String price = service.department_price_req(req);
+			String hash = MSI.BudgetAdd(wallet, price);
+			service.InsertDBbudget(req, hash);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		return "FT/FT_plan2";
 	}
 	
 	// 암호화폐 편성
@@ -714,7 +730,7 @@ public class ERPController {
 	}
 	
 	//사내 메신저
-	@RequestMapping("MSGdeploy")
+	@RequestMapping("CM_MSGdeploy")
 	public String MSGdeploy(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => MSGdeploy");
 		
@@ -722,7 +738,7 @@ public class ERPController {
 	}
 	
 	//사내메신저 수신자 검색
-	@RequestMapping("MSG_Select_User")
+	@RequestMapping("CM_MSG_Select_User")
 	@ResponseBody
 	public List<MsgVO> MSG_Select_User(HttpServletRequest req, Model model) {
 		logger.info("log => MSG_Select_User");
@@ -733,7 +749,7 @@ public class ERPController {
 	}
 	
 	//사내 메신저
-	@RequestMapping("MSG_Write_Form")
+	@RequestMapping("CM_MSG_Write_Form")
 	public String MSG_Write_Form(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => MSG_Write_Form");
 		service.MsgWriteForm(req, model);
@@ -741,11 +757,29 @@ public class ERPController {
 	}
 	
 	//사내 메신저 작성 후 insert
-	@RequestMapping("MsgWritePro")
+	@RequestMapping("CM_MsgWritePro")
 	public String MsgWritePro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => MsgWritePro");
 		service.Msg_Write_Pro(req, model);
 		return "Msg_WritePro"; 
+	}
+	
+
+	//A/S 입력 폼
+	@RequestMapping("CM_write_AS")
+	public String CT_write_AS(HttpServletRequest req, Model model) {
+		logger.info("log => CT_write_AS");
+		CT.selectDeptS(req, model);
+		return "CT/CT_write_AS";
+	}
+	
+	//AS등록
+	@RequestMapping("CM_AS_add")
+	@ResponseBody
+	public int CT_AS_add(HttpServletRequest req, Model model) {
+		logger.info("log => CT_AS_add");
+		int insertCnt = CT.AS_insert_ct(req, model);
+		return insertCnt;
 	}
 	
 	

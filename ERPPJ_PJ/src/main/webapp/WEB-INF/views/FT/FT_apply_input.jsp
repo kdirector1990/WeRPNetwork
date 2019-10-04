@@ -87,7 +87,7 @@
 									<li class="breadcrumb-item active">예산신청입력</li>
 								</ol>
 							</div>
-							<h4 class="page-title">예산신청입력</h4>
+							<h4 class="page-title" style="font-size: 25px;">예산신청입력</h4>
 						</div>
 					</div>
 				</div>

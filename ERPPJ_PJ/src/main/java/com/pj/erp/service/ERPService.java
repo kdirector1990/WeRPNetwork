@@ -47,4 +47,13 @@ public interface ERPService {
 	// 사내메신저 입력 완료 후 insert
 	public void Msg_Write_Pro(HttpServletRequest req, Model model);
 	
+	//부서 지갑 번호 가져오기
+	public String department_wallet_Search(HttpServletRequest req, Model model);
+	
+	//입력받은 예산 편성 가격 되돌리기
+	public String department_price_req(HttpServletRequest req);
+	
+	//DB에 예산 편성 기록 남기기
+	public void InsertDBbudget(HttpServletRequest req, String hash);
+	
 }

@@ -13,17 +13,18 @@
             <div class="slimscroll-menu">
             	
             	<hr class="mt-0">
-            	<a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">
+            	<a href="#" onclick="window.open('CM_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">
             		<h5 class="pl-3">A/S요청</h5>
                 </a>
                 <hr class="mb-0" />
                 
                 <hr class="mt-0">
-            	<a href="MSGdeploy">
+            	<a href="CM_MSGdeploy">
             		<h5 class="pl-3">사내메신저</h5>
                 </a>
                 <hr class="mb-0" />
             
+            <!-- 
                 <hr class="mt-0">
                 	<h5 class="pl-3">Basic Settings</h5>
                 <hr class="mb-0" />
@@ -52,7 +53,7 @@
                     </div>
                 </div>
 
-                <!-- Timeline -->
+                Timeline
                 <hr class="mt-0" />
                 <h5 class="pl-3 pr-3">Timeline</h5>
                 <hr class="mb-0" />
@@ -72,7 +73,7 @@
                             <p>Quis autem vel eum iure</p>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- Messages -->
                 <hr class="mt-0" />

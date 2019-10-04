@@ -34,10 +34,10 @@ public class MateralServiceImpl {
 	// 호스트에는 첫번째 계정(재무팀)의  PRIVATE KEY 복사하여 연결
 	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 
-	private static final BigInteger gasLimit = BigInteger.valueOf(4712388L);
-	private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
+	private static final BigInteger gasLimit = BigInteger.valueOf(800000L);
+	private static final BigInteger gasPrice =  BigInteger.valueOf(25000000000L);
 	
-	private static final Credentials Account = Credentials.create("3f0b5c58378de554534a5a8c630aac075886e74a6b3229000ae78f4500e153e3");
+	private static final Credentials Account = Credentials.create("C6FD20908CDC2326A8A5E366228C149FA7632E9C4EF035F5B7EBEE1A04158B7E");
 	String contractAddress = "";
     
 	// etherToWei
@@ -102,13 +102,7 @@ public class MateralServiceImpl {
 	public void budgetAdd(HttpServletRequest req, Model model) throws Exception {
     	
     	String department_code = req.getParameter("dept_code");
-    	
-    	String deptWallet = depart_wallet(department_code);
-    	
-    	// 계정의 primary key를 검색한 부서의 팀으로 할당한다.
-    	Credentials dept_AccountNumber = Credentials.create(deptWallet);
-    	
-    	String contractAddress2 = Materal.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
+    	String contractAddress2 = Materal.deploy(web3j, Account, gasPrice, gasLimit).send().getContractAddress();
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	int price = Integer.parseInt(req.getParameter("money"));
@@ -158,5 +152,39 @@ public class MateralServiceImpl {
 			System.out.println("등록되었습니다.");
 		}
     }  
-	
+    
+    //편성한 가상화폐 예산 보내기.
+    @SuppressWarnings("deprecation")
+	public String BudgetAdd(String wallet, String prices) throws Exception {
+    	
+    	// 계정의 primary key를 검색한 부서의 팀으로 할당한다.
+    	Credentials dept_AccountNumber = Credentials.create(wallet);
+    	
+    	String contractAddress2 = Department.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
+    	
+    	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
+    	int price = Integer.parseInt(prices);
+    	BigInteger ethers = null;
+    	
+    	//가격에 해당하는 이더 설정.
+    	if(price < 300000) {
+    		ethers = etherToWei(new BigDecimal(1));
+    	}
+    	else {
+    		ethers = etherToWei(new BigDecimal(2));
+    	}
+
+    	byte[] name = stringToBytes32(wallet);
+    	
+    	// 자바로 변환된 budgetAdd의 메소드(load)를 호출하여 사용 : 이더 전송
+    	// 첫번째 매개변수인 contractAddress는 deploy메소드에서얻은 계약주소
+
+    	Department dept = Department.load(contractAddress2, web3j, hostCredentials, gasPrice, gasLimit);
+    	
+    	// 솔리디티의 budgetPartment을 호출 : 부서에 해당하는 계정에서 금액에 맞추어서 호스트에 (임시적)으로 해당 이더를 전송하게 만들어둠. 
+    	// 첫번재 매개변수는 예산의 id인데 사용하지않아 상관없으므로 0으로 초기화
+    	// 두번째 매개변수는 현재 접속한 부서코드 이름.
+    	String hash = dept.budgetPartment(new BigInteger("0"), name, new BigInteger(prices), ethers).send().getTransactionHash();
+    	return hash;
+    }
 }
