@@ -266,7 +266,7 @@ public class HR_Controller {
 	//인사고과/상벌현황
 	@RequestMapping("HR_GreetingPunishment")
 	public String HR_GreetingPunishment(HttpServletRequest req, Model model) {
-		logger.info("log => HR_GreetingPunishment");
+		logger.info("log => HR_GreetingPunishment");		
 		
 		return "HR/HR_GreetingPunishment";
 	}
@@ -310,6 +310,7 @@ public class HR_Controller {
 		logger.info("log => HR_Greeting");
 		service.departmentList(req, model);
 		service.positionList(req, model);
+		service.selectAppointment(req, model);
 		
 		return "HR/HR_Greeting";
 	}

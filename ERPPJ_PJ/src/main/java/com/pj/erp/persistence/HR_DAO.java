@@ -182,4 +182,7 @@ public interface HR_DAO {
 	// 발령공고 변경내역
 	public List<HR_RecordVO> getRecords(Map<String, Object> map);
 	
+	// 공고목록
+	public List<HR_ApVO> getAppointmentList(Map<String, Object> map);
+	
 }

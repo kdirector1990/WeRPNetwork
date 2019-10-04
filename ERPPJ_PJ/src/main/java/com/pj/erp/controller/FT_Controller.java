@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pj.erp.service.ERPService;
 import com.pj.erp.service.FT_Service;
 import com.pj.erp.service.MateralServiceImpl;
+import com.pj.erp.service.ST_Service;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.FT.FT_Account;
 import com.pj.erp.vo.FT.FT_Bill_payment_VO;
@@ -48,6 +49,9 @@ public class FT_Controller {
 	
 	@Autowired
 	MateralServiceImpl MSI;
+	
+	@Autowired
+	ST_Service ST;
 	
 	@Autowired
 	ERPService ERP;
@@ -963,6 +967,5 @@ public class FT_Controller {
 
 		return service.FT_CDepreciationDataList(map, model);
 	}
-	
 	
 }

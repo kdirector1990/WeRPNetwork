@@ -9,7 +9,7 @@
 
 	
 			function searchdept(count) {
-				window.open("ST_searchDepartmentname2?count="+count+"", "ST_searchDepartmentname2", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+				window.open("FT_searchDepartmentname2?count="+count+"", "FT_searchDepartmentname2", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 			}
 			
         	var count = 0;

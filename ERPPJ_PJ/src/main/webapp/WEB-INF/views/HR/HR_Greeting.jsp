@@ -16,8 +16,32 @@ function usernameList() {
 function ap_nameList() {
 	window.open("HR_searchAp_code", "ap_name_list", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 }
-    	
-    </script>
+ 
+//결과
+function HR_updateAppointment(url) { 
+	sendRequest(callback, "HR_updateAppointment", "post", "${_csrf.parameterName }=${_csrf.token }&ap_code="+url);
+}
+
+function callback() {
+	var result = document.getElementById("result");
+	
+	if(httpRequest.readyState == 4){	//4 : completed => 전체 데이터가 취득 완료된 상태
+	
+		if(httpRequest.status == 200){	// 200 : 정상 종료
+			result.innerHTML = "정상종료";
+			// 응답 결과가 html이면 responseText로 받고, XML이면 responseXML로 받는다.
+			
+			var datas = httpRequest.responseText;
+			document.getElementById("updateAp").style.display="block";
+			result.innerHTML = datas;
+		} else {
+			result.innerHTML = "에러발생";
+		}
+	} else {
+		result.innerHTML = "상태 : " + httpRequest.readyState;
+	}
+} 
+</script>
 <!-- Table datatable css -->
 <link
 	href="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.css"
@@ -212,7 +236,7 @@ function ap_nameList() {
 
 
 					<div class="row">
-						<div class="col-sm-8">
+						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
 									<h4 class="header-title">발령공고</h4>									
@@ -264,11 +288,37 @@ function ap_nameList() {
 											</form>
 										</div>
 										
+										<div class="col-xl-6">
+										<div class="card-body table-responsive">
+											<table id="datatable" class="table table-bordered dt-responsive nowrap center table-colored-bordered table-bordered-info"
+											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+												<thead>
+													<tr class="bg-primary text-white">
+														<th>공고코드 </th>
+														<th>공고명</th>
+														<th>공고시행일</th>
+														<th>공고상태</th>
+													</tr>
+												</thead>
+												
+												<tbody>
+													<c:forEach var="ap" items="${ap}">													
+													<tr>														
+														<td>${ap.ap_code}</td>
+														<td>${ap.ap_name}</td>
+														<td>${ap.ap_reg_date}</td>
+														<td>${ap.ap_status}</td>														
+													</tr>
+													</c:forEach>													
+												</tbody>
+											</table>
+										</div>
 										
+										</div>
 										<!-- end col -->
 									</div>
-									<!-- end row -->
-
+									<!-- end row -->									
+									
 								</div>
 							</div>
 						</div>

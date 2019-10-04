@@ -34,7 +34,7 @@ public class MateralServiceImpl {
 	// 호스트에는 첫번째 계정(재무팀)의  PRIVATE KEY 복사하여 연결
 	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 
-	private static final BigInteger gasLimit = BigInteger.valueOf(4712388);
+	private static final BigInteger gasLimit = BigInteger.valueOf(4712388L);
 	private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
 	
 	private static final Credentials Account = Credentials.create("3f0b5c58378de554534a5a8c630aac075886e74a6b3229000ae78f4500e153e3");

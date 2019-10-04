@@ -476,4 +476,9 @@
 		]]> 
 	</select>
 	
+	<!-- 공고목록 -->
+	<select id="getAppointmentList" parameterType="java.util.Map" resultType="com.pj.erp.vo.HR.HR_ApVO">
+		select ap_code, ap_name, ap_reg_date, ap_status from appointment_tbl
+	</select>
+	
 </mapper>

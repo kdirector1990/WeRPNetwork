@@ -42,7 +42,7 @@
     		 	result.innerHTML = "정상종료";
     			
     			var datas = httpRequest.responseText; 
-    			
+    			document.getElementById("updateList").style.display="block";
     			result.innerHTML = datas;
     		} else {
     			result.innerHTML = "에러발생";
@@ -65,6 +65,8 @@
     				
     		jsonData = JSON.stringify(param); 
     		
+    		document.getElementById("searchInfo").style.display="block";
+    		
     		$.ajax({
     			url : '${pageContext.request.contextPath}/ST_saleList_result?${_csrf.parameterName}=${_csrf.token }',
     			type : 'POST',
@@ -72,9 +74,13 @@
     			dataType : "json",
     			contentType:"application/json;charset=UTF-8", 
     			success : function(list){
-    				$('#bodyappend').empty();
-    				$('#resulttable').empty();
     				$('#result_2').empty();
+    				$('#result').empty();
+    				
+    				document.getElementById("updateList").style.display="none";
+    				
+    				$('#resulttable').empty();
+    				$('#bodyappend').empty();
     				
     			$('#resulttable').append(
     				'<div class="table-rep-plugin">'+	
@@ -156,6 +162,7 @@
     							'<td>'+ note +'</td>'+
                     		'</tr>');
     				}
+    				
     				$('#bodyappend').append(
     				        '<script src="/erp/resources/assets/libs/datatables/jquery.dataTables.min.js"/>' +
     				        '<script src="/erp/resources/assets/libs/datatables/dataTables.bootstrap4.min.js"/>' +
@@ -271,12 +278,10 @@ function usernameList() {
 									</table>
 									<div align="right">
 										<button type="button"
-													class="btn btn-primary waves-effect waves-light"
-													id="search">조회</button>
+											class="btn btn-primary waves-effect waves-light" id="search">조회</button>
 										<a
 											onclick="window.open('ST_saleList_write', '_blank', 'width=1500 height=600')">
-											<button type="button"
-												class="btn btn-light waves-effect">추가</button>
+											<button type="button" class="btn btn-light waves-effect">추가</button>
 										</a>
 									</div>
 								</div>
@@ -284,44 +289,29 @@ function usernameList() {
 						</div>
 					</div>
 					<br>
-					<div class="row">
+					<div class="row" id="searchInfo">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body">
-								<div id = "resulttable">
-								<!-- 	<div class="table-rep-plugin"> -->
-										</div>
-									<%-- 		<table id="datatable"
-												class="table table-striped table-bordered dt-responsive nowrap">
-												<thead class="bg-primary text-white">
-													<tr>
-														<th>판매 코드</th>
-														<th>제품명</th>
-														<th>담당자</th>
-														<th>등록일</th>
-														<th>출고 요청일</th>
-														<th>단위</th>
-														<th>수량</th>
-														<th>가격</th>
-														<th>거래처</th>
-														<th>출고여부</th>
-														<th>비고</th>
-													</tr>
-												</thead>
-												<tbody id="result_2">
-												</tbody>
-											</table> --%>
-										</div>
-										<!-- end .table-rep-plugin-->
+									<div id="resulttable">
+										<!-- 검색 결과 목록 -->									
+									</div>
+								</div>
+								<!-- end .table-rep-plugin-->
+							</div>
+						</div>
+					</div>
+					<div class="row" id="updateList">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div id="result">
+										<!-- 수정/삭제 가능한 상세 페이지 출력 -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div id="result">
-						<!-- 상세 페이지 출력 위치 -->
-					</div>
-
 
 				</div>
 				<!-- end container-fluid -->

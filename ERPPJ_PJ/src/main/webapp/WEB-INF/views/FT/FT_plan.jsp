@@ -124,7 +124,7 @@ $(function(){
  
  
 	function dept2() {
-		window.open("ST_searchDepartmentname", "ST_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
+		window.open("FT_searchDepartmentname", "FT_searchDepartmentname", "menubar=no, width=450px, height = 600px, location=no, status=nos, top = 200, left = 500");
 	}
 	
 	function updatePlan(){
