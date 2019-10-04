@@ -578,7 +578,7 @@ public class ST_Controller {
 	//부서 조회 팝업창
 	@RequestMapping("FT_searchDepartmentname")
 	public String FT_searchDepartmentname(HttpServletRequest req, Model model) {
-		logger.info("log => ST_searchDepartmentname");
+		logger.info("log => FT_searchDepartmentname");
 		
 		return "ST/ST_searchDepartmentname4";
 	}
@@ -586,12 +586,12 @@ public class ST_Controller {
 	//부서 조회 팝업창 결과
 	@RequestMapping("FT_searchDepartmentname_result")
 	public String FT_searchDepartmentname_result(HttpServletRequest req, Model model) {
-		logger.info("log => ST_searchDepartmentname_result");
+		logger.info("log => FT_searchDepartmentname_result");
 		service.searchDepCode(req, model);
 		
 		return "ST/ST_searchDepartmentname_result";
 	}
-
+	
 	//부서 조회 팝업창
 	@RequestMapping("FT_searchDepartmentname2")
 	public String FT_searchDepartmentname2(HttpServletRequest req, Model model) {
