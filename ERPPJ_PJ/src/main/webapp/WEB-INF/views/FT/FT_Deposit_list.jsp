@@ -48,7 +48,7 @@
 									<li class="breadcrumb-item active">예금 목록</li>
 								</ol>
 							</div>
-							<h4 class="page-title">예금 목록</h4>
+							<h4 class="page-title" style="font-size: 25px;">예금 목록</h4>
 						</div>
 					</div>
 				</div>

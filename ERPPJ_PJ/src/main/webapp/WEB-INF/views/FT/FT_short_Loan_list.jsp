@@ -57,7 +57,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body table-responsive">
+							<div class="card-body table-responsive" style="margin-bottom: 0px;">
 								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap chit-table-colored-bordered chit-table-bordered-primary table-bordered"
 									style="border-collapse: collapse; border-spacing: 0;">
