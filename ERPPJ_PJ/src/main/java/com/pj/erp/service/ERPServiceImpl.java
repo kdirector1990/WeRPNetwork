@@ -22,6 +22,7 @@ import com.pj.erp.persistence.HR_DAO;
 import com.pj.erp.vo.MaterialVO;
 import com.pj.erp.vo.ProductVO;
 import com.pj.erp.vo.SalelistVO;
+import com.pj.erp.vo.BlockChainVO;
 import com.pj.erp.vo.HashVO;
 import com.pj.erp.vo.Material_VO;
 import com.pj.erp.vo.MsgVO;
@@ -307,5 +308,38 @@ public class ERPServiceImpl implements ERPService{
 		model.addAttribute("insertCnt", insertCnt);
 		
 	}
+
+	//부서 지갑 가져오기
+	@Override
+	public String department_wallet_Search(HttpServletRequest req, Model model) {
+		String dept_code = req.getParameter("dept_code");
+		BlockChainVO vo = dao.getGroupCode(dept_code);
 		
+		String wallet = vo.getWallet_code();
+		
+		return wallet;
+	}
+	
+	@Override
+	public String department_price_req(HttpServletRequest req) {
+		String price = req.getParameter("money");
+		return price;
+	}
+	
+	//예산편성 DB Insert
+	@Override
+	public void InsertDBbudget(HttpServletRequest req, String hash) {
+		String dept_code = req.getParameter("dept_code");
+		String purpose = req.getParameter("purpose");
+		
+		HashVO vos = new HashVO();
+		vos.setDepartment_code(dept_code);
+		vos.setE_subject(purpose);
+		vos.setE_hashcode(hash);
+		
+		int insertCnt = dao.insertLog(vos);
+		if(insertCnt == 1) {
+			System.out.println("등록되었습니다.");
+		}
+	}
 }

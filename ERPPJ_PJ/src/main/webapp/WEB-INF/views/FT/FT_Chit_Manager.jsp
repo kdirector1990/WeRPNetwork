@@ -95,7 +95,7 @@
                                     '<td><input type="text" onfocus = "subfocuse(' + i + ');" name = "price' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "' + price + '" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\' chitManager.submit();"></td>' +
                                     '<td><input type="text" onfocus = "subfocuse(' + i + ');" name = "count' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "' + count + '" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\' chitManager.submit();"></td>' +
                                     '<td><input type="text" onfocus = "subfocuse(' + i + ');" name = "text' + i + '" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" value = "' + data[i].journal_abstract + '" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\' chitManager.submit();"></td>' +
-                                    '<td><input type = "text" name = "writer' + i + '" value = "' + data[i].last_modi_user + '" onfocus = "subfocuse(' + i + ');" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\' chitManager.submit();"></td>' +
+                                    '<td><input type = "text" name = "writer' + i + '" value = "' + data[i].wname + '" onfocus = "subfocuse(' + i + ');" class="form-control" data-toggle="input-mask" style = "width: 100%; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\' chitManager.submit();"></td>' +
                                     '<td><select class="form-control" id = "enter' + i + '" onfocus = "subfocuse(' + i + ');" name = "type' + i + '" style = "width: 100%; -webkit-appearance: none; border:0px;" readonly onkeydown = "enter(this.tagName, this.name);" ondblclick = "javascript: chitManager.action = \'FT_insertChit?keynum=' + i + '\' chitManager.submit();">' +
                                     '<option value="0">== 선택 ==</option>' +
                                     '<option value="1">일반</option>' +
@@ -380,9 +380,9 @@
 												<col style="width: 7%;">
 												<col style="width: 10%;">
 												<col style="width: 10%;">
-												<col style="width: 3%;">
+												<col style="width: 5%;">
 												<col style="width: 10%;">
-												<col style="width: 8%;">
+												<col style="width: 6%;">
 												<col style="width: 8%;">
 												<col style="width: 8%;">
 												<thead>
