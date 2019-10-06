@@ -195,7 +195,7 @@
 																</div>
 																<div class="form-group row">
 																	<label class="col-md-2 col-form-label"
-																		for="simpleinput">주민등록번호<span
+																		for="simpleinput">생년월일<span
 																		class="text-danger">*</span></label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" name="e_code"
