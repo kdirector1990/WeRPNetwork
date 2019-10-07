@@ -155,7 +155,6 @@ public class CT_Controller {
 	public  List<CT_AS_VO> CT_select_as2(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => CT_select_as2");
 		List<CT_AS_VO> data = CT.CT_select_as2(map, req, model);
-		logger.info("log => CT_select_as22");
 		return data;
 	}
 	

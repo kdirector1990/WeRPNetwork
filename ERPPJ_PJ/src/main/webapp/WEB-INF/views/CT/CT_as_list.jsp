@@ -65,7 +65,7 @@
       					var username = data[i].username;
       					var cas_title = data[i].cas_title; 
       					var date = data[i].cas_date;
-      					
+      					var department_name = data[i].department_name;
       					var pa = new Date(date);
       					var year = pa.getFullYear();
       					var month = (1+pa.getMonth());
@@ -88,7 +88,7 @@
 						    					
     					var cas_date = year + "-" + month + "-" +day;
     					
-    					var tr = '<tr><td>'+cas_code+'</td><td>'+department_code+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
+    					var tr = '<tr><td>'+cas_code+'</td><td>'+department_name+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
       					
     					$('#result').append(tr);
     					
@@ -195,7 +195,7 @@
 										<thead class="bg-primary text-white">
 											<tr>
 												<th>AS코드</th>
-												<th>부서코드</th>
+												<th>부서명</th>
 												<th>사원명</th>
 												<th>제목</th>
 												<th>요청시간</th>
