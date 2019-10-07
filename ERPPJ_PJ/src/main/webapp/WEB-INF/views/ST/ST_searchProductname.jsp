@@ -66,9 +66,6 @@ function setName(product_name, product_code) {
 	opener.document.getElementById("product_nameP").value = product_name;
 	opener.document.getElementById("product_codeP").value = product_code;
 
-	//test alert
-	alert(product_name, product_code);
-	
 	$("#product_nameP", opener.document).val(product_name); //jquery 이용
 	$(opener.document).find("#product_nameP").val(product_name); //find를 이용한 jquery
 	

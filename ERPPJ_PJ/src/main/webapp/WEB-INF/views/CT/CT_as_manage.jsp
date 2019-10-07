@@ -7,6 +7,9 @@
 #update {
 	display: none;
 }
+#selectASResult{
+	display: none;
+}
 </style>
 
 <%@ include file="../setting.jsp"%>
@@ -55,12 +58,17 @@
 				dataType : "json",
 				contentType:"application/json;charset=UTF-8",
 				success : function(data){
-					
+
+					document.getElementById("selectASResult").style.display="block";
 					$('#result').empty();
+					$('#bodyappend').empty();
+					document.getElementById("update").style.display="none";
+					$('#result2').empty();
       				
       				for(var i = 0; i < data.length; i++){
       					var cas_code = data[i].cas_code;
       					var department_code = data[i].department_code;
+      					var department_name = data[i].department_name;
       					var username = data[i].username;
       					var cas_title = data[i].cas_title; 
       					var date = data[i].cas_date;
@@ -84,7 +92,7 @@
     					
     					var cas_date = year + "-" + month + "-" +day;
     					
-    					var tr = '<tr class="spoat" onclick="updateAS(\''+cas_code+'\');"><td>'+cas_code+'</td><td>'+department_code+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
+    					var tr = '<tr class="spoat" onclick="updateAS(\''+cas_code+'\');"><td>'+cas_code+'</td><td>'+department_name+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
       					
     					$('#result').append(tr);
     					
@@ -138,7 +146,7 @@
 	  		  				        +'</div>'
 	  		  				    +'</div>'
 	  		  				    +'<div class="form-group row">'
-	  		  			        +'<label class="col-md-2 col-form-label" for="example-email">사원명</label>'
+	  		  			        +'<label class="col-md-2 col-form-label" for="example-email">사원번호</label>'
 	  		  			        	+ '<div class="col-md-10">'
 	  		  			            	+ '<input type="text" name="username" value="'+username+'" class="form-control" disabled>'
 	  		  			        	+ '</div>'
@@ -287,17 +295,18 @@
 					</div>
 
 
+				<div id="selectASResult">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
 									<table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
-										<thead>
+										<thead class="bg-primary text-white">
 											<tr>
 												<th>AS코드</th>
-												<th>부서코드</th>
-												<th>사원명</th>
+												<th>부서명</th>
+												<th>사원번호</th>
 												<th>제목</th>
 												<th>요청시간</th>
 											</tr>
@@ -309,7 +318,7 @@
 							</div>
 						</div>
 					</div>
-
+				</div>
 
 					<div id="update">
 						<div class="col-sm-12">

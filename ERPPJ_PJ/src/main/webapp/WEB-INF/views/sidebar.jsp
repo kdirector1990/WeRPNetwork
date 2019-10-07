@@ -50,7 +50,7 @@
             <div class="navbar-custom">
                 <ul class="list-unstyled topnav-menu float-right mb-0">
 
-                    <li class="d-none d-sm-block">
+                   <!--  <li class="d-none d-sm-block">
                         <form class="app-search">
                             <div class="app-search-box">
                                 <div class="input-group">
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </form>
-                    </li>
+                    </li> -->
         
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -550,7 +550,7 @@
 	                          	<span class="menu-arrow"></span></a>
 	                          		<ul>
 	                          			<li><a href="FT_insertChit">전표입력</a></li> 
-					                    <li><a href="FT_Chit_Manager">전표승인해제</a></li>
+					                    <li><a href="FT_Chit_Manager">전표 승인/해제</a></li>
 					                    <li><a href="FT_journal">분개장</a></li>
 					                    <li><a href="FT_ledger">거래처원장</a></li>
 					                    <li><a href="FT_DTB">주요계정증감현황(일월계표)</a></li>
@@ -558,10 +558,10 @@
                           			</ul>
 	                          	</li>
 	                          	
-	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/제무재표
+	                          	<li><a href="javascript: void(0);" aria-expanded="false">결산/재무제표
 	                          			<span class="menu-arrow"></span>
 	                          		</a>
-	                          		<ul>
+	                          		<ul> 
 	                          				<li><a href="FT_insertTotal">결산자료입력</a></li>
 						                    <li><a href="FT_BS">재무상태표</a></li>
 						                    <li><a href="FT_IS">손익계산서</a></li>
@@ -685,7 +685,6 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">임시 as 입력폼</a></li>
 	                          			<li><a href="CT_as_list">A/S 요청 현황</a></li>
                     					<li><a href="CT_as_manage">A/S 요청 관리 </a></li>
 	                          		</ul>
@@ -752,6 +751,7 @@
 							</li>
 							</c:if>
 							</c:if>
+							<!-- 
                              <li class="menu-title mt-2">More</li>
 
 							<li>
@@ -967,7 +967,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
 
                     </div>

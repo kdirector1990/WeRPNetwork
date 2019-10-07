@@ -35,9 +35,9 @@ public class MateralServiceImpl {
 	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
 
 	private static final BigInteger gasLimit = BigInteger.valueOf(800000L);
-	private static final BigInteger gasPrice =  BigInteger.valueOf(20000000000L);
+	private static final BigInteger gasPrice =  BigInteger.valueOf(25000000000L);
 	
-	private static final Credentials Account = Credentials.create("3f0b5c58378de554534a5a8c630aac075886e74a6b3229000ae78f4500e153e3");
+	private static final Credentials Account = Credentials.create("C6FD20908CDC2326A8A5E366228C149FA7632E9C4EF035F5B7EBEE1A04158B7E");
 	String contractAddress = "";
     
 	// etherToWei
@@ -102,13 +102,7 @@ public class MateralServiceImpl {
 	public void budgetAdd(HttpServletRequest req, Model model) throws Exception {
     	
     	String department_code = req.getParameter("dept_code");
-    	
-    	String deptWallet = depart_wallet(department_code);
-    	
-    	// 계정의 primary key를 검색한 부서의 팀으로 할당한다.
-    	Credentials dept_AccountNumber = Credentials.create(deptWallet);
-    	
-    	String contractAddress2 = Materal.deploy(web3j, dept_AccountNumber, gasPrice, gasLimit).send().getContractAddress();
+    	String contractAddress2 = Materal.deploy(web3j, Account, gasPrice, gasLimit).send().getContractAddress();
     	
     	//구매하는 가격을 입력받아서 조건에 해당하는 이더를 거래하도록 설정한다.
     	int price = Integer.parseInt(req.getParameter("money"));

@@ -66,7 +66,6 @@ function setName(department_code, department_name) {
 	opener.document.getElementById("department_code").value = department_code;
 	opener.document.getElementById("department_name").value = department_name;
 
-	//test alert
 	
 	$("#department_name", opener.document).val(department_name); //jquery 이용
 	$(opener.document).find("#department_name").val(department_name); //find를 이용한 jquery

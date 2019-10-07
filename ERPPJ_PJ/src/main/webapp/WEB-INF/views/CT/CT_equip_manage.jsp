@@ -285,7 +285,7 @@
 								<hr>
 								<table id="datatable"
 									class="table table-striped table-bordered dt-responsive nowrap">
-									<thead>
+									<thead class="bg-primary text-white">
 										<tr>
 											<th>전산설비코드</th>
 											<th>설비명</th>
@@ -331,7 +331,7 @@
 												<col style="width: 10%;">
 												<col style="width: 10%;">
 
-												<thead>
+												<thead class="bg-primary text-white">
 													<tr>
 														<th>전산설비코드</th>
 														<th>설비명</th>

@@ -384,7 +384,7 @@
                                             <li class="breadcrumb-item active">단기대여금관리</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">단기대여금관리</h4>
+                                    <h4 class="page-title" style="font-size: 25px;">단기대여금관리</h4>
                                 </div>
                             </div>
                         </div>     
@@ -393,7 +393,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <div class="card-body table-responsive">
+                                    <div class="card-body table-responsive" style="margin-bottom: 0px;">
                                     	<div align="right" style = "margin-bottom: 30px;">
     										<button type="button" class="btn btn-outline-primary waves-effect waves-light" onclick = "deleted();">삭제</button>
     										<br>

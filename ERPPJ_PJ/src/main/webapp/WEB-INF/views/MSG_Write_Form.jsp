@@ -9,7 +9,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-						<form action="MsgWritePro" method="post">
+						<form action="CM_MsgWritePro" method="post">
 							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 							<input type="hidden" name="to_user" value="${vo.username }">
 							<input type="hidden" name="from_user" value="${username }">

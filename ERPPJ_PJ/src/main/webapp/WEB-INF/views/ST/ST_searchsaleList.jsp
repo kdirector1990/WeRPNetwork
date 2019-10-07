@@ -72,8 +72,6 @@ function setName(salelist_code, customer_name,amount, price, product_name, detai
 	opener.document.getElementById("customer_codeM").value = customer_code;
 	opener.document.getElementById("customer_nameM").value = customer_name;
 
-	//test alert
-	alert(salelist_code, customer_name);
 	
 	$("#customerNameP", opener.document).val(customer_name); //jquery 이용
 	$(opener.document).find("#customerNameP").val(customer_name); //find를 이용한 jquery

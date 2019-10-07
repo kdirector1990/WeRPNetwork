@@ -11,7 +11,7 @@
 	<c:if test="${insertCnt != 0 }">
 		<script type="text/javascript">
 			alert("메신저를 보냈습니다.");
-			window.loaction("http://smueoot.dlinkddns.com:8087/erp/MSGdeploy");
+			window.loaction("http://smueoot.dlinkddns.com:8087/erp/CM_MSGdeploy");
 		</script>
 	</c:if>
 	

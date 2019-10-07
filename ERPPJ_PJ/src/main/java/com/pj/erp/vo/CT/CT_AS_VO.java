@@ -14,6 +14,7 @@ public class CT_AS_VO {
 	Timestamp cas_date;			//글 올린 시각
 	String cas_result;			//as 처리 결과
 	int cas_state;				//as 상태
+	String department_name;
 	
 	//생성자
 	public CT_AS_VO() {}
@@ -90,5 +91,15 @@ public class CT_AS_VO {
 	public void setCas_state(int cas_state) {
 		this.cas_state = cas_state;
 	}
+
+	public String getDepartment_name() {
+		return department_name;
+	}
+
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
+	}
+	
+	
 	
 }

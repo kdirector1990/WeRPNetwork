@@ -119,6 +119,7 @@ public class CT_Controller {
 		return deleteCnt;
 	}
 	
+	/*
 	//A/S 입력 폼
 	@RequestMapping("CT_write_AS")
 	public String CT_write_AS(HttpServletRequest req, Model model) {
@@ -136,7 +137,7 @@ public class CT_Controller {
 		return insertCnt;
 	}
 	
-	/*AS 요청 목록 가져오기
+	AS 요청 목록 가져오기
 	@RequestMapping("CT_select_as")
 	@ResponseBody
 	public List<CT_AS_VO> CT_select_as(HttpServletRequest req, Model model) {
@@ -154,7 +155,6 @@ public class CT_Controller {
 	public  List<CT_AS_VO> CT_select_as2(@RequestBody Map<String, Object> map, HttpServletRequest req, Model model) throws ParseException {
 		logger.info("log => CT_select_as2");
 		List<CT_AS_VO> data = CT.CT_select_as2(map, req, model);
-		logger.info("log => CT_select_as22");
 		return data;
 	}
 	

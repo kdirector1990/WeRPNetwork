@@ -3,6 +3,11 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<style type="text/css">
+	#asListResult{
+		display: none;
+	}
+</style>
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
@@ -51,6 +56,7 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(data){
 					
+					document.getElementById("asListResult").style.display="block";
 					$('#result').empty();
       				
       				for(var i = 0; i < data.length; i++){
@@ -59,7 +65,7 @@
       					var username = data[i].username;
       					var cas_title = data[i].cas_title; 
       					var date = data[i].cas_date;
-      					
+      					var department_name = data[i].department_name;
       					var pa = new Date(date);
       					var year = pa.getFullYear();
       					var month = (1+pa.getMonth());
@@ -82,7 +88,7 @@
 						    					
     					var cas_date = year + "-" + month + "-" +day;
     					
-    					var tr = '<tr><td>'+cas_code+'</td><td>'+department_code+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
+    					var tr = '<tr><td>'+cas_code+'</td><td>'+department_name+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
       					
     					$('#result').append(tr);
     					
@@ -179,18 +185,18 @@
 						</div>
 					</div>
 
-
+				<div id="asListResult">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
 									<table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
-										<thead>
+										<thead class="bg-primary text-white">
 											<tr>
 												<th>AS코드</th>
-												<th>부서코드</th>
-												<th>사원명</th>
+												<th>부서명</th>
+												<th>사원번호</th>
 												<th>제목</th>
 												<th>요청시간</th>
 											</tr>
@@ -202,7 +208,7 @@
 							</div>
 						</div>
 					</div>
-
+				</div>
 
 				</div>
 				<!-- end container-fluid -->

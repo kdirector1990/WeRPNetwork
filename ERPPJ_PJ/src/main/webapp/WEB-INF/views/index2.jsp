@@ -38,7 +38,7 @@
 <script type="text/javascript">
 
 function MsgWriteForm(url){
-	sendRequest(callback, "MSG_Write_Form", "post", "${_csrf.parameterName }=${_csrf.token }&username="+url);
+	sendRequest(callback, "CM_MSG_Write_Form", "post", "${_csrf.parameterName }=${_csrf.token }&username="+url);
 }
 
 function callback() {
@@ -63,7 +63,7 @@ function callback() {
 	function SearchMsgUser(){
 		var param = $("#selectMsgUSERS").serializeArray();
 		$.ajax({
-			url: '/erp/MSG_Select_User',
+			url: '/erp/CM_MSG_Select_User',
 			type: 'POST',
 			data : param,
 			dataTpye: 'json',
