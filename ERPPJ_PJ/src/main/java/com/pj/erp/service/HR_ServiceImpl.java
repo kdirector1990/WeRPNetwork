@@ -57,7 +57,7 @@ public class HR_ServiceImpl implements HR_Service {
 		/*
 		 * F:\dev50\git\WeRPNetwork\ERPPJ_PJ\src\main\webapp\resources\hr_img\ 서버용 저장 경로
 		 */
-		String realDir = "C:\\Users\\KSM13\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
+		String realDir = "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\"; // 저장 경로
 		String times = String.valueOf(System.currentTimeMillis());
 		try {
 			file.transferTo(new File(saveDir + times + uuid + "_" + file.getOriginalFilename()));
