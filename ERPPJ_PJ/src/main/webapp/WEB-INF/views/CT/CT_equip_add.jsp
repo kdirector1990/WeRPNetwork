@@ -153,7 +153,7 @@ ceq_code의 select박스는 그때 해당 값을 집어넣을 예정.
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="card">
-						<div class="card-body table-responsive">
+						<div class="card-body">
 							<h4 class="header-title">설비등록</h4>
 							<div align="right">
 								<button id="insertCT" onclick="Insert();" type="button"
