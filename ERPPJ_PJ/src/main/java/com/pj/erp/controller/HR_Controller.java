@@ -71,7 +71,7 @@ public class HR_Controller {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
 		
-		return "index";		
+		return "HR/HR_InputHR";		
 	}		
 	
 	// 사원정보 수정페이지 - 안씀
@@ -628,6 +628,25 @@ public class HR_Controller {
 		
 		return deleteCnt;
 	}
+	
+	// 개인정보수정
+	/*@RequestMapping("HR_modifyUserView")
+	public String modifyUser(MultipartHttpServletRequest req, Model model) {
+		logger.info("log => HR_modifyUserView");
+		service.modifyUserView(req, model);
+		
+		return "HR/HR_modifyUserView";
+		
+	}
+	
+	// 개인정보 수정처리
+	@RequestMapping(value="HR_modifyUserPro", method=RequestMethod.POST) 
+	public String HR_modifyUserPro(MultipartHttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyUserPro");
+		service.modifyUserPro(req, model);
+		
+		return  "HR/HR_FoundationLocation";
+	}*/
 	
 	
 }
