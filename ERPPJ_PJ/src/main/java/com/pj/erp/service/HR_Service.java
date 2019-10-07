@@ -159,8 +159,8 @@ public interface HR_Service {
 	public void selectAppointment(HttpServletRequest req, Model model);
 	
 	// 세션으로 개인정보 불러오기
-	public void modifyUserView(MultipartHttpServletRequest req, Model model);
+	// public void modifyUserView(MultipartHttpServletRequest req, Model model);
 	
 	// 개인정보 수정
-	public void modifyUserPro(MultipartHttpServletRequest req, Model model);
+	// public void modifyUserPro(MultipartHttpServletRequest req, Model model);
 }

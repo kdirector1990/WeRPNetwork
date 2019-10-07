@@ -630,7 +630,7 @@ public class HR_Controller {
 	}
 	
 	// 개인정보수정
-	@RequestMapping("HR_modifyUserView")
+	/*@RequestMapping("HR_modifyUserView")
 	public String modifyUser(MultipartHttpServletRequest req, Model model) {
 		logger.info("log => HR_modifyUserView");
 		service.modifyUserView(req, model);
@@ -646,7 +646,7 @@ public class HR_Controller {
 		service.modifyUserPro(req, model);
 		
 		return  "HR/HR_FoundationLocation";
-	}
+	}*/
 	
 	
 }

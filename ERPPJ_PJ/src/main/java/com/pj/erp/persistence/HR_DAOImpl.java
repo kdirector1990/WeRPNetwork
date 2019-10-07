@@ -343,7 +343,8 @@ public class HR_DAOImpl implements HR_DAO{
 	public List<HR_ApVO> getAppointmentList(Map<String, Object> map) {
 		return sqlSession.selectList("com.pj.erp.persistence.HR_DAO.getAppointmentList", map);
 	}
-
+	
+	/*
 	@Override
 	public HR_VO getUserInfo(String username) {
 		return sqlSession.selectOne("com.pj.erp.persistence.HR_DAO.getUserInfo", username);
@@ -353,4 +354,5 @@ public class HR_DAOImpl implements HR_DAO{
 	public int updateUserInfo(HR_VO vo) {
 		return sqlSession.update("com.pj.erp.persistence.HR_DAO.getUserInfo", vo);
 	}
+	*/
 }
