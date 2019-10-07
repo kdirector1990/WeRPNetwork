@@ -79,8 +79,10 @@
 	
 	<!-- AS 목록 준선이형 버전 -->
 	<select id="selectAS2" parameterType="java.util.Map" resultType="com.pj.erp.vo.CT.CT_AS_VO">
-		Select cas_code, department_code, username, cas_title, cas_date 
-		From computer_as_tbl
+		Select c.cas_code as cas_code, c.department_code as department_code, 
+				c.username as username, c.cas_title as cas_title, c.cas_date as cas_date, d.department_name as department_name 
+		From computer_as_tbl c Join department_tbl d
+		On c.department_code = d.department_code
 		Where cas_state = #{cas_state}
 	</select>
 	

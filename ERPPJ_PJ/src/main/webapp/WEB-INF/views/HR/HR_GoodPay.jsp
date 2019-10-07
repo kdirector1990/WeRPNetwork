@@ -116,7 +116,7 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered mb-0">
-									<thead>
+									<thead class="bg-primary text-white">
 										<tr>
 											<th scope="col" colspan="2" style="font-weight: 900; font-size: 20px; text-align:center;">대 상 직 급</th>																						
 										</tr>
@@ -125,30 +125,33 @@
 											<th scope="col">코 드</th>
 											<th scope="col">직 급</th>
 										</tr>
-										
+									</thead>
+									
+									<tbody>
 										<c:forEach var="rank" items="${vo}">
 											<tr id="rank2">
 												<td class="UserRank" onclick="load(${rank.rank_code});">${rank.rank_code}</td>
 												<td class="UserRank2" onclick="load(${rank.rank_code});">${rank.rank_name}</td>
 											</tr>
 										</c:forEach>
-										
-									</thead>									
+									</tbody>
+																		
 								</table>							
 							</div>
 							
 							<div class="table-responsive">
 								<table class="table table-bordered mb-0">
-									<thead>
+									<thead class="bg-primary text-white">
 										<tr>
 											<th scope="col" colspan="2" style="font-weight: 900; font-size: 20px; text-align:center;">호봉이력</th>																						
 										</tr>
-										
+									</thead>
+									<tbody>	
 										<tr>
 											<th scope="col">적용시작연월</th>
 											<th scope="col">적용종료연월</th>
 										</tr>
-									</thead>									
+									</tbody>									
 								</table>							
 							</div>
 						</div>
@@ -162,7 +165,7 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<table id="pay2" class="table table-bordered mb-0">
-									<thead>
+									<thead class="bg-primary text-white">
 										<tr>
 											<th rowspan="2" align="center">호 봉</th>
 											<th colspan="3" align="center">호 봉 테 이 블</th>
@@ -170,9 +173,9 @@
 										</tr>
 										
 										<tr>
-											<th scope="col" align="center">기 본 급</th>
-											<th scope="col" align="center">급 호 수 당</th>
-											<th scope="col" align="center">연 장 수 당</th>
+											<th scope="col" align="center" style="font-weight: 900; font-size: 20px; text-align:center;">기 본 급</th>
+											<th scope="col" align="center" style="font-weight: 900; font-size: 20px; text-align:center;">급 호 수 당</th>
+											<th scope="col" align="center" style="font-weight: 900; font-size: 20px; text-align:center;">연 장 수 당</th>
 										</tr>
 									</thead>
 								</table>

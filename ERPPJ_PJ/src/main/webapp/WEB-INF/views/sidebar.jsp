@@ -685,7 +685,6 @@
 	                          	<li><a href="javascript: void(0);" aria-expanded="false">A/S관리
 	                          		<span class="menu-arrow"></span></a>
 	                          		<ul>
-	                          			<li><a href="#" onclick="window.open('CT_write_AS', 'window팝업', 'width=400, height=400, fullscreen=no');">임시 as 입력폼</a></li>
 	                          			<li><a href="CT_as_list">A/S 요청 현황</a></li>
                     					<li><a href="CT_as_manage">A/S 요청 관리 </a></li>
 	                          		</ul>

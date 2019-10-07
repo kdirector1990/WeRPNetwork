@@ -26,7 +26,7 @@ public class OriginService {
 	private static final Web3j web3j = Web3j.build(new HttpService("HTTPS://ropsten.infura.io/v3/d11459c1c17049628f462a1492c7df36"));
 	
 	// 호스트에는 첫번째 계정(재무팀)의  PRIVATE KEY 복사하여 연결
-	private static final Credentials hostCredentials = Credentials.create("666A82FC33F8134577A7BEB1BDEAA689BB72740178727691D63032432B83E0FB");
+	private static final Credentials hostCredentials = Credentials.create("C6FD20908CDC2326A8A5E366228C149FA7632E9C4EF035F5B7EBEE1A04158B7E");
 
 	private static final BigInteger gasLimit = BigInteger.valueOf(4712388L);
 	private static final BigInteger gasPrice =  BigInteger.valueOf(190000000000L);
