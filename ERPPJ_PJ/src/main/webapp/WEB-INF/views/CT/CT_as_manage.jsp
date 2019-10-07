@@ -146,7 +146,7 @@
 	  		  				        +'</div>'
 	  		  				    +'</div>'
 	  		  				    +'<div class="form-group row">'
-	  		  			        +'<label class="col-md-2 col-form-label" for="example-email">사원명</label>'
+	  		  			        +'<label class="col-md-2 col-form-label" for="example-email">사원번호</label>'
 	  		  			        	+ '<div class="col-md-10">'
 	  		  			            	+ '<input type="text" name="username" value="'+username+'" class="form-control" disabled>'
 	  		  			        	+ '</div>'
@@ -306,7 +306,7 @@
 											<tr>
 												<th>AS코드</th>
 												<th>부서명</th>
-												<th>사원명</th>
+												<th>사원번호</th>
 												<th>제목</th>
 												<th>요청시간</th>
 											</tr>
