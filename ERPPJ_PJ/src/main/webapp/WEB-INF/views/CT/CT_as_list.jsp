@@ -3,6 +3,11 @@
 <html lang="en">
 <head>
 <%@ include file="../setting.jsp"%>
+<style type="text/css">
+	#asListResult{
+		display: none;
+	}
+</style>
 <!-- c3 plugin css -->
 <link rel="stylesheet" type="text/css"
 	href="/erp/resources/assets/libs/c3/c3.min.css">
@@ -51,6 +56,7 @@
 				contentType:"application/json;charset=UTF-8",
 				success : function(data){
 					
+					document.getElementById("asListResult").style.display="block";
 					$('#result').empty();
       				
       				for(var i = 0; i < data.length; i++){
@@ -179,14 +185,14 @@
 						</div>
 					</div>
 
-
+				<div id="asListResult">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
 									<table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
-										<thead>
+										<thead class="bg-primary text-white">
 											<tr>
 												<th>AS코드</th>
 												<th>부서코드</th>
@@ -202,7 +208,7 @@
 							</div>
 						</div>
 					</div>
-
+				</div>
 
 				</div>
 				<!-- end container-fluid -->

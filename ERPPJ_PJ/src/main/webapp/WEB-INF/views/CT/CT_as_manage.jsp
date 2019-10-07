@@ -7,6 +7,9 @@
 #update {
 	display: none;
 }
+#selectASResult{
+	display: none;
+}
 </style>
 
 <%@ include file="../setting.jsp"%>
@@ -55,12 +58,12 @@
 				dataType : "json",
 				contentType:"application/json;charset=UTF-8",
 				success : function(data){
-					
+
+					document.getElementById("selectASResult").style.display="block";
 					$('#result').empty();
 					$('#bodyappend').empty();
 					document.getElementById("update").style.display="none";
 					$('#result2').empty();
-					
       				
       				for(var i = 0; i < data.length; i++){
       					var cas_code = data[i].cas_code;
@@ -291,13 +294,14 @@
 					</div>
 
 
+				<div id="selectASResult">
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-body table-responsive">
 									<table id="datatable"
 										class="table table-striped table-bordered dt-responsive nowrap">
-										<thead>
+										<thead class="bg-primary text-white">
 											<tr>
 												<th>AS코드</th>
 												<th>부서코드</th>
@@ -313,7 +317,7 @@
 							</div>
 						</div>
 					</div>
-
+				</div>
 
 					<div id="update">
 						<div class="col-sm-12">
