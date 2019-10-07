@@ -70,8 +70,6 @@
 									<option value="기획단계" >기획단계</option>
 									<option value="준비중">준비중</option>
 									<option value="진행중">진행중</option>
-									<option value="완료">완료</option>
-									<option value="페기">페기</option>
 								</select>
 							</td>
 						</tr>
