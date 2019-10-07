@@ -37,7 +37,6 @@
 							<div class="card">
 								<div class="card-body">
 									<h4 class="header-title">판매계획 등록</h4>
-									<p class="sub-header"></p>
 
 									<form class="form-horizontal" action="ST_sale_plan_writePro"
 										method="post">

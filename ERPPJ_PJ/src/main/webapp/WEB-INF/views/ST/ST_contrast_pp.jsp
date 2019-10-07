@@ -166,10 +166,10 @@ $(function(){
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
+											href="javascript: void(0);">영업</a></li>
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">UI Kit</a></li>
-										<li class="breadcrumb-item active">Images</li>
+											href="javascript: void(0);">영업 현황</a></li>
+										<li class="breadcrumb-item active">판매계획 대비 출고 현황</li>
 									</ol>
 								</div>
 								<h2 class="page-title">판매계획 대비 출고 현황</h2>

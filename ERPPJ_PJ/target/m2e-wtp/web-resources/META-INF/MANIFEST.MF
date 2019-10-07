@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: ￪ﾹﾀ￬ﾧﾀ￬ﾈﾘ
-=======
-Built-By: ksm0000
->>>>>>> branch 'master' of https://github.com/kdirector1990/WeRPNetwork.git
 Build-Jdk: 1.8.0_221
 Created-By: Maven Integration for Eclipse
 

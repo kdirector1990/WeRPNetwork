@@ -195,9 +195,9 @@ $(function(){
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
+											href="javascript: void(0);">영업</a></li>
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Tables</a></li>
+											href="javascript: void(0);">영업 관리</a></li>
 										<li class="breadcrumb-item active">세금 명세서 발행</li>
 									</ol>
 								</div>
