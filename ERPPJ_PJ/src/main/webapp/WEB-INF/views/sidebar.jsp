@@ -337,7 +337,7 @@
                             	</a>
                             </li>
                             </c:if>
-                            <c:if test="${auth != null}">
+                            <%-- <c:if test="${auth != null}">
                             <li>
                             	<a href="javascript: void(0);">
                             		<i class="mdi mdi-omega"></i>
@@ -349,7 +349,7 @@
                             		<li><a href="#">추가 예산 신청</a></li>
                             	</ul>
                             </li>
-                            </c:if>
+                            </c:if> --%>
                            <c:if test="${MS eq 1 || ADMIN eq 1}">
                            	<li> 
 	                          <a href="javascript: void(0);">
