@@ -161,11 +161,11 @@ $(function(){
 						<div class="col-12">
 							<div class="page-title-box">
 								<div class="page-title-right">
-									<!--  <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Codefox</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">UI Kit</a></li>
+								 <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">영업</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">영업 현황</a></li>
                                             <li class="breadcrumb-item active">Images</li>
-                                        </ol> -->
+                                       </ol>
 								</div>
 								<h2 class="page-title">출고지연현황</h2>
 							</div>

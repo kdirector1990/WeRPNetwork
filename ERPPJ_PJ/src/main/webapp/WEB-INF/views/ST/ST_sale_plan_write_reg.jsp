@@ -5,7 +5,6 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <script type="text/javascript">
-	
 	function ProductName() {
 		window.open("ST_searchProductname", "ProductName_list",
 						"menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");
@@ -38,7 +37,6 @@
 							<div class="card">
 								<div class="card-body">
 									<h4 class="header-title">판매계획 등록</h4>
-									<p class="sub-header"></p>
 
 									<form class="form-horizontal" action="ST_sale_plan_writePro"
 										method="post">
