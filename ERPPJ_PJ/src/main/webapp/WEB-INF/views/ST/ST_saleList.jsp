@@ -145,7 +145,13 @@
     					var pa = new Date(release_o_date);
     					var year = pa.getFullYear();
     					var month = (1+pa.getMonth());
-    					var day = pa.getDate(); 
+    					if(month < 10){
+    						month = "0"+month;
+    					}
+    					var day = pa.getDate();
+    					if(day < 10){
+    						day = "0" + day;
+    					}
     					var release_date = year + "/" + month +"/"+day;
     					
     					$('#result_2').append('<tr onclick="salePlanWriteForm(\''+salelist_code+'\')">'+

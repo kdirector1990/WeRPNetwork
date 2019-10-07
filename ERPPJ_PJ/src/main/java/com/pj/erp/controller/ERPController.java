@@ -720,7 +720,7 @@ public class ERPController {
 	
 	
 	//판매 상품 구매처리
-	@RequestMapping("EproductBuy")
+	@RequestMapping("CM_EproductBuy")
 	public String EproductBuy(HttpServletRequest req, Model model) throws Exception {
 		logger.info("log => EproductBuy");
 		

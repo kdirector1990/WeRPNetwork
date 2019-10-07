@@ -11,7 +11,7 @@
 	<c:if test="${insertCnt == 1 }">
 		<script type="text/javascript">
 			alert("구매에 성공하였습니다.");
-			window.location="http://localhost:8081/erp/ST_saleList";
+			window.location="http://smueoot.dlinkddns.com:8087/erp/ST_saleList";
 		</script>
 	</c:if>
 	<c:if test="${insertCnt != 0 }">
