@@ -5,7 +5,6 @@
 <head>
 <%@ include file="../setting.jsp"%>
 <script type="text/javascript">
-	
 	function ProductName() {
 		window.open("ST_searchProductname", "ProductName_list",
 						"menubar=no, width=480px, height = 600px location=no,status=no,scrollbars=yes");

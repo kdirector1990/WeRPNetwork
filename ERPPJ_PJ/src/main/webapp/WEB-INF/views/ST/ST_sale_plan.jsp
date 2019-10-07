@@ -32,7 +32,6 @@
 	href="/erp/resources/assets/libs/datatables/fixedColumns.bootstrap4.min.css"
 	rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-
     function salePlanWriteForm(url) {
     	sendRequest(callback, "ST_sale_plan_writeForm", "post", "${_csrf.parameterName }=${_csrf.token }&saleplan_code="+url);
     }
