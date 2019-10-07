@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -579,6 +580,11 @@ public class HR_ServiceImpl implements HR_Service {
 	@Override
 	public List<HR_YearService_VO> getYearofservice(Map<String, Object> map, HttpServletRequest req, Model model)
 			throws java.text.ParseException {
+		if(map.get("day")=="") {
+			SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy/MM/dd");
+			String day = format1.format(System.currentTimeMillis());
+			map.put("day", day);
+		}
 		List<HR_YearService_VO> list = dao.getYearofservice(map);
 		return list;
 	}
