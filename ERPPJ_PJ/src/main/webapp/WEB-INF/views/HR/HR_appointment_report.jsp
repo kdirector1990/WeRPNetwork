@@ -172,8 +172,12 @@
 								<div class="page-title-right">
 									<ol class="breadcrumb m-0">
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">Codefox</a></li>
-										<li class="breadcrumb-item active">Dashboard</li>
+											href="javascript: void(0);">WeRP</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">인사</a></li>
+										<li class="breadcrumb-item"><a
+											href="javascript: void(0);">인사발령</a></li>
+										<li class="breadcrumb-item active">인사발령리포트</li>
 									</ol>
 								</div>
 								<h4 class="page-title">인사발령리포트</h4>

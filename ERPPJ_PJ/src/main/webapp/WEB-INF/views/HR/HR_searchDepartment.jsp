@@ -118,8 +118,8 @@ function enterkey() {
 										<li class="breadcrumb-item"><a
 											href="javascript: void(0);">인사</a></li>
 										<li class="breadcrumb-item"><a
-											href="javascript: void(0);">인사정보</a></li>
-										<li class="breadcrumb-item active">인사고과/상벌현황</li>
+											href="javascript: void(0);">부서</a></li>
+										<li class="breadcrumb-item active">부서조회</li>
 									</ol>
 								</div>
 								<h4 class="page-title">부서조회</h4>
