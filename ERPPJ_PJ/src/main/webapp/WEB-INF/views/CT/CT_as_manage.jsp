@@ -68,6 +68,7 @@
       				for(var i = 0; i < data.length; i++){
       					var cas_code = data[i].cas_code;
       					var department_code = data[i].department_code;
+      					var department_name = data[i].department_name;
       					var username = data[i].username;
       					var cas_title = data[i].cas_title; 
       					var date = data[i].cas_date;
@@ -91,7 +92,7 @@
     					
     					var cas_date = year + "-" + month + "-" +day;
     					
-    					var tr = '<tr class="spoat" onclick="updateAS(\''+cas_code+'\');"><td>'+cas_code+'</td><td>'+department_code+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
+    					var tr = '<tr class="spoat" onclick="updateAS(\''+cas_code+'\');"><td>'+cas_code+'</td><td>'+department_name+'</td><td>'+username+'</td><td>'+cas_title+'</td><td>'+cas_date+' '+time+'</td></tr>';
       					
     					$('#result').append(tr);
     					
@@ -304,7 +305,7 @@
 										<thead class="bg-primary text-white">
 											<tr>
 												<th>AS코드</th>
-												<th>부서코드</th>
+												<th>부서명</th>
 												<th>사원명</th>
 												<th>제목</th>
 												<th>요청시간</th>
