@@ -312,12 +312,11 @@
                             </li>
                         	</c:if>
 							<c:if test = "${auth != null }">
-                            <li class="menu-title">Navigation</li>
+                            <li class="menu-title">메뉴</li>
 
                             <li>
                                 <a href="index">
                                     <i class="fe-airplay"></i>
-                                    <span class="badge badge-success badge-pill float-right">1</span>
                                     <span> Dashboard </span>
                                 </a>
                             </li>
