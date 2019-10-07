@@ -199,7 +199,7 @@
 																		class="text-danger">*</span></label>
 																	<div class="col-md-8">
 																		<input type="text" class="form-control" name="e_code"
-																			placeholder="주민등록번호" size="13">
+																			placeholder="생년월일" size="13">
 																	</div>
 																</div>
 																<div class="form-group row">
