@@ -68,7 +68,7 @@ function allcheck(){
 											<tbody>
 												<c:forEach var="list" items="${dto}">
 													<tr>
-													<form action="InsertMaterialIo" method="post">
+													<form action="CM_InsertMaterialIo" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 														<td>${list.material_name}</td>
