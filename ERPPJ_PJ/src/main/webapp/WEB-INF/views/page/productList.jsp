@@ -48,12 +48,13 @@ function allcheck(){
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body"  style="overflow:auto;">
 								<div class="form-horizontal">
+									<form action="InsertMaterialIo" method="post">
+										<input type="hidden" name="${_csrf.parameterName }"
+											value="${_csrf.token }">
 										<table id="datatable"
-											class="table m-0 table-bordered table-hover"
-											style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-											
+											class="table m-0 table-bordered table-hover" >
 											<thead class="bg-primary text-white">
 												<tr>
 													<th>자재명</th>
@@ -68,46 +69,28 @@ function allcheck(){
 											<tbody>
 												<c:forEach var="list" items="${dto}">
 													<tr>
-													<form action="CM_InsertMaterialIo" method="post">
-										<input type="hidden" name="${_csrf.parameterName }"
-											value="${_csrf.token }">
 														<td>${list.material_name}</td>
 														<td>${list.material_unit}</td>
-														<td><input type="text" name="price" onkeyup="removeChar(event);"></td>
-														<td><input type="text" name="num" onkeyup="removeChar(event);"/>
-														<td>
-														<input type="hidden" name="material_code" value="${list.material_code}">
-														<select name="salesTeam">
-															<option value="1팀">(주)심장</option>
-															<option value="2팀">(주)북두칠성</option>
-															<option value="3팀">(주)창공</option>
-															<option value="4팀">(주)돼지</option>
-														</select>
-														</td>
-														<td><button type="submit" class="btn btn-dark waves-effect waves-light" >구매</button></td>
-														</form>							
-													 </tr>
+														<td><input type="text" name="price"
+															onkeyup="removeChar(event);"></td>
+														<td><input type="text" name="num"
+															onkeyup="removeChar(event);"></td>
+														<td><input type="hidden" name="material_code"
+															value="${list.material_code}"> <select
+															name="salesTeam">
+																<option value="1팀">(주)심장</option>
+																<option value="2팀">(주)북두칠성</option>
+																<option value="3팀">(주)창공</option>
+																<option value="4팀">(주)돼지</option>
+														</select></td>
+														<td><button type="submit"
+																class="btn btn-dark waves-effect waves-light">구매</button></td>
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
-								</div>
-
-								<%-- <div class="result">
-									<br>
-									<form id="MF_production_plan_enrollment">
-										<input type='hidden' name="${_csrf.parameterName }"
-											value="${_csrf.token }"> <br>
-										<table id="datatable2"
-											class="table table-striped dt-responsive nowrap"
-											style="border-collapse: collapse; border-spacing: 0;">
-											<thead>
-											</thead>
-
-											<tbody>
-											</tbody>
-										</table>
 									</form>
-								</div> --%>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -95,7 +95,7 @@ $(function(){
 				$('#bodyappend').empty();
 				
 				$('#resulttable').append(
-				'<table id="datatable-buttons"	class="table table-striped table-bordered dt-responsive nowrap"	style="border-collapse: collapse; border-spacing: 0; width: 100%;">'+
+				'<table id="datatable-buttons"	class="table table-striped table-bordered dt-responsive nowrap"	style="border-collapse: collapse; border-spacing: 0;">'+
 					'<thead class="bg-primary text-white">'+
 						'<tr>'+
 							'<th>거래처명</th>'+
@@ -210,7 +210,7 @@ $(function(){
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
-								<div class="card-body table-responsive">
+								<div class="card-body">
 									<table class="col-12">
 										<tr class="form-group row">
 												<th>거래처명</th>
