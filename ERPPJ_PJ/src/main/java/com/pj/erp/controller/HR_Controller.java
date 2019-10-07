@@ -629,5 +629,24 @@ public class HR_Controller {
 		return deleteCnt;
 	}
 	
+	// 개인정보수정
+	@RequestMapping("HR_modifyUserView")
+	public String modifyUser(MultipartHttpServletRequest req, Model model) {
+		logger.info("log => HR_modifyUserView");
+		service.modifyUserView(req, model);
+		
+		return "HR/HR_modifyUserView";
+		
+	}
+	
+	// 개인정보 수정처리
+	@RequestMapping(value="HR_modifyUserPro", method=RequestMethod.POST) 
+	public String HR_modifyUserPro(MultipartHttpServletRequest req, Model model) {
+		logger.info("log = > HR_modifyUserPro");
+		service.modifyUserPro(req, model);
+		
+		return  "HR/HR_FoundationLocation";
+	}
+	
 	
 }

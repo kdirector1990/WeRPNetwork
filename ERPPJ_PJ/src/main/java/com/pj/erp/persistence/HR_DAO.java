@@ -185,4 +185,10 @@ public interface HR_DAO {
 	// 공고목록
 	public List<HR_ApVO> getAppointmentList(Map<String, Object> map);
 	
+	// 개인정보
+	public HR_VO getUserInfo(String username);
+	
+	// 개인정보 수정처리
+	public int updateUserInfo(HR_VO vo);
+	
 }

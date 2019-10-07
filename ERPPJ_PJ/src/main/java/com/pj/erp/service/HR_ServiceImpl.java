@@ -953,4 +953,88 @@ public class HR_ServiceImpl implements HR_Service {
 		
 	}
 
+	@Override
+	public void modifyUserView(MultipartHttpServletRequest req, Model model) {
+		String username = (String) req.getSession().getAttribute("username");
+
+		HR_VO user = dao.getUserInfo(username);
+
+		model.addAttribute("user", user);
+		
+	}
+	
+	@Override
+	public void modifyUserPro(MultipartHttpServletRequest req, Model model) {
+		int updateCnt = 0;
+		
+	    MultipartFile file = req.getFile("e_picture");
+	    UUID uuid = UUID.randomUUID();
+	    
+	    String saveDir = req.getRealPath("/resources/hr_img/");
+
+ 
+	    String realDir = "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img\\";  
+	    /* "F:\\dev50\\git\\WeRPNetwork\\ERPPJ_PJ\\src\\main\\webapp\\resources\\hr_img"; */	  
+	    String times = String.valueOf(System.currentTimeMillis());
+	    try {	    	
+	    	file.transferTo(new File(saveDir+times+uuid+"_"+file.getOriginalFilename()));	    	
+	    	
+		    FileInputStream fis = new FileInputStream(saveDir +times+ uuid+"_"+file.getOriginalFilename()); 
+		    FileOutputStream fos = new FileOutputStream(realDir +times+ uuid+"_"+file.getOriginalFilename());
+		    	    	
+		    int data = 0;
+	  
+		    while((data = fis.read()) != -1) { 
+		    	fos.write(data); 
+		    } 
+		    fis.close();
+		    fos.close();		
+		 
+		System.out.println(System.currentTimeMillis());
+		    
+		HR_VO vo = new HR_VO();
+		String username = (String) req.getSession().getAttribute("username");
+		String password = passwordEncoder.encode(req.getParameter("password"));
+		String e_name = req.getParameter("e_name");
+				
+		String e_picture = file.getOriginalFilename();
+		if(e_picture.equals("")) {
+			e_picture ="noImage.png";
+		} else {
+			e_picture = times+ uuid+"_"+file.getOriginalFilename();
+		}
+		
+		int e_gender = Integer.parseInt(req.getParameter("e_gender"));
+		
+		vo.setUsername(username);
+		vo.setPassword(password);
+		vo.setE_name(e_name);
+		vo.setE_picture(e_picture);
+			/*
+			 * if(e_picture == null) { vo.setE_picture("noImage.png"); }
+			 */
+		vo.setE_gender(e_gender);
+		vo.setE_type(req.getParameter("e_type"));
+		vo.setE_code(req.getParameter("e_code"));
+		vo.setE_hp(req.getParameter("e_hp"));
+
+		String e_address = req.getParameter("e_address");
+		
+		vo.setE_address(e_address);
+
+		vo.setE_mailcode(req.getParameter("e_mailcode"));
+		
+
+		updateCnt = dao.updateUserInfo(vo);
+
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("username", username);
+		 
+		
+		}catch(IOException e) { 
+			e.printStackTrace(); 
+		}
+	    
+	}
+
 }

@@ -481,4 +481,14 @@
 		select ap_code, ap_name, ap_reg_date, ap_status from appointment_tbl
 	</select>
 	
+	<!-- 개인 정보 -->
+	<select id="getUserInfo" parameterType="String" resultType="com.pj.erp.vo.HR.HR_VO">
+		select * from users where username = #{username}
+	</select>
+	
+	<!-- 개인정보 수정 -->
+	<update id="updateUserInfo" parameterType="com.pj.erp.vo.HR.HR_VO">
+		update users set password= #{password}, e_picture=#{e_picture}, e_name =#{e_name}, e_gender=#{e_gender}, e_type=#{e_type}, e_code=#{e_code}, e_hp=#{e_hp}, e_address=#{e_address}, e_mailcode=#{e_mailcode} where username=#{username}
+	</update>
+	
 </mapper>
