@@ -668,7 +668,7 @@ public class ERPController {
 	
 	// 재료 구매하는 페이지
 	@RequestMapping("CM_productList")
-	public String productList(HttpServletRequest req, Model model) {
+	public String CM_productList(HttpServletRequest req, Model model) {
 		logger.info("log => productList");
 		service.materialList(req, model);
 		return "page/productList"; 
@@ -684,8 +684,8 @@ public class ERPController {
 	}
 	
 	// 재료 구매.
-	@RequestMapping("InsertMaterialIo")
-	public String InsertMaterialIo(HttpServletRequest req, Model model){
+	@RequestMapping("CM_InsertMaterialIo")
+	public String CM_InsertMaterialIo(HttpServletRequest req, Model model){
 		logger.info("log => InsertMaterialIo");
 		try {
 			OS.payOriginMaterial(req, model);

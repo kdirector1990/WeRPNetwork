@@ -46,7 +46,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="page-title-box">
-					<h4 class="page-title">A/S 등록</h4>
+					<h4 class="page-title">A/S 요청</h4>
 				</div>
 			</div>
 		</div>

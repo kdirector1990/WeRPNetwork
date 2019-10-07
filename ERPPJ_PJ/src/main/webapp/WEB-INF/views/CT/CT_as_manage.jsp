@@ -57,6 +57,10 @@
 				success : function(data){
 					
 					$('#result').empty();
+					$('#bodyappend').empty();
+					document.getElementById("update").style.display="none";
+					$('#result2').empty();
+					
       				
       				for(var i = 0; i < data.length; i++){
       					var cas_code = data[i].cas_code;

@@ -71,7 +71,7 @@ public class HR_Controller {
 		logger.info("log => HR_inputFoundation");
 		service.inputFoundation(req, model);		
 		
-		return "index";		
+		return "HR/HR_inputFoundationLocation";		
 	}		
 	
 	// 사원정보 수정페이지 - 안씀
