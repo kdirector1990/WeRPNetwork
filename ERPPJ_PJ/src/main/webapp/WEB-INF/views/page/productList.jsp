@@ -50,7 +50,7 @@ function allcheck(){
 						<div class="card">
 							<div class="card-body"  style="overflow:auto;">
 								<div class="form-horizontal">
-									<form action="InsertMaterialIo" method="post">
+									<form action="CM_InsertMaterialIo" method="post">
 										<input type="hidden" name="${_csrf.parameterName }"
 											value="${_csrf.token }">
 										<table id="datatable"
